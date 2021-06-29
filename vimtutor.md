@@ -1,4 +1,4 @@
-## Vim Tutor
+## $ vimtutor
 
         d   [number]  motion
 
