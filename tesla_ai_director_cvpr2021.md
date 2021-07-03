@@ -1,6 +1,7 @@
 This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
 
 ### Traditional Industry Method
+
     - Expensive Lidar 
     - Pre map the environment with Lidar sensor
     - Create HD Map 
@@ -8,6 +9,7 @@ This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
     - Localize in HD Map for testing
 
 ### Tesla's Method
+
     - Vision based
     - 8 cameras surround the cars(1280 x 960 x 3 @ 36fps)
     - Detect lanes, traffic light, .etc when going to intersection
@@ -17,6 +19,7 @@ This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
     - Once you solve this, it can be deploy anywhere on eatrh
 
 ### Vision Challenges
+
     - Range finding, depth estimation, velocity estimation
     - Are Neural networks able to do range finding or depth estimation of the objects? 
         - YES
@@ -24,6 +27,7 @@ This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
         - But radar is easy to give noises in lots of accident cases
 
 ## Solution: Use a neural network that predict depth and accleration directly
+
 <p align="center">
     <img src="pictures/tesla_pipeline.png" />
 </p>
@@ -61,6 +65,7 @@ This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
     - Spend roughly 4 months of really just focusing on a lot of teams on achiving really good at depth, velocity and accleration
 
 ## Final Dataset
+
     - 1 million (8 cameras of 36fps, 10-second videos)
     - 6 billion object labels with accurate depth/velocity
     - 1.5 petabytes totally
