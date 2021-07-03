@@ -46,5 +46,5 @@
 
 ### Reference
 
-        $ vimtutor
-        <https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>
+$ vimtutor
+<https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>
