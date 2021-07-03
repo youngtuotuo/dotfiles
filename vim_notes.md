@@ -5,15 +5,24 @@
         d/c   [number]  motion
 
     Where:
-        d/c    - delete operator/change operate.
-        number - is the repeat times
-        motion - is what the operator will operate on.
+        d/c    - Delete operator/change operate.
+        number - The repeat times
+        motion - What the operator will operate on.
 
 ### Tabs
 
-        :tabe[dit]  [filepath]
-        :tabc[lose] [filepath]
-        :tabo[nly]  [filepath]
+        :tabe[dit]  [filepath]  - Open a new tab
+        :tabc[lose] [filepath]  - Close current tab
+        :tabo[nly]  [filepath]  - Leave currrent tab and close all another
+        :tabl[ast]              - Go to the last tab
+        :tabr[ewind]            - Go to the last edit tab
+        :tabfir[st]             - Go to the first tab
+        :tabs                   - List all tabs
+                                  Shows a ">" for the current window
+                                  Shows a "+" for modified buffers
+        [number]gt              - Go to the [number]-th tab
+        g<Tab>                  - Go to the last accessed tab page(<Tab>=<C-i>)
+
 
 ### Join
 
