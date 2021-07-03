@@ -1,6 +1,4 @@
 # Always use :help
-## $ vimtutor
-## <https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>
 
 ### Cut And Change
 
@@ -45,3 +43,8 @@
                 $ : anchor at the end of line
                 e : not give an error if there is no match
                 g : globally match
+
+### Reference
+
+        $ vimtutor
+        <https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>
