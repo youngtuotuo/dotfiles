@@ -39,9 +39,9 @@
         :[range]s/{pattern}/{string}/[flags] [count]
 
         :%s/\s\+$//e
-        % : all matching pattern
-        \s: white space or tab
-        \+: match one or more of them
-        $ : anchor at the end of line
-        e : not give an error if there is no match
-        g : globally match
+                % : all matching pattern
+                \s: white space or tab
+                \+: match one or more of them
+                $ : anchor at the end of line
+                e : not give an error if there is no match
+                g : globally match
