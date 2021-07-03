@@ -9,6 +9,12 @@
         number - is the repeat times
         motion - is what the operator will operate on.
 
+### Tabs
+
+        :tabe[dit]  [filepath]
+        :tabc[lose] [filepath]
+        :tabo[nly]  [filepath]
+
 ### Join
 
         J   - Join line below
@@ -22,8 +28,8 @@
 
 ### Split
 
-        :[number]vsp [filename]    - vertical split according to [number]
-        :[number]sp  [filename]    - horizontal split according to [number]
+        :[number]vsp [filepath]    - vertical split according to [number]
+        :[number]sp  [filepath]    - horizontal split according to [number]
 
 ### Pane Resize
 
@@ -46,5 +52,7 @@
 
 ### Reference
 
-$ vimtutor
-<https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>
+$ vimtutor  
+<https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>  
+<https://www.freecodecamp.org/news/learn-linux-vim-basic-features-19134461ab85/>  
+<http://vimregex.com/#news>
