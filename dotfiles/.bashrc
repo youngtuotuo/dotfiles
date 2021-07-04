@@ -62,7 +62,12 @@ parse_git_branch() {
 
 
 if [ "$color_prompt" = yes ]; then
+    # Ubuntu defualt settings
+    # Use \e[..,..m to let ssh correctly display
     PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(parse_git_branch)\n\$ '
+
+    # Some custom colour
+    # may not display correctly when login from other system
     #PS1='${debian_chroot:+($debian_chroot)}'
     #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]($CONDA_DEFAULT_ENV) ' # rgb(240,240,240)
     #PS1+='\[\e[0;1m\e[38;2;78;154;2m\]\u@\h ' # rgb(78,154,2) 
