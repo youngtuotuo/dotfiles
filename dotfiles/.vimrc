@@ -42,8 +42,8 @@ set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 syntax on
 
+# https://github.com/itchyny/lightline.vim.git
 set laststatus=2
-
 let g:lightline = {
     \ 'colorscheme': 'wombat'
     \ }
