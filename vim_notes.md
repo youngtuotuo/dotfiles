@@ -28,8 +28,9 @@
         <Tab>   - Ctrl-i
         <CR>    - Ctrl-m
 
-### Tabs
+### Tabe
 
+        $ vim -p file1 file2    - Open multiple files in tabs
         :tabe[dit]  [filepath]  - Open a new tab
         :tabc[lose] [filepath]  - Close current tab
         :tabo[nly]  [filepath]  - Leave currrent tab and close all another
@@ -52,7 +53,9 @@
         Ctrl-g    - Show location in the file and the file status
         Ctrl-o    - Go to last cursor position
         Ctrl-i    - Go to next cursor position
-        %           - Parentheses match and search
+        %         - Parentheses match and search
+        ``        - To the position before the latest jump, or where the last "m`" command was given.
+        ''        - The same as ``
 
 ### Split
 
