@@ -2,12 +2,35 @@
 
 ### Cut And Change
 
-        d/c   [number]  motion
+        d/c [number]  motion
 
         Where:
                 d/c    - Delete operator/change operate.
                 number - The repeat times
                 motion - What the operator will operate on.
+
+### Fold
+
+        [range]zf [number] motion      - Folding lines or blocks
+
+        zd      - Delete one fold at the cursor
+        zc      - Close one fold
+        zo      - Open one fold
+        za      - Toggle one fold between open and clsoe
+
+### Macro
+
+        q{0-9a-zA-Z"}           - Start recording macro {0-9a-zA-Z"}
+        @[number]{0-9a-zA-Z"}   - Repeat macro {0-9a-zA-Z"} [number] times
+
+### File Explorer
+
+        :Ex[plore]  [dir] - Explore directory of current file
+        :Hex[plore] [dir] - Horizontal Split & Explore
+        :Sex[plore] [dir] - Split&Explore current file's directory
+        :Vex[plore] [dir] - Vertical   Split & Explore
+        :Tex[plore] [dir] - Tab & Explore
+        :Rex[plore]       - Return to/from Explorer
 
 ### Page Reading
 
@@ -21,13 +44,13 @@
         zt      - Put cursor's line at the top of the window
         zb      - Put cursor's line at the bottom of the window
 
-### Key notation
+### Key Notation
 
         <BS>    - Ctrl-h
         <Tab>   - Ctrl-i
         <CR>    - Ctrl-m
 
-### Tabe
+### Tab
 
         $ vim -p file1 file2    - Open multiple files in tabs
         :tabe[dit]  [filepath]  - Open a new tab
@@ -36,6 +59,8 @@
         :tabl[ast]              - Go to the last tab
         :tabr[ewind]            - Go to the last edit tab
         :tabfir[st]             - Go to the first tab
+        :[N]tabm[ove]           - Move the current tab after the [N]-th tab
+        :tabm[ove] [N]          - The same as [N]tabm[ove]
         :tabs                   - List all tabs
                                   Shows a ">" for the current window
                                   Shows a "+" for modified buffers
@@ -68,9 +93,12 @@
         Ctrl-w =    - normalize all split sizes
         Ctrl-w R    - swap top/bottom or  left/right split
 
-### Delete all trailing spaces
+### Substitute
 
         :[range]s/{pattern}/{string}/[flags] [count]
+
+### Delete all trailing spaces
+
 
         :%s/\s\+$//e
                 % : all matching pattern
