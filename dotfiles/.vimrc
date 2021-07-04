@@ -25,6 +25,8 @@ set showcmd
 set backspace=indent,eol,start
 
 set noshowmode
+
+" Parathensis match
 set showmatch
 set matchtime=1
 
@@ -37,13 +39,17 @@ set smartcase
 set splitbelow
 set splitright
 
+" Keep code folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
 set autoindent smartindent
 set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 syntax on
 
-# https://github.com/itchyny/lightline.vim.git
 set laststatus=2
+
 let g:lightline = {
     \ 'colorscheme': 'wombat'
     \ }
@@ -53,3 +59,13 @@ noremap <C-J> <C-W><C-J>
 noremap <C-H> <C-W><C-H>
 noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
+
+" Tab switch to previous
+map gb gT
+
+" Pane resize
+map + <C-W>+
+map - <C-W>-
+map <C-n> <C-W><
+map <C-m> <C-W>>
+
