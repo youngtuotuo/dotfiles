@@ -4,10 +4,10 @@
 
         d/c   [number]  motion
 
-    Where:
-        d/c    - Delete operator/change operate.
-        number - The repeat times
-        motion - What the operator will operate on.
+        Where:
+                d/c    - Delete operator/change operate.
+                number - The repeat times
+                motion - What the operator will operate on.
 
 ### Tabs
 
@@ -61,6 +61,7 @@
 
 ### Reference
 
+:help  
 $ vimtutor  
 <https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>  
 <https://www.freecodecamp.org/news/learn-linux-vim-basic-features-19134461ab85/>  
