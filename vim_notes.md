@@ -20,7 +20,6 @@
         zz      - Put cursor's line at the center of the window. Be careful that caps-lock is off, "ZZ" will write buffer and exit.
         zt      - Put cursor's line at the top of the window
         zb      - Put cursor's line at the bottom of the window
-        z.      - Put the cursor's line at the center of the window but leave the cursor in the same coumn 
 
 ### Key notation
 
