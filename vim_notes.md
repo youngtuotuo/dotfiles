@@ -9,6 +9,25 @@
                 number - The repeat times
                 motion - What the operator will operate on.
 
+### Page Reading
+
+        Ctrl-e  - Scroll down one line
+        Ctrl-d  - Scroll down half page
+        Ctrl-f  - Scroll down one page
+        Ctrl-y  - Scroll up one line
+        Ctrl-u  - Scroll up half page
+        Ctrl-b  - Scroll up one page
+        zz      - Put cursor's line at the center of the window. Be careful that caps-lock is off, "ZZ" will write buffer and exit.
+        zt      - Put cursor's line at the top of the window
+        zb      - Put cursor's line at the bottom of the window
+        z.      - Put the cursor's line at the center of the window but leave the cursor in the same coumn 
+
+### Key notation
+
+        <BS>    - Ctrl-h
+        <Tab>   - Ctrl-i
+        <CR>    - Ctrl-m
+
 ### Tabs
 
         :tabe[dit]  [filepath]  - Open a new tab
@@ -24,15 +43,15 @@
         g<Tab>                  - Go to the last accessed tab page(<Tab>=<C-i>)
 
 
-### Join
+### Editing Efficiency
 
         J   - Join line below
 
 ### Cursor Movement
 
-        Ctrl + g    - Show location in the file and the file status
-        Ctrl + o    - Go to last cursor position
-        Ctrl + i    - Go to next cursor position
+        Ctrl-g    - Show location in the file and the file status
+        Ctrl-o    - Go to last cursor position
+        Ctrl-i    - Go to next cursor position
         %           - Parentheses match and search
 
 ### Split
@@ -42,10 +61,10 @@
 
 ### Pane Resize
 
-        Ctrl + w  _   - max out the height of the current split
-        Ctrl + w |    - max out the width of the current split
-        Ctrl + w =    - normalize all split sizes
-        Ctrl + w R    - swap top/bottom or  left/right split
+        Ctrl-w  _   - max out the height of the current split
+        Ctrl-w |    - max out the width of the current split
+        Ctrl-w =    - normalize all split sizes
+        Ctrl-w R    - swap top/bottom or  left/right split
 
 ### Delete all trailing spaces
 
