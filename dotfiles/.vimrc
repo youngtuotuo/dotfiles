@@ -1,9 +1,5 @@
 set encoding=utf-8
 
-" Let tmux behave normally
-set t_Co=256
-set background=dark
-
 " Display extra whitespace
 set list listchars=tab:>·,trail:·,nbsp:·
 
@@ -39,14 +35,19 @@ set smartcase
 set splitbelow
 set splitright
 
-" Keep code folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
 set autoindent smartindent
 set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
+
+" Default color scheme
+" colorscheme ron
+
+packadd! onedark.vim
+if (has("termguicolors"))
+    set termguicolors
+endif
 syntax on
+colorscheme onedark
 
 set laststatus=2
 
