@@ -35,6 +35,11 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# Not default here
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#  exec tmux
+#fi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -62,12 +67,7 @@ parse_git_branch() {
 
 
 if [ "$color_prompt" = yes ]; then
-    # Ubuntu defualt settings
-    # Use \e[..,..m to let ssh correctly display
     PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(parse_git_branch)\n\$ '
-
-    # Some custom colour
-    # may not display correctly when login from other system
     #PS1='${debian_chroot:+($debian_chroot)}'
     #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]($CONDA_DEFAULT_ENV) ' # rgb(240,240,240)
     #PS1+='\[\e[0;1m\e[38;2;78;154;2m\]\u@\h ' # rgb(78,154,2) 
@@ -79,6 +79,15 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
+
+# $ set-title text
+function set-title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -149,4 +158,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
