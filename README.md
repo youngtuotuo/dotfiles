@@ -4,7 +4,6 @@
 ## Language
 [C/C++](lang)
 ## Skills
-[Data Science & Machine Learning](ml)
-[Linux](os)
+[Data Science & Machine Learning](ml), [Linux](os)
 ## Weight training
 [SBD 怪獸 podcast](sbd)

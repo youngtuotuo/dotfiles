@@ -3,14 +3,14 @@ This note is taken from the article https://itsfoss.com//linux-man-page-guide
         $ man man   - Spelling out, in great detail, how the man pages are laid out and organized
 
 <p align="center">
-    <img src="pictures/man_man.png" />
+    <img src="../pictures/man_man.png" />
 </p>
 
 
         $ man ls
 
 <p align="center">
-    <img src="pictures/ls_man.png" />
+    <img src="../pictures/ls_man.png" />
 </p>
 
 **LS(1)**: 1 means this man page is in `section 1`. There are 9 sections:

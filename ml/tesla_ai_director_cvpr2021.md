@@ -29,7 +29,7 @@ This note is taken from the video https://www.youtube.com/watch?v=NSDTZQdo6H8
 ## Solution: Use a neural network that predict depth and accleration directly
 
 <p align="center">
-    <img src="pictures/tesla_pipeline.png" />
+    <img src="../pictures/tesla_pipeline.png" />
 </p>
 
     - Begin from top-right corner. Use a seed data set and train a neural network.
