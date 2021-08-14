@@ -1,9 +1,10 @@
 ## Vallina Non-Maximum Suppression(NMS)
 #### Assumption
 
-> **Bounging boxes that highly overlap stand for the same object.**
+> **Bounging boxes that highly overlap to each other stand for the same object.**
 
-That means objects will seperate enough in the images.
+That means NMS is designed for images with objects not too close to each other.  
+It's obvious tha NMS can't behave well for all cases.
 
 #### Method
 Maunally define a threshold ``iou_thres=M``, ``0<=M<=1``.
