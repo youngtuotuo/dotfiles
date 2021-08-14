@@ -1,19 +1,22 @@
-This note is taken from the article https://itsfoss.com//linux-man-page-guide
+# Basic manual page structure
 
-        $ man man   - Spelling out, in great detail, how the man pages are laid out and organized
+`$ man man`
+        Spelling out, in great detail, how the man pages are laid out and organized
 
 <p align="center">
     <img src="../pictures/man_man.png" />
 </p>
 
 
-        $ man ls
+`$ man ls`
 
 <p align="center">
     <img src="../pictures/ls_man.png" />
 </p>
 
-**LS(1)**: 1 means this man page is in `section 1`. There are 9 sections:
+
+`LS(1)`
+        1 means this man page is in `section 1`. There are 9 sections:
 |Section|Usage|
 |:-------|:-----|
 |1       |Shell commands and applications|
@@ -44,15 +47,25 @@ There's another thing called section, also. They're the bold titles you see at f
 |**WARNING**|Contains important advice for users|
 |**NOTES**|Not as severe as warning, but important information|
 
-        $ man 1 ls      - Will only show section 1 of `ls` command.
+`$ man 1 ls`
+        Will only show section 1 of `ls` command.
 
-        $ man -k ls     - Will show lists of man pages that deal with `ls` command
+`$ man -k ls`
+        Will show lists of man pages that deal with `ls` command
 
-        $ whatis passwd - To know what section that `passwd`'s manual page contains
-        $ man -f passwd - The same as above
+`$ whatis passwd`
+        To know what section that `passwd`'s manual page contains
 
-        $ whereis cal   - Tell you where the program is and where the man page resides
+`$ man -f passwd`
+        The same as above
 
-        $ man -w cal    - can also know where the man page is
+`$ whereis cal`
+        Tell you where the program is and where the man page resides
+
+`$ man -w cal`
+        Can also know where the man page is
 
 `whereis` is `PATH` dependent, it can only tell you where files are if they are in `PATH` environment
+
+## References
+[It's foss](https://itsfoss.com//linux-man-page-guide)

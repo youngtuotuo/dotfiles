@@ -112,6 +112,3 @@
 
 :help  
 $ vimtutor  
-<https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations>  
-<https://www.freecodecamp.org/news/learn-linux-vim-basic-features-19134461ab85/>  
-<http://vimregex.com/#news>

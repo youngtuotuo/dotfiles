@@ -1,4 +1,5 @@
 # Some learning notes from a newbie data scientist
+To let my 4KB brain learn 1000000000000PB knowledge.
 ## Tools
 [tmux](dotfiles), [vim](tool)
 ## Language
