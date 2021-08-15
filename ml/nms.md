@@ -7,7 +7,7 @@ That means NMS is designed for images with objects not too close to each other.
 It's obvious tha NMS can't behave well for all cases.
 
 ## Method
-Maunally define a threshold `iou_thres=M`, `0<=M<=1`.
+Maunally define two thresholds `iou_thres=M`, `0<=M<=1` and `conf_thres=N`, `0<=N<=1`.
 > **Let ``A`` and ``B`` be two bounding boxes. ``IoU(A,B) >(=) M`` means ``A`` and ``B`` are highly overlapping.**
 
 <p align="vallina nms">
