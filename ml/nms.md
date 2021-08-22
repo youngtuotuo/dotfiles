@@ -38,4 +38,5 @@ Maunally define two thresholds `iou_thres=M`, `0<=M<=1` and `conf_thres=N`, `0<=
     - Car detections on the road/in the parking lot.
     - Product detections on a shelf.
     - Garbage detections.
-    - Any targets that is easy to appear in group.
+    - Any targets that is easy to appear grouply.
+    - Overlapping objects that have the same bounging box.(Imagine a fork and a spoon that cross to each other.)
