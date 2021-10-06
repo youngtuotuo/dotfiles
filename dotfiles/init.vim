@@ -29,7 +29,7 @@ set splitright
 " tab control
 set autoindent smartindent 
 set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
-filetype indent on
+"filetype indent on
 
 " Indent line configuration
 let g:indentLine_char = '▏'
@@ -88,6 +88,8 @@ noremap <C-L> <C-W><C-L>
 map gb gT
 
 " More reasonable remap
+nnoremap { {zz
+nnoremap } }zz
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap J mzJ`z
@@ -102,6 +104,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
+inoremap <C-V> <C-R>"
+nnoremap <leader>i %di(i<CR><esc>ko<C-R>"<esc>^:w<CR>
+nnoremap <leader><leader> ^DkJJi<C-R>"<esc>%:w<CR>
+nnoremap <leader>, ^f,a<CR><esc>:w<CR>^
 
 " Bracket control
 inoremap {<CR> {<CR>}<Esc>ko
@@ -213,14 +219,15 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " To get correct comment highlighting for json
 autocmd FileType json syntax match Comment +\/\/.\+$+
-autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
 " Coc explorer configuration
 let g:netrw_menu = 0
@@ -230,11 +237,11 @@ nnoremap <space>e :CocCommand explorer<CR>
 autocmd StdinReadPre * let s:std_in=1
 " Start explorer, unless a file or session is specified, eg. vim -S session_file.vim.
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | execute 'CocCommand explorer' | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'CocCommand explorer' argv()[0] | endif
 
 " Coc prettier configuration
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+nnoremap <leader>] :call CocAction('diagnosticNext')<CR>
+nnoremap <leader>[ :call CocAction('diagnosticPrevious')<CR>
 "Coc.nvim configuration"
 
 " NERDTree configuration
@@ -246,4 +253,5 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 nnoremap <space>f :Files<CR>
 nnoremap <space>b :Buffers<CR>
 nnoremap <space>w :Windows<CR>
+nnoremap <space>l :Lines<CR>
 let $FZF_DEFAULT_OPTS="--bind \"ctrl-n:preview-down,ctrl-p:preview-up\""
