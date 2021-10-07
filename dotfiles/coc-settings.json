@@ -1,0 +1,16 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json"],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.rootPatterns": [
+    ".python-root",
+    ".git",
+    ".hg",
+    ".projections.json"
+  ],
+  "pydocstring.formatter": "google",
+  "python.pythonPath": "/home/support/anaconda3/envs/pipe/bin/python3.8",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.position": "floating",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.reveal.whenOpen": true
+}
