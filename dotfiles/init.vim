@@ -12,7 +12,7 @@ set noshowmode
 set noswapfile
 set nobackup
 set cursorline
-set colorcolumn=80
+set colorcolumn=100
 
 " Parathensis match
 set showmatch
@@ -29,29 +29,48 @@ set splitright
 " tab control
 set autoindent smartindent 
 set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
-"filetype indent on
+filetype indent on
 
 " Indent line configuration
 let g:indentLine_char = '▏'
 
 "Plugin manager
 call plug#begin('~/.vim/plugged')
-Plug 'vim-python/python-syntax'
+Plug 'tpope/vim-fugitive'
+Plug 'liuchengxu/vista.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'itchyny/vim-gitbranch'
-Plug 'tpope/vim-fugitive'
+Plug 'yaegassy/coc-pydocstring', {'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+" Pydocstring
+nmap <silent> ga <Plug>(coc-codeaction-line)
+xmap <silent> ga <Plug>(coc-codeaction-selected)
+nmap <silent> gA <Plug>(coc-codeaction)
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
+
 " python syntax
 let g:python_highlight_all = 1
+
+" Vista
+let g:vista_sidebar_open_cmd = "30vsplit"
+" Executive used when opening vista sidebar without specifying it.
+let g:vista_default_executive = 'coc'
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista_sidebar_keepalt = 1
+let g:vista#renderer#enable_icon = 1
+nnoremap <space>v :Vista!!<CR>
 
 " onedark theme
 " hide ~ symbol in lasting line
@@ -63,17 +82,82 @@ endif
 colorscheme onedark
 
 " lightline configuration
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+function! NearestMethodOrFunction() abort
+  let func = get(b:, 'vista_nearest_method_or_function', '') 
+  return  func !=# '' ? ' ' . func : '' 
+endfunction
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+"set statusline+=%{NearestMethodOrFunction()}
+
+function! Fileformat()
+  return winwidth(0) > 50 ? (WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+function! Filename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  return WebDevIconsGetFileTypeSymbol() . ' ' . filename
+endfunction
+
+function! Modified()
+  return &modified ? 'פֿ' : ''
+endfunction
+
+function! Git() abort
+  let change = get(b:, 'coc_git_status', '')
+  let branch = get(g:, 'coc_git_status', '')
+  return branch !=# '' ? branch . ' ' . change: ''
+endfunction
+
+function! Encode() abort
+  return winwidth(0) > 50 ? &fileencoding : ''
+endfunction
+
+let g:coc_status_error_sign = ' '
+
 let g:lightline = {
     \ 'colorscheme': 'onedark',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-    \   },
+    \   'left': [ [ 'mode' ],
+    \             [ 'git', 'cocstatus', 'method', 'modified','filename'  ] 
+    \           ],
+    \   'right': [ [ 'fileformat', 'encode'] ]
+    \ },
+    \ 'inactive': {
+    \   'left': [ [ 'git', 'cocstatus', 'method', 'modified', 'filename' ] ],
+    \   'right': [ [ 'fileformat', 'encode' ] ]
+    \ },
     \ 'component_function': {
-    \   'gitbranch': 'FugitiveHead',
-    \   'cocstatus': 'coc#status'
+    \   'cocstatus': 'coc#status',
+    \   'method': 'NearestMethodOrFunction',
+    \   'fileformat': 'Fileformat',
+    \   'filename': 'Filename',
+    \   'git': 'Git',
+    \   'encode': 'Encode',
+    \   'modified': 'Modified',
+    \   },
+    \ 'mode_map': {
+    \ 'n' : 'N',
+    \ 'i' : 'I',
+    \ 'R' : 'R',
+    \ 'v' : 'V',
+    \ 'V' : 'VL',
+    \ "\<C-v>": 'VB',
+    \ 'c' : 'C',
+    \ 's' : 'S',
+    \ 'S' : 'SL',
+    \ "\<C-s>": 'SB',
+    \ 't': 'T',
     \ },
     \ }
+
+
+autocmd User CocGitStatusChange {get(g:,'coc_git_status','')}
+autocmd User CocGitStatusChange {get(b:,'coc_git_status','')}
 
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -88,6 +172,7 @@ noremap <C-L> <C-W><C-L>
 map gb gT
 
 " More reasonable remap
+nnoremap Y y$
 nnoremap { {zz
 nnoremap } }zz
 nnoremap n nzz
@@ -96,8 +181,8 @@ nnoremap J mzJ`z
 inoremap , ,<C-G>u
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
-nnoremap <C-y> <C-y>k
-nnoremap <C-e> <C-e>j
+nnoremap <C-y> <C-y>k^
+nnoremap <C-e> <C-e>j^
 inoremap <C-j> <esc>:m +1<CR>==i
 inoremap <C-k> <esc>:m -2<CR>==i
 vnoremap J :m '>+1<CR>gv=gv
@@ -107,15 +192,21 @@ nnoremap <leader>j :m .+1<CR>==
 inoremap <C-V> <C-R>"
 nnoremap <leader>i %di(i<CR><esc>ko<C-R>"<esc>^:w<CR>
 nnoremap <leader><leader> ^DkJJi<C-R>"<esc>%:w<CR>
-nnoremap <leader>, ^f,a<CR><esc>:w<CR>^
+nnoremap <leader>, f,a<CR><esc>:w<CR>^
+nnoremap <C-S> :w<CR>
+nnoremap <space>t :terminal<CR>
 
-" Bracket control
+" Bracket complete
 inoremap {<CR> {<CR>}<Esc>ko
 inoremap {{ {}<ESC>i
 inoremap (<CR> (<CR>)<Esc>ko
 inoremap (( ()<ESC>i
 inoremap [<CR> [<CR>]<Esc>ko
 inoremap [[ []<ESC>i
+
+" Auto quote complete
+inoremap "" ""<Esc>i
+inoremap '' ''<Esc>i
 
 " Pane resize
 map <S-Up> <C-W>+
@@ -133,13 +224,7 @@ map <C-Up> <C-Y>
 map <C-S-Up> <C-U>
 map <C-S-Down> <C-D>
 
-" Auto quote complete
-""inoremap ( ()<Esc>i
-""inoremap " ""<Esc>i
-""inoremap ' ''<Esc>i
-""inoremap [ []<Esc>i
-""inoremap { {}<Esc>i
-
+command! W write
 "Coc.nvim configuration"
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -155,10 +240,8 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
+  set signcolumn=auto
 else
   set signcolumn=yes
 endif
@@ -176,13 +259,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-@> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-@> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -202,6 +278,9 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" coc search
+nnoremap <space>s :CocSearch 
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -230,18 +309,16 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
 " Coc explorer configuration
-let g:netrw_menu = 0
-let g:loaded_netrw= 1
-let g:netrw_loaded_netrwPlugin= 1
-nnoremap <space>e :CocCommand explorer<CR>
-autocmd StdinReadPre * let s:std_in=1
+"let g:netrw_menu = 0
+"let g:loaded_netrw= 1
+"let g:netrw_loaded_netrwPlugin= 1
+"nnoremap <space>e :CocCommand explorer<CR>
+"autocmd StdinReadPre * let s:std_in=1
 " Start explorer, unless a file or session is specified, eg. vim -S session_file.vim.
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | execute 'CocCommand explorer' | endif
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | execute 'CocCommand explorer' | endif
 
 " Coc prettier configuration
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-nnoremap <leader>] :call CocAction('diagnosticNext')<CR>
-nnoremap <leader>[ :call CocAction('diagnosticPrevious')<CR>
 "Coc.nvim configuration"
 
 " NERDTree configuration
@@ -249,9 +326,11 @@ nnoremap <leader>[ :call CocAction('diagnosticPrevious')<CR>
 "nnoremap <space>e :NERDTree<CR>
 "nnoremap <space>t :NERDTreeFind<CR>U
 
-" FZF configuration
-nnoremap <space>f :Files<CR>
-nnoremap <space>b :Buffers<CR>
-nnoremap <space>w :Windows<CR>
-nnoremap <space>l :Lines<CR>
+" coc fzf preview configuration
+nnoremap <space>f :CocCommand fzf-preview.ProjectFiles<CR>
+nnoremap <space>b :CocCommand fzf-preview.Buffers<CR>
+nnoremap <space>l :CocCommand fzf-preview.BufferLines<CR>
+nnoremap <space>g :CocCommand fzf-preview.GitFiles<CR>
+nnoremap <space>d :CocCommand fzf-preview.CocDiagnostics<CR>
+nnoremap <space>c :Commands<CR>
 let $FZF_DEFAULT_OPTS="--bind \"ctrl-n:preview-down,ctrl-p:preview-up\""

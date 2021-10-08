@@ -9,8 +9,17 @@
   ],
   "pydocstring.formatter": "google",
   "python.pythonPath": "/home/support/anaconda3/envs/pipe/bin/python3.8",
-  "explorer.icon.enableNerdfont": true,
-  "explorer.position": "floating",
-  "explorer.file.showHiddenFiles": true,
-  "explorer.file.reveal.whenOpen": true
+  "git.changedSign.text": "~",
+  "git.changedSign.hlGroup": "DiffChange",
+  "git.addedSign.hlGroup": "DiffAdd",
+  "git.addedSign.text": "+",
+  "git.removedSign.hlGroup": "DiffDelete",
+  "git.removedSign.text": "-",
+  "git.changeRemovedSign.hlGroup": "DiffChange",
+  "git.changeRemovedSign.text": "≃",
+  "git.enableGutters": true,
+  "diagnostic.enableSign": true,
+  "diagnostic.infoSign": ">>",
+  "diagnostic.hintSign": "",
+  "diagnostic.errorSign": ""
 }
