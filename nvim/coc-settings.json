@@ -1,5 +1,5 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json"],
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json", "xml", "yaml"],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.rootPatterns": [
     ".python-root",
@@ -19,7 +19,7 @@
   "git.changeRemovedSign.text": "≃",
   "git.enableGutters": true,
   "diagnostic.enableSign": true,
-  "diagnostic.infoSign": ">>",
+  "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.errorSign": ""
 }
