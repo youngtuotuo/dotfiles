@@ -4,17 +4,18 @@ endfunction
 
 function! Filename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  return WebDevIconsGetFileTypeSymbol() . ' ' . filename
+  let symbol = WebDevIconsGetFileTypeSymbol() . ' ' . filename
+  return &modified ? symbol . ' [+]' : symbol
 endfunction
+
+"function! Git() abort
+"  let change = get(b:, 'coc_git_status', '')
+"  let branch = get(g:, 'coc_git_status', '')
+"  return branch !=# '' ? branch . ' ' . change: ''
+"endfunction
 
 function! Modified()
-  return &modified ? '[פֿ]' : ''
-endfunction
-
-function! Git() abort
-  let change = get(b:, 'coc_git_status', '')
-  let branch = get(g:, 'coc_git_status', '')
-  return branch !=# '' ? branch . ' ' . change: ''
+  return &modified ? '[+]' : ''
 endfunction
 
 function! Encode() abort
@@ -27,20 +28,18 @@ let g:lightline = {
     \ 'colorscheme': 'onedark',
     \ 'active': {
     \   'left': [ [ 'mode' ],
-    \             [ 'git', 'cocstatus', 'method','filename', 'modified' ] 
+    \             [ 'method','filename' ] 
     \           ],
     \   'right': [ [ 'fileformat', 'encode'] ]
     \ },
     \ 'inactive': {
-    \   'left': [ [ 'git', 'cocstatus', 'method', 'filename', 'modified' ] ],
+    \   'left': [ [ 'method', 'filename' ] ],
     \   'right': [ [ 'fileformat', 'encode' ] ]
     \ },
     \ 'component_function': {
-    \   'cocstatus': 'coc#status',
     \   'method': 'NearestMethodOrFunction',
     \   'fileformat': 'Fileformat',
     \   'filename': 'Filename',
-    \   'git': 'Git',
     \   'encode': 'Encode',
     \   'modified': 'Modified',
     \   },

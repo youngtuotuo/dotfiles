@@ -1,4 +1,3 @@
-" Coc depends
 autocmd User CocGitStatusChange {get(g:,'coc_git_status','')}
 autocmd User CocGitStatusChange {get(b:,'coc_git_status','')}
 
@@ -34,7 +33,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window.
+ Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -61,7 +60,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 " Coc prettier configuration
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-"Coc.nvim configuration"
 " coc fzf preview configuration
 nnoremap <space>f :CocCommand fzf-preview.DirectoryFiles<CR>
 nnoremap <space>b :CocCommand fzf-preview.Buffers<CR>

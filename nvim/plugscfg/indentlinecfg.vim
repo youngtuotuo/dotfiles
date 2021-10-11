@@ -1,0 +1,9 @@
+"let indent_blankline_enabled = v:true
+let g:indent_blankline_filetype = ['python']
+let g:indent_blankline_filetype_exclude = ['txt', 'vim', 'yaml', 'xml']
+let g:indent_blankline_buftype_exclude = ['terminal']
+let g:indent_blankline_show_end_of_line = v:true
+let g:indent_blankline_show_current_context = v:true
+let g:indent_blankline_indent_level = 4
+let g:indent_blankline_show_first_indent_level = v:false
+let g:indent_blankline_context_patterns = ['class', 'function', 'method', '^if', '^while', '^for', '^try', '^with', '^return']

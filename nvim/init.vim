@@ -1,12 +1,13 @@
 set mouse=a
 set t_Co=256
 " Set line number
+
 set nu
 set rnu
 set title
 set noerrorbells
 set novisualbell
-set noshowmode
+set showmode
 set noswapfile
 set nobackup
 set cursorline
@@ -27,7 +28,6 @@ set shiftwidth=4
 set viminfo='1000
 set softtabstop=4
 set autoindent
-filetype indent plugin on
 syntax enable
 " avoid finger not leave shift
 command! W write
@@ -41,9 +41,7 @@ set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=auto:1
+set signcolumn=no
 runtime ./plugs.vim
-runtime ./cocdep.vim
-"runtime ./lsptree.vim
-runtime ./lightlinecfg.vim
 runtime ./maps.vim
+
