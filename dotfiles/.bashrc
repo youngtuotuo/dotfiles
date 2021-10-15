@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=5000
+HISTFILESIZE=10000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -67,6 +67,7 @@ parse_git_branch() {
 
 
 if [ "$color_prompt" = yes ]; then
+    #PS1='$(printf "%*s\r%s\n" $(tput cols) "[$(date +"%I:%M:%S")]")'
     PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(parse_git_branch)\n\$ '
     #PS1='${debian_chroot:+($debian_chroot)}'
     #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]($CONDA_DEFAULT_ENV) ' # rgb(240,240,240)
@@ -157,5 +158,26 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
 # export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+conda activate pipe
+source /etc/profile.d/vte-2.91.sh
+
+# If there are multiple matches for completion, Tab should cycle through them
+bind 'TAB':menu-complete
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'

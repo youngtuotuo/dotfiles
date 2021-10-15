@@ -12,7 +12,7 @@ function! FileSize()
        return ""
    endif
    if bytes < 1024
-       return bytes
+       return bytes . "B"
    else
        return (bytes / 1024) . " KB"
    endif
