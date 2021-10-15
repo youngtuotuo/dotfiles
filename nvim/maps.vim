@@ -62,22 +62,12 @@ nnoremap <C-q> :q<CR>
 nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
 " space-t to open integrated terminal
 nnoremap <space>t :terminal<CR>
-" Bracket complete
-inoremap {<CR> {<CR>}<Esc>ko
-inoremap {{ {}<ESC>i
-inoremap (<CR> (<CR>)<Esc>ko
-inoremap (( ()<ESC>i
-inoremap [<CR> [<CR>]<Esc>ko
-inoremap [[ []<ESC>i
 " Enclose (), [], {}, '', ""
 vnoremap ( c()<esc>P
 vnoremap [ c[]<esc>P
 vnoremap { c{}<esc>P
-vnoremap " c""<esc>P
-vnoremap ' c''<esc>P
-" Auto quote complete
-inoremap "" ""<Esc>i
-inoremap '' ''<Esc>i
+" Docstring
+inoremap """ """<CR>"""<esc>kA
 " Pane resize
 map <S-Up> <C-W>+
 map <S-Down> <C-W>-

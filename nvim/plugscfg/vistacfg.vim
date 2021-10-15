@@ -1,4 +1,4 @@
-let g:vista_sidebar_open_cmd = "30vsplit"
+let g:vista_sidebar_position = "lefta 30vsplit"
 " Executive used when opening vista sidebar without specifying it.
 " See all the avaliable executives via `:echo g:vista#executives`.
 let g:vista_default_executive = 'nvim_lsp'

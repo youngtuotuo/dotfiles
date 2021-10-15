@@ -1,6 +1,5 @@
 set mouse=a
 set t_Co=256
-" Set line number
 
 set nu
 set rnu
@@ -22,26 +21,33 @@ set smartcase
 set splitbelow
 set splitright
 " tab control
+set nowrap
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set viminfo='1000
 set softtabstop=4
 set autoindent
+set startofline
 syntax enable
 " avoid finger not leave shift
-command! W write
-" Some servers have issues with backup files, see #649.
+command! W writes
+" status line setting
+set statusline=%f
+set statusline+=-(%l/%L)
+set statusline+=%m
+" Some servers have issues with backup files.
 set nowritebackup
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=no
+set signcolumn=auto:2-5
 runtime ./plugs.vim
+runtime ./cfg.vim
 runtime ./maps.vim
-
+hi StatusLine gui=bold
