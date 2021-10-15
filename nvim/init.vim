@@ -1,6 +1,5 @@
 set mouse=a
 set t_Co=256
-
 set nu
 set rnu
 set title
@@ -34,16 +33,9 @@ syntax enable
 if (has("termguicolors"))
   set termguicolors
 endif
-" avoid finger not leave shift
-command! W writes
-" status line setting
-set statusline=%f
-set statusline+=-(%l/%L)
-set statusline+=%m
-" Some servers have issues with backup files.
-set nowritebackup
-" Give more space for displaying messages.
-set cmdheight=1
+command! W writes " avoid finger not leave shift
+set nowritebackup " Some servers have issues with backup files.
+set cmdheight=1 " Give more space for displaying messages.
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=100
@@ -53,4 +45,4 @@ set shortmess+=c
 set signcolumn=auto:2-5
 runtime ./plugs.vim
 runtime ./maps.vim
-hi StatusLine gui=bold
+runtime ./status.vim

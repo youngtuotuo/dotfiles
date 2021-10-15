@@ -20,8 +20,8 @@ nnoremap { {zz
 nnoremap } }zz
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap <C-u> <C-u>zz
-nnoremap <C-d> <C-d>zz
+"nnoremap <C-u> <C-u>zz
+"nnoremap <C-d> <C-d>zz
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 nnoremap J mzJ`z
