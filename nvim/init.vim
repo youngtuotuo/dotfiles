@@ -9,6 +9,7 @@ set novisualbell
 set showmode
 set noswapfile
 set nobackup
+set breakindent
 set cursorline
 set colorcolumn=100
 " Parathensis match
@@ -30,6 +31,9 @@ set softtabstop=4
 set autoindent
 set startofline
 syntax enable
+if (has("termguicolors"))
+  set termguicolors
+endif
 " avoid finger not leave shift
 command! W writes
 " status line setting
@@ -48,6 +52,5 @@ set shortmess+=c
 " error and warning msg in line number column
 set signcolumn=auto:2-5
 runtime ./plugs.vim
-runtime ./cfg.vim
 runtime ./maps.vim
 hi StatusLine gui=bold

@@ -3,8 +3,8 @@ lua << EOF
 EOF
 
 lua << EOF
---vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#627085]]
---vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#627085]]
+--vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1b212d]]
+--vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1b212d]]
 --
 --local border = {
 --      {"╭", "FloatBorder"},
@@ -16,34 +16,34 @@ lua << EOF
 --      {"╰", "FloatBorder"},
 --      {"│", "FloatBorder"},
 --}
-local protocol = require'vim.lsp.protocol'
-protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-}
+--local protocol = require'vim.lsp.protocol'
+--protocol.CompletionItemKind = {
+--    '', -- Text
+--    '', -- Method
+--    '', -- Function
+--    '', -- Constructor
+--    '', -- Field
+--    '', -- Variable
+--    '', -- Class
+--    'ﰮ', -- Interface
+--    '', -- Module
+--    '', -- Property
+--    '', -- Unit
+--    '', -- Value
+--    '', -- Enum
+--    '', -- Keyword
+--    '﬌', -- Snippet
+--    '', -- Color
+--    '', -- File
+--    '', -- Reference
+--    '', -- Folder
+--    '', -- EnumMember
+--    '', -- Constant
+--    '', -- Struct
+--    '', -- Event
+--    'ﬦ', -- Operator
+--    '', -- TypeParameter
+--}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -97,27 +97,28 @@ local custom_on_attach = function(client, bufnr)
         ]], false)
   end
 
-  --vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
-  --vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
+  vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
+  vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
 
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 -- symbols-outline.nvim
-vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = false, -- experimental
-    position = 'right',
-    keymaps = {
-        close = "<Esc>",
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        rename_symbol = "r",
-        code_actions = "a"
-    },
-    lsp_blacklist = {}
-}
+--vim.g.symbols_outline = {
+--    highlight_hovered_item = true,
+--    show_guides = true,
+--    auto_preview = false, -- experimental
+--    position = 'right',
+--    keymaps = {
+--        close = "<Esc>",
+--        goto_location = "<Cr>",
+--        focus_location = "o",
+--        hover_symbol = "<C-space>",
+--        rename_symbol = "r",
+--        code_actions = "a"
+--    },
+--    lsp_blacklist = {}
+--}
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Code actions
@@ -145,22 +146,26 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true;
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local nvim_lsp = require('lspconfig')
-local servers = { 'pyright', 'vimls', 'cmake', 'diagnosticls', 'dockerls', 'bashls' }
+local servers = { 'pyright', 'vimls', 'cmake', 'diagnosticls', 'dockerls', 'bashls', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
-    capabilities = capabilities;
-    on_attach = custom_on_attach;
-    init_options = {
-            onlyAnalyzeProjectsWithOpenFiles = false,
-            suggestFromUnimportedLibraries = true,
-            closingLabels = true,
-    };
-    flags = {
-      debounce_text_changes = 150,
-    }
+    capabilities = capabilities,
+    on_attach = custom_on_attach,
+    --init_options = {
+    --    onlyAnalyzeProjectsWithOpenFiles = false,
+    --    suggestFromUnimportedLibraries = true,
+    --    closingLabels = true,
+    --};
+    --flags = {
+    --  debounce_text_changes = 150,
+    --}
   }
 end
 
+-- Show line diagnostics automatically in hover window
+-- You will likely want to reduce updatetime which affects CursorHold
+-- note: this setting is global and should be set only once
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 -- diagnostic after each line
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -213,26 +218,26 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 --vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit')
 
 -- Send diagnostics to quickfix list
-do
-    local method = "textDocument/publishDiagnostics"
-    local default_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr,
-                                        config)
-        default_handler(err, method, result, client_id, bufnr, config)
-        local diagnostics = vim.lsp.diagnostic.get_all()
-        local qflist = {}
-        for bufnr, diagnostic in pairs(diagnostics) do
-            for _, d in ipairs(diagnostic) do
-                d.bufnr = bufnr
-                d.lnum = d.range.start.line + 1
-                d.col = d.range.start.character + 1
-                d.text = d.message
-                table.insert(qflist, d)
-            end
-        end
-        vim.lsp.util.set_qflist(qflist)
-    end
-end
+--do
+--    local method = "textDocument/publishDiagnostics"
+--    local default_handler = vim.lsp.handlers[method]
+--    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr,
+--                                        config)
+--        default_handler(err, method, result, client_id, bufnr, config)
+--        local diagnostics = vim.lsp.diagnostic.get_all()
+--        local qflist = {}
+--        for bufnr, diagnostic in pairs(diagnostics) do
+--            for _, d in ipairs(diagnostic) do
+--                d.bufnr = bufnr
+--                d.lnum = d.range.start.line + 1
+--                d.col = d.range.start.character + 1
+--                d.text = d.message
+--                table.insert(qflist, d)
+--            end
+--        end
+--        vim.lsp.util.set_qflist(qflist)
+--    end
+--end
 
 -- Print diagnostics in status line
 --function PrintDiagnostics(opts, bufnr, line_nr, client_id)
@@ -256,15 +261,9 @@ end
 --end
 --
 --vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
-
--- Show line diagnostics automatically in hover window
--- You will likely want to reduce updatetime which affects CursorHold
--- note: this setting is global and should be set only once
-vim.o.updatetime = 100
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 EOF
 
-sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsDefaultError
-sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsDefaultWarning
-sign define LspDiagnosticsSignInformation text=  texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsDefaultInformation
-sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsDefaultHint
+sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text=  texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsSignHint linehl= numhl=

@@ -36,15 +36,15 @@ inoremap ] ]<C-g>u
 inoremap { {<C-g>u
 inoremap } }<C-g>u
 " line moving in normalmode, insertmode, visualmode with autoindent
-inoremap <C-j> <esc>:m +1<CR>==i
 inoremap <C-k> <esc>:m -2<CR>==i
+inoremap <C-j> <esc>:m +1<CR>==i
 vnoremap J :m '>+1<CR>gv==gv
 vnoremap K :m '<-2<CR>gv==gv
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 " ctrl-o and ctrl-i detect relatively jump
-nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
-nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+"nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+"nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 " ctrl-v to paste in insertmode
 inoremap <C-V> <C-R>"
 " indent params in (), [], {} to next line

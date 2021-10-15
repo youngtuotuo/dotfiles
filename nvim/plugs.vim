@@ -18,6 +18,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'onsails/lspkind-nvim'
 " yank highlight
 Plug 'machakann/vim-highlightedyank'
 " telescope
@@ -29,7 +30,7 @@ Plug 'ryanoasis/vim-devicons'
 " colorscheme
 Plug 'navarasu/onedark.nvim'
 " syntax highlight
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
@@ -41,7 +42,7 @@ runtime ./plugscfg/telescopecfg.vim
 runtime ./plugscfg/vistacfg.vim
 runtime ./plugscfg/indentlinecfg.vim
 runtime ./plugscfg/colorizedcfg.vim
-"runtime ./plugscfg/treesittercfg.vim
+runtime ./plugscfg/treesittercfg.vim
+runtime ./plugscfg/completioncfg.vim
 runtime ./plugscfg/lspcfg.vim
 runtime ./plugscfg/lspcolorcfg.vim
-runtime ./plugscfg/completioncfg.vim
