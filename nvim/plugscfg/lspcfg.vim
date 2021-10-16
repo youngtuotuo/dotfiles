@@ -3,9 +3,9 @@ lua << EOF
 EOF
 highlight NormalFloat guifg=NONE guibg=#1b212d
 highlight FloatBorder guifg=NONE guibg=#1b212d
-highlight LspReferenceText cterm=NONE guifg=NONE gui=standout
-highlight LspReferenceRead cterm=NONE guifg=NONE gui=standout
-highlight LspReferenceWrite cterm=NONE guifg=NONE gui=standout
+highlight LspReferenceText guifg=NONE gui=standout
+highlight LspReferenceRead guifg=NONE gui=standout
+highlight LspReferenceWrite guifg=NONE gui=standout
 lua << EOF
 local border = {
       {"╭", "FloatBorder"},
@@ -63,26 +63,26 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Code actions
-capabilities.textDocument.codeAction = {
-  dynamicRegistration = false;
-      codeActionLiteralSupport = {
-          codeActionKind = {
-              valueSet = {
-                 "",
-                 "quickfix",
-                 "refactor",
-                 "refactor.extract",
-                 "refactor.inline",
-                 "refactor.rewrite",
-                 "source",
-                 "source.organizeImports",
-              };
-          };
-      };
-}
+--capabilities.textDocument.codeAction = {
+--  dynamicRegistration = false;
+--      codeActionLiteralSupport = {
+--          codeActionKind = {
+--              valueSet = {
+--                 "",
+--                 "quickfix",
+--                 "refactor",
+--                 "refactor.extract",
+--                 "refactor.inline",
+--                 "refactor.rewrite",
+--                 "source",
+--                 "source.organizeImports",
+--              };
+--          };
+--      };
+--}
 
 -- Snippets
-capabilities.textDocument.completion.completionItem.snippetSupport = true;
+--capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -145,9 +145,9 @@ highlight LspDiagnosticsDefaultWarning guifg=Red
 highlight LspDiagnosticsDefaultInformation guifg=Yellow
 highlight LspDiagnosticsDefaultHint guifg=NONE
 
-sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsDefaultError linehl=NONE numhl=NONE
-sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsDefaultWarning linehl=NONE numhl=NONE
-sign define LspDiagnosticsSignInformation text=  texthl=LspDiagnosticsDefaultInformation linehl=NONE numhl=NONE
+sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsDefaultError linehl=NONE numhl=NONE
+sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsDefaultWarning linehl=NONE numhl=NONE
+sign define LspDiagnosticsSignInformation text=  texthl=LspDiagnosticsDefaultInformation linehl=NONE numhl=NONE
 sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsDefaultHint linehl=NONE numhl=NONE
 lua << EOF
 -- not activated list

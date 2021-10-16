@@ -2,18 +2,22 @@ lua << EOF
 -- Setup nvim-cmp.
 local lspkind = require('lspkind')
 local cmp = require'cmp'
-local WIDE_HEIGHT = 35
+local WIDE_HEIGHT = 30
+local WIDE_WIDTH = 20
 cmp.setup({
     completion = {
         completeopt = 'menu,menuone,noinsert',
     },
     formatting = {
-      format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+      format = lspkind.cmp_format(
+      {
+          with_text = true, maxwidth = 10
+      })
     },
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
       winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
-      maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+      maxwidth = math.floor((WIDE_WIDTH) * (vim.o.columns / (WIDE_WIDTH * 2 / 9))),
       maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
     },
     snippet = {

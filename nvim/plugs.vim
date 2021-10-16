@@ -20,6 +20,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
+" zen mode
+Plug 'folke/zen-mode.nvim'
 " yank highlight
 Plug 'machakann/vim-highlightedyank'
 " comment
@@ -49,5 +51,11 @@ runtime ./plugscfg/vistacfg.vim
 runtime ./plugscfg/indentlinecfg.vim
 runtime ./plugscfg/colorizedcfg.vim
 
-" overwrite color
-
+lua << EOF
+require("zen-mode").setup()
+require("zen-mode").toggle({
+  window = {
+    width = .75 -- width will be 85% of the editor width
+  }
+})
+EOF

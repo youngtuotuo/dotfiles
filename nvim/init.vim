@@ -43,7 +43,7 @@ set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=auto:1
+set signcolumn=yes:1
 runtime ./plugs.vim
 runtime ./maps.vim
 runtime ./status.vim
