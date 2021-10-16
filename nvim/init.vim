@@ -11,6 +11,7 @@ set nobackup
 set breakindent
 set cursorline
 set colorcolumn=100
+let g:netrw_liststyle = 0
 " Parathensis match
 set showmatch
 set matchtime=1
@@ -38,11 +39,11 @@ set nowritebackup " Some servers have issues with backup files.
 set cmdheight=1 " Give more space for displaying messages.
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=100
+set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=auto:2-5
+set signcolumn=auto:1
 runtime ./plugs.vim
 runtime ./maps.vim
 runtime ./status.vim

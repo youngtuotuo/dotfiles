@@ -8,11 +8,12 @@ Plug 'kyazdani42/nvim-web-devicons'
 " lsp tree structure
 Plug 'liuchengxu/vista.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
-" lsp & treesitter
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'branch' : '0.5-compat'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
 Plug 'nvim-treesitter/playground'
-Plug 'folke/lsp-colors.nvim'
+" lsp
+Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
@@ -40,11 +41,13 @@ call plug#end()
 let g:highlightedyank_highlight_duration = 300
 
 runtime ./plugscfg/onedarkcfg.vim
-runtime ./plugscfg/indentlinecfg.vim
-runtime ./plugscfg/colorizedcfg.vim
 runtime ./plugscfg/lspcfg.vim
-runtime ./plugscfg/lspcolorcfg.vim
 runtime ./plugscfg/completioncfg.vim
 runtime ./plugscfg/treesittercfg.vim
 runtime ./plugscfg/telescopecfg.vim
 runtime ./plugscfg/vistacfg.vim
+runtime ./plugscfg/indentlinecfg.vim
+runtime ./plugscfg/colorizedcfg.vim
+
+" overwrite color
+

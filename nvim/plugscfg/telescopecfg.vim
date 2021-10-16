@@ -13,12 +13,22 @@ require('telescope').setup{
     layout_strategy="horizontal",
     layout_config = {
       horizontal = {
-         width = 120,
+         width = 0.8,
          height = 0.8,
-         preview_width = 75,
+         preview_width = 0.6,
          preview_cutoff = 5,
          prompt_position = "bottom"
       }
+    },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '-u'
     },
     --layout_strategy="vertical",
     --layout_config = {
@@ -43,6 +53,7 @@ EOF
 nnoremap <space>e :Telescope file_browser<CR>
 nnoremap <space>f :Telescope find_files hidden=true<CR>
 nnoremap <space>b :Telescope buffers<CR>
+nnoremap <space>g :Telescope git_files<CR>
 nnoremap <space>l :Telescope live_grep<CR>
 nnoremap <space>d :Telescope lsp_workspace_diagnostics<CR>
 nnoremap <space>c :Telescope commands<CR>

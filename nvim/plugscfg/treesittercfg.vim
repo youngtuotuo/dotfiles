@@ -1,7 +1,7 @@
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = {}, -- List of parsers to ignore installing
+  ensure_installed = {"bash", "c", "lua", "yaml", "python"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {"vim"}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {'vim'},  -- list of language that will be disabled
@@ -19,13 +19,13 @@ require'nvim-treesitter.configs'.setup {
     select = {
       enable = true,
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      --keymaps = {
-      --  -- You can use the capture groups defined in textobjects.scm
-      --  ['af'] = '@function.outer',
-      --  ['if'] = '@function.inner',
-      --  ['ac'] = '@class.outer',
-      --  ['ic'] = '@class.inner',
-      --},
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
     },
     move = {
       enable = true,

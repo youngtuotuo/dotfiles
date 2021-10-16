@@ -9,19 +9,19 @@
 function! FileSize()
    let bytes = getfsize(expand("%:p"))
    if bytes <= 0
-       return ""
+       return "0 B"
    endif
    if bytes < 1024
-       return bytes . "B"
+       return bytes
    else
        return (bytes / 1024) . " KB"
    endif
 endfunction
-hi User1 ctermbg=none ctermfg=none guibg=none guifg=white gui=bold
-set statusline=
+hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout,bold
+set statusline=%1*
 "set statusline+=%#PmenuSel#
 "set statusline+=[%n]
-set statusline+=%1*
+"set statusline+=
 set statusline+=\ [
 set statusline+=%{%FileSize()%}
 set statusline+=]
@@ -35,5 +35,5 @@ set statusline+=%r%h%w%q
 set statusline+=%m
 "set statusline+=\ %*
 "set statusline+=\ %{%MyFiletype()%}
-set statusline+=%1*
+"set statusline+=%1*
 "hi StatusLine gui=bold
