@@ -26,6 +26,9 @@ function! Server()
    if ft == "vim"
       return "Vimls"
    endif
+   if ft == "bash"
+      return "bashls"
+   endif
 endfunction
 
 function! Lspinfo()

@@ -9,7 +9,7 @@ highlight LspReferenceWrite guifg=NONE gui=standout
 lua << EOF
 --vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 --vim.api.nvim_command [[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]]
---vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
+vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 local border = {
       {"╭", "FloatBorder"},
       {"─", "FloatBorder"},
@@ -45,8 +45,8 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<leader>h', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+  buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
