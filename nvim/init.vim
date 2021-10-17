@@ -10,8 +10,8 @@ set showmode
 set noswapfile
 set nobackup
 set breakindent
-"set cursorline
-set colorcolumn=100
+" set cursorline
+" set colorcolumn=100
 let g:netrw_liststyle = 0
 " Parathensis match
 set showmatch

@@ -60,6 +60,8 @@ nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
 " space-s to source init.vim
 nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
+" zenmode
+nnoremap <space>z :ZenMode<CR>
 " space-t to open integrated terminal
 nnoremap <space>t :terminal<CR>
 " Enclose (), [], {}, '', ""
