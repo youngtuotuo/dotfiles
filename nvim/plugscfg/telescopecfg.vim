@@ -59,3 +59,5 @@ nnoremap <space>d :Telescope lsp_workspace_diagnostics<CR>
 nnoremap <space>c :Telescope commands<CR>
 nnoremap <space>h :Telescope help_tags<CR>
 nnoremap <space>m :Telescope keymaps<CR>
+nnoremap <space>v :Telescope lsp_document_symbols<CR>
+nnoremap <space>ww :Telescope lsp_workspace_symbols query=

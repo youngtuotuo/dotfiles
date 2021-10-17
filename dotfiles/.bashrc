@@ -163,8 +163,6 @@ export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
 # export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 conda activate pipe
 source /etc/profile.d/vte-2.91.sh
@@ -181,3 +179,5 @@ bind "set menu-complete-display-prefix on"
 
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

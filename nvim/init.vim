@@ -2,6 +2,7 @@ set mouse=a
 set t_Co=256
 set nu
 set rnu
+set guicursor=a:blinkwait700-blinkoff400-blinkon100-Cursor
 set title
 set noerrorbells
 set novisualbell
@@ -9,7 +10,7 @@ set showmode
 set noswapfile
 set nobackup
 set breakindent
-set cursorline
+"set cursorline
 set colorcolumn=100
 let g:netrw_liststyle = 0
 " Parathensis match

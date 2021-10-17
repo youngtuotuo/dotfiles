@@ -5,8 +5,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons'
-" lsp tree structure
-Plug 'liuchengxu/vista.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'branch' : '0.5-compat'}
@@ -47,7 +45,6 @@ runtime ./plugscfg/lspcfg.vim
 runtime ./plugscfg/completioncfg.vim
 runtime ./plugscfg/treesittercfg.vim
 runtime ./plugscfg/telescopecfg.vim
-runtime ./plugscfg/vistacfg.vim
 runtime ./plugscfg/indentlinecfg.vim
 runtime ./plugscfg/colorizedcfg.vim
 
@@ -55,7 +52,7 @@ lua << EOF
 require("zen-mode").setup()
 require("zen-mode").toggle({
   window = {
-    width = .75 -- width will be 85% of the editor width
+    width = .65 -- width will be 85% of the editor width
   }
 })
 EOF

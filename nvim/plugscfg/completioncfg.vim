@@ -3,7 +3,7 @@ lua << EOF
 local lspkind = require('lspkind')
 local cmp = require'cmp'
 local WIDE_HEIGHT = 30
-local WIDE_WIDTH = 20
+local WIDE_WIDTH = 30
 cmp.setup({
     completion = {
         completeopt = 'menu,menuone,noinsert',
@@ -11,7 +11,7 @@ cmp.setup({
     formatting = {
       format = lspkind.cmp_format(
       {
-          with_text = true, maxwidth = 10
+          with_text = true, maxwidth = 40
       })
     },
     documentation = {
