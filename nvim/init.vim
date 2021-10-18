@@ -2,7 +2,7 @@ set mouse=a
 set t_Co=256
 set nu
 set rnu
-set guicursor=a:blinkwait700-blinkoff400-blinkon100-Cursor
+set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
 set title
 set noerrorbells
 set novisualbell
@@ -10,6 +10,17 @@ set showmode
 set noswapfile
 set nobackup
 set breakindent
+" Nice menu when typing `:find *.py`
+" set wildmode=longest,list,full
+" set wildmenu
+" Ignore files
+" set wildignore+=*.pyc
+" set wildignore+=*_build/*
+" set wildignore+=**/coverage/*
+" set wildignore+=**/node_modules/*
+" set wildignore+=**/android/*
+" set wildignore+=**/ios/*
+" set wildignore+=**/.git/*
 " set cursorline
 " set colorcolumn=100
 let g:netrw_liststyle = 0

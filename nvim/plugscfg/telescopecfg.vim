@@ -4,7 +4,7 @@ require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
-    initial_mode = "normal",
+    initial_mode = "insert",
     mappings = {
       n = {
         ["q"] = actions.close,

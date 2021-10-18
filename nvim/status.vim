@@ -29,6 +29,13 @@ function! Server()
    if ft == "bash"
       return "bashls"
    endif
+   if ft == "yaml"
+      return "yamlls"
+   endif
+endfunction
+
+function! Version()
+   return 'NVIM-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*')
 endfunction
 
 function! Lspinfo()
@@ -46,7 +53,7 @@ endfunction
 
 function! Git()
    let branch = FugitiveHead()
-   return strlen(branch) ? "[" .. branch .. "]" : ""
+   return strlen(branch) ? branch=='master' ? "[ " .. branch .. "]" : "[ " .. branch .. "]" : ""
 endfunction
 
 hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout,bold
@@ -71,5 +78,6 @@ set statusline+=%r%h%w%q
 set statusline+=%m
 set statusline+=%=
 set statusline+=\ %{%Lspinfo()%}
+set statusline+=\ %{%Version()%}
 "set statusline+=\ %{%MyFiletype()%}
 "set statusline+=%1*
