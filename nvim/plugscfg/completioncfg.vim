@@ -1,13 +1,14 @@
 lua << EOF
 -- Setup nvim-cmp.
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
+
 local lspkind = require('lspkind')
+lspkind.init()
+
 local cmp = require'cmp'
 local WIDE_HEIGHT = 30
 local WIDE_WIDTH = 30
 cmp.setup({
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
-    },
     formatting = {
       format = lspkind.cmp_format(
       {
@@ -47,19 +48,26 @@ cmp.setup({
       }),
     },
     sources = {
+      { name = 'buffer' },
       { name = 'nvim_lsp' },
-
-      -- For vsnip user.
       { name = 'vsnip' },
 
-      -- For luasnip user.
-      -- { name = 'luasnip' },
-
-      -- For ultisnips user.
-      -- { name = 'ultisnips' },
-
-      { name = 'buffer' },
-    }
+    },
+    formatting = {
+      format = lspkind.cmp_format {
+        with_text = true,
+        menu = {
+          buffer = "[BUF]",
+          nvim_lsp = "[LSP]",
+          path = "[PATH]",
+          vsnip = "[VSNIP]",
+        },
+      },
+    },
+    experimental = {
+      native_menu = false,
+      ghost_text = true,
+    },
 })
 
 EOF

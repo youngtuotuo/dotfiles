@@ -1,29 +1,18 @@
 set mouse=a
 set t_Co=256
-set nu
+" set nu
 set rnu
 set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
-set title
 set noerrorbells
 set novisualbell
 set showmode
 set noswapfile
 set nobackup
 set breakindent
-" Nice menu when typing `:find *.py`
-" set wildmode=longest,list,full
-" set wildmenu
-" Ignore files
-" set wildignore+=*.pyc
-" set wildignore+=*_build/*
-" set wildignore+=**/coverage/*
-" set wildignore+=**/node_modules/*
-" set wildignore+=**/android/*
-" set wildignore+=**/ios/*
-" set wildignore+=**/.git/*
+let g:netrw_liststyle = 1
+let g:netrw_sort_by = "exten"
 " set cursorline
 " set colorcolumn=100
-let g:netrw_liststyle = 0
 " Parathensis match
 set showmatch
 set matchtime=1
@@ -33,14 +22,13 @@ set smartcase
 " Split control
 set splitbelow
 set splitright
-" tab control
+" <tab> control
 set nowrap
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set viminfo='1000
 set softtabstop=4
-set autoindent
 set startofline
 syntax enable
 if (has("termguicolors"))
@@ -55,7 +43,8 @@ set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=yes:1
+set signcolumn=yes:3
 runtime ./plugs.vim
 runtime ./maps.vim
 runtime ./status.vim
+runtime ./tabline.vim

@@ -52,7 +52,7 @@ lua << EOF
 require("zen-mode").setup()
 require("zen-mode").toggle({
   window = {
-    width = .65 -- width will be 85% of the editor width
+    width = .5 -- width will be 50% of the editor width
   }
 })
 EOF
