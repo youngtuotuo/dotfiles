@@ -11,12 +11,11 @@ function! Tabline()
     let bufnr = buflist[winnr - 1]
     let bufname = bufname(bufnr)
     let bufmodified = getbufvar(bufnr, "&mod")
-    let icon = (tab == tabpagenr() ? '%2*' . WebDevIconsGetFileTypeSymbol() . '%#TabLineSel#' : '%3*' . WebDevIconsGetFileTypeSymbol() . '%#TabLine#')
 
     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
     let s .= '%' . tab . 'T'
     let s .= ' ' . tab . ' '
-    let s .= (bufname != '' ? '['. icon . ' ' . fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+    let s .= (bufname != '' ? '['. WebDevIconsGetFileTypeSymbol(fnamemodify(bufname, ':t')) . ' ' . fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
 
     if bufmodified
       let s .= '[+] '

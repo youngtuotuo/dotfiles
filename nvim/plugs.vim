@@ -47,6 +47,7 @@ runtime ./plugscfg/treesittercfg.vim
 runtime ./plugscfg/telescopecfg.vim
 runtime ./plugscfg/indentlinecfg.vim
 runtime ./plugscfg/colorizedcfg.vim
+runtime ./plugscfg/icon.vim
 
 lua << EOF
 require("zen-mode").setup()

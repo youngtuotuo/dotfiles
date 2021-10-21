@@ -58,13 +58,13 @@ nnoremap <leader>, f,a<CR><esc>==<esc>:w<CR>^
 nnoremap <C-s> :w<CR>
 " ctrl-q to quit
 nnoremap <C-q> :q<CR>
-" space-s to source init.vim
+" space-r to source init.vim
 nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
 " zenmode
 nnoremap <space>z :ZenMode<CR>
 " space-t to open integrated terminal
 nnoremap <space>t :terminal<CR>
-" Enclose (), [], {}, '', ""
+" Enclose (), [], {}
 vnoremap ( c()<esc>P
 vnoremap [ c[]<esc>P
 vnoremap { c{}<esc>P
