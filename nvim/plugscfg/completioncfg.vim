@@ -16,8 +16,8 @@ cmp.setup({
       })
     },
     documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
+      --border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      --winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
       maxwidth = math.floor((WIDE_WIDTH) * (vim.o.columns / (WIDE_WIDTH * 2 / 9))),
       maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
     },

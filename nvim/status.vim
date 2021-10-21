@@ -77,6 +77,7 @@ set statusline+=\ ››
 set statusline+=\ %r%h%w%q%m
 set statusline+=%=
 set statusline+=\ %{%Lspinfo()%}
+set statusline+=\  
 " set statusline+=\ %{%Version()%}
 "set statusline+=\ %{%MyFiletype()%}
 "set statusline+=%1*

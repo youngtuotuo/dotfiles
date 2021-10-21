@@ -6,19 +6,48 @@ highlight FloatBorder guifg=NONE guibg=#1b212d
 highlight LspReferenceText guifg=NONE gui=standout
 highlight LspReferenceRead guifg=NONE gui=standout
 highlight LspReferenceWrite guifg=NONE gui=standout
+
 lua << EOF
 --vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 --vim.api.nvim_command [[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]]
+local protocol = require'vim.lsp.protocol'
+protocol.CompletionItemKind = {
+    '', -- Text
+    '', -- Method
+    '', -- Function
+    '', -- Constructor
+    '', -- Field
+    '', -- Variable
+    '', -- Class
+    'ﰮ', -- Interface
+    '', -- Module
+    '', -- Property
+    '', -- Unit
+    '', -- Value
+    '', -- Enum
+    '', -- Keyword
+    '﬌', -- Snippet
+    '', -- Color
+    '', -- File
+    '', -- Reference
+    '', -- Folder
+    '', -- EnumMember
+    '', -- Constant
+    '', -- Struct
+    '', -- Event
+    'ﬦ', -- Operator
+    '', -- TypeParameter
+}
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 local border = {
-      {"╭", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╮", "FloatBorder"},
-      {"│", "FloatBorder"},
-      {"╯", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╰", "FloatBorder"},
-      {"│", "FloatBorder"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
+      {"", "NormalFloat"},
 }
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -33,7 +62,7 @@ local custom_on_attach = function(client, bufnr)
   --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap=true, silent=false }
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -130,49 +159,29 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert=false,
     virtual_text = {
       spacing = 4,
+      source = "always",
     }
   }
 )
-EOF
-highlight LspDiagnosticsDefaultError guifg=Red
-highlight LspDiagnosticsDefaultWarning guifg=Red
-highlight LspDiagnosticsDefaultInformation guifg=Yellow
-highlight LspDiagnosticsDefaultHint guifg=NONE
+--local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
-sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsDefaultError linehl=NONE numhl=NONE
-sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsDefaultWarning linehl=NONE numhl=NONE
-sign define LspDiagnosticsSignInformation text=  texthl=LspDiagnosticsDefaultInformation linehl=NONE numhl=NONE
-sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsDefaultHint linehl=NONE numhl=NONE
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
+end
+EOF
+" highlight DiagnosticSignError guifg=Red
+" highlight DiagnosticSignWarn guifg=Red
+" highlight DiagnosticSignInfo guifg=Yellow
+" highlight DiagnosticSignHint guifg=NONE
+
+" sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl=NONE numhl=NONE
+" sign define DiagnosticSignWarn text=  texthl=DiagnosticSignWarn linehl=NONE numhl=NONE
+" sign define DiagnosticSignInfo text=  texthl=DiagnosticSignInfo linehl=NONE numhl=NONE
+" sign define DiagnosticSignHint text=  texthl=DiagnosticSignHint linehl=NONE numhl=NONE
 lua << EOF
 -- not activated list
---local protocol = require'vim.lsp.protocol'
---protocol.CompletionItemKind = {
---    '', -- Text
---    '', -- Method
---    '', -- Function
---    '', -- Constructor
---    '', -- Field
---    '', -- Variable
---    '', -- Class
---    'ﰮ', -- Interface
---    '', -- Module
---    '', -- Property
---    '', -- Unit
---    '', -- Value
---    '', -- Enum
---    '', -- Keyword
---    '﬌', -- Snippet
---    '', -- Color
---    '', -- File
---    '', -- Reference
---    '', -- Folder
---    '', -- EnumMember
---    '', -- Constant
---    '', -- Struct
---    '', -- Event
---    'ﬦ', -- Operator
---    '', -- TypeParameter
---}
 -- symbols-outline.nvim
 --vim.g.symbols_outline = {
 --    highlight_hovered_item = true,

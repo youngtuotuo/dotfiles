@@ -33,7 +33,7 @@ Plug 'ryanoasis/vim-devicons'
 " colorscheme
 Plug 'navarasu/onedark.nvim'
 " syntax highlight
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
