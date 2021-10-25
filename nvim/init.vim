@@ -46,5 +46,10 @@ set shortmess+=c
 set signcolumn=yes:1
 runtime ./plugs.vim
 runtime ./maps.vim
+" hi TabLineSel gui=bold
+" hi TabLine gui=bold
+hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
+hi User2 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
+hi User3 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
 runtime ./status.vim
 runtime ./tabline.vim

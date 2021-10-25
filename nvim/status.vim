@@ -56,28 +56,27 @@ function! Git()
    return strlen(branch) ? branch=='master' ? "[ " .. branch .. "]" : "[ " .. branch .. "]" : "[∅ git]"
 endfunction
 
-hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout,bold
-hi User2 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
 set statusline=%1*
-"set statusline+=%#PmenuSel#
-"set statusline+=[%n]
-"set statusline+=
+set statusline+=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
+" set statusline+=%#PmenuSel#
+" set statusline+=[%n]
+" set statusline+=
 " set statusline+=\ [
 " set statusline+=%{%FileSize()%}
 " set statusline+=]
-set statusline+=\ %{%Git()%}
-set statusline+=\ ‹‹
-set statusline+=%2*
-set statusline+=\ %{%WebDevIconsGetFileTypeSymbol()%}
-set statusline+=%1*
-set statusline+=\ %t
-set statusline+=\ ››
-"set statusline+=\ -
-"set statusline+=\ (%l/%L)
-set statusline+=\ %r%h%w%q%m
-set statusline+=%=
-set statusline+=\ %{%Lspinfo()%}
-set statusline+=\  
+" set statusline+=\ %{%Git()%}
+" set statusline+=\ ‹‹
+" set statusline+=%2*
+" set statusline+=\ %{%WebDevIconsGetFileTypeSymbol()%}
+" set statusline+=%1*
+" set statusline+=\ %t
+" set statusline+=\ ››
+" set statusline+=\ -
+" set statusline+=\ (%l/%L)
+" set statusline+=\ %r%h%w%q%m
+" set statusline+=%=
+" set statusline+=\ %{%Lspinfo()%}
+" set statusline+=\  
 " set statusline+=\ %{%Version()%}
-"set statusline+=\ %{%MyFiletype()%}
-"set statusline+=%1*
+" set statusline+=\ %{%MyFiletype()%}
+" set statusline+=%1*

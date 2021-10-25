@@ -10,16 +10,16 @@ require('telescope').setup{
         ["q"] = actions.close,
       },
     },
-    --layout_strategy="horizontal",
-    --layout_config = {
-    --  horizontal = {
-    --     width = 0.6,
-    --     height = 0.6,
-    --     preview_width = 0.5,
-    --     preview_cutoff = 5,
-    --     prompt_position = "bottom"
-    --  }
-    --},
+    layout_strategy="horizontal",
+    layout_config = {
+      horizontal = {
+         width = 0.6,
+         height = 0.6,
+         preview_width = 0.5,
+         preview_cutoff = 5,
+         prompt_position = "bottom"
+      }
+    },
     vimgrep_arguments = {
       'rg',
       '--color=never',
@@ -30,16 +30,16 @@ require('telescope').setup{
       '--smart-case',
       '-u'
     },
-    layout_strategy="vertical",
-    layout_config = {
-      vertical = {
-         width = 0.6,
-         height = 0.6,
-         preview_height = 0.4,
-         preview_cutoff = 5,
-         prompt_position = "top"
-      }
-    },
+    --layout_strategy="vertical",
+    --layout_config = {
+    --  vertical = {
+    --     width = 0.3,
+    --     height = 0.6,
+    --     preview_height = 0.4,
+    --     preview_cutoff = 5,
+    --     prompt_position = "top"
+    --  }
+    --},
   },
   extensions = {
     fzy_native = {

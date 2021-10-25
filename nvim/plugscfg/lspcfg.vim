@@ -39,21 +39,21 @@ protocol.CompletionItemKind = {
     '', -- TypeParameter
 }
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
-local border = {
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-      {"", "NormalFloat"},
-}
+--local border = {
+--    { "╭", "NormalFloat" },
+--    { "─", "NormalFloat" },
+--    { "╮", "NormalFloat" },
+--    { "│", "NormalFloat" },
+--    { "╯", "NormalFloat" },
+--    { "─", "NormalFloat" },
+--    { "╰", "NormalFloat" },
+--    { "│", "NormalFloat" },
+--}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local custom_on_attach = function(client, bufnr)
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = border})
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -84,7 +84,7 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Code actions
 --capabilities.textDocument.codeAction = {
 --  dynamicRegistration = false;
@@ -114,7 +114,7 @@ local servers = { 'pyright', 'vimls', 'bashls', 'yamlls' }
 -- 'cmake', 'diagnosticls', 'dockerls'
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = custom_on_attach,
     init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,

@@ -1,7 +1,3 @@
-hi TabLineSel gui=bold
-hi TabLine gui=bold
-hi User3 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
-
 function! Tabline()
   let s = ''
   for i in range(tabpagenr('$'))
@@ -13,9 +9,12 @@ function! Tabline()
     let bufmodified = getbufvar(bufnr, "&mod")
 
     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= '%' . tab . 'T'
-    let s .= ' ' . tab . ' '
-    let s .= (bufname != '' ? '['. WebDevIconsGetFileTypeSymbol(fnamemodify(bufname, ':t')) . ' ' . fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+    " let s .= '%' . tab . 'T'
+    " let s .= ' ' . tab . ' '
+    let s .= ' '
+    let icon = WebDevIconsGetFileTypeSymbol(fnamemodify(bufname, ':t'))
+    let icon = (tab == tabpagenr() ? '%2*' . icon . '%#TabLineSel#' : '%3*' . icon . '%#TabLine#')
+    let s .= (bufname != '' ? icon . ' ' . fnamemodify(bufname, ':t') . ' ' : 'No Name ')
 
     if bufmodified
       let s .= '[+] '
