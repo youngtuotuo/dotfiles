@@ -28,5 +28,5 @@ function! Tabline()
   return s
 endfunction
 
-set showtabline=2
+set showtabline=1
 set tabline=%!Tabline()

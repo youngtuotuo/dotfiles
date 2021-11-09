@@ -11,7 +11,7 @@ set nobackup
 set breakindent
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "exten"
-" set cursorline
+set cursorline
 " set colorcolumn=100
 " Parathensis match
 set showmatch
@@ -53,3 +53,4 @@ hi User2 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
 hi User3 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
 runtime ./status.vim
 runtime ./tabline.vim
+hi Normal guibg=NONE ctermbg=NONE

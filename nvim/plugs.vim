@@ -7,13 +7,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
 " treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'branch' : '0.5-compat'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do' : 'TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 " lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
@@ -38,20 +40,20 @@ call plug#end()
 
 let g:highlightedyank_highlight_duration = 300
 
+runtime ./plugscfg/treesittercfg.vim
+runtime ./plugscfg/icon.vim
+runtime ./plugscfg/colorizedcfg.vim
 runtime ./plugscfg/onedarkcfg.vim
 runtime ./plugscfg/lspcfg.vim
 runtime ./plugscfg/completioncfg.vim
-runtime ./plugscfg/treesittercfg.vim
 runtime ./plugscfg/telescopecfg.vim
 runtime ./plugscfg/indentlinecfg.vim
-runtime ./plugscfg/colorizedcfg.vim
-runtime ./plugscfg/icon.vim
 
 lua << EOF
-require("zen-mode").setup()
-require("zen-mode").toggle({
-  window = {
-    width = .5 -- width will be 50% of the editor width
-  }
-})
+--require("zen-mode").setup()
+--require("zen-mode").toggle({
+--  window = {
+--    width = .7 -- width will be 50% of the editor width
+--  }
+--})
 EOF

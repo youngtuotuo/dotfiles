@@ -16,8 +16,8 @@ cmp.setup({
       })
     },
     documentation = {
-      --border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      --winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
       maxwidth = math.floor((WIDE_WIDTH) * (vim.o.columns / (WIDE_WIDTH * 2 / 9))),
       maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
     },
@@ -48,8 +48,8 @@ cmp.setup({
       }),
     },
     sources = {
-      { name = 'buffer' },
       { name = 'nvim_lsp' },
+      { name = 'buffer' },
       { name = 'vsnip' },
 
     },
@@ -70,4 +70,19 @@ cmp.setup({
     },
 })
 
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+sources = {
+  { name = 'buffer' }
+}
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+})
 EOF
