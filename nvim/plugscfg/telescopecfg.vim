@@ -1,5 +1,5 @@
 lua << EOF
-local actions = require('telescope.actions')
+local actions = require'telescope.actions'
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
@@ -10,16 +10,17 @@ require('telescope').setup{
         ["q"] = actions.close,
       },
     },
-    layout_strategy="horizontal",
-    layout_config = {
-      horizontal = {
-         width = 0.8,
-         height = 0.6,
-         preview_width = 0.62,
-         preview_cutoff = 5,
-         prompt_position = "bottom"
-      }
-    },
+    layout_strategy="bottom_pane",
+    --layout_strategy="horizontal",
+    --layout_config = {
+    --  horizontal = {
+    --     width = 0.95,
+    --     height = 0.8,
+    --     preview_width = 0.7,
+    --     preview_cutoff = 5,
+    --     prompt_position = "bottom"
+    --  }
+    --},
     vimgrep_arguments = {
       'rg',
       '--color=never',

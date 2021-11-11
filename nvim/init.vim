@@ -1,6 +1,6 @@
 set mouse=a
 set t_Co=256
-" set nu
+set nu
 set rnu
 set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
 set noerrorbells
@@ -29,7 +29,7 @@ set tabstop=4
 set shiftwidth=4
 set viminfo='1000
 set softtabstop=4
-set startofline
+" set startofline
 syntax enable
 if (has("termguicolors"))
   set termguicolors
@@ -43,13 +43,13 @@ set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
-set signcolumn=yes:1
+set signcolumn=auto
 runtime ./plugs.vim
 runtime ./maps.vim
 " hi TabLineSel gui=bold
 " hi TabLine gui=bold
 hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
-hi User2 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
+hi User2 ctermbg=NONE ctermfg=NONE guibg=#93a4c3 guifg=NONE gui=NONE
 hi User3 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
 runtime ./status.vim
 runtime ./tabline.vim

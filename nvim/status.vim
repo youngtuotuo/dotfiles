@@ -51,13 +51,25 @@
 "    endif
 " endfunction
 
-" function! Git()
-"    let branch = FugitiveHead()
-"    return strlen(branch) ? branch=='master' ? "[ " .. branch .. "]" : "[ " .. branch .. "]" : "[∅ git]"
-" endfunction
+function! Git()
+   let branch = FugitiveHead()
+   return strlen(branch) ? branch : "∅ git"
+endfunction
+
+func! NvimGps() abort
+    return luaeval("require'nvim-gps'.is_available()") ?
+    \ luaeval("require'nvim-gps'.get_location()") : '∅ gps'
+endf
 
 set statusline=%1*
-set statusline+=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline+=\ %t%h%w%m%r\ 
+set statusline+=%#StatusLine#
+set statusline+=\ %{%Git()%}
+set statusline+=\ %{get(b:,'gitsigns_status','-')}\ 
+set statusline+=%1*
+set statusline+=\ %{NvimGps()}\ 
+set statusline+=%#StatusLine#
+" set statusline+=%=%-14.(%l,%c%V%)\ %P
 " set statusline+=%#PmenuSel#
 " set statusline+=[%n]
 " set statusline+=

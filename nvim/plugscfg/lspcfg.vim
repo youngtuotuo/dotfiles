@@ -1,8 +1,8 @@
 lua << EOF
 --vim.lsp.set_log_level("debug")
 EOF
-highlight NormalFloat guifg=NONE guibg=#1b212d
-highlight FloatBorder guifg=NONE guibg=#1b212d
+" highlight NormalFloat guifg=NONE guibg=#1b212d
+" highlight FloatBorder guifg=NONE guibg=#1b212d
 highlight LspReferenceText guifg=NONE gui=standout
 highlight LspReferenceRead guifg=NONE gui=standout
 highlight LspReferenceWrite guifg=NONE gui=standout
@@ -14,6 +14,10 @@ highlight DiagnosticFloatingError guifg=#E06C75
 highlight DiagnosticFloatingWarn guifg=#E5C07B
 highlight DiagnosticFloatingInfo guifg=NONE
 highlight DiagnosticFloatingHint guifg=NONE
+highlight DiagnosticVirtualTextError guifg=#E06C75
+highlight DiagnosticVirtualTextWarn guifg=#E5C07B
+highlight DiagnosticVirtualTextInfo guifg=NONE
+highlight DiagnosticVirtualTextHint guifg=NONE
 
 lua << EOF
 --vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
@@ -24,9 +28,9 @@ protocol.CompletionItemKind = {
     '', -- Method
     '', -- Function
     '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
+    '', -- Field
+    '', -- Variable
+    '', -- Class
     'ﰮ', -- Interface
     '', -- Module
     '', -- Property
@@ -46,21 +50,9 @@ protocol.CompletionItemKind = {
     'ﬦ', -- Operator
     '', -- TypeParameter
 }
-local border = {
-    { "╭", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "╮", "NormalFloat" },
-    { "│", "NormalFloat" },
-    { "╯", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "╰", "NormalFloat" },
-    { "│", "NormalFloat" },
-}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local custom_on_attach = function(client, bufnr)
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = border})
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -84,7 +76,7 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float(0, {show_header=false, scope="line", source="always", border={{ "╭", "NormalFloat" }, { "─", "NormalFloat" }, { "╮", "NormalFloat" }, { "│", "NormalFloat" }, { "╯", "NormalFloat" }, { "─", "NormalFloat" }, { "╰", "NormalFloat" }, { "│", "NormalFloat" }}})<CR>', opts)
+  buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float(0, {show_header=false, scope="line", source="if_many"})<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   --buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
@@ -118,10 +110,31 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true;
 -- map buffer local keybindings when the language server attaches
 local nvim_lsp = require('lspconfig')
 local servers = { 'pyright', 'vimls', 'bashls', 'yamlls' }
+local border = {
+    { "╭", "NormalFloat" },
+    { "─", "NormalFloat" },
+    { "╮", "NormalFloat" },
+    { "│", "NormalFloat" },
+    { "╯", "NormalFloat" },
+    { "─", "NormalFloat" },
+    { "╰", "NormalFloat" },
+    { "│", "NormalFloat" },
+}
+local handlers = {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {relative='cursor', style='minimal', border = border, width=65}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border}),
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 -- 'cmake', 'diagnosticls', 'dockerls'
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
+    handlers = handlers,
     on_attach = custom_on_attach,
     init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,
@@ -159,29 +172,44 @@ end
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
-    underline = false,
-    -- This sets the spacing and the prefix, obviously.
-    virtual_text = false,
-    signs = true,
+    underline = true,
+    -- virtual_text = false,
+    signs = false,
     update_in_insert=false,
-    --virtual_text = {
-    --  source = "if_many",
-    --  format=function(diagnostic)
-    --  return ""
-    --  end
-    --}
+    virtual_text = {
+      source = "if_many",
+      format=function(diagnostic)
+          if diagnostic.severity == vim.diagnostic.severity.ERROR then
+              return ""
+          end
+          if diagnostic.severity == vim.diagnostic.severity.WARN then
+              return ""
+          end
+          if diagnostic.severity == vim.diagnostic.severity.HINT then
+              return ""
+          end
+          if diagnostic.severity == vim.diagnostic.severity.INFO then
+              return ""
+          end
+          return diagnostic.message
+      end,
+      prefix='',
+      spacing=0,
+    }
     --float = {
     --  source = "always"
     --},
   }
 )
 --local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
 end
+vim.cmd [[autocmd ColorScheme * highlight NormalFloat guifg=NONE guibg=#17191e]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=NONE guibg=#17191e]]
 EOF
 
 " sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl=NONE numhl=NONE
