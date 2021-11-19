@@ -1,23 +1,5 @@
-lua << EOF
---vim.lsp.set_log_level("debug")
-EOF
 " highlight NormalFloat guifg=NONE guibg=#1b212d
 " highlight FloatBorder guifg=NONE guibg=#1b212d
-highlight LspReferenceText guifg=NONE gui=standout
-highlight LspReferenceRead guifg=NONE gui=standout
-highlight LspReferenceWrite guifg=NONE gui=standout
-highlight DiagnosticSignError guifg=#E06C75
-highlight DiagnosticSignWarn guifg=#E5C07B
-highlight DiagnosticSignInfo guifg=NONE
-highlight DiagnosticSignHint guifg=NONE
-highlight DiagnosticFloatingError guifg=#E06C75
-highlight DiagnosticFloatingWarn guifg=#E5C07B
-highlight DiagnosticFloatingInfo guifg=NONE
-highlight DiagnosticFloatingHint guifg=NONE
-highlight DiagnosticVirtualTextError guifg=#E06C75
-highlight DiagnosticVirtualTextWarn guifg=#E5C07B
-highlight DiagnosticVirtualTextInfo guifg=NONE
-highlight DiagnosticVirtualTextHint guifg=NONE
 
 lua << EOF
 --vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
@@ -121,7 +103,7 @@ local border = {
     { "│", "NormalFloat" },
 }
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {relative='cursor', style='minimal', border = border, width=65}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {relative='cursor', style='minimal', border = border}),
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border}),
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -138,7 +120,7 @@ for _, lsp in ipairs(servers) do
     on_attach = custom_on_attach,
     init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,
-        suggestFromUnimportedLibraries = true,
+        suggestFromUnimportedLibraries = false,
         closingLabels = true,
     };
     flags = {
@@ -148,26 +130,25 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Send diagnostics to quickfix list
---do
---    local method = "textDocument/publishDiagnostics"
---    local default_handler = vim.lsp.handlers[method]
---    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr,
---                                        config)
---        default_handler(err, method, result, client_id, bufnr, config)
---        local diagnostics = vim.lsp.diagnostic.get_all()
---        local qflist = {}
---        for bufnr, diagnostic in pairs(diagnostics) do
---            for _, d in ipairs(diagnostic) do
---                d.bufnr = bufnr
---                d.lnum = d.range.start.line + 1
---                d.col = d.range.start.character + 1
---                d.text = d.message
---                table.insert(qflist, d)
---            end
---        end
---    vim.lsp.util.set_qflist(qflist)
---    end
---end
+do
+  local method = "textDocument/publishDiagnostics"
+  local default_handler = vim.lsp.handlers[method]
+  vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
+    default_handler(err, method, result, client_id, bufnr, config)
+    local diagnostics = vim.lsp.diagnostic.get_all()
+    local qflist = {}
+    for bufnr, diagnostic in pairs(diagnostics) do
+      for _, d in ipairs(diagnostic) do
+        d.bufnr = bufnr
+        d.lnum = d.range.start.line + 1
+        d.col = d.range.start.character + 1
+        d.text = d.message
+        table.insert(qflist, d)
+      end
+    end
+  vim.lsp.util.set_qflist(qflist)
+  end
+end
 -- diagnostic after each line
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
@@ -180,16 +161,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       source = "if_many",
       format=function(diagnostic)
           if diagnostic.severity == vim.diagnostic.severity.ERROR then
-              return ""
+              return " "
           end
           if diagnostic.severity == vim.diagnostic.severity.WARN then
-              return ""
+              return " "
           end
           if diagnostic.severity == vim.diagnostic.severity.HINT then
-              return ""
+              return " "
           end
           if diagnostic.severity == vim.diagnostic.severity.INFO then
-              return ""
+              return " "
           end
           return diagnostic.message
       end,
@@ -201,111 +182,64 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     --},
   }
 )
---local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+--local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
 end
-vim.cmd [[autocmd ColorScheme * highlight NormalFloat guifg=NONE guibg=#17191e]]
-vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=NONE guibg=#17191e]]
-EOF
 
-" sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl=NONE numhl=NONE
-" sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl=NONE numhl=NONE
-" sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl=NONE numhl=NONE
-" sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl=NONE numhl=NONE
-lua << EOF
-
--- not activated list
 -- symbols-outline.nvim
 --vim.g.symbols_outline = {
 --    highlight_hovered_item = true,
---    show_guides = true,
---    auto_preview = false, -- experimental
+--    show_guides = false,
+--    auto_preview = false,
 --    position = 'right',
---    keymaps = {
---        close = "<Esc>",
+--    width = 25,
+--    show_numbers = false,
+--    show_relative_numbers = false,
+--    show_symbol_details = false,
+--    preview_bg_highlight = 'Pmenu',
+--    keymaps = { -- These keymaps can be a string or a table for multiple keys
+--        close = {"<Esc>", "q"},
 --        goto_location = "<Cr>",
 --        focus_location = "o",
 --        hover_symbol = "<C-space>",
+--        toggle_preview = "K",
 --        rename_symbol = "r",
---        code_actions = "a"
+--        code_actions = "a",
 --    },
---    lsp_blacklist = {}
+--    lsp_blacklist = {},
+--    symbol_blacklist = {},
+--    symbols = {
+--        File = {icon = "", hl = "TSURI"},
+--        Module = {icon = "", hl = "TSNamespace"},
+--        Namespace = {icon = "", hl = "TSNamespace"},
+--        Package = {icon = "", hl = "TSNamespace"},
+--        Class = {icon = "𝓒", hl = "TSType"},
+--        Method = {icon = "ƒ", hl = "TSMethod"},
+--        Property = {icon = "", hl = "TSMethod"},
+--        Field = {icon = "", hl = "TSField"},
+--        Constructor = {icon = "", hl = "TSConstructor"},
+--        Enum = {icon = "ℰ", hl = "TSType"},
+--        Interface = {icon = "ﰮ", hl = "TSType"},
+--        Function = {icon = "", hl = "TSFunction"},
+--        Variable = {icon = "", hl = "TSConstant"},
+--        Constant = {icon = "", hl = "TSConstant"},
+--        String = {icon = "𝓐", hl = "TSString"},
+--        Number = {icon = "#", hl = "TSNumber"},
+--        Boolean = {icon = "⊨", hl = "TSBoolean"},
+--        Array = {icon = "", hl = "TSConstant"},
+--        Object = {icon = "⦿", hl = "TSType"},
+--        Key = {icon = "🔐", hl = "TSType"},
+--        Null = {icon = "NULL", hl = "TSType"},
+--        EnumMember = {icon = "", hl = "TSField"},
+--        Struct = {icon = "𝓢", hl = "TSType"},
+--        Event = {icon = "🗲", hl = "TSType"},
+--        Operator = {icon = "+", hl = "TSOperator"},
+--        TypeParameter = {icon = "𝙏", hl = "TSParameter"}
+--    }
 --}
-
---local custom_on_attach = function(client, bufnr)
---  --formatting
---  if client.resolved_capabilities.document_formatting then
---    vim.api.nvim_command [[augroup Format]]
---    vim.api.nvim_command [[autocmd! * <buffer>]]
---    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
---    vim.api.nvim_command [[augroup END]]
---  end
---  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
---end
--- Show line diagnostics automatically in hover window
--- You will likely want to reduce updatetime which affects CursorHold
--- note: this setting is global and should be set only once
---vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
-
--- go to definition in a split window
---local function goto_definition(split_cmd)
---  local util = vim.lsp.util
---  local log = require("vim.lsp.log")
---  local api = vim.api
---
---  -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
---  local handler = function(_, result, ctx)
---    if result == nil or vim.tbl_isempty(result) then
---      local _ = log.info() and log.info(ctx.method, "No location found")
---      return nil
---    end
---
---    if split_cmd then
---      vim.cmd(split_cmd)
---    end
---
---    if vim.tbl_islist(result) then
---      util.jump_to_location(result[1])
---
---      if #result > 1 then
---        util.set_qflist(util.locations_to_items(result))
---        api.nvim_command("copen")
---        api.nvim_command("wincmd p")
---      end
---    else
---      util.jump_to_location(result)
---    end
---  end
---
---  return handler
---end
---
---vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit')
-
--- Print diagnostics in status line
---function PrintDiagnostics(opts, bufnr, line_nr, client_id)
---  opts = opts or {}
---
---  bufnr = bufnr or 0
---  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
---
---  local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
---  if vim.tbl_isempty(line_diagnostics) then return end
---
---  local diagnostic_message = ""
---  for i, diagnostic in ipairs(line_diagnostics) do
---    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
---    print(diagnostic_message)
---    if i ~= #line_diagnostics then
---      diagnostic_message = diagnostic_message .. "\n"
---    end
---  end
---  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
---end
---
---vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 EOF
+" nnoremap <space>v :SymbolsOutline<CR>

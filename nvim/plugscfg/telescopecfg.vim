@@ -10,13 +10,15 @@ require('telescope').setup{
         ["q"] = actions.close,
       },
     },
-    layout_strategy="bottom_pane",
+    --layout_strategy="bottom_pane",
     --layout_strategy="horizontal",
     --layout_config = {
     --  horizontal = {
     --     width = 0.95,
     --     height = 0.8,
-    --     preview_width = 0.7,
+    --     mirror = false,
+    --     scroll_speed = 5,
+    --     preview_width = 0.6,
     --     preview_cutoff = 5,
     --     prompt_position = "bottom"
     --  }
@@ -31,16 +33,16 @@ require('telescope').setup{
       '--smart-case',
       '-u'
     },
-    --layout_strategy="vertical",
-    --layout_config = {
-    --  vertical = {
-    --     width = 0.3,
-    --     height = 0.6,
-    --     preview_height = 0.4,
-    --     preview_cutoff = 5,
-    --     prompt_position = "top"
-    --  }
-    --},
+    layout_strategy="vertical",
+    layout_config = {
+      vertical = {
+         width = 0.8,
+         height = 0.6,
+         preview_height = 0.4,
+         preview_cutoff = 5,
+         prompt_position = "top"
+      }
+    },
   },
   extensions = {
     fzy_native = {

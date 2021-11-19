@@ -1,19 +1,23 @@
 lua << EOF
 -- Setup nvim-cmp.
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
-
 local lspkind = require('lspkind')
-lspkind.init()
-
 local cmp = require'cmp'
 local WIDE_HEIGHT = 30
 local WIDE_WIDTH = 30
 cmp.setup({
     formatting = {
-      format = lspkind.cmp_format(
-      {
-          with_text = true, maxwidth = 40
-      })
+      format = lspkind.cmp_format {
+        maxwidth = 40,
+        with_text = true,
+        menu = {
+          buffer = "[BUF]",
+          nvim_lsp = "[LSP]",
+          path = "[PATH]",
+          --vsnip = "[VSNIP]",
+          luasnip = "[LuaSnip]",
+        },
+      },
     },
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -24,10 +28,10 @@ cmp.setup({
     snippet = {
       expand = function(args)
         -- For `vsnip` user.
-        vim.fn["vsnip#anonymous"](args.body)
+        -- vim.fn["vsnip#anonymous"](args.body)
 
         -- For `luasnip` user.
-        -- require('luasnip').lsp_expand(args.body)
+        require('luasnip').lsp_expand(args.body)
 
         -- For `ultisnips` user.
         -- vim.fn["UltiSnips#Anon"](args.body)
@@ -49,20 +53,11 @@ cmp.setup({
     },
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'path' },
       { name = 'buffer' },
-      { name = 'vsnip' },
+      { name = 'luasnip' },
+      --{ name = 'vsnip' },
 
-    },
-    formatting = {
-      format = lspkind.cmp_format {
-        with_text = true,
-        menu = {
-          buffer = "[BUF]",
-          nvim_lsp = "[LSP]",
-          path = "[PATH]",
-          vsnip = "[VSNIP]",
-        },
-      },
     },
     experimental = {
       native_menu = false,
@@ -70,19 +65,4 @@ cmp.setup({
     },
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline('/', {
---    sources = {
---      { name = 'buffer' }
---    }
---})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline(':', {
---    sources = cmp.config.sources({
---      { name = 'path' }
---    }, {
---      { name = 'cmdline' }
---    }),
---})
 EOF

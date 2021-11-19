@@ -3,9 +3,9 @@ require('gitsigns').setup {
   signs = {
     add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
     change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = 'ﰣ', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   },
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -38,10 +38,10 @@ require('gitsigns').setup {
     follow_files = true
   },
   attach_to_untracked = true,
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
   },
   current_line_blame_formatter_opts = {
@@ -52,9 +52,9 @@ require('gitsigns').setup {
   status_formatter = function(status)
           local added, changed, removed = status.added, status.changed, status.removed
           local status_txt = {}
-          if added   and added   > 0 then table.insert(status_txt, '+'..added  ) end
-          if changed and changed > 0 then table.insert(status_txt, '~'..changed) end
-          if removed and removed > 0 then table.insert(status_txt, '-'..removed) end
+          if added   and added   > 0 then table.insert(status_txt, '+'..added  ) else table.insert(status_txt, '+0') end
+          if changed and changed > 0 then table.insert(status_txt, '~'..changed) else table.insert(status_txt, '~0') end
+          if removed and removed > 0 then table.insert(status_txt, '-'..removed) else table.insert(status_txt, '-0') end
           return table.concat(status_txt, ' ')
         end , -- nil for Use default
   max_file_length = 40000,

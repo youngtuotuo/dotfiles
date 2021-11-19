@@ -5,13 +5,13 @@ set rnu
 set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
 set noerrorbells
 set novisualbell
-set showmode
+set noshowmode
 set noswapfile
 set nobackup
 set breakindent
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "exten"
-set cursorline
+" set cursorline
 " set colorcolumn=100
 " Parathensis match
 set showmatch
@@ -39,18 +39,37 @@ set nowritebackup " Some servers have issues with backup files.
 set cmdheight=1 " Give more space for displaying messages.
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=400
+set updatetime=200
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " error and warning msg in line number column
 set signcolumn=auto
-runtime ./plugs.vim
 runtime ./maps.vim
-" hi TabLineSel gui=bold
-" hi TabLine gui=bold
-hi User1 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=standout
-hi User2 ctermbg=NONE ctermfg=NONE guibg=#93a4c3 guifg=NONE gui=NONE
-hi User3 ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
+runtime ./plugs.vim
 runtime ./status.vim
 runtime ./tabline.vim
-hi Normal guibg=NONE ctermbg=NONE
+autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
+" set fillchars+=vert:│
+set fillchars+=vert:\|
+hi VertSplit ctermbg=NONE cterm=NONE guifg=NONE gui=standout
+hi Normal guibg=NONE
+hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight LspReferenceText guibg=NONE gui=standout
+highlight LspReferenceRead guibg=NONE gui=standout
+highlight LspReferenceWrite guibg=NONE gui=standout
+highlight DiagnosticSignError guifg=#E06C75
+highlight DiagnosticSignWarn guifg=#E5C07B
+highlight DiagnosticSignInfo guifg=NONE
+highlight DiagnosticSignHint guifg=NONE
+highlight DiagnosticFloatingError guifg=#E06C75
+highlight DiagnosticFloatingWarn guifg=#E5C07B
+highlight DiagnosticFloatingInfo guifg=NONE
+highlight DiagnosticFloatingHint guifg=NONE
+highlight DiagnosticVirtualTextError guifg=#E06C75
+highlight DiagnosticVirtualTextWarn guifg=#E5C07B
+highlight DiagnosticVirtualTextInfo guifg=NONE
+highlight DiagnosticVirtualTextHint guifg=NONE
+highlight DiagnosticUnderlineError guifg=#E06C75
+highlight DiagnosticUnderlineWarn guifg=#E5C07B
+highlight DiagnosticUnderlineInfo guifg=NONE
+highlight DiagnosticUnderlineHint guifg=NONE

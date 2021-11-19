@@ -25,8 +25,8 @@ nnoremap Y y$
 " nnoremap <C-o> <C-o>zz
 " nnoremap <C-i> <C-i>zz
 nnoremap J mzJ`z
-nnoremap <C-y> <C-y>k^
-nnoremap <C-e> <C-e>j^
+" nnoremap <C-y> <C-y>k^
+" nnoremap <C-e> <C-e>j^
 " undo breakpoint
 inoremap , ,<C-g>u
 inoremap ( (<C-g>u
