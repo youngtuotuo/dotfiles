@@ -8,7 +8,7 @@ lua << EOF
 --vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 --vim.cmd [[highlight IndentBlanklineContextStart guisp=NONE gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineContextChar guifg=#455574 gui=nocombine]]
-vim.opt.list = false
+vim.opt.list = true
 -- to enable for specific buffer
 -- :lua vim.opt.list = true
 --vim.opt.listchars:append("space:⋅")

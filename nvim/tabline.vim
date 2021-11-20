@@ -1,24 +1,56 @@
 func! NvimGps() abort
-    return luaeval("require'nvim-gps'.is_available()") ?
-    \ ' ' .. luaeval("require'nvim-gps'.get_location()") : ''
+    if luaeval("require'nvim-gps'.is_available()")
+        if luaeval("require'nvim-gps'.get_location()") == ''
+            return ''
+        else
+            return "/" ..  luaeval("require'nvim-gps'.get_location()")
+        endif
+    else
+        return ''
+    endif
 endf
 
 function! Version()
    return 'NVIM-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*') .. ' '
 endfunction
 
+function! Icon()
+    let ft = ''
+    if &filetype == "python"
+        let ft = 'py'
+    elseif &filetype == "NvimTree"
+        let ft = 'vim'
+    elseif &filetype == "help"
+        let ft = 'txt'
+    else
+        let ft = &filetype
+    endif
+    let cmd = "require'nvim-web-devicons'.get_icon('" .. expand('%:t').. "','" .. ft .. "',{ default = true })"
+    return luaeval(cmd)
+endfunction
+
+function! TabLine()
+    let s = ''
+    let s .= ' ' .. expand('%:h')
+    " let s .= ' ' .. expand('%:~:h')
+    let s .= '/' .. Icon()
+    let s .= ' %t%h%w%m%r'
+    let s .= NvimGps()
+    let s .= '%='
+    let s .= ' ' .. Version()
+    return s
+endfunction
+
 set showtabline=2
-" set tabline=%!Tabline()
-set tabline=
-set tabline+=%#tablinefill#\ %F\ %{%WebDevIconsGetFileTypeSymbol()%}\ %{NvimGps()}\ %#StatusLine#%=%#tablinefill#\ %{%Version()%}
+
 augroup THighlight
   autocmd!
-  autocmd CursorMoved,CursorMovedI * set tabline=%#tablinefill#\ %F\ %{%WebDevIconsGetFileTypeSymbol()%}\ %{NvimGps()}\ %#StatusLine#%=%#tablinefill#\ %{%Version()%}
+  autocmd CursorMoved,CursorMovedI * set tabline=%{%TabLine()%}
 augroup END
-hi TabLineSel guibg=NONE
-hi TabLine guibg=NONE
-" hi tablinefill gui=NONE guibg=NONE guifg=#e1e3e4
-hi tablinefill guifg=#e1e3e4 guibg=NONE gui=standout
+
+" hi TabLineSel guibg=NONE
+" hi TabLine guibg=NONE
+hi tablinefill gui=standout
 
 " function! Tabline()
 "   let s = ''
@@ -46,3 +78,4 @@ hi tablinefill guifg=#e1e3e4 guibg=NONE gui=standout
 "   endif
 "   return s
 " endfunction
+"

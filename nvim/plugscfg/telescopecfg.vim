@@ -36,9 +36,9 @@ require('telescope').setup{
     layout_strategy="vertical",
     layout_config = {
       vertical = {
-         width = 0.8,
-         height = 0.6,
-         preview_height = 0.4,
+         width = 0.9,
+         height = 0.9,
+         preview_height = 0.55,
          preview_cutoff = 5,
          prompt_position = "top"
       }
@@ -64,4 +64,4 @@ nnoremap <space>h :Telescope help_tags<CR>
 nnoremap <space>m :Telescope keymaps<CR>
 nnoremap <space>v :Telescope lsp_document_symbols<CR>
 nnoremap <space>ww :Telescope lsp_workspace_symbols query=
-" nnoremap gd :Telescope lsp_definitions<CR>
+nnoremap gr :Telescope lsp_references<CR>

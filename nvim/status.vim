@@ -1,10 +1,5 @@
-" status line setting
-" function! MyFiletype() abort
-"   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() . ' ' : 'no ft') : ''
-" endfunction
-"
 function! MyFileformat() abort
-  return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()) . ' ' . &fileformat . ' ': ''
+  return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()) . ' ' . &fileformat: ''
 endfunction
 
 function! FileSize()
@@ -23,21 +18,14 @@ function! Server()
    let ft = &filetype
    if ft == "python"
       return WebDevIconsGetFileTypeSymbol() .. " pyright"
-   endif
-   if ft == "vim"
+   elseif ft == "vim"
       return WebDevIconsGetFileTypeSymbol() .. " vimls"
-   endif
-   if ft == "bash"
+   elseif ft == "bash"
       return WebDevIconsGetFileTypeSymbol() .. " bashls"
-   endif
-   if ft == "yaml"
+  elseif ft == "yaml"
       return WebDevIconsGetFileTypeSymbol() .. " yamlls"
    endif
 endfunction
-
-" function! Version()
-"    return 'NVIM-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*') .. ' '
-" endfunction
 
 function! Lspinfo()
    let server = Server()
@@ -54,23 +42,22 @@ endfunction
 
 function! Git()
    let branch = FugitiveHead()
-   return strlen(branch) ? branch : ""
+   let icon = luaeval("require'nvim-web-devicons'.get_icon('.git','git',{ default = true })")
+   let gitstatus = strlen(branch) ? icon .. ' ' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ""
+   return gitstatus
 endfunction
 
-
-" func! NvimGps() abort
-"     return luaeval("require'nvim-gps'.is_available()") ?
-"     \ luaeval("require'nvim-gps'.get_location()") : ''
-" endf
-
+function! Env()
+    return $CONDA_DEFAULT_ENV
+endfunction
 
 " :h mode() to see all modes
 let g:currentmode={
     \ 'n'      : 'NORMAL',
     \ 'no'     : 'N·Operator Pending',
     \ 'v'      : 'VISUAL',
-    \ 'V'      : 'V·Line',
-    \ "\<C-V>" : 'V·Block',
+    \ 'V'      : 'VLine',
+    \ "\<C-V>" : 'VBlock',
     \ 's'      : 'Select',
     \ 'S'      : 'S·Line',
     \ "\<C-S>" : 'S·Block',
@@ -87,61 +74,58 @@ let g:currentmode={
     \ 't'      : 'Terminal'
     \}
 
+function! LocalActivestatus()
+    let s = ''
+    let mode = ' ' .. toupper(g:currentmode[mode()]) .. ' '
+    let env = ' ' .. Env() .. ' '
+    let gitstatus = Git()
+    let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(mode) - strlen(env))) .. gitstatus
+    let format = ' ' .. MyFileformat() .. ' '
+
+    let s .= '%1*'
+    let s .= mode
+    let s .= '%#StatusLine#'
+    let s .= env
+    let s .= gitfinal
+    let s .= '%='
+    let s .= format
+    let s .= '%1*'
+    let s .= ' %l,%c%V %P ' 
+    return s
+endfunction
+
+function! LocalNActivestatus()
+    let s = ''
+    let env = ' ' .. Env() .. ' '
+    let gitstatus = Git()
+    let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(env))) .. gitstatus
+    let format = ' ' .. MyFileformat() .. ' '
+
+    let s.= '%#StatusLineNC#'
+    let s.= env
+    let s.= gitfinal
+    let s.= '%='
+    let s.= format
+    let s.= ' %l,%c%V %P '
+    return s
+endfunction
 
 hi User1 gui=standout
 
-hi StatusLine guibg=NONE
-hi StatusLineNC guibg=NONE
-set statusline=
-set statusline+=%1*
-set statusline+=\ %{toupper(g:currentmode[mode()])}\ 
-" set statusline+=%{mode()}
-set statusline+=%#StatusLine#
-" set statusline+=\ %{%FileSize()%}\ 
-set statusline+=\ %t
-" set statusline+=%1*
-" set statusline+=%3*
-set statusline+=\ %{%Git()%}
-set statusline+=\ %{get(b:,'gitsigns_status','')}
-" set statusline+=%3*
-" set statusline+=%1*
-set statusline+=\ %h%w%m%r
-" set statusline+=%#StatusLine#
-set statusline+=%=
-" set statusline+=\ %{NvimGps()}\ 
-set statusline+=%1*
-set statusline+=\ %l,%c%V\ %P\ 
 augroup StHighlight
   autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setl statusline=%1*\ %{toupper(g:currentmode[mode()])}\ %#StatusLine#\ %{%Git()%}\ %{get(b:,'gitsigns_status','')}\ %h%w%m%r%=%1*\ %l,%c%V\ %P\ 
-  autocmd WinLeave * setl statusline=%#StatusLineNC#\ %{%Git()%}\ %{get(b:,'gitsigns_status','')}\ %h%w%m%r%=\ %l,%c%V\ %P\ 
+  autocmd VimEnter,WinEnter,BufWinEnter * setl statusline=%{%LocalActivestatus()%}
+  autocmd WinLeave * setl statusline=%{%LocalNActivestatus()%}
 augroup END
+" set statusline+=%{mode()}
+" set statusline+=\ %{%FileSize()%}\ 
+" set statusline+=\ %t
+" set statusline+=%1*
+" set statusline+=%3*
+" set statusline+=%3*
+" set statusline+=%1*
+" set statusline+=%#StatusLine#
+" set statusline+=\ %{NvimGps()}\ 
 " set statusline+=%=%-14.(%l,%c%V%)\ %P
 " set statusline+=%#PmenuSel#
 " set statusline+=[%n]
-" set statusline+=
-" set statusline+=\ [
-" set statusline+=%{%FileSize()%}
-" set statusline+=]
-" set statusline+=\ %{%Git()%}
-" set statusline+=\ ‹‹
-" set statusline+=%2*
-" set statusline+=%1*
-" set statusline+=\ %t
-" set statusline+=\ ››
-" set statusline+=\ -
-" set statusline+=\ (%l/%L)
-" set statusline+=\ %r%h%w%q%m
-" set statusline+=%=
-" set statusline+=%3*
-" set statusline+=\ %{%Version()%}
-" set statusline+=%1*
-" set statusline+=\ %{%MyFileformat()%}
-" set statusline+=%3*
-" set statusline+=\ %{%Lspinfo()%}
-" set statusline+=\ 
-" set statusline+=\ %{%WebDevIconsGetFileTypeSymbol()%}
-" set statusline+=%#StatusLine#
-" set statusline+=\ %{%Version()%}
-" set statusline+=%1*
-

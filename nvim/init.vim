@@ -51,25 +51,26 @@ runtime ./tabline.vim
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 " set fillchars+=vert:│
 set fillchars+=vert:\|
-hi VertSplit ctermbg=NONE cterm=NONE guifg=NONE gui=standout
-hi Normal guibg=NONE
+" set fillchars+=vert:+  
+hi VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#e1e3e4 guibg=#e1e3e4 gui=NONE
+" hi Normal guibg=NONE
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-highlight LspReferenceText guibg=NONE gui=standout
-highlight LspReferenceRead guibg=NONE gui=standout
-highlight LspReferenceWrite guibg=NONE gui=standout
-highlight DiagnosticSignError guifg=#E06C75
-highlight DiagnosticSignWarn guifg=#E5C07B
-highlight DiagnosticSignInfo guifg=NONE
-highlight DiagnosticSignHint guifg=NONE
-highlight DiagnosticFloatingError guifg=#E06C75
-highlight DiagnosticFloatingWarn guifg=#E5C07B
-highlight DiagnosticFloatingInfo guifg=NONE
-highlight DiagnosticFloatingHint guifg=NONE
-highlight DiagnosticVirtualTextError guifg=#E06C75
-highlight DiagnosticVirtualTextWarn guifg=#E5C07B
-highlight DiagnosticVirtualTextInfo guifg=NONE
-highlight DiagnosticVirtualTextHint guifg=NONE
-highlight DiagnosticUnderlineError guifg=#E06C75
-highlight DiagnosticUnderlineWarn guifg=#E5C07B
-highlight DiagnosticUnderlineInfo guifg=NONE
-highlight DiagnosticUnderlineHint guifg=NONE
+hi LspReferenceText guibg=NONE gui=standout
+hi LspReferenceRead guibg=NONE gui=standout
+hi LspReferenceWrite guibg=NONE gui=standout
+hi DiagnosticSignError guifg=#db4b4b
+hi DiagnosticSignWarn guifg=#e0af68
+hi DiagnosticSignInfo guifg=#0db9d7
+hi DiagnosticSignHint guifg=#10B981
+" hi DiagnosticFloatingError guifg=#db4b4b
+" hi DiagnosticFloatingWarn guifg=#e0af68
+" hi DiagnosticFloatingInfo guifg=#0db9d7
+" hi DiagnosticFloatingHint guifg=#10B981
+" hi DiagnosticVirtualTextError guifg=#db4b4b
+" hi DiagnosticVirtualTextWarn guifg=#e0af68
+" hi DiagnosticVirtualTextInfo guifg=#0db9d7
+" hi DiagnosticVirtualTextHint guifg=#10B981
+" hi DiagnosticUnderlineError guifg=#db4b4b
+" hi DiagnosticUnderlineWarn guifg=#e0af68
+" hi DiagnosticUnderlineInfo guifg=#0db9d7
+" hi DiagnosticUnderlineHint guifg=#10B981
