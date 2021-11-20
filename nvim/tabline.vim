@@ -16,17 +16,23 @@ endfunction
 
 function! Icon()
     let ft = ''
-    if &filetype == "python"
-        let ft = 'py'
-    elseif &filetype == "NvimTree"
-        let ft = 'vim'
-    elseif &filetype == "help"
-        let ft = 'txt'
+    let filetype = &filetype
+
+    if filetype == ''
+        return ''
     else
-        let ft = &filetype
+        if filetype == "python"
+            let ft = 'py'
+        elseif filetype == "NvimTree"
+            let ft = 'vim'
+        elseif filetype == "help"
+            let ft = 'txt'
+        else
+            let ft = filetype
+        endif
+        let cmd = "require'nvim-web-devicons'.get_icon('" .. expand('%:t').. "','" .. ft .. "',{ default = true })"
+        return luaeval(cmd)
     endif
-    let cmd = "require'nvim-web-devicons'.get_icon('" .. expand('%:t').. "','" .. ft .. "',{ default = true })"
-    return luaeval(cmd)
 endfunction
 
 function! TabLine()

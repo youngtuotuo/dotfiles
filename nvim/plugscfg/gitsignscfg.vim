@@ -34,15 +34,15 @@ require('gitsigns').setup {
     ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
   watch_gitdir = {
-    interval = 1000,
+    interval = 400,
     follow_files = true
   },
   attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
-    virt_text = false,
+    virt_text = true,
     virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
+    delay = 100,
   },
   current_line_blame_formatter_opts = {
     relative_time = true
