@@ -5,14 +5,14 @@ set rnu
 set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
 set noerrorbells
 set novisualbell
-set noshowmode
+" set noshowmode
 set noswapfile
 set nobackup
 set breakindent
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "exten"
 " set cursorline
-" set colorcolumn=100
+" set colorcolumn=120
 " Parathensis match
 set showmatch
 set matchtime=1
@@ -36,7 +36,7 @@ if (has("termguicolors"))
 endif
 command! W writes " avoid finger not leave shift
 set nowritebackup " Some servers have issues with backup files.
-set cmdheight=1 " Give more space for displaying messages.
+set cmdheight=2 " Give more space for displaying messages.
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=200
@@ -44,33 +44,26 @@ set updatetime=200
 set shortmess+=c
 " error and warning msg in line number column
 set signcolumn=auto
-runtime ./maps.vim
-runtime ./plugs.vim
-runtime ./status.vim
-runtime ./tabline.vim
+let g:highlightedyank_highlight_duration = 300
+" dvc
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
+runtime maps.vim
+runtime plugs.vim
+
+runtime plugscfg/icon.vim
+runtime plugscfg/lspcfg.vim
+runtime plugscfg/completioncfg.vim
+runtime plugscfg/colorizercfg.vim
+runtime plugscfg/telescopecfg.vim
+runtime plugscfg/indentlinecfg.vim
+runtime plugscfg/gitsignscfg.vim
+runtime plugscfg/nvimtreecfg.vim
+runtime plugscfg/lightbulbcfg.vim
+
+runtime plugscfg/colorschemecfg.vim
+runtime plugscfg/treesittercfg.vim
+runtime status.vim
+runtime tabline.vim
+runtime highlight.vim
 " set fillchars+=vert:│
 set fillchars+=vert:\|
-" set fillchars+=vert:+  
-hi VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#e1e3e4 guibg=#e1e3e4 gui=NONE
-" hi Normal guibg=NONE
-hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-hi LspReferenceText guibg=NONE gui=standout
-hi LspReferenceRead guibg=NONE gui=standout
-hi LspReferenceWrite guibg=NONE gui=standout
-hi DiagnosticSignError guifg=#db4b4b
-hi DiagnosticSignWarn guifg=#e0af68
-hi DiagnosticSignInfo guifg=#0db9d7
-hi DiagnosticSignHint guifg=#10B981
-" hi DiagnosticFloatingError guifg=#db4b4b
-" hi DiagnosticFloatingWarn guifg=#e0af68
-" hi DiagnosticFloatingInfo guifg=#0db9d7
-" hi DiagnosticFloatingHint guifg=#10B981
-" hi DiagnosticVirtualTextError guifg=#db4b4b
-" hi DiagnosticVirtualTextWarn guifg=#e0af68
-" hi DiagnosticVirtualTextInfo guifg=#0db9d7
-" hi DiagnosticVirtualTextHint guifg=#10B981
-" hi DiagnosticUnderlineError guifg=#db4b4b
-" hi DiagnosticUnderlineWarn guifg=#e0af68
-" hi DiagnosticUnderlineInfo guifg=#0db9d7
-" hi DiagnosticUnderlineHint guifg=#10B981

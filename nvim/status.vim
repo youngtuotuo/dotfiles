@@ -1,3 +1,9 @@
+augroup StHighlight
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setl statusline=%{%LocalActivestatus()%}
+  autocmd WinLeave * setl statusline=%{%LocalNActivestatus()%}
+augroup END
+
 function! MyFileformat() abort
   return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()) . ' ' . &fileformat: ''
 endfunction
@@ -76,17 +82,18 @@ let g:currentmode={
 
 function! LocalActivestatus()
     let s = ''
-    let mode = ' ' .. toupper(g:currentmode[mode()]) .. ' '
-    let env = ' ' .. Env() .. ' '
-    let gitstatus = Git()
-    let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(mode) - strlen(env))) .. gitstatus
+    " let mode = ' ' .. toupper(g:currentmode[mode()]) .. ' '
+    " let env = ' ' .. Env() .. ' '
+    " let gitstatus = Git()
+    " let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(expand('%t')))) .. gitstatus
     let format = ' ' .. MyFileformat() .. ' '
 
     let s .= '%1*'
-    let s .= mode
+    let s .= ' %t%h%w%m%r '
+    " let s .= mode
     let s .= '%#StatusLine#'
-    let s .= env
-    let s .= gitfinal
+    " let s .= env
+    " let s .= gitfinal
     let s .= '%='
     let s .= format
     let s .= '%1*'
@@ -96,36 +103,15 @@ endfunction
 
 function! LocalNActivestatus()
     let s = ''
-    let env = ' ' .. Env() .. ' '
-    let gitstatus = Git()
-    let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(env))) .. gitstatus
     let format = ' ' .. MyFileformat() .. ' '
+    " let gitstatus = Git()
+    " let gitfinal = repeat(' ', float2nr((nvim_win_get_width(0) - strlen(gitstatus))/2 - strlen(expand('%t')))) .. gitstatus
 
     let s.= '%#StatusLineNC#'
-    let s.= env
-    let s.= gitfinal
+    let s.= ' %t%h%w%m%r '
+    " let s.= gitfinal
     let s.= '%='
     let s.= format
     let s.= ' %l,%c%V %P '
     return s
 endfunction
-
-hi User1 gui=standout
-
-augroup StHighlight
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setl statusline=%{%LocalActivestatus()%}
-  autocmd WinLeave * setl statusline=%{%LocalNActivestatus()%}
-augroup END
-" set statusline+=%{mode()}
-" set statusline+=\ %{%FileSize()%}\ 
-" set statusline+=\ %t
-" set statusline+=%1*
-" set statusline+=%3*
-" set statusline+=%3*
-" set statusline+=%1*
-" set statusline+=%#StatusLine#
-" set statusline+=\ %{NvimGps()}\ 
-" set statusline+=%=%-14.(%l,%c%V%)\ %P
-" set statusline+=%#PmenuSel#
-" set statusline+=[%n]

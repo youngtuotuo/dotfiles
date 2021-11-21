@@ -28,6 +28,7 @@ require('gitsigns').setup {
     ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
     ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+    ['n <leader>ht'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
@@ -38,10 +39,10 @@ require('gitsigns').setup {
     follow_files = true
   },
   attach_to_untracked = true,
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 100,
   },
   current_line_blame_formatter_opts = {
@@ -72,8 +73,8 @@ require('gitsigns').setup {
     },
     style = 'minimal',
     relative = 'cursor',
-    row = 5,
-    col = 5
+    row = 0,
+    col = 1
   },
   yadm = {
     enable = false

@@ -1,9 +1,16 @@
-func! NvimGps() abort
+set showtabline=2
+
+augroup THighlight
+  autocmd!
+  autocmd CursorMoved,CursorMovedI * set tabline=%{%TabLine()%}
+augroup END
+
+func! NvimGps()
     if luaeval("require'nvim-gps'.is_available()")
         if luaeval("require'nvim-gps'.get_location()") == ''
             return ''
         else
-            return "/" ..  luaeval("require'nvim-gps'.get_location()")
+            return luaeval("require'nvim-gps'.get_location()")
         endif
     else
         return ''
@@ -35,28 +42,33 @@ function! Icon()
     endif
 endfunction
 
+function! Git()
+   let branch = FugitiveHead()
+   let icon = luaeval("require'nvim-web-devicons'.get_icon('.git','git',{ default = true })")
+   let gitstatus = strlen(branch) ? icon .. ' ' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ""
+   return gitstatus
+endfunction
+
+
 function! TabLine()
+    let gps = NvimGps()
+    let git = ' ' .. Git() .. ' '
+    let gpsfinal = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git))) .. gps
     let s = ''
-    let s .= ' ' .. expand('%:h')
+    let s .= '%#StatusLine#'
+    let s .= git
+    " let s .= Icon()
+    " let s .= fname
+    " let s .= ' ' .. expand('%:h')
     " let s .= ' ' .. expand('%:~:h')
-    let s .= '/' .. Icon()
-    let s .= ' %t%h%w%m%r'
-    let s .= NvimGps()
+    " let s .= ' t%h%w%m%r'
+    let s .= '%2*'
+    let s .= gpsfinal .. ' '
     let s .= '%='
+    let s .= '%#StatusLine#'
     let s .= ' ' .. Version()
     return s
 endfunction
-
-set showtabline=2
-
-augroup THighlight
-  autocmd!
-  autocmd CursorMoved,CursorMovedI * set tabline=%{%TabLine()%}
-augroup END
-
-" hi TabLineSel guibg=NONE
-" hi TabLine guibg=NONE
-hi tablinefill gui=standout
 
 " function! Tabline()
 "   let s = ''
