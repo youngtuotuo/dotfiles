@@ -1,11 +1,8 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
 " colorscheme
-Plug 'navarasu/onedark.nvim'
-Plug 'olimorris/onedarkpro.nvim'
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 Plug 'shaunsingh/nord.nvim'
-Plug 'sainnhe/sonokai'
 " markdown
 Plug 'ellisonleao/glow.nvim'
 " color code highlight
@@ -17,6 +14,7 @@ Plug 'lewis6991/gitsigns.nvim'
 " file explorer
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -43,9 +41,6 @@ Plug 'tpope/vim-commentary'
 Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" icons
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()

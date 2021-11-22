@@ -5,6 +5,29 @@ augroup THighlight
   autocmd CursorMoved,CursorMovedI * set tabline=%{%TabLine()%}
 augroup END
 
+function! TabLine()
+    let gps = ' ' .. NvimGps() .. ' '
+    let git = ' ' .. Git() .. ' '
+    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git) + strlen("%#DevIconGitLogo#%#StatusLine#")))
+
+    let s = ''
+    " let s .= '%#StatusLine#'
+    if strlen(git)!=2
+        let s .= git
+    endif
+    " let s .= '%#Normal#'
+    let s .= empty
+    " let s .= '%#StatusLine#'
+    if strlen(gps)!=2
+        let s .= gps
+    endif
+    " let s .= '%#Normal#'
+    let s .= '%='
+    " let s .= '%#StatusLine#'
+    let s .= ' ' .. Version()
+    return s
+endfunction
+
 func! NvimGps()
     if luaeval("require'nvim-gps'.is_available()")
         if luaeval("require'nvim-gps'.get_location()") == ''
@@ -21,53 +44,11 @@ function! Version()
    return 'NVIM-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*') .. ' '
 endfunction
 
-function! Icon()
-    let ft = ''
-    let filetype = &filetype
-
-    if filetype == ''
-        return ''
-    else
-        if filetype == "python"
-            let ft = 'py'
-        elseif filetype == "NvimTree"
-            let ft = 'vim'
-        elseif filetype == "help"
-            let ft = 'txt'
-        else
-            let ft = filetype
-        endif
-        let cmd = "require'nvim-web-devicons'.get_icon('" .. expand('%:t').. "','" .. ft .. "',{ default = true })"
-        return luaeval(cmd)
-    endif
-endfunction
-
 function! Git()
    let branch = FugitiveHead()
    let icon = luaeval("require'nvim-web-devicons'.get_icon('.git','git',{ default = true })")
-   let gitstatus = strlen(branch) ? icon .. ' ' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ""
+   let gitstatus = strlen(branch) ? '%#DevIconGitLogo#' .. icon .. ' %#StatusLine#' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ''
    return gitstatus
-endfunction
-
-
-function! TabLine()
-    let gps = NvimGps()
-    let git = ' ' .. Git() .. ' '
-    let gpsfinal = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git))) .. gps
-    let s = ''
-    let s .= '%#StatusLine#'
-    let s .= git
-    " let s .= Icon()
-    " let s .= fname
-    " let s .= ' ' .. expand('%:h')
-    " let s .= ' ' .. expand('%:~:h')
-    " let s .= ' t%h%w%m%r'
-    let s .= '%2*'
-    let s .= gpsfinal .. ' '
-    let s .= '%='
-    let s .= '%#StatusLine#'
-    let s .= ' ' .. Version()
-    return s
 endfunction
 
 " function! Tabline()

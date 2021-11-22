@@ -49,6 +49,7 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+
 require("nvim-gps").setup({
     icons = {
       ["class-name"] = ' ',      -- Classes and class-like objects

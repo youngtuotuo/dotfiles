@@ -2,17 +2,18 @@ set mouse=a
 set t_Co=256
 set nu
 set rnu
-set guicursor=a:blinkwait700-blinkoff400-blinkon100,i-ci-ve:ver25,r-cr-o:hor20
-set noerrorbells
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+		  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+		  \,sm:block-blinkwait175-blinkoff150-blinkon175set noerrorbells
 set novisualbell
-" set noshowmode
+set noshowmode
 set noswapfile
 set nobackup
 set breakindent
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "exten"
-" set cursorline
-" set colorcolumn=120
+set cursorline
+" set colorcolumn=80
 " Parathensis match
 set showmatch
 set matchtime=1
@@ -60,8 +61,8 @@ runtime plugscfg/gitsignscfg.vim
 runtime plugscfg/nvimtreecfg.vim
 runtime plugscfg/lightbulbcfg.vim
 
-runtime plugscfg/colorschemecfg.vim
 runtime plugscfg/treesittercfg.vim
+runtime plugscfg/colorschemecfg.vim
 runtime status.vim
 runtime tabline.vim
 runtime highlight.vim
