@@ -1,4 +1,50 @@
 lua << EOF
+local signature_cfg = {
+  debug = false, -- set to true to enable debug logging
+  log_path = "debug_log_file_path", -- debug log path
+  verbose = false, -- show debug line number
+
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+             -- If you want to hook lspsaga or other signature handler, pls set to false
+  doc_lines = 0, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+               -- set to 0 if you DO NOT want any API comments be shown
+               -- This setting only take effect in insert mode, it does not affect signature help in normal
+               -- mode, 10 by default
+
+  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+
+  floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+  -- will set to true when fully tested, set to false will use whichever side has more space
+  -- this setting will be helpful if you do not want the PUM and floating win overlap
+  fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+  hint_enable = true, -- virtual hint enable
+  hint_prefix = " ",  -- Panda for parameter🐼
+  hint_scheme = "String",
+  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+  hi_parameter = "IncSearch", --"LspSignatureActiveParameter", -- how your parameter will be highlight
+  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+                 -- to view the hiding contents
+  max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  handler_opts = {
+  border = "none"   -- double, rounded, single, shadow, none
+  },
+
+  always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+
+  auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+  extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+  zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+
+  padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+
+  transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+  shadow_blend = 36, -- if you using shadow as border use this set the opacity
+  shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+  timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
+  toggle_key = '<C-x>' -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+}
+
+require "lsp_signature".setup(signature_cfg)
 --vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 local protocol = require'vim.lsp.protocol'
@@ -55,7 +101,7 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float(0, {show_header=false, scope="line", source="if_many"})<CR>', opts)
+  buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   --buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
@@ -68,28 +114,28 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   {
     severity_sort = true,
     underline = true,
-    -- virtual_text = false,
-    signs = false,
+    virtual_text = false,
+    signs = true,
     update_in_insert=false,
-    virtual_text = {
-      source = "if_many",
-      format=function(diagnostic)
-          if diagnostic.severity == vim.diagnostic.severity.ERROR then
-              return " "
-          end
-          if diagnostic.severity == vim.diagnostic.severity.WARN then
-              return " "
-          end
-          if diagnostic.severity == vim.diagnostic.severity.HINT then
-              return " "
-          end
-          if diagnostic.severity == vim.diagnostic.severity.INFO then
-              return " "
-          end
-      end,
-      prefix='',
-      spacing=0,
-    },
+    --virtual_text = {
+    --  source = "if_many",
+    --  format=function(diagnostic)
+    --      if diagnostic.severity == vim.diagnostic.severity.ERROR then
+    --          return " "
+    --      end
+    --      if diagnostic.severity == vim.diagnostic.severity.WARN then
+    --          return " "
+    --      end
+    --      if diagnostic.severity == vim.diagnostic.severity.HINT then
+    --          return " "
+    --      end
+    --      if diagnostic.severity == vim.diagnostic.severity.INFO then
+    --          return " "
+    --      end
+    --  end,
+    --  prefix='',
+    --  spacing=0,
+    --},
     float = {
       source = "always"
     },
@@ -123,24 +169,32 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true;
 local nvim_lsp = require('lspconfig')
 local servers = { 'pyright', 'vimls', 'bashls', 'yamlls', 'diagnosticls' }
 local border = {
-    { "╭", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "╮", "NormalFloat" },
-    { "│", "NormalFloat" },
-    { "╯", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "╰", "NormalFloat" },
-    { "│", "NormalFloat" },
+      {"", "FloatBorder"},
+      {"", "FloatBorder"},
+      {"", "FloatBorder"},
+      {" ", "FloatBorder"},
+      {"", "FloatBorder"},
+      {"", "FloatBorder"},
+      {"", "FloatBorder"},
+      {" ", "FloatBorder"},
 }
+
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {relative='cursor', style='minimal', border = border}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border}),
 }
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+local orig_open_float = vim.diagnostic.open_float
+function vim.diagnostic.open_float(bufnr, opts)
   opts = opts or {}
+  opts = {
+    max_height = 12,
+    max_width = 80,
+    border = border,
+    severity_sort = true,
+    source = "always",
+  }
   opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  return orig_open_float(bufnr, opts)
 end
 -- 'cmake', 'diagnosticls', 'dockerls'
 for _, lsp in ipairs(servers) do
@@ -150,7 +204,7 @@ for _, lsp in ipairs(servers) do
     on_attach = custom_on_attach,
     init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,
-        suggestFromUnimportedLibraries = false,
+        suggestFromUnimportedLibraries = true,
         closingLabels = true,
     };
     flags = {
@@ -158,33 +212,4 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-
--- Send diagnostics to quickfix list
-do
-  local method = "textDocument/publishDiagnostics"
-  local default_handler = vim.lsp.handlers[method]
-  vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
-    default_handler(err, method, result, client_id, bufnr, config)
-    local diagnostics = vim.lsp.diagnostic.get_all()
-    local qflist = {}
-    for bufnr, diagnostic in pairs(diagnostics) do
-      for _, d in ipairs(diagnostic) do
-        d.bufnr = bufnr
-        d.lnum = d.range.start.line + 1
-        d.col = d.range.start.character + 1
-        d.text = d.message
-        table.insert(qflist, d)
-      end
-    end
-  vim.lsp.util.set_qflist(qflist)
-  end
-end
---local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
---local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-
---for type, icon in pairs(signs) do
---  local hl = "DiagnosticSign" .. type
---  vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
---end
 EOF
-" nnoremap <space>v :SymbolsOutline<CR>

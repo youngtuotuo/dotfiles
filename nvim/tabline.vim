@@ -8,7 +8,7 @@ augroup END
 function! TabLine()
     let gps = ' ' .. NvimGps() .. ' '
     let git = ' ' .. Git() .. ' '
-    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git) + strlen("%#DevIconGitLogo#%#StatusLine#")))
+    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git) + strlen("%#StatusLine#")))
 
     let s = ''
     " let s .= '%#StatusLine#'
@@ -41,13 +41,14 @@ func! NvimGps()
 endf
 
 function! Version()
-   return 'NVIM-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*') .. ' '
+   return 'neovim-' .. matchstr(execute('version'), 'NVIM v\zs[^\n]*') .. ' '
 endfunction
 
 function! Git()
    let branch = FugitiveHead()
-   let icon = luaeval("require'nvim-web-devicons'.get_icon('.git','git',{ default = true })")
-   let gitstatus = strlen(branch) ? '%#DevIconGitLogo#' .. icon .. ' %#StatusLine#' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ''
+   " let icon = luaeval("require'nvim-web-devicons'.get_icon('.git','git',{ default = true })")
+   " let gitstatus = strlen(branch) ? '%#DevIconGitLogo#' .. icon .. ' %#StatusLine#' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ''
+   let gitstatus = strlen(branch) ? ' %#StatusLine#' .. branch ..  ' ' .. get(b:,'gitsigns_status',''): ''
    return gitstatus
 endfunction
 

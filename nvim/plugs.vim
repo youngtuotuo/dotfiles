@@ -27,10 +27,14 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'ray-x/cmp-treesitter'
 Plug 'onsails/lspkind-nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'kosayoda/nvim-lightbulb'
+Plug 'ray-x/lsp_signature.nvim'
+" TODO
+Plug 'folke/todo-comments.nvim'
 " zen mode
 Plug 'folke/zen-mode.nvim'
 " yank highlight

@@ -10,13 +10,16 @@ function! LocalActivestatus()
     let mode = ' ' .. toupper(g:currentmode[mode()]) .. ' '
 
     let s = ''
-    let s .= '%1*'
-    let s .= mode
-    let s .= '%#StatusLine#'
-    let s .= ' %#Icon#%{%Icon()%}%#StatusLine# %t%h%w%m%r '
+    " let s .= '%1*'
+    " if &filetype != "NvimTree"
+    "     let s .= mode
+    " endif
+    " let s .= '%#StatusLine#'
+    " let s .= ' %#Icon#%{%Icon()%}'
+    let s .= ' %#StatusLine#%t%h%w%m%r* '
     " let s .= '%#Normal#'
+    " let s .= '%#StatusLine#'
     let s .= '%='
-    let s .= '%#StatusLine#'
     let s .= ' %l:%c%V %P ' 
     return s
 endfunction
@@ -24,7 +27,8 @@ endfunction
 function! LocalNActivestatus()
     let s = ''
     " let s .= '%#StatusLine#'
-    let s .= ' %#Icon#%{%Icon()%}%#StatusLine# %t%h%w%m%r '
+    " let s .= ' %#Icon#%{%Icon()%}'
+    let s .= ' %#StatusLine#%t%h%w%m%r '
     " let s .= '%#Normal#'
     let s .= '%='
     " let s .= '%#StatusLine#'
@@ -69,7 +73,7 @@ function! Icon()
             hi link Icon DevIconPy
             exec 'hi Icon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui') .
                         \' guifg=' . synIDattr(synIDtrans(hlID('DevIconPy')), 'fg', 'gui')
-        elseif filetype == "NvimTree" || filetype == "vim" || filetype == "netrw" || filetype == "vim-plug" || filetype == "tsplayground"
+        elseif filetype == "NvimTree" || filetype == "vim" || filetype == "netrw" || filetype == "vim-plug" || filetype == "tsplayground" || filetype == "qf"
             let ft = 'vim'
             hi link Icon DevIconVim
             exec 'hi Icon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui') .
@@ -79,11 +83,14 @@ function! Icon()
             hi link Icon DevIconTxt
             exec 'hi Icon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui') .
                         \' guifg=' . synIDattr(synIDtrans(hlID('DevIconTxt')), 'fg', 'gui')
+        elseif filetype == "yaml"
+            let ft = filetype
+            hi link Icon DevIconYaml
+            exec 'hi Icon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui') .
+                        \' guifg=' . synIDattr(synIDtrans(hlID('DevIconYaml')), 'fg', 'gui')
         else
             let ft = filetype
-            exec 'hi link Icon DevIcon' .. ft
-            exec 'hi Icon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
-                        \' guifg=' . synIDattr(synIDtrans(hlID('DevIcon' .. ft)), 'fg', 'gui')
+            hi link Icon StatusLine
         endif
         let cmd = "require'nvim-web-devicons'.get_icon('" .. expand('%:t').. "','" .. ft .. "',{ default = true })"
         return luaeval(cmd)

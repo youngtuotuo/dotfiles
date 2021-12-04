@@ -1,4 +1,4 @@
-let g:nvim_tree_gitignore = 0 "0 by default
+" let g:nvim_tree_gitignore = 0 "0 by default
 let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -69,8 +69,6 @@ nnoremap <leader>r :NvimTreeRefresh<CR>
 " nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
 " a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
-hi NvimTreeWindowPicker gui=bold guifg=#ededed guibg=#4493c8
 
 lua << EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -132,7 +130,7 @@ require'nvim-tree'.setup {
     }
   },
   update_focused_file = {
-    enable      = false,
+    enable      = true,
     update_cwd  = false,
     ignore_list = {}
   },

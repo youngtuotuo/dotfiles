@@ -7,10 +7,12 @@
 " hi link AfterNIcon StatusLineNC
 " exec 'hi AfterNIcon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLineNC')), 'bg', 'gui') .
 "             \' guifg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'gui')
-exec 'hi DevIconGitLogo ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
-hi User1 gui=standout
-hi User2 guifg=StatusLine guibg=Normal
-hi link VertSplit StatusLine
+" exec 'hi DevIconGitLogo ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
+" highlight NvimTreeFolderIcon guibg=blue
+" hi NvimTreeWindowPicker gui=bold guifg=#ededed guibg=#4493c8
+" hi User1 gui=standout
+" hi User2 guifg=StatusLine guibg=Normal
+" exec 'hi NvimTreeVertSplit ' . ' guifg=' . synIDattr(synIDtrans(hlID('VertSplit')), 'fg', 'gui')
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 hi LspReferenceText guibg=NONE gui=standout
 hi LspReferenceRead guibg=NONE gui=standout
@@ -35,20 +37,20 @@ hi GitSignsAdd    gui=bold
 hi GitSignsChange gui=bold
 hi GitSignsDelete gui=bold
 hi GitSignsChange gui=bold
-" hi DiagnosticSignError guifg=#db4b4b
-" hi DiagnosticSignWarn guifg=#e0af68
-" hi DiagnosticSignInfo guifg=#0db9d7
-" hi DiagnosticSignHint guifg=#10B981
+hi DiagnosticSignError guifg=#db4b4b
+hi DiagnosticSignWarn guifg=#e0af68
+hi DiagnosticSignInfo guifg=#0db9d7
+hi DiagnosticSignHint guifg=#10B981
 " hi TabLineSel guibg=NONE
 " hi TabLine guibg=NONE
 " hi tablinefill gui=standout
-" hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine
-" hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine
-" hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
-" hi IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine
-" hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine
-" hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine
+" hi IndentBlanklineIndent1 guifg=#E06C75 gui=bold,nocombine
+" hi IndentBlanklineIndent2 guifg=#E5C07B gui=bold,nocombine
+" hi IndentBlanklineIndent3 guifg=#98C379 gui=bold,nocombine
+" hi IndentBlanklineIndent4 guifg=#56B6C2 gui=bold,nocombine
+" hi IndentBlanklineIndent5 guifg=#61AFEF gui=bold,nocombine
+" hi IndentBlanklineIndent6 guifg=#C678DD gui=bold,nocombine
 " hi IndentBlanklineContextStart guisp=NONE gui=nocombine
 " hi IndentBlanklineContextChar guifg=#455574 gui=nocombine
-" hi NormalFloat guifg=NONE guibg=#1b212d
-" hi FloatBorder guifg=NONE guibg=#1b212d
+hi NormalFloat guifg=NONE guibg=#1b212d
+hi FloatBorder guifg=NONE guibg=#1b212d

@@ -1,14 +1,14 @@
 lua << EOF
-vim.opt.list = true
+--vim.opt.list = true
 -- to enable for specific buffer
 -- :lua vim.opt.list = true
 --vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↵")
 vim.g.indent_blankline_char_highlight = 'LineNr'
-vim.g.indent_blankline_show_trailing_blankline_indent = false
+--vim.g.indent_blankline_show_trailing_blankline_indent = false
 require("indent_blankline").setup {
     char = "│",
-    enabled = false,
+    enabled = true,
     show_end_of_line = true,
     filetype = {'python', 'yaml', 'xml'},
     filetype_exclude = {'txt', 'vim', 'help', 'NvimTree'},
@@ -20,7 +20,7 @@ require("indent_blankline").setup {
     show_trailing_blankline_indent = false,
     context_char = "|",
     context_patterns = {'class', 'function', 'method', '^if', '^elif', '^try', '^for', '^while', '^else'},
-    use_treesitter = true,
+    use_treesitter = false,
     indent_level = 10,
     --char_highlight_list = {
     --    "IndentBlanklineIndent1",
