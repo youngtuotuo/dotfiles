@@ -6,25 +6,29 @@ augroup THighlight
 augroup END
 
 function! TabLine()
+    let time = "%{strftime('%a\ %b %d\ %H:%M')}"
     let gps = ' ' .. NvimGps() .. ' '
-    let git = ' ' .. Git() .. ' '
-    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2 - strlen(git) + strlen("%#StatusLine#")))
+    " let git = ' ' .. Git() .. ' '
+    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2))
 
     let s = ''
     " let s .= '%#StatusLine#'
-    if strlen(git)!=2
-        let s .= git
-    endif
+    let s .= '%#Normal#'
+    " if strlen(git)!=2
+    "     let s .= git
+    " endif
     " let s .= '%#Normal#'
     let s .= empty
-    " let s .= '%#StatusLine#'
+    " let s .= '%#TabLine#'
     if strlen(gps)!=2
         let s .= gps
     endif
     " let s .= '%#Normal#'
+    " let s .= '%#Normal#'
     let s .= '%='
+    let s .= time
     " let s .= '%#StatusLine#'
-    let s .= ' ' .. Version()
+    " let s .= ' ' .. Version()
     return s
 endfunction
 

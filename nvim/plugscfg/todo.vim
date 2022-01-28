@@ -1,6 +1,6 @@
 lua << EOF
   require("todo-comments").setup {
-  signs = false, -- show icons in the signs column
+  signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
@@ -35,7 +35,7 @@ lua << EOF
   colors = {
     error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
     warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-    info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+    info = { "DiagnosticInfo", "#2563EB" },
     hint = { "LspDiagnosticsDefaultHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
   },

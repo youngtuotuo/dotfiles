@@ -75,3 +75,14 @@ map <S-Up> <C-W>+
 map <S-Down> <C-W>-
 map <S-Left> <C-W><
 map <S-Right> <C-W>>
+" Diagnostic
+nnoremap [d [dzz
+nnoremap ]d ]dzz
+nnoremap ]] ]]zz
+nnoremap [[ [[zz
+nnoremap ][ ][zz
+nnoremap [] []zz
+nnoremap ]m ]mzz
+nnoremap [m [mzz
+nnoremap ]M ]Mzz
+nnoremap [M [Mzz

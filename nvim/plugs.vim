@@ -2,7 +2,16 @@ let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
 " colorscheme
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
-Plug 'shaunsingh/nord.nvim'
+" Plug 'shaunsingh/nord.nvim'
+Plug 'projekt0n/github-nvim-theme'
+" Plug 'mhartington/oceanic-next'
+" Plug 'EdenEast/nightfox.nvim'
+" Plug 'folke/tokyonight.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+" Plug 'sainnhe/sonokai'
+" Plug 'savq/melange'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 " markdown
 Plug 'ellisonleao/glow.nvim'
 " color code highlight
@@ -20,8 +29,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
-Plug 'SmiteshP/nvim-gps'
 " lsp
+Plug 'SmiteshP/nvim-gps'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -46,5 +55,5 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " tmux
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 call plug#end()

@@ -1,56 +1,23 @@
-" hi Normal guibg=NONE
-" hi Signcolumn guibg=NONE
-" hi CursorLine guibg=NONE gui=NONE
-" hi link AfterIcon StatusLine
-" exec 'hi AfterIcon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui') .
-"             \' guifg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'gui')
-" hi link AfterNIcon StatusLineNC
-" exec 'hi AfterNIcon ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLineNC')), 'bg', 'gui') .
-"             \' guifg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'gui')
-" exec 'hi DevIconGitLogo ' . ' guibg=' . synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
-" highlight NvimTreeFolderIcon guibg=blue
-" hi NvimTreeWindowPicker gui=bold guifg=#ededed guibg=#4493c8
-" hi User1 gui=standout
-" hi User2 guifg=StatusLine guibg=Normal
-" exec 'hi NvimTreeVertSplit ' . ' guifg=' . synIDattr(synIDtrans(hlID('VertSplit')), 'fg', 'gui')
-hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+" hi Normal guibg=#282c34
+hi NormalFloat guibg=#455574
+hi FloatBorder guibg=#455574
+" hi StatusLine gui=bold
+" hi NonText guifg=White
+" exec 'hi FloatBorder ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
+" exec 'hi Pmenu ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
 hi LspReferenceText guibg=NONE gui=standout
 hi LspReferenceRead guibg=NONE gui=standout
 hi LspReferenceWrite guibg=NONE gui=standout
-hi DiagnosticError guifg=#db4b4b
-hi DiagnosticWarn  guifg=#e0af68
-hi DiagnosticInfo  guifg=#0db9d7
-hi DiagnosticHint  guifg=#10B981
-hi DiagnosticFloatingError guifg=#db4b4b
-hi DiagnosticFloatingWarn  guifg=#e0af68
-hi DiagnosticFloatingInfo  guifg=#0db9d7
-hi DiagnosticFloatingHint  guifg=#10B981   
-hi DiagnosticUnderlineError  guifg=#db4b4b "guisp=#db4b4b gui=undercurl
-hi DiagnosticUnderlineWarn   guifg=#e0af68 "guisp=#e0af68 gui=undercurl
-hi DiagnosticUnderlineInfo   guifg=#0db9d7 "guisp=#0db9d7 gui=undercurl
-hi DiagnosticUnderlineHint   guifg=#10B981 "guisp=#10B981 gui=undercurl
-hi DiagnosticVirtualTextError guifg=#db4b4b gui=bold
-hi DiagnosticVirtualTextWarn  guifg=#e0af68 gui=bold
-hi DiagnosticVirtualTextInfo  guifg=#0db9d7 gui=bold
-hi DiagnosticVirtualTextHint  guifg=#10B981 gui=bold
-hi GitSignsAdd    gui=bold
-hi GitSignsChange gui=bold
-hi GitSignsDelete gui=bold
-hi GitSignsChange gui=bold
-hi DiagnosticSignError guifg=#db4b4b
-hi DiagnosticSignWarn guifg=#e0af68
-hi DiagnosticSignInfo guifg=#0db9d7
-hi DiagnosticSignHint guifg=#10B981
-" hi TabLineSel guibg=NONE
-" hi TabLine guibg=NONE
-" hi tablinefill gui=standout
-" hi IndentBlanklineIndent1 guifg=#E06C75 gui=bold,nocombine
-" hi IndentBlanklineIndent2 guifg=#E5C07B gui=bold,nocombine
-" hi IndentBlanklineIndent3 guifg=#98C379 gui=bold,nocombine
-" hi IndentBlanklineIndent4 guifg=#56B6C2 gui=bold,nocombine
-" hi IndentBlanklineIndent5 guifg=#61AFEF gui=bold,nocombine
-" hi IndentBlanklineIndent6 guifg=#C678DD gui=bold,nocombine
-" hi IndentBlanklineContextStart guisp=NONE gui=nocombine
-" hi IndentBlanklineContextChar guifg=#455574 gui=nocombine
-hi NormalFloat guifg=NONE guibg=#1b212d
-hi FloatBorder guifg=NONE guibg=#1b212d
+
+hi DiagnosticUnderlineError gui=NONE
+hi DiagnosticUnderlineWarn  gui=NONE
+hi DiagnosticUnderlineInfo  gui=NONE
+hi DiagnosticUnderlineHint  gui=NONE
+
+exec 'hi DiagnosticUnderlineError  ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticError')), 'fg', 'gui')
+exec 'hi DiagnosticUnderlineWarn   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticWarn')), 'fg', 'gui')
+exec 'hi DiagnosticUnderlineInfo   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticInfo')), 'fg', 'gui')
+exec 'hi DiagnosticUnderlineHint   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticHint')), 'fg', 'gui')
+
+highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine
+highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine

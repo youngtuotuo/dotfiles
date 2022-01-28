@@ -1,4 +1,15 @@
 lua << EOF
+local border = {
+    {"+", "FloatBorder"},
+    {"-", "FloatBorder"},
+    {"+", "FloatBorder"},
+    {"|", "FloatBorder"},
+    {"+", "FloatBorder"},
+    {"-", "FloatBorder"},
+    {"+", "FloatBorder"},
+    {"|", "FloatBorder"},
+}
+
 local signature_cfg = {
   debug = false, -- set to true to enable debug logging
   log_path = "debug_log_file_path", -- debug log path
@@ -26,7 +37,7 @@ local signature_cfg = {
                  -- to view the hiding contents
   max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
   handler_opts = {
-  border = "none"   -- double, rounded, single, shadow, none
+  border = border   -- double, rounded, single, shadow, none
   },
 
   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
@@ -45,7 +56,22 @@ local signature_cfg = {
 }
 
 require "lsp_signature".setup(signature_cfg)
---vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
+
+local orig_open_float = vim.diagnostic.open_float
+function vim.diagnostic.open_float(bufnr, opts)
+  opts = opts or {}
+  opts = {
+    scope = "line",
+    max_height = 12,
+    max_width = 80,
+    border = border,
+    severity_sort = true,
+    source = "always",
+  }
+  opts.border = opts.border or border
+  return orig_open_float(bufnr, opts)
+end
+-- vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 local protocol = require'vim.lsp.protocol'
 protocol.CompletionItemKind = {
@@ -114,23 +140,25 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   {
     severity_sort = true,
     underline = true,
-    virtual_text = false,
-    signs = true,
+    virtual_text = {
+        prefix='',
+    },
+    signs = false,
     update_in_insert=false,
     --virtual_text = {
     --  source = "if_many",
     --  format=function(diagnostic)
     --      if diagnostic.severity == vim.diagnostic.severity.ERROR then
-    --          return " "
+    --          return "E" --" "
     --      end
     --      if diagnostic.severity == vim.diagnostic.severity.WARN then
-    --          return " "
+    --          return "W" --" "
     --      end
     --      if diagnostic.severity == vim.diagnostic.severity.HINT then
-    --          return " "
+    --          return "H" --" "
     --      end
     --      if diagnostic.severity == vim.diagnostic.severity.INFO then
-    --          return " "
+    --          return "I" --" "
     --      end
     --  end,
     --  prefix='',
@@ -168,34 +196,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true;
 -- map buffer local keybindings when the language server attaches
 local nvim_lsp = require('lspconfig')
 local servers = { 'pyright', 'vimls', 'bashls', 'yamlls', 'diagnosticls' }
-local border = {
-      {"", "FloatBorder"},
-      {"", "FloatBorder"},
-      {"", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"", "FloatBorder"},
-      {"", "FloatBorder"},
-      {"", "FloatBorder"},
-      {" ", "FloatBorder"},
-}
-
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border, max_width=80}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border, max_width=80}),
 }
-local orig_open_float = vim.diagnostic.open_float
-function vim.diagnostic.open_float(bufnr, opts)
-  opts = opts or {}
-  opts = {
-    max_height = 12,
-    max_width = 80,
-    border = border,
-    severity_sort = true,
-    source = "always",
-  }
-  opts.border = opts.border or border
-  return orig_open_float(bufnr, opts)
-end
 -- 'cmake', 'diagnosticls', 'dockerls'
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -212,4 +216,27 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+nvim_lsp.ccls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = custom_on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  };
+  init_options = {
+    onlyAnalyzeProjectsWithOpenFiles = false,
+    suggestFromUnimportedLibraries = true,
+    closingLabels = true,
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+    cache = {
+      directory = ".ccls-cache";
+    };
+  } ;
+}
 EOF
