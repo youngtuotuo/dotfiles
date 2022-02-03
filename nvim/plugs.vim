@@ -1,16 +1,7 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
 " colorscheme
-Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
-" Plug 'shaunsingh/nord.nvim'
-Plug 'projekt0n/github-nvim-theme'
-" Plug 'mhartington/oceanic-next'
-" Plug 'EdenEast/nightfox.nvim'
-" Plug 'folke/tokyonight.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-" Plug 'sainnhe/sonokai'
-" Plug 'savq/melange'
-Plug 'Mofiqul/vscode.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 " markdown
 Plug 'ellisonleao/glow.nvim'
@@ -21,9 +12,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 " file explorer
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -37,7 +25,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'ray-x/cmp-treesitter'
-Plug 'onsails/lspkind-nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'kosayoda/nvim-lightbulb'
@@ -54,6 +41,4 @@ Plug 'tpope/vim-commentary'
 Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" tmux
-" Plug 'christoomey/vim-tmux-navigator'
 call plug#end()

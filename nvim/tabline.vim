@@ -1,18 +1,21 @@
 set showtabline=2
+set tabline=%{%GPSTime()%}
 
 augroup THighlight
   autocmd!
-  autocmd CursorMoved,CursorMovedI * set tabline=%{%TabLine()%}
+  autocmd CursorMoved,CursorMovedI * set tabline=%{%GPSTime()%}
 augroup END
 
-function! TabLine()
+function! GPSTime()
     let time = "%{strftime('%a\ %b %d\ %H:%M')}"
     let gps = ' ' .. NvimGps() .. ' '
     " let git = ' ' .. Git() .. ' '
-    let empty = repeat(' ', float2nr((&columns - strlen(gps))/2))
+    let t = Tabline()
+    let empty = repeat(' ', float2nr((&columns - strlen(gps) - strlen(t))/2))
 
     let s = ''
     " let s .= '%#StatusLine#'
+    let s .= t
     let s .= '%#Normal#'
     " if strlen(git)!=2
     "     let s .= git
@@ -56,30 +59,30 @@ function! Git()
    return gitstatus
 endfunction
 
-" function! Tabline()
-"   let s = ''
-"   for i in range(tabpagenr('$'))
-"     let tab = i + 1
-"     let winnr = tabpagewinnr(tab)
-"     let buflist = tabpagebuflist(tab)
-"     let bufnr = buflist[winnr - 1]
-"     let bufname = bufname(bufnr)
-"     let bufmodified = getbufvar(bufnr, "&mod")
+function! Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
 
-"     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-"     let s .= '%' . tab . 'T'
-"     let s .= ' ' . tab . ' '
-"     let s .= (bufname != '' ? fnamemodify(bufname, ':t') . ' ' : 'No Name ')
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= '%' . tab . 'T'
+    let s .= ' ' . tab . ' '
+    let s .= (bufname != '' ? fnamemodify(bufname, ':t') . ' ' : 'No Name ')
 
-"     if bufmodified
-"       let s .= '[+] '
-"     endif
-"   endfor
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
 
-"   let s .= '%#TabLineFill#'
-"   if (exists("g:tablineclosebutton"))
-"     let s .= '%=%999XX'
-"   endif
-"   return s
-" endfunction
+  let s .= '%#TabLineFill#'
+  if (exists("g:tablineclosebutton"))
+    let s .= '%=%999XX'
+  endif
+  return s
+endfunction
 "

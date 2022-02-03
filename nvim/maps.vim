@@ -56,6 +56,7 @@ nnoremap <leader>p %di{i<CR><esc>ko<C-R>"<esc>^:w<CR>
 nnoremap <leader>, f,a<CR><esc>==<esc>:w<CR>^
 " ctrl-s to save
 nnoremap <C-s> :w<CR>
+inoremap <C-s> <esc>:w<CR>
 " ctrl-q to quit
 nnoremap <C-q> :q<CR>
 " space-r to source init.vim

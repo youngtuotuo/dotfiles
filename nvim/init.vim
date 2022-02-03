@@ -15,7 +15,7 @@ filetype plugin indent on
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "exten"
 " set virtualedit=all
-" set colorcolumn=120
+set colorcolumn=100
 " Parathensis match
 set showmatch
 set matchtime=1
@@ -61,12 +61,13 @@ autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 runtime maps.vim
 runtime plugs.vim
 
-runtime plugscfg/icon.vim
+" runtime plugscfg/icon.vim
 runtime plugscfg/lspcfg.vim
 runtime plugscfg/cmpcfg.vim
 runtime plugscfg/colorizercfg.vim
 runtime plugscfg/telescopecfg.vim
 runtime plugscfg/indentlinecfg.vim
+runtime plugscfg/gps.vim
 runtime plugscfg/gitsignscfg.vim
 runtime plugscfg/nvimtreecfg.vim
 runtime plugscfg/lightbulbcfg.vim

@@ -5,16 +5,16 @@ lua << EOF
   -- keywords recognized as todo comments
   keywords = {
     FIX = {
-      icon = " ", -- icon used for the sign, and in search results
+      icon = "F ", -- icon used for the sign, and in search results
       color = "error", -- can be a hex color, or a named color (see below)
       alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO = { icon = " ", color = "info" },
-    HACK = { icon = " ", color = "warning" },
-    WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    TODO = { icon = "T ", color = "info" },
+    HACK = { icon = "H ", color = "warning" },
+    WARN = { icon = "W ", color = "warning", alt = { "WARNING", "XXX" } },
+    PERF = { icon = "P ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = "N ", color = "hint", alt = { "INFO" } },
   },
   merge_keywords = true, -- when true, custom keywords will be merged with the defaults
   -- highlighting of the line containing the todo comment

@@ -1,25 +1,11 @@
 lua << EOF
 -- Setup nvim-cmp.
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
-local lspkind = require('lspkind')
 local cmp = require'cmp'
 local WIDE_HEIGHT = 30
 local WIDE_WIDTH = 30
 cmp.setup({
-    formatting = {
-      format = lspkind.cmp_format {
-        maxwidth = 40,
-        with_text = true,
-        menu = {
-          buffer = "[BUF]",
-          nvim_lsp = "[LSP]",
-          path = "[PATH]",
-          --vsnip = "[VSNIP]",
-          luasnip = "[LuaSnip]",
-          treesitter = "[TS]",
-        },
-      },
-    },
+    formatting={},
     documentation = {
       border = "none",
       winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',

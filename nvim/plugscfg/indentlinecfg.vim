@@ -7,9 +7,9 @@ lua << EOF
 --vim.g.indent_blankline_char_highlight = 'LineNr'
 --vim.g.indent_blankline_show_trailing_blankline_indent = false
 require("indent_blankline").setup {
-    --char = "│",
-    char = "",
-    enabled = false,
+    char = "│",
+    --char = "",
+    enabled = true,
     show_end_of_line = true,
     filetype = {'python', 'yaml', 'xml'},
     filetype_exclude = {'txt', 'vim', 'help', 'NvimTree'},
@@ -23,14 +23,13 @@ require("indent_blankline").setup {
     context_patterns = {'class', 'function', 'method', '^if', '^elif', '^try', '^for', '^while', '^else'},
     use_treesitter = false,
     indent_level = 10,
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-    },
-    space_char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-    },
+    --char_highlight_list = {
+    --    "IndentBlanklineIndent1",
+    --},
+    --space_char_highlight_list = {
+    --    "IndentBlanklineIndent1",
+    --    "IndentBlanklineIndent2",
+    --},
 }
 EOF
 nnoremap <leader>t :IndentBlanklineToggle<CR>

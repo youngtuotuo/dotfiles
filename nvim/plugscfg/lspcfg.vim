@@ -1,13 +1,13 @@
 lua << EOF
 local border = {
-    {"+", "FloatBorder"},
-    {"-", "FloatBorder"},
-    {"+", "FloatBorder"},
-    {"|", "FloatBorder"},
-    {"+", "FloatBorder"},
-    {"-", "FloatBorder"},
-    {"+", "FloatBorder"},
-    {"|", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
+    {" ", "FloatBorder"},
 }
 
 local signature_cfg = {
@@ -29,7 +29,7 @@ local signature_cfg = {
   -- this setting will be helpful if you do not want the PUM and floating win overlap
   fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
   hint_enable = true, -- virtual hint enable
-  hint_prefix = " ",  -- Panda for parameter🐼
+  hint_prefix = " ",  -- Panda for parameter🐼
   hint_scheme = "String",
   use_lspsaga = false,  -- set to true if you want to use lspsaga popup
   hi_parameter = "IncSearch", --"LspSignatureActiveParameter", -- how your parameter will be highlight
@@ -73,36 +73,6 @@ function vim.diagnostic.open_float(bufnr, opts)
 end
 -- vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
-local protocol = require'vim.lsp.protocol'
-protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-}
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local custom_on_attach = function(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -140,30 +110,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   {
     severity_sort = true,
     underline = true,
-    virtual_text = {
-        prefix='',
-    },
+    --virtual_text = {
+    --    prefix='',
+    --},
     signs = false,
     update_in_insert=false,
-    --virtual_text = {
-    --  source = "if_many",
-    --  format=function(diagnostic)
-    --      if diagnostic.severity == vim.diagnostic.severity.ERROR then
-    --          return "E" --" "
-    --      end
-    --      if diagnostic.severity == vim.diagnostic.severity.WARN then
-    --          return "W" --" "
-    --      end
-    --      if diagnostic.severity == vim.diagnostic.severity.HINT then
-    --          return "H" --" "
-    --      end
-    --      if diagnostic.severity == vim.diagnostic.severity.INFO then
-    --          return "I" --" "
-    --      end
-    --  end,
-    --  prefix='',
-    --  spacing=0,
-    --},
     float = {
       source = "always"
     },

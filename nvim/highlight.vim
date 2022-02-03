@@ -1,6 +1,6 @@
 " hi Normal guibg=#282c34
-hi NormalFloat guibg=#455574
-hi FloatBorder guibg=#455574
+" hi NormalFloat guibg=#455574
+" hi FloatBorder guibg=#455574
 " hi StatusLine gui=bold
 " hi NonText guifg=White
 " exec 'hi FloatBorder ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
@@ -18,6 +18,3 @@ exec 'hi DiagnosticUnderlineError  ' . ' guifg=' . synIDattr(synIDtrans(hlID('Di
 exec 'hi DiagnosticUnderlineWarn   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticWarn')), 'fg', 'gui')
 exec 'hi DiagnosticUnderlineInfo   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticInfo')), 'fg', 'gui')
 exec 'hi DiagnosticUnderlineHint   ' . ' guifg=' . synIDattr(synIDtrans(hlID('DiagnosticHint')), 'fg', 'gui')
-
-highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine
-highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine
