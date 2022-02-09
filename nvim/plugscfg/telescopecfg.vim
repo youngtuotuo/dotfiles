@@ -10,17 +10,18 @@ require('telescope').setup{
           ["q"] = actions.close,
         },
       },
-      layout_strategy="horizontal",
+      layout_strategy="vertical",
       layout_config = {
-        horizontal = {
-           width = 0.8,
-           height = 0.8,
+       vertical = {
+           anchor = "S",
+           width = 0.999,
+           height = 0.5,
            mirror = false,
            scroll_speed = 5,
-           preview_width = 0,
+           preview_height = 0,
            preview_cutoff = 5,
            prompt_position = "bottom"
-        }
+       },
       },
       vimgrep_arguments = {
         'rg',
@@ -52,16 +53,15 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzy_native')
 EOF
-nnoremap <space>e :Telescope file_browser hidden=true<CR>
 nnoremap <space>f :Telescope find_files hidden=true<CR>
 nnoremap <space>b :Telescope buffers<CR>
 nnoremap <space>g :Telescope git_files<CR>
 nnoremap <space>l :Telescope live_grep<CR>
-nnoremap <space>d :Telescope lsp_workspace_diagnostics<CR>
+nnoremap <space>d :Telescope diagnostics<CR>
 nnoremap <space>c :Telescope commands<CR>
 nnoremap <space>h :Telescope help_tags<CR>
 nnoremap <space>m :Telescope keymaps<CR>
-nnoremap <space>d :TodoTelescope<CR>
+nnoremap <space>t :TodoTelescope cwd=
 nnoremap <space>v :Telescope lsp_document_symbols<CR>
 nnoremap <space>ww :Telescope lsp_workspace_symbols query=
-nnoremap gr :Telescope lsp_references<CR>
+nnoremap <space>r :Telescope lsp_references<CR>

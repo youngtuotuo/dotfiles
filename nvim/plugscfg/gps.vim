@@ -11,49 +11,50 @@ require("nvim-gps").setup({
     -- Add custom configuration per language or
     -- Disable the plugin for a language
     -- Any language not disabled here is enabled by default
-    languages = {},
-    --languages = {
-    --    -- Some languages have custom icons
-	--	["json"] = {
-	--		icons = {
-	--			["array-name"] = ' ',
-	--			["object-name"] = ' ',
-	--			["null-name"] = '[] ',
-	--			["boolean-name"] = 'ﰰﰴ ',
-	--			["number-name"] = '# ',
-	--			["string-name"] = ' '
-	--		}
-	--	},
-	--	["toml"] = {
-	--		icons = {
-	--			["table-name"] = ' ',
-	--			["array-name"] = ' ',
-	--			["boolean-name"] = 'ﰰﰴ ',
-	--			["date-name"] = ' ',
-	--			["date-time-name"] = ' ',
-	--			["float-name"] = ' ',
-	--			["inline-table-name"] = ' ',
-	--			["integer-name"] = '# ',
-	--			["string-name"] = ' ',
-	--			["time-name"] = ' '
-	--		}
-	--	},
-	--	["verilog"] = {
-	--		icons = {
-	--			["module-name"] = ' '
-	--		}
-	--	},
-	--	["yaml"] = {
-	--		icons = {
-	--			["mapping-name"] = ' ',
-	--			["sequence-name"] = ' ',
-	--			["null-name"] = '[] ',
-	--			["boolean-name"] = 'ﰰﰴ ',
-	--			["integer-name"] = '# ',
-	--			["float-name"] = ' ',
-	--			["string-name"] = ' '
-	--		}
-	--	},
+    --languages = {},
+    languages = {
+        -- Some languages have custom icons
+		["json"] = {
+			icons = {
+				["array-name"] = '',
+				["object-name"] = '',
+				["null-name"] = '',
+				["boolean-name"] = '',
+				["number-name"] = '',
+				["string-name"] = ''
+			}
+		},
+		["toml"] = {
+			icons = {
+				["table-name"] = '',
+				["array-name"] = '',
+				["boolean-name"] = '',
+				["date-name"] = '',
+				["date-time-name"] = '',
+				["float-name"] = '',
+				["inline-table-name"] = '',
+				["integer-name"] = '',
+				["string-name"] = '',
+				["time-name"] = ''
+			}
+		},
+		["verilog"] = {
+			icons = {
+				["module-name"] = ''
+			}
+		},
+		["yaml"] = {
+			icons = {
+				["mapping-name"] = '',
+				["sequence-name"] = '',
+				["null-name"] = '',
+				["boolean-name"] = '',
+				["integer-name"] = '',
+				["float-name"] = '',
+				["string-name"] = ''
+			}
+		},
+    },
 
 	--	-- Disable for particular languages
 	--	-- ["bash"] = false, -- disables nvim-gps for bash

@@ -3,8 +3,8 @@
 " hi FloatBorder guibg=#455574
 " hi StatusLine gui=bold
 " hi NonText guifg=White
-" exec 'hi FloatBorder ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
-" exec 'hi Pmenu ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
+exec 'hi FloatBorder ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
+exec 'hi Pmenu ' . ' guibg=' . synIDattr(synIDtrans(hlID('NormalFloat')), 'bg', 'gui')
 hi LspReferenceText guibg=NONE gui=standout
 hi LspReferenceRead guibg=NONE gui=standout
 hi LspReferenceWrite guibg=NONE gui=standout

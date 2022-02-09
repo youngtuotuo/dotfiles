@@ -2,23 +2,15 @@ lua << EOF
 -- Setup nvim-cmp.
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 local cmp = require'cmp'
-local WIDE_HEIGHT = 30
-local WIDE_WIDTH = 30
 cmp.setup({
     formatting={},
-    documentation = {
-      border = "none",
-      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
-      maxwidth = math.floor((WIDE_WIDTH) * (vim.o.columns / (WIDE_WIDTH * 2 / 9))),
-      maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
-    },
     snippet = {
       expand = function(args)
         -- For `vsnip` user.
         -- vim.fn["vsnip#anonymous"](args.body)
 
         -- For `luasnip` user.
-        require('luasnip').lsp_expand(args.body)
+        --require('luasnip').lsp_expand(args.body)
 
         -- For `ultisnips` user.
         -- vim.fn["UltiSnips#Anon"](args.body)
@@ -38,18 +30,32 @@ cmp.setup({
          select = true 
       }),
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'path' },
+      --{ name = 'path' },
+      --{ name = 'luasnip' },
+    },{
       { name = 'buffer' },
-      { name = 'luasnip' },
       { name = 'treesitter' },
-      --{ name = 'vsnip' },
-
-    },
+    }),
     experimental = {
       native_menu = false,
-      ghost_text = true,
+      ghost_text = false,
     },
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+    sources = {
+            { name = 'buffer' }
+        }
+    })
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
 })
 EOF

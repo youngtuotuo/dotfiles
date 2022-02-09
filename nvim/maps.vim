@@ -60,15 +60,18 @@ inoremap <C-s> <esc>:w<CR>
 " ctrl-q to quit
 nnoremap <C-q> :q<CR>
 " space-r to source init.vim
-nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
+" nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
 " zenmode
 nnoremap <space>z :ZenMode<CR>
 " space-t to open integrated terminal
-nnoremap <space>t :terminal<CR>
+" nnoremap <space>t :terminal<CR>
 " Enclose (), [], {}
 vnoremap ( c()<esc>P
+vnoremap ) c()<esc>P
 vnoremap [ c[]<esc>P
+vnoremap ] c[]<esc>P
 vnoremap { c{}<esc>P
+vnoremap } c{}<esc>P
 " Docstring
 inoremap """ """<CR>"""<esc>kA
 " Pane resize

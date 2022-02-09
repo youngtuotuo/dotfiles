@@ -1,14 +1,4 @@
 lua << EOF
-local border = {
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-    {" ", "FloatBorder"},
-}
 
 local signature_cfg = {
   debug = false, -- set to true to enable debug logging
@@ -23,25 +13,23 @@ local signature_cfg = {
                -- mode, 10 by default
 
   floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
-
-  floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+  floating_window_above_cur_line = false, -- try to place the floating above the current line when possible Note:
   -- will set to true when fully tested, set to false will use whichever side has more space
   -- this setting will be helpful if you do not want the PUM and floating win overlap
   fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
   hint_enable = true, -- virtual hint enable
-  hint_prefix = " ",  -- Panda for parameter🐼
+  hint_prefix = "",  -- Panda for parameter🐼
   hint_scheme = "String",
   use_lspsaga = false,  -- set to true if you want to use lspsaga popup
   hi_parameter = "IncSearch", --"LspSignatureActiveParameter", -- how your parameter will be highlight
-  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+  max_height = 20, -- max height of signature floating_window, if content is more than max_height, you can scroll down
                  -- to view the hiding contents
-  max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  max_width = 60, -- max_width of signature floating_window, line will be wrapped if exceed max_width
   handler_opts = {
-  border = border   -- double, rounded, single, shadow, none
+      border = "single"   -- double, rounded, single, shadow, none
   },
 
   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
-
   auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
   extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
   zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
@@ -57,21 +45,7 @@ local signature_cfg = {
 
 require "lsp_signature".setup(signature_cfg)
 
-local orig_open_float = vim.diagnostic.open_float
-function vim.diagnostic.open_float(bufnr, opts)
-  opts = opts or {}
-  opts = {
-    scope = "line",
-    max_height = 12,
-    max_width = 80,
-    border = border,
-    severity_sort = true,
-    source = "always",
-  }
-  opts.border = opts.border or border
-  return orig_open_float(bufnr, opts)
-end
--- vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
+--vim.api.nvim_command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 vim.api.nvim_command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 local custom_on_attach = function(client, bufnr)
 
@@ -104,15 +78,26 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+local orig_open_float = vim.diagnostic.open_float
+function vim.diagnostic.open_float(bufnr, opts)
+  opts = opts or {}
+  opts = {
+    scope = "line",
+    max_height = 30,
+    max_width = 60,
+    border = "single",
+    severity_sort = true,
+    source = "always",
+  }
+  opts.border = opts.border or border
+  return orig_open_float(bufnr, opts)
+end
 -- diagnostic after each line
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
     severity_sort = true,
     underline = true,
-    --virtual_text = {
-    --    prefix='',
-    --},
     signs = false,
     update_in_insert=false,
     float = {
@@ -148,8 +133,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true;
 local nvim_lsp = require('lspconfig')
 local servers = { 'pyright', 'vimls', 'bashls', 'yamlls', 'diagnosticls' }
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border, max_width=80}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border, max_width=80}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single", max_width=60, max_height=30}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single", max_width=60, max_height=30}),
 }
 -- 'cmake', 'diagnosticls', 'dockerls'
 for _, lsp in ipairs(servers) do
