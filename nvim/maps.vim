@@ -12,21 +12,9 @@ map <C-S-Up> <C-U>
 map <C-S-Down> <C-D>
 " gb tab switch to previous
 map gb gT
-" More reasonable remap
 " Y like C,D
 nnoremap Y y$
-" keep cursor centered when navigating
-" nnoremap { {zz
-" nnoremap } }zz
-" nnoremap n nzz
-" nnoremap N Nzz
-"nnoremap <C-u> <C-u>zz
-"nnoremap <C-d> <C-d>zz
-" nnoremap <C-o> <C-o>zz
-" nnoremap <C-i> <C-i>zz
 nnoremap J mzJ`z
-" nnoremap <C-y> <C-y>k^
-" nnoremap <C-e> <C-e>j^
 " undo breakpoint
 inoremap , ,<C-g>u
 inoremap ( (<C-g>u
@@ -43,35 +31,22 @@ vnoremap K :m '<-2<CR>gv==gv
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 " ctrl-o and ctrl-i detect relatively jump
-"nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
-"nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 " ctrl-v to paste in insertmode
 inoremap <C-V> <C-R>"
-" indent params in (), [], {} to next line
-" don't use this short cut in empty ones
-nnoremap <leader>i %di(i<CR><esc>ko<C-R>"<esc>^:w<CR>
-nnoremap <leader>o %di[i<CR><esc>ko<C-R>"<esc>^:w<CR>
-nnoremap <leader>p %di{i<CR><esc>ko<C-R>"<esc>^:w<CR>
-" cut params to new line by ,
-nnoremap <leader>, f,a<CR><esc>==<esc>:w<CR>^
 " ctrl-s to save
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <esc>:w<CR>
-" ctrl-q to quit
-nnoremap <C-q> :q<CR>
-" space-r to source init.vim
-" nnoremap <space>r :so ~/.config/nvim/init.vim<CR>
 " zenmode
 nnoremap <space>z :ZenMode<CR>
-" space-t to open integrated terminal
-" nnoremap <space>t :terminal<CR>
 " Enclose (), [], {}
-vnoremap ( c()<esc>P
-vnoremap ) c()<esc>P
-vnoremap [ c[]<esc>P
-vnoremap ] c[]<esc>P
-vnoremap { c{}<esc>P
-vnoremap } c{}<esc>P
+vnoremap ( c()<esc>P%
+vnoremap ) c()<esc>P%
+vnoremap [ c[]<esc>P%
+vnoremap ] c[]<esc>P%
+vnoremap { c{}<esc>P%
+vnoremap } c{}<esc>P%
 " Docstring
 inoremap """ """<CR>"""<esc>kA
 " Pane resize
@@ -79,14 +54,3 @@ map <S-Up> <C-W>+
 map <S-Down> <C-W>-
 map <S-Left> <C-W><
 map <S-Right> <C-W>>
-" Diagnostic
-nnoremap [d [dzz
-nnoremap ]d ]dzz
-nnoremap ]] ]]zz
-nnoremap [[ [[zz
-nnoremap ][ ][zz
-nnoremap [] []zz
-nnoremap ]m ]mzz
-nnoremap [m [mzz
-nnoremap ]M ]Mzz
-nnoremap [M [Mzz

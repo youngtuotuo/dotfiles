@@ -9,7 +9,7 @@ lua << EOF
 require("indent_blankline").setup {
     char = "│",
     --char = "",
-    enabled = true,
+    enabled = false,
     show_end_of_line = true,
     filetype = {'python', 'yaml', 'xml'},
     filetype_exclude = {'txt', 'vim', 'help', 'NvimTree'},

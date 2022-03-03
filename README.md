@@ -2,7 +2,6 @@
 To let my 4KB brain learn 1000000000000PB knowledge.
 
 ## Neovim
-[top bar configuration(it's actually the tabline)](nvim/tabline.vim), [statusline configuration](nvim/status.vim)
 <p align="center">
     <img src="pictures/neovimscreenshot.png" />
 </p>
