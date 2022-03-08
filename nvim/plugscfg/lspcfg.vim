@@ -30,18 +30,18 @@ local custom_on_attach = function(client, bufnr)
   --buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  if client.resolved_capabilities.document_highlight then
-    vim.cmd [[
-      hi! LspReferenceRead  guibg=#545454
-      hi! LspReferenceText  guibg=#545454
-      hi! LspReferenceWrite guibg=#545454
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]
-  end
+  -- if client.resolved_capabilities.document_highlight then
+  --   vim.cmd [[
+  --     hi! LspReferenceRead  guibg=#8c8c8c
+  --     hi! LspReferenceText  guibg=#8c8c8c
+  --     hi! LspReferenceWrite guibg=#8c8c8c
+  --     augroup lsp_document_highlight
+  --       autocmd! * <buffer>
+  --       autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+  --       autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  --     augroup END
+  --   ]]
+  -- end
 end
 
 -- Show line diagnostics automatically in hover window

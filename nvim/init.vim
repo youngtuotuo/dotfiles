@@ -14,7 +14,7 @@ set noswapfile
 set nobackup
 " set breakindent
 filetype plugin indent on
-let g:netrw_liststyle = 1
+let g:netrw_liststyle = 0
 let g:netrw_sort_by = "exten"
 " set virtualedit=all
 " Parathensis match
@@ -35,10 +35,6 @@ set shiftwidth=4
 set autoindent
 set nowrap
 set viminfo='1000
-syntax on
-if (has("termguicolors"))
-  set termguicolors
-endif
 " avoid finger not leave shift
 command! W writes
 " Some servers have issues with backup files
@@ -54,24 +50,30 @@ set updatetime=200
 set shortmess+=c
 
 " error and warning msg in line number column
-set signcolumn=yes:2
+set signcolumn=auto:2
 let g:highlightedyank_highlight_duration = 300
 " dvc
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
+"if (has("termguicolors"))
+"  set termguicolors
+"endif
+syntax on
+
 runtime plugs.vim
+" lsp related
 runtime plugscfg/cmpcfg.vim
+runtime plugscfg/lspcfg.vim
 runtime plugscfg/telescopecfg.vim
 runtime plugscfg/indentlinecfg.vim
 runtime plugscfg/gitsignscfg.vim
 runtime plugscfg/zenmodecfg.vim
 runtime plugscfg/todo.vim
+" color related
 runtime plugscfg/colorschemecfg.vim
 runtime plugscfg/treesittercfg.vim
-runtime plugscfg/lspcfg.vim
 runtime highlight.vim
+" mapping
 runtime maps.vim
 
 set fillchars+=vert:\|
-set nohlsearch
-set noincsearch

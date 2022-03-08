@@ -14,7 +14,7 @@ require("indent_blankline").setup {
     filetype = {'python', 'yaml', 'xml'},
     filetype_exclude = {'txt', 'vim', 'help', 'NvimTree'},
     buftype_exclude = {'terminal', 'nofile'},
-    show_current_context = false,
+    show_current_context = true,
     show_current_context_start = false,
     show_first_indent_level = true,
     space_char_blankline = " ",

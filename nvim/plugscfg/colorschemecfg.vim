@@ -9,6 +9,9 @@ let g:vscode_style = "dark"
 let g:vscode_transparency = 0
 " Enable italic comment
 let g:vscode_italic_comment = 0
-colorscheme vscode
+
+
+" colorscheme vscode
 " colorscheme desert
 " colorscheme gruvbox
+colorscheme onedark
