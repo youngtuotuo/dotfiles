@@ -4,7 +4,7 @@ require('telescope').setup{
   defaults = {
       -- Default configuration for telescope goes here:
       -- config_key = value,
-      initial_mode = "insert",
+      initial_mode = "normal",
       mappings = {
         n = {
           ["q"] = actions.close,
@@ -13,12 +13,11 @@ require('telescope').setup{
       layout_strategy="vertical",
       layout_config = {
        vertical = {
-           anchor = "S",
            width = 0.999,
-           height = 0.5,
+           height = 0.9,
            mirror = false,
            scroll_speed = 5,
-           preview_height = 0,
+           preview_height = 0.45,
            preview_cutoff = 5,
            prompt_position = "bottom"
        },
@@ -33,12 +32,12 @@ require('telescope').setup{
         '--smart-case',
         '-u'
       },
-      --layout_strategy="vertical",
+      --layout_strategy="horizontal",
       --layout_config = {
-      --  vertical = {
+      --  horizontal = {
       --     width = 0.9,
       --     height = 0.9,
-      --     preview_height = 0.55,
+      --     preview_width = 0.55,
       --     preview_cutoff = 5,
       --     prompt_position = "top"
       --  }

@@ -1,9 +1,7 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
-" colorscheme
-Plug 'ellisonleao/gruvbox.nvim'
-Plug 'Mofiqul/vscode.nvim'
-Plug 'joshdick/onedark.vim'
+" icon
+Plug 'kyazdani42/nvim-web-devicons'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -14,6 +12,8 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 " lsp
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'arkav/lualine-lsp-progress'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

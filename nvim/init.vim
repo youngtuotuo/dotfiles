@@ -6,6 +6,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,sm:block-blinkwait175-blinkoff150-blinkon175
 set noerrorbells
 set novisualbell
+set scrolloff=3
 set hidden
 set cursorline
 " set cursorcolumn
@@ -37,6 +38,7 @@ set nowrap
 set viminfo='1000
 " avoid finger not leave shift
 command! W writes
+command! Q quit
 " Some servers have issues with backup files
 set nowritebackup
 " Give more space for displaying messages
@@ -49,16 +51,14 @@ set updatetime=200
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+set termguicolors
+syntax on
 " error and warning msg in line number column
 set signcolumn=auto:2
 let g:highlightedyank_highlight_duration = 300
+
 " dvc
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
-
-"if (has("termguicolors"))
-"  set termguicolors
-"endif
-syntax on
 
 runtime plugs.vim
 " lsp related
@@ -70,10 +70,10 @@ runtime plugscfg/gitsignscfg.vim
 runtime plugscfg/zenmodecfg.vim
 runtime plugscfg/todo.vim
 " color related
-runtime plugscfg/colorschemecfg.vim
+runtime plugscfg/lualine.vim
 runtime plugscfg/treesittercfg.vim
 runtime highlight.vim
 " mapping
 runtime maps.vim
 
-set fillchars+=vert:\|
+" set fillchars+=vert:\|

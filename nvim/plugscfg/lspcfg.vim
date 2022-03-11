@@ -11,41 +11,36 @@ local custom_on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=false }
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  --buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  --buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
-  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  --buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  -- if client.resolved_capabilities.document_highlight then
-  --   vim.cmd [[
-  --     hi! LspReferenceRead  guibg=#8c8c8c
-  --     hi! LspReferenceText  guibg=#8c8c8c
-  --     hi! LspReferenceWrite guibg=#8c8c8c
-  --     augroup lsp_document_highlight
-  --       autocmd! * <buffer>
-  --       autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-  --       autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-  --     augroup END
-  --   ]]
-  -- end
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd [[
+      hi! LspReferenceRead  ctermbg=238 guibg=#707070 gui=NONE,nocombine
+      hi! LspReferenceText  ctermbg=238 guibg=#707070 gui=NONE,nocombine
+      hi! LspReferenceWrite ctermbg=238 guibg=#707070 gui=NONE,nocombine
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]]
+  end
 end
 
 -- Show line diagnostics automatically in hover window
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})]]
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})]]
 
 -- Highlight line number instead of having icons in sign column
 vim.cmd [[
@@ -59,7 +54,7 @@ vim.cmd [[
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
-  underline = true,
+  underline = false,
   update_in_insert = false,
   severity_sort = true,
   float = {

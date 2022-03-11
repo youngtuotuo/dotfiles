@@ -32,4 +32,4 @@ require("indent_blankline").setup {
     --},
 }
 EOF
-nnoremap <leader>t :IndentBlanklineToggle<CR>
+nnoremap <leader>i :IndentBlanklineToggle<CR>
