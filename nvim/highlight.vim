@@ -1,5 +1,6 @@
 " hi Normal ctermbg=000 guibg=#000000
 " hi StatusLine cterm=reverse gui=reverse
+hi Title guifg=white
 hi LineNrAbove guifg=grey
 hi LineNrBelow guifg=grey
 hi SignColumn guibg=NONE
