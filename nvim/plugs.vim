@@ -1,10 +1,16 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
+" color
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'navarasu/onedark.nvim'
+" formatter
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
 " icon
 Plug 'kyazdani42/nvim-web-devicons'
 " git
 Plug 'tpope/vim-fugitive'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -31,6 +37,8 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'folke/todo-comments.nvim'
 " zen mode
 Plug 'folke/zen-mode.nvim'
+" twilight
+Plug 'folke/twilight.nvim'
 " yank highlight
 Plug 'machakann/vim-highlightedyank'
 " comment

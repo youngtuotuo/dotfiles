@@ -9,7 +9,6 @@ set novisualbell
 set scrolloff=3
 set hidden
 set cursorline
-" set cursorcolumn
 " set noshowmode
 set noswapfile
 set nobackup
@@ -59,20 +58,24 @@ set signcolumn=yes:2
 let g:highlightedyank_highlight_duration = 300
 
 " dvc
-autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
+" autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
+
+set listchars=eol:↴
+set list
 
 runtime plugs.vim
+runtime cfg/formatter.vim
+runtime cfg/color.vim
 " lsp related
-runtime plugscfg/cmpcfg.vim
-runtime plugscfg/lspcfg.vim
-runtime plugscfg/telescopecfg.vim
-runtime plugscfg/indentlinecfg.vim
-runtime plugscfg/gitsignscfg.vim
-runtime plugscfg/zenmodecfg.vim
-runtime plugscfg/todo.vim
+runtime cfg/cmpcfg.vim
+runtime cfg/lspcfg.vim
+runtime cfg/telescopecfg.vim
+runtime cfg/gitsignscfg.vim
+runtime cfg/zenmodecfg.vim
+runtime cfg/todo.vim
 " color related
-runtime plugscfg/lualine.vim
-runtime plugscfg/treesittercfg.vim
+runtime cfg/lualine.vim
+runtime cfg/treesittercfg.vim
 runtime highlight.vim
 " mapping
 runtime maps.vim
