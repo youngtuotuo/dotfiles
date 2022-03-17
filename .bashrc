@@ -67,15 +67,7 @@ parse_git_branch() {
 
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='$(printf "%*s\r%s\n" $(tput cols) "[$(date +"%I:%M:%S")]")'
-    PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(parse_git_branch)\n\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}'
-    #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]($CONDA_DEFAULT_ENV) ' # rgb(240,240,240)
-    #PS1+='\[\e[0;1m\e[38;2;78;154;2m\]\u@\h ' # rgb(78,154,2) 
-    #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]\w/ ' # rgb(240,240,240)
-    #PS1+='\[\e[0;1m\e[38;2;229;187;101m\]$(parse_git_branch) ' # rgb(229,187,101)
-    #PS1+='\[\e[0;0m\e[38;2;240;240;240m\]\n\$ ' # rgb(240,240,240)
-
+    PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w \[\033[01;33m\]$(parse_git_branch)\[\033[00m\]\n$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -181,3 +173,13 @@ bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# color man
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+export MANPAGER='less -s -M +Gg'
