@@ -77,7 +77,6 @@ runtime cfg/zenmodecfg.vim
 runtime cfg/todo.vim
 " color related
 runtime cfg/treesittercfg.vim
-runtime highlight.vim
 " mapping
 runtime maps.vim
 set laststatus=3

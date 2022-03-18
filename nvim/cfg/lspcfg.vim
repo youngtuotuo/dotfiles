@@ -22,9 +22,6 @@ local custom_on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-      hi! LspReferenceRead  gui=underline
-      hi! LspReferenceText  gui=underline
-      hi! LspReferenceWrite gui=underline
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
