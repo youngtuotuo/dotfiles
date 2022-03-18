@@ -1,6 +1,5 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
-" statusline
 " color
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'navarasu/onedark.nvim'
@@ -19,6 +18,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 " lsp
+Plug 'j-hui/fidget.nvim'
 Plug 'neovim/nvim-lspconfig'
 " nvim-cmp
 Plug 'hrsh7th/nvim-cmp'

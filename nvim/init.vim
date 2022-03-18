@@ -71,6 +71,7 @@ runtime cfg/color.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
+runtime cfg/progress.vim
 runtime cfg/telescopecfg.vim
 runtime cfg/gitsignscfg.vim
 runtime cfg/zenmodecfg.vim
@@ -80,4 +81,3 @@ runtime cfg/treesittercfg.vim
 " mapping
 runtime maps.vim
 set laststatus=3
-set statusline=\ %F\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)

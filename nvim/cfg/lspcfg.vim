@@ -1,4 +1,5 @@
 lua << EOF
+local nvim_lsp = require('lspconfig')
 
 local custom_on_attach = function(client, bufnr)
 
@@ -48,55 +49,72 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
+updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 
 -- Snippets
-capabilities.textDocument.completion.completionItem.snippetSupport = true;
+updated_capabilities.textDocument.completion.completionItem.snippetSupport = true;
+updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false;
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local nvim_lsp = require('lspconfig')
-local servers = { 'pyright', 'vimls', 'bashls', 'diagnosticls', 'yamlls' }
+
+local custom_init = function(client)
+  client.config.flags = client.config.flags or {}
+  client.config.flags.allow_incremental_sync = true
+end
 local handlers = {
   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=130, max_height=30}),
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=130, max_height=30}),
 }
--- 'cmake', 'diagnosticls', 'dockerls'
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    capabilities = capabilities,
+local setup_server = function(server, config)
+  if not config then
+    return
+  end
+
+  if type(config) ~= "table" then
+    config = {}
+  end
+
+  config = vim.tbl_deep_extend("force", {
+    on_init = custom_init,
     handlers = handlers,
     on_attach = custom_on_attach,
+    capabilities = updated_capabilities,
+    flags = {
+      debounce_text_changes = nil,
+    },
     init_options = {
       onlyAnalyzeProjectsWithOpenFiles = false,
-      suggestFromUnimportedLibraries = true,
-    };
-    flags = {
-      debounce_text_changes = 200,
-    }
-  }
+      suggestFromUnimportedLibraries = false,
+    },
+  }, config)
+
+  nvim_lsp[server].setup(config)
 end
 
-nvim_lsp.ccls.setup {
-  capabilities = capabilities,
-  handlers = handlers,
-  on_attach = custom_on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  };
-  init_options = {
-    onlyAnalyzeProjectsWithOpenFiles = false,
-    suggestFromUnimportedLibraries = true,
-    closingLabels = true,
-    compilationDatabaseDirectory = "build";
-    index = {
-      threads = 0;
-    };
-    clang = {
-      excludeArgs = { "-frounding-math"} ;
-    };
-    cache = {
-      directory = ".ccls-cache";
-    };
-  } ;
+local servers = {
+  pyright = true,
+  vimls = true,
+  bashls = true,
+  diagnosticls = true,
+  yamlls = true,
+  ccls = {
+    init_options = {
+      closingLabels = true,
+      compilationDatabaseDirectory = "build";
+      index = {
+        threads = 0;
+      },
+      clang = {
+        excludeArgs = { "-frounding-math"} ;
+      },
+      cache = {
+        directory = ".ccls-cache";
+      },
+    },
+  },
 }
-EOF
+for server, config in pairs(servers) do
+  setup_server(server, config)
+end
