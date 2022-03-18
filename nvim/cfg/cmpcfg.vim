@@ -64,10 +64,11 @@ cmp.setup({
     end, { "i", "s" }),
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<esc>'] = cmp.mapping({
-      c = cmp.mapping.close(),
-      i = cmp.mapping.abort(),
-    }),
+    ['<esc>'] = cmp.config.disable,
+    -- ['<esc>'] = cmp.mapping({
+    --   c = cmp.mapping.close(),
+    --   i = cmp.mapping.abort(),
+    -- }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = cmp.config.sources({
@@ -78,8 +79,8 @@ cmp.setup({
   }),
   experimental = {
     native_menu = false,
-    ghost_text = false,
-},
+    ghost_text = true,
+  },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

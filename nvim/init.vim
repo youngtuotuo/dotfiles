@@ -14,7 +14,9 @@ set noswapfile
 set nobackup
 " set breakindent
 filetype plugin indent on
-let g:netrw_liststyle = 0
+" netrw
+let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+let g:netrw_localrmdir='rm -r'
 let g:netrw_sort_by = "exten"
 " set virtualedit=all
 " Parathensis match
@@ -40,11 +42,11 @@ set viminfo='1000
 " Some servers have issues with backup files
 set nowritebackup
 " Give more space for displaying messages
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=400
+set updatetime=200
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -79,3 +81,5 @@ runtime cfg/treesittercfg.vim
 runtime highlight.vim
 " mapping
 runtime maps.vim
+set laststatus=3
+set statusline=\ %F\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)

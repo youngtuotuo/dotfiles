@@ -22,9 +22,9 @@ local custom_on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-      hi! LspReferenceRead  gui=reverse
-      hi! LspReferenceText  gui=reverse
-      hi! LspReferenceWrite gui=reverse
+      hi! LspReferenceRead  gui=underline
+      hi! LspReferenceText  gui=underline
+      hi! LspReferenceWrite gui=underline
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -70,15 +70,15 @@ for _, lsp in ipairs(servers) do
     handlers = handlers,
     on_attach = custom_on_attach,
     init_options = {
-        onlyAnalyzeProjectsWithOpenFiles = false,
-        suggestFromUnimportedLibraries = true,
-        closingLabels = true,
+      onlyAnalyzeProjectsWithOpenFiles = false,
+      suggestFromUnimportedLibraries = true,
     };
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 200,
     }
   }
 end
+
 nvim_lsp.ccls.setup {
   capabilities = capabilities,
   handlers = handlers,
