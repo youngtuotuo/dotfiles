@@ -34,7 +34,7 @@ require("fidget").setup(
           return string.format(
             "%s%s",
             message,
-            percentage and string.format(" (%s%%)", percentage) or "",
+            percentage and string.format(" (%s%%)", percentage) or ""
           )
         end,
     },
@@ -50,4 +50,5 @@ require("fidget").setup(
   }
 )
 EOF
+
 

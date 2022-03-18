@@ -26,18 +26,18 @@ noremap <C-H> <C-W><C-H>
 noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
 " bracket complete
-inoremap {<CR> {<CR>}<Esc>ko
-inoremap (<CR> (<CR>)<Esc>ko
-inoremap [<CR> [<CR>]<Esc>ko
+inoremap {<CR> {<CR>}<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
+inoremap [<CR> [<CR>]<C-o>O
 " Enclose (), [], {} in visualmode
-vnoremap ( <esc>a)<esc>gvo<esc>i(<esc>
-vnoremap ) <esc>a)<esc>gvo<esc>i(<esc>
-vnoremap [ <esc>a]<esc>gvo<esc>i[<esc>
-vnoremap ] <esc>a]<esc>gvo<esc>i[<esc>
-vnoremap } <esc>a}<esc>gvo<esc>i{<esc>
-vnoremap { <esc>a}<esc>gvo<esc>i{<esc>
-vnoremap ' <esc>a'<esc>gvo<esc>i'<esc>
-vnoremap " <esc>a"<esc>gvo<esc>i"<esc>
+vnoremap ( va)<C-o>gvov(<esc>
+vnoremap ) va)<C-o>gvov(<esc>
+vnoremap [ va]<C-o>gvov[<esc>
+vnoremap ] va]<C-o>gvov[<esc>
+vnoremap } va}<C-o>gvov{<esc>
+vnoremap { va}<C-o>gvov{<esc>
+vnoremap ' va'<C-o>gvov'<esc>
+vnoremap " va"<C-o>gvov"<esc>
 
 " Page naviagtion
 map <C-Down> <C-E>
