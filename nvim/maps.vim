@@ -30,14 +30,14 @@ inoremap {<CR> {<CR>}<Esc>ko
 inoremap (<CR> (<CR>)<Esc>ko
 inoremap [<CR> [<CR>]<Esc>ko
 " Enclose (), [], {} in visualmode
-vnoremap ( <esc>i)<esc>gvo<esc>i(<esc>
-vnoremap ) <esc>i)<esc>gvo<esc>i(<esc>
-vnoremap [ <esc>i]<esc>gvo<esc>i[<esc>
-vnoremap ] <esc>i]<esc>gvo<esc>i[<esc>
-vnoremap } <esc>i}<esc>gvo<esc>i{<esc>
-vnoremap { <esc>i}<esc>gvo<esc>i{<esc>
-vnoremap ' <esc>i'<esc>gvo<esc>i'<esc>
-vnoremap " <esc>i"<esc>gvo<esc>i"<esc>
+vnoremap ( <esc>a)<esc>gvo<esc>i(<esc>
+vnoremap ) <esc>a)<esc>gvo<esc>i(<esc>
+vnoremap [ <esc>a]<esc>gvo<esc>i[<esc>
+vnoremap ] <esc>a]<esc>gvo<esc>i[<esc>
+vnoremap } <esc>a}<esc>gvo<esc>i{<esc>
+vnoremap { <esc>a}<esc>gvo<esc>i{<esc>
+vnoremap ' <esc>a'<esc>gvo<esc>i'<esc>
+vnoremap " <esc>a"<esc>gvo<esc>i"<esc>
 
 " Page naviagtion
 map <C-Down> <C-E>
