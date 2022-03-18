@@ -76,7 +76,6 @@ runtime cfg/gitsignscfg.vim
 runtime cfg/zenmodecfg.vim
 runtime cfg/todo.vim
 " color related
-runtime cfg/lualine.vim
 runtime cfg/treesittercfg.vim
 runtime highlight.vim
 " mapping

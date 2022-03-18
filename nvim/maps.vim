@@ -30,14 +30,14 @@ inoremap {<CR> {<CR>}<Esc>ko
 inoremap (<CR> (<CR>)<Esc>ko
 inoremap [<CR> [<CR>]<Esc>ko
 " Enclose (), [], {} in visualmode
-vnoremap ( c()<esc>P%
-vnoremap ) c()<esc>P%
-vnoremap [ c[]<esc>P%
-vnoremap ] c[]<esc>P%
-vnoremap { c{}<esc>P%
-vnoremap } c{}<esc>P%
-vnoremap ' c''<esc>P%
-vnoremap " c""<esc>P%
+vnoremap ( <esc>i)<esc>gvo<esc>i(<esc>
+vnoremap ) <esc>i)<esc>gvo<esc>i(<esc>
+vnoremap [ <esc>i]<esc>gvo<esc>i[<esc>
+vnoremap ] <esc>i]<esc>gvo<esc>i[<esc>
+vnoremap } <esc>i}<esc>gvo<esc>i{<esc>
+vnoremap { <esc>i}<esc>gvo<esc>i{<esc>
+vnoremap ' <esc>i'<esc>gvo<esc>i'<esc>
+vnoremap " <esc>i"<esc>gvo<esc>i"<esc>
 
 " Page naviagtion
 map <C-Down> <C-E>
@@ -54,8 +54,8 @@ nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
 " line moving in normalmode, insertmode, visualmode with autoindent
-vnoremap K :m '<-2<CR>gv==gv
-vnoremap J :m '>+1<CR>gv==gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 inoremap <C-k> <esc>:m -2<CR>==i
 inoremap <C-j> <esc>:m +1<CR>==i
 nnoremap <leader>k :m .-2<CR>==
