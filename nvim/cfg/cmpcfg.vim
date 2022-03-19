@@ -10,12 +10,23 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local luasnip = require("luasnip")
 local cmp = require'cmp'
+local lspkind = require('lspkind')
 
 cmp.setup({
   complettion = {
     autocomplete = true,
   },
-  formatting={},
+  formatting={
+    format = lspkind.cmp_format({
+     mode = "symbol_text",
+     menu = ({
+       buffer = "[Buffer]",
+       nvim_lsp = "[LSP]",
+       luasnip = "[LuaSnip]",
+       path = "[PATH]"
+     }),
+   }),
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -81,7 +92,7 @@ cmp.setup({
   },
   experimental = {
     native_menu = false,
-    ghost_text = false,
+    ghost_text = true,
   },
 })
 

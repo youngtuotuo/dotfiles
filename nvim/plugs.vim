@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 " lsp
 Plug 'j-hui/fidget.nvim'
+Plug 'onsails/lspkind-nvim'
 Plug 'neovim/nvim-lspconfig'
 " nvim-cmp
 Plug 'hrsh7th/nvim-cmp'
