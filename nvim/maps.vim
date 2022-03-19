@@ -1,3 +1,4 @@
+nnoremap <space>r  :Telescope lsp_references<CR>
 nnoremap <space>f  :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <space>b  :Telescope buffers<CR>
 nnoremap <space>g  :Telescope git_files<CR>
@@ -7,6 +8,12 @@ nnoremap <space>h  :Telescope help_tags<CR>
 nnoremap <space>m  :Telescope keymaps<CR>
 nnoremap <space>t  :TodoTelescope cwd=
 nnoremap <space>v  :Telescope lsp_document_symbols<CR>
+
+" fixlist
+nnoremap co :copen<CR>
+nnoremap cc :cclose<CR>
+nnoremap cn :cnext<CR>zz
+nnoremap cp :cprev<CR>zz
 
 " Undo break points
 inoremap , ,<c-g>u
@@ -35,6 +42,9 @@ vnoremap } va}<C-o>gvov{<esc>
 vnoremap { va}<C-o>gvov{<esc>
 vnoremap ' va'<C-o>gvov'<esc>
 vnoremap " va"<C-o>gvov"<esc>
+" keep visual block selection
+vmap > >gv
+vmap < <gv
 
 " Page naviagtion
 map <C-Down> <C-E>
