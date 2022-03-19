@@ -14,6 +14,7 @@ lua << EOF
       LspReferenceRead    = {bg='$bg0', fmt='none'},
       LspReferenceText    = {bg='$bg0', fmt='none'},
       LspReferenceWrite   = {bg='$bg0', fmt='none'},
+      VertSplit           = {fg='white'},
     },
     code_style = {
       comments  = 'none',

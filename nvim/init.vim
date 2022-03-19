@@ -33,8 +33,9 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
-autocmd FileType vim  setlocal shiftwidth=2 softtabstop=2 expandtab
+set smarttab
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType vim  setlocal tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 set nowrap
 set viminfo='1000
@@ -66,8 +67,8 @@ set listchars=eol:↴
 set list
 
 runtime plugs.vim
-runtime cfg/formatter.vim
 runtime cfg/color.vim
+runtime cfg/formatter.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
