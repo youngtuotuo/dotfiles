@@ -65,21 +65,23 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<esc>'] = cmp.config.disable,
-    -- ['<esc>'] = cmp.mapping({
-    --   c = cmp.mapping.close(),
-    --   i = cmp.mapping.abort(),
-    -- }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'buffer' },
-    { name = 'path' },
+    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
   }),
+  sorting = {
+    comparators= {
+      cmp.config.compare.score,
+      cmp.config.compare.offset,
+    },
+  },
   experimental = {
     native_menu = false,
-    ghost_text = true,
+    ghost_text = false,
   },
 })
 

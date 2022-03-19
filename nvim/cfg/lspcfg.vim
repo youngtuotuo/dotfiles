@@ -1,5 +1,6 @@
 lua << EOF
 local nvim_lsp = require('lspconfig')
+local util = require('lspconfig.util')
 
 local custom_on_attach = function(client, bufnr)
 
@@ -15,8 +16,9 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  --buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -55,7 +57,7 @@ updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capab
 
 -- Snippets
 updated_capabilities.textDocument.completion.completionItem.snippetSupport = true;
-updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false;
+-- updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false;
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 
@@ -94,7 +96,17 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  pyright = true,
+  pyright = {
+    root_dir = util.root_pattern(unpack({
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      'pyrightconfig.json',
+      '.git',
+    })),
+  },
   vimls = true,
   bashls = true,
   diagnosticls = true,

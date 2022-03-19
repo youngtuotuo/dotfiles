@@ -1,4 +1,3 @@
-nnoremap <leader>i :IndentBlanklineToggle<CR>
 nnoremap <space>f  :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <space>b  :Telescope buffers<CR>
 nnoremap <space>g  :Telescope git_files<CR>
@@ -8,8 +7,6 @@ nnoremap <space>h  :Telescope help_tags<CR>
 nnoremap <space>m  :Telescope keymaps<CR>
 nnoremap <space>t  :TodoTelescope cwd=
 nnoremap <space>v  :Telescope lsp_document_symbols<CR>
-nnoremap <space>r  :Telescope lsp_references<CR>
-nnoremap <leader>g :G<CR>
 
 " Undo break points
 inoremap , ,<c-g>u
@@ -70,8 +67,6 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <esc>:w<CR>
 " zenmode
 nnoremap <space>z :ZenMode<CR>
-" Docstring
-inoremap """ """<CR>"""<esc>kA
 " Pane resize
 map <S-Up> <C-W>+
 map <S-Down> <C-W>-
