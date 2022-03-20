@@ -17,6 +17,7 @@ set nobackup
 filetype plugin indent on
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 " set virtualedit=all
 " Parathensis match
 set showmatch

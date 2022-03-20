@@ -11,7 +11,7 @@ lua << EOF
       LineNrBelow         = {fg='grey'},
       LineNr              = {fg='white'},
       CursorLineNr        = {fg='white'},
-      CursorLine          = {bg='none', fmt='underline'},
+      CursorLine          = {bg='none', fmt='bold'},
       LspReferenceRead    = {bg='$bg0', fmt='none'},
       LspReferenceText    = {bg='$bg0', fmt='none'},
       LspReferenceWrite   = {bg='$bg0', fmt='none'},
@@ -34,5 +34,6 @@ lua << EOF
   }
   vim.cmd [[
     highlight IndentBlanklineContextChar guifg=lightgrey gui=nocombine
+    highlight IndentBlanklineSpaceChar gui=nocombine
   ]]
 EOF

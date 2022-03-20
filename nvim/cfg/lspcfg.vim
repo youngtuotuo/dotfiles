@@ -50,7 +50,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
   source = true,
-  float = {header="", prefix = "> ", scope = "c"},
+  float = {header="Hahahahaha", prefix = "σ`∀´)σ ", scope = "c"},
 })
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
