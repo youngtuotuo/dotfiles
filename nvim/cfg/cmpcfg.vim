@@ -13,12 +13,14 @@ local cmp = require'cmp'
 local lspkind = require('lspkind')
 
 cmp.setup({
+  enabled = true,
   complettion = {
     autocomplete = true,
+    keyword_length = 3,
   },
   formatting={
     format = lspkind.cmp_format({
-     mode = "symbol_text",
+     mode = "symbol",
      menu = ({
        buffer = "[Buffer]",
        nvim_lsp = "[LSP]",
@@ -80,8 +82,8 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'buffer' },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'nvim_lsp', max_item_count=5 },
+    { name = 'luasnip', max_item_count=5 },
     { name = 'path' },
   }),
   sorting = {
@@ -103,11 +105,10 @@ cmp.setup.cmdline('/', {
   },
 })
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
--- sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' },
+    { name = 'cmdline' }
+  })
+})
 EOF

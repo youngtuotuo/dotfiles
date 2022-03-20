@@ -16,13 +16,12 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  --buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
@@ -35,6 +34,14 @@ local custom_on_attach = function(client, bufnr)
   end
 end
 
+-- Highlight line number instead of having icons in sign column
+vim.cmd [[
+  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticError
+  sign define DiagnosticSignWarn  text= texthl=DiagnosticSignWarn  linehl= numhl=DiagnosticWarn 
+  sign define DiagnosticSignInfo  text= texthl=DiagnosticSignInfo  linehl= numhl=DiagnosticInfo 
+  sign define DiagnosticSignHint  text= texthl=DiagnosticSignHint  linehl= numhl=DiagnosticHint 
+]]
+
 -- diagnostic after each line
 vim.diagnostic.config({
   virtual_text = false,
@@ -42,6 +49,8 @@ vim.diagnostic.config({
   underline = false,
   update_in_insert = false,
   severity_sort = true,
+  source = true,
+  float = {header="", prefix = "> ", scope = "c"},
 })
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -58,9 +67,17 @@ local custom_init = function(client)
   client.config.flags = client.config.flags or {}
   client.config.flags.allow_incremental_sync = true
 end
+local border = "rounded"
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=130, max_height=30}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=130, max_height=30}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border=border}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border=border}),
 }
 local setup_server = function(server, config)
   if not config then

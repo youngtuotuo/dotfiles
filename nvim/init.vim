@@ -9,15 +9,14 @@ set novisualbell
 set scrolloff=3
 set hidden
 set cursorline
+set colorcolumn=100
 " set noshowmode
 set noswapfile
 set nobackup
 " set breakindent
 filetype plugin indent on
 " netrw
-let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
-let g:netrw_localrmdir='rm -r'
-let g:netrw_sort_by = "exten"
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " set virtualedit=all
 " Parathensis match
 set showmatch
@@ -30,15 +29,19 @@ set splitbelow
 set splitright
 " <tab> control
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType vim  setlocal tabstop=2 shiftwidth=2 softtabstop=2
-set autoindent
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
+" autocmd FileType vim  setlocal shiftwidth=2 softtabstop=2 expandtab
+" set autoindent
 set nowrap
 set viminfo='1000
+
+augroup YankHighlight
+  autocmd!
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup end
 
 " Some servers have issues with backup files
 set nowritebackup
@@ -55,7 +58,7 @@ set shortmess+=c
 set termguicolors
 syntax on
 
-" error and warning msg in line number column
+" error and warning msg in line number
 set signcolumn=yes:2
 
 let g:highlightedyank_highlight_duration = 300
@@ -63,12 +66,9 @@ let g:highlightedyank_highlight_duration = 300
 " dvc
 " autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
-set listchars=eol:↴
-set list
-
 runtime plugs.vim
-runtime cfg/color.vim
 runtime cfg/formatter.vim
+runtime cfg/color.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim

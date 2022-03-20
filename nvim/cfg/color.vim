@@ -1,5 +1,6 @@
 lua << EOF
   require('colorizer').setup()
+
   require('onedark').setup({
     highlights = {
       Normal              = {bg='black'},
@@ -14,7 +15,6 @@ lua << EOF
       LspReferenceRead    = {bg='$bg0', fmt='none'},
       LspReferenceText    = {bg='$bg0', fmt='none'},
       LspReferenceWrite   = {bg='$bg0', fmt='none'},
-      VertSplit           = {fg='white'},
     },
     code_style = {
       comments  = 'none',
@@ -25,4 +25,14 @@ lua << EOF
     },
   })
   require('onedark').load()
+
+  vim.opt.list = true
+  vim.opt.listchars:append("eol:↴")
+  require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+  }
+  vim.cmd [[
+    highlight IndentBlanklineContextChar guifg=lightgrey gui=nocombine
+  ]]
 EOF

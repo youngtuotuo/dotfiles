@@ -1,12 +1,13 @@
 nnoremap <space>r  :Telescope lsp_references<CR>
 nnoremap <space>f  :Telescope current_buffer_fuzzy_find<CR>
+nnoremap <space>e  :Telescope fd<CR>
 nnoremap <space>b  :Telescope buffers<CR>
 nnoremap <space>g  :Telescope git_files<CR>
 nnoremap <space>d  :Telescope diagnostics<CR>
 nnoremap <space>c  :Telescope commands<CR>
 nnoremap <space>h  :Telescope help_tags<CR>
 nnoremap <space>m  :Telescope keymaps<CR>
-nnoremap <space>t  :TodoTelescope cwd=
+nnoremap <space>t  :TodoTelescope cwd=.<CR>
 nnoremap <space>v  :Telescope lsp_document_symbols<CR>
 
 " fixlist
@@ -33,15 +34,6 @@ noremap <C-L> <C-W><C-L>
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
-" Enclose (), [], {} in visualmode
-vnoremap ( va)<C-o>gvov(<esc>
-vnoremap ) va)<C-o>gvov(<esc>
-vnoremap [ va]<C-o>gvov[<esc>
-vnoremap ] va]<C-o>gvov[<esc>
-vnoremap } va}<C-o>gvov{<esc>
-vnoremap { va}<C-o>gvov{<esc>
-vnoremap ' va'<C-o>gvov'<esc>
-vnoremap " va"<C-o>gvov"<esc>
 " keep visual block selection
 vmap > >gv
 vmap < <gv
