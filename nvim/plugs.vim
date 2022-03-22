@@ -7,6 +7,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'navarasu/onedark.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'folke/lsp-colors.nvim'
 " formatter
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'

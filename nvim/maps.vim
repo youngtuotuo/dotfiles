@@ -10,6 +10,8 @@ nnoremap <space>m  :Telescope keymaps<CR>
 nnoremap <space>t  :TodoTelescope cwd=.<CR>
 nnoremap <space>v  :Telescope lsp_document_symbols<CR>
 
+" format json
+command! FormatJSON %!python -m json.tool
 " fixlist
 nnoremap co :copen<CR>
 nnoremap cc :cclose<CR>

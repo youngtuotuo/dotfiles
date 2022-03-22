@@ -6,15 +6,20 @@ lua << EOF
       Normal              = {bg='black'},
       EndOfBuffer         = {fg='grey', bg='black'},
       SignColumn          = {bg='black'},
-      StatusLine          = {fg='black', bg='lightgrey', fmt='bold'},
+      StatusLine          = {fg='black', bg='lightgrey', fmt='none'},
       LineNrAbove         = {fg='grey'},
       LineNrBelow         = {fg='grey'},
       LineNr              = {fg='white'},
       CursorLineNr        = {fg='white'},
-      CursorLine          = {bg='none', fmt='bold'},
+      CursorLine          = {bg='$bg0', fmt='none'},
       LspReferenceRead    = {bg='$bg0', fmt='none'},
       LspReferenceText    = {bg='$bg0', fmt='none'},
       LspReferenceWrite   = {bg='$bg0', fmt='none'},
+      VertSplit           = {fg='lightgrey'},
+      DiagnosticVirtualTextWarn = {fg='$yellow', bg='none'},
+      DiagnosticVirtualTextError = {fg='$red', bg='none'},
+      DiagnosticVirtualTextInfo = {fg='$cyan', bg='none'},
+      DiagnosticVirtualTextHint = {fg='$purple', bg='none'},
     },
     code_style = {
       comments  = 'none',
@@ -26,9 +31,10 @@ lua << EOF
   })
   require('onedark').load()
 
-  vim.opt.list = true
-  vim.opt.listchars:append("eol:↴")
+  vim.opt.list = false
+  vim.opt.listchars:append("eol:$")
   require("indent_blankline").setup {
+    enabled = false,
     space_char_blankline = " ",
     show_current_context = true,
   }

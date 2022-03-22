@@ -9,7 +9,7 @@ set novisualbell
 set scrolloff=3
 set hidden
 set cursorline
-set colorcolumn=100
+" set colorcolumn=80
 " set noshowmode
 set noswapfile
 set nobackup
@@ -69,7 +69,6 @@ let g:highlightedyank_highlight_duration = 300
 
 runtime plugs.vim
 runtime cfg/formatter.vim
-runtime cfg/color.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
@@ -80,6 +79,7 @@ runtime cfg/zenmodecfg.vim
 runtime cfg/todo.vim
 " color related
 runtime cfg/treesittercfg.vim
+runtime cfg/color.vim
 " mapping
 runtime maps.vim
 set laststatus=3

@@ -44,7 +44,9 @@ vim.cmd [[
 
 -- diagnostic after each line
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = {
+    prefix = 'σ`∀´)σ '
+  },
   signs = true,
   underline = false,
   update_in_insert = false,
@@ -76,8 +78,8 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border=border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border=border}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=50, border=border}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=50, border=border}),
 }
 local setup_server = function(server, config)
   if not config then
