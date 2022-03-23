@@ -68,6 +68,7 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count: "") . 'j'
 
 " ctrl-s to save
 nnoremap <C-s> :w<CR>
+vnoremap <C-s> <C-c>:w<CR>
 inoremap <C-s> <esc>:w<CR>
 " zenmode
 nnoremap <space>z :ZenMode<CR>

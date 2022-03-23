@@ -108,7 +108,30 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  -- pylsp = {
+  pylsp = {
+    root_dir = util.root_pattern(unpack({
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      'pyrightconfig.json',
+      '.git',
+    })),
+    settings = {
+      pylsp = {
+        configurationSources = { "flake8", "pycodestyle" },
+        plugins = {
+          jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
+          flake8 = { enabled=true, maxLineLength=100 },
+          pycodestyle = { enabled=false, maxLineLength=100 },
+          pydocstyle = { enabled=false, maxLineLength=100 },
+          pyflakes = { enabled=false },
+        },
+      },
+    },
+  },
+  -- pyright = {
   --   root_dir = util.root_pattern(unpack({
   --     'pyproject.toml',
   --     'setup.py',
@@ -119,17 +142,6 @@ local servers = {
   --     '.git',
   --   })),
   -- },
-  pyright = {
-    root_dir = util.root_pattern(unpack({
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'Pipfile',
-      'pyrightconfig.json',
-      '.git',
-    })),
-  },
   vimls = true,
   bashls = true,
   diagnosticls = true,
