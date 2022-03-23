@@ -108,7 +108,18 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  pylsp = {
+  -- pylsp = {
+  --   root_dir = util.root_pattern(unpack({
+  --     'pyproject.toml',
+  --     'setup.py',
+  --     'setup.cfg',
+  --     'requirements.txt',
+  --     'Pipfile',
+  --     'pyrightconfig.json',
+  --     '.git',
+  --   })),
+  -- },
+  pyright = {
     root_dir = util.root_pattern(unpack({
       'pyproject.toml',
       'setup.py',

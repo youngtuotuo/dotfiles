@@ -81,11 +81,14 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = cmp.config.sources({
-    { name = 'buffer' },
-    { name = 'nvim_lsp', max_item_count=5 },
-    { name = 'luasnip', max_item_count=5 },
-    { name = 'path' },
-  }),
+      { name = 'nvim_lsp', max_item_count=5 },
+      { name = 'luasnip', max_item_count=5 },
+    },
+    {
+      { name = 'buffer' },
+      { name = 'path' }
+    }
+  ),
   sorting = {
     comparators= {
       cmp.config.compare.score,
