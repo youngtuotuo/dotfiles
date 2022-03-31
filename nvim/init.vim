@@ -1,6 +1,6 @@
 set mouse=a
-set nu
-set rnu
+" set nu
+" set rnu
 set guicursor=n-v-c:block,i-ci-ve:block25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
@@ -75,7 +75,6 @@ runtime cfg/lspcfg.vim
 runtime cfg/progress.vim
 runtime cfg/telescopecfg.vim
 runtime cfg/gitsignscfg.vim
-runtime cfg/zenmodecfg.vim
 runtime cfg/todo.vim
 " color related
 runtime cfg/treesittercfg.vim

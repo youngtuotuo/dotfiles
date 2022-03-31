@@ -3,18 +3,18 @@ lua << EOF
 
   require('onedark').setup({
     highlights = {
-      Normal              = {bg='black'},
-      EndOfBuffer         = {fg='grey', bg='black'},
-      SignColumn          = {bg='black'},
-      StatusLine          = {fg='black', bg='lightgrey', fmt='none'},
+      Normal              = {bg='none'},
+      EndOfBuffer         = {fg='grey', bg='none'},
+      SignColumn          = {bg='none'},
+      StatusLine          = {fg='black', bg='lightgrey', fmt='bold'},
       LineNrAbove         = {fg='grey'},
       LineNrBelow         = {fg='grey'},
       LineNr              = {fg='white'},
       CursorLineNr        = {fg='white'},
       CursorLine          = {bg='$bg0', fmt='none'},
-      LspReferenceRead    = {bg='$bg0', fmt='none'},
-      LspReferenceText    = {bg='$bg0', fmt='none'},
-      LspReferenceWrite   = {bg='$bg0', fmt='none'},
+      LspReferenceRead    = {bg='$bg0', fmt='standout'},
+      LspReferenceText    = {bg='$bg0', fmt='standout'},
+      LspReferenceWrite   = {bg='$bg0', fmt='standout'},
       VertSplit           = {fg='lightgrey'},
       DiagnosticVirtualTextWarn = {fg='$yellow', bg='none'},
       DiagnosticVirtualTextError = {fg='$red', bg='none'},
@@ -31,10 +31,10 @@ lua << EOF
   })
   require('onedark').load()
 
-  vim.opt.list = true
-  vim.opt.listchars:append("eol:↴")
+  vim.opt.list = false
+  vim.opt.listchars:append("eol:↵")
   require("indent_blankline").setup {
-    enabled = true,
+    enabled = false,
     space_char_blankline = " ",
     show_current_context = true,
   }

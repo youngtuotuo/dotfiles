@@ -23,6 +23,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 " lsp
+" Plug 'williamboman/nvim-lsp-installer'
 Plug 'j-hui/fidget.nvim'
 Plug 'onsails/lspkind-nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -39,8 +40,6 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 " TODO
 Plug 'folke/todo-comments.nvim'
-" zen mode
-Plug 'folke/zen-mode.nvim'
 " twilight
 Plug 'folke/twilight.nvim'
 " comment

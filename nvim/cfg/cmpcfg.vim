@@ -16,7 +16,6 @@ cmp.setup({
   enabled = true,
   complettion = {
     autocomplete = true,
-    keyword_length = 3,
   },
   formatting={
     format = lspkind.cmp_format({
@@ -58,10 +57,8 @@ cmp.setup({
     ['<Down>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
       else
         fallback()
       end
@@ -81,12 +78,10 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = cmp.config.sources({
-      { name = 'nvim_lsp', max_item_count=5 },
-      { name = 'luasnip', max_item_count=5 },
-    },
-    {
-      { name = 'buffer' },
-      { name = 'path' }
+      { name = 'nvim_lsp', priority = 2 },
+      { name = 'luasnip', priority = 3 },
+      { name = 'buffer', priority = 1 },
+      { name = 'path' , priority = 3 }
     }
   ),
   sorting = {
@@ -97,7 +92,7 @@ cmp.setup({
   },
   experimental = {
     native_menu = false,
-    ghost_text = true,
+    ghost_text = false,
   },
 })
 
@@ -105,11 +100,10 @@ cmp.setup({
 cmp.setup.cmdline('/', {
   complettion = {
     autocomplete = true,
-    keyword_length = 3,
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'buffer' },
-  },
+  })
 })
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {

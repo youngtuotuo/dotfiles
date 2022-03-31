@@ -69,7 +69,6 @@ local custom_init = function(client)
   client.config.flags = client.config.flags or {}
   client.config.flags.allow_incremental_sync = true
 end
-local border = "rounded"
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
@@ -78,8 +77,8 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=50, border=border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=50, border=border}),
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=100}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=100}),
 }
 local setup_server = function(server, config)
   if not config then
@@ -108,7 +107,29 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  pylsp = {
+  --pylsp = {
+  --  root_dir = util.root_pattern(unpack({
+  --    'requirements.txt',
+  --    'environment.yaml',
+  --    '.gitignore',
+  --    'pyproject.toml',
+  --    'setup.py',
+  --    'setup.cfg',
+  --    'Pipfile',
+  --  })),
+  --  settings = {
+  --    pylsp = {
+  --      plugins = {
+  --        jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
+  --        flake8 = { enabled=false, maxLineLength=100 },
+  --        pycodestyle = { enabled=true, maxLineLength=100 },
+  --        pydocstyle = { enabled=false, maxLineLength=100 },
+  --        pyflakes = { enabled=false },
+  --      },
+  --    },
+  --  },
+  --},
+  pyright = {
     root_dir = util.root_pattern(unpack({
       'pyproject.toml',
       'setup.py',
@@ -116,32 +137,10 @@ local servers = {
       'requirements.txt',
       'Pipfile',
       'pyrightconfig.json',
+      '.gitignore',
       '.git',
     })),
-    settings = {
-      pylsp = {
-        configurationSources = { "flake8", "pycodestyle" },
-        plugins = {
-          jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
-          flake8 = { enabled=true, maxLineLength=100 },
-          pycodestyle = { enabled=false, maxLineLength=100 },
-          pydocstyle = { enabled=false, maxLineLength=100 },
-          pyflakes = { enabled=false },
-        },
-      },
-    },
   },
-  -- pyright = {
-  --   root_dir = util.root_pattern(unpack({
-  --     'pyproject.toml',
-  --     'setup.py',
-  --     'setup.cfg',
-  --     'requirements.txt',
-  --     'Pipfile',
-  --     'pyrightconfig.json',
-  --     '.git',
-  --   })),
-  -- },
   vimls = true,
   bashls = true,
   diagnosticls = true,
