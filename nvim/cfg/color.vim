@@ -3,9 +3,9 @@ lua << EOF
 
   require('onedark').setup({
     highlights = {
-      Normal              = {bg='none'},
-      EndOfBuffer         = {fg='grey', bg='none'},
-      SignColumn          = {bg='none'},
+      Normal              = {bg='black'},
+      EndOfBuffer         = {fg='grey', bg='black'},
+      SignColumn          = {bg='black'},
       StatusLine          = {fg='black', bg='lightgrey', fmt='bold'},
       LineNrAbove         = {fg='grey'},
       LineNrBelow         = {fg='grey'},
