@@ -36,6 +36,8 @@ Plug 'ray-x/cmp-treesitter'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
+" markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &&  yarn install'}
 " TODO
 Plug 'folke/todo-comments.nvim'
 " twilight

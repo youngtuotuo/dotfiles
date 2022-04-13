@@ -35,12 +35,12 @@ local custom_on_attach = function(client, bufnr)
 end
 
 -- Highlight line number instead of having icons in sign column
-vim.cmd [[
-  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticError
-  sign define DiagnosticSignWarn  text= texthl=DiagnosticSignWarn  linehl= numhl=DiagnosticWarn 
-  sign define DiagnosticSignInfo  text= texthl=DiagnosticSignInfo  linehl= numhl=DiagnosticInfo 
-  sign define DiagnosticSignHint  text= texthl=DiagnosticSignHint  linehl= numhl=DiagnosticHint 
-]]
+-- vim.cmd [[
+--   sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticError
+--   sign define DiagnosticSignWarn  text= texthl=DiagnosticSignWarn  linehl= numhl=DiagnosticWarn 
+--   sign define DiagnosticSignInfo  text= texthl=DiagnosticSignInfo  linehl= numhl=DiagnosticInfo 
+--   sign define DiagnosticSignHint  text= texthl=DiagnosticSignHint  linehl= numhl=DiagnosticHint 
+-- ]]
 
 -- diagnostic after each line
 vim.diagnostic.config({

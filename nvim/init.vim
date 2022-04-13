@@ -17,7 +17,7 @@ set nobackup
 filetype plugin indent on
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+" let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 " set virtualedit=all
 " Parathensis match
 set showmatch
@@ -79,6 +79,8 @@ runtime cfg/todo.vim
 " color related
 runtime cfg/treesittercfg.vim
 runtime cfg/color.vim
+" markdown
+runtime cfg/markdownpreview.vim
 " mapping
 runtime maps.vim
 set laststatus=3

@@ -6,7 +6,7 @@ lua << EOF
       Normal              = {bg='black'},
       EndOfBuffer         = {fg='grey', bg='black'},
       SignColumn          = {bg='black'},
-      StatusLine          = {fg='black', bg='lightgrey', fmt='bold'},
+      StatusLine          = {fg='black', bg='lightgrey', fmt='none'},
       LineNrAbove         = {fg='grey'},
       LineNrBelow         = {fg='grey'},
       LineNr              = {fg='white'},
