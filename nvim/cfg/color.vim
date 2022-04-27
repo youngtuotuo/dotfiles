@@ -34,9 +34,10 @@ lua << EOF
   vim.opt.list = false
   vim.opt.listchars:append("eol:↵")
   require("indent_blankline").setup {
-    enabled = false,
+    enabled = true,
     space_char_blankline = " ",
-    show_current_context = true,
+    show_first_indent_level = true,
+    show_current_context = false,
   }
   vim.cmd [[
     highlight IndentBlanklineContextChar guifg=lightgrey gui=nocombine

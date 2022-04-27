@@ -8,7 +8,7 @@ set noerrorbells
 set novisualbell
 set scrolloff=3
 set hidden
-" set cursorline
+set cursorline
 " set colorcolumn=80
 " set noshowmode
 set noswapfile
@@ -69,6 +69,7 @@ let g:highlightedyank_highlight_duration = 300
 
 runtime plugs.vim
 runtime cfg/formatter.vim
+runtime cfg/google_python_style.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
