@@ -70,8 +70,6 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count: "") . 'j'
 nnoremap <C-s> :w<CR>
 vnoremap <C-s> <C-c>:w<CR>
 inoremap <C-s> <esc>:w<CR>
-" zenmode
-nnoremap <space>z :ZenMode<CR>
 " Pane resize
 map <S-Up> <C-W>+
 map <S-Down> <C-W>-

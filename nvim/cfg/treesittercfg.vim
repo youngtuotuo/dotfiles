@@ -1,9 +1,12 @@
 lua << EOF
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "bash", "c", "lua", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "markdown", "bash", "c", "cpp", "lua", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  indent = {
+    enable = true
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = {"vim"},  -- list of language that will be disabled
+    disable = {"markdown"},  -- list of language that will be disabled
   },
   textobjects = {
     enable=true,

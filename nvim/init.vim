@@ -8,13 +8,12 @@ set noerrorbells
 set novisualbell
 set scrolloff=3
 set hidden
-set cursorline
-" set colorcolumn=80
+" set cursorline
+set colorcolumn=81
 " set noshowmode
 set noswapfile
 set nobackup
 " set breakindent
-filetype plugin indent on
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
@@ -28,14 +27,6 @@ set smartcase
 " Split control
 set splitbelow
 set splitright
-" <tab> control
-set expandtab
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
-" autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
-" autocmd FileType vim  setlocal shiftwidth=2 softtabstop=2 expandtab
-" set autoindent
 set nowrap
 set viminfo='1000
 
@@ -69,7 +60,6 @@ let g:highlightedyank_highlight_duration = 300
 
 runtime plugs.vim
 runtime cfg/formatter.vim
-runtime cfg/google_python_style.vim
 " lsp related
 runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
@@ -84,4 +74,11 @@ runtime cfg/color.vim
 runtime cfg/markdownpreview.vim
 " mapping
 runtime maps.vim
-set laststatus=3
+filetype plugin indent on
+" <tab> control
+autocmd FileType cpp,c setlocal shiftwidth=2 softtabstop=2 tabstop=2 smartindent expandtab
+" set autoindent
+" set cindent
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab

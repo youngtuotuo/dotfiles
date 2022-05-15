@@ -15,7 +15,7 @@ local lspkind = require('lspkind')
 cmp.setup({
   enabled = true,
   complettion = {
-    autocomplete = true,
+    autocomplete = false,
   },
   formatting={
     format = lspkind.cmp_format({
@@ -75,13 +75,14 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<esc>'] = cmp.config.disable,
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = cmp.config.sources({
-      { name = 'nvim_lsp', priority = 2 },
-      { name = 'luasnip', priority = 3 },
-      { name = 'buffer', priority = 1 },
-      { name = 'path' , priority = 3 }
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'path' }
+      -- { name = 'buffer', priority = 1 },
     }
   ),
   sorting = {

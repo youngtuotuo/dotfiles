@@ -2,11 +2,12 @@ lua << EOF
   require('colorizer').setup()
 
   require('onedark').setup({
+    style = 'deep', -- dark, darker, cool, deep, warm, warmer, light
     highlights = {
       Normal              = {bg='black'},
       EndOfBuffer         = {fg='grey', bg='black'},
       SignColumn          = {bg='black'},
-      StatusLine          = {fg='black', bg='lightgrey', fmt='none'},
+      -- StatusLine          = {fg='black', bg='lightgrey', fmt='none'},
       LineNrAbove         = {fg='grey'},
       LineNrBelow         = {fg='grey'},
       LineNr              = {fg='white'},
@@ -35,8 +36,8 @@ lua << EOF
   vim.opt.listchars:append("eol:↵")
   require("indent_blankline").setup {
     enabled = true,
-    space_char_blankline = " ",
     show_first_indent_level = true,
+    space_char_blankline = " ",
     show_current_context = false,
   }
   vim.cmd [[

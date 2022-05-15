@@ -16,7 +16,7 @@ local custom_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  --buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -47,7 +47,7 @@ vim.diagnostic.config({
   virtual_text = {
     prefix = 'σ`∀´)σ '
   },
-  signs = true,
+  signs = false,
   underline = false,
   update_in_insert = false,
   severity_sort = true,
@@ -107,50 +107,51 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  --pylsp = {
-  --  root_dir = util.root_pattern(unpack({
-  --    'requirements.txt',
-  --    'environment.yaml',
-  --    '.gitignore',
-  --    'pyproject.toml',
-  --    'setup.py',
-  --    'setup.cfg',
-  --    'Pipfile',
-  --  })),
-  --  settings = {
-  --    pylsp = {
-  --      plugins = {
-  --        jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
-  --        flake8 = { enabled=false, maxLineLength=100 },
-  --        pycodestyle = { enabled=true, maxLineLength=100 },
-  --        pydocstyle = { enabled=false, maxLineLength=100 },
-  --        pyflakes = { enabled=false },
-  --      },
-  --    },
-  --  },
-  --},
-  jedi_language_server = util.root_pattern(unpack({
-    'pyproject.toml',
-    'setup.py',
-    'setup.cfg',
-    'requirements.txt',
-    'Pipfile',
-    '.gitignore',
-    '.git',
-    })
-  ),
-  -- pyright = {
+  -- pylsp = {
   --   root_dir = util.root_pattern(unpack({
+  --     'requirements.txt',
+  --     'environment.yaml',
+  --     '.gitignore',
+  --     'pyproject.toml',
+  --     'setup.py',
+  --     'setup.cfg',
+  --     'Pipfile',
+  --   })),
+  --   settings = {
+  --     pylsp = {
+  --       plugins = {
+  --         jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
+  --         flake8 = { enabled=false, maxLineLength=100 },
+  --         pycodestyle = { enabled=true, maxLineLength=100 },
+  --         pydocstyle = { enabled=false, maxLineLength=100 },
+  --         pyflakes = { enabled=false },
+  --       },
+  --     },
+  --   },
+  -- },
+  -- jedi_language_server = util.root_pattern(
+  --   unpack({
   --     'pyproject.toml',
   --     'setup.py',
   --     'setup.cfg',
   --     'requirements.txt',
   --     'Pipfile',
-  --     'pyrightconfig.json',
   --     '.gitignore',
   --     '.git',
-  --   })),
-  -- },
+  --   })
+  -- ),
+  pyright = {
+    root_dir = util.root_pattern(unpack({
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      'pyrightconfig.json',
+      '.gitignore',
+      '.git',
+    })),
+  },
   vimls = true,
   bashls = true,
   diagnosticls = true,
