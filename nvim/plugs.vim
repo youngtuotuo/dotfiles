@@ -1,5 +1,7 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
+" stablizer
+Plug 'luukvbaal/stabilize.nvim'
 " netrw the pope
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
@@ -8,6 +10,8 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'navarasu/onedark.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'folke/lsp-colors.nvim'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
 " formatter
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'

@@ -5,8 +5,8 @@ require('nvim-treesitter.configs').setup {
     enable = true
   },
   highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = {"markdown"},  -- list of language that will be disabled
+    enable = false, -- false will disable the whole extension
+    disable = {"vim"},  -- list of language that will be disabled
   },
   textobjects = {
     enable=true,

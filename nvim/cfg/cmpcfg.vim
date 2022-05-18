@@ -107,14 +107,14 @@ cmp.setup.cmdline('/', {
   })
 })
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  complettion = {
-    autocomplete = true,
-    keyword_length = 3,
-  },
-  sources = cmp.config.sources({
-    { name = 'path' },
-    { name = 'cmdline' }
-  })
-})
+-- cmp.setup.cmdline(':', {
+--   complettion = {
+--     autocomplete = true,
+--     keyword_length = 3,
+--   },
+--   sources = cmp.config.sources({
+--     { name = 'path' },
+--     -- { name = 'cmdline' }
+--   })
+-- })
 EOF

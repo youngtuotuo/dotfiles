@@ -9,7 +9,7 @@ set novisualbell
 set scrolloff=3
 set hidden
 " set cursorline
-set colorcolumn=81
+" set colorcolumn=81
 " set noshowmode
 set noswapfile
 set nobackup
@@ -17,6 +17,7 @@ set nobackup
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+let g:netrw_bufsettings = 'nocursorline'
 " set virtualedit=all
 " Parathensis match
 set showmatch
