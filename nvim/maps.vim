@@ -40,20 +40,20 @@ inoremap [<CR> [<CR>]<C-o>O
 vmap > >gv
 vmap < <gv
 
-" Page naviagtion
-map <C-Down> <C-E>
-map <C-Up> <C-Y>
-map <C-S-Up> <C-U>
-map <C-S-Down> <C-D>
+" Tab navigation like Firefox.
+nnoremap tj :tabprevious<CR>
+nnoremap tk :tabnext<CR>
+nnoremap tn :tabnew<CR>
 
-" gb tab switch to previous
-map gb gT
+" number line
+nnoremap <leader>ss :set invnu invrnu<CR>
 
 " Y like C,D
 nnoremap Y y$
 nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
 " line moving in normalmode, insertmode, visualmode with autoindent
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv

@@ -15,7 +15,7 @@ require('telescope').setup{
         height = 0.7,
         mirror = false,
         scroll_speed = 5,
-        preview_height = 0,
+        preview_height = 0.4,
         preview_cutoff = 5,
         prompt_position = "top"
       },

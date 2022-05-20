@@ -7,8 +7,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
 " color
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'navarasu/onedark.nvim'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'folke/lsp-colors.nvim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
@@ -20,7 +18,6 @@ Plug 'google/vim-glaive'
 Plug 'kyazdani42/nvim-web-devicons'
 " git
 Plug 'tpope/vim-fugitive'
-Plug 'lewis6991/gitsigns.nvim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'

@@ -52,7 +52,7 @@ set termguicolors
 syntax on
 
 " error and warning msg in line number
-set signcolumn=yes:2
+" set signcolumn=yes:2
 
 let g:highlightedyank_highlight_duration = 300
 
@@ -66,7 +66,7 @@ runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
 runtime cfg/progress.vim
 runtime cfg/telescopecfg.vim
-runtime cfg/gitsignscfg.vim
+" runtime cfg/gitsignscfg.vim
 runtime cfg/todo.vim
 " color related
 runtime cfg/treesittercfg.vim
