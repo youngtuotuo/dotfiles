@@ -10,6 +10,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'folke/lsp-colors.nvim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
+Plug 'tjdevries/express_line.nvim'
 " formatter
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'

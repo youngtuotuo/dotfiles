@@ -1,12 +1,13 @@
 set mouse=a
 " set nu
 " set rnu
-set guicursor=n-v-c:block,i-ci-ve:block25,r-cr:hor20,o:hor50
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
+" set guicursor=n-v-c:block,i-ci-ve:block25,r-cr:hor20,o:hor50
+"   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+"   \,sm:block-blinkwait175-blinkoff150-blinkon175
 set noerrorbells
 set novisualbell
 set scrolloff=3
+set laststatus=3
 set hidden
 " set cursorline
 " set colorcolumn=81
@@ -30,6 +31,7 @@ set splitbelow
 set splitright
 set nowrap
 set viminfo='1000
+set showmode
 
 augroup YankHighlight
   autocmd!
