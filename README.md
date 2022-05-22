@@ -3,6 +3,12 @@
     <img src="pictures/neovimscreenshot.png" />
 </p>
 
+## Useful shortcut
+1. select python code in visual mode -> press `\p` -> execute the selected codes
+2. press `g+` -> compile current cpp code and execute the binary(vimpp.out)
+2. press `gc` -> compile current c code and execute the binary(vimc.out)
+
+
 
 ## Install Neovim
 ```bash
