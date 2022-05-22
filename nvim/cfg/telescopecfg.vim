@@ -6,6 +6,14 @@ require('telescope').setup{
     mappings = {
       n = {
         ["q"] = actions.close,
+        ["<C-c>"] = actions.close,
+        ["<Tab>"] = actions.move_selection_next,
+        ["<S-Tab>"] = actions.move_selection_previous,
+      }, 
+      i = {
+        ["<C-c>"] = actions.close,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
       },
     },
     layout_strategy="vertical",

@@ -1,6 +1,7 @@
 set mouse=a
 set noerrorbells
 set novisualbell
+set guicursor=
 set laststatus=1
 set hidden
 set noswapfile

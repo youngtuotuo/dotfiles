@@ -1,15 +1,9 @@
 set completeopt=menu,menuone,noselect
-lua << EOF
--- Setup nvim-cmp.
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
 
-require("luasnip.loaders.from_vscode").lazy_load()
+lua << EOF
 
 local luasnip = require("luasnip")
-local cmp = require'cmp'
+local cmp = require('cmp')
 local lspkind = require('lspkind')
 
 cmp.setup({
@@ -20,6 +14,7 @@ cmp.setup({
   formatting={
     format = lspkind.cmp_format({
      mode = "text",
+     maxwidth = 20,
      menu = ({
        buffer = "[Buffer]",
        nvim_lsp = "[LSP]",
@@ -37,10 +32,6 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
       else
         fallback()
       end
@@ -48,10 +39,6 @@ cmp.setup({
     ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
       else
         fallback()
       end
@@ -59,8 +46,6 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(function(fallback)
      if cmp.visible() then
        cmp.select_prev_item()
-     elseif luasnip.jumpable(-1) then
-       luasnip.jump(-1)
      else
        fallback()
      end
@@ -68,8 +53,6 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping(function(fallback)
      if cmp.visible() then
        cmp.select_prev_item()
-     elseif luasnip.jumpable(-1) then
-       luasnip.jump(-1)
      else
        fallback()
      end
@@ -77,8 +60,6 @@ cmp.setup({
     ['<Down>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
       else
         fallback()
       end
@@ -86,8 +67,6 @@ cmp.setup({
     ['<Up>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
@@ -98,13 +77,12 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = cmp.config.sources({
-      { name = 'nvim_lsp_signature_help' },
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'path' }
-      -- { name = 'buffer', priority = 1 },
-    }
-  ),
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'path' },
+    { name = 'nvim_lua' }
+  }),
   sorting = {
     comparators= {
       cmp.config.compare.score,
@@ -113,28 +91,7 @@ cmp.setup({
   },
   experimental = {
     native_menu = false,
-    ghost_text = false,
+    ghost_text = true,
   },
 })
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  complettion = {
-    autocomplete = true,
-  },
-  sources = cmp.config.sources({
-    { name = 'buffer' },
-  })
-})
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
---   complettion = {
---     autocomplete = true,
---     keyword_length = 3,
---   },
---   sources = cmp.config.sources({
---     { name = 'path' },
---     -- { name = 'cmdline' }
---   })
--- })
 EOF
