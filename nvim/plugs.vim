@@ -5,8 +5,6 @@ Plug 'luukvbaal/stabilize.nvim'
 " netrw the pope
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
-" color
-Plug 'tjdevries/express_line.nvim'
 " formatter
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
