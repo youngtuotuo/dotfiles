@@ -1,3 +1,4 @@
+" Telescope stuffs
 nnoremap <space>r  :Telescope lsp_references<CR>
 nnoremap <space>f  :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <space>e  :Telescope fd<CR>
@@ -12,6 +13,7 @@ nnoremap <space>v  :Telescope lsp_document_symbols<CR>
 
 " format json
 command! FormatJSON %!python -m json.tool
+
 " fixlist
 nnoremap co :copen<CR>
 nnoremap cc :cclose<CR>
@@ -20,6 +22,7 @@ nnoremap cp :cprev<CR>zz
 
 "james powell python3
 vnoremap <leader>p :w ! python3<CR>
+
 " g++ compile and execute
 nnoremap <leader>g+ :!g++ -o vimpp.out % && ./vimpp.out<CR>
 nnoremap <leader>gc :!gcc -o vimc.out % && ./vimc.out<CR>
@@ -27,21 +30,26 @@ nnoremap <leader>gc :!gcc -o vimc.out % && ./vimc.out<CR>
 " Undo break points
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
+"
 " avoid finger not leave shift
 command! W write
 command! Q quit
 command! X xit
+"
 " esc to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
+"
 " Easier pane navigation
 noremap <C-J> <C-W><C-J>
 noremap <C-H> <C-W><C-H>
 noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
+"
 " bracket complete
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
+"
 " keep visual block selection
 vmap > >gv
 vmap < <gv
@@ -73,11 +81,12 @@ nnoremap <expr> k (v:count > 5 ? "m'" . v:count: "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count: "") . 'j'
 
 " ctrl-s to save
-nnoremap <C-s> :w<CR>
-vnoremap <C-s> <C-c>:w<CR>
-inoremap <C-s> <esc>:w<CR>
-" Pane resize
-map <S-Up> <C-W>+
-map <S-Down> <C-W>-
-map <S-Left> <C-W><
-map <S-Right> <C-W>>
+nnoremap <c-s> :w<cr>
+vnoremap <c-s> <c-c>:w<cr>
+inoremap <c-s> <esc>:w<cr>
+
+" pane resize
+map <s-up> <c-w>+
+map <s-down> <c-w>-
+map <s-left> <c-w><
+map <s-right> <c-w>>

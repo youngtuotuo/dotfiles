@@ -1,6 +1,4 @@
 lua << EOF
-  -- require('colorizer').setup()
-  -- require('colorbuddy').colorscheme('gruvbuddy')
   require("stabilize").setup()
   -- And then when you're all done, just call
   local extensions = require('el.extensions')
@@ -28,17 +26,19 @@ lua << EOF
         return extensions.git_changes(window, buffer)
       end),
       -- "[",
-      -- builtin.line,
+      builtin.line,
       -- " : ",
-      -- builtin.column,
+      ", ",
+      builtin.column,
       -- "]",
+      " ",
       sections.collapse_builtin {
         "[",
         builtin.help_list,
         builtin.readonly_list,
         "]",
       },
-      -- builtin.filetype,
+      builtin.filetype,
     }
   end
   require('el').setup { generator = generator }
@@ -47,12 +47,14 @@ EOF
 " hi LineNrAbove guifg=Gray
 " hi LineNrBelow guifg=Gray
 " hi NormalFloat guibg=#282c34
-" hi VertSplit gui=NONE guifg=LightGray guibg=LightGray
+hi VertSplit cterm=reverse ctermfg=NONE ctermbg=NONE
+hi NormalFloat cterm=NONE ctermbg=DarkGray
+hi FloatBorder cterm=NONE ctermbg=DarkGray
 " hi Type gui=NONE
-" hi StatusLine guifg=LightGray guibg=NONE
+hi StatusLine cterm=NONE ctermfg=LightGray ctermbg=NONE guifg=LightGray guibg=NONE
+hi StatusLineNC cterm=NONE ctermfg=White ctermbg=NONE guibg=white guifg=black
 " hi Normal guibg=black
 " hi SignColumn guibg=black
 " hi EndOfBuffer guibg=black
-" hi StatusLineNC guibg=white guifg=black
-hi Pmenu ctermbg=Gray
-hi PmenuSel guifg=Black guibg=LightGray
+hi Pmenu cterm=NONE ctermfg=Black ctermbg=DarkGray
+hi PmenuSel ctermfg=Black ctermbg=Gray guifg=Black guibg=DarkGray

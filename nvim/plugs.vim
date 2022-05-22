@@ -6,8 +6,6 @@ Plug 'luukvbaal/stabilize.nvim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
 " color
-Plug 'tjdevries/colorbuddy.vim'
-Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'tjdevries/express_line.nvim'
 " formatter
 Plug 'google/vim-maktaba'
