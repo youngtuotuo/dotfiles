@@ -18,6 +18,12 @@ nnoremap cc :cclose<CR>
 nnoremap cn :cnext<CR>zz
 nnoremap cp :cprev<CR>zz
 
+"james powell python3
+vnoremap <leader>p :w ! python3<CR>
+" g++ compile and execute
+nnoremap <leader>g+ :!g++ -o vimpp.out % && ./vimpp.out<CR>
+nnoremap <leader>gc :!gcc -o vimc.out % && ./vimc.out<CR>
+
 " Undo break points
 inoremap , ,<c-g>u
 inoremap . .<c-g>u

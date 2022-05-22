@@ -6,8 +6,6 @@ Plug 'luukvbaal/stabilize.nvim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
 " color
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'folke/lsp-colors.nvim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'tjdevries/express_line.nvim'
@@ -15,8 +13,6 @@ Plug 'tjdevries/express_line.nvim'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-" icon
-Plug 'kyazdani42/nvim-web-devicons'
 " git
 Plug 'tpope/vim-fugitive'
 " treesitter
@@ -43,8 +39,6 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &&  yarn install'}
 " TODO
 Plug 'folke/todo-comments.nvim'
-" twilight
-Plug 'folke/twilight.nvim'
 " comment
 Plug 'tpope/vim-commentary'
 " telescope
