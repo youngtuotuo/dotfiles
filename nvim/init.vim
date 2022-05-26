@@ -10,6 +10,7 @@ set nobackup
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 let g:netrw_bufsettings = 'nocursorline'
+let g:loaded_python3_provider = 0
 " Parathensis match
 set showmatch
 set matchtime=1

@@ -1,5 +1,7 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
+" color
+Plug 'jonathanfilip/vim-lucius'
 " stablizer
 Plug 'luukvbaal/stabilize.nvim'
 " netrw the pope
