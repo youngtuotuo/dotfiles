@@ -21,7 +21,12 @@ nnoremap cn :cnext<CR>zz
 nnoremap cp :cprev<CR>zz
 
 "james powell python3
-vnoremap <leader>p :w ! python3<CR>
+vnoremap <silent> <leader>p :w !python3<CR>
+function! FullPy()
+  let g:path=substitute(expand('%:r'), '/', '.', 'g') 
+  execute "!" . "python3 -m " . g:path
+endfunction
+nnoremap <leader>p :call FullPy()<CR>
 
 " g++ compile and execute
 nnoremap <leader>g+ :!g++ -o vimpp.out % && ./vimpp.out<CR>
@@ -90,3 +95,5 @@ map <s-up> <c-w>+
 map <s-down> <c-w>-
 map <s-left> <c-w><
 map <s-right> <c-w>>
+" netrw
+noremap - :E<CR>

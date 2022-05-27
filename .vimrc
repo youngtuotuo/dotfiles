@@ -21,11 +21,11 @@ set smartcase
 set noswapfile
 set nobackup
 set hidden
+set laststatus=0
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 let g:netrw_bufsettings = 'nocursorline'
-highlight Comment ctermfg=green
 
 "james powell python3
 vnoremap <leader>p :w ! python3<CR>
@@ -104,16 +104,10 @@ nnoremap cc :cclose<CR>
 nnoremap cn :cnext<CR>zz
 nnoremap cp :cprev<CR>zz
 
-hi VertSplit cterm=reverse ctermfg=NONE ctermbg=NONE
-hi StatusLine cterm=NONE ctermfg=LightGray ctermbg=NONE guifg=LightGray guibg=NONE
-hi StatusLineNC cterm=NONE ctermfg=White ctermbg=NONE guibg=white guifg=black
-
 call plug#begin("~/.vim/plugged")
+Plug 'tpope/vim-sensible'
 " yank highlight
 Plug 'machakann/vim-highlightedyank'
-" netrw the pope
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-sleuth'
 " formatter
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -123,3 +117,13 @@ Plug 'tpope/vim-fugitive'
 " comment
 Plug 'tpope/vim-commentary'
 call plug#end()
+
+set formatoptions-=cro
+
+hi VertSplit ctermfg=White ctermbg=NONE guifg=White guibg=NONE
+hi Comment ctermfg=Green cterm=NONE guifg=Green gui=NONE
+hi ModeMsg ctermfg=White ctermbg=NONE cterm=bold guifg=White guibg=NONE gui=bold
+hi Search cterm=reverse gui=reverse
+hi Pmenu ctermfg=White ctermbg=NONE guifg=White guibg=NONE 
+hi PmenuSel ctermfg=Black ctermbg=White guifg=Black guibg=NONE
+

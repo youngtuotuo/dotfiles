@@ -22,37 +22,28 @@ lua << EOF
     buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-
-    if client.resolved_capabilities.document_highlight then
-      vim.cmd [[
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]]
-    end
   end
 
-  -- Highlight line number instead of having icons in sign column
-  -- vim.cmd [[
-  --   sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticError
-  --   sign define DiagnosticSignWarn  text= texthl=DiagnosticSignWarn  linehl= numhl=DiagnosticWarn 
-  --   sign define DiagnosticSignInfo  text= texthl=DiagnosticSignInfo  linehl= numhl=DiagnosticInfo 
-  --   sign define DiagnosticSignHint  text= texthl=DiagnosticSignHint  linehl= numhl=DiagnosticHint 
-  -- ]]
+  local signs = { Error = "* ", Warn = "! ", Hint = "> ", Info = "- " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
 
   -- diagnostic after each line
   vim.diagnostic.config({
     virtual_text = {
-      prefix = 'σ`∀´)σ '
+      prefix = 'σ`∀´)σ ',
+      format = function(diagnostic)
+        return ''
+      end
     },
-    signs = false,
+    signs = true,
     underline = false,
     update_in_insert = false,
     severity_sort = true,
     source = true,
-    float = {header="Hahahahaha", prefix = "σ`∀´)σ ", scope = "c"},
+    float = {header="Yayayayayayaya", prefix = "σ`∀´)σ ", scope = "c"},
   })
 
   local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
