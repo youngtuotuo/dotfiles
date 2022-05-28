@@ -5,7 +5,7 @@ set noswapfile
 set nobackup
 set mouse=a
 set guicursor=
-set hidden
+set nohidden
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'
@@ -39,9 +39,6 @@ set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Disable auto comment
-set formatoptions-=cro
-
 syntax on
 filetype plugin indent on
 
@@ -54,3 +51,5 @@ runtime cfg/treesittercfg.vim
 runtime cfg/color.vim
 runtime cfg/markdownpreview.vim
 runtime maps.vim
+" Disable auto comment
+autocmd FileType * set formatoptions-=cro
