@@ -1,7 +1,10 @@
 lua << EOF
   require("stabilize").setup()
 EOF
-colorscheme desert
+colorscheme default
+hi Normal ctermbg=NONE guibg=NONE
+hi StatusLine ctermfg=Black ctermbg=White cterm=NONE guifg=Black guibg=White gui=NONE
+hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE guifg=Black guibg=White gui=NONE
 hi VertSplit ctermfg=White ctermbg=NONE cterm=NONE guifg=White guibg=NONE gui=NONE
 hi Comment ctermfg=Gray cterm=NONE guifg=Gray gui=NONE
 hi NormalFloat ctermbg=NONE guibg=NONE

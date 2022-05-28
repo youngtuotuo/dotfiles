@@ -6,13 +6,17 @@ set nobackup
 set mouse=a
 set guicursor=
 set nohidden
+set laststatus=0
+set fillchars=stl: 
+set winbar=%=%m\ %f
+set formatoptions=tqj
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'
 let g:loaded_python3_provider = 0
 " Parathensis match
 set showmatch
-set matchtime=1
+set matchtime=5
 " Search control
 set ignorecase
 set smartcase
@@ -20,11 +24,10 @@ set splitbelow
 set splitright
 set viminfo='1000
 set showmode
-set laststatus=0
 
 augroup YankHighlight
   autocmd!
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout=700})
 augroup end
 
 " <tab> control
@@ -40,7 +43,7 @@ set updatetime=400
 set shortmess+=c
 
 syntax on
-filetype plugin indent on
+filetype indent on
 
 runtime plugs.vim
 runtime cfg/cmpcfg.vim
@@ -51,5 +54,3 @@ runtime cfg/treesittercfg.vim
 runtime cfg/color.vim
 runtime cfg/markdownpreview.vim
 runtime maps.vim
-" Disable auto comment
-autocmd FileType * set formatoptions-=cro

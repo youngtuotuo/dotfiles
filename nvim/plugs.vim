@@ -6,6 +6,8 @@ Plug 'luukvbaal/stabilize.nvim'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
+" comment
+Plug 'tpope/vim-commentary'
 " git
 Plug 'tpope/vim-fugitive'
 " treesitter
@@ -29,8 +31,6 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &&  yarn install'}
 " TODO
 Plug 'folke/todo-comments.nvim'
-" comment
-Plug 'tpope/vim-commentary'
 " telescope
 Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
