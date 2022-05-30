@@ -44,6 +44,14 @@ Default color scheme is enough for developing.
     $ sudo npm install -g yarn
     $ sudo yarn global add yaml-language-server
 ```
+### cv2 typing issue
+Remember to chage <target env name> and python3.x to suitable case.
+```bash
+    $ conda activate <target env name>
+    $ cd dotfiles
+    $ cp cv2/__init__.pyi $CONDA_PREFIX/lib/<python3.x>/site-packages/cv2/__init__.pyi
+```
+
 
 ## Install ccls
 [Details](https://github.com/MaskRay/ccls/wiki/Build)
