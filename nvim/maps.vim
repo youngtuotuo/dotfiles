@@ -3,6 +3,7 @@ nnoremap <space>r  :Telescope lsp_references<CR>
 nnoremap <space>f  :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <space>g  :Telescope git_files<CR>
 nnoremap <space>d  :Telescope diagnostics<CR>
+nnoremap <space>b  :Telescope buffers<CR>
 nnoremap <space>c  :Telescope commands<CR>
 nnoremap <space>h  :Telescope help_tags<CR>
 nnoremap <space>m  :Telescope keymaps<CR>
@@ -21,7 +22,8 @@ nnoremap cp :cprev<CR>zz
 "james powell python3
 vnoremap <silent> <leader>p :w !python3<CR>
 function! FullPy()
-  let b:path=substitute(expand('%:r'), '/', '.', 'g') 
+  let b:path=substitute(expand('%:r'), getcwd(), '', 'g') 
+  let b:path=substitute(b:path, '/', '.', 'g') 
   execute "!" . "python3 -m " . b:path
 endfunction
 nnoremap <leader>p :call FullPy()<CR>

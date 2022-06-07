@@ -4,19 +4,19 @@ set nowritebackup
 set noswapfile
 set nobackup
 set mouse=a
-set guicursor=
 set nohidden
 set laststatus=0
+" there's an empty character at the end of line created by <C-K>NS
 set fillchars=stl: 
+set laststatus=3
 set winbar=%=%m\ %f
-set formatoptions=tqj
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'
 let g:loaded_python3_provider = 0
 " Parathensis match
 set showmatch
-set matchtime=5
+set matchtime=1
 " Search control
 set ignorecase
 set smartcase
@@ -44,6 +44,7 @@ set shortmess+=c
 
 syntax on
 filetype indent on
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 runtime plugs.vim
 runtime cfg/cmpcfg.vim
@@ -54,3 +55,4 @@ runtime cfg/treesittercfg.vim
 runtime cfg/color.vim
 runtime cfg/markdownpreview.vim
 runtime maps.vim
+set noshowmode
