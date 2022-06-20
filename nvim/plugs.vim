@@ -1,6 +1,7 @@
 let g:plug_home = stdpath('data') . '/plugged'
 call plug#begin()
 Plug 'morhetz/gruvbox'
+Plug 'sheerun/vim-polyglot'
 " stablizer
 Plug 'luukvbaal/stabilize.nvim'
 " formatter
