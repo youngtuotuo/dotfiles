@@ -10,6 +10,7 @@ Default color scheme is enough for developing.
 3. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
 4. press `\gc` -> compile current c code and execute the binary(vimc.out)
 5. press `\fp` -> format python code
+6. press `\ss` -> toggle nu & rnu
 
 
 ## Install Neovim
