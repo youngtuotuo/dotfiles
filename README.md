@@ -21,16 +21,14 @@ Default color scheme is enough for developing.
 ## Install configuration
 ```bash
     $ git clone git@github.com:youngtuotuo/dotfiles.git
-    $ cd dotfiles && cp ./nvim ~/.confg/
+    $ cd dotfiles && cp ./nvim ~/.config/
 ```
 
 ## Install Plugin manager
 ```bash
     $ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    $ nvim -u NONE
-    :Plugsinstall
-    :TSInstallSync
+    $ nvim +PlugInstall +TSInstallSync
 ```
 
 
@@ -55,14 +53,4 @@ Remember to chage `target env name` and `python3.x` to suitable case.
 
 ## Install ccls
 [Details](https://github.com/MaskRay/ccls/wiki/Build)
-```bash
-    $ git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-    $ cd ccls
-    $ wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-    $ tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-    $ cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
-    $ cmake --build Release
-    $ cd Release
-    $ sudo make install
-```
 
