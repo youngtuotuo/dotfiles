@@ -60,4 +60,16 @@ Remember to chage `target env name` and `python3.x` to suitable case.
 
 ## Install ccls
 [Details](https://github.com/MaskRay/ccls/wiki/Build)
+Ubuntu 2204
+```bash
+    $ sudo apt-get install clang clang-dev
+    $ git clone --depth=1 --recursive https://github.com/MaskRay/ccls && cd ccls
+    $ cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-14 \
+    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-14/include \
+    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-14/
+    $ cd Release
+    $ sudo make install
+    $ cd Release
+```
 
