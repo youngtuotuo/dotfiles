@@ -6,9 +6,10 @@ Default color scheme is enough for developing.
 
 ## Useful shortcut
 1. select python code in visual mode -> press `\p` -> execute the selected codes
-1. press `\p` -> relatively execute($python -m x.y.z) current whole python file
-2. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
-2. press `\gc` -> compile current c code and execute the binary(vimc.out)
+2. press `\p` -> relatively execute($python -m x.y.z) current whole python file
+3. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
+4. press `\gc` -> compile current c code and execute the binary(vimc.out)
+5. press `\fp` -> format python code
 
 
 ## Install Neovim
@@ -22,6 +23,11 @@ Default color scheme is enough for developing.
 ```bash
     $ git clone git@github.com:youngtuotuo/dotfiles.git
     $ cd dotfiles && cp ./nvim ~/.config/
+```
+
+## Install python formatter
+```bash
+    $ pip install black
 ```
 
 ## Install Plugin manager
