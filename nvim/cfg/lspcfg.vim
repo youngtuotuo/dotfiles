@@ -33,7 +33,7 @@ lua << EOF
   -- diagnostic after each line
   vim.diagnostic.config({
     virtual_text = {
-      prefix = 'σ`∀´)σ ',
+      prefix = '好笨 σ`∀´)σ ',
       format = function(diagnostic)
         return ''
       end
@@ -43,7 +43,7 @@ lua << EOF
     update_in_insert = false,
     severity_sort = true,
     source = true,
-    float = {header="Yayayayayayaya", prefix = "σ`∀´)σ ", scope = "c"},
+    float = {header="Yayayayayayaya", prefix = "好笨 σ`∀´)σ ", scope = "c"},
   })
 
   local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -134,14 +134,14 @@ lua << EOF
     -- ),
     pyright = {
       root_dir = util.root_pattern(unpack({
+        '.gitignore',
+        '.git',
         'pyproject.toml',
         'setup.py',
         'setup.cfg',
         'requirements.txt',
         'Pipfile',
         'pyrightconfig.json',
-        '.gitignore',
-        '.git',
       })),
       settings = {
         pyright = {

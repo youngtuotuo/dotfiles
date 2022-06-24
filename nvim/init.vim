@@ -6,6 +6,7 @@ set nobackup
 set mouse=a
 set nohidden
 set laststatus=0
+set colorcolumn=81
 " there's an empty character at the end of line created by <C-K>NS
 set fillchars=stl: 
 set laststatus=3
@@ -14,6 +15,8 @@ set winbar=%=%m\ %f
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'
 let g:loaded_python3_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
 " Parathensis match
 set showmatch
 set matchtime=1

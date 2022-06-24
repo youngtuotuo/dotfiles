@@ -1,5 +1,6 @@
 lua << EOF
   require("stabilize").setup()
+  require('nvim_comment').setup({comment_empty = false})
 EOF
 color gruvbox
 let s:mode_map = {
@@ -21,7 +22,7 @@ exec 'hi StatusLine gui=bold cterm=bold' .
 " hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE guifg=Black guibg=White gui=NONE
 hi VertSplit ctermfg=DarkGray ctermbg=NONE cterm=NONE guifg=DarkGray guibg=NONE gui=NONE
 hi DiagnosticError ctermfg=LightRed guifg=LightRed
-" hi Comment ctermfg=Gray cterm=NONE guifg=Gray gui=NONE
+hi Comment ctermfg=Gray cterm=NONE guifg=Gray gui=NONE
 " hi String ctermfg=DarkGreen cterm=NONE guifg=Green gui=NONE
 hi NormalFloat ctermbg=NONE guibg=NONE
 hi FloatBorder ctermbg=NONE guibg=NONE

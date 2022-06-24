@@ -22,7 +22,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 " snippet
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -32,7 +31,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &&  yarn install'}
 " TODO
 Plug 'folke/todo-comments.nvim'
 " comment
-Plug 'tpope/vim-commentary'
+Plug 'terrortylor/nvim-comment'
 " telescope
 Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
