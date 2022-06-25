@@ -99,39 +99,6 @@ lua << EOF
   end
 
   local servers = {
-    -- pylsp = {
-    --   root_dir = util.root_pattern(unpack({
-    --     'requirements.txt',
-    --     'environment.yaml',
-    --     '.gitignore',
-    --     'pyproject.toml',
-    --     'setup.py',
-    --     'setup.cfg',
-    --     'Pipfile',
-    --   })),
-    --   settings = {
-    --     pylsp = {
-    --       plugins = {
-    --         jedi_completion = { cache_for={"pytorch", "numpy"}, fuzzy=true },
-    --         flake8 = { enabled=false, maxLineLength=100 },
-    --         pycodestyle = { enabled=true, maxLineLength=100 },
-    --         pydocstyle = { enabled=false, maxLineLength=100 },
-    --         pyflakes = { enabled=false },
-    --       },
-    --     },
-    --   },
-    -- },
-    -- jedi_language_server = util.root_pattern(
-    --   unpack({
-    --     'pyproject.toml',
-    --     'setup.py',
-    --     'setup.cfg',
-    --     'requirements.txt',
-    --     'Pipfile',
-    --     '.gitignore',
-    --     '.git',
-    --   })
-    -- ),
     pyright = {
       root_dir = util.root_pattern(unpack({
         '.gitignore',
@@ -154,9 +121,6 @@ lua << EOF
       },
     },
     vimls = true,
-    bashls = true,
-    diagnosticls = true,
-    yamlls = true,
     ccls = {
       init_options = {
         closingLabels = true,

@@ -14,6 +14,8 @@ nnoremap <space>v  :Telescope lsp_document_symbols<CR>
 command! FormatJSON %!python -m json.tool
 " format python
 nnoremap <leader>fp :FormatCode black<cr>
+" format c/c++
+nnoremap <leader>fc :FormatCode clang-format<cr>
 
 " fixlist
 nnoremap co :copen<CR>

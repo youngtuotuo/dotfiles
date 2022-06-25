@@ -10,6 +10,7 @@ Default color scheme is enough for developing.
 3. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
 4. press `\gc` -> compile current c code and execute the binary(vimc.out)
 5. press `\fp` -> format python code
+5. press `\fc` -> format c/c++ code
 6. press `\ss` -> toggle nu & rnu
 
 
@@ -39,15 +40,11 @@ Default color scheme is enough for developing.
 ```
 
 
-## Install pyright, vimls, bashls, yamlls
+## Install pyright, vimls
 ```bash
-    $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
     $ sudo apt install nodejs
     $ sudo npm -g install vim-language-server
     $ sudo npm -g install pyright
-    $ sudo npm -g install bash-language-server
-    $ sudo npm install -g yarn
-    $ sudo yarn global add yaml-language-server
 ```
 ### cv2 typing issue
 Remember to chage `target env name` and `python3.x` to suitable case.
@@ -59,7 +56,7 @@ Remember to chage `target env name` and `python3.x` to suitable case.
 
 
 ## Install ccls
-[Details](https://github.com/MaskRay/ccls/wiki/Build)
+[Details](https://github.com/MaskRay/ccls/wiki/Build)<br>
 Ubuntu 2204
 ```bash
     $ sudo apt-get install clang clang-dev

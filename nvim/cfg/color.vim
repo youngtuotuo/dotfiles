@@ -10,7 +10,7 @@ let s:mode_map = {
 function! Statusline_mode() abort
     return mode() != 'n' ? '-- ' .. get(s:mode_map, mode(), '') .. ' --' : ''
 endfunction
-let &statusline='%{Statusline_mode()}' .. '%=%(%l,%c%V %=       %P%)'
+let &statusline='%{Statusline_mode()}' " .. '%=%(%l,%c%V %=       %P%)'
 " hi Normal ctermbg=NONE guibg=NONE
 exec 'hi StatusLine gui=bold cterm=bold' .
             \' guibg=' . synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui') .
@@ -30,6 +30,6 @@ hi ModeMsg ctermfg=White ctermbg=NONE cterm=bold guifg=White guibg=NONE gui=bold
 hi DiagnosticHint ctermfg=LightYellow guifg=LightYellow
 hi Search cterm=reverse gui=reverse
 " hi Visual ctermbg=DarkGray cterm=NONE guibg=DarkGray gui=NONE
-" hi Pmenu ctermfg=White ctermbg=NONE guifg=White guibg=NONE 
-" hi PmenuSel ctermfg=Black ctermbg=White guifg=Black guibg=NONE
+hi Pmenu ctermfg=White ctermbg=NONE guifg=White guibg=NONE 
+hi PmenuSel ctermfg=Black ctermbg=White guifg=Black guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
