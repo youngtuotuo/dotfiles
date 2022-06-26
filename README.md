@@ -31,6 +31,10 @@ Default color scheme is enough for developing.
 ```bash
     $ pip install black
 ```
+## Install bash formatter
+```bash
+    $ sudo apt install shfmt
+```
 
 ## Install Plugin manager
 ```bash
