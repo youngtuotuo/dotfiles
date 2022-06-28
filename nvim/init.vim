@@ -6,11 +6,10 @@ set nobackup
 set mouse=a
 set nohidden
 set laststatus=0
-set colorcolumn=81
 " there's an empty character at the end of line created by <C-K>NS
 set fillchars=stl: 
 set laststatus=3
-set winbar=%=%m\ %f
+set winbar=%f\ %m
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'

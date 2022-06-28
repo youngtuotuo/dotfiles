@@ -2,7 +2,7 @@ lua << EOF
   require("stabilize").setup()
   require('nvim_comment').setup({comment_empty = false})
 EOF
-color gruvbox
+color default
 let s:mode_map = {
       \ 'n': '', 'i': 'INSERT', 'R': 'REPLACE', 'v': 'VISUAL', 'V': 'VISUAL LINE', "\<C-v>": 'VISUAL BLOCK',
       \ 'c': 'COMMAND', 's': 'SELECT', 'S': 'S-LINE', "\<C-s>": 'S-BLOCK', 't': 'TERMINAL',

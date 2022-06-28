@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=10000
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -34,11 +34,6 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# Not default here
-#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#  exec tmux
-#fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -61,26 +56,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-parse_git_branch() {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
-}
-
-
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}($CONDA_DEFAULT_ENV)\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w \[\033[01;33m\]$(parse_git_branch)\[\033[00m\]\n$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
-
-# $ set-title text
-function set-title() {
-  if [[ -z "$ORIG" ]]; then
-    ORIG=$PS1
-  fi
-  TITLE="\[\e]2;$*\a\]"
-  PS1=${ORIG}${TITLE}
-}
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -109,7 +90,8 @@ fi
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -alh'
+alias vi='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -135,51 +117,22 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}
+export PATH=$PATH:/usr/local/go/bin
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/support/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/tuo/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/support/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/support/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/tuo/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tuo/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/support/anaconda3/bin:$PATH"
+        export PATH="/home/tuo/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
-# export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-conda activate pipe
-source /etc/profile.d/vte-2.91.sh
-
-# If there are multiple matches for completion, Tab should cycle through them
-bind 'TAB':menu-complete
-
-# Display a list of the matching files
-bind "set show-all-if-ambiguous on"
-
-# Perform partial (common) completion on the first Tab press, only start
-# cycling full results on the second Tab press (from bash version 5)
-bind "set menu-complete-display-prefix on"
-
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# color man
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-export MANPAGER='less -s -M +Gg'
+. "$HOME/.cargo/env"
