@@ -5,9 +5,7 @@ Plug 'sheerun/vim-polyglot'
 " stablizer
 Plug 'luukvbaal/stabilize.nvim'
 " formatter
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
+Plug 'sbdchd/neoformat'
 " git
 Plug 'tpope/vim-fugitive'
 " treesitter

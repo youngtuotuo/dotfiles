@@ -2,6 +2,8 @@ lua << EOF
   require("stabilize").setup()
   require('nvim_comment').setup({comment_empty = false})
 EOF
+let g:neoformat_enabled_python = ['black']
+let g:neoformat_try_node_exe = 1
 color default
 let s:mode_map = {
       \ 'n': '', 'i': 'INSERT', 'R': 'REPLACE', 'v': 'VISUAL', 'V': 'VISUAL LINE', "\<C-v>": 'VISUAL BLOCK',
@@ -20,16 +22,16 @@ exec 'hi StatusLine gui=bold cterm=bold' .
 
 " hi StatusLine ctermfg=Black ctermbg=White cterm=NONE guifg=Black guibg=White gui=NONE
 " hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE guifg=Black guibg=White gui=NONE
+" hi String ctermfg=DarkGreen cterm=NONE guifg=Green gui=NONE
+" hi Visual ctermbg=DarkGray cterm=NONE guibg=DarkGray gui=NONE
 hi VertSplit ctermfg=DarkGray ctermbg=NONE cterm=NONE guifg=DarkGray guibg=NONE gui=NONE
 hi DiagnosticError ctermfg=LightRed guifg=LightRed
 hi Comment ctermfg=Gray cterm=NONE guifg=Gray gui=NONE
-" hi String ctermfg=DarkGreen cterm=NONE guifg=Green gui=NONE
 hi NormalFloat ctermbg=NONE guibg=NONE
 hi FloatBorder ctermbg=NONE guibg=NONE
 hi ModeMsg ctermfg=White ctermbg=NONE cterm=bold guifg=White guibg=NONE gui=bold
 hi DiagnosticHint ctermfg=LightYellow guifg=LightYellow
 hi Search cterm=reverse gui=reverse
-" hi Visual ctermbg=DarkGray cterm=NONE guibg=DarkGray gui=NONE
 hi Pmenu ctermfg=White ctermbg=NONE guifg=White guibg=NONE 
 hi PmenuSel ctermfg=Black ctermbg=White guifg=Black guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE

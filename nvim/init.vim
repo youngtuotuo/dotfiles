@@ -8,8 +8,8 @@ set nohidden
 set laststatus=0
 " there's an empty character at the end of line created by <C-K>NS
 set fillchars=stl: 
-set laststatus=3
-set winbar=%f\ %m
+set laststatus=0
+set winbar=%=%m\ %f
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_bufsettings = 'nocursorline'
@@ -53,8 +53,7 @@ runtime cfg/cmpcfg.vim
 runtime cfg/lspcfg.vim
 runtime cfg/telescopecfg.vim
 runtime cfg/todo.vim
-runtime cfg/treesittercfg.vim
 runtime cfg/color.vim
+runtime cfg/treesittercfg.vim
 runtime cfg/markdownpreview.vim
 runtime maps.vim
-set noshowmode
