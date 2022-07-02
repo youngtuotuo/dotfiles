@@ -1,3 +1,9 @@
+## Firefox Tab
+I hate proton tab style.
+<p align="center">
+    <img src="pictures/firefox.png" />
+</p>
+
 ## Neovim
 Default color scheme is enough for developing.
 <p align="center">
