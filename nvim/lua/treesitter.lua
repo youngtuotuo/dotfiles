@@ -1,4 +1,3 @@
-lua << EOF
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "markdown", "bash", "c", "cpp", "lua", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   indent = {
@@ -66,4 +65,3 @@ require'treesitter-context'.setup{
   },
   exact_patterns = {}
 }
-EOF

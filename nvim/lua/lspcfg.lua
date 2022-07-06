@@ -1,5 +1,4 @@
-lua << EOF
-  local nvim_lsp = require('lspconfig')
+local nvim_lsp = require('lspconfig')
   local util = require('lspconfig.util')
 
   local custom_on_attach = function(client, bufnr)
@@ -140,4 +139,3 @@ lua << EOF
   for server, config in pairs(servers) do
     setup_server(server, config)
   end
-EOF
