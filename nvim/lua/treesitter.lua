@@ -1,11 +1,10 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "markdown", "bash", "c", "cpp", "lua", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { 'lua', "markdown", "bash", "c", "cpp", "lua", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   indent = {
     enable = false
   },
   highlight = {
-    enable = false, -- false will disable the whole extension
-    disable = {"vim"},  -- list of language that will be disabled
+    enable = true, -- false will disable the whole extension
   },
   textobjects = {
     enable=true,

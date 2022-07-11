@@ -5,7 +5,6 @@ return require('packer').startup(function()
   -- color
   use { "tjdevries/colorbuddy.vim" }
   use { "tjdevries/gruvbuddy.nvim" }
-  use { "sheerun/vim-polyglot" }
   use { "norcalli/nvim-colorizer.lua" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }

@@ -10,13 +10,15 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.hidden = false
 vim.opt.mouse = 'a'
-vim.opt.laststatus = 0
+vim.opt.laststatus = 2
 vim.opt.fillchars = 'stl: '
-vim.opt.winbar = "%f %m"
+-- vim.opt.winbar = "%f %m"
+vim.opt.nu = true
+vim.opt.rnu = true
 
 -- netrw
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
-vim.g.netrw_bufsettings = 'nocursorline'
+vim.g.netrw_banner = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_probider = 0
