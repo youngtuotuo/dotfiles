@@ -15,6 +15,7 @@ vim.opt.fillchars = 'stl: '
 -- vim.opt.winbar = "%f %m"
 vim.opt.nu = true
 vim.opt.rnu = true
+vim.wo.colorcolumn = "81"
 
 -- netrw
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"

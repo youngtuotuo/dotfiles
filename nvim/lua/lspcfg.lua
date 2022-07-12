@@ -119,7 +119,6 @@ local nvim_lsp = require('lspconfig')
         },
       },
     },
-    vimls = true,
     ccls = {
       init_options = {
         closingLabels = true,
