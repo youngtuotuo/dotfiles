@@ -60,7 +60,7 @@ local nvim_lsp = require('lspconfig')
     client.config.flags.allow_incremental_sync = true
   end
   local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-  local border = "rounded"
+  local border = "double"
   function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = opts.border or border

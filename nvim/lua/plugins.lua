@@ -6,6 +6,9 @@ return require('packer').startup(function()
   use { "tjdevries/colorbuddy.vim" }
   use { "tjdevries/gruvbuddy.nvim" }
   use { "norcalli/nvim-colorizer.lua" }
+  use { "lukas-reineke/indent-blankline.nvim" }
+  use { "marko-cerovac/material.nvim" }
+  use { "nvim-lualine/lualine.nvim" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }
   -- formatter
