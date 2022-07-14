@@ -9,6 +9,7 @@ return require('packer').startup(function()
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "marko-cerovac/material.nvim" }
   use { "nvim-lualine/lualine.nvim" }
+  use { "kyazdani42/nvim-web-devicons" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }
   -- formatter

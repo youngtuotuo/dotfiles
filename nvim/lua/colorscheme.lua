@@ -6,20 +6,26 @@ vim.opt.termguicolors = true
 
 require("colorizer").setup()
 
-vim.opt.list = true
-vim.opt.listchars:append("eol:↴")
 require("indent_blankline").setup {
   show_end_of_line = true,
 }
 
 vim.g.material_style = "deep ocean"
 require("material").setup {
+  contrast = {
+    floating_windows = true
+  },
   high_visibility = {
     darker = true
   },
-  lualine_style = "default",
+  disable = {
+    background = false
+  },
+  lualine_style = "stealth",
   custom_highlights = {
     Normal = { bg = 'NONE' },
+    NormalNC = { bg = 'NONE' },
+    WinSeparator = { fg = '#DDDCD7' }
   }
 }
 vim.cmd 'colo material'
