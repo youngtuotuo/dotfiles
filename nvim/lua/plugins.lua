@@ -10,6 +10,7 @@ return require('packer').startup(function()
   use { "marko-cerovac/material.nvim" }
   use { "nvim-lualine/lualine.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
+  use { "rebelot/kanagawa.nvim" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }
   -- formatter

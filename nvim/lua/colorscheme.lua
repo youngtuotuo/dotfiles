@@ -7,31 +7,57 @@ vim.opt.termguicolors = true
 require("colorizer").setup()
 
 require("indent_blankline").setup {
+  enabled = false,
   show_end_of_line = true,
 }
 
-vim.g.material_style = "deep ocean"
-require("material").setup {
-  contrast = {
-    floating_windows = true
-  },
-  high_visibility = {
-    darker = true
-  },
-  disable = {
-    background = false
-  },
-  lualine_style = "stealth",
-  custom_highlights = {
-    Normal = { bg = 'NONE' },
-    NormalNC = { bg = 'NONE' },
-    WinSeparator = { fg = '#DDDCD7' }
-  }
+require("nvim-web-devicons").setup {
+  default = true;
 }
-vim.cmd 'colo material'
+
+-- Default options:
+require('kanagawa').setup({
+    undercurl = false,           -- enable undercurls
+    commentStyle = { italic = false },
+    functionStyle = {},
+    keywordStyle = { italic = false},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    variablebuiltinStyle = { italic = false},
+    specialReturn = true,       -- special highlight for the return keyword
+    specialException = true,    -- special highlight for exception handling keywords
+    transparent = true,        -- do not set background color
+    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+    globalStatus = false,       -- adjust window separators highlight for laststatus=3
+    colors = {},
+    overrides = {},
+})
+
+-- setup must be called before loading
+vim.cmd("colorscheme kanagawa")
+
+-- vim.g.material_style = "deep ocean"
+-- require("material").setup {
+--   contrast = {
+--     floating_windows = true
+--   },
+--   high_visibility = {
+--     darker = true
+--   },
+--   disable = {
+--     background = false
+--   },
+--   lualine_style = "stealth",
+--   custom_highlights = {
+--     Normal = { bg = 'NONE' },
+--     NormalNC = { bg = 'NONE' },
+--     WinSeparator = { fg = '#DDDCD7' }
+--   }
+-- }
+-- vim.cmd 'colo material'
 require('lualine').setup {
   options = {
-    icons_enabled = false
+    icons_enabled = true
   }
 }
 -- require("colorbuddy").colorscheme "gruvbuddy"
