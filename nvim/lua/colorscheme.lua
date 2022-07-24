@@ -15,26 +15,36 @@ require("nvim-web-devicons").setup {
   default = true;
 }
 
+vim.g.solarized_italics = 0
+vim.g.solarized_visibility = 'low'
+vim.cmd('colorscheme solarized')
+
+
+-- require('onedark').setup {
+--     style = 'deep' -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+-- }
+-- require('onedark').load()
+
 -- Default options:
-require('kanagawa').setup({
-    undercurl = false,           -- enable undercurls
-    commentStyle = { italic = false },
-    functionStyle = {},
-    keywordStyle = { italic = false},
-    statementStyle = { bold = true },
-    typeStyle = {},
-    variablebuiltinStyle = { italic = false},
-    specialReturn = true,       -- special highlight for the return keyword
-    specialException = true,    -- special highlight for exception handling keywords
-    transparent = true,        -- do not set background color
-    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
-    globalStatus = false,       -- adjust window separators highlight for laststatus=3
-    colors = {},
-    overrides = {},
-})
+-- require('kanagawa').setup({
+--     undercurl = false,           -- enable undercurls
+--     commentStyle = { italic = false },
+--     functionStyle = {},
+--     keywordStyle = { italic = false},
+--     statementStyle = { bold = true },
+--     typeStyle = {},
+--     variablebuiltinStyle = { italic = false},
+--     specialReturn = true,       -- special highlight for the return keyword
+--     specialException = true,    -- special highlight for exception handling keywords
+--     transparent = true,        -- do not set background color
+--     dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+--     globalStatus = false,       -- adjust window separators highlight for laststatus=3
+--     colors = {},
+--     overrides = {},
+-- })
 
 -- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme kanagawa")
 
 -- vim.g.material_style = "deep ocean"
 -- require("material").setup {

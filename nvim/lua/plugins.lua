@@ -3,6 +3,8 @@ return require('packer').startup(function()
   -- packer can manage itself
   use { "wbthomason/packer.nvim" }
   -- color
+  use { 'ishan9299/nvim-solarized-lua' }
+  use { 'navarasu/onedark.nvim' }
   use { "tjdevries/colorbuddy.vim" }
   use { "tjdevries/gruvbuddy.nvim" }
   use { "norcalli/nvim-colorizer.lua" }
