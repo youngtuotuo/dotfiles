@@ -4,7 +4,7 @@ require('nvim-treesitter.configs').setup {
     enable = false
   },
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = false, -- false will disable the whole extension
   },
   textobjects = {
     enable=true,

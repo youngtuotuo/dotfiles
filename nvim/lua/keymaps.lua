@@ -33,7 +33,7 @@ keymap("n", "<space>t", ":TodoTelescope cwd=.<CR>", default_opts)
 keymap("n", "<space>v", ":Telescope lsp_document_symbols<CR>", default_opts)
 
 -- g++ compile and execute
-keymap("n", "<leader>g+", ":!g++ -o vimpp.out % && ./vimpp.out<CR>", default_opts)
+keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.out % && ./vimpp.out<CR>", default_opts)
 keymap("n", "<leader>gc", ":!gcc -o vimc.out % && ./vimc.out<CR>", default_opts)
 
 -- James Powell python3
