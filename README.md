@@ -1,20 +1,9 @@
-## Firefox Tab
+## Firefox to Chrome Style
 I hate proton tab style.<br>
-1. Type `about:support` in firefox url
-2. Find profile path
-3. Copy `chrome` folder to this profile path
-4. Type `about:config` in firefox url and accept the risk warning.
-5. Search `stylesheet` and double click `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
-6. Search `compact` and double click `browser.compactmode.show` to `true`.
-7. Customize firefox toolbar to turn `density` to compact mode.
+I use WaveFox https://github.com/QNetITQ/WaveFox.
 
-Ubuntu 2204:<br>
 <p align="center">
     <img src="pictures/firefox.png" />
-</p>
-MacOS:<br>
-<p align="center">
-    <img src="pictures/firefox_mac.png" />
 </p>
 
 
@@ -64,10 +53,9 @@ Default color scheme is enough for developing.
 ```
 
 
-## Install pyright, vimls
+## Install pyright
 ```bash
     $ sudo apt install nodejs
-    $ sudo npm -g install vim-language-server
     $ sudo npm -g install pyright
 ```
 ### cv2 typing issue
