@@ -19,6 +19,7 @@ return require('packer').startup(function()
   use { "nvim-treesitter/nvim-treesitter-textobjects" }
   use { "nvim-treesitter/playground" }
   use { "nvim-treesitter/nvim-treesitter-context" }
+  use { "p00f/nvim-ts-rainbow" }
   -- lsp
   use { "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" }
   use { "onsails/lspkind-nvim" }
