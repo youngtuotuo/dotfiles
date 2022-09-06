@@ -1,5 +1,6 @@
 HOME = os.getenv("HOME")
 
+vim.opt.guifont="Hack NF:h13"
 vim.opt.completeopt="menu,menuone,noselect"
 vim.opt.encoding = "utf-8"
 vim.opt.backspace = "indent,eol,start"
@@ -13,8 +14,8 @@ vim.opt.mouse = 'a'
 vim.opt.laststatus = 2
 vim.opt.fillchars = 'stl: '
 -- vim.opt.winbar = "%f %m"
--- vim.opt.nu = true
--- vim.opt.rnu = true
+vim.opt.nu = true
+vim.opt.rnu = true
 -- vim.wo.colorcolumn = "81"
 
 -- netrw

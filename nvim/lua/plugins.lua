@@ -3,10 +3,10 @@ return require('packer').startup(function()
   -- packer can manage itself
   use { "wbthomason/packer.nvim" }
   -- color
-  use { 'folke/tokyonight.nvim' }
   use { "norcalli/nvim-colorizer.lua" }
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "nvim-lualine/lualine.nvim" }
+  use { "Mofiqul/vscode.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }
@@ -19,7 +19,6 @@ return require('packer').startup(function()
   use { "nvim-treesitter/nvim-treesitter-textobjects" }
   use { "nvim-treesitter/playground" }
   use { "nvim-treesitter/nvim-treesitter-context" }
-  use { "p00f/nvim-ts-rainbow" }
   -- lsp
   use { "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" }
   use { "onsails/lspkind-nvim" }
