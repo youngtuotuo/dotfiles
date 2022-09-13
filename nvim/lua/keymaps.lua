@@ -31,10 +31,11 @@ keymap("n", "<space>h", ":Telescope help_tags<CR>", default_opts)
 keymap("n", "<space>m", ":Telescope keymaps<CR>", default_opts)
 keymap("n", "<space>t", ":TodoTelescope cwd=.<CR>", default_opts)
 keymap("n", "<space>v", ":Telescope lsp_document_symbols<CR>", default_opts)
+keymap("n", "<space>w", ":Telescope workspaces<CR>", default_opts)
 
 -- g++ compile and execute
-keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.out % && ./vimpp.out<CR>", default_opts)
-keymap("n", "<leader>gc", ":!gcc -o vimc.out % && ./vimc.out<CR>", default_opts)
+keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.exe % && vimpp.exe<CR>", default_opts)
+keymap("n", "<leader>gc", ":!gcc -o vimc.exe % && vimc.exe<CR>", default_opts)
 
 -- James Powell python3
 keymap("v", "<leader>p", ":w !python3<CR>", default_opts)
@@ -130,4 +131,5 @@ keymap("n", "<S-Up>",     ":resize -1<CR>", default_opts)
 keymap("n", "<S-Down>",   ":resize +1<CR>", default_opts)
 
 -- netrw
-keymap("n", "-", ":E<CR>", default_opts)
+-- keymap("n", "-", ":E<CR>", default_opts)
+-- keymap("n", "-", ":NvimTreeToggle<CR>", default_opts)

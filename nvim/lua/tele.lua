@@ -42,7 +42,12 @@ require('telescope').setup{
       fzy_native = {
         override_generic_sorter = true,
         override_file_sorter = true,
-      }
+      },
+      workspaces = {
+        -- keep insert mode after selection in the picker, default is false
+        keep_insert = false,
+      },
     }
   }
-  require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzy_native')
+require('telescope').load_extension("workspaces")

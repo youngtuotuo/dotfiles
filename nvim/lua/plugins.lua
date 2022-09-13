@@ -8,6 +8,9 @@ return require('packer').startup(function()
   use { "nvim-lualine/lualine.nvim" }
   use { "Mofiqul/vscode.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
+  -- workspace
+  use { "kyazdani42/nvim-tree.lua" }
+  use { "natecraddock/workspaces.nvim" }
   -- stablizer
   use { "luukvbaal/stabilize.nvim" }
   -- formatter

@@ -41,6 +41,9 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+-- vim.cmd [[
+--         colo lunaperche
+-- ]]
 local c = require('vscode.colors')
 require('vscode').setup({
     -- Enable transparent background
@@ -63,4 +66,31 @@ require('vscode').setup({
         -- use colors from this colorscheme by requiring vscode.colors!
         -- Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
     }
+})
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- empty setup using defaults
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "-", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+require("workspaces").setup({
+  hooks = {
+    open = "NvimTreeOpen .",
+  }
 })

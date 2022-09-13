@@ -17,6 +17,7 @@ vim.opt.fillchars = 'stl: '
 vim.opt.nu = true
 vim.opt.rnu = true
 -- vim.wo.colorcolumn = "81"
+vim.opt.cursorline = true
 
 -- netrw
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
@@ -58,5 +59,4 @@ vim.cmd [[
   set shortmess+=c
   autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
   autocmd FileType c,cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-
 ]]
