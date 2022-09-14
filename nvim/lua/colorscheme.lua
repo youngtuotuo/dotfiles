@@ -14,7 +14,7 @@ require("nvim-web-devicons").setup {
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'github_dark_default',
+    theme = 'catppuccin',
   },
   sections = {
     lualine_a = {
@@ -42,9 +42,15 @@ require('lualine').setup {
 -- vim.cmd [[
 --         colo lunaperche
 -- ]]
-require('github-theme').setup({
-  theme_style='dark_default' -- dark/dimmed/dark_default/dark_colorblind/light/light_default/light_colorblind
-})
+-- require('github-theme').setup({
+--   theme_style='dimmed' -- dark/dimmed/dark_default/dark_colorblind/light/light_default/light_colorblind
+-- })
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+
+require("catppuccin").setup()
+
+vim.cmd [[colorscheme catppuccin]]
+
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 

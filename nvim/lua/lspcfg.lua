@@ -82,8 +82,8 @@ local nvim_lsp = require('lspconfig')
   end
 
   local handlers = {
-    ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=120}),
-    ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=120}),
+    ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {max_width=180}),
+    ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {max_width=180}),
   }
   local setup_server = function(server, config)
     if not config then
