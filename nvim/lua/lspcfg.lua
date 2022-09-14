@@ -3,11 +3,6 @@ local nvim_lsp = require('lspconfig')
 
   local custom_on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
-        -- vim.cmd [[
-        --   hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-        --   hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-        --   hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        -- ]]
         vim.api.nvim_create_augroup('lsp_document_highlight', {
           clear = false
         })
@@ -47,12 +42,6 @@ local nvim_lsp = require('lspconfig')
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   end
 
-  -- local signs = { Error = "* ", Warn = "! ", Hint = "> ", Info = "- " }
-  -- for type, icon in pairs(signs) do
-  --   local hl = "DiagnosticSign" .. type
-  --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  -- end
-
   -- diagnostic after each line
   vim.diagnostic.config({
     -- virtual_text = {
@@ -67,7 +56,7 @@ local nvim_lsp = require('lspconfig')
     update_in_insert = false,
     severity_sort = true,
     source = true,
-    float = {header="Yayayayayayaya", prefix = "好笨 σ`∀´)σ ", scope = "c"},
+    -- float = {header="Yayayayayayaya", prefix = "好笨 σ`∀´)σ ", scope = "c"},
   })
 
   local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -123,7 +112,7 @@ local nvim_lsp = require('lspconfig')
   end
 
   local servers = {
-    pyright = {
+    jedi_language_server = {
       root_dir = util.root_pattern(unpack({
         '.gitignore',
         '.git',
@@ -134,16 +123,29 @@ local nvim_lsp = require('lspconfig')
         'Pipfile',
         'pyrightconfig.json',
       })),
-      settings = {
-        pyright = {
-        },
-        python = {
-          analysis = {
-            autoImportCompletions = ture
-          },
-        },
-      },
+      settings = { },
     },
+    -- pyright = {
+    --   root_dir = util.root_pattern(unpack({
+    --     '.gitignore',
+    --     '.git',
+    --     'pyproject.toml',
+    --     'setup.py',
+    --     'setup.cfg',
+    --     'requirements.txt',
+    --     'Pipfile',
+    --     'pyrightconfig.json',
+    --   })),
+    --   settings = {
+    --     pyright = {
+    --     },
+    --     python = {
+    --       analysis = {
+    --         autoImportCompletions = ture
+    --       },
+    --     },
+    --   },
+    -- },
     ccls = {
       init_options = {
         closingLabels = true,

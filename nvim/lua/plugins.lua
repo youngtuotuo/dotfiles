@@ -8,6 +8,7 @@ return require('packer').startup(function()
   use { "nvim-lualine/lualine.nvim" }
   use { "Mofiqul/vscode.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
+  use ({ 'projekt0n/github-nvim-theme' })
   -- workspace
   use { "kyazdani42/nvim-tree.lua" }
   use { "natecraddock/workspaces.nvim" }

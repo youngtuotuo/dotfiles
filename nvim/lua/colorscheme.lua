@@ -14,20 +14,18 @@ require("nvim-web-devicons").setup {
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'vscode',
-    component_separators = '|',
-    section_separators = { left = '', right = '' },
+    theme = 'github_dark_default',
   },
   sections = {
     lualine_a = {
-      { 'mode', separator = { left = '' }, right_padding = 2 },
+      { 'mode', right_padding = 2 },
     },
     lualine_b = { 'filename', 'branch' },
     lualine_c = { 'fileformat' },
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
-      { 'location', separator = { right = '' }, left_padding = 2 },
+      { 'location', left_padding = 2 },
     },
   },
   inactive_sections = {
@@ -44,30 +42,9 @@ require('lualine').setup {
 -- vim.cmd [[
 --         colo lunaperche
 -- ]]
-local c = require('vscode.colors')
-require('vscode').setup({
-    -- Enable transparent background
-    transparent = true,
-
-    -- Enable italic comment
-    italic_comments = true,
-
-    -- Disable nvim-tree background color
-    disable_nvimtree_bg = true,
-
-    -- Override colors (see ./lua/vscode/colors.lua)
-    color_overrides = {
-        -- vscLineNumber = '#FFFFFF',
-    },
-
-    -- Override highlight groups (see ./lua/vscode/theme.lua)
-    group_overrides = {
-        -- this supports the same val table as vim.api.nvim_set_hl
-        -- use colors from this colorscheme by requiring vscode.colors!
-        -- Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
-    }
+require('github-theme').setup({
+  theme_style='dark_default' -- dark/dimmed/dark_default/dark_colorblind/light/light_default/light_colorblind
 })
--- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
