@@ -3,11 +3,10 @@ return require('packer').startup(function()
   -- packer can manage itself
   use { "wbthomason/packer.nvim" }
   -- color
+  use { "startup-nvim/startup.nvim", config = function() require"startup".setup({ theme="dashboard" }) end }
   use { "norcalli/nvim-colorizer.lua" }
   use { "lukas-reineke/indent-blankline.nvim" }
-  use { "Mofiqul/vscode.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { 'projekt0n/github-nvim-theme' }
   use { "catppuccin/nvim" }
   -- workspace
   use { "kyazdani42/nvim-tree.lua" }

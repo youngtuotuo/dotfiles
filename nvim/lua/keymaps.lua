@@ -2,20 +2,6 @@ vim.cmd [[
   command! FormatJSON %!python -m json.tool
 ]]
 
--- avoid finger not leave shift
--- vim.api.nvim_create_user_command(
---  'W',
---  'call write',
--- )
--- vim.api.nvim_create_user_command(
---  'X',
---  'call xit',
--- )
--- vim.api.nvim_create_user_command(
---  'Q',
---  'call quit',
--- )
-
 local keymap = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true }
@@ -104,9 +90,9 @@ keymap("n", "cn", ":cnext<CR>zz", default_opts)
 keymap("n", "cp", ":cprev<CR>zz", default_opts)
 
 -- ctrl-s to save
-keymap("n", "<c-s>", ":w<CR>", default_opts)
-keymap("v", "<c-s>", "<c-c>:w<CR>", default_opts)
-keymap("i", "<c-s>", "<c-c>:w<CR>", default_opts)
+-- keymap("n", "<c-s>", ":w<CR>", default_opts)
+-- keymap("v", "<c-s>", "<c-c>:w<CR>", default_opts)
+-- keymap("i", "<c-s>", "<c-c>:w<CR>", default_opts)
 
 -- bracket complete
 keymap("i", "{<CR>", "{<CR>}<C-o>O", default_opts)
@@ -129,7 +115,3 @@ keymap("n", "<S-Left>",   ":vertical resize +1<CR>", default_opts)
 keymap("n", "<S-Right>",  ":vertical resize -1<CR>", default_opts)
 keymap("n", "<S-Up>",     ":resize -1<CR>", default_opts)
 keymap("n", "<S-Down>",   ":resize +1<CR>", default_opts)
-
--- netrw
--- keymap("n", "-", ":E<CR>", default_opts)
--- keymap("n", "-", ":NvimTreeToggle<CR>", default_opts)

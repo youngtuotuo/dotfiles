@@ -7,17 +7,7 @@ require("indent_blankline").setup {
   show_end_of_line = true,
 }
 
-require("nvim-web-devicons").setup {
-  default = true;
-}
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-
-require("catppuccin").setup()
-
-vim.cmd [[colorscheme catppuccin]]
-
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
+require("nvim-web-devicons").setup { default = true; }
 
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
@@ -36,8 +26,18 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
 require("workspaces").setup({
   hooks = {
     open = "NvimTreeOpen .",
   }
 })
+
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+
+require("catppuccin").setup()
+
+vim.cmd [[colorscheme catppuccin]]
+
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
