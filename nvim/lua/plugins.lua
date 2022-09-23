@@ -1,47 +1,50 @@
 -- Plugins
 return require('packer').startup(function()
   -- packer can manage itself
-  use { "wbthomason/packer.nvim" }
+  use {"wbthomason/packer.nvim"}
   -- color
-  use { "startup-nvim/startup.nvim", config = function() require"startup".setup({ theme="dashboard" }) end }
-  use { "norcalli/nvim-colorizer.lua" }
-  use { "lukas-reineke/indent-blankline.nvim" }
-  use { "kyazdani42/nvim-web-devicons" }
-  use { "catppuccin/nvim" }
+  use {"norcalli/nvim-colorizer.lua"}
+  use {"lukas-reineke/indent-blankline.nvim"}
+  use {"kyazdani42/nvim-web-devicons"}
+  use {"catppuccin/nvim"}
   -- workspace
-  use { "kyazdani42/nvim-tree.lua" }
-  use { "natecraddock/workspaces.nvim" }
+  use {"kyazdani42/nvim-tree.lua"}
+  use {"natecraddock/workspaces.nvim"}
   -- stablizer
-  use { "luukvbaal/stabilize.nvim" }
+  use {"luukvbaal/stabilize.nvim"}
   -- formatter
-  use { "sbdchd/neoformat" }
+  use {"sbdchd/neoformat"}
   -- git
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use {'TimUntersberger/neogit'}
   -- treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
-  use { "nvim-treesitter/nvim-treesitter-textobjects" }
-  use { "nvim-treesitter/playground" }
-  use { "nvim-treesitter/nvim-treesitter-context" }
+  use {"nvim-treesitter/nvim-treesitter"}
+  use {"nvim-treesitter/nvim-treesitter-textobjects"}
+  use {"nvim-treesitter/playground"}
+  use {"nvim-treesitter/nvim-treesitter-context"}
   -- lsp
-  use { "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" }
-  use { "onsails/lspkind-nvim" }
-  use { "neovim/nvim-lspconfig" }
+  use {"onsails/lspkind-nvim"}
+  use {"neovim/nvim-lspconfig"}
   -- nvim-cmp
-  use { "hrsh7th/nvim-cmp" }
-  use { "hrsh7th/cmp-nvim-lsp" }
-  use { "hrsh7th/cmp-nvim-lua" }
+  use {"hrsh7th/nvim-cmp"}
+  use {"hrsh7th/cmp-nvim-lsp"}
+  use {"hrsh7th/cmp-nvim-lua"}
   -- snippet
-  use { "L3MON4D3/LuaSnip" }
-  use { "saadparwaiz1/cmp_luasnip" }
-  use { "rafamadriz/friendly-snippets" }
+  use {"L3MON4D3/LuaSnip"}
+  use {"saadparwaiz1/cmp_luasnip"}
+  use {"rafamadriz/friendly-snippets"}
   -- markdown
-  use { "iamcco/markdown-preview.nvim", run = 'cd app && yarn install', setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },}
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = 'cd app && yarn install',
+    setup = function() vim.g.mkdp_filetypes = {"markdown"} end,
+    ft = {"markdown"}
+  }
   -- TODO
-  use { "folke/todo-comments.nvim" }
+  use {"folke/todo-comments.nvim"}
   -- comment
-  use { "terrortylor/nvim-comment" }
+  use {"terrortylor/nvim-comment"}
   -- telescope
-  use { "nvim-telescope/telescope-fzy-native.nvim", run = 'make' }
-  use { "nvim-lua/plenary.nvim" }
-  use { "nvim-telescope/telescope.nvim" }
+  use {"nvim-telescope/telescope-fzy-native.nvim", run = 'make'}
+  use {"nvim-lua/plenary.nvim"}
+  use {"nvim-telescope/telescope.nvim"}
 end)

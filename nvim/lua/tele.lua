@@ -1,5 +1,5 @@
-local actions = require'telescope.actions'
-require('telescope').setup{
+local actions = require 'telescope.actions'
+require('telescope').setup {
   defaults = {
     initial_mode = "insert",
     mappings = {
@@ -7,15 +7,15 @@ require('telescope').setup{
         ["q"] = actions.close,
         ["<C-c>"] = actions.close,
         ["<Tab>"] = actions.move_selection_next,
-        ["<S-Tab>"] = actions.move_selection_previous,
-      }, 
+        ["<S-Tab>"] = actions.move_selection_previous
+      },
       i = {
         ["<C-c>"] = actions.close,
         ["<C-n>"] = actions.move_selection_next,
-        ["<C-p>"] = actions.move_selection_previous,
-      },
+        ["<C-p>"] = actions.move_selection_previous
+      }
     },
-    layout_strategy="vertical",
+    layout_strategy = "vertical",
     layout_config = {
       vertical = {
         width = 0.7,
@@ -25,29 +25,20 @@ require('telescope').setup{
         preview_height = 0.4,
         preview_cutoff = 5,
         prompt_position = "top"
-      },
+      }
     },
     vimgrep_arguments = {
-        'rg',
-        '--color=never',
-        '--no-heading',
-        '--with-filename',
-        '--line-number',
-        '--column',
-        '--smart-case',
-        '-u'
-      },
-    },
-    extensions = {
-      fzy_native = {
-        override_generic_sorter = true,
-        override_file_sorter = true,
-      },
-      workspaces = {
-        -- keep insert mode after selection in the picker, default is false
-        keep_insert = false,
-      },
+      'rg', '--color=never', '--no-heading', '--with-filename', '--line-number',
+      '--column', '--smart-case', '-u'
+    }
+  },
+  extensions = {
+    fzy_native = {override_generic_sorter = true, override_file_sorter = true},
+    workspaces = {
+      -- keep insert mode after selection in the picker, default is false
+      keep_insert = false
     }
   }
+}
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension("workspaces")

@@ -1,21 +1,22 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua', "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  indent = {
-    enable = false
-  },
+  ensure_installed = {
+    'lua', "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python",
+    "vim"
+  }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  indent = {enable = false},
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true -- false will disable the whole extension
   },
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    max_file_lines = nil -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
   textobjects = {
-    enable=true,
+    enable = true,
     select = {
       enable = true,
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
@@ -24,33 +25,24 @@ require('nvim-treesitter.configs').setup {
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',
         ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
+        ['ic'] = '@class.inner'
+      }
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
+      goto_next_start = {[']m'] = '@function.outer', [']]'] = '@class.outer'},
+      goto_next_end = {[']M'] = '@function.outer', [']['] = '@class.outer'},
       goto_previous_start = {
         ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
+        ['[['] = '@class.outer'
       },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-  },
+      goto_previous_end = {['[M'] = '@function.outer', ['[]'] = '@class.outer'}
+    }
+  }
 }
 
-require'treesitter-context'.setup{
+require'treesitter-context'.setup {
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   throttle = true, -- Throttles plugin updates (may improve performance)
   max_lines = 2, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -60,15 +52,13 @@ require'treesitter-context'.setup{
     -- By setting the 'default' entry below, you can control which nodes you want to
     -- appear in the context window.
     default = {
-        'class',
-        'function',
-        'method',
-        -- 'for', -- These won't appear in the context
-        -- 'while',
-        -- 'if',
-        -- 'switch',
-        -- 'case',
-    },
+      'class', 'function', 'method'
+      -- 'for', -- These won't appear in the context
+      -- 'while',
+      -- 'if',
+      -- 'switch',
+      -- 'case',
+    }
   },
   exact_patterns = {}
 }

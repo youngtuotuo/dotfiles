@@ -1,7 +1,7 @@
 HOME = os.getenv("HOME")
 
-vim.opt.guifont="Hack NF:h13"
-vim.opt.completeopt="menu,menuone,noselect"
+vim.opt.guifont = "Hack NF:h13"
+vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.encoding = "utf-8"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.errorbells = false

@@ -3,8 +3,8 @@ vim.cmd [[
 ]]
 
 local keymap = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
-local expr_opts = { noremap = true, expr = true, silent = true }
+local default_opts = {noremap = true, silent = true}
+local expr_opts = {noremap = true, expr = true, silent = true}
 
 -- Telescope Stuff
 keymap("n", "<space>r", ":Telescope lsp_references<CR>", default_opts)
@@ -20,7 +20,8 @@ keymap("n", "<space>v", ":Telescope lsp_document_symbols<CR>", default_opts)
 keymap("n", "<space>w", ":Telescope workspaces<CR>", default_opts)
 
 -- g++ compile and execute
-keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.exe % && vimpp.exe<CR>", default_opts)
+keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.exe % && vimpp.exe<CR>",
+       default_opts)
 keymap("n", "<leader>gc", ":!gcc -o vimc.exe % && vimc.exe<CR>", default_opts)
 
 -- James Powell python3
@@ -111,7 +112,7 @@ keymap("v", "K", ":move '<-2<CR>gv=gv", default_opts)
 keymap("v", "J", ":move '>+1<CR>gv=gv", default_opts)
 
 -- Resizing panes
-keymap("n", "<S-Left>",   ":vertical resize +1<CR>", default_opts)
-keymap("n", "<S-Right>",  ":vertical resize -1<CR>", default_opts)
-keymap("n", "<S-Up>",     ":resize -1<CR>", default_opts)
-keymap("n", "<S-Down>",   ":resize +1<CR>", default_opts)
+keymap("n", "<S-Left>", ":vertical resize +1<CR>", default_opts)
+keymap("n", "<S-Right>", ":vertical resize -1<CR>", default_opts)
+keymap("n", "<S-Up>", ":resize -1<CR>", default_opts)
+keymap("n", "<S-Down>", ":resize +1<CR>", default_opts)
