@@ -5,7 +5,6 @@ return require('packer').startup(function()
   -- color
   use { "norcalli/nvim-colorizer.lua" }
   use { "lukas-reineke/indent-blankline.nvim" }
-  use { "nvim-lualine/lualine.nvim" }
   use { "Mofiqul/vscode.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
   use { 'projekt0n/github-nvim-theme' }

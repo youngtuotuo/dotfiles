@@ -56,7 +56,6 @@ local nvim_lsp = require('lspconfig')
     update_in_insert = false,
     severity_sort = true,
     source = true,
-    -- float = {header="Yayayayayayaya", prefix = "好笨 σ`∀´)σ ", scope = "c"},
   })
 
   local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -112,7 +111,7 @@ local nvim_lsp = require('lspconfig')
   end
 
   local servers = {
-    jedi_language_server = {
+    pylsp = {
       root_dir = util.root_pattern(unpack({
         '.gitignore',
         '.git',
@@ -122,8 +121,27 @@ local nvim_lsp = require('lspconfig')
         'requirements.txt',
         'Pipfile',
         'pyrightconfig.json',
+        'main.py',
       })),
-      settings = { },
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = {},
+              maxLineLength = 100
+            }
+          },
+          autopep8 = {
+            enabled = false
+          },
+          pydocstyle = {
+            enabled = false
+          },
+          McCabe = {
+            enabled = false
+          }
+        }
+      },
     },
     -- pyright = {
     --   root_dir = util.root_pattern(unpack({

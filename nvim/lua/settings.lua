@@ -58,5 +58,5 @@ vim.cmd [[
   filetype indent on
   set shortmess+=c
   autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-  autocmd FileType c,cpp setlocal shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType lua,c,cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 ]]
