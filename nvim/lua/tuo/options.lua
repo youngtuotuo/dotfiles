@@ -1,4 +1,5 @@
 local options = {
+  -- winbar = "%f %m",
   backspace = "indent,eol,start",
   backup = false,
   clipboard = "unnamedplus",
@@ -11,7 +12,7 @@ local options = {
   guifont = "Hack NF:h13",
   hidden = false,
   ignorecase = true,
-  laststatus = 1,
+  laststatus = 3,
   matchtime = 1,
   mouse = "a",
   nu = true,
@@ -30,7 +31,6 @@ local options = {
   updatetime = 400,
   viminfo = "'1000",
   visualbell = false,
-  -- winbar = "%f %m",
   wrap = false,
   writebackup = false
 }

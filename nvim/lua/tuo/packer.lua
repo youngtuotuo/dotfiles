@@ -70,7 +70,7 @@ return require('packer').startup(function()
   -- TODO
   use {"folke/todo-comments.nvim"}
   -- comment
-  use {"terrortylor/nvim-comment"}
+  use {"numToStr/Comment.nvim"}
   -- telescope
   use {"nvim-telescope/telescope-fzy-native.nvim", run = 'make'}
   use {"nvim-lua/plenary.nvim"}

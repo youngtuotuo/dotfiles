@@ -14,4 +14,5 @@ require("tuo.todo") -- highlight TODO, FIX, .etc
 require("tuo.tree") -- nvim-tree file explorer
 require("tuo.treesitter") -- treesitter related
 require("tuo.workspaces") -- workspace manager
+require("tuo.neogit") -- workspace manager
 
