@@ -81,4 +81,8 @@ Ubuntu 2204
     $ sudo make install
     $ cd Release
 ```
-
+## TODO
+Ubuntu setup
+- [ ] ble.sh
+- [ ] WhiteSur Theme
+- [ ] 

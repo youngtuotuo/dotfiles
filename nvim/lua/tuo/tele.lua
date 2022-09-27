@@ -1,6 +1,15 @@
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+  return
+end
+
 local actions = require 'telescope.actions'
-require('telescope').setup {
+
+telescope.setup({
   defaults = {
+    prompt_prefix = " ",
+    selection_caret = " ",
+    path_display = { "smart" },
     initial_mode = "insert",
     mappings = {
       n = {
@@ -39,6 +48,6 @@ require('telescope').setup {
       keep_insert = false
     }
   }
-}
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension("workspaces")
+})
+telescope.load_extension('fzy_native')
+telescope.load_extension("workspaces")

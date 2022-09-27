@@ -1,10 +1,16 @@
-vim.cmd [[
-  command! FormatJSON %!python -m json.tool
-]]
-
+-- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
+local term_opts = {silent = true}
 local expr_opts = {noremap = true, expr = true, silent = true}
+
+-- Modes
+-- normal_mode = "n"
+-- insert_mode = "i"
+-- visual_mode = "v"
+-- visual_block_mode = "x"
+-- term_mode = "t"
+-- command_mode = "c"
 
 -- Telescope Stuff
 keymap("n", "<space>r", ":Telescope lsp_references<CR>", default_opts)
@@ -39,15 +45,31 @@ keymap("n", "<leader>p", ":call FullPy()<CR>", default_opts)
 keymap("n", "<leader>fp", "Neoformat black<CR>", default_opts)
 -- format c/c++
 keymap("n", "<leader>fc", ":Neoformat clang-format<CR>", default_opts)
+-- format lua
+vim.cmd [[
+  function! FullLua()
+    let b:path=expand('%:r') .. '.lua'
+    execute "!" . "luaformatter -i -v --indent-width=2 --no-use-tab " . b:path
+  endfunction
+]]
+keymap("n", "<leader>fl", ":call FullLua()<CR>", default_opts)
 
--- esc to exit terminal mode
-keymap("t", "<Esc>", "<C-\\><C-n>", default_opts)
+-- <C-c> will raise interrupted error of lsp
+keymap("n", "<C-c>", "<Esc>", default_opts)
 
 -- Easier pane navigation
-keymap("n", "<C-j>", "<C-w><C-j>", default_opts)
-keymap("n", "<C-h>", "<C-w><C-h>", default_opts)
-keymap("n", "<C-k>", "<C-w><C-k>", default_opts)
-keymap("n", "<C-l>", "<C-w><C-l>", default_opts)
+keymap("n", "<C-j>", "<C-w>j", default_opts)
+keymap("n", "<C-h>", "<C-w>h", default_opts)
+keymap("n", "<C-k>", "<C-w>k", default_opts)
+keymap("n", "<C-l>", "<C-w>l", default_opts)
+
+-- Better terminal navigation
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+-- esc to exit terminal mode
+keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 
 -- number line
 keymap("n", "<leader>ss", ":set invnu invrnu<CR>", default_opts)
@@ -71,6 +93,10 @@ keymap("n", "N", "Nzz", default_opts)
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
+vim.cmd [[
+  command! FormatJSON %!python -m json.tool
+]]
+
 -- Jump list mutations
 vim.cmd [[
   nnoremap <expr> k (v:count > 5 ? "m'" . v:count: "") . 'k'
@@ -84,35 +110,27 @@ keymap("v", ">", ">gv", default_opts)
 -- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP', default_opts)
 
+-- Move selected line / block of text in visual mode
+keymap("v", "K", ":move .-2<CR>==", default_opts)
+keymap("v", "J", ":move .+1<CR>==", default_opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
+keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
+
 -- Quickfix list
 keymap("n", "co", ":copen<CR>", default_opts)
 keymap("n", "cc", ":cclose<CR>", default_opts)
 keymap("n", "cn", ":cnext<CR>zz", default_opts)
 keymap("n", "cp", ":cprev<CR>zz", default_opts)
 
--- ctrl-s to save
--- keymap("n", "<c-s>", ":w<CR>", default_opts)
--- keymap("v", "<c-s>", "<c-c>:w<CR>", default_opts)
--- keymap("i", "<c-s>", "<c-c>:w<CR>", default_opts)
-
--- bracket complete
-keymap("i", "{<CR>", "{<CR>}<C-o>O", default_opts)
-keymap("i", "(<CR>", "(<CR>)<C-o>O", default_opts)
-keymap("i", "[<CR>", "[<CR>]<C-o>O", default_opts)
-
 -- Undo break points
 keymap("i", ",", ",<C-g>u", default_opts)
 keymap("i", ".", ".<C-g>u", default_opts)
 
 -- Cancel search highlighting with ESC
-keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
-
--- Move selected line / block of text in visual mode
-keymap("v", "K", ":move '<-2<CR>gv=gv", default_opts)
-keymap("v", "J", ":move '>+1<CR>gv=gv", default_opts)
+keymap("n", "<ESC>", ":nohl<CR>", default_opts)
 
 -- Resizing panes
-keymap("n", "<S-Left>", ":vertical resize +1<CR>", default_opts)
-keymap("n", "<S-Right>", ":vertical resize -1<CR>", default_opts)
-keymap("n", "<S-Up>", ":resize -1<CR>", default_opts)
-keymap("n", "<S-Down>", ":resize +1<CR>", default_opts)
+keymap("n", "<S-Left>", ":vertical resize -1<CR>", default_opts)
+keymap("n", "<S-Right>", ":vertical resize +1<CR>", default_opts)
+keymap("n", "<S-Up>", ":resize +1<CR>", default_opts)
+keymap("n", "<S-Down>", ":resize -1<CR>", default_opts)
