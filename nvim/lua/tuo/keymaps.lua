@@ -41,19 +41,6 @@ vim.cmd [[
 ]]
 keymap("n", "<leader>p", ":call FullPy()<CR>", default_opts)
 
--- format python
-keymap("n", "<leader>fp", "Neoformat black<CR>", default_opts)
--- format c/c++
-keymap("n", "<leader>fc", ":Neoformat clang-format<CR>", default_opts)
--- format lua
-vim.cmd [[
-  function! FullLua()
-    let b:path=expand('%:r') .. '.lua'
-    execute "!" . "luaformatter -i -v --indent-width=2 --no-use-tab " . b:path
-  endfunction
-]]
-keymap("n", "<leader>fl", ":call FullLua()<CR>", default_opts)
-
 -- <C-c> will raise interrupted error of lsp
 keymap("n", "<C-c>", "<Esc>", default_opts)
 

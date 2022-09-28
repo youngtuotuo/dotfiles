@@ -1,11 +1,14 @@
-## Firefox to Chrome Style
-I hate proton tab style.<br>
+## Customize firefox
 I use WaveFox https://github.com/QNetITQ/WaveFox.
+
+`full-screen-api.ignore-widgets` to true
 
 <p align="center">
     <img src="pictures/firefox.png" />
 </p>
 
+
+# Ubuntu Setup
 
 ## Neovim
 Default color scheme is enough for developing.
@@ -13,13 +16,11 @@ Default color scheme is enough for developing.
     <img src="pictures/neovimscreenshot.png" />
 </p>
 
-## Useful shortcut
+### Useful shortcut
 1. select python code in visual mode -> press `\p` -> execute the selected codes
 2. press `\p` -> relatively execute($python -m x.y.z) current whole python file
 3. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
 4. press `\gc` -> compile current c code and execute the binary(vimc.out)
-5. press `\fp` -> format python code
-5. press `\fc` -> format c/c++ code
 6. press `\ss` -> toggle nu & rnu
 
 
@@ -32,32 +33,13 @@ Default color scheme is enough for developing.
 
 ## Install configuration
 ```bash
-    $ git clone git@github.com:youngtuotuo/dotfiles.git
-    $ cd dotfiles && cp ./nvim ~/.config/
-```
-
-## Install python formatter
-```bash
-    $ pip install black
-```
-## Install bash formatter
-```bash
-    $ sudo apt install shfmt
+    $ git clone git@github.com:youngtuotuo/dotfiles.git ~/projects/dotfiles
+    $ cd ~/projects/dotfiles && ln nvim/ ~/.config/nvim
 ```
 
 ## Install Plugin manager
-```bash
-    $ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    $ nvim +PlugInstall +TSInstallSync
-```
+TBD
 
-
-## Install pyright
-```bash
-    $ sudo apt install nodejs
-    $ sudo npm -g install pyright
-```
 ### cv2 typing issue
 Remember to chage `target env name` and `python3.x` to suitable case.
 ```bash
@@ -65,7 +47,6 @@ Remember to chage `target env name` and `python3.x` to suitable case.
     $ cd dotfiles
     $ cp cv2/__init__.pyi $CONDA_PREFIX/lib/<python3.x>/site-packages/cv2/__init__.pyi
 ```
-
 
 ## Install ccls
 [Details](https://github.com/MaskRay/ccls/wiki/Build)<br>
@@ -84,5 +65,8 @@ Ubuntu 2204
 ## TODO
 Ubuntu setup
 - [ ] ble.sh
-- [ ] WhiteSur Theme
-- [ ] 
+- [ ] Ubuntu WhiteSur Theme
+Windows setup
+- [ ] TBD
+MacOS setup
+- [ ] TBD

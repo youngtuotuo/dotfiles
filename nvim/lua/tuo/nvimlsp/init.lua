@@ -14,10 +14,14 @@ local servers = {
     })),
     settings = {
       pylsp = {
-        plugins = {pycodestyle = {ignore = {}, maxLineLength = 100}},
-        autopep8 = {enabled = false},
-        pydocstyle = {enabled = false},
-        McCabe = {enabled = false}
+        plugins = {
+          pycodestyle = {
+            ignore = { 'W391', 'E303', },
+            maxLineLength = 100}
+          },
+          autopep8 = {enabled = false},
+          pydocstyle = {enabled = false},
+          McCabe = {enabled = false}
       }
     }
   },
