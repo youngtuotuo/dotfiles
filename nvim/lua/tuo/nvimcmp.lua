@@ -129,13 +129,6 @@ cmp.setup({
         })
       })(entry, vim_item)
     end
-    -- format = lspkind.cmp_format({
-    --   mode = 'symbol',
-    --   with_text = true,
-    --   maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-    --   ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-    --   menu = ({buffer = "[Buffer]", nvim_lsp = "[LSP]", luasnip = "[LuaSnip]"})
-    -- })
   },
   window = {
     completion = cmp.config.window.bordered(),

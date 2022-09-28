@@ -62,25 +62,27 @@ local globals = {
   loaded_vimball = 1,
   loaded_vimballPlugin = 1,
   loaded_zip = 1,
-  loaded_zipPlugin = 1,
+  loaded_zipPlugin = 1
 }
 
 for k, v in pairs(globals) do vim.g[k] = v end
 
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
+local yank_augroup = vim.api
+                         .nvim_create_augroup("YankHighlight", {clear = true})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank()",
+  group = yank_augroup
+})
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set whichwrap+=<,>,[,],h,l]]
 vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
-vim.cmd [[
-  syntax on
-  filetype indent on
-  autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-  autocmd FileType lua,c,cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-]]
+vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
+
+local filetype_augroup = vim.api.nvim_create_augroup("FileTypeIndent",
+                                                     {clear = true})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua,c,cpp",
+  command = "setlocal shiftwidth=2 softtabstop=2 expandtab",
+  group = filetype_augroup
+})

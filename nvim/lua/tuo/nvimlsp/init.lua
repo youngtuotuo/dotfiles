@@ -31,4 +31,4 @@ local servers = {
     }
   },
 }
-require("tuo.lsp.handlers").setup(servers, nvim_lsp)
+require("tuo.nvimlsp.handlers").setup(servers, nvim_lsp)
