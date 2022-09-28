@@ -39,8 +39,6 @@ return require('packer').startup(function()
   use {"natecraddock/workspaces.nvim"}
   -- stablizer
   use {"luukvbaal/stabilize.nvim"}
-  -- git
-  use {'TimUntersberger/neogit'}
   -- treesitter
   use {"nvim-treesitter/nvim-treesitter"}
   use {"nvim-treesitter/nvim-treesitter-textobjects"}

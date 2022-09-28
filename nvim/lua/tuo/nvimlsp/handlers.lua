@@ -58,15 +58,9 @@ M.setup = function(servers, nvim_lsp, util)
   local border = "rounded"
   -- diagnostic after each line
   local diag_config = {
-    -- virtual_text = {
-    --   prefix = '好笨 σ`∀´)σ ',
-    --   format = function(diagnostic)
-    --     return ''
-    --   end
-    -- },
     virtual_text = false,
-    signs = false,
-    underline = true,
+    signs = true,
+    underline = false,
     update_in_insert = false,
     severity_sort = true,
     float = {
@@ -75,12 +69,12 @@ M.setup = function(servers, nvim_lsp, util)
       border = border,
       source = "always",
       header = "",
-      prefix = "",
+      prefix = "σ`∀´)σ ",
     },
     source = true
   }
 
-  vim.diagnostic.config({ diag_config })
+  vim.diagnostic.config(diag_config)
 
   local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
   updated_capabilities.textDocument.codeLens = {dynamicRegistration = false}

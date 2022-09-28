@@ -35,9 +35,9 @@ local options = {
   writebackup = false
 }
 
-vim.opt.shortmess:append "c"
-
 for k, v in pairs(options) do vim.opt[k] = v end
+
+vim.opt.shortmess:append "c"
 
 local globals = {
   netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+",

@@ -1,14 +1,12 @@
 require("tuo.packer") -- manage plugins
-require("tuo.colorscheme") -- overall color scheme
+require("tuo.options") -- settings
 require("tuo.colorizer") -- color code highlight
 require("tuo.keymaps") -- keymaps
 require("tuo.nvimtree") -- nvim-tree file explorer
 require("tuo.devicons") -- cool icons
-require("tuo.options") -- settings
 
 require("tuo.comment") -- code comment
 require("tuo.indent") -- indent line
-require("tuo.neogit") -- workspace manager
 require("tuo.useful") -- useful function
 require("tuo.markdownpreview") -- preview md file in localhost
 require("tuo.tele") -- telescope configuration
@@ -18,3 +16,5 @@ require("tuo.workspaces") -- workspace manager
 
 require("tuo.nvimlsp") -- language server
 require("tuo.nvimcmp") -- completion of language server
+
+require("tuo.colorscheme") -- overall color scheme
