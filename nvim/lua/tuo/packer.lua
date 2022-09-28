@@ -1,8 +1,7 @@
 -- Automatically install packer
--- TODO only for linux, add windows and mac conditions
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
@@ -10,6 +9,7 @@ local ensure_packer = function()
   end
   return false
 end
+
 local packer_bootstrap = ensure_packer()
 
 -- Use a protected call so we don't error out on first use
@@ -29,6 +29,8 @@ packer.init {
 return require('packer').startup(function()
   -- packer can manage itself
   use {"wbthomason/packer.nvim"}
+  -- startup
+  use {"startup-nvim/startup.nvim"}
   -- color
   use {"norcalli/nvim-colorizer.lua"}
   use {"lukas-reineke/indent-blankline.nvim"}

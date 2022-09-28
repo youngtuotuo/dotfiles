@@ -31,6 +31,7 @@ keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.exe % && vimpp.exe<CR>",
 keymap("n", "<leader>gc", ":!gcc -o vimc.exe % && vimc.exe<CR>", default_opts)
 
 -- James Powell python3
+-- TODO windows path is a little different
 keymap("v", "<leader>p", ":w !python3<CR>", default_opts)
 vim.cmd [[
   function! FullPy()
