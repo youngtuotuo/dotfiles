@@ -55,6 +55,7 @@ M.setup = function(servers, nvim_lsp, util)
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
+  local border = "rounded"
   -- diagnostic after each line
   local diag_config = {
     -- virtual_text = {
@@ -71,7 +72,7 @@ M.setup = function(servers, nvim_lsp, util)
     float = {
       focusable = false,
       style = "minimal",
-      border = "rounded",
+      border = border,
       source = "always",
       header = "",
       prefix = "",
@@ -93,7 +94,6 @@ M.setup = function(servers, nvim_lsp, util)
   end
 
   local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-  local border = "double"
   function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = opts.border or border
