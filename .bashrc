@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+eval "$(oh-my-posh init bash --config ~/.poshthemes/material.omp.json)"
+# Add this lines at the top of .bashrc:
+[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -92,6 +96,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -alh'
 alias vi='nvim'
+alias rsync='rsync -ravh --progress'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -136,3 +141,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 . "$HOME/.cargo/env"
+
+# Add this line at the end of .bashrc:
+[[ ${BLE_VERSION-} ]] && ble-attach

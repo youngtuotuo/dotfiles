@@ -96,6 +96,10 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 vim.cmd [[
   command! FormatJSON %!python -m json.tool
 ]]
+-- NvimTree
+vim.cmd [[
+  command! E NvimTreeToggle
+]]
 
 -- Jump list mutations
 vim.cmd [[
