@@ -21,7 +21,7 @@ local has_words_before = function()
                  :match("%s") == nil
 end
 
-cmp.setup({
+return {
   snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
   mapping = {
     ['<Tab>'] = cmp.mapping(function(fallback)
@@ -142,16 +142,4 @@ cmp.setup({
     comparators = {cmp.config.compare.score, cmp.config.compare.offset}
   },
   experimental = {native_menu = false, ghost_text = true}
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({'/', '?'}, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {{name = 'buffer'}}
-})
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({{name = 'path'}},
-                               {{name = 'cmdline', keyword_length = 2}})
-})
+}

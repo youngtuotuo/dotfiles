@@ -61,4 +61,3 @@ vim.g.mkdp_port = '8089'
 --  preview page title
 --  ${name} will be replace with the file name
 vim.g.mkdp_page_title = '「${name}」'
-

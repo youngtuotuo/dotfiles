@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function(servers, nvim_lsp, util)
+M.setup = function(servers, nvim_lsp)
   local custom_on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_create_augroup('lsp_document_highlight', {clear = false})
@@ -55,6 +55,7 @@ M.setup = function(servers, nvim_lsp, util)
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
+
   local border = "rounded"
   -- diagnostic after each line
   local diag_config = {
@@ -122,11 +123,13 @@ M.setup = function(servers, nvim_lsp, util)
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
   for server, config in pairs(servers) do setup_server(server, config) end
-  require("rust-tools").setup( {
+  require("rust-tools").setup({
     server = {
+      on_init = custom_init,
+      handlers = handlers,
       capabilities = updated_capabilities,
       on_attach = custom_on_attach,
-    }
+    },
   })
 end
 

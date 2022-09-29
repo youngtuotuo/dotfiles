@@ -1,4 +1,4 @@
- require('Comment').setup( {
+ return {
   ---Add a space b/w comment and the line
   padding = true,
   ---Whether the cursor should stay at its position
@@ -42,4 +42,4 @@
   pre_hook = nil,
   ---Function to call after (un)comment
   post_hook = nil,
-})
+}
