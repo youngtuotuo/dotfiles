@@ -130,8 +130,6 @@ return require('packer').startup(function()
   -- lsp configuration
   use {
     "neovim/nvim-lspconfig",
-    opt = true,
-    ft = { "python", "c", "cpp", "rust" },
     -- easy rust lsp configuration tool
     requires = { "simrat39/rust-tools.nvim", module = "rust-tools" },
     config = function()
@@ -142,23 +140,8 @@ return require('packer').startup(function()
   -- cmp related
   use {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
-    module = "cmp",
-    opt = true,
     config = function()
-      local cmp = require("cmp")
-      cmp.setup(require("tuo.nvimcmp"))
-      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({'/', '?'}, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {{name = 'buffer'}}
-      })
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({{name = 'path'}},
-                   {{name = 'cmdline'}})
-      })
+      require("tuo.nvimcmp").setup()
     end,
     requires = {
       "hrsh7th/cmp-buffer",
