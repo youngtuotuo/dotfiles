@@ -22,6 +22,7 @@ local cfg = {
 packer.init(cfg)
 
 -- Plugins
+
 return require('packer').startup(function()
   -- packer can manage itself
   use { "wbthomason/packer.nvim" }
@@ -33,6 +34,10 @@ return require('packer').startup(function()
   use { "lewis6991/impatient.nvim", }
 
   -- telescope
+  local tele_fzf_run = "make"
+  if vim.fn.has("win32") == 1 then
+    tele_fzf_run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+  end
   use {
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -49,9 +54,11 @@ return require('packer').startup(function()
       },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        run = 'make',
+        run = tele_fzf_run,
         config = function()
-          require("telescope").load_extension('fzf')
+          if vim.fn.has("win32") == 0 then
+            require("telescope").load_extension('fzf')
+          end
         end,
       },
       {
