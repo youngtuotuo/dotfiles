@@ -39,46 +39,45 @@ return require('packer').startup(function()
     tele_fzf_run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
   end
   use {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = tele_fzf_run,
+    config = function()
+      if vim.fn.has("win32") == 0 then
+        require("telescope").load_extension('fzf')
+      end
+    end,
+  }
+  use {
+    "folke/todo-comments.nvim",
+    config = function()
+      require("todo-comments").setup(require("tuo.todo"))
+    end,
+  }
+  use {
+    "natecraddock/workspaces.nvim",
+    config = function()
+      require("workspaces").setup({hooks = {open = "NvimTreeOpen ."}})
+      require("telescope").load_extension("workspaces")
+    end
+  } 
+  use { 
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify"),
+      require("telescope").load_extension("notify")
+    end,
+  }
+  use {
     "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").setup(require("tuo.telescope"))
     end,
     requires = {
       "nvim-lua/plenary.nvim",
-      { 
-        "rcarriga/nvim-notify",
-        config = function()
-          vim.notify = require("notify"),
-          require("telescope").load_extension("notify")
-        end,
-      },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = tele_fzf_run,
-        config = function()
-          if vim.fn.has("win32") == 0 then
-            require("telescope").load_extension('fzf')
-          end
-        end,
-      },
-      {
-        "folke/todo-comments.nvim",
-        config = function()
-          require("todo-comments").setup(require("tuo.todo"))
-        end,
-      },
-      -- workspaces manager
-      {
-        "natecraddock/workspaces.nvim",
-        config = function()
-          require("workspaces").setup({hooks = {open = "NvimTreeOpen ."}})
-          require("telescope").load_extension("workspaces")
-        end
-      } 
     },
   }
 
-  -- startup screen
+  -- alpha startup screen
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -90,29 +89,39 @@ return require('packer').startup(function()
   -- color scheme
   use {
     "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
       require("catppuccin").setup(require("tuo.colorscheme"))
     end,
   }
 
-  -- window split stablizer
+  -- stablizer window split
   use {
     "luukvbaal/stabilize.nvim",
-    event = "BufRead",
+    event = "WinEnter",
     config = function()
       require("stabilize").setup()
     end,
   }
 
-  -- main treesitter
+  -- treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    event = "BufEnter",
     requires = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { 
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        event = "BufEnter",
+        after = "nvim-treesitter",
+      },
       {
         "nvim-treesitter/playground",
+        event = "BufEnter",
+      },
+      {
         "nvim-treesitter/nvim-treesitter-context",  
-        module = "treesitter-context",
+        event = "BufEnter",
+        after = "nvim-treesitter",
         config = function()
           require("treesitter-context").setup(require("tuo.treesitter-context"))
         end,
@@ -126,7 +135,7 @@ return require('packer').startup(function()
   -- AI completion
   -- use { "github/copilot.vim", event = "InsertEnter" }
 
-  -- File explorer
+  -- nvim-tree File explorer
   use {
     "kyazdani42/nvim-tree.lua",
     config = function()
@@ -137,6 +146,7 @@ return require('packer').startup(function()
   -- lsp configuration
   use {
     "neovim/nvim-lspconfig",
+    event = "BufEnter",
     -- easy rust lsp configuration tool
     requires = { "simrat39/rust-tools.nvim", module = "rust-tools" },
     config = function()
@@ -153,13 +163,13 @@ return require('packer').startup(function()
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua",
-      { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "onsails/lspkind-nvim",
       "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
       "rafamadriz/friendly-snippets",
       "honza/vim-snippets",
     },   
@@ -168,7 +178,7 @@ return require('packer').startup(function()
   -- Load only when required
   use { "nvim-lua/plenary.nvim", module = "plenary" }
 
-  -- Git statur indicator in sings
+  -- gitsigns Git status indicator in sings
   use {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -181,8 +191,7 @@ return require('packer').startup(function()
   -- color code visualization
   use {
     "norcalli/nvim-colorizer.lua",
-    opt = true,
-    event = "BufRead",
+    event = "BufEnter",
     config = function()
       require("colorizer").setup()
     end,
@@ -191,7 +200,7 @@ return require('packer').startup(function()
   -- indent level indicator
   use {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    event = "BufEnter",
     config = function()
       require("indent_blankline").setup {enabled = false, show_end_of_line = true}
     end
@@ -219,7 +228,6 @@ return require('packer').startup(function()
   -- easy code comment
   use {
     "numToStr/Comment.nvim",
-    opt = true,
     keys = { "gc", "gcc", "gbc" },
     config = function()
       require("Comment").setup(require("tuo.comment"))
