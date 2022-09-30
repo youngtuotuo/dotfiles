@@ -1,11 +1,12 @@
 return {
   ensure_installed = {
-    "lua", "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python",
-    "vim", "rust", "go",
+    "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python",
+    "vim", "rust", "go", "latex"
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   indent = {enable = false},
   highlight = {
-    enable = true -- false will disable the whole extension
+    enable = true, -- false will disable the whole extension
+    disable = { "latex" },
   },
   rainbow = {
     enable = true,
