@@ -40,8 +40,9 @@ math.randomseed(os.time())
 dashboard.section.header.val = headers[math.random(1, #headers)]
 
 dashboard.section.buttons.val= {
-  button({shortcut = 's', hl = {{'IconColor2', 2, 3}}}, '  Sync plugins' , space, '<cmd>PackerSync<CR>'),
   button({shortcut = 'c', hl = {{'IconColor3', 2, 3}}}, '  Configurations', space, '<cmd>e ~/.config/nvim/<CR>'),
+  button({shortcut = 's', hl = {{'IconColor2', 2, 3}}}, 'ﮣ  PackerSync' , space, '<cmd>PackerSync<CR>'),
+  button({shortcut = 'pc', hl = {{'IconColor2', 2, 3}}}, 'ﮣ  PackerCompile' , space, '<cmd>PackerSync<CR>'),
   button({shortcut = 'pp', hl = {{'IconColor3', 2, 3}}}, 'ﮣ  PackerProfile', space, '<cmd>PackerProfile<CR>'),
   button({shortcut = 'ps', hl = {{'IconColor3', 2, 3}}}, 'ﮣ  PackerStatus', space, '<cmd>PackerStatus<CR>'),
   button({shortcut = space .. ' e', hl = {{'IconColor5', 2, 3}}}, '  Find files', space, '<cmd>Telescope find_files<CR>'),
