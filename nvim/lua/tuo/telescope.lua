@@ -20,8 +20,6 @@ return {
       },
       i = {
         ["<C-c>"] = actions.close,
-        ["<C-n>"] = actions.move_selection_next,
-        ["<C-p>"] = actions.move_selection_previous
       }
     },
     layout_strategy = "vertical",

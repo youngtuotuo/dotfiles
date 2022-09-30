@@ -33,6 +33,31 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
+  -- latex
+  use {
+    "lervag/vimtex",
+    config = function()
+    vim.cmd [[
+      let g:vimtex_view_method="zathura"
+      let g:tex_flavor="latex"
+      set conceallevel=2
+      " let g:vimtex_compiler_latexmk = { 
+      "   \ 'executable' : 'latexmk',
+      "   \ 'options' : [ 
+      "   \   '-xelatex',
+      "   \   '-file-line-error',
+      "   \   '-synctex=1',
+      "   \   '-interaction=nonstopmode',
+      "   \ ],
+      "   \}
+      let g:vimtex_compiler_latexmk_engines = {
+        \ '_'                : '-xelatex',
+        \}
+      let g:vimtex_quickfix_enabled=0
+    ]]
+    end
+  }
+
   -- telescope
   local tele_fzf_run = "make"
   if vim.fn.has("win32") == 1 then
@@ -172,6 +197,7 @@ return require('packer').startup(function()
       "hrsh7th/cmp-nvim-lsp",
       "rafamadriz/friendly-snippets",
       "honza/vim-snippets",
+      "kdheepak/cmp-latex-symbols",
     },   
   }
 
