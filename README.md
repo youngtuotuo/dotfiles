@@ -1,27 +1,29 @@
-## Customize firefox
+# Customize Firefox
 I use WaveFox https://github.com/QNetITQ/WaveFox.
 
-`full-screen-api.ignore-widgets` to true
+Set `full-screen-api.ignore-widgets` to true will limit full screen inside firefox window
 
 <p align="center">
     <img src="pictures/firefox.png" />
 </p>
 
 
-# Ubuntu Setup
 
-## Neovim
-Default color scheme is enough for developing.
+# Neovim
+<p align="center">
+    <img src="pictures/alpha.png" />
+</p>
 <p align="center">
     <img src="pictures/neovimscreenshot.png" />
 </p>
 
-### Useful shortcut
-1. select python code in visual mode -> press `\p` -> execute the selected codes
+## Useful shortcut
+1. select python code and press `\p` -> execute the selected codes
 2. press `\p` -> relatively execute($python -m x.y.z) current whole python file
 3. press `\g+` -> compile current cpp code and execute the binary(vimpp.out)
 4. press `\gc` -> compile current c code and execute the binary(vimc.out)
 6. press `\ss` -> toggle nu & rnu
+7. press `\ts` -> toggle treesitter highlight
 
 
 ## Install Neovim
@@ -31,16 +33,53 @@ Default color scheme is enough for developing.
     $ cd neovim && sudo make -j16 CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
 
-## Install configuration
+## Install Neovim configuration
 ```bash
     $ git clone git@github.com:youngtuotuo/dotfiles.git ~/projects/dotfiles
-    $ cd ~/projects/dotfiles && ln nvim/ ~/.config/nvim
+```
+Linux/Mac
+```bash
+    $ ln ~/projects/dotfiles/nvim/ ~/.config/nvim
+```
+
+Windows
+```powershell
+    $ New-Item -ItemType SymbolicLink -Path "~/AppData/Local/nvim" -Target "~/projects/dotfiles/nvim"
+```
+
+## Intsall Latex Compiler
+```bash
+    $ sudo apt install texlive-latex-base
+    $ sudo apt install texlive-fonts-recommended
+    $ sudo apt install texlive-fonts-extra
+    $ sudo apt install texlive-latex-extra
+    $ sudo apt install xelatex
+    $ sudo apt install latexmk
+```
+
+## Install Latex LSP - Texlab
+
+```bash
+    $ cargo install texlab
+```
+
+## Install Python LSP - Python Language Server
+```bash
+    $ pip install "python-lsp-server[all]"
 ```
 
 ## Install Plugin manager
-TBD
+Linux/Mac
+```bash
+    $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+Windows
+```powershell
+    $ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"```
+```
 
-### cv2 typing issue
+## cv2 typing issue
 Remember to chage `target env name` and `python3.x` to suitable case.
 ```bash
     $ conda activate <target env name>
@@ -66,7 +105,13 @@ Ubuntu 2204
 Ubuntu setup
 - [ ] ble.sh
 - [ ] Ubuntu WhiteSur Theme
+- [ ] Auto setup bash script
+- [ ] Rust Analyzer Setup
+
 Windows setup
-- [ ] TBD
+- [ ] Auto setup powershell script
+- [ ] Rust Analyzer Setup
+- [ ] Install ccls
+
 MacOS setup
-- [ ] TBD
+- [ ] Auto setup shell script
