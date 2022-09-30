@@ -14,9 +14,11 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 
 -- Telescope Stuff
 keymap("n", "<space>r", ":Telescope lsp_references<CR>", default_opts)
+keymap("n", "<space>e", ":Telescope find_files<CR>", default_opts)
 keymap("n", "<space>f", ":Telescope current_buffer_fuzzy_find<CR>", default_opts)
 keymap("n", "<space>g", ":Telescope git_files<CR>", default_opts)
 keymap("n", "<space>d", ":Telescope diagnostics<CR>", default_opts)
+keymap("n", "<space>l", ":Telescope live_grep<CR>", default_opts)
 keymap("n", "<space>b", ":Telescope buffers<CR>", default_opts)
 keymap("n", "<space>c", ":Telescope commands<CR>", default_opts)
 keymap("n", "<space>h", ":Telescope help_tags<CR>", default_opts)
