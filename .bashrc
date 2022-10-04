@@ -144,3 +144,4 @@ unset __conda_setup
 
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
+ble-face auto_complete='fg=238'

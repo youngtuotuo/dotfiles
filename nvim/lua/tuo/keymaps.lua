@@ -12,6 +12,9 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- term_mode = "t"
 -- command_mode = "c"
 
+-- Vimtex
+keymap("n", "<leader>vc", ":VimtexCompile<CR>", default_opts)
+
 -- Telescope Stuff
 keymap("n", "<space>r", ":Telescope lsp_references<CR>", default_opts)
 keymap("n", "<space>e", ":Telescope find_files<CR>", default_opts)
