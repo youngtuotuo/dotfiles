@@ -41,15 +41,8 @@ keymap("n", "<leader>gc", ":!gcc -o vimc.exe % && vimc.exe<CR>", default_opts)
 
 -- James Powell python3
 -- TODO windows path is a little different
-keymap("v", "<leader>p", ":w !python3<CR>", default_opts)
-vim.cmd [[
-  function! FullPy()
-    let b:path=substitute(expand('%:r'), getcwd(), '', 'g') 
-    let b:path=substitute(b:path, '/', '.', 'g') 
-    execute "!" . "python3 -m " . b:path
-  endfunction
-]]
-keymap("n", "<leader>p", ":call FullPy()<CR>", default_opts)
+keymap("v", "<leader>p", ":w !python<CR>", default_opts)
+keymap("n", "<leader>p", ":!python %<CR>", default_opts)
 
 -- <C-c> will raise interrupted error of lsp
 keymap("n", "<C-c>", "<Esc>", default_opts)

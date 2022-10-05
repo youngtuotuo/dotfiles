@@ -16,6 +16,7 @@ local servers = {
       pylsp = {
         plugins = {
           pycodestyle = {
+            enabled = false,
             ignore = { 'W391', 'E303', },
             maxLineLength = 100}
           },
@@ -39,9 +40,9 @@ local servers = {
       texlab = {
         rootDirectory = nil,
         build = {
-          -- executable = 'latexmk',
-          -- args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
-          executable = 'xelatex',
+          executable = 'latexmk',
+          args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '%f' },
+          -- executable = 'xelatex',
           args = {},
           onSave = false,
           forwardSearchAfter = false,
