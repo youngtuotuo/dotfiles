@@ -26,15 +26,7 @@ local servers = {
       }
     }
   },
-  ccls = {
-    init_options = {
-      closingLabels = true,
-      compilationDatabaseDirectory = "build",
-      index = {threads = 0},
-      clang = {excludeArgs = {"-frounding-math"}},
-      cache = {directory = ".ccls-cache"}
-    }
-  },
+  clangd = {},
   texlab = {
     settings = {
       texlab = {

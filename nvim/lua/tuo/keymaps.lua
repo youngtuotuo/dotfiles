@@ -1,4 +1,4 @@
---Shorten function name
+-- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 local term_opts = {silent = true}
@@ -35,9 +35,15 @@ keymap("n", "<space>w", ":Telescope workspaces<CR>", default_opts)
 keymap("n", "<leader>ts", ":TSToggle highlight<CR>", default_opts)
 
 -- g++ compile and execute
-keymap("n", "<leader>g+", ":!g++ -std=c++11 -o vimpp.exe % && vimpp.exe<CR>",
+local ext = ""
+local sep = "/"
+if vim.fn.has("win32") == 1 then
+  ext = ".exe"
+  sep = "\\"
+end
+keymap("n", "<leader>c+", ":!clang++ -Wall -std=c++14 -o vimpp" .. ext .. " % && ." .. sep .. "vimpp" .. ext .. "<CR>",
        default_opts)
-keymap("n", "<leader>gc", ":!gcc -o vimc.exe % && vimc.exe<CR>", default_opts)
+keymap("n", "<leader>c", ":!clang -Wall -o vimc" .. ext .. " % && ." .. sep .. "vimc" .. ext .. "<CR>", default_opts)
 
 -- James Powell python3
 -- TODO windows path is a little different
