@@ -33,6 +33,9 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
+
+  use { "sbdchd/neoformat" }
+
   -- latex
   use {
     "lervag/vimtex",
