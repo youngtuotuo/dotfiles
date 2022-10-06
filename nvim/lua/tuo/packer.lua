@@ -75,12 +75,12 @@ return require('packer').startup(function()
       end
     end,
   }
-  use {
-    "folke/todo-comments.nvim",
-    config = function()
-      require("todo-comments").setup(require("tuo.todo"))
-    end,
-  }
+  -- use {
+  --   "folke/todo-comments.nvim",
+  --   config = function()
+  --     require("todo-comments").setup(require("tuo.todo"))
+  --   end,
+  -- }
   use {
     "natecraddock/workspaces.nvim",
     config = function()
@@ -120,6 +120,13 @@ return require('packer').startup(function()
     as = "catppuccin",
     config = function()
       require("catppuccin").setup(require("tuo.colorscheme"))
+      local colorscheme = "catppuccin"
+      local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+
+      if not status_ok then
+        vim.notify("colorscheme " .. colorscheme .. " not found!")
+        return
+      end
     end,
   }
 
