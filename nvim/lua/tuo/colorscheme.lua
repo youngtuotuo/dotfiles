@@ -1,7 +1,7 @@
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
 return {
-  transparent_background = true,
+  transparent_background = false,
   term_colors = false,
   compile = {
     enabled = true,
