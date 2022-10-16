@@ -119,8 +119,9 @@ return require('packer').startup(function()
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      require("catppuccin").setup(require("tuo.colorscheme"))
-      local colorscheme = "catppuccin"
+      -- require("catppuccin").setup(require("tuo.colorscheme"))
+      -- local colorscheme = "catppuccin"
+      local colorscheme = "habamax"
       local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
       if not status_ok then
