@@ -77,11 +77,11 @@ M.setup = function(servers, nvim_lsp)
 
   vim.diagnostic.config(diag_config)
 
-  local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
-  updated_capabilities.textDocument.codeLens = {dynamicRegistration = false}
-  updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  updated_capabilities = require("cmp_nvim_lsp").update_capabilities(
-                             updated_capabilities)
+  local default_capabilities = vim.lsp.protocol.make_client_capabilities()
+  default_capabilities.textDocument.codeLens = {dynamicRegistration = false}
+  default_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  default_capabilities = require("cmp_nvim_lsp").default_capabilities(
+                             default_capabilities)
 
   local custom_init = function(client)
     client.config.flags = client.config.flags or {}
@@ -110,7 +110,7 @@ M.setup = function(servers, nvim_lsp)
       on_init = custom_init,
       handlers = handlers,
       on_attach = custom_on_attach,
-      capabilities = updated_capabilities,
+      capabilities = default_capabilities,
       flags = {debounce_text_changes = nil},
       init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,
