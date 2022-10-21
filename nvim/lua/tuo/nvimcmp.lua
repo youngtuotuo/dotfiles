@@ -139,7 +139,7 @@ M.setup = function()
     sorting = {
       comparators = {cmp.config.compare.score, cmp.config.compare.offset}
     },
-    experimental = {native_menu = false, ghost_text = true}
+    experimental = {native_menu = false, ghost_text = false}
   })
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline({'/', '?'}, {

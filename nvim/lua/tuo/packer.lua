@@ -239,7 +239,7 @@ return require('packer').startup(function()
     "lukas-reineke/indent-blankline.nvim",
     event = "BufEnter",
     config = function()
-      require("indent_blankline").setup {enabled = true, show_end_of_line = true}
+      require("indent_blankline").setup {enabled = false, show_end_of_line = true}
     end
   }
 
