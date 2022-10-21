@@ -1,20 +1,6 @@
-# Customize Firefox
-I use WaveFox https://github.com/QNetITQ/WaveFox.
-
-Set `full-screen-api.ignore-widgets` to true will limit full screen inside firefox window
-
-<p align="center">
-    <img src="pictures/firefox.png" />
-</p>
-
-
-
 # Neovim
 <p align="center">
     <img src="pictures/alpha.png" />
-</p>
-<p align="center">
-    <img src="pictures/neovimscreenshot.png" />
 </p>
 
 ## Useful shortcut
@@ -26,20 +12,34 @@ Set `full-screen-api.ignore-widgets` to true will limit full screen inside firef
 7. press `\ts` -> toggle treesitter highlight
 
 
-## Install Neovim
+## Install Neovim Nightly Build
 ```bash
     $ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
     $ git clone https://github.com/neovim/neovim.git
     $ cd neovim && sudo make -j16 CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
 
-## Install Neovim configuration
-```bash
-    $ git clone git@github.com:youngtuotuo/dotfiles.git ~/projects/dotfiles
-```
+## Install Plugin manager Packer.nvim
 Linux/Mac
 ```bash
-    $ ln ~/projects/dotfiles/nvim/ ~/.config/nvim
+    $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+Windows
+```powershell
+    $ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"```
+```
+
+## Install Neovim configuration
+```bash
+    $ git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
+```
+
+### Link config folder
+
+Linux/Mac
+```bash
+    $ ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
 
 Windows
@@ -49,12 +49,13 @@ Windows
 
 ## Intsall Latex Compiler
 ```bash
-    $ sudo apt install texlive-latex-base
-    $ sudo apt install texlive-fonts-recommended
-    $ sudo apt install texlive-fonts-extra
-    $ sudo apt install texlive-latex-extra
-    $ sudo apt install xelatex
-    $ sudo apt install latexmk
+    $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra xelatex latexmk
+```
+
+## Install Rust
+```bash
+    $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    $ source "$HOME/.cargo/env"
 ```
 
 ## Install Latex LSP - Texlab
@@ -68,15 +69,9 @@ Windows
     $ pip install "python-lsp-server[all]"
 ```
 
-## Install Plugin manager
-Linux/Mac
+## Install C/C++ LSP - clangd
 ```bash
-    $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-Windows
-```powershell
-    $ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"```
+    $ sudo apt install clangd-12
 ```
 
 ## cv2 typing issue
@@ -87,31 +82,14 @@ Remember to chage `target env name` and `python3.x` to suitable case.
     $ cp cv2/__init__.pyi $CONDA_PREFIX/lib/<python3.x>/site-packages/cv2/__init__.pyi
 ```
 
-## Install ccls
-[Details](https://github.com/MaskRay/ccls/wiki/Build)<br>
-Ubuntu 2204
-```bash
-    $ sudo apt-get install clang clang-dev
-    $ git clone --depth=1 --recursive https://github.com/MaskRay/ccls && cd ccls
-    $ cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-14 \
-    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-14/include \
-    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-14/
-    $ cd Release
-    $ sudo make install
-    $ cd Release
-```
 ## TODO
 Ubuntu setup
-- [ ] ble.sh
-- [ ] Ubuntu WhiteSur Theme
 - [ ] Auto setup bash script
 - [ ] Rust Analyzer Setup
 
 Windows setup
 - [ ] Auto setup powershell script
 - [ ] Rust Analyzer Setup
-- [ ] Install ccls
 
 MacOS setup
 - [ ] Auto setup shell script
