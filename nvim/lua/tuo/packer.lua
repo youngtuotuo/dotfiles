@@ -28,7 +28,7 @@ return require('packer').startup(function()
   use { "wbthomason/packer.nvim" }
 
   -- faster filetype
-  use { "nathom/filetype.nvim" }
+  -- use { "nathom/filetype.nvim" }
 
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }

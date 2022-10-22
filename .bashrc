@@ -122,7 +122,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}
+export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
 export PATH=$PATH:/usr/local/go/bin
 
 # >>> conda initialize >>>
@@ -141,7 +141,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 . "$HOME/.cargo/env"
-
-# Add this line at the end of .bashrc:
-[[ ${BLE_VERSION-} ]] && ble-attach
-ble-face auto_complete='fg=238'
