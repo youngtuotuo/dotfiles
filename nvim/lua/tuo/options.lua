@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.cmd [[set whichwrap+=<,>,[,],h,l]]
 vim.cmd [[set iskeyword+=-]]
+vim.cmd [[colo habamax]]
 
 vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
 

@@ -27,9 +27,6 @@ return require('packer').startup(function()
   -- packer can manage itself
   use { "wbthomason/packer.nvim" }
 
-  -- faster filetype
-  -- use { "nathom/filetype.nvim" }
-
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
@@ -75,12 +72,7 @@ return require('packer').startup(function()
       end
     end,
   }
-  -- use {
-  --   "folke/todo-comments.nvim",
-  --   config = function()
-  --     require("todo-comments").setup(require("tuo.todo"))
-  --   end,
-  -- }
+
   use {
     "natecraddock/workspaces.nvim",
     config = function()
@@ -88,13 +80,7 @@ return require('packer').startup(function()
       require("telescope").load_extension("workspaces")
     end
   } 
-  use { 
-    "rcarriga/nvim-notify",
-    config = function()
-      vim.notify = require("notify"),
-      require("telescope").load_extension("notify")
-    end,
-  }
+
   use {
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -112,23 +98,6 @@ return require('packer').startup(function()
     config = function()
       require("tuo.alpha")
     end
-  }
-
-  -- color scheme
-  use {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-      -- require("catppuccin").setup(require("tuo.colorscheme"))
-      -- local colorscheme = "catppuccin"
-      local colorscheme = "habamax"
-      local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-
-      if not status_ok then
-        vim.notify("colorscheme " .. colorscheme .. " not found!")
-        return
-      end
-    end,
   }
 
   -- stablizer window split
@@ -149,18 +118,6 @@ return require('packer').startup(function()
         "nvim-treesitter/nvim-treesitter-textobjects",
         event = "BufEnter",
         after = "nvim-treesitter",
-      },
-      {
-        "nvim-treesitter/playground",
-        event = "BufEnter",
-      },
-      {
-        "nvim-treesitter/nvim-treesitter-context",  
-        event = "BufEnter",
-        after = "nvim-treesitter",
-        config = function()
-          require("treesitter-context").setup(require("tuo.treesitter-context"))
-        end,
       },
     },
     config = function()
@@ -200,7 +157,7 @@ return require('packer').startup(function()
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
+      -- "hrsh7th/cmp-nvim-lsp-signature-help",
       "onsails/lspkind-nvim",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -265,7 +222,6 @@ return require('packer').startup(function()
   -- easy code comment
   use {
     "numToStr/Comment.nvim",
-    keys = { "gc", "gcc", "gbc" },
     config = function()
       require("Comment").setup(require("tuo.comment"))
     end

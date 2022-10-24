@@ -134,7 +134,7 @@ M.setup = function()
     },
     sources = cmp.config.sources({
       {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip'},
-      {name = 'nvim_lsp_signature_help'}, {name = 'path'}, {name = 'nvim_lua'}
+      {name = 'path'}, {name = 'nvim_lua'}
     }),
     sorting = {
       comparators = {cmp.config.compare.score, cmp.config.compare.offset}
