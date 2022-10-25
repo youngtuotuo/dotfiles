@@ -15,11 +15,13 @@ return {
       n = {
         ["q"] = actions.close,
         ["<C-c>"] = actions.close,
-        ["<S-Tab>"] = actions.move_selection_next,
-        ["<Tab>"] = actions.move_selection_previous
+        ["<Tab>"] = actions.move_selection_next,
+        ["<S-Tab>"] = actions.move_selection_previous
       },
       i = {
         ["<C-c>"] = actions.close,
+        ["<Tab>"] = actions.move_selection_next,
+        ["<S-Tab>"] = actions.move_selection_previous
       }
     },
     layout_strategy = "vertical",
