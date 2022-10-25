@@ -16,7 +16,7 @@
 ```bash
     $ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
     $ git clone https://github.com/neovim/neovim.git
-    $ cd neovim && sudo make -j16 CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
+    $ cd neovim && sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
 
 ## Install Plugin manager Packer.nvim
