@@ -52,6 +52,11 @@ Windows
     $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk
 ```
 
+## Install Pdf viewr for VimTex
+```bash
+    $ sudo apt install zathura
+```
+
 ## Install Rust
 ```bash
     $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
