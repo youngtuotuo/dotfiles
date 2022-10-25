@@ -49,7 +49,7 @@ Windows
 
 ## Intsall Latex Compiler
 ```bash
-    $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra xelatex latexmk
+    $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk
 ```
 
 ## Install Rust
