@@ -30,8 +30,20 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
-
   use { "sbdchd/neoformat" }
+
+  use { 
+    'olivercederborg/poimandres.nvim',
+    config = function()
+      require('poimandres').setup {
+          bold_vert_split = false, -- use bold vertical separators
+          dim_nc_background = false, -- dim 'non-current' window backgrounds
+          disable_background = false, -- disable background
+          disable_italics = false, -- disable italics
+          disable_float_background = false, -- disable background for floats
+      }
+    end
+  }
 
   -- latex
   use {
