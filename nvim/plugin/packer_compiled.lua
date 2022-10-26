@@ -85,12 +85,6 @@ _G.packer_plugins = {
     path = "/home/tuo/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["alpha-nvim"] = {
-    config = { "\27LJ\2\n)\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\14tuo.alpha\frequire\0" },
-    loaded = true,
-    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/alpha-nvim",
-    url = "https://github.com/goolord/alpha-nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -237,12 +231,6 @@ _G.packer_plugins = {
     path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["poimandres.nvim"] = {
-    config = { "\27LJ\2\n¢\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\22dim_nc_background\1\20bold_vert_split\1\29disable_float_background\1\20disable_italics\1\23disable_background\1\nsetup\15poimandres\frequire\0" },
-    loaded = true,
-    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/poimandres.nvim",
-    url = "https://github.com/olivercederborg/poimandres.nvim"
-  },
   ["rust-tools.nvim"] = {
     loaded = false,
     needs_bufread = true,
@@ -320,14 +308,18 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\2\n)\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\14tuo.alpha\frequire\0", "config", "alpha-nvim")
-time([[Config for alpha-nvim]], false)
--- Config for: poimandres.nvim
-time([[Config for poimandres.nvim]], true)
-try_loadstring("\27LJ\2\n¢\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\22dim_nc_background\1\20bold_vert_split\1\29disable_float_background\1\20disable_italics\1\23disable_background\1\nsetup\15poimandres\frequire\0", "config", "poimandres.nvim")
-time([[Config for poimandres.nvim]], false)
+-- Config for: telescope-fzf-native.nvim
+time([[Config for telescope-fzf-native.nvim]], true)
+try_loadstring("\27LJ\2\nv\0\0\3\0\b\1\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\6€6\0\4\0'\2\5\0B\0\2\0029\0\6\0'\2\a\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\nwin32\bhas\afn\bvim\0\0", "config", "telescope-fzf-native.nvim")
+time([[Config for telescope-fzf-native.nvim]], false)
+-- Config for: vimtex
+time([[Config for vimtex]], true)
+try_loadstring("\27LJ\2\nÌ\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¬\4        let g:vimtex_view_method=(has(\"win32\")?\"general\":\"zathura\")\n        let g:tex_flavor=\"latex\"\n        set conceallevel=2\n        \" let g:vimtex_compiler_latexmk = { \n        \"   \\ 'executable' : 'latexmk',\n        \"   \\ 'options' : [ \n        \"   \\   '-xelatex',\n        \"   \\   '-file-line-error',\n        \"   \\   '-synctex=1',\n        \"   \\   '-interaction=nonstopmode',\n        \"   \\ ],\n        \"   \\}\n        let g:vimtex_compiler_latexmk_engines = {\n          \\ '_' : '-xelatex',\n          \\}\n        let g:vimtex_quickfix_enabled=0\n      \bcmd\bvim\0", "config", "vimtex")
+time([[Config for vimtex]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16tuo.nvimcmp\frequire\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\nM\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\16tuo.comment\nsetup\fComment\frequire\0", "config", "Comment.nvim")
@@ -336,18 +328,6 @@ time([[Config for Comment.nvim]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\nQ\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\18tuo.telescope\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
--- Config for: telescope-fzf-native.nvim
-time([[Config for telescope-fzf-native.nvim]], true)
-try_loadstring("\27LJ\2\nv\0\0\3\0\b\1\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\6€6\0\4\0'\2\5\0B\0\2\0029\0\6\0'\2\a\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\nwin32\bhas\afn\bvim\0\0", "config", "telescope-fzf-native.nvim")
-time([[Config for telescope-fzf-native.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16tuo.nvimcmp\frequire\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: vimtex
-time([[Config for vimtex]], true)
-try_loadstring("\27LJ\2\nÌ\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¬\4        let g:vimtex_view_method=(has(\"win32\")?\"general\":\"zathura\")\n        let g:tex_flavor=\"latex\"\n        set conceallevel=2\n        \" let g:vimtex_compiler_latexmk = { \n        \"   \\ 'executable' : 'latexmk',\n        \"   \\ 'options' : [ \n        \"   \\   '-xelatex',\n        \"   \\   '-file-line-error',\n        \"   \\   '-synctex=1',\n        \"   \\   '-interaction=nonstopmode',\n        \"   \\ ],\n        \"   \\}\n        let g:vimtex_compiler_latexmk_engines = {\n          \\ '_' : '-xelatex',\n          \\}\n        let g:vimtex_quickfix_enabled=0\n      \bcmd\bvim\0", "config", "vimtex")
-time([[Config for vimtex]], false)
 -- Config for: workspaces.nvim
 time([[Config for workspaces.nvim]], true)
 try_loadstring("\27LJ\2\n•\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\a\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\14telescope\nhooks\1\0\0\1\0\1\topen\19NvimTreeOpen .\nsetup\15workspaces\frequire\0", "config", "workspaces.nvim")
@@ -371,8 +351,8 @@ time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'indent-blankline.nvim', 'nvim-treesitter', 'nvim-treesitter-textobjects', 'nvim-lspconfig', 'nvim-colorizer.lua'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au WinEnter * ++once lua require("packer.load")({'stabilize.nvim'}, { event = "WinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'indent-blankline.nvim', 'nvim-treesitter', 'nvim-lspconfig', 'nvim-colorizer.lua', 'nvim-treesitter-textobjects'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

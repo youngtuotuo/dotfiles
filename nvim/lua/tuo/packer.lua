@@ -32,21 +32,8 @@ return require('packer').startup(function()
 
   use { "sbdchd/neoformat" }
 
-  use { 
-    'olivercederborg/poimandres.nvim',
-    config = function()
-      require('poimandres').setup {
-          bold_vert_split = false, -- use bold vertical separators
-          dim_nc_background = false, -- dim 'non-current' window backgrounds
-          disable_background = false, -- disable background
-          disable_italics = false, -- disable italics
-          disable_float_background = false, -- disable background for floats
-      }
-    end
-  }
-
   -- latex
-  use {
+  use ({
     "lervag/vimtex",
     config = function()
       vim.cmd [[
@@ -68,7 +55,7 @@ return require('packer').startup(function()
         let g:vimtex_quickfix_enabled=0
       ]]
     end
-  }
+  })
 
   -- telescope
   local tele_fzf_run = "make"
@@ -101,15 +88,6 @@ return require('packer').startup(function()
     requires = {
       "nvim-lua/plenary.nvim",
     },
-  }
-
-  -- alpha startup screen
-  use {
-    'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function()
-      require("tuo.alpha")
-    end
   }
 
   -- stablizer window split
