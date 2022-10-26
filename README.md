@@ -42,9 +42,9 @@ Linux/Mac
     $ ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
 
-Windows
+Windows (Run native powershell as admin)
 ```powershell
-    $ New-Item -ItemType SymbolicLink -Path "~/AppData/Local/nvim" -Target "~/projects/dotfiles/nvim"
+    $ New-Item -ItemType SymbolicLink -Path "C:\Users\User\AppData\Local\nvim" -Target "C:\Users\User\github\dotfiles\nvim"
 ```
 
 ## Intsall Latex Compiler
