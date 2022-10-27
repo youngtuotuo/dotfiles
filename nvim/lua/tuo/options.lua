@@ -81,6 +81,7 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[
   colo habamax
   hi FloatBorder guibg=NONE
+  hi NormalFloat guibg=NONE
 ]]
 
 vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
