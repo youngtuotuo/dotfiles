@@ -32,6 +32,8 @@ return require('packer').startup(function()
 
   use { "sbdchd/neoformat" }
 
+  use { 'navarasu/onedark.nvim' }
+
   -- latex
   use ({
     "lervag/vimtex",
