@@ -84,7 +84,8 @@ vim.cmd [[set iskeyword+=-]]
 --   hi NormalFloat guibg=NONE
 -- ]]
 
-require('onedark').load({style='deep'}) --dark, darker, cool, deep, warm, warmer, light
+require('onedark').setup({style='deep'}) --dark, darker, cool, deep, warm, warmer, light
+require('onedark').load() --dark, darker, cool, deep, warm, warmer, light
 
 vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
 
