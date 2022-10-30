@@ -34,6 +34,11 @@ return require('packer').startup(function()
 
   use { 'navarasu/onedark.nvim' }
 
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
   -- latex
   use ({
     "lervag/vimtex",
