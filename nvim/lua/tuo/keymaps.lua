@@ -58,6 +58,10 @@ keymap("n", "<leader>p", ":!python %<CR>", default_opts)
 -- <C-c> will raise interrupted error of lsp
 keymap("n", "<C-c>", "<Esc>", default_opts)
 
+-- Not show native menu
+keymap("i", "<C-n>", "<Nop>", default_opts)
+keymap("i", "<C-p>", "<Nop>", default_opts)
+
 -- Easier pane navigation
 keymap("n", "<C-j>", "<C-w>j", default_opts)
 keymap("n", "<C-h>", "<C-w>h", default_opts)
