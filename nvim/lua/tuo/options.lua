@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
 local filetype_augroup = vim.api.nvim_create_augroup("FileTypeIndent",
                                                      {clear = true})
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua,c,cpp",
+  pattern = "lua",
   command = "setlocal shiftwidth=2 softtabstop=2 expandtab",
   group = filetype_augroup
 })

@@ -30,7 +30,17 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
-  use { "sbdchd/neoformat" }
+  use { "sbdchd/neoformat",
+    config = function()
+      vim.cmd [[
+        let g:neoformat_cpp_clangformat = {
+              \ 'exe': 'clang-format',
+              \ 'args': ['--style="{IndentWidth: 4}"'],
+              \ }
+        let g:neoformat_enabled_cpp = ['clangformat']
+      ]]
+    end
+  }
 
   use { 'navarasu/onedark.nvim' }
 
