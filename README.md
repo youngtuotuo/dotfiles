@@ -13,17 +13,31 @@
 
 
 ## Install Neovim Nightly Build
+Ubuntu
 ```bash
     $ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
     $ git clone https://github.com/neovim/neovim.git
     $ cd neovim && sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
-
-## Install Plugin manager Packer.nvim
-Linux/Mac
+Mac
 ```bash
-    $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    $ brew install --HEAD neovim
+```
+Windows
+```powershell
+    $ irm get.scoop.sh | iex
+    $ scoop bucket add extras
+    $ scoop bucket add versions
+    $ scoop install vcredist2022
+    $ scoop install neovim-nightly
+    $ scoop install neovim-nightly
+```
+
+## Install Neovim plugin manager Packer.nvim
+Ubuntu/Mac
+```bash
+    $ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 Windows
 ```powershell
@@ -31,13 +45,14 @@ Windows
 ```
 
 ## Install Neovim configuration
+Ubuntu/Mac/Windows
 ```bash
     $ git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
 ```
 
 ### Link config folder
 
-Linux/Mac
+Ubuntu/Mac
 ```bash
     $ ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
@@ -48,16 +63,19 @@ Windows (Run native powershell as admin)
 ```
 
 ## Intsall Latex Compiler
+Ubuntu/Mac
 ```bash
     $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk
 ```
 
 ## Install Pdf viewr for VimTex
+Ubuntu
 ```bash
     $ sudo apt install zathura
 ```
 
 ## Install Rust
+Ubuntu/Mac
 ```bash
     $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     $ source "$HOME/.cargo/env"
@@ -75,6 +93,7 @@ Windows (Run native powershell as admin)
 ```
 
 ## Install C/C++ LSP - clangd
+Ubuntu
 ```bash
     $ sudo apt install clangd-12
 ```

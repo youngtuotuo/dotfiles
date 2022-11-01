@@ -106,6 +106,8 @@ vim.cmd [[
   command! E NvimTreeToggle
   command! W w
   command! Q q
+  command! Wa wa
+  command! Qa qa
 ]]
 
 -- Jump list mutations

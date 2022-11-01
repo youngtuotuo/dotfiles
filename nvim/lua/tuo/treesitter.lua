@@ -6,7 +6,7 @@ return {
   indent = {enable = false},
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "latex" },
+    disable = { "latex", 'markdown' },
   },
   rainbow = {
     enable = true,
