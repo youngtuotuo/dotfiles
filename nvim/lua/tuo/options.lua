@@ -79,14 +79,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.cmd [[set whichwrap+=<,>,[,],h,l]]
 vim.cmd [[set iskeyword+=-]]
--- vim.cmd [[
---   colo habamax
---   hi FloatBorder guibg=NONE
---   hi NormalFloat guibg=NONE
--- ]]
 
 require('onedark').setup({style='deep'}) --dark, darker, cool, deep, warm, warmer, light
 require('onedark').load() --dark, darker, cool, deep, warm, warmer, light
+vim.cmd [[
+  hi FloatBorder guibg=NONE
+  hi NormalFloat guibg=NONE
+]]
 
 vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})
 
