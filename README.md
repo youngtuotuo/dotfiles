@@ -102,6 +102,7 @@ Ubuntu/Mac
 Ubuntu
 ```bash
     $ sudo apt install clangd-12
+    $ sudo ln /usr/bin/clangd-12 /usr/bin/clangd
 ```
 
 ## Install C/C++ Complier - clang
