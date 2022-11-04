@@ -2,10 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-eval "$(oh-my-posh init bash --config ~/.poshthemes/material.omp.json)"
-# Add this lines at the top of .bashrc:
-[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -122,7 +118,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
+export PATH=/usr/local/cuda-11.8/bin${PATH:+:${PATH}}
 export PATH=$PATH:/usr/local/go/bin
 
 # >>> conda initialize >>>

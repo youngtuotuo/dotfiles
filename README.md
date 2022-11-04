@@ -98,6 +98,13 @@ Ubuntu
     $ sudo apt install clangd-12
 ```
 
+## Install C/C++ Complier - clang
+Ubuntu
+```bash
+    $ sudo apt install clang-12
+    $ sudo ln /usr/bin/clang-12 /usr/bin/clang
+```
+
 ## cv2 typing issue
 Remember to chage `target env name` and `python3.x` to suitable case.
 ```bash
