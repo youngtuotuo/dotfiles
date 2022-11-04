@@ -57,6 +57,12 @@ Ubuntu/Mac
     $ ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
 
+## Install tmux
+```bash
+    $ sudo apt install tmux
+    $ cp ~/github/dotfiles/.tmux.conf ~/
+```
+
 Windows (Run native powershell as admin)
 ```powershell
     $ New-Item -ItemType SymbolicLink -Path "C:\Users\User\AppData\Local\nvim" -Target "C:\Users\User\github\dotfiles\nvim"
