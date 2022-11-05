@@ -228,14 +228,23 @@ return require('packer').startup(function()
   }
 
   -- markdown preview tool
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
+  use({ "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_open_to_the_world = 1
+      vim.g.mkdp_open_ip = '127.0.0.1'
+      vim.g.mkdp_port = 8085
+      vim.g.mkdp_echo_preview_url = 1
+      vim.g.mkdp_browser = ''
+      vim.g.mkdp_browserfunc = ''
+      -- vim.cmd [[function! g:Open_browser(url)
+      --     silent exe '!/opt/microsoft/msedge/msedge 'a:url
+      -- endfunction]]
+      -- vim.g.mkdp_browserfunc = 'g:Open_browser'
     end,
     ft = { "markdown" },
-    cmd = { "MarkdownPreview" }
-  }
+  })
 
   -- easy code comment
   use {
