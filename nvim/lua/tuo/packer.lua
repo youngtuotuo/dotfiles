@@ -180,14 +180,14 @@ return require('packer').startup(function()
   use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- gitsigns Git status indicator in sings
-  use {
-    "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("gitsigns").setup()
-    end,
-  }
+  -- use {
+  --   "lewis6991/gitsigns.nvim",
+  --   event = "BufReadPre",
+  --   requires = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("gitsigns").setup()
+  --   end,
+  -- }
 
   -- color code visualization
   use {
@@ -212,7 +212,7 @@ return require('packer').startup(function()
         show_current_context = true,
         show_current_context_start = false,
         show_first_indent_level = false,
-        enabled = true,
+        enabled = false,
         show_end_of_line = true
     }
     end

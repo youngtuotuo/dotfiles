@@ -62,6 +62,8 @@ keymap("n", "<C-c>", "<Esc>", default_opts)
 keymap("i", "<C-n>", "<Nop>", default_opts)
 keymap("i", "<C-p>", "<Nop>", default_opts)
 
+keymap("i", "<S-Tab>", "<C-D>", default_opts)
+
 -- Easier pane navigation
 keymap("n", "<C-j>", "<C-w>j", default_opts)
 keymap("n", "<C-h>", "<C-w>h", default_opts)
