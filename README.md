@@ -1,7 +1,7 @@
 # My Routine Development Set Up in Ubuntu/Mac/Windows
 
 <p align="center">
-    <img src="pictures/alpha.png" />
+    <img src="pictures/image.png" />
 </p>
 
 ## Neovim Shortcut
