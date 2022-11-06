@@ -124,10 +124,10 @@ TBD
     $ cargo install texlab
 ```
 
-### Install Python LSP - Python Language Server
+### Install Python LSP - Pyright
 
 ```bash
-    $ pip install "python-lsp-server[all]"
+    $ sud npm install --global pyright
 ```
 
 ### Install C/C++ LSP - clangd

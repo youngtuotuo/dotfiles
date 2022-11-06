@@ -56,10 +56,11 @@ M.setup = function(servers, nvim_lsp)
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
-  local border = ""
+  -- local border = "rounded"
+  local border = nil
   -- diagnostic after each line
   local diag_config = {
-    virtual_text = false,
+    virtual_text = true,
     signs = false,
     underline = false,
     update_in_insert = false,

@@ -7,24 +7,26 @@ end
 local util = require("lspconfig.util")
 
 local servers = {
-  pylsp = {
+  pyright = {
     root_dir = util.root_pattern(unpack({
-      '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
-      'requirements.txt', 'Pipfile', 'pyrightconfig.json', 'main.py'
+      '.gitignore',
+      '.git',
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      'pyrightconfig.json',
     })),
     settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = {
-            enabled = false,
-            ignore = { 'W391', 'E303', },
-            maxLineLength = 100}
-          },
-          autopep8 = {enabled = false},
-          pydocstyle = {enabled = false},
-          McCabe = {enabled = false}
-      }
-    }
+      pyright = {
+      },
+      python = {
+        analysis = {
+          autoImportCompletions = ture
+        },
+      },
+    },
   },
   clangd = {},
   texlab = {

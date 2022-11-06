@@ -81,26 +81,26 @@ M.setup = function()
         end
         return lspkind.cmp_format({
           mode = 'symbol',
-          with_text = true,
+          with_text = false,
           maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
           ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          menu = ({
-            buffer = "[Buffer]",
-            nvim_lsp = "[LSP]",
-            luasnip = "[LuaSnip]",
-            path = "[Path]",
-            nvim_lua = "[NvimLua]",
-            cmdline = "[Cmd]"
-          })
+          -- menu = ({
+          --   buffer = "[Buffer]",
+          --   nvim_lsp = "[Pyright]",
+          --   luasnip = "[LuaSnip]",
+          --   path = "[Path]",
+          --   nvim_lua = "[NvimLua]",
+          --   cmdline = "[Cmd]"
+          -- })
         })(entry, vim_item)
       end
     },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered()
-    },
+    -- window = {
+    --   completion = cmp.config.window.bordered(),
+    --   documentation = cmp.config.window.bordered()
+    -- },
     sources = cmp.config.sources({
-      {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip'},
+      {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip', keyword_length = 3},
       {name = 'path'}, {name = 'nvim_lua'}
     }),
     sorting = {
@@ -117,7 +117,7 @@ M.setup = function()
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({{name = 'path'}},
-               {{name = 'cmdline'}})
+               {{name = 'cmdline', keyword_length = 3}})
   })
 end
 
