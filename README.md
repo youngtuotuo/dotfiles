@@ -22,20 +22,61 @@
 
 # Ubuntu/Mac
 
-#### Ubuntu
+## Ubuntu Specific
 
 ```bash
     $ sudo apt-get update
     $ sudo apt-get upgrade -y
-    $ sudo apt install openssh-server build-essential git tmux
+    $ sudo apt install openssh-server build-essential git tmux -y
+    $ sudo apt install gnome-tweaks -y
+    $ sudo apt install dconf-editor -y
+```
+Change Keyboard and Mouse Behavior:
+1. Use Tweaks app to change caps to ctrl.
+2. Use dconf-editor to change click on app icon be 'minimize-and-preview'.
+    (org/gnome/shell/extensions/dash-to-dock/click-action)
+
+
+### Install Slack, Discord, GIMP, Brave and Spotify
+
+[https://slack.com/downloads/linux](https://slack.com/downloads/linux)<br>
+[https://discord.com/](https://discord.com/)<br>
+Download GIMP and Spotify from Ubuntu Software Store.
+
+```bash
+    $ sudo apt install apt-transport-https curl
+    $ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    $ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    $ sudo apt update
+    $ sudo apt install brave-browser -y
 ```
 
-
-### Download Hack Nerd Font
+### Install clipboard Indicator
+[https://extensions.gnome.org/extension/779/clipboard-indicator/](https://extensions.gnome.org/extension/779/clipboard-indicator/)
+### Install Hack Nerd Font
 [https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
-### Download Anaconda
+### Install Anaconda
 [https://docs.anaconda.com/anaconda/install/](https://docs.anaconda.com/anaconda/install/)
+
+### Install Git-Credential-Manager
+[https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
+```bash
+    $ sudo dpkg -i <path-to-package>
+    $ git-credential-manager configure
+```
+
+### Install Cuda
+[https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)<br>
+WARNING: the ubuntu2004/x86_64 in the url may be different, remember to change.
+
+```bash
+    $ sudo apt-get install linux-headers-$(uname -r)
+    $ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+    $ sudo dpkg -i cuda-keyring_1.0-1_all.deb
+    $ sudo apt-get update
+    $ sudo apt-get install cuda -y
+```
 
 ### Install Node and Yarn
 [Node Install Instructions](https://github.com/nodesource/distributions/blob/master/README.md#debinstall)
@@ -50,7 +91,7 @@
 
 Install Dependicies
 ```bash
-    $ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+    $ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
 ```
 
 Build from Source
@@ -92,7 +133,7 @@ Build from Source
 #### Ubuntu
 
 ```bash
-    $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk
+    $ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
 ```
 
 #### Mac
@@ -104,7 +145,7 @@ TBD
 #### Ubuntu
 
 ```bash
-    $ sudo apt install zathura
+    $ sudo apt install zathura -y
 ```
 
 #### Mac
@@ -127,7 +168,7 @@ TBD
 ### Install Python LSP - Pyright
 
 ```bash
-    $ sud npm install --global pyright
+    $ sudo npm install --global pyright
 ```
 
 ### Install C/C++ LSP - clangd
@@ -136,7 +177,7 @@ TBD
 #### Ubuntu
 
 ```bash
-    $ sudo apt install clangd-12
+    $ sudo apt install clangd-12 -y
     $ sudo ln /usr/bin/clangd-12 /usr/bin/clangd
 ```
 
@@ -150,7 +191,7 @@ TBD
 #### Ubuntu
 
 ```bash
-    $ sudo apt install clang-12
+    $ sudo apt install clang-12 -y
     $ sudo ln /usr/bin/clang-12 /usr/bin/clang
 ```
 
