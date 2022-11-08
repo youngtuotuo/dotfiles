@@ -1,4 +1,5 @@
-# My Routine Development Set Up in Ubuntu/Mac/Windows
+# Dotfiles
+My routine data science envrionment set up in ubuntu/mac/windows.
 
 <p align="center">
     <img src="pictures/image.png" />
@@ -59,6 +60,9 @@ Download GIMP and Spotify from Ubuntu Software Store.
 ### Install Anaconda
 [https://docs.anaconda.com/anaconda/install/](https://docs.anaconda.com/anaconda/install/)
 
+### Install Docker and CVAT
+[https://opencv.github.io/cvat/docs/administration/basics/installation/](https://opencv.github.io/cvat/docs/administration/basics/installation/)
+
 ### Install Git-Credential-Manager
 [https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
 ```bash
@@ -84,8 +88,8 @@ WARNING: the ubuntu2004/x86_64 in the url may be different, remember to change.
     $ curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
     $ sudo npm install --global yarn
 ```
-### Install Neovim
 
+### Install Neovim
 
 #### Ubuntu
 
@@ -193,6 +197,7 @@ TBD
 ```bash
     $ sudo apt install clang-12 -y
     $ sudo ln /usr/bin/clang-12 /usr/bin/clang
+    $ sudo ln /usr/bin/clang-12 /usr/bin/clang++
 ```
 
 #### Mac
@@ -223,8 +228,10 @@ TBD
     $ New-Item -ItemType SymbolicLink -Path "C:\Users\User\AppData\Local\nvim" -Target "C:\Users\User\github\dotfiles\nvim"
 ```
 
-## cv2 typing issue
-Remember to chage `target env name` and `python3.x` to suitable case.
+## cv2 typing issue with Pyright
+`opencv-python` or `opencv-contrib-python` is unable to be resolved by Pyright.<br>
+By adding the `__init__pyi` file, you'll get suggestion from Pyright.<br>
+(Remember to chage `target env name` and `python3.x` to your case.)
 ```bash
     $ conda activate <target env name>
     $ cd dotfiles
@@ -232,13 +239,9 @@ Remember to chage `target env name` and `python3.x` to suitable case.
 ```
 
 ## TODO
-Ubuntu setup
-- [ ] Auto setup bash script
-- [ ] Rust Analyzer Setup
+Ubuntu/Mac setup
+- [ ] Auto setup shell script
 
 Windows setup
 - [ ] Auto setup powershell script
-- [ ] Rust Analyzer Setup
 
-MacOS setup
-- [ ] Auto setup shell script
