@@ -1,4 +1,4 @@
-r0eturn {
+return {
   ensure_installed = {
     "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python",
     "vim", "rust", "go", "latex"
