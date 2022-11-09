@@ -60,9 +60,9 @@ M.setup = function(servers, nvim_lsp)
   local border = nil
   -- diagnostic after each line
   local diag_config = {
-    virtual_text = true,
+    virtual_text = false,
     signs = false,
-    underline = false,
+    underline = true,
     update_in_insert = false,
     severity_sort = true,
     float = {
