@@ -32,10 +32,12 @@ My routine data science envrionment set up in ubuntu/mac/windows.
     $ sudo apt install gnome-tweaks -y
     $ sudo apt install dconf-editor -y
 ```
+
 Change Keyboard and Mouse Behavior:
 1. Use Tweaks app to change caps to ctrl.
 2. Use dconf-editor to change click on app icon be 'minimize-and-preview'.
     (org/gnome/shell/extensions/dash-to-dock/click-action)
+3. (Optional) Disable laptop keybard: `xinput disable "AT Translated Set 2 keyboard"`
 
 
 ### Install Slack, Discord, GIMP, Brave and Spotify
