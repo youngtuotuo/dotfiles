@@ -42,10 +42,16 @@ return require('packer').startup(function()
     end
   }
 
+  use { "ellisonleao/gruvbox.nvim",
+    config = function()
+      vim.cmd([[colorscheme gruvbox]])
+    end
+  }
+
   use { 'shaunsingh/nord.nvim',
     config = function()
       vim.g.nord_italic = false
-      vim.cmd [[colo nord]]
+      -- vim.cmd [[colo nord]]
     end
   }
 
