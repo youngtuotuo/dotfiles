@@ -42,11 +42,12 @@ return require('packer').startup(function()
     end
   }
 
-  use { "ellisonleao/gruvbox.nvim",
-    config = function()
-      vim.cmd([[colorscheme gruvbox]])
-    end
-  }
+  use {'tjdevries/colorbuddy.vim'}
+  use {'tjdevries/gruvbuddy.nvim',
+        config = function()
+          require('colorbuddy').colorscheme('gruvbuddy')
+        end
+    }
 
   use { 'shaunsingh/nord.nvim',
     config = function()
