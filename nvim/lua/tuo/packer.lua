@@ -46,6 +46,12 @@ return require('packer').startup(function()
   use {'tjdevries/gruvbuddy.nvim',
         config = function()
           require('colorbuddy').colorscheme('gruvbuddy')
+          vim.cmd [[
+            hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+            hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+            hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
+            hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+          ]]
         end
     }
 
