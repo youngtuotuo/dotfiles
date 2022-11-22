@@ -47,6 +47,7 @@ return require('packer').startup(function()
         config = function()
           require('colorbuddy').colorscheme('gruvbuddy')
           vim.cmd [[
+            hi Normal guibg=Black
             hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
             hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
             hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
