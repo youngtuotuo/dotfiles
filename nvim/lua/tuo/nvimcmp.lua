@@ -68,33 +68,33 @@ M.setup = function()
       end
     end,
     complettion = {autocomplete = false},
-    -- formatting = {
-    --   format = function(entry, vim_item)
-    --     if vim.tbl_contains({'path'}, entry.source.name) then
-    --       local icon, hl_group = require('nvim-web-devicons').get_icon(
-    --                                  entry:get_completion_item().label)
-    --       if icon then
-    --         vim_item.kind = icon
-    --         vim_item.kind_hl_group = hl_group
-    --         return vim_item
-    --       end
-    --     end
-    --     return lspkind.cmp_format({
-    --       mode = 'symbol_text',
-    --       with_text = false,
-    --       maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-    --       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-    --       -- menu = ({
-    --       --   buffer = "[Buffer]",
-    --       --   nvim_lsp = "[Pyright]",
-    --       --   luasnip = "[LuaSnip]",
-    --       --   path = "[Path]",
-    --       --   nvim_lua = "[NvimLua]",
-    --       --   cmdline = "[Cmd]"
-    --       -- })
-    --     })(entry, vim_item)
-    --   end
-    -- },
+    formatting = {
+      format = function(entry, vim_item)
+        if vim.tbl_contains({'path'}, entry.source.name) then
+          local icon, hl_group = require('nvim-web-devicons').get_icon(
+                                     entry:get_completion_item().label)
+          if icon then
+            vim_item.kind = icon
+            vim_item.kind_hl_group = hl_group
+            return vim_item
+          end
+        end
+        return lspkind.cmp_format({
+          mode = 'symbol_text',
+          with_text = false,
+          maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+          -- menu = ({
+          --   buffer = "[Buffer]",
+          --   nvim_lsp = "[Pyright]",
+          --   luasnip = "[LuaSnip]",
+          --   path = "[Path]",
+          --   nvim_lua = "[NvimLua]",
+          --   cmdline = "[Cmd]"
+          -- })
+        })(entry, vim_item)
+      end
+    },
     -- window = {
     --   completion = cmp.config.window.bordered(),
     --   documentation = cmp.config.window.bordered()

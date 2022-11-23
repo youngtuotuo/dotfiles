@@ -5,10 +5,10 @@ return {
     mappings = {list = {{key = "-", action = "dir_up"}}}
   },
   renderer = {icons = { show = {
-    file = false,
-    folder = false,
-    folder_arrow = false,
-    git = true,
+      file = true,
+      folder = true,
+      folder_arrow = true,
+      git = true,
     }
   }, group_empty = true},
   filters = {dotfiles = true}
