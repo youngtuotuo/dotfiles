@@ -1,7 +1,4 @@
 # Nushell Config File
-# let-env PROMPT_COMMAND = { oh-my-posh init nu --config "C:/Users/User/amro.omp.json" }
-let-env PROMPT_COMMAND_RIGHT = ''
-
 module completions {
   # Custom completions for external commands (those outside of Nushell)
   # Each completions has two parts: the form of the external command, including its flags and parameters
