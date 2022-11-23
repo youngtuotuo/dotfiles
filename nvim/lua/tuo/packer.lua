@@ -42,18 +42,50 @@ return require('packer').startup(function()
     end
   }
 
+  use { "catppuccin/nvim", as = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+        dim_inactive = {
+          enabled = false,
+          shade = "dark",
+          percentage = 0.15,
+        },
+        no_italic = true, -- Force no italic
+        no_bold = true, -- Force no bold
+        integrations = {
+          cmp = true,
+          gitsigns = false,
+          nvimtree = false,
+          telescope = false,
+          notify = false,
+          mini = false,
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+      })
+      vim.cmd.colorscheme "catppuccin"
+      vim.cmd [[
+        hi Normal guibg=Black
+        hi NormalNC guibg=Black
+        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
+        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+      ]]
+    end
+  }
   use {'tjdevries/colorbuddy.vim'}
   use {'tjdevries/gruvbuddy.nvim',
-        config = function()
-          require('colorbuddy').colorscheme('gruvbuddy')
-          vim.cmd [[
-            hi Normal guibg=Black
-            hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-            hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
-            hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
-            hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
-          ]]
-        end
+        -- config = function()
+        --   require('colorbuddy').colorscheme('gruvbuddy')
+        --   vim.cmd [[
+        --     hi Normal guibg=Black
+        --     hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+        --     hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+        --     hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
+        --     hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+        --   ]]
+        -- end
     }
 
   use { 'shaunsingh/nord.nvim',

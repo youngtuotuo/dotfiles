@@ -125,7 +125,6 @@ module completions {
     --help                                          # Display the help message for this command
   ]
 }
-
 # Get just the extern definitions without the custom completion commands
 use completions *
 

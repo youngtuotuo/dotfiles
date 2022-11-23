@@ -4,7 +4,13 @@ return {
     adaptive_size = true,
     mappings = {list = {{key = "-", action = "dir_up"}}}
   },
-  renderer = {group_empty = true},
+  renderer = {icons = { show = {
+    file = false,
+    folder = false,
+    folder_arrow = false,
+    git = true,
+    }
+  }, group_empty = true},
   filters = {dotfiles = true}
 }
 

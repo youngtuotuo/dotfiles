@@ -7,7 +7,7 @@ local actions = require 'telescope.actions'
 
 return {
   defaults = {
-    prompt_prefix = " ",
+    prompt_prefix = "> ",
     selection_caret = " ",
     path_display = { "smart" },
     initial_mode = "insert",
