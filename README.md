@@ -56,11 +56,15 @@ Download GIMP and Spotify from Ubuntu Software Store.
 
 ### Install clipboard Indicator
 [https://extensions.gnome.org/extension/779/clipboard-indicator/](https://extensions.gnome.org/extension/779/clipboard-indicator/)
-### Install Hack Nerd Font
+
+### Install Alacritty
+[https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
+
+### Install Fira Code Nerd Font
 [https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
-### Install Anaconda
-[https://docs.anaconda.com/anaconda/install/](https://docs.anaconda.com/anaconda/install/)
+### Install Miniconda
+[https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
 
 ### Install Docker and CVAT
 [https://opencv.github.io/cvat/docs/administration/basics/installation/](https://opencv.github.io/cvat/docs/administration/basics/installation/)
@@ -164,6 +168,9 @@ TBD
     $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     $ source "$HOME/.cargo/env"
 ```
+
+### Install nu shell
+[https://www.nushell.sh/book/installation.html#installing-rust](https://www.nushell.sh/book/installation.html#installing-rust)
 
 ### Install Latex LSP - Texlab
 

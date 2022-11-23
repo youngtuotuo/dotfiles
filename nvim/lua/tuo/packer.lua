@@ -65,8 +65,8 @@ return require('packer').startup(function()
       })
       vim.cmd.colorscheme "catppuccin"
       vim.cmd [[
-        hi Normal guibg=Black
-        hi NormalNC guibg=Black
+        hi Normal guibg=NONE
+        hi NormalNC guibg=NONE
         hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
         hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
         hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
