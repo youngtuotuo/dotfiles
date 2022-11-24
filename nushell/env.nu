@@ -6,7 +6,7 @@ def create_left_prompt [] {
     # } else {
     #     $"(ansi green_bold)($env.PWD)"
     # }
-    let path_segment = ($env.PWD) + (char newline) + (char nf_folder2)
+    let path_segment = (ansi white) + ($env.PWD) + (char newline) + (char nf_folder2)
 
     $path_segment
 }
