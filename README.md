@@ -1,5 +1,42 @@
 # Dotfiles
-My routine data science envrionment set up in ubuntu/mac/windows.
+My routine data science envrionment set up in ubuntu/mac/windows.<br>
+Tools I use:
+- Dev
+    - Alacritty (Fira Code Nerd Font)
+    - Nushell
+    - Neovim
+        - packer.nvim
+        - Comment.nvim
+        - nvim-treesitter
+        - nvim-web-devicons
+        - nvim-lspconfig
+        - nvim-cmp
+        - indent-blankline.nvim
+        - markdown-preview.nvim
+        - nvim-autopairs
+        - nvim-tree
+        - telescop.nvim
+        - rust-tools.nvim
+        - vimtex
+        - neoformat
+        - catppuccin
+    - Tmux
+    - Miniconda
+    - Latex
+    - Texlab, Pyright, Clangd
+- Ops
+    - Slack
+    - Brave
+    - Discord
+    - Clipboard Indicator (Ubuntu only)
+    - Git Credential Manager
+    - Docker
+    - Nodejs
+- ML
+    - CVAT
+    - Pytorch
+    - Cuda
+    - Numpy
 
 <p align="center">
     <img src="pictures/image.png" />
