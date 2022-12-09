@@ -81,7 +81,7 @@ M.setup = function(servers, nvim_lsp)
   local default_capabilities = vim.lsp.protocol.make_client_capabilities()
   default_capabilities.textDocument.codeLens = {dynamicRegistration = false}
   default_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  default_capabilities.offsetEncoding = "utf-8"
+  default_capabilities.offsetEncoding = {"utf-8"}
   default_capabilities = require("cmp_nvim_lsp").default_capabilities(
                              default_capabilities)
 
