@@ -47,6 +47,7 @@ local servers = {
     },
   },
   clangd = {},
+  rust_analyzer = {},
   texlab = {
     settings = {
       texlab = {

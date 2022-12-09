@@ -211,8 +211,6 @@ return require('packer').startup(function()
   use {
     "neovim/nvim-lspconfig",
     event = "BufEnter",
-    -- easy rust lsp configuration tool
-    requires = { "simrat39/rust-tools.nvim", module = "rust-tools" },
     config = function()
       require("tuo.nvimlsp")
     end

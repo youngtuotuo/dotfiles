@@ -81,6 +81,7 @@ M.setup = function(servers, nvim_lsp)
   local default_capabilities = vim.lsp.protocol.make_client_capabilities()
   default_capabilities.textDocument.codeLens = {dynamicRegistration = false}
   default_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  default_capabilities.offsetEncoding = "utf-8"
   default_capabilities = require("cmp_nvim_lsp").default_capabilities(
                              default_capabilities)
 
@@ -124,14 +125,6 @@ M.setup = function(servers, nvim_lsp)
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
   for server, config in pairs(servers) do setup_server(server, config) end
-  require("rust-tools").setup({
-    server = {
-      on_init = custom_init,
-      handlers = handlers,
-      capabilities = updated_capabilities,
-      on_attach = custom_on_attach,
-    },
-  })
 end
 
 return M
