@@ -42,51 +42,107 @@ return require('packer').startup(function()
     end
   }
 
-  use { "catppuccin/nvim", as = "catppuccin",
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        dim_inactive = {
-          enabled = false,
-          shade = "dark",
-          percentage = 0.15,
+      require('rose-pine').setup({
+        --- @usage 'main' | 'moon'
+        dark_variant = 'moon',
+        bold_vert_split = false,
+        dim_nc_background = false,
+        disable_background = false,
+        disable_float_background = false,
+        disable_italics = false,
+
+        --- @usage string hex value or named color from rosepinetheme.com/palette
+        groups = {
+          background = 'base',
+          panel = 'surface',
+          border = 'highlight_med',
+          comment = 'muted',
+          link = 'iris',
+          punctuation = 'subtle',
+
+          error = 'love',
+          hint = 'iris',
+          info = 'foam',
+          warn = 'gold',
+
+          headings = {
+            h1 = 'iris',
+            h2 = 'foam',
+            h3 = 'rose',
+            h4 = 'gold',
+            h5 = 'pine',
+            h6 = 'foam',
+          }
+          -- or set all headings at once
+          -- headings = 'subtle'
         },
-        no_italic = true, -- Force no italic
-        no_bold = true, -- Force no bold
-        integrations = {
-          cmp = true,
-          gitsigns = false,
-          nvimtree = false,
-          telescope = false,
-          notify = false,
-          mini = false,
-          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-        },
+
+        -- Change specific vim highlight groups
+        highlight_groups = {
+          ColorColumn = { bg = 'rose' }
+        }
       })
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "rose-pine"
       vim.cmd [[
-        hi Normal guibg=NONE
-        hi NormalNC guibg=NONE
+        " hi Normal guibg=NONE
+        " hi NormalNC guibg=NONE
         hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
         hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
         hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
         hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
       ]]
     end
-  }
-  use {'tjdevries/colorbuddy.vim'}
-  use {'tjdevries/gruvbuddy.nvim',
-        -- config = function()
-        --   require('colorbuddy').colorscheme('gruvbuddy')
-        --   vim.cmd [[
-        --     hi Normal guibg=Black
-        --     hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-        --     hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
-        --     hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
-        --     hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
-        --   ]]
-        -- end
-    }
+  })
+
+  -- use { "catppuccin/nvim", as = "catppuccin",
+  --   config = function()
+  --     require("catppuccin").setup({
+  --       flavour = "mocha",
+  --       dim_inactive = {
+  --         enabled = false,
+  --         shade = "dark",
+  --         percentage = 0.15,
+  --       },
+  --       no_italic = true, -- Force no italic
+  --       no_bold = true, -- Force no bold
+  --       integrations = {
+  --         cmp = true,
+  --         gitsigns = false,
+  --         nvimtree = false,
+  --         telescope = false,
+  --         notify = false,
+  --         mini = false,
+  --         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+  --       },
+  --     })
+  --     vim.cmd.colorscheme "catppuccin"
+  --     vim.cmd [[
+  --       hi Normal guibg=NONE
+  --       hi NormalNC guibg=NONE
+  --       hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+  --       hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+  --       hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
+  --       hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+  --     ]]
+  --   end
+  -- }
+  -- use {'tjdevries/colorbuddy.vim'}
+  -- use {'tjdevries/gruvbuddy.nvim',
+  --       config = function()
+  --         require('colorbuddy').colorscheme('gruvbuddy')
+  --         vim.cmd [[
+  --           hi Normal guibg=Black
+  --           hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+  --           hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+  --           hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
+  --           hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+  --         ]]
+  --       end
+  --   }
 
   use { 'shaunsingh/nord.nvim',
     config = function()

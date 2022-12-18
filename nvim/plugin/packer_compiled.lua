@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/support/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/support/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/support/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/support/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/support/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/tuo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/tuo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/tuo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/tuo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/tuo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -77,117 +77,101 @@ _G.packer_plugins = {
   ["Comment.nvim"] = {
     config = { "\27LJ\2\nM\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\16tuo.comment\nsetup\fComment\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
   LuaSnip = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  catppuccin = {
-    config = { "\27LJ\2\nî\4\0\0\4\0\f\0\0206\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\1\0B\0\2\0016\0\b\0009\0\t\0'\2\v\0B\0\2\1K\0\1\0Ì\2        hi Normal guibg=NONE\n        hi NormalNC guibg=NONE\n        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl\n      \16colorscheme\bcmd\bvim\17integrations\1\0\6\rnvimtree\1\rgitsigns\1\bcmp\2\tmini\1\vnotify\1\14telescope\1\17dim_inactive\1\0\3\nshade\tdark\fenabled\1\15percentage\4³æÌ™\3³æŒþ\3\1\0\3\fflavour\nmocha\fno_bold\2\14no_italic\2\nsetup\15catppuccin\frequire\0" },
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-cmdline"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
   ["cmp-latex-symbols"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-latex-symbols",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-latex-symbols",
     url = "https://github.com/kdheepak/cmp-latex-symbols"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-path",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
-  ["colorbuddy.vim"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
-    url = "https://github.com/tjdevries/colorbuddy.vim"
   },
   ["friendly-snippets"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
-  },
-  ["gruvbuddy.nvim"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim",
-    url = "https://github.com/tjdevries/gruvbuddy.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
   },
   ["indent-blankline.nvim"] = {
-    config = { "\27LJ\2\nÝ\2\0\0\3\0\a\0\v6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\3\0'\2\4\0B\0\2\0029\0\5\0005\2\6\0B\0\2\1K\0\1\0\1\0\6\21show_end_of_line\2\fenabled\1\28show_first_indent_level\1\31show_current_context_start\1\25show_current_context\2\25space_char_blankline\6 \nsetup\21indent_blankline\frequire†\1        hi IndentBlanklineContextStart cterm=nocombine gui=nocombine\n        hi IndentBlanklineContextChar guifg=LightGrey\n      \bcmd\bvim\0" },
+    config = { "\27LJ\2\nÝ\2\0\0\3\0\a\0\v6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\3\0'\2\4\0B\0\2\0029\0\5\0005\2\6\0B\0\2\1K\0\1\0\1\0\6\25show_current_context\2\25space_char_blankline\6 \fenabled\1\21show_end_of_line\2\28show_first_indent_level\1\31show_current_context_start\1\nsetup\21indent_blankline\frequire†\1        hi IndentBlanklineContextStart cterm=nocombine gui=nocombine\n        hi IndentBlanklineContextChar guifg=LightGrey\n      \bcmd\bvim\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["markdown-preview.nvim"] = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   neoformat = {
     config = { "\27LJ\2\nþ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Þ\1        let g:neoformat_cpp_clangformat = {\n              \\ 'exe': 'clang-format',\n              \\ 'args': ['--style=\"{IndentWidth: 4}\"'],\n              \\ }\n        let g:neoformat_enabled_cpp = ['clangformat']\n      \bcmd\bvim\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/neoformat",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
   },
   ["nord.nvim"] = {
     config = { "\27LJ\2\n-\0\0\2\0\3\0\0056\0\0\0009\0\1\0+\1\1\0=\1\2\0K\0\1\0\16nord_italic\6g\bvim\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\nü\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\14fast_wrap\1\0\0\nchars\1\6\0\0\6{\6[\6(\6\"\6'\1\0\a\fpattern\23[%'%\"%)%>%]%)%}%,]\bmap\14<leader>e\16check_comma\2\tkeys\31qwertyuiopzxcvbnmasdfghjkl\14highlight\vSearch\fend_key\6$\19highlight_grey\fComment\nsetup\19nvim-autopairs\frequire\0" },
+    config = { "\27LJ\2\nü\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\14fast_wrap\1\0\0\nchars\1\6\0\0\6{\6[\6(\6\"\6'\1\0\a\tkeys\31qwertyuiopzxcvbnmasdfghjkl\bmap\14<leader>e\fend_key\6$\14highlight\vSearch\fpattern\23[%'%\"%)%>%]%)%}%,]\19highlight_grey\fComment\16check_comma\2\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16tuo.nvimcmp\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
@@ -195,7 +179,7 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
@@ -203,13 +187,13 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\nP\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\17tuo.nvimtree\nsetup\14nvim-tree\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
@@ -218,7 +202,7 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
@@ -228,7 +212,7 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
@@ -236,56 +220,62 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/plenary.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["rose-pine"] = {
+    config = { "\27LJ\2\nÐ\6\0\0\5\0\16\0\0246\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\0025\3\t\0005\4\b\0=\4\n\3=\3\v\2B\0\2\0016\0\f\0009\0\r\0009\0\14\0'\2\1\0B\0\2\0016\0\f\0009\0\r\0'\2\15\0B\0\2\1K\0\1\0Ð\2        \" hi Normal guibg=NONE\n        \" hi NormalNC guibg=NONE\n        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl\n      \16colorscheme\bcmd\bvim\21highlight_groups\16ColorColumn\1\0\0\1\0\1\abg\trose\vgroups\rheadings\1\0\6\ah1\tiris\ah6\tfoam\ah5\tpine\ah4\tgold\ah3\trose\ah2\tfoam\1\0\n\thint\tiris\twarn\tgold\15background\tbase\nerror\tlove\16punctuation\vsubtle\vborder\18highlight_med\fcomment\nmuted\npanel\fsurface\tinfo\tfoam\tlink\tiris\1\0\6\20disable_italics\1\29disable_float_background\1\23disable_background\1\22dim_nc_background\1\17dark_variant\tmoon\20bold_vert_split\1\nsetup\14rose-pine\frequire\0" },
+    loaded = true,
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["stabilize.nvim"] = {
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/support/.local/share/nvim/site/pack/packer/opt/stabilize.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/opt/stabilize.nvim",
     url = "https://github.com/luukvbaal/stabilize.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     config = { "\27LJ\2\nv\0\0\3\0\b\1\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\6€6\0\4\0'\2\5\0B\0\2\0029\0\6\0'\2\a\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\nwin32\bhas\afn\bvim\0\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     config = { "\27LJ\2\nQ\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\18tuo.telescope\nsetup\14telescope\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-snippets"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/vim-snippets",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/vim-snippets",
     url = "https://github.com/honza/vim-snippets"
   },
   vimtex = {
     config = { "\27LJ\2\nÌ\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¬\4        let g:vimtex_view_method=(has(\"win32\")?\"general\":\"zathura\")\n        let g:tex_flavor=\"latex\"\n        set conceallevel=2\n        \" let g:vimtex_compiler_latexmk = { \n        \"   \\ 'executable' : 'latexmk',\n        \"   \\ 'options' : [ \n        \"   \\   '-xelatex',\n        \"   \\   '-file-line-error',\n        \"   \\   '-synctex=1',\n        \"   \\   '-interaction=nonstopmode',\n        \"   \\ ],\n        \"   \\}\n        let g:vimtex_compiler_latexmk_engines = {\n          \\ '_' : '-xelatex',\n          \\}\n        let g:vimtex_quickfix_enabled=0\n      \bcmd\bvim\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/vimtex",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
   },
   ["workspaces.nvim"] = {
     config = { "\27LJ\2\n•\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\a\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\14telescope\nhooks\1\0\0\1\0\1\topen\19NvimTreeOpen .\nsetup\15workspaces\frequire\0" },
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/workspaces.nvim",
+    path = "/home/tuo/.local/share/nvim/site/pack/packer/start/workspaces.nvim",
     url = "https://github.com/natecraddock/workspaces.nvim"
   }
 }
@@ -324,46 +314,46 @@ end
 time([[Setup for markdown-preview.nvim]], true)
 try_loadstring("\27LJ\2\nŠ\2\0\0\2\0\f\0\0296\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0)\1\1\0=\1\4\0006\0\0\0009\0\1\0'\1\6\0=\1\5\0006\0\0\0009\0\1\0)\1•\31=\1\a\0006\0\0\0009\0\1\0)\1\1\0=\1\b\0006\0\0\0009\0\1\0'\1\n\0=\1\t\0006\0\0\0009\0\1\0'\1\n\0=\1\v\0K\0\1\0\21mkdp_browserfunc\5\17mkdp_browser\26mkdp_echo_preview_url\14mkdp_port\014127.0.0.1\17mkdp_open_ip\27mkdp_open_to_the_world\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
 time([[Setup for markdown-preview.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nQ\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\18tuo.telescope\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\nü\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\14fast_wrap\1\0\0\nchars\1\6\0\0\6{\6[\6(\6\"\6'\1\0\a\fpattern\23[%'%\"%)%>%]%)%}%,]\bmap\14<leader>e\16check_comma\2\tkeys\31qwertyuiopzxcvbnmasdfghjkl\14highlight\vSearch\fend_key\6$\19highlight_grey\fComment\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16tuo.nvimcmp\frequire\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: workspaces.nvim
-time([[Config for workspaces.nvim]], true)
-try_loadstring("\27LJ\2\n•\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\a\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\14telescope\nhooks\1\0\0\1\0\1\topen\19NvimTreeOpen .\nsetup\15workspaces\frequire\0", "config", "workspaces.nvim")
-time([[Config for workspaces.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\nP\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\17tuo.nvimtree\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: catppuccin
-time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\nî\4\0\0\4\0\f\0\0206\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\1\0B\0\2\0016\0\b\0009\0\t\0'\2\v\0B\0\2\1K\0\1\0Ì\2        hi Normal guibg=NONE\n        hi NormalNC guibg=NONE\n        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl\n      \16colorscheme\bcmd\bvim\17integrations\1\0\6\rnvimtree\1\rgitsigns\1\bcmp\2\tmini\1\vnotify\1\14telescope\1\17dim_inactive\1\0\3\nshade\tdark\fenabled\1\15percentage\4³æÌ™\3³æŒþ\3\1\0\3\fflavour\nmocha\fno_bold\2\14no_italic\2\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
-time([[Config for catppuccin]], false)
--- Config for: vimtex
-time([[Config for vimtex]], true)
-try_loadstring("\27LJ\2\nÌ\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¬\4        let g:vimtex_view_method=(has(\"win32\")?\"general\":\"zathura\")\n        let g:tex_flavor=\"latex\"\n        set conceallevel=2\n        \" let g:vimtex_compiler_latexmk = { \n        \"   \\ 'executable' : 'latexmk',\n        \"   \\ 'options' : [ \n        \"   \\   '-xelatex',\n        \"   \\   '-file-line-error',\n        \"   \\   '-synctex=1',\n        \"   \\   '-interaction=nonstopmode',\n        \"   \\ ],\n        \"   \\}\n        let g:vimtex_compiler_latexmk_engines = {\n          \\ '_' : '-xelatex',\n          \\}\n        let g:vimtex_quickfix_enabled=0\n      \bcmd\bvim\0", "config", "vimtex")
-time([[Config for vimtex]], false)
 -- Config for: neoformat
 time([[Config for neoformat]], true)
 try_loadstring("\27LJ\2\nþ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Þ\1        let g:neoformat_cpp_clangformat = {\n              \\ 'exe': 'clang-format',\n              \\ 'args': ['--style=\"{IndentWidth: 4}\"'],\n              \\ }\n        let g:neoformat_enabled_cpp = ['clangformat']\n      \bcmd\bvim\0", "config", "neoformat")
 time([[Config for neoformat]], false)
--- Config for: nord.nvim
-time([[Config for nord.nvim]], true)
-try_loadstring("\27LJ\2\n-\0\0\2\0\3\0\0056\0\0\0009\0\1\0+\1\1\0=\1\2\0K\0\1\0\16nord_italic\6g\bvim\0", "config", "nord.nvim")
-time([[Config for nord.nvim]], false)
+-- Config for: workspaces.nvim
+time([[Config for workspaces.nvim]], true)
+try_loadstring("\27LJ\2\n•\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\a\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\14telescope\nhooks\1\0\0\1\0\1\topen\19NvimTreeOpen .\nsetup\15workspaces\frequire\0", "config", "workspaces.nvim")
+time([[Config for workspaces.nvim]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\nM\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\16tuo.comment\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
+-- Config for: vimtex
+time([[Config for vimtex]], true)
+try_loadstring("\27LJ\2\nÌ\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¬\4        let g:vimtex_view_method=(has(\"win32\")?\"general\":\"zathura\")\n        let g:tex_flavor=\"latex\"\n        set conceallevel=2\n        \" let g:vimtex_compiler_latexmk = { \n        \"   \\ 'executable' : 'latexmk',\n        \"   \\ 'options' : [ \n        \"   \\   '-xelatex',\n        \"   \\   '-file-line-error',\n        \"   \\   '-synctex=1',\n        \"   \\   '-interaction=nonstopmode',\n        \"   \\ ],\n        \"   \\}\n        let g:vimtex_compiler_latexmk_engines = {\n          \\ '_' : '-xelatex',\n          \\}\n        let g:vimtex_quickfix_enabled=0\n      \bcmd\bvim\0", "config", "vimtex")
+time([[Config for vimtex]], false)
+-- Config for: nord.nvim
+time([[Config for nord.nvim]], true)
+try_loadstring("\27LJ\2\n-\0\0\2\0\3\0\0056\0\0\0009\0\1\0+\1\1\0=\1\2\0K\0\1\0\16nord_italic\6g\bvim\0", "config", "nord.nvim")
+time([[Config for nord.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16tuo.nvimcmp\frequire\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\nü\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\14fast_wrap\1\0\0\nchars\1\6\0\0\6{\6[\6(\6\"\6'\1\0\a\tkeys\31qwertyuiopzxcvbnmasdfghjkl\bmap\14<leader>e\fend_key\6$\14highlight\vSearch\fpattern\23[%'%\"%)%>%]%)%}%,]\19highlight_grey\fComment\16check_comma\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nQ\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\18tuo.telescope\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\nÐ\6\0\0\5\0\16\0\0246\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\0025\3\t\0005\4\b\0=\4\n\3=\3\v\2B\0\2\0016\0\f\0009\0\r\0009\0\14\0'\2\1\0B\0\2\0016\0\f\0009\0\r\0'\2\15\0B\0\2\1K\0\1\0Ð\2        \" hi Normal guibg=NONE\n        \" hi NormalNC guibg=NONE\n        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl\n        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl\n      \16colorscheme\bcmd\bvim\21highlight_groups\16ColorColumn\1\0\0\1\0\1\abg\trose\vgroups\rheadings\1\0\6\ah1\tiris\ah6\tfoam\ah5\tpine\ah4\tgold\ah3\trose\ah2\tfoam\1\0\n\thint\tiris\twarn\tgold\15background\tbase\nerror\tlove\16punctuation\vsubtle\vborder\18highlight_med\fcomment\nmuted\npanel\fsurface\tinfo\tfoam\tlink\tiris\1\0\6\20disable_italics\1\29disable_float_background\1\23disable_background\1\22dim_nc_background\1\17dark_variant\tmoon\20bold_vert_split\1\nsetup\14rose-pine\frequire\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\nP\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\17tuo.nvimtree\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 -- Config for: telescope-fzf-native.nvim
 time([[Config for telescope-fzf-native.nvim]], true)
 try_loadstring("\27LJ\2\nv\0\0\3\0\b\1\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\6€6\0\4\0'\2\5\0B\0\2\0029\0\6\0'\2\a\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\nwin32\bhas\afn\bvim\0\0", "config", "telescope-fzf-native.nvim")
@@ -377,7 +367,7 @@ time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au WinEnter * ++once lua require("packer.load")({'stabilize.nvim'}, { event = "WinEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'nvim-lspconfig', 'nvim-colorizer.lua', 'nvim-treesitter', 'indent-blankline.nvim', 'nvim-treesitter-textobjects'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'nvim-lspconfig', 'nvim-colorizer.lua', 'nvim-treesitter', 'nvim-treesitter-textobjects', 'indent-blankline.nvim'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
