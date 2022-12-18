@@ -86,15 +86,13 @@ return require('packer').startup(function()
           ColorColumn = { bg = 'rose' }
         }
       })
-      vim.cmd.colorscheme "rose-pine"
-      vim.cmd [[
-        " hi Normal guibg=NONE
-        " hi NormalNC guibg=NONE
-        hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-        hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
-        hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
-        hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
-      ]]
+      vim.cmd.colorscheme("rose-pine")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
     end
   })
 
