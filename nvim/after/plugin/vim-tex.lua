@@ -7,3 +7,5 @@ vim.cmd [[
     \}
   let g:vimtex_quickfix_enabled=0
 ]]
+-- Vimtex
+vim.api.nvim_set_keymap("n", "<leader>vc", ":VimtexCompile<CR>", {noremap = true, silent = true})

@@ -42,3 +42,5 @@ require("nvim-treesitter.configs").setup({
     }
   }
 })
+-- TreeSitter highlight toggle
+vim.api.nvim_set_keymap("n", "<leader>ts", ":TSToggle highlight<CR>", {noremap = true, silent = true})

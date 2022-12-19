@@ -55,3 +55,20 @@ require("telescope").setup({
     }
   }
 })
+
+local default_opts = {noremap = true, silent = true}
+-- Telescope Stuff
+vim.api.nvim_set_keymap("n", "<space>r", ":Telescope lsp_references<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>e", ":Telescope find_files<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>f", ":Telescope current_buffer_fuzzy_find<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>g", ":Telescope git_files<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>d", ":Telescope diagnostics<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>l", ":Telescope live_grep<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>b", ":Telescope buffers<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>c", ":Telescope commands<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>h", ":Telescope help_tags<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>m", ":Telescope keymaps<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>n", ":Telescope notify<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope cwd=.<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>v", ":Telescope lsp_document_symbols<CR>", default_opts)
+vim.api.nvim_set_keymap("n", "<space>w", ":Telescope workspaces<CR>", default_opts)
