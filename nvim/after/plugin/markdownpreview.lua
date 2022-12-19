@@ -1,3 +1,4 @@
+vim.g.mkdp_filetypes = { "markdown" }
 --  set to 1, nvim will open the preview window after entering the markdown buffer
 --  default: 0
 vim.g.mkdp_auto_start = 0
@@ -56,7 +57,7 @@ vim.g.mkdp_markdown_css = ''
 vim.g.mkdp_highlight_css = ''
 
 --  use a custom port to start server or random for empty
-vim.g.mkdp_port = '8089'
+vim.g.mkdp_port = '8085'
 
 --  preview page title
 --  ${name} will be replace with the file name

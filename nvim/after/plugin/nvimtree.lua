@@ -1,4 +1,4 @@
-return {
+require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
@@ -12,7 +12,7 @@ return {
     }
   }, group_empty = true},
   filters = {dotfiles = true}
-}
+})
 
 -- view.mappings.list = { -- BEGIN_DEFAULT_MAPPINGS
 --   { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },

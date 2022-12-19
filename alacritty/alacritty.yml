@@ -32,7 +32,7 @@ font:
     family: FiraCode Nerd Font
     style: Regular
   # Point size
-  size: 13.0 
+  size: 10.0 
 
 # Import additional configuration files
 #

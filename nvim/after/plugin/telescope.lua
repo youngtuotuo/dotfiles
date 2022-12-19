@@ -5,7 +5,7 @@ end
 
 local actions = require 'telescope.actions'
 
-return {
+require("telescope").setup({
   defaults = {
     prompt_prefix = "> ",
     selection_caret = " ",
@@ -54,4 +54,4 @@ return {
       keep_insert = false
     }
   }
-}
+})

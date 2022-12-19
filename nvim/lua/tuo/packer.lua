@@ -30,252 +30,55 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
-  use { "sbdchd/neoformat",
-    config = function()
-      vim.cmd [[
-        let g:neoformat_cpp_clangformat = {
-              \ 'exe': 'clang-format',
-              \ 'args': ['--style="{IndentWidth: 4}"'],
-              \ }
-        let g:neoformat_enabled_cpp = ['clangformat']
-      ]]
-    end
-  }
+  use { "sbdchd/neoformat" }
 
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      require('rose-pine').setup({
-        --- @usage 'main' | 'moon'
-        dark_variant = 'moon',
-        bold_vert_split = false,
-        dim_nc_background = false,
-        disable_background = false,
-        disable_float_background = false,
-        disable_italics = false,
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
 
-        --- @usage string hex value or named color from rosepinetheme.com/palette
-        groups = {
-          background = 'base',
-          panel = 'surface',
-          border = 'highlight_med',
-          comment = 'muted',
-          link = 'iris',
-          punctuation = 'subtle',
-
-          error = 'love',
-          hint = 'iris',
-          info = 'foam',
-          warn = 'gold',
-
-          headings = {
-            h1 = 'iris',
-            h2 = 'foam',
-            h3 = 'rose',
-            h4 = 'gold',
-            h5 = 'pine',
-            h6 = 'foam',
-          }
-          -- or set all headings at once
-          -- headings = 'subtle'
-        },
-
-        -- Change specific vim highlight groups
-        highlight_groups = {
-          ColorColumn = { bg = 'rose' }
-        }
-      })
-      vim.cmd.colorscheme("rose-pine")
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
-    end
-  })
-
-  -- use { "catppuccin/nvim", as = "catppuccin",
-  --   config = function()
-  --     require("catppuccin").setup({
-  --       flavour = "mocha",
-  --       dim_inactive = {
-  --         enabled = false,
-  --         shade = "dark",
-  --         percentage = 0.15,
-  --       },
-  --       no_italic = true, -- Force no italic
-  --       no_bold = true, -- Force no bold
-  --       integrations = {
-  --         cmp = true,
-  --         gitsigns = false,
-  --         nvimtree = false,
-  --         telescope = false,
-  --         notify = false,
-  --         mini = false,
-  --         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-  --       },
-  --     })
-  --     vim.cmd.colorscheme "catppuccin"
-  --     vim.cmd [[
-  --       hi Normal guibg=NONE
-  --       hi NormalNC guibg=NONE
-  --       hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-  --       hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
-  --       hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
-  --       hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
-  --     ]]
-  --   end
-  -- }
-  -- use {'tjdevries/colorbuddy.vim'}
-  -- use {'tjdevries/gruvbuddy.nvim',
-  --       config = function()
-  --         require('colorbuddy').colorscheme('gruvbuddy')
-  --         vim.cmd [[
-  --           hi Normal guibg=Black
-  --           hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-  --           hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
-  --           hi DiagnosticUnderlineError cterm=undercurl gui=undercurl
-  --           hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
-  --         ]]
-  --       end
-  --   }
-
-  use { 'shaunsingh/nord.nvim',
-    config = function()
-      vim.g.nord_italic = false
-      -- vim.cmd [[colo nord]]
-    end
-  }
-
-  use {
-	"windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({
-        fast_wrap={
-          map = '<leader>e',
-          chars = { '{', '[', '(', '"', "'" },
-          pattern = [=[[%'%"%)%>%]%)%}%,]]=],
-          end_key = '$',
-          keys = 'qwertyuiopzxcvbnmasdfghjkl',
-          check_comma = true,
-          highlight = 'Search',
-          highlight_grey='Comment'
-        },
-      })
-    end
-  }
+  use { "windwp/nvim-autopairs" }
 
   -- latex
-  use ({
-    "lervag/vimtex",
-    config = function()
-      vim.cmd [[
-        let g:vimtex_view_method=(has("win32")?"general":"zathura")
-        let g:tex_flavor="latex"
-        set conceallevel=2
-        " let g:vimtex_compiler_latexmk = { 
-        "   \ 'executable' : 'latexmk',
-        "   \ 'options' : [ 
-        "   \   '-xelatex',
-        "   \   '-file-line-error',
-        "   \   '-synctex=1',
-        "   \   '-interaction=nonstopmode',
-        "   \ ],
-        "   \}
-        let g:vimtex_compiler_latexmk_engines = {
-          \ '_' : '-xelatex',
-          \}
-        let g:vimtex_quickfix_enabled=0
-      ]]
-    end
-  })
+  use ({ "lervag/vimtex" })
 
-  -- telescope
-  local tele_fzf_run = "make"
-  if vim.fn.has("win32") == 1 then
-    tele_fzf_run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
-  end
-  use {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = tele_fzf_run,
-    config = function()
-      if vim.fn.has("win32") == 0 then
-        require("telescope").load_extension('fzf')
-      end
-    end,
-  }
+  use { "nvim-telescope/telescope.nvim", branch='0.1.x', requires = { "nvim-lua/plenary.nvim", } }
 
-  use {
-    "natecraddock/workspaces.nvim",
-    config = function()
-      require("workspaces").setup({hooks = {open = "NvimTreeOpen ."}})
-      require("telescope").load_extension("workspaces")
-    end
-  } 
-
-  use {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      require("telescope").setup(require("tuo.telescope"))
-    end,
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  }
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   -- stablizer window split
-  use {
-    "luukvbaal/stabilize.nvim",
-    event = "WinEnter",
-    config = function()
-      require("stabilize").setup()
-    end,
-  }
+  use { "luukvbaal/stabilize.nvim", event = "WinEnter" }
 
   -- treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufEnter",
-    requires = {
-      { 
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        event = "BufEnter",
-        after = "nvim-treesitter",
-      },
-    },
-    config = function()
-      require("nvim-treesitter.configs").setup(require("tuo.treesitter"))
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
 
-  -- AI completion
-  -- use { "github/copilot.vim", event = "InsertEnter" }
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
 
   -- nvim-tree File explorer
-  use {
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("nvim-tree").setup(require("tuo.nvimtree"))
-    end,
-  }
+  use { "kyazdani42/nvim-tree.lua" }
 
   -- lsp configuration
   use {
     "neovim/nvim-lspconfig",
-    event = "BufEnter",
-    config = function()
-      require("tuo.nvimlsp")
-    end
+     requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+    },
   }
 
   -- cmp related
   use {
     "hrsh7th/nvim-cmp",
-    config = function()
-      require("tuo.nvimcmp").setup()
-    end,
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -291,9 +94,6 @@ return require('packer').startup(function()
       "kdheepak/cmp-latex-symbols",
     },   
   }
-
-  -- Load only when required
-  use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- gitsigns Git status indicator in sings
   -- use {
@@ -318,57 +118,22 @@ return require('packer').startup(function()
   use {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufEnter",
-    config = function()
-      vim.cmd [[
-        hi IndentBlanklineContextStart cterm=nocombine gui=nocombine
-        hi IndentBlanklineContextChar guifg=LightGrey
-      ]]
-      require("indent_blankline").setup {
-        space_char_blankline = " ",
-        show_current_context = true,
-        show_current_context_start = false,
-        show_first_indent_level = false,
-        enabled = false,
-        show_end_of_line = true
-    }
-    end
   }
 
   -- cool icons to disaply
   use {
     "kyazdani42/nvim-web-devicons",
     module = "nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup( { default = true } )
-    end,
   }
 
   -- markdown preview tool
   use({ "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-      vim.g.mkdp_open_to_the_world = 1
-      vim.g.mkdp_open_ip = '127.0.0.1'
-      vim.g.mkdp_port = 8085
-      vim.g.mkdp_echo_preview_url = 1
-      vim.g.mkdp_browser = ''
-      vim.g.mkdp_browserfunc = ''
-      -- vim.cmd [[function! g:Open_browser(url)
-      --     silent exe '!/opt/microsoft/msedge/msedge 'a:url
-      -- endfunction]]
-      -- vim.g.mkdp_browserfunc = 'g:Open_browser'
-    end,
     ft = { "markdown" },
   })
 
   -- easy code comment
-  use {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup(require("tuo.comment"))
-    end
-  }
+  use { "numToStr/Comment.nvim" }
 end)
 
 -- Usage help
