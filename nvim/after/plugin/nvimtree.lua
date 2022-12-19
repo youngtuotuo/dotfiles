@@ -1,17 +1,16 @@
 require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
-    mappings = {list = {{key = "-", action = "dir_up"}}}
-  },
-  renderer = {icons = { show = {
-      file = true,
-      folder = true,
-      folder_arrow = true,
-      git = true,
-    }
-  }, group_empty = true},
-  filters = {dotfiles = true}
+    sort_by = "case_sensitive",
+    view = {
+        adaptive_size = true,
+        mappings = {list = {{key = "-", action = "dir_up"}}}
+    },
+    renderer = {
+        icons = {
+            show = {file = true, folder = true, folder_arrow = true, git = true}
+        },
+        group_empty = true
+    },
+    filters = {dotfiles = true}
 })
 
 -- view.mappings.list = { -- BEGIN_DEFAULT_MAPPINGS
