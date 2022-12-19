@@ -30,6 +30,8 @@ return require('packer').startup(function()
   -- speedup startup time
   use { "lewis6991/impatient.nvim", }
 
+  use { "lewis6991/gitsigns.nvim" }
+
   use { "sbdchd/neoformat" }
 
   use({ 'rose-pine/neovim', as = 'rose-pine' })
