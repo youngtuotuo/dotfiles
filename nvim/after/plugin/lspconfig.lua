@@ -56,7 +56,6 @@ local servers = {
           executable = 'latexmk',
           args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '%f' },
           -- executable = 'xelatex',
-          args = {},
           onSave = false,
           forwardSearchAfter = false,
         },
@@ -81,22 +80,13 @@ local servers = {
     },
   },
   sumneko_lua = {
-    settgins = {
+    settings = {
       Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT)
-          version = 'LuaJIT',
-          -- Setup your lua path
-          path = runtime_path,
-        },
         diagnostics = {
-          globals = { 'vim' },
+          globals = { 'vim', 'use' },
         },
-        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = { enable = false },
-      }
-    }
+      },
+    },
   },
 }
 
@@ -160,7 +150,7 @@ local border = nil
 -- diagnostic after each line
 local diag_config = {
   virtual_text = false,
-  signs = false,
+  signs = true,
   underline = true,
   update_in_insert = false,
   severity_sort = true,

@@ -94,7 +94,7 @@ return require('packer').startup(function()
       "rafamadriz/friendly-snippets",
       "honza/vim-snippets",
       "kdheepak/cmp-latex-symbols",
-    },   
+    },
   }
 
   -- gitsigns Git status indicator in sings
