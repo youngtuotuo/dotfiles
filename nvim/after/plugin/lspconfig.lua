@@ -4,7 +4,47 @@ if not status_ok then return end
 
 local util = require("lspconfig.util")
 
+local library = {}
+
+local path = vim.split(package.path, ";")
+
+-- this is the ONLY correct way to setup your path
+table.insert(path, "lua/?.lua")
+table.insert(path, "lua/?/init.lua")
+
+require("mason").setup()
+-- Enable the following language servers
+-- Feel free to add/remove any LSPs that you want here. They will automatically be installed
+local servers = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}
+
+-- Ensure the servers above are installed
+require('mason-lspconfig').setup {ensure_installed = servers}
+
 local servers = {
+    sumneko_lua = {
+        cmd = {'lua-language-server'},
+        root_dir = util.root_pattern(unpack({
+            ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
+            "stylua.toml", "selene.toml", "selene.yml", ".git"
+        })),
+        on_new_config = function(config, root)
+            local libs = vim.tbl_deep_extend("force", {}, library)
+            libs[root] = nil
+            config.settings.Lua.workspace.library = libs
+            return config
+        end,
+        settings = {
+            Lua = {
+                runtime = {version = "Lua 5.1", path = path},
+                diagnostics = {globals = {'vim', 'use'}},
+                completion = {callSnippet = "Both"},
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true)
+                }
+            }
+        }
+    },
     pyright = {
         root_dir = util.root_pattern(unpack({
             '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
@@ -21,7 +61,7 @@ local servers = {
                     -- ["Error", "Warning", "Information", or "Trace"]
                     logLevel = "Error",
                     -- Determines whether pyright offers auto-import completions.
-                    autoImportCompletions = ture,
+                    autoImportCompletions = true,
                     -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
                     autoSearchPaths = true,
                     -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
@@ -65,14 +105,6 @@ local servers = {
                 },
                 bibtexFormatter = 'texlab',
                 formatterLineLength = 80
-            }
-        }
-    },
-    sumneko_lua = {
-        settings = {
-            Lua = {
-                runtime = {version = "Lua 5.1"},
-                diagnostics = {globals = {'vim', 'use'}}
             }
         }
     }
