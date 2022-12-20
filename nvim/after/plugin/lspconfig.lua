@@ -23,10 +23,10 @@ local servers = {
                     -- Determines whether pyright offers auto-import completions.
                     autoImportCompletions = ture,
                     -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
-                    autoSearchPaths = false,
+                    autoSearchPaths = true,
                     -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
                     -- ["openFilesOnly", "workspace"]
-                    diagnosticMode = "openFilesOnly",
+                    diagnosticMode = "workspace",
                     -- Path to directory containing custom type stub files.
                     -- stubPath = {},
                     -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
@@ -69,7 +69,12 @@ local servers = {
         }
     },
     sumneko_lua = {
-        settings = {Lua = {diagnostics = {globals = {'vim', 'use'}}}}
+        settings = {
+            Lua = {
+                runtime = {version = "Lua 5.1"},
+                diagnostics = {globals = {'vim', 'use'}}
+            }
+        }
     }
 }
 
@@ -202,3 +207,6 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 for server, config in pairs(servers) do setup_server(server, config) end
+
+-- Turn on lsp status information
+require('fidget').setup {}

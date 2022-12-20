@@ -5,6 +5,3 @@ local servers = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {ensure_installed = servers}
-
--- Turn on lsp status information
-require('fidget').setup()

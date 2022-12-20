@@ -95,20 +95,9 @@ return require('packer').startup(function()
         }
     }
 
-    -- gitsigns Git status indicator in sings
-    -- use {
-    --   "lewis6991/gitsigns.nvim",
-    --   event = "BufReadPre",
-    --   requires = { "nvim-lua/plenary.nvim" },
-    --   config = function()
-    --     require("gitsigns").setup()
-    --   end,
-    -- }
-
     -- color code visualization
     use {
         "norcalli/nvim-colorizer.lua",
-        event = "BufEnter",
         config = function() require("colorizer").setup() end
     }
 
