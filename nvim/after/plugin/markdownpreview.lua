@@ -41,12 +41,7 @@ vim.g.mkdp_echo_preview_url = 1
 --  a custom vim function name to open preview page
 --  this function will receive url as param
 --  default is empty
-vim.cmd [[
-  function! g:EchoUrl(url)
-      :echo a:url
-  endfunction
-]]
-vim.g.mkdp_browserfunc = vim.fn['EchoUrl']
+vim.g.mkdp_browserfunc = ''
 
 --  use a custom markdown style must be absolute path
 --  like '/Users/username/markdown.css' or expand('~/markdown.css')

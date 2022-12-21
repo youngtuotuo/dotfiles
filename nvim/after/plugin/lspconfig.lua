@@ -6,7 +6,7 @@ local util = require("lspconfig.util")
 
 require("mason").setup()
 -- Ensure the servers above are installed
--- require('mason-lspconfig').setup {ensure_installed = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}}
+require('mason-lspconfig').setup {ensure_installed = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}}
 
 local servers = {
     sumneko_lua = {
