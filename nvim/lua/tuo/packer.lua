@@ -31,7 +31,9 @@ return require('packer').startup(function()
 
     use {"sbdchd/neoformat"}
 
-    use({'rose-pine/neovim', as = 'rose-pine'})
+    use {'rose-pine/neovim', as = 'rose-pine'}
+
+    use {"AmeerTaweel/todo.nvim", requires = "nvim-lua/plenary.nvim"}
 
     use {"windwp/nvim-autopairs"}
 

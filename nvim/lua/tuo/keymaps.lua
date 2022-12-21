@@ -83,7 +83,7 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
 vim.cmd [[
-  command! FormatJSON %!python -m json.tool
+  command! FormatJSON %!python3 -m json.tool
 ]]
 -- NvimTree
 vim.cmd [[

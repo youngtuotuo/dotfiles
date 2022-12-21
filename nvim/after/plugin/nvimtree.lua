@@ -10,7 +10,7 @@ require("nvim-tree").setup({
         },
         group_empty = true
     },
-    filters = {dotfiles = true}
+    filters = {dotfiles = false}
 })
 
 -- view.mappings.list = { -- BEGIN_DEFAULT_MAPPINGS

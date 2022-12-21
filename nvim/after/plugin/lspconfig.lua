@@ -4,21 +4,9 @@ if not status_ok then return end
 
 local util = require("lspconfig.util")
 
-local library = {}
-
-local path = vim.split(package.path, ";")
-
--- this is the ONLY correct way to setup your path
-table.insert(path, "lua/?.lua")
-table.insert(path, "lua/?/init.lua")
-
 require("mason").setup()
--- Enable the following language servers
--- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}
-
 -- Ensure the servers above are installed
-require('mason-lspconfig').setup {ensure_installed = servers}
+-- require('mason-lspconfig').setup {ensure_installed = {'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua', 'texlab'}}
 
 local servers = {
     sumneko_lua = {
@@ -27,21 +15,31 @@ local servers = {
             ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
             "stylua.toml", "selene.toml", "selene.yml", ".git"
         })),
-        on_new_config = function(config, root)
-            local libs = vim.tbl_deep_extend("force", {}, library)
-            libs[root] = nil
-            config.settings.Lua.workspace.library = libs
-            return config
-        end,
         settings = {
             Lua = {
-                runtime = {version = "Lua 5.1", path = path},
+                runtime = {
+                    version = "Lua 5.1",
+                    path = {
+                        '?.lua',
+                        '?/init.lua',
+                        vim.fn.expand'~/.luarocks/share/lua/5.1/?.lua',
+                        vim.fn.expand'~/.luarocks/share/lua/5.1/?/init.lua',
+                        '/usr/share/5.1/?.lua',
+                        '/usr/share/lua/5.1/?/init.lua'
+                    },
+                },
                 diagnostics = {globals = {'vim', 'use'}},
                 completion = {callSnippet = "Both"},
                 workspace = {
                     -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true)
-                }
+                    library = {
+                        vim.api.nvim_get_runtime_file("", true),
+                        vim.fn.expand'~/.luarocks/share/lua/5.3',
+                        '/usr/share/lua/5.1',
+                    },
+                    checkThirdParty = false,
+                },
+                semantic = {enable = false}
             }
         }
     },
