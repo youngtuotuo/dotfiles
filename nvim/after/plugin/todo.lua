@@ -17,15 +17,15 @@ require("todo").setup {
         WARN = {icon = " ", color = "warning", alt = {"WARNING"}},
         NOTE = {icon = " ", color = "hint", alt = {"INFO"}}
     },
-    merge_keywords = true, -- wheather to merge custom keywords with defaults
+    merge_keywords = true, -- whether to merge custom keywords with defaults
     highlight = {
         -- highlights before the keyword (typically comment characters)
         before = "", -- "fg", "bg", or empty
         -- highlights of the keyword
         -- wide is the same as bg, but also highlights the colon
-        keyword = "wide", -- "fg", "bg", "wide", or empty
+        keyword = "", -- "fg", "bg", "wide", or empty
         -- highlights after the keyword (TODO text)
-        after = "fg", -- "fg", "bg", or empty
+        after = "", -- "fg", "bg", or empty
         -- pattern can be a string, or a table of regexes that will be checked
         -- vim regex
         pattern = [[.*<(KEYWORDS)\s*:]],
@@ -48,3 +48,5 @@ require("todo").setup {
         pattern = [[\b(KEYWORDS):]] -- ripgrep regex
     }
 }
+vim.api.nvim_set_keymap("n", "<space>t", ":TODOTelescope<CR>",
+                        {noremap = true, silent = true})

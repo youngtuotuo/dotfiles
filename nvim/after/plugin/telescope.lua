@@ -22,18 +22,6 @@ require("telescope").setup({
                 ["<S-Tab>"] = actions.move_selection_previous
             }
         },
-        layout_strategy = "vertical",
-        layout_config = {
-            vertical = {
-                width = 0.7,
-                height = 0.7,
-                mirror = false,
-                scroll_speed = 5,
-                preview_height = 0.4,
-                preview_cutoff = 5,
-                prompt_position = "top"
-            }
-        },
         vimgrep_arguments = {
             'rg', '--color=never', '--no-heading', '--with-filename',
             '--line-number', '--column', '--smart-case', '-u'
@@ -74,10 +62,5 @@ vim.api
 vim.api.nvim_set_keymap("n", "<space>h", ":Telescope help_tags<CR>",
                         default_opts)
 vim.api.nvim_set_keymap("n", "<space>m", ":Telescope keymaps<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>n", ":Telescope notify<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope cwd=.<CR>",
-                        default_opts)
 vim.api.nvim_set_keymap("n", "<space>v", ":Telescope lsp_document_symbols<CR>",
-                        default_opts)
-vim.api.nvim_set_keymap("n", "<space>w", ":Telescope workspaces<CR>",
                         default_opts)
