@@ -5,16 +5,8 @@ require("nvim-treesitter.configs").setup({
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     indent = {enable = false},
     highlight = {
-        enable = false, -- false will disable the whole extension
-        disable = {"latex", 'markdown'}
-    },
-    rainbow = {
-        enable = true,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil -- Do not enable for files with more than n lines, int
-        -- colors = {}, -- table of hex strings
-        -- termcolors = {} -- table of colour name strings
+        enable = true, -- false will disable the whole extension
+        disable = {"latex"}
     },
     textobjects = {
         enable = true,
