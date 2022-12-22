@@ -1,4 +1,4 @@
-local status_ok, nvim_lsp = pcall(require, "lspconfig")
+local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then return end
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
@@ -9,7 +9,6 @@ if not snip_status_ok then return end
 
 local kind_status_ok, lspkind = pcall(require, "lspkind")
 if not kind_status_ok then return end
-
 
 local util = require("lspconfig.util")
 
@@ -60,92 +59,14 @@ local custom_on_attach = function(client, bufnr)
 end
 
 local servers = {
-    sumneko_lua = {
-        -- cmd = {'lua-language-server'},
-        root_dir = util.root_pattern(unpack({
-            ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
-            "stylua.toml", "selene.toml", "selene.yml", ".git"
-        })),
-        settings = {
-            Lua = {
-                runtime = {
-                    version = "Lua 5.1",
-                },
-                diagnostics = {globals = {'vim', 'use'}},
-                completion = {callSnippet = "Both"},
-                workspace = {
-                    checkThirdParty = false,
-                },
-                semantic = {enable = false}
-            }
-        }
-    },
-    pyright = {
-        root_dir = util.root_pattern(unpack({
-            '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
-            'requirements.txt', 'Pipfile', 'pyrightconfig.json'
-        })),
-        settings = {
-            pyright = {
-                -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
-                disableOrganizeImports = false
-            },
-            python = {
-                analysis = {
-                    -- Level of logging for Output panel. The default value for this option is "Information".
-                    -- ["Error", "Warning", "Information", or "Trace"]
-                    logLevel = "Error",
-                    -- Determines whether pyright offers auto-import completions.
-                    autoImportCompletions = true,
-                    -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
-                    autoSearchPaths = true,
-                    -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
-                    -- ["openFilesOnly", "workspace"]
-                    diagnosticMode = "workspace",
-                    -- Path to directory containing custom type stub files.
-                    -- stubPath = {},
-                    -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
-                    -- ["off", "basic", "strict"]
-                    typeCheckingMode = "off",
-                    -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                    useLibraryCodeForTypes = false
-                }
-            }
-        }
-    },
-    clangd = {},
-    rust_analyzer = {},
-    texlab = {
-        settings = {
-            texlab = {
-                rootDirectory = nil,
-                build = {
-                    executable = 'latexmk',
-                    args = {
-                        '-xelatex', '-interaction=nonstopmode', '-synctex=1',
-                        '%f'
-                    },
-                    -- executable = 'xelatex',
-                    onSave = false,
-                    forwardSearchAfter = false
-                },
-                auxDirectory = '.',
-                forwardSearch = {executable = nil, args = {}},
-                chktex = {onOpenAndSave = false, onEdit = false},
-                diagnosticsDelay = 300,
-                latexFormatter = 'latexindent',
-                latexindent = {
-                    ['local'] = nil, -- local is a reserved keyword
-                    modifyLineBreaks = false
-                },
-                bibtexFormatter = 'texlab',
-                formatterLineLength = 80
-            }
-        }
-    }
+    "sumneko_lua",
+    "pyright",
+    "clangd",
+    "rust_analyzer",
+    "texlab",
 }
 
-require("neodev").setup{}
+require("neodev").setup {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -153,26 +74,101 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 require("mason").setup()
 
 -- Ensure the servers above are installed
-local mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup {ensure_installed = vim.tbl_keys(servers)}
-mason_lspconfig.setup_handlers({function(server, config)
-    if not config then return end
+require("mason-lspconfig").setup {ensure_installed = servers}
 
-    if type(config) ~= "table" then config = {} end
-
-    config = vim.tbl_deep_extend("force", {
-        handlers = handlers,
-        on_attach = custom_on_attach,
-        capabilities = capabilities,
-        flags = {debounce_text_changes = nil},
-        init_options = {
-            onlyAnalyzeProjectsWithOpenFiles = false,
-            suggestFromUnimportedLibraries = false
+require("mason-lspconfig").setup_handlers({
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup({
+            on_attach = custom_on_attach,
+            capabilities = capabilities
+        })
+    end,
+    -- Next, you can provide targeted overrides for specific servers.
+    ["sumneko_lua"] = function ()
+        lspconfig.sumneko_lua.setup {
+            root_dir = util.root_pattern(unpack({
+                ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
+                "stylua.toml", "selene.toml", "selene.yml", ".git"
+            })),
+            settings = {
+                Lua = {
+                    runtime = {version = "Lua 5.1"},
+                    diagnostics = {globals = {'vim', 'use'}},
+                    completion = {callSnippet = "Both"},
+                    workspace = {checkThirdParty = false},
+                    semantic = {enable = false}
+                }
+            }
         }
-    }, config)
-
-    nvim_lsp[server].setup(config)
-end
+    end,
+    ["pyright"] = function()
+        lspconfig.pyright.setup {
+            root_dir = util.root_pattern(unpack({
+                '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
+                'requirements.txt', 'Pipfile', 'pyrightconfig.json'
+            })),
+            settings = {
+                pyright = {
+                    -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
+                    disableOrganizeImports = false
+                },
+                python = {
+                    analysis = {
+                        -- Level of logging for Output panel. The default value for this option is "Information".
+                        -- ["Error", "Warning", "Information", or "Trace"]
+                        logLevel = "Error",
+                        -- Determines whether pyright offers auto-import completions.
+                        autoImportCompletions = true,
+                        -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
+                        autoSearchPaths = true,
+                        -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
+                        -- ["openFilesOnly", "workspace"]
+                        diagnosticMode = "workspace",
+                        -- Path to directory containing custom type stub files.
+                        -- stubPath = {},
+                        -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
+                        -- ["off", "basic", "strict"]
+                        typeCheckingMode = "off",
+                        -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
+                        useLibraryCodeForTypes = false
+                    }
+                }
+            }
+        }
+    end,
+    ['texlab'] = function()
+        lspconfig.texlab.setup {
+            settings = {
+                texlab = {
+                    rootDirectory = nil,
+                    build = {
+                        executable = 'latexmk',
+                        args = {
+                            '-xelatex', '-interaction=nonstopmode', '-synctex=1',
+                            '%f'
+                        },
+                        -- executable = 'xelatex',
+                        onSave = false,
+                        forwardSearchAfter = false
+                    },
+                    auxDirectory = '.',
+                    forwardSearch = {executable = nil, args = {}},
+                    chktex = {onOpenAndSave = false, onEdit = false},
+                    diagnosticsDelay = 300,
+                    latexFormatter = 'latexindent',
+                    latexindent = {
+                        ['local'] = nil, -- local is a reserved keyword
+                        modifyLineBreaks = false
+                    },
+                    bibtexFormatter = 'texlab',
+                    formatterLineLength = 80
+                }
+            }
+        }
+    end,
 })
 
 local signs = {
@@ -183,7 +179,8 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""})
+    vim.fn.sign_define(sign.name,
+                       {texthl = sign.name, text = sign.text, numhl = ""})
 end
 
 -- diagnostic after each line
@@ -231,7 +228,6 @@ require("cmp").setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({select = false}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -294,10 +290,6 @@ require("cmp").setup({
             })(entry, vim_item)
         end
     },
-    -- window = {
-    --   completion = cmp.config.window.bordered(),
-    --   documentation = cmp.config.window.bordered()
-    -- },
     sources = cmp.config.sources({
         {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'luasnip', keyword_length = 3}, {name = 'path'},
