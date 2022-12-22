@@ -42,6 +42,9 @@ require("telescope").setup({
     }
 })
 
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+
 local default_opts = {noremap = true, silent = true}
 -- Telescope Stuff
 vim.api.nvim_set_keymap("n", "<space>r", ":Telescope lsp_references<CR>",

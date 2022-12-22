@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
-  ["cmp-latex-symbols"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-latex-symbols",
-    url = "https://github.com/kdheepak/cmp-latex-symbols"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -123,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
-  },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -167,6 +157,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/home/support/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   neoformat = {
     loaded = true,
@@ -258,10 +253,10 @@ _G.packer_plugins = {
     path = "/home/support/.local/share/nvim/site/pack/packer/start/todo.nvim",
     url = "https://github.com/AmeerTaweel/todo.nvim"
   },
-  ["vim-snippets"] = {
+  ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/vim-snippets",
-    url = "https://github.com/honza/vim-snippets"
+    path = "/home/support/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   vimtex = {
     loaded = true,
@@ -320,8 +315,8 @@ vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-prev
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au WinEnter * ++once lua require("packer.load")({'stabilize.nvim'}, { event = "WinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufEnter * ++once lua require("packer.load")({'indent-blankline.nvim'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au WinEnter * ++once lua require("packer.load")({'stabilize.nvim'}, { event = "WinEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

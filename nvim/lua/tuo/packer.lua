@@ -32,14 +32,31 @@ packer.init(cfg)
 
 -- Plugins
 
-return require('packer').startup(function()
+require('packer').startup(function()
     -- packer can manage itself
     use {"wbthomason/packer.nvim"}
+
+    -- lsp configuration
+    use {
+        "neovim/nvim-lspconfig",
+        requires = {
+            -- Automatically install LSPs to stdpath for neovim
+            'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
+
+            -- Useful status updates for LSP
+            'j-hui/fidget.nvim',
+
+            -- Additional lua configuration, makes nvim stuff amazing
+            'folke/neodev.nvim',
+        }
+    }
 
     -- speedup startup time
     use {"lewis6991/impatient.nvim"}
 
     use {"lewis6991/gitsigns.nvim"}
+
+    use {'tpope/vim-fugitive'}
 
     use {"sbdchd/neoformat"}
 
@@ -84,27 +101,19 @@ return require('packer').startup(function()
     -- nvim-tree File explorer
     use {"kyazdani42/nvim-tree.lua"}
 
-    -- lsp configuration
-    use {
-        "neovim/nvim-lspconfig",
-        requires = {
-            -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
-            -- Useful status updates for LSP
-            'j-hui/fidget.nvim'
-        }
-    }
-
     -- cmp related
     use {
         "hrsh7th/nvim-cmp",
         requires = {
-            "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
-            -- "hrsh7th/cmp-nvim-lsp-signature-help",
-            "onsails/lspkind-nvim", "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp", "rafamadriz/friendly-snippets",
-            "honza/vim-snippets", "kdheepak/cmp-latex-symbols"
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "onsails/lspkind-nvim",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            -- "kdheepak/cmp-latex-symbols"
         }
     }
 
