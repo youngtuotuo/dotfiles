@@ -12,7 +12,7 @@ if not kind_status_ok then return end
 
 local util = require("lspconfig.util")
 
-local custom_on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup('lsp_document_highlight', {clear = false})
         vim.api.nvim_clear_autocmds({
@@ -50,14 +50,18 @@ local custom_on_attach = function(client, bufnr)
                    opts)
     buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', '<space>i',
-                   '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+    buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
+require("neodev").setup {}
+
+require("mason").setup()
+
+-- Ensure the servers above are installed
 local servers = {
     "sumneko_lua",
     "pyright",
@@ -65,16 +69,15 @@ local servers = {
     "rust_analyzer",
     "texlab",
 }
+require("mason-lspconfig").setup {ensure_installed = servers}
 
-require("neodev").setup {}
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded"})
+}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-require("mason").setup()
-
--- Ensure the servers above are installed
-require("mason-lspconfig").setup {ensure_installed = servers}
 
 require("mason-lspconfig").setup_handlers({
     -- The first entry (without a key) will be the default handler
@@ -82,13 +85,17 @@ require("mason-lspconfig").setup_handlers({
     -- a dedicated handler.
     function (server_name) -- default handler (optional)
         require("lspconfig")[server_name].setup({
-            on_attach = custom_on_attach,
+            on_attach = on_attach,
+            handlers = handlers,
             capabilities = capabilities
         })
     end,
     -- Next, you can provide targeted overrides for specific servers.
     ["sumneko_lua"] = function ()
         lspconfig.sumneko_lua.setup {
+            on_attach = on_attach,
+            handlers = handlers,
+            capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
                 ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
                 "stylua.toml", "selene.toml", "selene.yml", ".git"
@@ -106,6 +113,9 @@ require("mason-lspconfig").setup_handlers({
     end,
     ["pyright"] = function()
         lspconfig.pyright.setup {
+            on_attach = on_attach,
+            handlers = handlers,
+            capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
                 '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
                 'requirements.txt', 'Pipfile', 'pyrightconfig.json'
@@ -141,6 +151,9 @@ require("mason-lspconfig").setup_handlers({
     end,
     ['texlab'] = function()
         lspconfig.texlab.setup {
+            on_attach = on_attach,
+            handlers = handlers,
+            capabilities = capabilities,
             settings = {
                 texlab = {
                     rootDirectory = nil,
@@ -209,10 +222,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and
-               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
-                                                                          col)
-                   :match("%s") == nil
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 require("cmp").setup({

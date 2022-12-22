@@ -1,5 +1,5 @@
 local options = {
-    -- winbar = "%f %m",
+    winbar = "%f %m",
     backspace = "indent,eol,start",
     backup = false,
     clipboard = "unnamedplus",
@@ -9,8 +9,6 @@ local options = {
     expandtab = true,
     fileencoding = "utf-8",
     fillchars = 'stl: ',
-    guifont = "Hack NF:h13",
-    -- guicursor = "n-v-c-i:block",
     hidden = false,
     ignorecase = true,
     laststatus = 0,
