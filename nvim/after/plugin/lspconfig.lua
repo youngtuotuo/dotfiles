@@ -199,7 +199,7 @@ end
 -- diagnostic after each line
 local diag_config = {
     virtual_text = false,
-    signs = true,
+    signs = false,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
