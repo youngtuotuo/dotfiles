@@ -43,13 +43,28 @@ require('packer').startup(function()
             -- Automatically install LSPs to stdpath for neovim
             'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
 
-            -- Useful status updates for LSP
-            'j-hui/fidget.nvim',
-
             -- Additional lua configuration, makes nvim stuff amazing
             'folke/neodev.nvim',
         }
     }
+
+    use({
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                -- add any options here
+            })
+        end,
+        requires = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    })
+
 
     -- speedup startup time
     use {"lewis6991/impatient.nvim"}

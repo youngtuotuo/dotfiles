@@ -143,7 +143,7 @@ require("mason-lspconfig").setup_handlers({
                         -- ["off", "basic", "strict"]
                         typeCheckingMode = "off",
                         -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                        useLibraryCodeForTypes = false
+                        -- useLibraryCodeForTypes = false
                     }
                 }
             }
@@ -214,9 +214,6 @@ local diag_config = {
 }
 
 vim.diagnostic.config(diag_config)
-
--- Turn on lsp status information
-require('fidget').setup {}
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
