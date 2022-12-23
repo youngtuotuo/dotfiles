@@ -96,7 +96,7 @@ require('packer').startup(function()
     }
 
     -- stablizer window split
-    use {"luukvbaal/stabilize.nvim", event = "WinEnter"}
+    use {"luukvbaal/stabilize.nvim"}
 
     -- treesitter
     use {
