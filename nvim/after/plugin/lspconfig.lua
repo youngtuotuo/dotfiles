@@ -184,6 +184,8 @@ require("mason-lspconfig").setup_handlers({
     end,
 })
 
+require('lspconfig.ui.windows').default_options.border = 'rounded'
+
 local signs = {
     {name = "DiagnosticSignError", text = ""},
     {name = "DiagnosticSignWarn", text = ""},
@@ -226,10 +228,7 @@ require("cmp").setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end
     },
     mapping = cmp.mapping.preset.insert({
@@ -306,15 +305,4 @@ require("cmp").setup({
         comparators = {cmp.config.compare.score, cmp.config.compare.offset}
     },
     experimental = {native_menu = false, ghost_text = false}
-})
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({'/', '?'}, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {{name = 'buffer'}}
-})
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({{name = 'path'}},
-                                 {{name = 'cmdline', keyword_length = 3}})
 })

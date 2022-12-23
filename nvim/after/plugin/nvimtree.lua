@@ -1,3 +1,7 @@
+local gwidth = vim.api.nvim_list_uis()[1].width
+local gheight = vim.api.nvim_list_uis()[1].height
+local width = 60
+local height = 20
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     view = {
@@ -9,10 +13,10 @@ require("nvim-tree").setup({
             open_win_config = {
                 relative = "editor",
                 border = "rounded",
-                width = 30,
-                height = 30,
-                row = 1,
-                col = 1,
+                width = width,
+                height = height,
+                row = (gheight - height) * 0.4,
+                col = (gwidth - width) * 0.5,
             },
         },
     },

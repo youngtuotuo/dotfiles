@@ -50,11 +50,6 @@ require('packer').startup(function()
 
     use({
         "folke/noice.nvim",
-        config = function()
-            require("noice").setup({
-                -- add any options here
-            })
-        end,
         requires = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
             "MunifTanjim/nui.nvim",
@@ -65,6 +60,9 @@ require('packer').startup(function()
         }
     })
 
+    use {"folke/zen-mode.nvim"}
+
+    use {"folke/twilight.nvim"}
 
     -- speedup startup time
     use {"lewis6991/impatient.nvim"}
@@ -122,7 +120,6 @@ require('packer').startup(function()
         requires = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
             "onsails/lspkind-nvim",
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",

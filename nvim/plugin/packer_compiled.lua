@@ -89,11 +89,6 @@ _G.packer_plugins = {
     path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
-  ["cmp-cmdline"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
-    url = "https://github.com/hrsh7th/cmp-cmdline"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -164,7 +159,6 @@ _G.packer_plugins = {
     url = "https://github.com/sbdchd/neoformat"
   },
   ["noice.nvim"] = {
-    config = { "\27LJ\2\n7\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\nnoice\frequire\0" },
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/noice.nvim",
     url = "https://github.com/folke/noice.nvim"
@@ -264,6 +258,11 @@ _G.packer_plugins = {
     path = "/home/support/.local/share/nvim/site/pack/packer/start/todo.nvim",
     url = "https://github.com/AmeerTaweel/todo.nvim"
   },
+  ["twilight.nvim"] = {
+    loaded = true,
+    path = "/home/support/.local/share/nvim/site/pack/packer/start/twilight.nvim",
+    url = "https://github.com/folke/twilight.nvim"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -273,6 +272,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
+  },
+  ["zen-mode.nvim"] = {
+    loaded = true,
+    path = "/home/support/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
+    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 
@@ -309,10 +313,6 @@ end
 time([[Config for nvim-colorizer.lua]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: noice.nvim
-time([[Config for noice.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\nnoice\frequire\0", "config", "noice.nvim")
-time([[Config for noice.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
