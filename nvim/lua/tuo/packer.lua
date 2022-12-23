@@ -120,6 +120,7 @@ require('packer').startup(function()
         requires = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
             "onsails/lspkind-nvim",
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
