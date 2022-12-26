@@ -59,7 +59,11 @@ end
 
 require("neodev").setup {}
 
-require("mason").setup()
+require("mason").setup({
+    ui = {
+        border = "rounded",
+    },
+})
 
 -- Ensure the servers above are installed
 local servers = {
