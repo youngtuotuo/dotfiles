@@ -6,9 +6,53 @@ require("noice").setup({
                 row = "50%",
             },
             size = {
-                width = 60,
+                width = "auto",
+                min_width = 60,
                 height = "auto",
             },
+            backend = "popup",
+            border = {
+                padding = { 0, 1 },
+                style = "rounded"
+            },
+            enter = false,
+            focusable = false,
+            relative = "editor",
+            win_options = {
+                cursorline = false,
+                winhighlight = {
+                    FloatBorder = "NoiceCmdlinePopupBorder",
+                    IncSearch = "",
+                    Normal = "NoiceCmdlinePopup",
+                    Search = ""
+                }
+            },
+            zindex = 60
+        },
+        mini = {
+            align = "message-left",
+            backend = "mini",
+            border = {
+                style = "rounded"
+            },
+            focusable = false,
+            position = {
+                col = 0,
+                row = -1
+            },
+            relative = "editor",
+            reverse = true,
+            size = "auto",
+            timeout = 2000,
+            win_options = {
+                winblend = 0,
+                winhighlight = {
+                    IncSearch = "",
+                    Normal = "NoiceMini",
+                    Search = ""
+                }
+            },
+            zindex = 60
         },
     },
     lsp = {

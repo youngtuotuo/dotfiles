@@ -284,15 +284,15 @@ require("cmp").setup({
                 mode = 'symbol_text',
                 with_text = false,
                 maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                ellipsis_char = '...' -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                -- menu = ({
-                --   buffer = "[Buffer]",
-                --   nvim_lsp = "[Pyright]",
-                --   luasnip = "[LuaSnip]",
-                --   path = "[Path]",
-                --   nvim_lua = "[NvimLua]",
-                --   cmdline = "[Cmd]"
-                -- })
+                ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                menu = ({
+                  buffer = "[Buffer]",
+                  nvim_lsp = "[LSP]",
+                  luasnip = "[LuaSnip]",
+                  path = "[Path]",
+                  nvim_lua = "[NvimLua]",
+                  cmdline = "[Cmd]"
+                })
             })(entry, vim_item)
         end
     },
