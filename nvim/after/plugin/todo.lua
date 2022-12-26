@@ -5,7 +5,8 @@ require("todo").setup {
     },
     keywords = {
         FIX = {
-            icon = " ", -- used for the sign, and search results
+            -- icon = " ", -- used for the sign, and search results
+            icon = "F", -- used for the sign, and search results
             -- can be a hex color, or a named color
             -- named colors definitions follow below
             color = "error",
@@ -13,9 +14,18 @@ require("todo").setup {
             alt = {"FIXME", "BUG", "FIXIT", "ISSUE"}
             -- signs = false -- configure signs for some keywords individually
         },
-        TODO = {icon = " ", color = "info"},
-        WARN = {icon = " ", color = "warning", alt = {"WARNING"}},
-        NOTE = {icon = " ", color = "hint", alt = {"INFO"}}
+        TODO = {
+            -- icon = " ",
+            icon = "T",
+            color = "info"},
+        WARN = {
+            -- icon = " ",
+            icon = "W",
+            color = "warning", alt = {"WARNING"}},
+        NOTE = {
+            -- icon = " ",
+            icon = "N",
+            color = "hint", alt = {"INFO"}}
     },
     merge_keywords = true, -- whether to merge custom keywords with defaults
     highlight = {

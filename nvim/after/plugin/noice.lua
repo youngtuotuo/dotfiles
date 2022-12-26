@@ -35,7 +35,7 @@ require("noice").setup({
             border = {
                 style = "rounded"
             },
-            focusable = false,
+            focusable = true,
             position = {
                 col = 0,
                 row = -1
@@ -54,6 +54,13 @@ require("noice").setup({
             },
             zindex = 60
         },
+        notify = {
+            backend = "notify",
+            fallback = "mini",
+            format = "notify",
+            merge = true,
+            replace = true
+        },
     },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -62,12 +69,15 @@ require("noice").setup({
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true,
         },
+        progress = {
+            view = "mini"
+        }
     },
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
         enabled = true, -- enables the Noice messages UI
-        view = "mini", -- default view for messages
+        view = "notify", -- default view for messages
         view_error = "notify", -- view for errors
         view_warn = "notify", -- view for warnings
         view_history = "messages", -- view for :messages
