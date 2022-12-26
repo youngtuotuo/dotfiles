@@ -2,28 +2,8 @@
 My routine data science envrionment set up in ubuntu/mac.<br>
 
 <p align="center">
-    <img src="pictures/image.png" />
+    <img src="pictures/image.gif"/>
 </p>
-
-- Dev
-    - Alacritty (Fira Code Nerd Font)
-    - Nushell
-    - Neovim
-    - Tmux
-    - python venv
-    - Latex
-    - Texlab, Pyright, Clangd, Rust Analyzer, Sumneko Lua
-- Ops
-    - Slack
-    - Chromium
-    - Git Credential Manager
-    - Docker
-    - TigerVNC
-- ML
-    - CVAT
-    - Pytorch
-    - Cuda
-    - Numpy
 
 
 #### Neovim Shortcut
@@ -44,156 +24,168 @@ My routine data science envrionment set up in ubuntu/mac.<br>
 
 # Installation
 
-```bash
-    sudo apt-get update
-    sudo apt-get upgrade -y
-    sudo apt install openssh-server build-essential git tmux -y
-    sudo apt install gnome-tweaks -y
-    sudo apt install dconf-editor -y
-```
+<details>
+    <summary><font size="4"><b>&nbsp;Alfred, OpenVNC Connect, VLC, Stats, AltTab, Rectangle</b></font></summary>
 
-1. Use `Tweaks` app to change caps to ctrl.
-2. Use `dconf-editor` to change click app action be 'minimize-and-preview'.
-    (org/gnome/shell/extensions/dash-to-dock/click-action)
-3. (Optional) Disable laptop keybard: `xinput disable "AT Translated Set 2 keyboard"`
+    TBD
+</details>
 
-
-
-Clipboard Indicator<br>
-[https://extensions.gnome.org/extension/779/clipboard-indicator/](https://extensions.gnome.org/extension/779/clipboard-indicator/)
-
-Alacritty<br>
-[https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
-
-Fira Code Nerd Font<br>
-[https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
-
-Docker and CVAT<br>
-[https://opencv.github.io/cvat/docs/administration/basics/installation/](https://opencv.github.io/cvat/docs/administration/basics/installation/)
-
-Git-Credential-Manager<br>
-[https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
-```bash
-    sudo dpkg -i <path-to-package>
-    git-credential-manager configure
-```
-
-Install Cuda<br>
-[https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)<br>
-WARNING: the `ubuntu2004/x86_64` in the url may be different, remember to change it.
+<details>
+    <summary><font size="4"><b>&nbsp;Gnome-Tweaks and Dconf-Editor</b></font></summary>
 
 ```bash
-    sudo apt-get install linux-headers-$(uname -r)
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-    sudo dpkg -i cuda-keyring_1.0-1_all.deb
-    sudo apt-get update
-    sudo apt-get install cuda -y
+# Use `Tweaks` app to change caps to ctrl.
+sudo apt install gnome-tweaks -y
+# Use `dconf-editor` to change click app action be 'minimize-and-preview'. (org/gnome/shell/extensions/dash-to-dock/click-action)
+sudo apt install dconf-editor -y
+# (Optional) Disable laptop keybard
+xinput disable "AT Translated Set 2 keyboard"
 ```
+</details>
 
-#### Install Neovim
+
+
+
+<details>
+    <summary><font size="4"><b>&nbsp;Clipboard Indicator</b></font></summary>
 
 Ubuntu
 
-Install Dependicies
-```bash
-    sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
-```
+[https://extensions.gnome.org/extension/779/clipboard-indicator/](https://extensions.gnome.org/extension/779/clipboard-indicator/)
 
-Build from Source
+Mac
+
+[https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
+</details>
+
+<details>
+    <summary><font size="4"><b>&nbsp;Fira Code Nerd Font</b></font></summary>
+    
+[https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
+</details>
+
+<details>
+    <summary><font size="4"><b>&nbsp;Docker and CVAT</b></font></summary>
+
+[https://opencv.github.io/cvat/docs/administration/basics/installation/](https://opencv.github.io/cvat/docs/administration/basics/installation/)
+</details>
+
+<details>
+    <summary><font size="4"><b>&nbsp;Git-Credential-Manager</b></font></summary>
+
+[https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
 ```bash
-    git clone https://github.com/neovim/neovim.git
-    cd neovim
-    sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
+sudo dpkg -i <path-to-package>
+git-credential-manager configure
+```
+</details>
+
+<details>
+    <summary><font size="4"><b>&nbsp;Cuda</b></font></summary>
+
+[https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)<br>
+
+```bash
+sudo apt-get install linux-headers-$(uname -r)
+# WARNING: the `ubuntu2004/x86_64` in the following url may be different, remember to change it.
+# you can find the feasible choices here https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#network-repo-installation-for-ubuntu
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo apt-get update
+sudo apt-get install cuda -y
+```
+</details>
+
+<details>
+  <summary><font size="4"><b>&nbsp;Neovim</b></font></summary>
+  
+Ubuntu
+```bash
+# Install Dependicies
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
+
+# Build from Source
+git clone https://github.com/neovim/neovim.git
+cd neovim
+sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
 
 Mac (homebrew)
+  
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install --HEAD neovim
+  ```
+  
+Both
+  ```bash
+  # Install Plugin Manager
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  
+  # Install Configuration
+  git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
+  ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
+  
+  # Run the following command to install LSP, formatter, etc.
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  ```
+</details>
+
+<details>
+  <summary><font size="4"><b>&nbsp;Latex Compiler</b></font></summary>
 
 ```bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install --HEAD neovim
+sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
 ```
+</details>
 
-Install Plugin Manager
+<details>
+    <summary><font size="4"><b>&nbsp;Zathura PDF viewer for VimTex</b></font></summary>
 
 ```bash
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+sudo apt install zathura -y
 ```
+</details>
 
-Install Configuration
+<details>
+    <summary><font size="4"><b>&nbsp;Rust (cargo, rustup)</b></font></summary>
 
 ```bash
-    git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
-    ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
 ```
+</details>
 
-Run the following command
+<details>
+    <summary><font size="4"><b>&nbsp;Alacritty</b></font></summary>
+
+[https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
+</details>
+
+<details>
+    <summary><font size="4"><b>&nbsp;Nu Shell</b></font></summary>
+
+Ubuntu
 ```bash
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+cargo install nu
 ```
 
-
-#### Intsall Latex Compiler
-
+Mac
 ```bash
-    sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
+brew install nushell
 ```
+</details>
 
-#### Install Pdf viewer for VimTex
+<details>
+    <summary><font size="4"><b>&nbsp;Solve cv2 typing issue with Pyright</b></font></summary>
 
-
+`opencv-python` or `opencv-contrib-python` is unable to be resolved by Pyright. By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
 ```bash
-    sudo apt install zathura -y
+cd ~/github/dotfiles
+cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
-
-#### Install Rust
-
-```bash
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source "$HOME/.cargo/env"
-```
-
-#### Install nu shell
-[https://www.nushell.sh/book/installation.html#installing-rust](https://www.nushell.sh/book/installation.html#installing-rust)
-
-#### Install Latex LSP - Texlab
-
-```bash
-    cargo install texlab
-```
-
-#### Install Python LSP - Pyright
-
-```bash
-    sudo npm install --global pyright
-```
-
-#### Install C/C++ LSP - clangd
-
-
-```bash
-    sudo apt install clangd-12 -y
-    sudo ln /usr/bin/clangd-12 /usr/bin/clangd
-```
-
-#### Install C/C++ Complier - clang
-
-```bash
-    sudo apt install clang-12 -y
-    sudo ln /usr/bin/clang-12 /usr/bin/clang
-    sudo ln /usr/bin/clang-12 /usr/bin/clang++
-```
-
-## cv2 typing issue with Pyright
-`opencv-python` or `opencv-contrib-python` is unable to be resolved by Pyright.<br>
-By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
-(Remember to chage `target env name` and `python3.x` to your case.)
-```bash
-    conda activate <target env name>
-    cd dotfiles
-    cp cv2/__init__.pyi $CONDA_PREFIX/lib/<python3.x>/site-packages/cv2/__init__.pyi
-```
+</details>
 
 ## TODO
 Ubuntu/Mac setup
 - [ ] Auto setup shell script
-
