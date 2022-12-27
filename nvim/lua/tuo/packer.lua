@@ -55,6 +55,8 @@ require('packer').startup(function()
         }
     })
 
+    use {'nvim-lualine/lualine.nvim'}
+
     use {"folke/zen-mode.nvim"}
 
     use {"folke/twilight.nvim"}
