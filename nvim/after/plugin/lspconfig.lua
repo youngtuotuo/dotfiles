@@ -88,7 +88,7 @@ require("mason-lspconfig").setup_handlers({
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup({
+        lspconfig[server_name].setup({
             on_attach = on_attach,
             handlers = handlers,
             capabilities = capabilities
@@ -121,19 +121,19 @@ require("mason-lspconfig").setup_handlers({
             handlers = handlers,
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
-                '.gitignore', '.git', 'pyproject.toml', 'setup.py', 'setup.cfg',
-                'requirements.txt', 'Pipfile', 'pyrightconfig.json'
+                'pyproject.toml', 'setup.py', 'setup.cfg',
+                'requirements.txt', 'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
             })),
             settings = {
                 pyright = {
                     -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
-                    disableOrganizeImports = false
+                    disableOrganizeImports = false,
                 },
                 python = {
                     analysis = {
                         -- Level of logging for Output panel. The default value for this option is "Information".
                         -- ["Error", "Warning", "Information", or "Trace"]
-                        logLevel = "Error",
+                        logLevel = "Information",
                         -- Determines whether pyright offers auto-import completions.
                         autoImportCompletions = true,
                         -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
@@ -145,9 +145,9 @@ require("mason-lspconfig").setup_handlers({
                         -- stubPath = {},
                         -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
                         -- ["off", "basic", "strict"]
-                        typeCheckingMode = "off",
+                        typeCheckingMode = "basic",
                         -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                        -- useLibraryCodeForTypes = false
+                        useLibraryCodeForTypes = true,
                     }
                 }
             }
@@ -230,7 +230,6 @@ end
 
 require("cmp").setup({
     snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end
