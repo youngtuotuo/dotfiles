@@ -1,20 +1,10 @@
 require("noice").setup({
     views = {
         cmdline_popup = {
-            position = {
-                col = "50%",
-                row = "50%",
-            },
-            size = {
-                width = "auto",
-                min_width = 60,
-                height = "auto",
-            },
+            position = {col = "50%", row = "50%"},
+            size = {width = "auto", min_width = 60, height = "auto"},
             backend = "popup",
-            border = {
-                padding = { 0, 1 },
-                style = "rounded"
-            },
+            border = {padding = {0, 1}, style = "rounded"},
             enter = false,
             focusable = false,
             relative = "editor",
@@ -32,46 +22,26 @@ require("noice").setup({
         mini = {
             align = "message-left",
             backend = "mini",
-            border = {
-                style = "rounded"
-            },
+            border = {style = "rounded"},
             focusable = true,
-            position = {
-                col = 0,
-                row = -1
-            },
+            position = {col = 0, row = -1},
             relative = "editor",
             reverse = true,
             size = "auto",
             timeout = 2000,
-            win_options = {
-                winblend = 0,
-                winhighlight = {
-                    IncSearch = "",
-                    Normal = "NoiceMini",
-                    Search = ""
-                }
-            },
+            win_options = {winblend = 0, winhighlight = {IncSearch = "", Normal = "NoiceMini", Search = ""}},
             zindex = 60
         },
-        notify = {
-            backend = "notify",
-            fallback = "mini",
-            format = "notify",
-            merge = true,
-            replace = true
-        },
+        notify = {backend = "notify", fallback = "mini", format = "notify", merge = true, replace = true}
     },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
+            ["cmp.entry.get_documentation"] = true
         },
-        progress = {
-            view = "mini"
-        }
+        progress = {view = "mini"}
     },
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -81,8 +51,8 @@ require("noice").setup({
         view_error = "notify", -- view for errors
         view_warn = "notify", -- view for warnings
         view_history = "messages", -- view for :messages
-        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-    },
+        view_search = "virtualtext" -- view for search count messages. Set to `false` to disable
+    }
 })
 
 -- {

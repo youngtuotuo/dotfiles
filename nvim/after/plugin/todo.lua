@@ -17,15 +17,20 @@ require("todo").setup {
         TODO = {
             -- icon = " ",
             icon = "T",
-            color = "info"},
+            color = "info"
+        },
         WARN = {
             -- icon = " ",
             icon = "W",
-            color = "warning", alt = {"WARNING"}},
+            color = "warning",
+            alt = {"WARNING"}
+        },
         NOTE = {
             -- icon = " ",
             icon = "N",
-            color = "hint", alt = {"INFO"}}
+            color = "hint",
+            alt = {"INFO"}
+        }
     },
     merge_keywords = true, -- whether to merge custom keywords with defaults
     highlight = {
@@ -58,5 +63,4 @@ require("todo").setup {
         pattern = [[\b(KEYWORDS):]] -- ripgrep regex
     }
 }
-vim.api.nvim_set_keymap("n", "<space>t", ":TODOTelescope<CR>",
-                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<space>t", ":TODOTelescope<CR>", {noremap = true, silent = true})

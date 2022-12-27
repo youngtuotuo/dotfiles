@@ -1,34 +1,18 @@
-if not pcall(require, "zen-mode") then
-  return
-end
+if not pcall(require, "zen-mode") then return end
 
 require('zen-mode').setup({
     window = {
         backdrop = 1,
         height = 1,
         -- width = 140,
-        options = {
-            number = false,
-            relativenumber = false,
-            signcolumn = "no",
-            list = false,
-            cursorline = false,
-        },
+        options = {number = false, relativenumber = false, signcolumn = "no", list = false, cursorline = false}
     },
-    plugins = {
-        options = {
-            enabled = false,
-        },
-        twilight = {enabled = false},
-    },
+    plugins = {options = {enabled = false}, twilight = {enabled = false}}
 })
 
 vim.api.nvim_set_keymap("n", "<space>z", ":ZenMode<CR>", {noremap = true, silent = true})
 
-require("twilight").setup {
-  context = -1,
-  treesitter = true,
-}
+require("twilight").setup {context = -1, treesitter = true}
 
 -- zen-mode
 -- {

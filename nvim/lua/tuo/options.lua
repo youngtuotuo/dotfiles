@@ -40,12 +40,8 @@ for k, v in pairs(options) do vim.opt[k] = v end
 
 vim.opt.shortmess:append "c"
 
-local yank_augroup = vim.api
-                         .nvim_create_augroup("YankHighlight", {clear = true})
-vim.api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank()",
-    group = yank_augroup
-})
+local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
+vim.api.nvim_create_autocmd("TextYankPost", {command = "silent! lua vim.highlight.on_yank()", group = yank_augroup})
 
 vim.cmd [[set whichwrap+=<,>,[,],h,l]]
 vim.cmd [[set iskeyword+=-]]

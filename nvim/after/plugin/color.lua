@@ -21,14 +21,7 @@ require('rose-pine').setup({
         info = 'foam',
         warn = 'gold',
 
-        headings = {
-            h1 = 'iris',
-            h2 = 'foam',
-            h3 = 'rose',
-            h4 = 'gold',
-            h5 = 'pine',
-            h6 = 'foam'
-        }
+        headings = {h1 = 'iris', h2 = 'foam', h3 = 'rose', h4 = 'gold', h5 = 'pine', h6 = 'foam'}
         -- or set all headings at once
         -- headings = 'subtle'
     },
@@ -37,13 +30,13 @@ require('rose-pine').setup({
     highlight_groups = {ColorColumn = {bg = 'rose'}}
 })
 vim.cmd.colorscheme("rose-pine")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NoiceMini", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#9ccfd8" })
-vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#9ccfd8" })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+vim.api.nvim_set_hl(0, "NoiceMini", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+vim.api.nvim_set_hl(0, "FloatBorder", {fg = "#9ccfd8"})
+vim.api.nvim_set_hl(0, "TelescopeBorder", {fg = "#9ccfd8"})
+vim.api.nvim_set_hl(0, "SignColumn", {bg = "none"})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {undercurl = true})

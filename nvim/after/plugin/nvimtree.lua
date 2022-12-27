@@ -16,16 +16,11 @@ require("nvim-tree").setup({
                 width = width,
                 height = height,
                 row = (gheight - height) * 0.4,
-                col = (gwidth - width) * 0.5,
-            },
-        },
+                col = (gwidth - width) * 0.5
+            }
+        }
     },
-    renderer = {
-        icons = {
-            show = {file = true, folder = true, folder_arrow = true, git = true}
-        },
-        group_empty = true
-    },
+    renderer = {icons = {show = {file = true, folder = true, folder_arrow = true, git = true}}, group_empty = true},
     filters = {dotfiles = false}
 })
 

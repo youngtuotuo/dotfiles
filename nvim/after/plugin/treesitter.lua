@@ -1,7 +1,7 @@
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
-        "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim",
-        "rust", "go", "latex", "help", "regex", "markdown_inline"
+        "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim", "rust", "go", "latex", "help", "regex",
+        "markdown_inline"
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     indent = {enable = false},
     highlight = {
@@ -24,25 +24,12 @@ require("nvim-treesitter.configs").setup({
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer'
-            },
-            goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer'
-            },
-            goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer'
-            },
-            goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer'
-            }
+            goto_next_start = {[']m'] = '@function.outer', [']]'] = '@class.outer'},
+            goto_next_end = {[']M'] = '@function.outer', [']['] = '@class.outer'},
+            goto_previous_start = {['[m'] = '@function.outer', ['[['] = '@class.outer'},
+            goto_previous_end = {['[M'] = '@function.outer', ['[]'] = '@class.outer'}
         }
     }
 })
 -- TreeSitter highlight toggle
-vim.api.nvim_set_keymap("n", "<leader>ts", ":TSToggle highlight<CR>",
-                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ts", ":TSToggle highlight<CR>", {noremap = true, silent = true})

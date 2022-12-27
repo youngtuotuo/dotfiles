@@ -21,11 +21,10 @@ if vim.fn.has("win32") == 1 then
 end
 -- c/c++ compile and run
 keymap("n", "<leader>c+",
-       ":!clang++ -Wall -std=c++14 -o vimcpp.out" .. ext .. " % && ." .. sep ..
-           "vimcpp.out" .. ext .. "<CR>", default_opts)
-keymap("n", "<leader>c",
-       ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep .. "vimc.out" ..
-           ext .. "<CR>", default_opts)
+       ":!clang++ -Wall -std=c++14 -o vimcpp.out" .. ext .. " % && ." .. sep .. "vimcpp.out" .. ext .. "<CR>",
+       default_opts)
+keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep .. "vimc.out" .. ext .. "<CR>",
+       default_opts)
 
 -- James Powell python3
 -- TODO windows path is a little different

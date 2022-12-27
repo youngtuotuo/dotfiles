@@ -1,6 +1,6 @@
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
         vim.cmd [[packadd packer.nvim]]
@@ -21,11 +21,7 @@ local cfg = {
         enable = true,
         threshold = 0 -- the amount in ms that a plugins load time must be over for it to be included in the profile
     },
-    display = {
-        open_fn = function()
-            return require("packer.util").float {border = "rounded"}
-        end
-    }
+    display = {open_fn = function() return require("packer.util").float {border = "rounded"} end}
 }
 
 packer.init(cfg)
@@ -44,7 +40,7 @@ require('packer').startup(function()
             'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
 
             -- Additional lua configuration, makes nvim stuff amazing
-            'folke/neodev.nvim',
+            'folke/neodev.nvim'
         }
     }
 
@@ -52,11 +48,10 @@ require('packer').startup(function()
         "folke/noice.nvim",
         requires = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
+            "MunifTanjim/nui.nvim", -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
+            "rcarriga/nvim-notify"
         }
     })
 
@@ -82,18 +77,10 @@ require('packer').startup(function()
     -- latex
     use({"lervag/vimtex"})
 
-    use {
-        "nvim-telescope/telescope.nvim",
-        branch = '0.1.x',
-        requires = {"nvim-lua/plenary.nvim"}
-    }
+    use {"nvim-telescope/telescope.nvim", branch = '0.1.x', requires = {"nvim-lua/plenary.nvim"}}
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    use {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make',
-        cond = vim.fn.executable 'make' == 1
-    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1}
 
     -- stablizer window split
     use {"luukvbaal/stabilize.nvim"}
@@ -101,9 +88,7 @@ require('packer').startup(function()
     -- treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
-        run = function()
-            pcall(require('nvim-treesitter.install').update {with_sync = true})
-        end
+        run = function() pcall(require('nvim-treesitter.install').update {with_sync = true}) end
     }
 
     use { -- Additional text objects via treesitter
@@ -118,24 +103,14 @@ require('packer').startup(function()
     use {
         "hrsh7th/nvim-cmp",
         requires = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "onsails/lspkind-nvim",
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp",
-            "rafamadriz/friendly-snippets",
+            "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "onsails/lspkind-nvim", "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lua", "hrsh7th/cmp-nvim-lsp", "rafamadriz/friendly-snippets"
             -- "kdheepak/cmp-latex-symbols"
         }
     }
 
     -- color code visualization
-    use {
-        "norcalli/nvim-colorizer.lua",
-        config = function() require("colorizer").setup() end
-    }
+    use {"norcalli/nvim-colorizer.lua", config = function() require("colorizer").setup() end}
 
     -- indent level indicator
     use {"lukas-reineke/indent-blankline.nvim", event = "BufEnter"}
@@ -144,20 +119,14 @@ require('packer').startup(function()
     use {"kyazdani42/nvim-web-devicons", module = "nvim-web-devicons"}
 
     -- markdown preview tool
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        ft = {"markdown"}
-    })
+    use({"iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = {"markdown"}})
 
     -- easy code comment
     use {"numToStr/Comment.nvim"}
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+    if packer_bootstrap then require('packer').sync() end
 end)
 
 -- Usage help
