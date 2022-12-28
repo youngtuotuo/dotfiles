@@ -1,6 +1,6 @@
 require("todo").setup {
     signs = {
-        enable = true, -- show icons in the sign column
+        enable = false, -- show icons in the sign column
         priority = 8
     },
     keywords = {
@@ -38,7 +38,7 @@ require("todo").setup {
         before = "", -- "fg", "bg", or empty
         -- highlights of the keyword
         -- wide is the same as bg, but also highlights the colon
-        keyword = "wide", -- "fg", "bg", "wide", or empty
+        keyword = "bg", -- "fg", "bg", "wide", or empty
         -- highlights after the keyword (TODO text)
         after = "", -- "fg", "bg", or empty
         -- pattern can be a string, or a table of regexes that will be checked

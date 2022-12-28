@@ -184,7 +184,21 @@ ins_left {
   cond = conditions.hide_in_width,
 }
 
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
 ins_left {
+  function()
+    return '%='
+  end,
+}
+
+ins_left {
+  'filename',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = 'bold' },
+}
+
+ins_right {
   -- Lsp server name .
   function()
     local msg = 'No Active Lsp'
@@ -205,7 +219,7 @@ ins_left {
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
-ins_left {
+ins_right {
   'diagnostics',
   sources = { 'nvim_diagnostic' },
   symbols = { error = ' ', warn = ' ', info = ' ' },
@@ -214,20 +228,6 @@ ins_left {
     color_warn = { fg = colors.yellow },
     color_info = { fg = colors.cyan },
   },
-}
-
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {
-  function()
-    return '%='
-  end,
-}
-
-ins_left {
-  'filename',
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
 }
 
 -- Add components to right sections
@@ -239,16 +239,16 @@ ins_right {
 }
 
 ins_right {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-}
-
-ins_right {
   'fileformat',
   fmt = string.upper,
   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
   color = { fg = colors.green, gui = 'bold' },
+}
+
+ins_right {
+  -- filesize component
+  'filesize',
+  cond = conditions.buffer_not_empty,
 }
 
 ins_right { 'location' }
