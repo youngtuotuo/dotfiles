@@ -13,7 +13,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 1
+  opacity: 0.8
 
 # Font configuration
 font:
