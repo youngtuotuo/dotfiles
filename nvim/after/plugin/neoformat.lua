@@ -9,4 +9,10 @@ vim.cmd [[
     \ 'args': ['--column-limit=120'],
     \ }
   let g:neoformat_enabled_lua = ['luaformat']
+  let g:neoformat_python_black = {
+    \ 'exe': 'black',
+    \ 'args': ['-l 120', '-t py38'],
+    \ 'replace': 1,
+    \ }
+  let g:neoformat_enabled_python = ['black']
 ]]
