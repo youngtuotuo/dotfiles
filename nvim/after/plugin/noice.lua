@@ -23,8 +23,11 @@ require("noice").setup({
             align = "message-left",
             backend = "mini",
             border = {style = "rounded"},
+            position = {
+                col = "100%",
+                row = "50%"
+            },
             focusable = true,
-            position = {col = 0, row = -1},
             relative = "editor",
             reverse = true,
             size = "auto",
