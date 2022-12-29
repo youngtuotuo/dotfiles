@@ -25,7 +25,7 @@ My routine data science envrionment set up in ubuntu/mac.<br>
 # Installation
 
 <details>
-    <summary><font size="4"><b>&nbsp;Alfred, OpenVNC Connect, VLC, Stats, AltTab, Rectangle</b></font></summary>
+    <summary><font size="4"><b>&nbsp;Warp, RayCast, Obsidian, noVNC, tigerVNC, OpenVPN Connect, VLC, Stats, AltTab, Rectangle</b></font></summary>
 
     TBD
 </details>
