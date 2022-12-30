@@ -1,27 +1,11 @@
 require("noice").setup({
+    presets = {
+      long_message_to_split = false, -- long messages will be sent to a split
+    },
     cmdline = {
         view = "cmdline"
     },
     views = {
-        cmdline_popup = {
-            position = {col = "50%", row = "50%"},
-            size = {width = "auto", min_width = 60, height = "auto"},
-            backend = "popup",
-            border = {padding = {0, 1}, style = "rounded"},
-            enter = false,
-            focusable = false,
-            relative = "editor",
-            win_options = {
-                cursorline = false,
-                winhighlight = {
-                    FloatBorder = "NoiceCmdlinePopupBorder",
-                    IncSearch = "",
-                    Normal = "NoiceCmdlinePopup",
-                    Search = ""
-                }
-            },
-            zindex = 60
-        },
         mini = {
             align = "message-left",
             backend = "mini",
@@ -44,7 +28,7 @@ require("noice").setup({
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true
         },
-        progress = {view = "mini"}
+        progress = {enabled = false, view = "mini"}
     },
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -59,31 +43,31 @@ require("noice").setup({
     routes = {
         {
             view = "mini",
-            filter = { event = "msg_showmode"},
+            filter = {event = "msg_showmode"},
         },
         {
             view = "mini",
-            filter = { event = "msg_show", find = 'written'},
+            filter = {
+                event = "msg_show",
+                any = {
+                    {find = 'written'},
+                    {find = 'change; after'},
+                    {find = 'change; before'},
+                    {find = 'Already at oldest'},
+                    {find = 'Already at newest'},
+                    {find = 'lines yanked'},
+                    {find = 'more lines'},
+                    {find = 'fewer lines'},
+                }
+            },
         },
         {
-            view = "mini",
-            filter = { event = "msg_show", find = 'change; after'},
-        },
-        {
-            view = "mini",
-            filter = { event = "msg_show", find = 'change; before'},
-        },
-        {
-            view = "mini",
-            filter = { event = "msg_show", find = 'oldest'},
+            view = "virtualtext",
+            filter = { event = "msg_show", kind="search_count"},
         },
         {
             view = "popup",
-            filter = { event = "msg_show", cmdline = 'python'},
-        },
-        {
-            view = "popup",
-            filter = { event = "msg_show", cmdline = 'clang'},
+            filter = {event = "msg_show"},
         },
     },
 })
