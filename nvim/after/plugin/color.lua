@@ -149,18 +149,18 @@ local function mode_color()
     return { fg = mode_color[vim.fn.mode()] }
 end
 
-ins_left {
-  function()
-    return '▊'
-  end,
-  color = mode_color, -- Sets highlighting of component
-  padding = { left = 0, right = 1 }, -- We don't need space before this
-}
+-- ins_left {
+--   function()
+--     return '▊'
+--   end,
+--   color = mode_color, -- Sets highlighting of component
+--   padding = { left = 0, right = 1 }, -- We don't need space before this
+-- }
 
 ins_left {
   -- mode component
   function()
-    return 'σ`∀´)σ'
+    return ' ヽ(✿ﾟ▽ﾟ)ノ'
   end,
   color = mode_color,
   padding = { right = 1 },
@@ -231,37 +231,37 @@ ins_right {
 }
 
 -- Add components to right sections
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
-  cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = 'bold' },
-}
+-- ins_right {
+--   'o:encoding', -- option component same as &encoding in viml
+--   fmt = string.upper, -- I'm not sure why it's upper case either ;)
+--   cond = conditions.hide_in_width,
+--   color = { fg = colors.green, gui = 'bold' },
+-- }
 
-ins_right {
-  'fileformat',
-  fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = 'bold' },
-}
+-- ins_right {
+--   'fileformat',
+--   fmt = string.upper,
+--   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+--   color = { fg = colors.green, gui = 'bold' },
+-- }
 
-ins_right {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-}
+-- ins_right {
+--   -- filesize component
+--   'filesize',
+--   cond = conditions.buffer_not_empty,
+-- }
 
 ins_right { 'location' }
-
-ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
-
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = mode_color,
-  padding = { left = 1 },
-}
+--
+-- ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+--
+-- ins_right {
+--   function()
+--     return '▊'
+--   end,
+--   color = mode_color,
+--   padding = { left = 1 },
+-- }
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)

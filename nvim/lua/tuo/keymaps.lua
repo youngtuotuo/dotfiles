@@ -31,10 +31,6 @@ keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep 
 keymap("v", "<leader>p", ":w !python<CR>", default_opts)
 keymap("n", "<leader>p", ":!python %<CR>", default_opts)
 
--- auto complete
--- keymap("i", "{<CR>", "{<CR>}<Esc>O", default_opts)
--- keymap("i", "[<CR>", "[<CR>]<Esc>O", default_opts)
--- keymap("i", "(<CR>", "(<CR>)<Esc>O", default_opts)
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-c>", "<C-[>", default_opts)
@@ -62,11 +58,6 @@ keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 -- number line
 keymap("n", "<leader>ss", ":set invnu invrnu<CR>", default_opts)
 
--- Tab navigation like Firefox.
-keymap("n", "tj", ":tabprevious<CR>", default_opts)
-keymap("n", "tk", ":tabnext<CR>", default_opts)
-keymap("n", "tn", ":tabnew<CR>", default_opts)
-
 -- Y like C,D
 keymap("n", "Y", "y$", default_opts)
 keymap("n", "J", "mzJ`z", default_opts)
@@ -81,13 +72,11 @@ keymap("n", "N", "Nzz", default_opts)
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
-vim.cmd [[
-  command! FormatJSON %!python3 -m json.tool
-]]
+vim.api.nvim_create_user_command('W', 'silent w', {})
+
 -- NvimTree
 vim.cmd [[
   command! E NvimTreeToggle
-  command! W w
   command! Q q
   command! Wa wa
   command! Qa qa

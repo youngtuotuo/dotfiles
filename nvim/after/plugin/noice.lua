@@ -22,11 +22,8 @@ require("noice").setup({
         mini = {
             align = "message-left",
             backend = "mini",
-            border = {style = "rounded"},
-            position = {
-                col = "100%",
-                row = "50%"
-            },
+            border = {style = nil},
+            position = {col = "100%", row = "98%"},
             focusable = true,
             relative = "editor",
             reverse = true,
@@ -55,8 +52,15 @@ require("noice").setup({
         view_warn = "notify", -- view for warnings
         view_history = "messages", -- view for :messages
         view_search = "virtualtext" -- view for search count messages. Set to `false` to disable
-    }
+    },
+    routes = {
+    {
+      view = "mini",
+      filter = { event = "msg_show", find = 'written'},
+    },
+  },
 })
+
 
 -- {
 --   cmdline = {
