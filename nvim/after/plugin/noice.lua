@@ -1,4 +1,7 @@
 require("noice").setup({
+    cmdline = {
+        view = "cmdline"
+    },
     views = {
         cmdline_popup = {
             position = {col = "50%", row = "50%"},
@@ -56,19 +59,31 @@ require("noice").setup({
     routes = {
         {
             view = "mini",
+            filter = { event = "msg_showmode"},
+        },
+        {
+            view = "mini",
             filter = { event = "msg_show", find = 'written'},
         },
         {
             view = "mini",
-            filter = { event = "msg_show", find = 'after'},
+            filter = { event = "msg_show", find = 'change; after'},
         },
         {
             view = "mini",
-            filter = { event = "msg_show", find = 'before'},
+            filter = { event = "msg_show", find = 'change; before'},
         },
         {
             view = "mini",
             filter = { event = "msg_show", find = 'oldest'},
+        },
+        {
+            view = "popup",
+            filter = { event = "msg_show", cmdline = 'python'},
+        },
+        {
+            view = "popup",
+            filter = { event = "msg_show", cmdline = 'clang'},
         },
     },
 })

@@ -28,8 +28,8 @@ keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep 
 
 -- James Powell python3
 -- TODO windows path is a little different
-keymap("v", "<leader>p", ":w !python<CR>", default_opts)
-keymap("n", "<leader>p", ":!python %<CR>", default_opts)
+keymap("v", "<leader>p", ":w !python<CR>", {noremap = true, silent = false})
+keymap("n", "<leader>p", ":!python %<CR>", {noremap = true, silent = false})
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)
@@ -77,7 +77,6 @@ vim.api.nvim_create_user_command('W', 'silent w', {})
 vim.api.nvim_create_user_command('Wa', 'silent wa', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Qa', 'qa', {})
-
 
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
