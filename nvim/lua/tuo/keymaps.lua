@@ -31,6 +31,9 @@ keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep 
 keymap("v", "<leader>p", ":w !python<CR>", {noremap = true, silent = false})
 keymap("n", "<leader>p", ":!python %<CR>", {noremap = true, silent = false})
 
+keymap("n", "q:", "<nop>", {noremap = true, silent = false})
+keymap("n", "Q", "<nop>", {noremap = true, silent = false})
+
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)
 
