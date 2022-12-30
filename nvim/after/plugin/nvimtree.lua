@@ -1,28 +1,31 @@
-local gwidth = vim.api.nvim_list_uis()[1].width
-local gheight = vim.api.nvim_list_uis()[1].height
-local width = 60
-local height = 20
-require("nvim-tree").setup({
-    sort_by = "case_sensitive",
-    view = {
-        adaptive_size = false,
-        mappings = {list = {{key = "-", action = "dir_up"}}},
-        float = {
-            enable = true,
-            quit_on_focus_loss = true,
-            open_win_config = {
-                relative = "editor",
-                border = "rounded",
-                width = width,
-                height = height,
-                row = (gheight - height) * 0.4,
-                col = (gwidth - width) * 0.5
+if next(vim.api.nvim_list_uis()) ~= nil then
+    local gwidth = vim.api.nvim_list_uis()[1].width
+    local gheight = vim.api.nvim_list_uis()[1].height
+    local width = 60
+    local height = 20
+    require("nvim-tree").setup({
+        sort_by = "case_sensitive",
+        view = {
+            adaptive_size = false,
+            mappings = {list = {{key = "-", action = "dir_up"}}},
+            float = {
+                enable = true,
+                quit_on_focus_loss = true,
+                open_win_config = {
+                    relative = "editor",
+                    border = "rounded",
+                    width = width,
+                    height = height,
+                    row = (gheight - height) * 0.4,
+                    col = (gwidth - width) * 0.5
+                }
             }
-        }
-    },
-    renderer = {icons = {show = {file = true, folder = true, folder_arrow = true, git = true}}, group_empty = true},
-    filters = {dotfiles = false}
-})
+        },
+        renderer = {icons = {show = {file = true, folder = true, folder_arrow = true, git = true}}, group_empty = true},
+        filters = {dotfiles = false}
+    })
+    vim.api.nvim_create_user_command('E', 'NvimTreeToggle', {})
+end
 
 -- view.mappings.list = { -- BEGIN_DEFAULT_MAPPINGS
 --   { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },

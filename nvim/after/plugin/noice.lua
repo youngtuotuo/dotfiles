@@ -54,11 +54,23 @@ require("noice").setup({
         view_search = "virtualtext" -- view for search count messages. Set to `false` to disable
     },
     routes = {
-    {
-      view = "mini",
-      filter = { event = "msg_show", find = 'written'},
+        {
+            view = "mini",
+            filter = { event = "msg_show", find = 'written'},
+        },
+        {
+            view = "mini",
+            filter = { event = "msg_show", find = 'after'},
+        },
+        {
+            view = "mini",
+            filter = { event = "msg_show", find = 'before'},
+        },
+        {
+            view = "mini",
+            filter = { event = "msg_show", find = 'oldest'},
+        },
     },
-  },
 })
 
 

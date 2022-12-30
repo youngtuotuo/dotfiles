@@ -37,12 +37,12 @@ local options = {
 
 for k, v in pairs(options) do vim.opt[k] = v end
 
-vim.opt.shortmess:append "c"
 
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
-vim.api.nvim_create_autocmd("TextYankPost", {command = "silent! lua vim.highlight.on_yank()", group = yank_augroup})
+vim.api.nvim_create_autocmd("TextYankPost", {callback = function() vim.highlight.on_yank() end, group = yank_augroup})
+vim.api.nvim_create_autocmd("BufEnter", {callback = function() vim.opt.formatoptions:remove {"c","r","o"} end})
 
-vim.cmd [[set whichwrap+=<,>,[,],h,l]]
-vim.cmd [[set iskeyword+=-]]
+vim.opt.shortmess:append "c"
+vim.opt.whichwrap:append "<,>,[,],h,l"
+vim.opt.iskeyword:append "-"
 
-vim.api.nvim_create_autocmd("BufEnter", {command = "set formatoptions-=cro "})

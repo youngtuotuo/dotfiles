@@ -9,8 +9,8 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- insert_mode = "i"
 -- visual_mode = "v"
 -- visual_block_mode = "x"
--- term_mode = "t"
 -- command_mode = "c"
+-- term_mode = "t"
 
 -- g++ compile and execute
 local ext = ""
@@ -31,15 +31,12 @@ keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep 
 keymap("v", "<leader>p", ":w !python<CR>", default_opts)
 keymap("n", "<leader>p", ":!python %<CR>", default_opts)
 
-
 -- <C-c> will raise interrupted error of lsp
-keymap("i", "<C-c>", "<C-[>", default_opts)
+keymap("i", "<C-C>", "<C-[>", default_opts)
 
 -- Not show native menu
 keymap("i", "<C-n>", "<Nop>", default_opts)
 keymap("i", "<C-p>", "<Nop>", default_opts)
-
-keymap("i", "<S-Tab>", "<C-D>", default_opts)
 
 -- Easier pane navigation
 keymap("n", "<C-j>", "<C-w>j", default_opts)
@@ -72,21 +69,15 @@ keymap("n", "N", "Nzz", default_opts)
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
-vim.api.nvim_create_user_command('W', 'silent w', {})
-
--- NvimTree
-vim.cmd [[
-  command! E NvimTreeToggle
-  command! Q q
-  command! Wa wa
-  command! Qa qa
-]]
-
 -- Jump list mutations
-vim.cmd [[
-  nnoremap <expr> k (v:count > 5 ? "m'" . v:count: "") . 'k'
-  nnoremap <expr> j (v:count > 5 ? "m'" . v:count: "") . 'j'
-]]
+keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
+keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
+
+vim.api.nvim_create_user_command('W', 'silent w', {})
+vim.api.nvim_create_user_command('Wa', 'silent wa', {})
+vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('Qa', 'qa', {})
+
 
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
