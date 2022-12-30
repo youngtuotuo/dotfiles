@@ -1,6 +1,6 @@
 require("noice").setup({
     presets = {
-      long_message_to_split = false, -- long messages will be sent to a split
+      long_message_to_split = true, -- long messages will be sent to a split
     },
     cmdline = {
         view = "cmdline"
@@ -13,13 +13,12 @@ require("noice").setup({
             position = {col = "100%", row = "98%"},
             focusable = true,
             relative = "editor",
-            reverse = true,
+            reverse = false,
             size = "auto",
             timeout = 2000,
             win_options = {winblend = 0, winhighlight = {IncSearch = "", Normal = "NoiceMini", Search = ""}},
             zindex = 60
         },
-        notify = {backend = "notify", fallback = "mini", format = "notify", merge = true, replace = true}
     },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -34,23 +33,25 @@ require("noice").setup({
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
         enabled = true, -- enables the Noice messages UI
-        view = "notify", -- default view for messages
-        view_error = "notify", -- view for errors
-        view_warn = "notify", -- view for warnings
+        view = "mini", -- default view for messages
+        view_error = "mini", -- view for errors
+        view_warn = "mini", -- view for warnings
         view_history = "messages", -- view for :messages
         view_search = "virtualtext" -- view for search count messages. Set to `false` to disable
     },
     routes = {
         {
             view = "mini",
-            filter = {event = "msg_showmode"},
+            filter = {
+                any = {{event = "msg_showmode"}},
+            },
         },
         {
             view = "mini",
             filter = {
                 event = "msg_show",
                 any = {
-                    {find = 'written'},
+                    {find = 'written', kind=""},
                     {find = 'change; after'},
                     {find = 'change; before'},
                     {find = 'Already at oldest'},
@@ -60,6 +61,8 @@ require("noice").setup({
                     {find = 'more line'},
                     {find = 'fewer lines'},
                     {find = 'fewer line'},
+                    {find = 'Neoformat'},
+                    {find = 'telescope'},
                     {kind = 'emsg'},
                     {kind = 'wmsg'},
                 }
@@ -75,7 +78,6 @@ require("noice").setup({
         },
     },
 })
-
 
 -- {
 --   cmdline = {

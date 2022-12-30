@@ -51,7 +51,7 @@ require('packer').startup(function()
             "MunifTanjim/nui.nvim", -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify"
+            -- "rcarriga/nvim-notify"
         }
     })
 
@@ -117,7 +117,7 @@ require('packer').startup(function()
     use {"norcalli/nvim-colorizer.lua", config = function() require("colorizer").setup() end}
 
     -- indent level indicator
-    use {"lukas-reineke/indent-blankline.nvim", event = "BufEnter"}
+    use {"lukas-reineke/indent-blankline.nvim"}
 
     -- cool icons to disaply
     use {"kyazdani42/nvim-web-devicons", module = "nvim-web-devicons"}
