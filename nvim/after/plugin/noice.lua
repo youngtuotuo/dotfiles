@@ -43,28 +43,23 @@ require("noice").setup({
         {
             view = "mini",
             filter = {
-                any = {{event = "msg_showmode"}},
-            },
-        },
-        {
-            view = "mini",
-            filter = {
                 event = "msg_show",
                 any = {
-                    {find = 'written', kind=""},
-                    {find = 'change; after'},
-                    {find = 'change; before'},
-                    {find = 'Already at oldest'},
-                    {find = 'Already at newest'},
-                    {find = 'lines yanked'},
-                    {find = 'more lines'},
-                    {find = 'more line'},
-                    {find = 'fewer lines'},
-                    {find = 'fewer line'},
-                    {find = 'Neoformat'},
-                    {find = 'telescope'},
-                    {kind = 'emsg'},
-                    {kind = 'wmsg'},
+                  {find = 'written'},
+                  {find = 'change; after'},
+                  {find = 'change; before'},
+                  {find = 'Already at oldest'},
+                  {find = 'Already at newest'},
+                  {find = 'lines yanked'},
+                  {find = 'more lines'},
+                  {find = 'more line'},
+                  {find = 'fewer lines'},
+                  {find = 'line less'},
+                  {find = 'lines >ed'},
+                  {find = 'lines <ed'},
+                  {find = 'Neoformat'},
+                  {kind = 'emsg'},
+                  {kind = 'wmsg'},
                 }
             },
         },
@@ -72,10 +67,10 @@ require("noice").setup({
             view = "virtualtext",
             filter = { event = "msg_show", kind="search_count"},
         },
-        {
-            view = "popup",
-            filter = {event = "msg_show"},
-        },
+        -- {
+        --     view = "popup",
+        --     filter = {event = "msg_show"},
+        -- },
     },
 })
 
