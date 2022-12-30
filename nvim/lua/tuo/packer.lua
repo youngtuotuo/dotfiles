@@ -45,6 +45,11 @@ require('packer').startup(function()
     }
 
     use({
+        "aserowy/tmux.nvim",
+        config = function() require("tmux").setup() end
+    })
+
+    use({
         "folke/noice.nvim",
         requires = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
