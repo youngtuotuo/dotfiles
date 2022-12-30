@@ -33,7 +33,7 @@ require("noice").setup({
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
         enabled = true, -- enables the Noice messages UI
-        view = "mini", -- default view for messages
+        view = "notify", -- default view for messages
         view_error = "mini", -- view for errors
         view_warn = "mini", -- view for warnings
         view_history = "messages", -- view for :messages
@@ -67,10 +67,10 @@ require("noice").setup({
             view = "virtualtext",
             filter = { event = "msg_show", kind="search_count"},
         },
-        -- {
-        --     view = "popup",
-        --     filter = {event = "msg_show"},
-        -- },
+        {
+            view = "popup",
+            filter = {event = "msg_show"},
+        },
     },
 })
 
