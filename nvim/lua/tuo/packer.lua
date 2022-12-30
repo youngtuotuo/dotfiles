@@ -45,11 +45,6 @@ require('packer').startup(function()
     }
 
     use({
-        "aserowy/tmux.nvim",
-        config = function() require("tmux").setup() end
-    })
-
-    use({
         "folke/noice.nvim",
         requires = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -59,6 +54,8 @@ require('packer').startup(function()
             "rcarriga/nvim-notify"
         }
     })
+
+    use {'christoomey/vim-tmux-navigator'}
 
     use {'nvim-lualine/lualine.nvim'}
 

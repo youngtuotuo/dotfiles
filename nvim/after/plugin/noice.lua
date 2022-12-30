@@ -57,7 +57,11 @@ require("noice").setup({
                     {find = 'Already at newest'},
                     {find = 'lines yanked'},
                     {find = 'more lines'},
+                    {find = 'more line'},
                     {find = 'fewer lines'},
+                    {find = 'fewer line'},
+                    {kind = 'emsg'},
+                    {kind = 'wmsg'},
                 }
             },
         },
