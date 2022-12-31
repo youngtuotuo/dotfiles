@@ -115,16 +115,16 @@ local function ins_left(component) table.insert(config.sections.lualine_c, compo
 local function ins_right(component) table.insert(config.sections.lualine_x, component) end
 
 local mode_color_text = {
-    ['n'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
+    ['n'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
     ['no'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['nov'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['noV'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['no\22'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
-    ['niI'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
-    ['niR'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
-    ['niV'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
-    ['nt'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
-    ['ntT'] = {color = colors.blue, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'NORMAL',
+    ['niI'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['niR'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['niV'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['nt'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['ntT'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
     ['v'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'VISUAL',
     ['vs'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'VISUAL',
     ['V'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'V-LINE',
@@ -134,16 +134,16 @@ local mode_color_text = {
     ['s'] = {color = colors.orange, text = ' SELECT'}, -- 'SELECT',
     ['S'] = {color = colors.orange, text = ' SELECT'}, -- 'S-LINE',
     ['\19'] = {color = colors.orange, text = ' SELECT'}, -- 'S-BLOCK',
-    ['i'] = {color = colors.green, text = ' σﾟ∀ﾟ)σ'}, -- 'INSERT',
-    ['ic'] = {color = colors.green, text = ' σﾟ∀ﾟ)σ'}, -- 'INSERT',
-    ['ix'] = {color = colors.green, text = ' σﾟ∀ﾟ)σ'}, -- 'INSERT',
+    ['i'] = {color = colors.green, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'INSERT',
+    ['ic'] = {color = colors.green, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'INSERT',
+    ['ix'] = {color = colors.green, text = ' ヽ(✿ﾟ▽ﾟ)ノ'}, -- 'INSERT',
     ['R'] = {color = colors.violet, text = ' REPLACE'}, -- 'REPLACE',
     ['Rc'] = {color = colors.violet, text = ' REPLACE'}, -- 'REPLACE',
     ['Rx'] = {color = colors.violet, text = ' REPLACE'}, -- 'REPLACE',
     ['Rv'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
     ['Rvc'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
     ['Rvx'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
-    ['c'] = {color = colors.yellow, text = ' (¦3[▓▓]'}, -- 'COMMAND',
+    ['c'] = {color = colors.yellow, text = ' σﾟ∀ﾟ)σ'}, -- 'COMMAND',
     ['cv'] = {color = colors.red, text = ' EX'}, -- 'EX',
     ['ce'] = {color = colors.red, text = ' EX'}, -- 'EX',
     ['r'] = {color = colors.cyan, text = ' REPLACE'}, -- 'REPLACE',
@@ -161,16 +161,8 @@ ins_left {
 
 ins_left {'branch', icon = '', color = {fg = colors.violet, gui = 'bold'}}
 
-ins_left {
-    'diff',
-    -- Is it me or the symbol for modified us really weird
-    symbols = {added = ' ', modified = '柳 ', removed = ' '},
-    diff_color = {added = {fg = colors.green}, modified = {fg = colors.orange}, removed = {fg = colors.red}},
-    cond = conditions.hide_in_width
-}
-
 -- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
+-- test for lualine it's any number greater then 2
 ins_left {function() return '%=' end}
 
 ins_left {'filename', cond = conditions.buffer_not_empty, color = {fg = colors.magenta, gui = 'bold'}}

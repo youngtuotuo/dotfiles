@@ -1,23 +1,50 @@
 require("noice").setup({
-    presets = {
-      long_message_to_split = true, -- long messages will be sent to a split
-    },
-    cmdline = {
-        view = "cmdline"
-    },
+    cmdline = {view = "cmdline_popup"},
     views = {
         mini = {
             align = "message-left",
             backend = "mini",
-            border = {style = nil},
+            border = {style = "none"},
             position = {col = "100%", row = "98%"},
             focusable = true,
             relative = "editor",
-            reverse = false,
+            reverse = true,
             size = "auto",
-            timeout = 2000,
+            timeout = 5000,
             win_options = {winblend = 0, winhighlight = {IncSearch = "", Normal = "NoiceMini", Search = ""}},
             zindex = 60
+        },
+        popup = {
+            backend = "popup",
+            border = {style = "rounded"},
+            close = {events = {"BufLeave"}, keys = {"q"}},
+            enter = true,
+            position = "50%",
+            relative = "editor",
+            size = {height = "auto", max_height = 40, width = "auto", min_width=40},
+            win_options = {winhighlight = {FloatBorder = "NoicePopupBorder", Normal = "NoicePopup"}}
+        },
+        cmdline_popup = {
+            backend = "popup",
+            border = {style = "none"},
+            enter = false,
+            focusable = false,
+            position = {col = 0, row = "98%"},
+            relative = "editor",
+            size = {height = "auto", min_width = 60, width = "auto"},
+            win_options = {
+                cursorline = false,
+                winhighlight = {
+                    FloatBorder = "NoiceCmdlinePopupBorder",
+                    IncSearch = "",
+                    Normal = "NoiceCmdlinePopup",
+                    Search = ""
+                }
+            },
+            zindex = 60
+        },
+        messages = {
+            enter = true,
         },
     },
     lsp = {
@@ -27,51 +54,40 @@ require("noice").setup({
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true
         },
-        progress = {enabled = false, view = "mini"}
+        progress = {enabled = true, view = "mini"}
     },
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
         enabled = true, -- enables the Noice messages UI
-        view = "notify", -- default view for messages
+        view = "messages", -- default view for messages
         view_error = "mini", -- view for errors
         view_warn = "mini", -- view for warnings
         view_history = "messages", -- view for :messages
         view_search = "virtualtext" -- view for search count messages. Set to `false` to disable
     },
     routes = {
-        {
+        {view = "virtualtext", filter = {event = "msg_show", kind = "search_count"}}, {
             view = "mini",
             filter = {
                 event = "msg_show",
                 any = {
-                  {find = 'written'},
-                  {find = 'change; after'},
-                  {find = 'change; before'},
-                  {find = 'Already at oldest'},
-                  {find = 'Already at newest'},
-                  {find = 'lines yanked'},
-                  {find = 'more lines'},
-                  {find = 'more line'},
-                  {find = 'fewer lines'},
-                  {find = 'line less'},
-                  {find = 'lines >ed'},
-                  {find = 'lines <ed'},
-                  {find = 'Neoformat'},
-                  {kind = 'emsg'},
-                  {kind = 'wmsg'},
-                }
+                    {find = 'written'}, {find = 'change; after'}, {find = 'changes; after'}, {find = 'change; before'},
+                    {find = 'changes; before'}, {find = 'Already at oldest'}, {find = 'Already at newest'},
+                    {find = 'lines indented'}, {find = 'lines yanked'}, {find = 'lines moved'}, {find = 'more line'},
+                    {find = 'more lines'}, {find = 'fewer lines'}, {find = 'line less'}, {find = 'lines >ed'},
+                    {find = 'lines <ed'}, {find = 'Neoformat'}, {kind = 'emsg'}, {kind = 'wmsg'}, {kind = 'echo'},
+                    {kind = 'echomsg'}, {kind = 'echoerr'}
+                },
             },
         },
         {
-            view = "virtualtext",
-            filter = { event = "msg_show", kind="search_count"},
+            view="popup",
+            filter = {
+                event = "noice",
+            },
         },
-        {
-            view = "popup",
-            filter = {event = "msg_show"},
-        },
-    },
+    }
 })
 
 -- {
