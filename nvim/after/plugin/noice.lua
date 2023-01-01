@@ -46,6 +46,9 @@ require("noice").setup({
         messages = {
             enter = true,
         },
+        cmdline_output = {
+            view = 'popup',
+        },
     },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -76,8 +79,8 @@ require("noice").setup({
                     {find = 'changes; before'}, {find = 'Already at oldest'}, {find = 'Already at newest'},
                     {find = 'lines indented'}, {find = 'lines yanked'}, {find = 'lines moved'}, {find = 'more line'},
                     {find = 'more lines'}, {find = 'fewer lines'}, {find = 'line less'}, {find = 'lines >ed'},
-                    {find = 'lines <ed'}, {find = 'Neoformat'}, {kind = 'emsg'}, {kind = 'wmsg'}, {kind = 'echo'},
-                    {kind = 'echomsg'}, {kind = 'echoerr'}
+                    {find = 'lines <ed'}, {find = 'Neoformat'}, {kind = 'wmsg'}, {kind = 'echoerr'},
+                    {kind = 'VimTex'}
                 },
             },
         },
