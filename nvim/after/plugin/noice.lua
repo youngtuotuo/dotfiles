@@ -2,7 +2,7 @@ require("noice").setup({
     cmdline = {view = "cmdline_popup"},
     views = {
         mini = {
-            align = "message-left",
+            align = "message-right",
             backend = "mini",
             border = {style = "none"},
             position = {col = "100%", row = "98%"},
