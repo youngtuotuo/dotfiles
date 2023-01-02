@@ -56,7 +56,9 @@ require('packer').startup(function()
     })
 
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-        require("toggleterm").setup()
+        require("toggleterm").setup({
+          open_mapping = [[<C-t>]],
+        })
     end}
 
     use {'christoomey/vim-tmux-navigator'}
