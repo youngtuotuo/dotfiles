@@ -57,7 +57,7 @@ require("noice").setup({
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true
         },
-        progress = {enabled = true, view = "mini"}
+        progress = {enabled = false, view = "mini"}
     },
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -80,7 +80,7 @@ require("noice").setup({
                     {find = 'lines indented'}, {find = 'lines yanked'}, {find = 'lines moved'}, {find = 'more line'},
                     {find = 'more lines'}, {find = 'fewer lines'}, {find = 'line less'}, {find = 'lines >ed'},
                     {find = 'lines <ed'}, {find = 'Neoformat'}, {kind = 'wmsg'}, {kind = 'echoerr'},
-                    {kind = 'VimTex'}, {kind = 'Treesitter'}
+                    {find = 'VimTex'}, {kind = 'Treesitter'}, {find='substitutions'}
                 },
             },
         },

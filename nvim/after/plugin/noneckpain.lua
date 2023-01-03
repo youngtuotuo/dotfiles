@@ -1,5 +1,6 @@
 require("no-neck-pain").setup({
-    width = 120,
+    width = 100,
+    enableOnVimEnter = true,
     toggleMapping = "<leader>np",
 })
 
