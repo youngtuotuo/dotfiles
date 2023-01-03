@@ -65,9 +65,7 @@ require('packer').startup(function()
 
     use {'nvim-lualine/lualine.nvim'}
 
-    use {"folke/zen-mode.nvim"}
-
-    use {"folke/twilight.nvim"}
+    use {"shortcuts/no-neck-pain.nvim", tag = "*" }
 
     -- speedup startup time
     use {"lewis6991/impatient.nvim"}

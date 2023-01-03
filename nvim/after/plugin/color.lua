@@ -1,11 +1,11 @@
 require('rose-pine').setup({
     --- @usage 'main' | 'moon'
-    dark_variant = 'moon',
+    dark_variant = 'main',
     bold_vert_split = false,
     dim_nc_background = false,
     disable_background = false,
     disable_float_background = false,
-    disable_italics = false,
+    disable_italics = true,
 
     --- @usage string hex value or named color from rosepinetheme.com/palette
     groups = {
@@ -30,13 +30,13 @@ require('rose-pine').setup({
     highlight_groups = {ColorColumn = {bg = 'rose'}}
 })
 vim.cmd.colorscheme("rose-pine")
-vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+-- vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
 vim.api.nvim_set_hl(0, "NoiceMini", {bg = "none"})
-vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
-vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+-- vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
+-- vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+-- vim.api.nvim_set_hl(0, "SignColumn", {bg = "none"})
 vim.api.nvim_set_hl(0, "FloatBorder", {fg = "#9ccfd8"})
 vim.api.nvim_set_hl(0, "TelescopeBorder", {fg = "#9ccfd8"})
-vim.api.nvim_set_hl(0, "SignColumn", {bg = "none"})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {undercurl = true})
