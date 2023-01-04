@@ -171,11 +171,6 @@ _G.packer_plugins = {
     path = "/home/support/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
   },
-  ["no-neck-pain.nvim"] = {
-    loaded = true,
-    path = "/home/support/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
-    url = "https://github.com/shortcuts/no-neck-pain.nvim"
-  },
   ["noice.nvim"] = {
     loaded = true,
     path = "/home/support/.local/share/nvim/site/pack/packer/start/noice.nvim",

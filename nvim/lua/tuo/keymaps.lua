@@ -112,3 +112,7 @@ keymap("n", "<S-Left>", ":vertical resize -1<CR>", default_opts)
 keymap("n", "<S-Right>", ":vertical resize +1<CR>", default_opts)
 keymap("n", "<S-Up>", ":resize +1<CR>", default_opts)
 keymap("n", "<S-Down>", ":resize -1<CR>", default_opts)
+
+keymap("i", "<S-Tab>", "<C-d>", default_opts)
+keymap("i", "<Tab>", "<C-i>", default_opts)
+
