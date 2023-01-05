@@ -50,7 +50,7 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-    bg = '#202328',
+    bg = 'none',
     fg = '#bbc2cf',
     yellow = '#ECBE7B',
     cyan = '#008080',
@@ -76,6 +76,7 @@ local conditions = {
 -- Config
 local config = {
     options = {
+        icons_enabled = true,
         -- Disable sections and component separators
         component_separators = '',
         section_separators = '',
@@ -165,7 +166,13 @@ ins_left {'branch', icon = '', color = {fg = colors.violet, gui = 'bold'}}
 -- test for lualine it's any number greater then 2
 ins_left {function() return '%=' end}
 
-ins_left {'filename', cond = conditions.buffer_not_empty, color = {fg = colors.magenta, gui = 'bold'}}
+local icon, color = require'nvim-web-devicons'.get_icon_color_by_filetype(vim.bo.filetype, {default=true})
+ins_left {
+    'filename',
+    icon = icon,
+    cond = conditions.buffer_not_empty,
+    color = {fg = color, gui = 'bold'}
+}
 
 ins_right {
     -- Lsp server name .
