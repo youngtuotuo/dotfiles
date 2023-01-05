@@ -109,23 +109,18 @@ local config = {
     }
 }
 
--- Inserts a component in lualine_c at left section
-local function ins_left(component) table.insert(config.sections.lualine_c, component) end
-
--- Inserts a component in lualine_x ot right section
-local function ins_right(component) table.insert(config.sections.lualine_x, component) end
 
 local mode_color_text = {
-    ['n'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['n'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
     ['no'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['nov'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['noV'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
     ['no\22'] = {color = colors.red, text = ' O-PENDING'}, -- 'O-PENDING',
-    ['niI'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
-    ['niR'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
-    ['niV'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
-    ['nt'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
-    ['ntT'] = {color = colors.blue, text = ' (¦3[▓▓]'}, -- 'NORMAL',
+    ['niI'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
+    ['niR'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
+    ['niV'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
+    ['nt'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
+    ['ntT'] = {color = colors.blue, text = ' (つ´ω`)つ'}, -- 'NORMAL',
     ['v'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'VISUAL',
     ['vs'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'VISUAL',
     ['V'] = {color = colors.green, text = ' d(`･∀･)b'}, -- 'V-LINE',
@@ -154,6 +149,9 @@ local mode_color_text = {
     ['t'] = {color = colors.red, text = ' TERMINAL'} -- 'TERMINAL',
 }
 
+-- Inserts a component in lualine_c at left section
+local function ins_left(component) table.insert(config.sections.lualine_c, component) end
+
 ins_left {
     function() return mode_color_text[vim.fn.mode()].text end,
     color = function() return {fg = mode_color_text[vim.fn.mode()].color} end,
@@ -166,13 +164,21 @@ ins_left {'branch', icon = '', color = {fg = colors.violet, gui = 'bold'}}
 -- test for lualine it's any number greater then 2
 ins_left {function() return '%=' end}
 
-local icon, color = require'nvim-web-devicons'.get_icon_color_by_filetype(vim.bo.filetype, {default=true})
+ins_left {
+    'filetype',
+    colored = true,
+    icon_only = true,
+    icon = {align='left'},
+    padding = {left=0}
+}
+
 ins_left {
     'filename',
-    icon = icon,
-    cond = conditions.buffer_not_empty,
-    color = {fg = color, gui = 'bold'}
+    path = 3,
 }
+
+-- Inserts a component in lualine_x ot right section
+local function ins_right(component) table.insert(config.sections.lualine_x, component) end
 
 ins_right {
     -- Lsp server name .
