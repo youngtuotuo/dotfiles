@@ -63,16 +63,6 @@ local colors = {
     red = '#ec5f67'
 }
 
-local conditions = {
-    buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-    hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
-    check_git_workspace = function()
-        local filepath = vim.fn.expand('%:p:h')
-        local gitdir = vim.fn.finddir('.git', filepath .. ';')
-        return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end
-}
-
 -- Config
 local config = {
     options = {
@@ -86,7 +76,7 @@ local config = {
             -- are just setting default looks o statusline
             normal = {c = {fg = colors.fg, bg = colors.bg}},
             inactive = {c = {fg = colors.fg, bg = colors.bg}}
-        }
+        },
     },
     sections = {
         -- these are to remove the defaults
@@ -94,7 +84,6 @@ local config = {
         lualine_b = {},
         lualine_y = {},
         lualine_z = {},
-        -- These will be filled later
         lualine_c = {},
         lualine_x = {}
     },
@@ -149,6 +138,7 @@ local mode_color_text = {
     ['t'] = {color = colors.red, text = ' TERMINAL'} -- 'TERMINAL',
 }
 
+
 -- Inserts a component in lualine_c at left section
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
 
@@ -175,6 +165,13 @@ ins_left {
 ins_left {
     'filename',
     path = 3,
+}
+
+ins_left {
+    'lsp_progress',
+    display_components = {'spinner'},
+    spinner_symbols = { '⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷' },
+
 }
 
 -- Inserts a component in lualine_x ot right section

@@ -48,6 +48,8 @@ require('packer').startup(function()
 
     use {'nvim-lualine/lualine.nvim'}
 
+    use {'arkav/lualine-lsp-progress'}
+
     -- speedup startup time
     use {"lewis6991/impatient.nvim"}
 

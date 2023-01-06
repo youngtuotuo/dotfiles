@@ -8,6 +8,7 @@ local options = {
     expandtab = true,
     fileencoding = "utf-8",
     fillchars = 'stl: ',
+    guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175',
     hidden = true,
     ignorecase = true,
     laststatus = 3,
@@ -31,16 +32,15 @@ local options = {
     updatetime = 200,
     viminfo = "'1000",
     visualbell = false,
-    wrap = false,
+    wrap = true,
     writebackup = false
 }
 
 for k, v in pairs(options) do vim.opt[k] = v end
 
-
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
 vim.api.nvim_create_autocmd("TextYankPost", {callback = function() vim.highlight.on_yank() end, group = yank_augroup})
-vim.api.nvim_create_autocmd("BufEnter", {callback = function() vim.opt.formatoptions:remove {"c","r","o"} end})
+vim.api.nvim_create_autocmd("BufEnter", {callback = function() vim.opt.formatoptions:remove{"c", "r", "o"} end})
 
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,],h,l"
