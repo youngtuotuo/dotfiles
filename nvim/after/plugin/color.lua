@@ -1,6 +1,6 @@
 require('rose-pine').setup({
     --- @usage 'main' | 'moon'
-    dark_variant = 'main',
+    dark_variant = 'moon',
     bold_vert_split = false,
     dim_nc_background = false,
     disable_background = false,
@@ -128,7 +128,7 @@ local mode_color_text = {
     ['Rv'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
     ['Rvc'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
     ['Rvx'] = {color = colors.violet, text = ' REPLACE'}, -- 'V-REPLACE',
-    ['c'] = {color = colors.yellow, text = ' σﾟ∀ﾟ)σ'}, -- 'COMMAND',
+    ['c'] = {color = colors.yellow, text = ' (σﾟ∀ﾟ)σ'}, -- 'COMMAND',
     ['cv'] = {color = colors.red, text = ' EX'}, -- 'EX',
     ['ce'] = {color = colors.red, text = ' EX'}, -- 'EX',
     ['r'] = {color = colors.cyan, text = ' REPLACE'}, -- 'REPLACE',
@@ -148,7 +148,7 @@ ins_left {
     padding = {right = 1}
 }
 
-ins_left {'branch', icon = '', color = {fg = colors.violet, gui = 'bold'}}
+-- ins_left {'branch', icon = '', color = {fg = colors.violet, gui = 'bold'}}
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- test for lualine it's any number greater then 2
@@ -164,7 +164,7 @@ ins_left {
 
 ins_left {
     'filename',
-    path = 3,
+    path = 1,
 }
 
 ins_left {
@@ -190,20 +190,20 @@ ins_right {
         end
         return msg
     end,
-    icon = ' LSP:',
+    icon = ' ',
     color = {fg = '#ffffff', gui = 'bold'}
 }
 
-ins_right {
-    'diagnostics',
-    sources = {'nvim_diagnostic'},
-    symbols = {error = ' ', warn = ' ', info = ' '},
-    diagnostics_color = {
-        color_error = {fg = colors.red},
-        color_warn = {fg = colors.yellow},
-        color_info = {fg = colors.cyan}
-    }
-}
+-- ins_right {
+--     'diagnostics',
+--     sources = {'nvim_diagnostic'},
+--     symbols = {error = ' ', warn = ' ', info = ' '},
+--     diagnostics_color = {
+--         color_error = {fg = colors.red},
+--         color_warn = {fg = colors.yellow},
+--         color_info = {fg = colors.cyan}
+--     }
+-- }
 
 ins_right {'location'}
 
