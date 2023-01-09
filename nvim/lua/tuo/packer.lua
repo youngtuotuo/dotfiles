@@ -61,6 +61,8 @@ require('packer').startup(function()
 
     use {'rose-pine/neovim', as = 'rose-pine'}
 
+    use {'navarasu/onedark.nvim'}
+
     use {"AmeerTaweel/todo.nvim", requires = "nvim-lua/plenary.nvim"}
 
     use {"windwp/nvim-autopairs"}
