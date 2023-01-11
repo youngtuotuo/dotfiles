@@ -43,6 +43,14 @@ xinput disable "AT Translated Set 2 keyboard"
 ```
 </details>
 
+<details>
+    <summary>&nbsp;Tmux theme</summary>
+
+```bash
+git clone https://github.com/odedlaz/tmux-onedark-theme ~/github/
+ln -s ~/github/dotfiles/.tmux.conf ~/.tmux.conf
+```
+</details>
 
 
 
@@ -112,23 +120,23 @@ sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Rele
 
 Mac (homebrew)
   
-  ```bash
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install --HEAD neovim
-  ```
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install --HEAD neovim
+```
   
 Both
-  ```bash
-  # Install Plugin Manager
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  
-  # Install Configuration
-  git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
-  ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
-  
-  # Run the following command to install LSP, formatter, etc.
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  ```
+```bash
+# Install Plugin Manager
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Install Configuration
+git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
+ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
+
+# Run the following command to install LSP, formatter, etc.
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+```
 </details>
 
 <details>
