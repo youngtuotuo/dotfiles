@@ -1,5 +1,5 @@
 require("onedark").setup({
-    style = 'dark'
+    style = 'deep'
 })
 require("onedark").load()
 -- require('rose-pine').setup({
