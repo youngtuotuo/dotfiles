@@ -5,7 +5,7 @@ require("nvim-treesitter.configs").setup({
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     indent = {enable = false},
     highlight = {
-        enable = true, -- false will disable the whole extension
+        enable = false, -- false will disable the whole extension
         disable = {"latex"}
     },
     textobjects = {

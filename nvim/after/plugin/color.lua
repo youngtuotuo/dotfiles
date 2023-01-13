@@ -1,5 +1,14 @@
 require("onedark").setup({
-    style = 'deep'
+    style = 'deep',
+    ending_tildes = true,
+    cmp_itemkind_reverse = true,
+    lualine = {
+        transparent = false, -- lualine center bar transparency
+    },
+    diagnostics = {
+        undercurl = true,
+        background = true,
+    }
 })
 require("onedark").load()
 -- require('rose-pine').setup({
