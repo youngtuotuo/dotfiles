@@ -53,7 +53,7 @@ require("neodev").setup {}
 require("mason").setup({ui = {border = "rounded"}})
 
 -- Ensure the servers above are installed
-local servers = {"sumneko_lua", "pyright", "clangd", "rust_analyzer", "texlab"}
+local servers = {"sumneko_lua", "pyright", "clangd", "rust_analyzer", "texlab", "html"}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
