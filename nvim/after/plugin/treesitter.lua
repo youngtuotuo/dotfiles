@@ -1,7 +1,7 @@
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim", "rust", "go", "latex", "help", "regex",
-        "markdown_inline"
+        "markdown_inline", "html"
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     indent = {enable = false},
     highlight = {

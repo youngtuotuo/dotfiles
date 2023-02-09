@@ -54,6 +54,10 @@ local config = {
                     return msg
                 end,
                 icon = ' '
+            }, {
+                    require("lazy.status").updates,
+                    cond = require("lazy.status").has_updates,
+                    color = { fg = "#ff9e64" },
             }, {'location'}
         },
         lualine_y = {},
