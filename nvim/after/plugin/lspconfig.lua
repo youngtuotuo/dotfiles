@@ -53,7 +53,7 @@ require("neodev").setup {}
 require("mason").setup({ui = {border = "rounded"}})
 
 -- Ensure the servers above are installed
-local servers = {"sumneko_lua", "pyright", "clangd", "rust_analyzer", "texlab", "html"}
+local servers = {"lua_ls", "pyright", "clangd", "rust_analyzer", "texlab", "html"}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
@@ -72,8 +72,8 @@ require("mason-lspconfig").setup_handlers({
         lspconfig[server_name].setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
     end,
     -- Next, you can provide targeted overrides for specific servers.
-    ["sumneko_lua"] = function()
-        lspconfig.sumneko_lua.setup {
+    ["lua_ls"] = function()
+        lspconfig.lua_ls.setup {
             on_attach = on_attach,
             handlers = handlers,
             capabilities = capabilities,
