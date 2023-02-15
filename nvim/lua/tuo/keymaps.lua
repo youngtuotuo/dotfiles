@@ -12,7 +12,6 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- command_mode = "c"
 -- term_mode = "t"
 
--- g++ compile and execute
 local ext = ""
 local sep = "/"
 if vim.fn.has("win32") == 1 then
@@ -21,10 +20,15 @@ if vim.fn.has("win32") == 1 then
 end
 -- c/c++ compile and run
 keymap("n", "<leader>c+",
-       ":!clang++ -Wall -std=c++14 -o vimcpp.out" .. ext .. " % && ." .. sep .. "vimcpp.out" .. ext .. "<CR>",
-       default_opts)
-keymap("n", "<leader>c", ":!clang -Wall -o vimc.out" .. ext .. " % && ." .. sep .. "vimc.out" .. ext .. "<CR>",
-       default_opts)
+       ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+       {noremap = true, silent = false})
+keymap("n", "<leader>cc", ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
+       {noremap = true, silent = false})
+keymap("n", "<leader>g+",
+       ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+       {noremap = true, silent = false})
+keymap("n", "<leader>gc", ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+       {noremap = true, silent = false})
 
 -- James Powell python3
 -- TODO windows path is a little different
