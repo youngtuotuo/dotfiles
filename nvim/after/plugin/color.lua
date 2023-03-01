@@ -1,8 +1,8 @@
 require("onedark").setup({
     style = 'deep',
-    transparent = true,
+    transparent = false,
     ending_tildes = true,
-    cmp_itemkind_reverse = true,
+    cmp_itemkind_reverse = false,
     lualine = {
         transparent = true -- lualine center bar transparency
     },
