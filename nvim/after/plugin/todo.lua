@@ -40,7 +40,7 @@ require("todo").setup {
         -- wide is the same as bg, but also highlights the colon
         keyword = "bg", -- "fg", "bg", "wide", or empty
         -- highlights after the keyword (TODO text)
-        after = "", -- "fg", "bg", or empty
+        after = "bg", -- "fg", "bg", or empty
         -- pattern can be a string, or a table of regexes that will be checked
         -- vim regex
         pattern = [[.*<(KEYWORDS)\s*:]],
