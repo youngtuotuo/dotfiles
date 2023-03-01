@@ -24,6 +24,7 @@ local plugins = {
         lazy = false,
         priority = 1000,
     },
+    { "catppuccin/nvim", name = "catppuccin" },
     'kyazdani42/nvim-web-devicons',
     {'nvim-lualine/lualine.nvim', dependencies = {'arkav/lualine-lsp-progress'}},
     {'lukas-reineke/indent-blankline.nvim'},
