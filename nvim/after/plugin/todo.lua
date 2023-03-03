@@ -1,12 +1,12 @@
 require("todo").setup {
     signs = {
-        enable = false, -- show icons in the sign column
+        enable = true, -- show icons in the sign column
         priority = 8
     },
     keywords = {
         FIX = {
-            -- icon = " ", -- used for the sign, and search results
-            icon = "F", -- used for the sign, and search results
+            icon = " ", -- used for the sign, and search results
+            -- icon = "F", -- used for the sign, and search results
             -- can be a hex color, or a named color
             -- named colors definitions follow below
             color = "error",
@@ -15,19 +15,19 @@ require("todo").setup {
             -- signs = false -- configure signs for some keywords individually
         },
         TODO = {
-            -- icon = " ",
-            icon = "T",
+            icon = " ",
+            -- icon = "T",
             color = "info"
         },
         WARN = {
-            -- icon = " ",
-            icon = "W",
+            icon = " ",
+            -- icon = "W",
             color = "warning",
             alt = {"WARNING"}
         },
         NOTE = {
-            -- icon = " ",
-            icon = "N",
+            icon = " ",
+            -- icon = "N",
             color = "hint",
             alt = {"INFO"}
         }
@@ -54,7 +54,7 @@ require("todo").setup {
     colors = {
         error = {"DiagnosticError", "ErrorMsg", "#DC2626"},
         warning = {"DiagnosticWarn", "WarningMsg", "#FBBF24"},
-        info = {"DiagnosticInfo", "#2563EB"},
+        info = {"DiagnosticInfo", "#2400EB"},
         hint = {"DiagnosticHint", "#10B981"},
         default = {"Identifier", "#7C3AED"}
     },

@@ -57,8 +57,8 @@ local servers = {"lua_ls", "pyright", "clangd", "rust_analyzer", "texlab", "html
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"}),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded"})
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded", max_width = 50}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width=50})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
