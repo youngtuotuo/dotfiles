@@ -1,5 +1,5 @@
 vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", {nocombine=true})
-vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", {fg="LightGrey"})
+vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", {fg="#93a4c3"})
 
 require("indent_blankline").setup {
     enabled = true,
