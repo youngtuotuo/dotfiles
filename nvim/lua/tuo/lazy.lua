@@ -37,7 +37,6 @@ local plugins = {
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
     {'AmeerTaweel/todo.nvim', dependencies = {'nvim-lua/plenary.nvim'}},
-    'windwp/nvim-autopairs',
     'christoomey/vim-tmux-navigator',
 
 
