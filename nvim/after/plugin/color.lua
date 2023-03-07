@@ -44,7 +44,7 @@
 
 require("onedark").setup({
     style = 'deep',
-    transparent = false,
+    transparent = true,
     ending_tildes = true,
     cmp_itemkind_reverse = false,
     lualine = {
@@ -57,6 +57,8 @@ vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {undercurl = true})
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 
 local config = {
     options = {
