@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 import:
-  - ~/github/alacritty-theme/themes/one_dark.yaml
+  - ~/github/alacritty-theme/themes/ayu_dark.yaml
 
 env:
   # TERM variable
