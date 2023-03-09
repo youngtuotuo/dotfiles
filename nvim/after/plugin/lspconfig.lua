@@ -53,7 +53,7 @@ require("neodev").setup {}
 require("mason").setup({ui = {border = "rounded"}})
 
 -- Ensure the servers above are installed
-local servers = {"lua_ls", "pyright", "clangd", "rust_analyzer", "texlab", "html"}
+local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "jedi_language_server"}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
@@ -88,44 +88,6 @@ require("mason-lspconfig").setup_handlers({
                     completion = {callSnippet = "Both"},
                     workspace = {checkThirdParty = false},
                     semantic = {enable = false}
-                }
-            }
-        }
-    end,
-    ["pyright"] = function()
-        lspconfig.pyright.setup {
-            on_attach = on_attach,
-            handlers = handlers,
-            capabilities = capabilities,
-            root_dir = util.root_pattern(unpack({
-                'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json',
-                'pyvenv.cfg'
-            })),
-            settings = {
-                pyright = {
-                    -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
-                    disableOrganizeImports = false
-                },
-                python = {
-                    analysis = {
-                        -- Level of logging for Output panel. The default value for this option is "Information".
-                        -- ["Error", "Warning", "Information", or "Trace"]
-                        logLevel = "Information",
-                        -- Determines whether pyright offers auto-import completions.
-                        autoImportCompletions = true,
-                        -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
-                        autoSearchPaths = true,
-                        -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
-                        -- ["openFilesOnly", "workspace"]
-                        diagnosticMode = "workspace",
-                        -- Path to directory containing custom type stub files.
-                        -- stubPath = {},
-                        -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
-                        -- ["off", "basic", "strict"]
-                        typeCheckingMode = "off",
-                        -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                        useLibraryCodeForTypes = false
-                    }
                 }
             }
         }
