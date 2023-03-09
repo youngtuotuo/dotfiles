@@ -30,7 +30,7 @@ font:
   # Italic font face
   italic:
     family: FiraCode Nerd Font
-    style: Regular
+    style: Italic
   # Point size
   size: 14.0 
 
