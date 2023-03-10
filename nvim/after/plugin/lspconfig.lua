@@ -57,8 +57,16 @@ local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "jedi_la
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded", max_width=80}),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width=80})
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        relative = 'mouse',
+        -- anchor = 'NE',
+        -- row = 0,
+        -- col = 0.9,
+        border = "rounded",
+        title = '(*´ω`)人(´ω`*)',
+        wrap = false
+    }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width = 60})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -148,7 +156,6 @@ vim.diagnostic.config(diag_config)
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -157,8 +164,8 @@ cmp.setup({
     },
     preselect = cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<C-n>'] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
+        ['<C-p>'] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
@@ -176,9 +183,7 @@ cmp.setup({
             return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
         end
     end,
-    complettion = {
-        autocomplete = false,
-    },
+    complettion = {autocomplete = false},
     formatting = {
         format = function(entry, vim_item)
             if vim.tbl_contains({'path'}, entry.source.name) then
@@ -206,8 +211,8 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip', keyword_length = 3}, {name = 'path', keyword_length = 3},
-        {name = 'nvim_lua'}
+        {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip', keyword_length = 3},
+        {name = 'path', keyword_length = 3}, {name = 'nvim_lua'}
     }),
     sorting = {comparators = {cmp.config.compare.score, cmp.config.compare.offset}},
     experimental = {native_menu = false, ghost_text = false}
