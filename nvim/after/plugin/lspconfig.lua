@@ -58,13 +58,13 @@ require("mason-lspconfig").setup {ensure_installed = servers}
 
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        relative = 'mouse',
+        -- relative = 'mouse',
         -- anchor = 'NE',
         -- row = 0,
         -- col = 0.9,
+        max_width=60,
         border = "rounded",
         title = '(*´ω`)人(´ω`*)',
-        wrap = false
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width = 60})
 }
