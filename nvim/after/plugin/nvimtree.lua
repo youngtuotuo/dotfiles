@@ -13,7 +13,7 @@ if next(vim.api.nvim_list_uis()) ~= nil then
                 quit_on_focus_loss = true,
                 open_win_config = {
                     relative = "editor",
-                    border = "",
+                    border = "rounded",
                     width = width,
                     height = height,
                     row = (gheight - height) * 0.4,
@@ -25,6 +25,20 @@ if next(vim.api.nvim_list_uis()) ~= nil then
         filters = {dotfiles = false}
     })
     vim.api.nvim_create_user_command('E', 'NvimTreeToggle', {})
+    local function open_nvim_tree(data)
+
+      -- open the tree
+      -- buffer is a directory
+      local directory = vim.fn.isdirectory(data.file) == 1
+
+      if not directory then
+        return
+      end
+
+      -- open the tree
+      require("nvim-tree.api").tree.open()
+    end
+    vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 end
 
 -- view.mappings.list = { -- BEGIN_DEFAULT_MAPPINGS
