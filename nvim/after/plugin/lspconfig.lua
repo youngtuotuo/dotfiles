@@ -195,6 +195,16 @@ vim.diagnostic.config(diag_config)
 require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
+    window = {
+        completion = {
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal"
+        },
+        documentation = {
+            border = "rounded",
+            winhighlight = "Normal:CmpDocNormal"
+        }
+    },
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -238,12 +248,12 @@ cmp.setup({
                 maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 menu = ({
-                    buffer = "[Buffer]",
+                    buffer = "[BUFF]",
                     nvim_lsp = "[LSP]",
-                    luasnip = "[LuaSnip]",
-                    path = "[Path]",
-                    nvim_lua = "[NvimLua]",
-                    cmdline = "[Cmd]"
+                    luasnip = "[SNIP]",
+                    path = "[PATH]",
+                    nvim_lua = "[LUA]",
+                    cmdline = "[CMD]"
                 })
             })(entry, vim_item)
         end
