@@ -8,8 +8,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="bira"
 
+# NEWLINE=$'\n'
+# PS1+="${NEWLINE}$ "
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -105,6 +107,4 @@ bindkey "^[[1;3D" backward-word
 fpath=(~/github/zsh-completions/src $fpath)
 path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 export PATH
-NEWLINE=$'\n'
-PS1+="${NEWLINE}$ "
 export VIRTUAL_ENV_DISABLE_PROMPT=1
