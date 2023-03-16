@@ -107,3 +107,4 @@ path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 export PATH
 NEWLINE=$'\n'
 PS1+="${NEWLINE}$ "
+export VIRTUAL_ENV_DISABLE_PROMPT=1
