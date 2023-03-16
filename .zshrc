@@ -70,7 +70,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,7 +105,5 @@ bindkey "^[[1;3D" backward-word
 fpath=(~/github/zsh-completions/src $fpath)
 path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 export PATH
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 NEWLINE=$'\n'
 PS1+="${NEWLINE}$ "
