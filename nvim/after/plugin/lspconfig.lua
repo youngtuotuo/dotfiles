@@ -182,11 +182,12 @@ for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {texthl = sign.nam
 -- diagnostic after each line
 local diag_config = {
     virtual_text = true,
+    -- border = "rounded",
     signs = false,
     underline = true,
     update_in_insert = true,
     severity_sort = true,
-    float = {focusable = false, style = "minimal", source = "always", header = "", prefix = "σ`∀´)σ "},
+    float = {focusable = false, style = "minimal", source = "always", header = "σ`∀´)σ", border="rounded"},
     source = true
 }
 
