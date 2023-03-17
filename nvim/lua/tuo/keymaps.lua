@@ -14,9 +14,11 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 
 local ext = ""
 local sep = "/"
+local py = "python3"
 if vim.fn.has("win32") == 1 then
     ext = ".exe"
     sep = "\\"
+    py = "python"
 end
 -- c/c++ compile and run
 keymap("n", "<leader>c+",
@@ -32,8 +34,8 @@ keymap("n", "<leader>gc", ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "m
 
 -- James Powell python3
 -- TODO windows path is a little different
-keymap("v", "<leader>p", ":w !python3<CR>", {noremap = true, silent = false})
-keymap("n", "<leader>p", ":!python3 %<CR>", {noremap = true, silent = false})
+keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
+keymap("n", "<leader>p", ":!" .. py .. " %<CR>", {noremap = true, silent = false})
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)
