@@ -50,7 +50,7 @@ end
 
 require("neodev").setup {}
 
-require("mason").setup({ui = {border = "rounded"}})
+require("mason").setup({ui = {border = ""}})
 
 -- Ensure the servers above are installed
 local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"}

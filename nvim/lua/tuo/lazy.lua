@@ -72,7 +72,10 @@ local plugins = {
 }
 
 local opts = {
-    chekcer = {
+    ui = {
+        border = ""
+    },
+    checker = {
         enabled = true,
     }
 }
