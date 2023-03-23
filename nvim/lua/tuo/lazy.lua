@@ -25,7 +25,7 @@ local plugins = {
         priority = 1000,
     },
     { "catppuccin/nvim", name = "catppuccin" },
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     {'nvim-lualine/lualine.nvim', dependencies = {'arkav/lualine-lsp-progress'}},
     {'lukas-reineke/indent-blankline.nvim'},
     'kyazdani42/nvim-tree.lua',
@@ -39,9 +39,59 @@ local plugins = {
     {'AmeerTaweel/todo.nvim', dependencies = {'nvim-lua/plenary.nvim'}},
     'windwp/nvim-autopairs',
     'christoomey/vim-tmux-navigator',
+    {
+      "folke/twilight.nvim",
+      config = function()
+        require("twilight").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    },
+    {
+      "utilyre/barbecue.nvim",
+      name = "barbecue",
+      version = "*",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+      },
+      opts = {
+        -- configurations go here
+      },
+    },
 
 
     -- tool box
+    {
+      'Kasama/nvim-custom-diagnostic-highlight',
+        config = function()
+            require('nvim-custom-diagnostic-highlight').setup {
+                patterns_override = { -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
+                    '%sunused', '^unused', 'not used', 'never used', 'not read', 'never read', 'empty block', 'not accessed'
+                },
+            }
+        end
+    },
+    'lukas-reineke/cmp-under-comparator',
+    {
+      "folke/trouble.nvim",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    },
+    {
+      "smjonas/inc-rename.nvim",
+      config = function()
+        require("inc_rename").setup()
+        vim.keymap.set("n", "gn", ":IncRename ")
+      end,
+    },
     'lervag/vimtex',
     'numToStr/Comment.nvim',
     {'nvim-treesitter/nvim-treesitter', build = function() pcall(require('nvim-treesitter.install').update {with_sync = true}) end},
