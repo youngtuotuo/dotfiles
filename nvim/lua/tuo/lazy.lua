@@ -46,9 +46,10 @@ local plugins = {
           -- your configuration comes here
           -- or leave it empty to use the default settings
           -- refer to the configuration section below
-        }
+}
       end
     },
+    -- Vscode like winbar
     {
       "utilyre/barbecue.nvim",
       name = "barbecue",
@@ -60,19 +61,21 @@ local plugins = {
         -- configurations go here
       },
     },
+    {
+      'Kasama/nvim-custom-diagnostic-highlight',
+      config = function()
+        require('nvim-custom-diagnostic-highlight').setup {
+            patterns_override = {                                       -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
+            '%sunused', '^unused', 'not used', 'never used',
+            'not read', 'never read', 'empty block', 'not accessed'
+          },
+
+        }
+      end
+    },
 
 
     -- tool box
-    {
-      'Kasama/nvim-custom-diagnostic-highlight',
-        config = function()
-            require('nvim-custom-diagnostic-highlight').setup {
-                patterns_override = { -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
-                    '%sunused', '^unused', 'not used', 'never used', 'not read', 'never read', 'empty block', 'not accessed'
-                },
-            }
-        end
-    },
     'lukas-reineke/cmp-under-comparator',
     {
       "folke/trouble.nvim",
