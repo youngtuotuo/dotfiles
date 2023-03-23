@@ -1,6 +1,6 @@
 require("onedark").setup({
     style = 'deep',
-    transparent = false,
+    transparent = true,
     ending_tildes = true,
     cmp_itemkind_reverse = false,
     lualine = {
