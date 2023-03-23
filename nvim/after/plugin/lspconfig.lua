@@ -198,7 +198,7 @@ for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {texthl = sign.nam
 
 -- diagnostic after each line
 local diag_config = {
-    virtual_text = true,
+    virtual_text = false,
     -- border = "rounded",
     signs = false,
     underline = true,
