@@ -1,14 +1,31 @@
-require("onedark").setup({
-    style = 'deep',
-    transparent = true,
-    ending_tildes = true,
-    cmp_itemkind_reverse = false,
-    lualine = {
-        transparent = true -- lualine center bar transparency
+-- Default options:
+require('kanagawa').setup({
+    compile = false,             -- enable compiling the colorscheme
+    undercurl = true,            -- enable undercurls
+    commentStyle = { italic = false },
+    functionStyle = {},
+    keywordStyle = { italic = false },
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = true,         -- do not set background color
+    dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+    terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+    colors = {                   -- add/modify theme and palette colors
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {
+            ui = {
+                bg_gutter = "none",
+            },
+        } },
     },
-    diagnostics = {undercurl = true, background = true}
+    -- theme = "dragon",              -- Load "wave" theme when 'background' option is not set
+    background = {               -- map the value of 'background' option to a theme
+        dark = "wave",           -- try "dragon" !
+        light = "lotus"
+    },
 })
-require("onedark").load()
+require("kanagawa").load("dragon")
+
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {undercurl = true})
