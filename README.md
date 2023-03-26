@@ -1,8 +1,8 @@
 # Dotfiles
-My routine data science envrionment set up in ubuntu/mac.<br>
+My routine data science envrionment set up in ubuntu/mac/windows.<br>
 
 <p align="center">
-    <img src="pictures/image.gif"/>
+    <img src="pictures/image.png"/>
 </p>
 
 
@@ -44,7 +44,7 @@ xinput disable "AT Translated Set 2 keyboard"
 </details>
 
 <details>
-    <summary>&nbsp;Tmux theme</summary>
+    <summary><font size="4"><b>&nbsp;Tmux theme</b></font></summary>
 
 ```bash
 git clone https://github.com/odedlaz/tmux-onedark-theme ~/github/

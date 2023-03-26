@@ -3,10 +3,10 @@ require('kanagawa').setup({
     compile = false,             -- enable compiling the colorscheme
     undercurl = true,            -- enable undercurls
     commentStyle = { italic = false },
-    functionStyle = {},
-    keywordStyle = { italic = false },
+    functionStyle = { italic = true},
+    keywordStyle = { italic = true },
     statementStyle = { bold = true },
-    typeStyle = {},
+    typeStyle = { italic = true},
     transparent = true,         -- do not set background color
     dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
     terminalColors = true,       -- define vim.g.terminal_color_{0,17}
@@ -60,27 +60,6 @@ local config = {
             }
         },
         lualine_x = {
-            -- {
-            --     function()
-            --         local msg = 'No Active Lsp'
-            --         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-            --         local clients = vim.lsp.get_active_clients()
-            --         if next(clients) == nil then return msg end
-            --         for _, client in ipairs(clients) do
-            --             local filetypes = client.config.filetypes
-            --             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            --                 return client.name
-            --             end
-            --         end
-            --         return msg
-            --     end,
-            --     icon = ' '
-            -- },
-            -- {
-            --         require("lazy.status").updates,
-            --         cond = require("lazy.status").has_updates,
-            --         color = { fg = "#ff9e64" },
-            -- },
             {'location'}
         },
         lualine_y = {},
@@ -101,47 +80,3 @@ local config = {
 }
 
 require('lualine').setup(config)
-
--- require("catppuccin").setup({
---     flavour = "macchiato", -- latte, frappe, macchiato, mocha
---     background = { -- :h background
---         light = "latte",
---         dark = "macchiato",
---     },
---     transparent_background = false,
---     show_end_of_buffer = false, -- show the '~' characters after the end of buffers
---     term_colors = false,
---     dim_inactive = {
---         enabled = false,
---         shade = "dark",
---         percentage = 0.15,
---     },
---     no_italic = false, -- Force no italic
---     no_bold = false, -- Force no bold
---     styles = {
---         comments = { "italic" },
---         conditionals = { "italic" },
---         loops = {},
---         functions = {},
---         keywords = {},
---         strings = {},
---         variables = {},
---         numbers = {},
---         booleans = {},
---         properties = {},
---         types = {},
---         operators = {},
---     },
---     color_overrides = {},
---     custom_highlights = {},
---     integrations = {
---         cmp = true,
---         gitsigns = true,
---         nvimtree = true,
---         telescope = true,
---         notify = false,
---         mini = false,
---         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
---     },
--- })
--- vim.cmd.colorscheme "catppuccin"
