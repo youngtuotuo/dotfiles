@@ -22,7 +22,7 @@ My routine data science envrionment set up in ubuntu/mac/windows.<br>
 
 
 
-# Installation
+# Mac/Linux Installation
 
 <details>
     <summary><font size="4"><b>&nbsp;Warp, RayCast, Obsidian, noVNC, tigerVNC, OpenVPN Connect, VLC, Stats, AltTab, Rectangle</b></font></summary>
@@ -171,20 +171,6 @@ source "$HOME/.cargo/env"
 </details>
 
 <details>
-    <summary><font size="4"><b>&nbsp;Nu Shell</b></font></summary>
-
-Ubuntu
-```bash
-cargo install nu
-```
-
-Mac
-```bash
-brew install nushell
-```
-</details>
-
-<details>
     <summary><font size="4"><b>&nbsp;Solve cv2 typing issue with Pyright</b></font></summary>
 
 `opencv-python` or `opencv-contrib-python` is unable to be resolved by Pyright. By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
@@ -193,6 +179,29 @@ cd ~/github/dotfiles
 cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 </details>
+
+# Windows Installation
+
+<details>
+    <summary><font size="4"><b>&nbsp;Scoop</b></font></summary>
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
+irm get.scoop.sh | iex
+
+```
+</details>
+
+
+<details>
+    <summary><font size="4"><b>&nbsp;Neovim</b></font></summary>
+
+```powershell
+# TODO: Other commands
+scoop install neovim
+```
+</details>
+
 
 ## TODO
 Ubuntu/Mac setup
