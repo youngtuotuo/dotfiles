@@ -76,6 +76,15 @@ local plugins = {
 
 
     -- tool box
+    {
+        "glepnir/lspsaga.nvim",
+        event = "BufRead",
+        dependencies = {
+          {"nvim-tree/nvim-web-devicons"},
+          -- Please make sure you install markdown and markdown_inline parser
+          {"nvim-treesitter/nvim-treesitter"}
+        }
+    },
     'lukas-reineke/cmp-under-comparator',
     {
       "folke/trouble.nvim",
@@ -92,7 +101,6 @@ local plugins = {
       "smjonas/inc-rename.nvim",
       config = function()
         require("inc_rename").setup()
-        vim.keymap.set("n", "gn", ":IncRename ")
       end,
     },
     'lervag/vimtex',

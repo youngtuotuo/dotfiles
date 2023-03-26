@@ -6,10 +6,10 @@ if next(vim.api.nvim_list_uis()) ~= nil then
     require("nvim-tree").setup({
         sort_by = "case_sensitive",
         view = {
-            adaptive_size = false,
+            adaptive_size = true,
             mappings = {list = {{key = "-", action = "dir_up"}}},
             float = {
-                enable = true,
+                enable = false,
                 quit_on_focus_loss = true,
                 open_win_config = {
                     relative = "editor",

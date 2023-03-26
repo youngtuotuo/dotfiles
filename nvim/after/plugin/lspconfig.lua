@@ -33,24 +33,24 @@ local on_attach = function(client, bufnr)
     -- Mappings.
     local opts = {noremap = true, silent = false}
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     -- buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
-    buf_set_keymap('n', '<space>ic', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
-    buf_set_keymap('n', '<space>oc', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    -- buf_set_keymap('n', '<space>ic', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
+    -- buf_set_keymap('n', '<space>oc', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
+    -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    -- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
-require("neodev").setup {}
+require("neodev").setup({})
 
 require("mason").setup({ui = {border = ""}})
 
@@ -81,11 +81,11 @@ local handlers = {
         -- anchor = 'NE',
         -- row = 0,
         -- col = 0.9,
-        max_width=60,
+        max_width=80,
         border = "rounded",
         title = '(*´ω`)人(´ω`*)',
     }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width = 60})
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width = 80})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -304,3 +304,189 @@ cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline', keyword_length = 2}})
 })
+
+require("lspsaga").setup({
+    preview = {
+        lines_above = 0,
+        lines_below = 10,
+    },
+    scroll_preview = {
+        scroll_down = "<C-f>",
+        scroll_up = "<C-b>",
+    },
+    request_timeout = 2000,
+    ui = {
+        title = true,
+        border = "rounded",
+        winblend = 0,
+        expand = "",
+        collapse = "",
+        code_action = "💡",
+        incoming = " ",
+        outgoing = " ",
+        hover = ' ',
+        kind = {},
+    },
+    finder = {
+        --percentage
+        max_height = 0.5,
+        force_max_height = false,
+        keys = {
+          jump_to = 'p',
+          edit = { 'o', '<CR>' },
+          vsplit = 's',
+          split = 'i',
+          tabe = 't',
+          tabnew = 'r',
+          quit = { 'q', '<ESC>' },
+          close_in_preview = '<ESC>'
+        },
+    },
+    outline = {
+        win_position = "left",
+        win_with = "",
+        win_width = 30,
+        show_detail = true,
+        auto_preview = true,
+        auto_refresh = true,
+        auto_close = true,
+        custom_sort = nil,
+        keys = {
+          jump = "o",
+          expand_collapse = "u",
+          quit = "q",
+        },
+    },
+    definition = {
+        edit = "<C-c>o",
+        vsplit = "<C-c>v",
+        split = "<C-c>i",
+        tabe = "<C-c>t",
+        quit = "q",
+    },
+    diagnostic = {
+        on_insert = true,
+        on_insert_follow = false,
+        insert_winblend = 0,
+        show_virt_line = true,
+        show_code_action = true,
+        show_source = true,
+        jump_num_shortcut = true,
+         --1 is max
+        max_width = 0.7,
+        custom_fix = nil,
+        custom_msg = nil,
+        text_hl_follow = false,
+        border_follow = true,
+        keys = {
+          exec_action = "o",
+          quit = "q",
+          go_action = "g"
+        },
+    },
+    callhierarchy = {
+        show_detail = false,
+        keys = {
+          edit = "e",
+          vsplit = "s",
+          split = "i",
+          tabe = "t",
+          jump = "o",
+          quit = "q",
+          expand_collapse = "u",
+        },
+    },
+})
+
+-- lsp saga
+local keymap = vim.keymap.set
+
+-- Increment rename
+keymap("n", "gn", ":IncRename ")
+
+-- LSP finder - Find the symbol's definition
+-- If there is no definition, it will instead be hidden
+-- When you use an action in finder like "open vsplit",
+-- you can use <C-t> to jump back
+keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
+
+-- Code action
+keymap({"n","v"}, "ga", "<cmd>Lspsaga code_action<CR>")
+
+-- Rename all occurrences of the hovered word for the entire file
+-- keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+
+-- Rename all occurrences of the hovered word for the selected files
+-- keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
+
+-- Peek definition
+-- You can edit the file containing the definition in the floating window
+-- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
+-- It also supports tagstack
+-- Use <C-t> to jump back
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+
+-- Go to definition
+-- keymap("n","gd", "<cmd>Lspsaga goto_definition<CR>")
+
+-- Peek type definition
+-- You can edit the file containing the type definition in the floating window
+-- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
+-- It also supports tagstack
+-- Use <C-t> to jump back
+keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+
+-- Go to type definition
+-- keymap("n","gt", "<cmd>Lspsaga goto_type_definition<CR>")
+
+
+-- Show line diagnostics
+-- You can pass argument ++unfocus to
+-- unfocus the show_line_diagnostics floating window
+keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+
+-- Show cursor diagnostics
+-- Like show_line_diagnostics, it supports passing the ++unfocus argument
+-- keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+
+-- Show buffer diagnostics
+-- keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+-- keymap("n", "gl", "<cmd>Lspsaga show_diagnostics<CR>")
+
+-- Diagnostic jump
+-- You can use <C-o> to jump back to your previous location
+keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+-- Diagnostic jump with filters such as only jumping to an error
+-- keymap("n", "[E", function()
+--   require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+-- end)
+-- keymap("n", "]E", function()
+--   require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+-- end)
+
+-- Toggle outline
+keymap("n","<space>v", "<cmd>Lspsaga outline<CR>")
+
+-- Hover Doc
+-- If there is no hover doc,
+-- there will be a notification stating that
+-- there is no information available.
+-- To disable it just use ":Lspsaga hover_doc ++quiet"
+-- Pressing the key twice will enter the hover window
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+
+-- If you want to keep the hover window in the top right hand corner,
+-- you can pass the ++keep argument
+-- Note that if you use hover with ++keep, pressing this key again will
+-- close the hover window. If you want to jump to the hover window
+-- you should use the wincmd command "<C-w>w"
+-- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
+
+-- Call hierarchy
+keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>")
+keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>")
+
+-- Floating terminal
+-- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
