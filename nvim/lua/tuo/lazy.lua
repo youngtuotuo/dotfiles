@@ -25,29 +25,43 @@ local plugins = {
         priority = 1000,
     },
     "rebelot/kanagawa.nvim",
-    { "catppuccin/nvim", name = "catppuccin" },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin"
+    },
     'nvim-tree/nvim-web-devicons',
-    {'nvim-lualine/lualine.nvim', dependencies = {'arkav/lualine-lsp-progress'}},
-    {'lukas-reineke/indent-blankline.nvim'},
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            'arkav/lualine-lsp-progress'
+        }
+    },
+    'lukas-reineke/indent-blankline.nvim',
     'kyazdani42/nvim-tree.lua',
     'lewis6991/gitsigns.nvim',
     'luukvbaal/stabilize.nvim',
-    {'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end},
+    {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require('colorizer').setup()
+        end
+    },
 
     -- productivity
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
-    {'AmeerTaweel/todo.nvim', dependencies = {'nvim-lua/plenary.nvim'}},
+    {
+        'AmeerTaweel/todo.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
+    },
     'windwp/nvim-autopairs',
     'christoomey/vim-tmux-navigator',
     {
       "folke/twilight.nvim",
       config = function()
-        require("twilight").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-}
+        require("twilight").setup {}
       end
     },
     -- Vscode like winbar
@@ -58,15 +72,13 @@ local plugins = {
       dependencies = {
         "SmiteshP/nvim-navic",
       },
-      opts = {
-        -- configurations go here
-      },
     },
     {
       'Kasama/nvim-custom-diagnostic-highlight',
       config = function()
         require('nvim-custom-diagnostic-highlight').setup {
-            patterns_override = {                                       -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
+            patterns_override = {
+            -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
             '%sunused', '^unused', 'not used', 'never used',
             'not read', 'never read', 'empty block', 'not accessed'
           },
@@ -106,8 +118,16 @@ local plugins = {
     },
     'lervag/vimtex',
     'numToStr/Comment.nvim',
-    {'nvim-treesitter/nvim-treesitter', build = function() pcall(require('nvim-treesitter.install').update {with_sync = true}) end},
-    {'nvim-treesitter/nvim-treesitter-textobjects', dependencies = {'nvim-treesitter'}},
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = function()
+            pcall(require('nvim-treesitter.install').update {with_sync = true})
+        end
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        dependencies = {'nvim-treesitter'}
+    },
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
@@ -122,15 +142,29 @@ local plugins = {
             'rafamadriz/friendly-snippets',
         }
     },
-    {'iamcco/markdown-preview.nvim', build = 'cd app && npm install', ft = {'markdown'}},
-    {'neovim/nvim-lspconfig', dependencies = {
+    {
+        'iamcco/markdown-preview.nvim',
+        build = 'cd app && npm install',
+        ft = {'markdown'}
+    },
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
             'folke/neodev.nvim',
         },
     },
-    {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {'nvim-lua/plenary.nvim'}},
-    {'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1},
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = {'nvim-lua/plenary.nvim'}
+    },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = vim.fn.executable 'make' == 1
+    },
 }
 
 local opts = {

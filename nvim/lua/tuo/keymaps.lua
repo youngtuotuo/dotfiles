@@ -33,7 +33,7 @@ keymap("n", "<leader>gc", ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "m
        {noremap = true, silent = false})
 
 -- James Powell python3
--- TODO windows path is a little different
+-- TODO: windows path is a little different
 keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
 keymap("n", "<leader>p", ":!" .. py .. " %<CR>", {noremap = true, silent = false})
 
