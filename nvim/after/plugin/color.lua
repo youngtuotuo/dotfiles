@@ -24,7 +24,7 @@ require('kanagawa').setup({
         light = "lotus"
     },
 })
-require("kanagawa").load("dragon")
+require("kanagawa").load("wave")
 
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
@@ -33,12 +33,15 @@ vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {undercurl = true})
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 vim.api.nvim_set_hl(0, "VertSplit", { fg = "White" })
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "White" })
 vim.api.nvim_set_hl(0, "Conceal", { fg="#455574", bg = "none", nocombine=true })
 
+local auto = require('lualine.themes.auto')
+auto.normal.c.bg = 'none'
 local config = {
     options = {
         icons_enabled = true,
-        theme = 'auto',
+        theme = auto,
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
         disabled_filetypes = {statusline = {}, winbar = {}},
@@ -80,3 +83,4 @@ local config = {
 }
 
 require('lualine').setup(config)
+

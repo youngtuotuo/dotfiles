@@ -21,16 +21,30 @@ if vim.fn.has("win32") == 1 then
     py = "python"
 end
 -- c/c++ compile and run
-keymap("n", "<leader>c+",
-       ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-       {noremap = true, silent = false})
-keymap("n", "<leader>cc", ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
-       {noremap = true, silent = false})
-keymap("n", "<leader>g+",
-       ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-       {noremap = true, silent = false})
-keymap("n", "<leader>gc", ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-       {noremap = true, silent = false})
+keymap(
+    "n",
+    "<leader>c+",
+   ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+   {noremap = true, silent = false}
+)
+keymap(
+    "n",
+    "<leader>cc",
+    ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
+   {noremap = true, silent = false}
+)
+keymap(
+    "n",
+    "<leader>g+",
+    ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+    {noremap = true, silent = false}
+)
+keymap(
+    "n",
+    "<leader>gc",
+    ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+    {noremap = true, silent = false}
+)
 
 -- James Powell python3
 -- TODO: windows path is a little different

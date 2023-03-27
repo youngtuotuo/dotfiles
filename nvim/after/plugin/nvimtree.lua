@@ -8,12 +8,17 @@ if next(vim.api.nvim_list_uis()) ~= nil then
         renderer = {
             icons = {
                 show = {
-                    file = true, folder = true, folder_arrow = true, git = true
+                    file = true,
+                    folder = true,
+                    folder_arrow = true,
+                    git = true,
                 }
             },
-            group_empty = true
+            group_empty = true,
         },
-        filters = {dotfiles = false}
+        filters = {
+            dotfiles = false,
+        },
     })
     vim.api.nvim_create_user_command('E', 'NvimTreeToggle', {})
     local function open_nvim_tree(data)

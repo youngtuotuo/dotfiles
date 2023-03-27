@@ -6,7 +6,13 @@ local actions = require 'telescope.actions'
 require("telescope").setup({
     defaults = {
         layout_strategy = 'horizontal',
-        layout_config = {height = 0.95},
+        layout_config = {
+            anchor = "S",
+            height = 0.5,
+            width = 0.95,
+            preview_width = 0.6,
+            prompt_position = 'top',
+        },
         prompt_prefix = "> ",
         selection_caret = " ",
         path_display = {"smart"},
@@ -36,15 +42,11 @@ require("telescope").setup({
             case_mode = "smart_case" -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
         },
-        workspaces = {
-            -- keep insert mode after selection in the picker, default is false
-            keep_insert = false
-        }
     }
 })
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extensio, 'fzf')
+pcall(require('telescope').load_extension, 'fzf')
 
 local default_opts = {noremap = true, silent = true}
 -- Telescope Stuff

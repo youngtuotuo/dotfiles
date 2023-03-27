@@ -244,9 +244,12 @@ cmp.setup({
     enabled = function()
         -- disable completion in comments
         local context = require 'cmp.config.context'
+        local tele_prompt = vim.bo.filetype == 'TelescopePrompt'
         -- keep command mode completion enabled when cursor is in a comment
         if vim.api.nvim_get_mode().mode == 'c' then
             return true
+        elseif tele_prompt then
+            return false
         else
             return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
         end
@@ -373,7 +376,7 @@ require("lspsaga").setup({
         show_source = true,
         jump_num_shortcut = true,
          --1 is max
-        max_width = 0.7,
+        max_width = 0.5,
         custom_fix = nil,
         custom_msg = nil,
         text_hl_follow = false,
