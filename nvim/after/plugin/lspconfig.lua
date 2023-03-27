@@ -346,7 +346,7 @@ require("lspsaga").setup({
         },
     },
     outline = {
-        win_position = "right",
+        win_position = "left",
         win_with = "",
         win_width = 30,
         show_detail = true,
