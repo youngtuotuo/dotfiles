@@ -346,7 +346,7 @@ require("lspsaga").setup({
         },
     },
     outline = {
-        win_position = "right",
+        win_position = "left",
         win_with = "",
         win_width = 30,
         show_detail = true,
@@ -470,7 +470,7 @@ keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 -- end)
 
 -- Toggle outline
-keymap("n","<space>v", "<cmd>Lspsaga outline<CR>")
+keymap("n","<space>o", "<cmd>Lspsaga outline<CR>")
 
 -- Hover Doc
 -- If there is no hover doc,
