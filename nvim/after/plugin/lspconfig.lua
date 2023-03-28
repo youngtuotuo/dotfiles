@@ -12,6 +12,14 @@ if not kind_status_ok then return end
 
 local util = require("lspconfig.util")
 
+-- "none": No border (default).
+-- "single": A single line box.
+-- "double": A double line box.
+-- "rounded": Like "single", but with rounded corners ("╭" etc.).
+-- "solid": Adds padding by a single whitespace cell.
+-- "shadow": A drop shadow effect by blending with the
+local border = "shadow"
+
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup('lsp_document_highlight', {clear = false})
@@ -52,7 +60,7 @@ end
 
 require("neodev").setup({})
 
-require("mason").setup({ui = {border = ""}})
+require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
 local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"}
@@ -82,10 +90,10 @@ local handlers = {
         -- row = 0,
         -- col = 0.9,
         max_width=80,
-        border = "rounded",
+        border = border,
         title = '(*´ω`)人(´ω`*)',
     }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded", max_width = 80})
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border, max_width = 80})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -189,7 +197,7 @@ require("mason-lspconfig").setup_handlers({
     end
 })
 
-require('lspconfig.ui.windows').default_options.border = 'rounded'
+require('lspconfig.ui.windows').default_options.border = border
 
 local signs = {
     {name = "DiagnosticSignError", text = ""}, {name = "DiagnosticSignWarn", text = ""},
@@ -201,12 +209,11 @@ for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {texthl = sign.nam
 -- diagnostic after each line
 local diag_config = {
     virtual_text = false,
-    -- border = "rounded",
     signs = false,
     underline = true,
     update_in_insert = true,
     severity_sort = true,
-    float = {focusable = false, style = "minimal", source = "always", header = "σ`∀´)σ", border="rounded"},
+    float = {focusable = false, style = "minimal", source = "always", header = "σ`∀´)σ", border=border},
     source = true
 }
 
@@ -217,11 +224,11 @@ require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
     window = {
         completion = {
-            border = "rounded",
+            border = border,
             winhighlight = "Normal:CmpNormal"
         },
         documentation = {
-            border = "rounded",
+            border = border,
             winhighlight = "Normal:CmpDocNormal"
         }
     },
@@ -282,7 +289,9 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip', keyword_length = 3},
+        {name = 'luasnip', keyword_length = 3},
+    }, {
+        {name = 'nvim_lsp'}, {name = 'buffer'}, 
         {name = 'path', keyword_length = 3}, {name = 'nvim_lua'}
     }),
     sorting = {
@@ -320,7 +329,7 @@ require("lspsaga").setup({
     request_timeout = 2000,
     ui = {
         title = true,
-        border = "rounded",
+        border = border,
         winblend = 0,
         expand = "",
         collapse = "",
@@ -398,6 +407,13 @@ require("lspsaga").setup({
           quit = "q",
           expand_collapse = "u",
         },
+    },
+    lightbulb = {
+        enable = true,
+        enable_in_insert = true,
+        sign = false,
+        sign_priority = 40,
+        virtual_text = true,
     },
 })
 

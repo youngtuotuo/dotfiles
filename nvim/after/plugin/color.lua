@@ -24,7 +24,7 @@ require('kanagawa').setup({
         light = "lotus"
     },
 })
-require("kanagawa").load("wave")
+require("kanagawa").load("dragon")
 
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {undercurl = true})
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {undercurl = true})
