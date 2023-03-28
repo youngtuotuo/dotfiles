@@ -58,25 +58,25 @@ require("mason").setup({ui = {border = ""}})
 local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
-local hover = function(_, result, ctx, config)
-  if not (result and result.contents) then
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  end
-  if type(result.contents) == "string" then
-    local s = string.gsub(result.contents or "", "&nbsp;", " ")
-    s = string.gsub(s, [[\\\n]], [[\n]])
-    result.contents = s
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  else
-    local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
-    s = string.gsub(s, "\\\n", "\n")
-    result.contents.value = s
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  end
-end
+-- local hover = function(_, result, ctx, config)
+--   if not (result and result.contents) then
+--     return vim.lsp.handlers.hover(_, result, ctx, config)
+--   end
+--   if type(result.contents) == "string" then
+--     local s = string.gsub(result.contents or "", "&nbsp;", " ")
+--     s = string.gsub(s, [[\\\n]], [[\n]])
+--     result.contents = s
+--     return vim.lsp.handlers.hover(_, result, ctx, config)
+--   else
+--     local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
+--     s = string.gsub(s, "\\\n", "\n")
+--     result.contents.value = s
+--     return vim.lsp.handlers.hover(_, result, ctx, config)
+--   end
+-- end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover, {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         -- relative = 'mouse',
         -- anchor = 'NE',
         -- row = 0,
