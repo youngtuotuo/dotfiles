@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "shadow"
+local border = ""
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -225,11 +225,13 @@ cmp.setup({
     window = {
         completion = {
             border = border,
-            winhighlight = "Normal:CmpNormal"
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
         },
         documentation = {
             border = border,
-            winhighlight = "Normal:CmpDocNormal"
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
         }
     },
     snippet = {
@@ -263,6 +265,7 @@ cmp.setup({
     end,
     complettion = {autocomplete = false},
     formatting = {
+        fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             if vim.tbl_contains({'path'}, entry.source.name) then
                 local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
@@ -272,7 +275,8 @@ cmp.setup({
                     return vim_item
                 end
             end
-            return lspkind.cmp_format({
+            local kind = lspkind.cmp_format({
+                -- 'text', 'text_symbol', 'symbol_text', 'symbol'
                 mode = 'symbol_text',
                 with_text = false,
                 maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -286,12 +290,16 @@ cmp.setup({
                     cmdline = "[CMD]"
                 })
             })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = " (" .. (strings[2] or "") .. ")"
+            return kind
         end
     },
     sources = cmp.config.sources({
         {name = 'luasnip', keyword_length = 3},
     }, {
-        {name = 'nvim_lsp'}, {name = 'buffer'}, 
+        {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'path', keyword_length = 3}, {name = 'nvim_lua'}
     }),
     sorting = {
