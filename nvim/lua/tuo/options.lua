@@ -1,7 +1,6 @@
 local options = {
     backspace = "indent,eol,start",
     backup = false,
-    clipboard = "unnamedplus",
     completeopt = "menuone,noinsert,noselect",
     cursorline = false,
     errorbells = false,
