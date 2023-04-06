@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "solid"
+local border = "none"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -278,8 +278,7 @@ cmp.setup({
             local kind = lspkind.cmp_format({
                 -- 'text', 'text_symbol', 'symbol_text', 'symbol'
                 mode = 'symbol_text',
-                with_text = false,
-                maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 menu = ({
                     buffer = "[BUFF]",
@@ -292,7 +291,7 @@ cmp.setup({
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = (strings[2] or "")
+            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " .. kind.menu
             return kind
         end
     },
