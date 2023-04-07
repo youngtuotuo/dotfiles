@@ -15,41 +15,66 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 local ext = ""
 local sep = "/"
 local py = "python3"
+local c = "gcc -Wall -o main"
+local cpp = "g++ -Wall -std=c++14 -o main"
 if vim.fn.has("win32") == 1 then
     ext = ".exe"
     sep = "\\"
     py = "python"
+elseif vim.fn.has("mac") == 1 then
+    c = "clang -Wall -o main"
+    cpp = "clang++ -Wall -std=c++14 -o main"
 end
+local cmd = ""
+
+vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
+    callback = function()
+       if vim.bo.filetype == "cpp" then
+           cmd = cpp .. ext .. " % && ." .. sep .. "main" .. ext
+       elseif vim.bo.filetype == "c" then
+           cmd = c .. ext .. " % && ." .. sep .. "main" .. ext
+       elseif vim.bo.filetype == "python" then
+           cmd = py .. " %"
+       end
+       keymap("n", "<leader>r", ":!" .. cmd .. "<CR>", {noremap = true, silent = false})
+    end,
+    -- command = "echo 'yoyoyo'",
+})
+
+
+keymap("v", "<leader>r", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
+
+
 -- c/c++ compile and run
-keymap(
-    "n",
-    "<leader>c+",
-   ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-   {noremap = true, silent = false}
-)
-keymap(
-    "n",
-    "<leader>cc",
-    ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
-   {noremap = true, silent = false}
-)
-keymap(
-    "n",
-    "<leader>g+",
-    ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-    {noremap = true, silent = false}
-)
-keymap(
-    "n",
-    "<leader>gc",
-    ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
-    {noremap = true, silent = false}
-)
+-- keymap(
+--     "n",
+--     "<leader>c+",
+--    ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+--    {noremap = true, silent = false}
+-- )
+-- keymap(
+--     "n",
+--     "<leader>cc",
+--     ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
+--    {noremap = true, silent = false}
+-- )
+-- keymap(
+--     "n",
+--     "<leader>g+",
+--     ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+--     {noremap = true, silent = false}
+-- )
+-- keymap(
+--     "n",
+--     "<leader>gc",
+--     ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
+--     {noremap = true, silent = false}
+-- )
 
 -- James Powell python3
 -- TODO: windows path is a little different
-keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
-keymap("n", "<leader>p", ":!" .. py .. " %<CR>", {noremap = true, silent = false})
+-- keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
+-- keymap("n", "<leader>p", ":!" .. py .. " %<CR>", {noremap = true, silent = false})
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)

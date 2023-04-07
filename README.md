@@ -2,25 +2,24 @@
 My routine data science envrionment set up in ubuntu/mac/windows.<br>
 
 <p align="center">
-    <img src="pictures/image.png"/>
+    <img src="pictures/mac.png"/>
+</p>
+
+<p align="center">
+    <img src="pictures/win.png"/>
 </p>
 
 
 #### Neovim Shortcut
-1. select python code and press `\p` -> execute the selected codes
-2. press `\p`  -> execute current whole python file
-3. press `\g+` -> compile current cpp code and execute the binary (vimpp.out)
-4. press `\gc` -> compile current c code and execute the binary (vimc.out)
-6. press `\ss` -> toggle line numbers and relative line numbers
-7. press `\ts` -> toggle treesitter highlight
+1. Select python code and press `\r` -> execute the selected codes
+2. Press `\r`  -> execute current file
+    - Currently support python, c, cpp
 
 #### Tmux Shortcut
 1. `<c-b>>` move current window right
 2. `<c-b><` move current window right
 3. `<c-b>\` horizontal split
 3. `<c-b>|` vertical split
-
-
 
 # Mac/Linux Installation
 
@@ -201,8 +200,3 @@ irm get.scoop.sh | iex
 scoop install neovim
 ```
 </details>
-
-
-## TODO
-Ubuntu/Mac setup
-- [ ] Auto setup shell script

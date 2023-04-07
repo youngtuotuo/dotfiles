@@ -33,6 +33,7 @@ require('kanagawa').setup({
             TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+            SagaWinbarSep = { fg= "#dcd7ba"},
             PmenuSel = { bg = "#282C34", fg = "NONE" },
             Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
             SagaNormal = { fg = "#C5CDD9", bg = "#22252A" },
@@ -132,3 +133,25 @@ local config = {
 
 require('lualine').setup(config)
 
+require("bufferline").setup({
+    options = {
+        mode = "buffers",
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = {'close'}
+        },
+        diagnostics = "nvim_lsp",
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "NvimTree",
+                highlight = "Directory",
+                separator = true -- use a "true" to enable the default, or set your own character
+            }
+        }
+    },
+})
+vim.api.nvim_set_keymap("n", "<C-j>", ":BufferLineCycleNext<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-k>", ":BufferLineCyclePrev<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-q>", ":BufferLinePickClose<CR>", {noremap = true})
