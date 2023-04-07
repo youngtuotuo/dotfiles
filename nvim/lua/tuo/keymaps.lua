@@ -36,13 +36,13 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
        elseif vim.bo.filetype == "python" then
            cmd = py .. " %"
        end
-       keymap("n", "<leader>r", ":!" .. cmd .. "<CR>", {noremap = true, silent = false})
+       keymap("n", "<leader>p", ":!" .. cmd .. "<CR>", {noremap = true, silent = false})
     end,
     -- command = "echo 'yoyoyo'",
 })
 
 
-keymap("v", "<leader>r", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
+keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
 
 
 -- c/c++ compile and run

@@ -11,8 +11,8 @@ My routine data science envrionment set up in ubuntu/mac/windows.<br>
 
 
 #### Neovim Shortcut
-1. Select python code and press `\r` -> execute the selected codes
-2. Press `\r`  -> execute current file
+1. Select python code and press `\p` -> execute the selected codes
+2. Press `\p`  -> execute current file
     - Currently support python, c, cpp
 
 #### Tmux Shortcut
