@@ -14,6 +14,7 @@ local options = {
     laststatus = 3,
     matchtime = 1,
     mouse = "a",
+    mousemoveevent = true,
     nu = false,
     rnu = false,
     ru = true,

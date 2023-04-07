@@ -135,6 +135,7 @@ require('lualine').setup(config)
 
 require("bufferline").setup({
     options = {
+        separator_style = "slant",
         mode = "buffers",
         hover = {
             enabled = true,
@@ -149,9 +150,13 @@ require("bufferline").setup({
                 highlight = "Directory",
                 separator = true -- use a "true" to enable the default, or set your own character
             }
-        }
+        },
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local icon = level:match("error") and " " or " "
+            return " " .. icon .. count
+        end
     },
 })
-vim.api.nvim_set_keymap("n", "<C-j>", ":BufferLineCycleNext<CR>", {noremap = true})
-vim.api.nvim_set_keymap("n", "<C-k>", ":BufferLineCyclePrev<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "tj", ":BufferLineCycleNext<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "tk", ":BufferLineCyclePrev<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<C-q>", ":BufferLinePickClose<CR>", {noremap = true})
