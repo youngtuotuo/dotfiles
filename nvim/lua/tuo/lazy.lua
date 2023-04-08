@@ -45,6 +45,7 @@ local plugins = {
         version = "v3.*",
         dependencies = 'nvim-tree/nvim-web-devicons'
     },
+    'ojroques/nvim-bufdel',
     {
         'norcalli/nvim-colorizer.lua',
         config = function()

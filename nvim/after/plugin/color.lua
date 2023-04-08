@@ -212,4 +212,4 @@ require("bufferline").setup({
 })
 vim.api.nvim_set_keymap("n", "tj", ":BufferLineCycleNext<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "tk", ":BufferLineCyclePrev<CR>", {noremap = true})
-vim.api.nvim_set_keymap("n", "<C-q>", ":BufferLinePickClose<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-q>", ":BufDel<CR>", {noremap = true})
