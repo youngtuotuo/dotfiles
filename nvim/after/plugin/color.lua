@@ -7,7 +7,7 @@ require('kanagawa').setup({
     keywordStyle = { bold = true, italic = false },
     statementStyle = { bold = false },
     typeStyle = { italic = false},
-    transparent = false,         -- do not set background color
+    transparent = true,         -- do not set background color
     dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
     terminalColors = true,       -- define vim.g.terminal_color_{0,17}
     colors = {                   -- add/modify theme and palette colors
@@ -135,7 +135,7 @@ require('lualine').setup(config)
 
 require("bufferline").setup({
     options = {
-        separator_style = "slant",
+        separator_style = "thin",
         mode = "buffers",
         hover = {
             enabled = true,
