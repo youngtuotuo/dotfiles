@@ -17,6 +17,9 @@ if next(vim.api.nvim_list_uis()) ~= nil then
         filters = {
             dotfiles = false,
         },
+        view = {
+            width = 20
+        },
         -- view = {
         --     float = {
         --         enable = false,
