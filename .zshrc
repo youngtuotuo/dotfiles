@@ -90,6 +90,7 @@ PS1+="${NEWLINE}$  "
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -102,6 +103,7 @@ PS1+="${NEWLINE}$  "
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cl="clear"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
