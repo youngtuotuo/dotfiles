@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "none"
+local border = "single"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -349,6 +349,7 @@ require("lspsaga").setup({
     finder = {
         --percentage
         max_height = 0.5,
+        min_width = 30,
         force_max_height = false,
         keys = {
           jump_to = 'p',
