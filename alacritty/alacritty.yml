@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 import:
-  - ~/github/alacritty-theme/themes/ayu_dark.yaml
+  - ~/github/alacritty-theme/themes/terminal_app.yaml
 
 env:
   # TERM variable
@@ -13,7 +13,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 1.0
+  opacity: 0.93
 
 # Font configuration
 font:
@@ -32,7 +32,7 @@ font:
     family: FiraCode Nerd Font
     style: Italic
   # Point size
-  size: 13.0 
+  size: 15.0 
 
 # Import additional configuration files
 #
@@ -790,7 +790,7 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -898,6 +898,7 @@ font:
   #- { key: Q,              mods: Command,                    action: Quit                  }
   #- { key: W,              mods: Command,                    action: Quit                  }
   #- { key: N,              mods: Command,                    action: SpawnNewInstance      }
+  - { key: N,              mods: Command,                    action: CreateNewWindow      }
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
