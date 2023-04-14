@@ -4,6 +4,10 @@ if next(vim.api.nvim_list_uis()) ~= nil then
     require("nvim-tree").setup({
         sort_by = "case_sensitive",
         renderer = {
+            -- root_folder_label = ":~:s?$?/..?",
+            root_folder_label = function(path)
+                return string.upper(vim.fn.fnamemodify(path, ":t"))
+            end,
             icons = {
                 show = {
                     file = true,
@@ -13,6 +17,18 @@ if next(vim.api.nvim_list_uis()) ~= nil then
                 }
             },
             group_empty = true,
+            full_name = false,
+            indent_markers = {
+              enable = true,
+              inline_arrows = true,
+              icons = {
+                corner = "└",
+                edge = "│",
+                item = "│",
+                bottom = "─",
+                none = " ",
+              },
+            },
         },
         filters = {
             dotfiles = false,
