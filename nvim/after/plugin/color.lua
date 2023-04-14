@@ -135,6 +135,7 @@ require('lualine').setup(config)
 
 require("bufferline").setup({
     options = {
+        numbers = "buffer_id",
         separator_style = "thin",
         mode = "buffers",
         hover = {
@@ -212,4 +213,5 @@ require("bufferline").setup({
 })
 vim.api.nvim_set_keymap("n", "tj", ":BufferLineCycleNext<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "tk", ":BufferLineCyclePrev<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "tp", ":BufferLinePick<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<C-q>", ":BufDel<CR>", {noremap = true})
