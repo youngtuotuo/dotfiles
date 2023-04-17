@@ -41,12 +41,6 @@ local plugins = {
     'lewis6991/gitsigns.nvim',
     'luukvbaal/stabilize.nvim',
     {
-        'akinsho/bufferline.nvim',
-        version = "v3.*",
-        dependencies = 'nvim-tree/nvim-web-devicons'
-    },
-    'ojroques/nvim-bufdel',
-    {
         'norcalli/nvim-colorizer.lua',
         config = function()
             require('colorizer').setup()
