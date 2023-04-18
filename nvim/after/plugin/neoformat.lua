@@ -11,8 +11,15 @@ vim.cmd [[
     let g:neoformat_enabled_lua = ['luaformat']
     let g:neoformat_python_black = {
         \ 'exe': 'black',
-        \ 'args': ['-l 120', '-t py38'],
+        \ 'args': ['-l 80'],
         \ 'replace': 1,
         \ }
-    let g:neoformat_enabled_python = ['black']
+    let g:neoformat_python_autopep8 = {
+        \ 'exe': 'autopep8',
+        \ }
+    let g:neoformat_python_yapf = {
+        \ 'exe': 'yapf',
+        \ 'args': ['--style google'],
+        \ }
+    let g:neoformat_enabled_python = ['black', 'yapf', 'autopep8']
 ]]
