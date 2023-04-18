@@ -3,6 +3,7 @@ local options = {
     backup = false,
     completeopt = "menuone,noinsert,noselect",
     cursorline = false,
+    cmdheight = 0,
     errorbells = false,
     expandtab = true,
     fileencoding = "utf-8",

@@ -226,12 +226,14 @@ cmp.setup({
         completion = {
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = -3,
+            col_offset = 1,
             side_padding = 0,
         },
         documentation = {
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            max_width = 40,
+            max_height = 20,
         }
     },
     snippet = {
@@ -296,8 +298,7 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'luasnip', keyword_length = 3},
-    }, {
+        {name = 'luasnip'},
         {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'path', keyword_length = 3}, {name = 'nvim_lua'}
     }),
@@ -313,7 +314,7 @@ cmp.setup({
             cmp.config.compare.order,
         }
     },
-    experimental = {native_menu = false, ghost_text = false}
+    experimental = { ghost_text = false }
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

@@ -34,6 +34,7 @@ require('kanagawa').setup({
             TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+            LspReferenceWrite = {underline = false},
             SagaWinbarSep = { fg= "#dcd7ba"},
             PmenuSel = { bg = "#282C34", fg = "NONE" },
             Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
