@@ -35,6 +35,7 @@ require('kanagawa').setup({
             -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
             -- SagaNormal = { fg = "#C5CDD9", bg = "#22252A" },
             -- Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
+            StatusLine = { bg="NONE" },
             NormalFloat = { bg = "NONE"},
             LazyNormal = { bg = "NONE", fg = theme.ui.fg_dim },
             MasonNormal = { bg = "NONE", fg = theme.ui.fg_dim },
