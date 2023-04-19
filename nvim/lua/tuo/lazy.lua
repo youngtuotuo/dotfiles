@@ -131,6 +131,7 @@ local plugins = {
             'hrsh7th/cmp-nvim-lua',
             'hrsh7th/cmp-nvim-lsp',
             'rafamadriz/friendly-snippets',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
         }
     },
     {

@@ -293,14 +293,15 @@ cmp.setup({
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " .. kind.menu
+            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " .. (kind.menu or "")
             return kind
         end
     },
     sources = cmp.config.sources({
         {name = 'luasnip'},
         {name = 'nvim_lsp'}, {name = 'buffer'},
-        {name = 'path', keyword_length = 3}, {name = 'nvim_lua'}
+        {name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
+        {name = 'nvim_lsp_signature_help'}
     }),
     sorting = {
         comparators = {
