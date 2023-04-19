@@ -160,7 +160,7 @@ local plugins = {
 
 local opts = {
     ui = {
-        border = ""
+        border = "single"
     },
     checker = {
         enabled = true,
