@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "single"
+local border = "rounded"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
