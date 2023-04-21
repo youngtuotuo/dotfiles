@@ -7,6 +7,3 @@ require("indent_blankline").setup {
     show_end_of_line = false
 }
 
-vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", {nocombine=true})
-vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", {fg="#93a4c3"})
-vim.api.nvim_set_hl(0, "IndentBlanklineChar", {fg="NONE"})
