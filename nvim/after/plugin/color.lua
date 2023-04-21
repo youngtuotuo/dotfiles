@@ -52,6 +52,8 @@ require('kanagawa').setup({
             Pmenu = { fg = "#C5CDD9", bg = "NONE" },
             SagaNormal = { fg = "#C5CDD9", bg = "NONE" },
             IndentBlanklineChar = { fg = "#000000" },
+            TODOBgTODO = {fg = '#000000', bg="#658594"},
+            TODOBgFix = {fg='#000000', bg='#e82424'},
             -- CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", strikethrough=true },
             -- CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold=true  },
             -- CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold=true  },
