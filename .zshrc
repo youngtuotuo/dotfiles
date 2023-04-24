@@ -111,3 +111,4 @@ fpath=(~/github/zsh-completions/src $fpath)
 path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 export PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0

@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "none"
+local border = "solid"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -435,7 +435,12 @@ require("lspsaga").setup({
         folder_level = 2,
         respect_root = false,
         color_mode = false,
-      },
+     },
+    hover = {
+        max_width = 0.6,
+        open_link = 'gx',
+        open_browser = '!chrome',
+    },
 })
 
 -- lsp saga
