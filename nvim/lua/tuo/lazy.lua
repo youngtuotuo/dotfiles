@@ -33,8 +33,16 @@ local plugins = {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
-            'arkav/lualine-lsp-progress'
+            'linrongbin16/lsp-progress.nvim'
         }
+    },
+    {
+        'linrongbin16/lsp-progress.nvim',
+        event = { 'VimEnter' },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lsp-progress').setup()
+        end
     },
     'lukas-reineke/indent-blankline.nvim',
     'kyazdani42/nvim-tree.lua',
