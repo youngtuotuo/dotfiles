@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "rounded"
+local border = "solid"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -226,14 +226,14 @@ cmp.setup({
         completion = {
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = 1,
-            side_padding = 0,
+            col_offset = -1,
+            side_padding = 1,
         },
         documentation = {
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             max_width = 40,
-            max_height = 20,
+            max_height = 40,
         }
     },
     snippet = {
@@ -280,7 +280,8 @@ cmp.setup({
             local kind = lspkind.cmp_format({
                 -- 'text', 'text_symbol', 'symbol_text', 'symbol'
                 mode = 'symbol_text',
-                maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                maxwidth = 40, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                maxheight = 40,
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 menu = ({
                     buffer = "[BUFF]",
