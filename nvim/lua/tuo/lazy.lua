@@ -64,7 +64,6 @@ local plugins = {
             'nvim-lua/plenary.nvim'
         }
     },
-    'windwp/nvim-autopairs',
     'christoomey/vim-tmux-navigator',
     {
       "folke/twilight.nvim",
