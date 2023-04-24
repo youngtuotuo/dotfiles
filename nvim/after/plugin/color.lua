@@ -94,7 +94,7 @@ require('lsp-progress').setup({
     spinner = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾", },
 
     -- Spinning update time in milliseconds.
-    spin_update_time = 20,
+    spin_update_time = 100,
 
     -- Last message cached decay time in milliseconds.
     --
