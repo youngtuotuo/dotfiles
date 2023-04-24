@@ -346,7 +346,7 @@ require("lspsaga").setup({
         code_action = "💡",
         incoming = " ",
         outgoing = " ",
-        hover = ' ',
+        hover = '(́◉◞౪◟◉‵) ',
         kind = {},
     },
     finder = {
