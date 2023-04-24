@@ -164,7 +164,7 @@ local opts = {
         border = "single"
     },
     checker = {
-        enabled = true,
+        enabled = false,
     }
 }
 
