@@ -23,7 +23,10 @@ local border = "solid"
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup('lsp_document_highlight', {clear = false})
-        vim.api.nvim_clear_autocmds({buffer = bufnr, group = 'lsp_document_highlight'})
+        vim.api.nvim_clear_autocmds({
+            buffer = bufnr,
+            group = 'lsp_document_highlight'
+        })
         vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
             group = 'lsp_document_highlight',
             buffer = bufnr,
@@ -36,7 +39,9 @@ local on_attach = function(client, bufnr)
         })
     end
 
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
     -- Mappings.
     local opts = {noremap = true, silent = false}
@@ -44,9 +49,13 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     -- buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>wa',
+                   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr',
+                   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl',
+                   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+                   opts)
     buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
@@ -63,24 +72,27 @@ require("neodev").setup({})
 require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
-local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"}
+local servers = {
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"
+}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local hover = function(_, result, ctx, config)
-  if not (result and result.contents) then
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  end
-  if type(result.contents) == "string" then
-    local s = string.gsub(result.contents or "", "&nbsp;", " ")
-    s = string.gsub(s, [[\\\n]], [[\n]])
-    result.contents = s
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  else
-    local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
-    s = string.gsub(s, "\\\n", "\n")
-    result.contents.value = s
-    return vim.lsp.handlers.hover(_, result, ctx, config)
-  end
+    if not (result and result.contents) then
+        return vim.lsp.handlers.hover(_, result, ctx, config)
+    end
+    if type(result.contents) == "string" then
+        local s = string.gsub(result.contents or "", "&nbsp;", " ")
+        s = string.gsub(s, [[\\\n]], [[\n]])
+        result.contents = s
+        return vim.lsp.handlers.hover(_, result, ctx, config)
+    else
+        local s =
+            string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
+        s = string.gsub(s, "\\\n", "\n")
+        result.contents.value = s
+        return vim.lsp.handlers.hover(_, result, ctx, config)
+    end
 end
 
 local handlers = {
@@ -89,11 +101,15 @@ local handlers = {
         -- anchor = 'NE',
         -- row = 0,
         -- col = 0.9,
-        max_width=80,
+        max_width = 80,
         border = border,
-        title = '(́◉◞౪◟◉‵)',
+        title = '(́◉◞౪◟◉‵)'
     }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border, max_width = 80})
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
+                                                      .signature_help, {
+        border = border,
+        max_width = 80
+    })
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -104,7 +120,11 @@ require("mason-lspconfig").setup_handlers({
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function(server_name) -- default handler (optional)
-        lspconfig[server_name].setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
+        lspconfig[server_name].setup({
+            on_attach = on_attach,
+            handlers = handlers,
+            capabilities = capabilities
+        })
     end,
     -- Next, you can provide targeted overrides for specific servers.
     ["lua_ls"] = function()
@@ -113,8 +133,8 @@ require("mason-lspconfig").setup_handlers({
             handlers = handlers,
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
-                ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml",
-                "selene.yml", ".git"
+                ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
+                "stylua.toml", "selene.toml", "selene.yml", ".git"
             })),
             settings = {
                 Lua = {
@@ -127,14 +147,14 @@ require("mason-lspconfig").setup_handlers({
             }
         }
     end,
-     ["pyright"] = function()
+    ["pyright"] = function()
         lspconfig.pyright.setup {
             on_attach = on_attach,
             handlers = handlers,
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
-                'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json',
-                'pyvenv.cfg'
+                'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
+                'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
             })),
             settings = {
                 pyright = {
@@ -175,7 +195,10 @@ require("mason-lspconfig").setup_handlers({
                     rootDirectory = nil,
                     build = {
                         executable = 'latexmk',
-                        args = {'-xelatex', '-interaction=nonstopmode', '-synctex=1', '%f'},
+                        args = {
+                            '-xelatex', '-interaction=nonstopmode',
+                            '-synctex=1', '%f'
+                        },
                         -- executable = 'xelatex',
                         onSave = false,
                         forwardSearchAfter = false
@@ -200,11 +223,16 @@ require("mason-lspconfig").setup_handlers({
 require('lspconfig.ui.windows').default_options.border = border
 
 local signs = {
-    {name = "DiagnosticSignError", text = ""}, {name = "DiagnosticSignWarn", text = ""},
-    {name = "DiagnosticSignHint", text = ""}, {name = "DiagnosticSignInfo", text = ""}
+    {name = "DiagnosticSignError", text = ""},
+    {name = "DiagnosticSignWarn", text = ""},
+    {name = "DiagnosticSignHint", text = ""},
+    {name = "DiagnosticSignInfo", text = ""}
 }
 
-for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""}) end
+for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name,
+                       {texthl = sign.name, text = sign.text, numhl = ""})
+end
 
 -- diagnostic after each line
 local diag_config = {
@@ -213,7 +241,13 @@ local diag_config = {
     underline = true,
     update_in_insert = true,
     severity_sort = true,
-    float = {focusable = false, style = "minimal", source = "always", header = "σ`∀´)σ", border=border},
+    float = {
+        focusable = false,
+        style = "minimal",
+        source = "always",
+        header = "σ`∀´)σ",
+        border = border
+    },
     source = true
 }
 
@@ -227,13 +261,13 @@ cmp.setup({
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -1,
-            side_padding = 1,
+            side_padding = 1
         },
         documentation = {
             border = border,
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             max_width = 40,
-            max_height = 40,
+            max_height = 40
         }
     },
     snippet = {
@@ -243,8 +277,12 @@ cmp.setup({
     },
     preselect = cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
-        ['<C-p>'] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
+        ['<C-n>'] = cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Insert
+        }),
+        ['<C-p>'] = cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Insert
+        }),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
@@ -262,15 +300,17 @@ cmp.setup({
         elseif tele_prompt then
             return false
         else
-            return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+            return not context.in_treesitter_capture("comment") and
+                       not context.in_syntax_group("Comment")
         end
     end,
     complettion = {autocomplete = false},
     formatting = {
-        fields = { "kind", "abbr", "menu" },
+        fields = {"kind", "abbr", "menu"},
         format = function(entry, vim_item)
             if vim.tbl_contains({'path'}, entry.source.name) then
-                local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
+                local icon, hl_group = require('nvim-web-devicons').get_icon(
+                                           entry:get_completion_item().label)
                 if icon then
                     vim_item.kind = icon
                     vim_item.kind_hl_group = hl_group
@@ -292,50 +332,44 @@ cmp.setup({
                     cmdline = "[CMD]"
                 })
             })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            local strings = vim.split(kind.kind, "%s", {trimempty = true})
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " .. (kind.menu or "")
+            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
+                            (kind.menu or "")
             return kind
         end
     },
     sources = cmp.config.sources({
-        {name = 'luasnip'},
-        {name = 'nvim_lsp'}, {name = 'buffer'},
+        {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
         {name = 'nvim_lsp_signature_help'}
     }),
     sorting = {
         comparators = {
-            cmp.config.compare.score,
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            require "cmp-under-comparator".under,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
+            cmp.config.compare.score, cmp.config.compare.offset,
+            cmp.config.compare.exact, require"cmp-under-comparator".under,
+            cmp.config.compare.kind, cmp.config.compare.sort_text,
+            cmp.config.compare.length, cmp.config.compare.order
         }
     },
-    experimental = { ghost_text = false }
+    experimental = {ghost_text = false}
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({'/', '?'}, {mapping = cmp.mapping.preset.cmdline(), sources = {{name = 'buffer'}}})
+cmp.setup.cmdline({'/', '?'}, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {{name = 'buffer'}}
+})
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline', keyword_length = 2}})
+    sources = cmp.config.sources({{name = 'path'}},
+                                 {{name = 'cmdline', keyword_length = 2}})
 })
 
 require("lspsaga").setup({
-    preview = {
-        lines_above = 0,
-        lines_below = 10,
-    },
-    scroll_preview = {
-        scroll_down = "<C-f>",
-        scroll_up = "<C-b>",
-    },
+    preview = {lines_above = 0, lines_below = 10},
+    scroll_preview = {scroll_down = "<C-f>", scroll_up = "<C-b>"},
     request_timeout = 2000,
     ui = {
         title = false,
@@ -347,23 +381,27 @@ require("lspsaga").setup({
         incoming = " ",
         outgoing = " ",
         hover = '(́◉◞౪◟◉‵) ',
-        kind = {},
+        kind = {}
+    },
+    beacon = {
+        enable = true,
+        frequency = 20,
     },
     finder = {
-        --percentage
+        -- percentage
         max_height = 0.5,
         min_width = 30,
         force_max_height = false,
         keys = {
-          jump_to = 'p',
-          edit = { 'o', '<CR>' },
-          vsplit = 's',
-          split = 'i',
-          tabe = 't',
-          tabnew = 'r',
-          quit = { 'q', '<ESC>' },
-          close_in_preview = '<ESC>'
-        },
+            jump_to = 'p',
+            edit = {'o', '<CR>'},
+            vsplit = 's',
+            split = 'i',
+            tabe = 't',
+            tabnew = 'r',
+            quit = {'q', '<ESC>'},
+            close_in_preview = '<ESC>'
+        }
     },
     outline = {
         win_position = "left",
@@ -374,18 +412,14 @@ require("lspsaga").setup({
         auto_refresh = true,
         auto_close = true,
         custom_sort = nil,
-        keys = {
-          jump = "o",
-          expand_collapse = "u",
-          quit = "q",
-        },
+        keys = {jump = "o", expand_collapse = "u", quit = "q"}
     },
     definition = {
         edit = "<C-c>o",
         vsplit = "<C-c>v",
         split = "<C-c>i",
         tabe = "<C-c>t",
-        quit = "q",
+        quit = "q"
     },
     diagnostic = {
         on_insert = true,
@@ -395,57 +429,48 @@ require("lspsaga").setup({
         show_code_action = true,
         show_source = true,
         jump_num_shortcut = true,
-         --1 is max
+        -- 1 is max
         max_width = 0.5,
         custom_fix = nil,
         custom_msg = nil,
         text_hl_follow = false,
         border_follow = true,
-        keys = {
-          exec_action = "o",
-          quit = "q",
-          go_action = "g"
-        },
+        keys = {exec_action = "o", quit = "q", go_action = "g"}
     },
     callhierarchy = {
         show_detail = false,
         keys = {
-          edit = "e",
-          vsplit = "s",
-          split = "i",
-          tabe = "t",
-          jump = "o",
-          quit = "q",
-          expand_collapse = "u",
-        },
+            edit = "e",
+            vsplit = "s",
+            split = "i",
+            tabe = "t",
+            jump = "o",
+            quit = "q",
+            expand_collapse = "u"
+        }
     },
     lightbulb = {
         enable = true,
         enable_in_insert = true,
         sign = false,
         sign_priority = 40,
-        virtual_text = true,
+        virtual_text = true
     },
     symbol_in_winbar = {
         enable = true,
         separator = " 〉",
-        ignore_patterns={},
+        ignore_patterns = {},
         hide_keyword = true,
         show_file = true,
         folder_level = 2,
         respect_root = false,
-        color_mode = false,
-     },
-    hover = {
-        max_width = 0.6,
-        open_link = 'gx',
-        open_browser = '!chrome',
+        color_mode = false
     },
+    hover = {max_width = 0.6, open_link = 'gx', open_browser = '!chrome'}
 })
 
 -- lsp saga
 local keymap = vim.keymap.set
-
 
 -- LSP finder - Find the symbol's definition
 -- If there is no definition, it will instead be hidden
@@ -454,7 +479,7 @@ local keymap = vim.keymap.set
 keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
 
 -- Code action
-keymap({"n","v"}, "ga", "<cmd>Lspsaga code_action<CR>")
+keymap({"n", "v"}, "ga", "<cmd>Lspsaga code_action<CR>")
 
 -- Rename all occurrences of the hovered word for the entire file
 -- keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
@@ -481,7 +506,6 @@ keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 
 -- Go to type definition
 -- keymap("n","gt", "<cmd>Lspsaga goto_type_definition<CR>")
-
 
 -- Show line diagnostics
 -- You can pass argument ++unfocus to
@@ -510,7 +534,7 @@ keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 -- end)
 
 -- Toggle outline
-keymap("n","<space>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
 
 -- Hover Doc
 -- If there is no hover doc,

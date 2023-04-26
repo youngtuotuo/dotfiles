@@ -65,6 +65,7 @@ require('kanagawa').setup({
             NormalFloat = { bg = theme.ui.bg_m3},
             FloatBorder = { bg = theme.ui.bg_m3},
             Pmenu = { fg = "#C5CDD9", bg = theme.ui.bg_m3},
+            SagaBeacon = { bg = "#C5CDD9" },
             SagaBorder = { bg = theme.ui.bg_m3},
             SagaNormal = { fg = "#C5CDD9", bg = theme.ui.bg_m3},
             StatusLine = { bg="NONE" },
