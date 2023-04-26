@@ -73,7 +73,7 @@ require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
 local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright", "yamlls"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
@@ -103,7 +103,7 @@ local handlers = {
         -- col = 0.9,
         max_width = 80,
         border = border,
-        title = '(́◉◞౪◟◉‵)'
+        -- title = '(́◉◞౪◟◉‵)',
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
                                                       .signature_help, {
@@ -236,10 +236,10 @@ end
 
 -- diagnostic after each line
 local diag_config = {
-    virtual_text = false,
+    virtual_text = true,
     signs = false,
     underline = true,
-    update_in_insert = true,
+    update_in_insert = false,
     severity_sort = true,
     float = {
         focusable = false,
@@ -373,7 +373,7 @@ require("lspsaga").setup({
     request_timeout = 2000,
     ui = {
         title = false,
-        border = border,
+        border = "solid",
         winblend = 0,
         expand = "",
         collapse = "",
