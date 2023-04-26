@@ -27,12 +27,12 @@ local on_attach = function(client, bufnr)
             buffer = bufnr,
             group = 'lsp_document_highlight'
         })
-        vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+        vim.api.nvim_create_autocmd({'CursorHold'}, {
             group = 'lsp_document_highlight',
             buffer = bufnr,
             callback = vim.lsp.buf.document_highlight
         })
-        vim.api.nvim_create_autocmd('CursorMoved', {
+        vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI'}, {
             group = 'lsp_document_highlight',
             buffer = bufnr,
             callback = vim.lsp.buf.clear_references
@@ -422,20 +422,25 @@ require("lspsaga").setup({
         quit = "q"
     },
     diagnostic = {
-        on_insert = true,
+        on_insert = false,
         on_insert_follow = false,
         insert_winblend = 0,
-        show_virt_line = true,
         show_code_action = true,
         show_source = true,
         jump_num_shortcut = true,
-        -- 1 is max
-        max_width = 0.5,
-        custom_fix = nil,
-        custom_msg = nil,
-        text_hl_follow = false,
+        max_width = 0.7,
+        max_height = 0.6,
+        max_show_width = 0.9,
+        max_show_height = 0.6,
+        text_hl_follow = true,
         border_follow = true,
-        keys = {exec_action = "o", quit = "q", go_action = "g"}
+        extend_relatedInformation = false,
+        keys = {
+          exec_action = 'o',
+          quit = 'q',
+          expand_or_jump = '<CR>',
+          quit_in_show = { 'q', '<ESC>' },
+        },
     },
     callhierarchy = {
         show_detail = false,

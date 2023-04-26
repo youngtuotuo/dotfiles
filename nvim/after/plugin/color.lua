@@ -60,7 +60,7 @@ require('kanagawa').setup({
             DiagnosticUnderlineWarn = {undercurl=true},
             IndentBlanklineChar = { fg = "#000000" },
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            LspReferenceWrite = { underline = false },
+            LspReferenceWrite = { bg= "NONE", underline = false },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             NormalFloat = { bg = theme.ui.bg_m3},
             FloatBorder = { bg = theme.ui.bg_m3},
