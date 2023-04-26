@@ -42,12 +42,12 @@ local on_attach = function(client, bufnr)
     local opts = {noremap = true, silent = false}
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     -- buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    -- buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
     -- buf_set_keymap('n', '<space>ic', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
@@ -66,32 +66,32 @@ require("mason").setup({ui = {border = border}})
 local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright"}
 require("mason-lspconfig").setup {ensure_installed = servers}
 
--- local hover = function(_, result, ctx, config)
---   if not (result and result.contents) then
---     return vim.lsp.handlers.hover(_, result, ctx, config)
---   end
---   if type(result.contents) == "string" then
---     local s = string.gsub(result.contents or "", "&nbsp;", " ")
---     s = string.gsub(s, [[\\\n]], [[\n]])
---     result.contents = s
---     return vim.lsp.handlers.hover(_, result, ctx, config)
---   else
---     local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
---     s = string.gsub(s, "\\\n", "\n")
---     result.contents.value = s
---     return vim.lsp.handlers.hover(_, result, ctx, config)
---   end
--- end
+local hover = function(_, result, ctx, config)
+  if not (result and result.contents) then
+    return vim.lsp.handlers.hover(_, result, ctx, config)
+  end
+  if type(result.contents) == "string" then
+    local s = string.gsub(result.contents or "", "&nbsp;", " ")
+    s = string.gsub(s, [[\\\n]], [[\n]])
+    result.contents = s
+    return vim.lsp.handlers.hover(_, result, ctx, config)
+  else
+    local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
+    s = string.gsub(s, "\\\n", "\n")
+    result.contents.value = s
+    return vim.lsp.handlers.hover(_, result, ctx, config)
+  end
+end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    ["textDocument/hover"] = vim.lsp.with(hover, {
         -- relative = 'mouse',
         -- anchor = 'NE',
         -- row = 0,
         -- col = 0.9,
         max_width=80,
         border = border,
-        title = '(*´ω`)人(´ω`*)',
+        title = '(́◉◞౪◟◉‵)',
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border, max_width = 80})
 }
@@ -338,7 +338,7 @@ require("lspsaga").setup({
     },
     request_timeout = 2000,
     ui = {
-        title = true,
+        title = false,
         border = border,
         winblend = 0,
         expand = "",
@@ -446,8 +446,6 @@ require("lspsaga").setup({
 -- lsp saga
 local keymap = vim.keymap.set
 
--- Increment rename
-keymap("n", "gn", ":IncRename ")
 
 -- LSP finder - Find the symbol's definition
 -- If there is no definition, it will instead be hidden
@@ -520,7 +518,7 @@ keymap("n","<space>o", "<cmd>Lspsaga outline<CR>")
 -- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+-- keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
 -- If you want to keep the hover window in the top right hand corner,
 -- you can pass the ++keep argument
@@ -530,8 +528,8 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 -- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
 
 -- Call hierarchy
-keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>")
-keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>")
+-- keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>")
+-- keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>")
 
 -- Floating terminal
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")

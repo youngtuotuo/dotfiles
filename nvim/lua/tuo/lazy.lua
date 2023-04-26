@@ -108,12 +108,6 @@ local plugins = {
         }
       end
     },
-    {
-      "smjonas/inc-rename.nvim",
-      config = function()
-        require("inc_rename").setup()
-      end,
-    },
     'lervag/vimtex',
     'numToStr/Comment.nvim',
     {
