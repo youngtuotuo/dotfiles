@@ -19,16 +19,7 @@ local plugins = {
     'nvim-lua/plenary.nvim',
 
     -- ui stuffs
-    {
-        'navarasu/onedark.nvim',
-        lazy = false,
-        priority = 1000,
-    },
     "rebelot/kanagawa.nvim",
-    {
-        "catppuccin/nvim",
-        name = "catppuccin"
-    },
     'nvim-tree/nvim-web-devicons',
     {
         'nvim-lualine/lualine.nvim',
