@@ -334,8 +334,9 @@ cmp.setup({
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", {trimempty = true})
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
-                            (kind.menu or "")
+            -- kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
+            --                 (kind.menu or "") .. " ヾ(*´∀ ˋ*)ﾉ"
+            kind.menu = "  ヾ(*´∀ ˋ*)ﾉ"
             return kind
         end
     },
@@ -372,7 +373,7 @@ require("lspsaga").setup({
     scroll_preview = {scroll_down = "<C-f>", scroll_up = "<C-b>"},
     request_timeout = 2000,
     ui = {
-        title = false,
+        title = true,
         border = "solid",
         winblend = 0,
         expand = "",
