@@ -236,8 +236,8 @@ end
 
 -- diagnostic after each line
 local diag_config = {
-    virtual_text = true,
-    signs = false,
+    virtual_text = false,
+    signs = true,
     underline = true,
     update_in_insert = false,
     severity_sort = true,

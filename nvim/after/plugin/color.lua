@@ -94,7 +94,8 @@ require("kanagawa").load("wave")
 
 require('lsp-progress').setup({
     -- Spinning icons.
-    spinner = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾", },
+    -- spinner = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾", },
+    spinner = { "┤", "┘", "┴", "└", "├", "┌", "┬", "┐"},
 
     -- Spinning update time in milliseconds.
     spin_update_time = 100,
