@@ -28,12 +28,6 @@ local plugins = {
         }
     },
     {
-        'karb94/neoscroll.nvim',
-        config = function()
-            require('neoscroll').setup()
-        end
-    },
-    {
         'linrongbin16/lsp-progress.nvim',
         event = { 'VimEnter' },
         dependencies = { 'nvim-tree/nvim-web-devicons' },
