@@ -4,6 +4,9 @@ This repo includes:
 * Tools config files.
 * Url or Installation scripts that hard to find by simply google once.
 
+<details>
+    <summary><font size="4"><b>Folder Structure</b></font></summary>
+
 ```
 ├── alacritty/                  # alacritty config file
 │   └── alacritty.yml
@@ -44,7 +47,7 @@ This repo includes:
 ├── user_profile.ps1
 └── xstartup
 ```
-
+</details>
 
 
 # Mac/Ubuntu
@@ -75,11 +78,11 @@ Mac
 
 [https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
 
-<summary><font size="4"><b>Fira Code Nerd Font</b></font></summary>
+## Fira Code Nerd Font
     
 [https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
-<summary><font size="4"><b>Git-Credential-Manager</b></font></summary>
+## Git-Credential-Manager
 
 [https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
 ```bash
@@ -87,7 +90,7 @@ sudo dpkg -i <path-to-package>
 git-credential-manager configure
 ```
 
-<summary><font size="4"><b>Cuda</b></font></summary>
+## Cuda
 
 [https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)<br>
 
@@ -101,7 +104,7 @@ sudo apt-get update
 sudo apt-get install cuda -y
 ```
 
-<summary><font size="4"><b>Neovim</b></font></summary>
+## Neovim
   
 Ubuntu
 ```bash
@@ -139,25 +142,25 @@ nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     - Currently support python, c, cpp
 
 
-<summary><font size="4"><b>Latex Compiler</b></font></summary>
+## Latex Compiler
 
 ```bash
 sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
 ```
 
-<summary><font size="4"><b>Okular PDF viewer for VimTex</b></font></summary>
+## Okular PDF viewer for VimTex
 
 [https://binary-factory.kde.org/job/Okular_Release_macos/](https://binary-factory.kde.org/job/Okular_Release_macos/)
 
 
-<summary><font size="4"><b>Rust (cargo, rustup)</b></font></summary>
+## Rust (cargo, rustup)
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 ```
 
-<summary><font size="4"><b>Solve cv2 typing issue with Pyright</b></font></summary>
+## Solve cv2 typing issue with Pyright
 
 By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
 ```bash
@@ -165,7 +168,7 @@ cd ~/github/dotfiles
 cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 
-<summary><font size="4"><b>RayCast, noVNC, tigerVNC, OpenVPN Connect, VLC, Stats, AltTab, Rectangle, Tmux</b></font></summary>
+## RayCast, noVNC, tigerVNC, OpenVPN Connect, VLC, Stats, AltTab, Rectangle, Tmux
 
     TBD
 
@@ -180,15 +183,14 @@ cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
     <img src="pictures/win.png"/>
 </p>
 
-<summary><font size="4"><b>Scoop</b></font></summary>
+## Scoop
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
 irm get.scoop.sh | iex
 ```
 
-
-<summary><font size="4"><b>Neovim</b></font></summary>
+## Neovim
 
 ```powershell
 # TODO: Other commands
