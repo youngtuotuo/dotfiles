@@ -1,5 +1,49 @@
-# Dotfiles
-My routine data science envrionment set up in ubuntu/mac/windows.<br>
+# Dotfiles (WIP)
+This repo includes:
+* Tools I use for data science development in ubuntu/mac/windows.
+* Tools config files.
+* Url or Installation scripts that hard to find by simply google once.
+
+```
+├── alacritty/                  # alacritty config file
+│   └── alacritty.yml
+├── cv2/                        # .pyi file for cv2's auto-suggestions
+│   └── __init__.pyi
+├── nushell/                    # nusehll config files
+│   ├── config.nu
+│   └── env.nu
+├── nvim/                       # neovim config files
+│   ├── after/                       # auto-loaded plugin config 
+│   │   └── plugin/
+│   │       ├── color.lua           
+│   │       ├── comment.lua
+│   │       ├── gitsigns.lua
+│   │       ├── impatient.lua
+│   │       ├── indent-blankline.lua
+│   │       ├── lspconfig.lua
+│   │       ├── markdownpreview.lua
+│   │       ├── nvim-devicons.lua
+│   │       ├── nvimtree.lua
+│   │       ├── stabilize.lua
+│   │       ├── telescope.lua
+│   │       ├── todo.lua
+│   │       ├── treesitter.lua
+│   │       └── vim-tex.lua
+│   ├── after/                  # files loaded by init.lua
+│   │   └── tuo/
+│   └── init.lua                # require('tuo')
+├── pictures/                    
+├── .bashrc
+├── .gitconfig
+├── .gitignore
+├── .luarc.json
+├── .tmux.conf
+├── .vimrc
+├── .zshrc
+├── config.fish
+├── user_profile.ps1
+└── xstartup
+```
 
 
 
@@ -9,7 +53,7 @@ My routine data science envrionment set up in ubuntu/mac/windows.<br>
 </p>
 
 
-<summary><font size="4"><b>Gnome-Tweaks and Dconf-Editor</b></font></summary>
+## Gnome-Tweaks and Dconf-Editor
 
 ```bash
 # Use `Tweaks` app to change caps to ctrl.
@@ -21,7 +65,7 @@ xinput disable "AT Translated Set 2 keyboard"
 ```
 
 
-<summary><font size="4"><b>Clipboard Indicator</b></font></summary>
+## Clipboard Indicator
 
 Ubuntu
 
