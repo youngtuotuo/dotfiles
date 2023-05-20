@@ -10,10 +10,10 @@ if next(vim.api.nvim_list_uis()) ~= nil then
             end,
             icons = {
                 show = {
-                    file = true,
-                    folder = true,
-                    folder_arrow = true,
-                    git = true,
+                    file = false,
+                    folder = false,
+                    folder_arrow = false,
+                    git = false,
                 }
             },
             group_empty = true,

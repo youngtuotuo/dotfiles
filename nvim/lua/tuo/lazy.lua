@@ -20,7 +20,6 @@ local plugins = {
 
     -- ui stuffs
     "rebelot/kanagawa.nvim",
-    'nvim-tree/nvim-web-devicons',
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {

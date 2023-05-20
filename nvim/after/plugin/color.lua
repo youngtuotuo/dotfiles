@@ -176,7 +176,7 @@ local auto = require('lualine.themes.auto')
 auto.normal.c.bg = 'none'
 local config = {
     options = {
-        icons_enabled = true,
+        icons_enabled = false,
         theme = auto,
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
@@ -191,7 +191,6 @@ local config = {
         lualine_b = {},
         lualine_c = {
             {'mode'}, {'%='},
-            {'filetype', colored = true, icon_only = true, icon = {align = 'left'}, padding = {left = 0}},
             {'filename', path = 1}, {
                 require('lsp-progress').progress,
             }
