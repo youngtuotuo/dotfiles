@@ -10,6 +10,17 @@ if not snip_status_ok then return end
 local kind_status_ok, lspkind = pcall(require, "lspkind")
 if not kind_status_ok then return end
 
+vim.g.cmptoggle = false
+vim.keymap.set("n", "<leader>tc",
+               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+               {desc = "toggle nvim-cmp"})
+vim.keymap.set("i", "<leader>tc",
+               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+               {desc = "toggle nvim-cmp"})
+vim.keymap.set("c", "<leader>tc",
+               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+               {desc = "toggle nvim-cmp"})
+
 local util = require("lspconfig.util")
 
 -- "none": No border (default).
@@ -96,15 +107,8 @@ local hover = function(_, result, ctx, config)
 end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover, {
-        -- relative = 'mouse',
-        -- anchor = 'NE',
-        -- row = 0,
-        -- col = 0.9,
-        max_width = 80,
-        border = border,
-        -- title = '(́◉◞౪◟◉‵)',
-    }),
+    ["textDocument/hover"] = vim.lsp.with(hover,
+                                          {max_width = 80, border = border}),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
                                                       .signature_help, {
         border = border,
@@ -257,14 +261,8 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
     window = {
-        completion = {
-            border = border,
-            scrollbar = false
-        },
-        documentation = {
-            border = border,
-            scrollbar = false
-        }
+        completion = {border = border, scrollbar = false},
+        documentation = {border = border, scrollbar = false}
     },
     snippet = {
         expand = function(args)
@@ -275,6 +273,22 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-n>'] = cmp.mapping.select_next_item({
             behavior = cmp.SelectBehavior.Insert
+        }),
+        ["<C-t>"] = cmp.mapping({
+            i = function()
+                if cmp.visible() then
+                    cmp.abort()
+                else
+                    cmp.complete()
+                end
+            end,
+            c = function()
+                if cmp.visible() then
+                    cmp.close()
+                else
+                    cmp.complete()
+                end
+            end
         }),
         ['<C-p>'] = cmp.mapping.select_prev_item({
             behavior = cmp.SelectBehavior.Insert
@@ -291,13 +305,17 @@ cmp.setup({
         local context = require 'cmp.config.context'
         local tele_prompt = vim.bo.filetype == 'TelescopePrompt'
         -- keep command mode completion enabled when cursor is in a comment
-        if vim.api.nvim_get_mode().mode == 'c' then
-            return true
-        elseif tele_prompt then
-            return false
+        if vim.g.cmptoggle == true then
+            if vim.api.nvim_get_mode().mode == 'c' then
+                return true
+            elseif tele_prompt then
+                return false
+            else
+                return not context.in_treesitter_capture("comment") and
+                           not context.in_syntax_group("Comment")
+            end
         else
-            return not context.in_treesitter_capture("comment") and
-                       not context.in_syntax_group("Comment")
+            return vim.g.cmptoggle
         end
     end,
     complettion = {autocomplete = false},
@@ -345,10 +363,7 @@ require("lspsaga").setup({
         hover = '(́◉◞౪◟◉‵) ',
         kind = {}
     },
-    beacon = {
-        enable = true,
-        frequency = 20,
-    },
+    beacon = {enable = true, frequency = 20},
     finder = {
         -- percentage
         max_height = 0.5,
@@ -398,11 +413,11 @@ require("lspsaga").setup({
         border_follow = true,
         extend_relatedInformation = false,
         keys = {
-          exec_action = 'o',
-          quit = 'q',
-          expand_or_jump = '<CR>',
-          quit_in_show = { 'q', '<ESC>' },
-        },
+            exec_action = 'o',
+            quit = 'q',
+            expand_or_jump = '<CR>',
+            quit_in_show = {'q', '<ESC>'}
+        }
     },
     callhierarchy = {
         show_detail = false,
