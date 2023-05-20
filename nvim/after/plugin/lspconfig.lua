@@ -11,15 +11,6 @@ local kind_status_ok, lspkind = pcall(require, "lspkind")
 if not kind_status_ok then return end
 
 vim.g.cmptoggle = false
-vim.keymap.set("n", "<leader>tc",
-               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-               {desc = "toggle nvim-cmp"})
-vim.keymap.set("i", "<leader>tc",
-               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-               {desc = "toggle nvim-cmp"})
-vim.keymap.set("c", "<leader>tc",
-               "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-               {desc = "toggle nvim-cmp"})
 
 local util = require("lspconfig.util")
 
@@ -29,7 +20,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "none"
+local border = "single"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -439,7 +430,7 @@ require("lspsaga").setup({
         virtual_text = true
     },
     symbol_in_winbar = {
-        enable = true,
+        enable = false,
         separator = " 〉",
         ignore_patterns = {},
         hide_keyword = true,
@@ -539,3 +530,9 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
 
 -- Floating terminal
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+keymap("n", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+       {desc = "toggle nvim-cmp"})
+keymap("i", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+       {desc = "toggle nvim-cmp"})
+keymap("c", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
+       {desc = "toggle nvim-cmp"})
