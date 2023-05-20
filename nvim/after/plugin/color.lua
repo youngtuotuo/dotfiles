@@ -7,7 +7,7 @@ require('kanagawa').setup({
     keywordStyle = { bold = true, italic = false },
     statementStyle = { bold = false },
     typeStyle = { italic = false},
-    transparent = true,         -- do not set background color
+    transparent = false,         -- do not set background color
     dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
     terminalColors = true,       -- define vim.g.terminal_color_{0,17}
     colors = {                   -- add/modify theme and palette colors
@@ -29,7 +29,7 @@ require('kanagawa').setup({
             DiagnosticUnderlineHint = {undercurl=true},
             DiagnosticUnderlineInfo = {undercurl=true},
             DiagnosticUnderlineWarn = {undercurl=true},
-            IndentBlanklineChar = { fg = "#000000" },
+            IndentBlanklineChar = { fg = "#1f1f28", bg = "none", nocombine=true },
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             LspReferenceWrite = { bg= theme.ui.bg_p1, underline = false },
             LspReferenceText = { bg = theme.ui.bg_p1, },
@@ -60,7 +60,7 @@ require('kanagawa').setup({
         light = "lotus"
     },
 })
-require("kanagawa").load("wave")
+require("kanagawa").load("wave") -- wave, dragon, lotus
 
 
 require('lsp-progress').setup({
