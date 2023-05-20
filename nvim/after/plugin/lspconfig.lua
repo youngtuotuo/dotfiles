@@ -18,7 +18,7 @@ local util = require("lspconfig.util")
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-local border = "solid"
+local border = "none"
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
@@ -259,15 +259,11 @@ cmp.setup({
     window = {
         completion = {
             border = border,
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = -1,
-            side_padding = 1
+            scrollbar = false
         },
         documentation = {
             border = border,
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            max_width = 40,
-            max_height = 40
+            scrollbar = false
         }
     },
     snippet = {
@@ -306,7 +302,6 @@ cmp.setup({
     end,
     complettion = {autocomplete = false},
     formatting = {
-        fields = {"kind", "abbr", "menu"},
         format = function(entry, vim_item)
             if vim.tbl_contains({'path'}, entry.source.name) then
                 local icon, hl_group = require('nvim-web-devicons').get_icon(
@@ -317,10 +312,10 @@ cmp.setup({
                     return vim_item
                 end
             end
-            local kind = lspkind.cmp_format({
+            return lspkind.cmp_format({
                 -- 'text', 'text_symbol', 'symbol_text', 'symbol'
-                mode = 'symbol_text',
-                maxwidth = 40, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                mode = 'text',
+                maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                 maxheight = 40,
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 menu = ({
@@ -332,12 +327,6 @@ cmp.setup({
                     cmdline = "[CMD]"
                 })
             })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", {trimempty = true})
-            kind.kind = " " .. (strings[1] or "") .. " "
-            -- kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
-            --                 (kind.menu or "") .. " ヾ(*´∀ ˋ*)ﾉ"
-            kind.menu = "  ヾ(*´∀ ˋ*)ﾉ"
-            return kind
         end
     },
     sources = cmp.config.sources({
