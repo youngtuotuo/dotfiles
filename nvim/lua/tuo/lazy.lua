@@ -11,11 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-pcall(require, "impatient")
 
 local plugins = {
     -- basic
-    'lewis6991/impatient.nvim',
     'nvim-lua/plenary.nvim',
 
     -- ui stuffs
@@ -29,13 +27,11 @@ local plugins = {
     {
         'linrongbin16/lsp-progress.nvim',
         event = { 'VimEnter' },
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('lsp-progress').setup()
         end
     },
     'lukas-reineke/indent-blankline.nvim',
-    'kyazdani42/nvim-tree.lua',
     'lewis6991/gitsigns.nvim',
     'luukvbaal/stabilize.nvim',
     {
@@ -45,6 +41,8 @@ local plugins = {
         end
     },
     "luukvbaal/statuscol.nvim",
+    "dstein64/vim-startuptime",
+    "nvim-tree/nvim-tree.lua",
 
     -- productivity
     'tpope/vim-fugitive',
@@ -82,7 +80,6 @@ local plugins = {
         "glepnir/lspsaga.nvim",
         event = "BufRead",
         dependencies = {
-          {"nvim-tree/nvim-web-devicons"},
           -- Please make sure you install markdown and markdown_inline parser
           {"nvim-treesitter/nvim-treesitter"}
         }
@@ -90,7 +87,6 @@ local plugins = {
     'lukas-reineke/cmp-under-comparator',
     {
       "folke/trouble.nvim",
-      dependencies = "nvim-tree/nvim-web-devicons",
       config = function()
         require("trouble").setup {
           -- your configuration comes here
