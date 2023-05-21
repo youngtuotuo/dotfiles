@@ -532,7 +532,3 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 keymap("n", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
        {desc = "toggle nvim-cmp"})
-keymap("i", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-       {desc = "toggle nvim-cmp"})
-keymap("c", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-       {desc = "toggle nvim-cmp"})
