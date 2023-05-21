@@ -233,7 +233,7 @@ end
 local diag_config = {
     virtual_text = false,
     signs = true,
-    underline = true,
+    underline = false,
     update_in_insert = false,
     severity_sort = true,
     float = {
@@ -344,7 +344,7 @@ require("lspsaga").setup({
     request_timeout = 2000,
     ui = {
         title = true,
-        border = "solid",
+        border = border,
         winblend = 0,
         expand = "",
         collapse = "",
