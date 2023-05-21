@@ -153,7 +153,31 @@ local plugins = {
 
 local opts = {
     ui = {
-        border = "single"
+        border = "single",
+        icons = {
+            cmd = "",
+            config = "",
+            event = "",
+            ft = "",
+            init = "",
+            import = "",
+            keys = "",
+            lazy = "",
+            -- lazy = "󰒲",
+            loaded = "●",
+            not_loaded = "○",
+            plugin = " ",
+            runtime = " ",
+            source = " ",
+            start = "",
+            task = "✔ ",
+            list = {
+                "●",
+                "➜",
+                "★",
+                "‒",
+            },
+        },
     },
     checker = {
         enabled = false,
