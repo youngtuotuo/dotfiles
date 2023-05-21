@@ -11,10 +11,14 @@ require('kanagawa').setup({
     dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
     terminalColors = true,       -- define vim.g.terminal_color_{0,17}
     colors = {                   -- add/modify theme and palette colors
-        palette = {},
-        theme = { wave = {}, lotus = {}, dragon = {}, all = {
-            ui = {
-                bg_gutter = "none",
+        palette = {
+            -- sumiInk0 = "#000000",
+        },
+        theme = { wave = {}, lotus = {}, dragon = {},
+            all = {
+                ui = {
+                    bg_gutter = "none",
+                    bg = "#16161D"
                 },
             }
         },
@@ -22,26 +26,24 @@ require('kanagawa').setup({
     overrides = function(colors)
         local theme = colors.theme
         return {
-            -- Popular plugins that open floats will link to NormalFloat by default;
-            -- set their background accordingly if you wish to keep them dark and borderless
             DiagnosticShowBorder = { link = "SagaBorder" },
-            Conceal = { fg="#455574", bg = "none", nocombine=true },
-            CmpCompletionBorder = { bg="none" },
-            IndentBlanklineChar = { fg = "#1f1f28", bg = "none", nocombine=true },
-            LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
+            Conceal = { fg="#455574", bg = colors.palette.sumiInk0, nocombine=true },
+            CmpCompletionBorder = { bg = colors.palette.sumiInk0},
+            IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0, nocombine=true },
+            LazyNormal = { bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim },
             LspReferenceWrite = { bg= theme.ui.bg_p1, underline = false },
             LspReferenceText = { bg = theme.ui.bg_p1, },
-            LspInfoBorder = { bg="none" },
-            MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
-            NormalFloat = { bg = "none"},
-            FloatBorder = { bg = "none"},
+            LspInfoBorder = { bg = colors.palette.sumiInk0 },
+            MasonNormal = { bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim },
+            NormalFloat = { bg = colors.palette.sumiInk0},
+            FloatBorder = { bg = colors.palette.sumiInk0},
             Pmenu = { fg = "#C5CDD9", bg = theme.ui.bg_m3},
             SagaBeacon = { bg = "#C5CDD9" },
-            SagaBorder = { bg = "none"},
-            SagaNormal = { fg = "#C5CDD9", bg = "none"},
-            StatusLine = { bg="NONE" },
-            TODOBgFix = {fg='#000000', bg='#e82424', bold=true},
-            TODOBgTODO = {fg = '#000000', bg="#658594", bold=true},
+            SagaBorder = { bg = colors.palette.sumiInk0},
+            SagaNormal = { fg = "#C5CDD9", bg = theme.ui.bg},
+            StatusLine = { bg = colors.palette.sumiInk0},
+            TODOBgFix = {fg = colors.palette.sumiInk0, bg='#e82424', bold=true},
+            TODOBgTODO = {fg = colors.palette.sumiInk0, bg="#658594", bold=true},
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePromptBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
