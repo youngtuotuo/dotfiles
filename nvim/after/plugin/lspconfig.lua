@@ -252,7 +252,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
     window = {
-        completion = {border = border, scrollbar = false},
+        completion = {border = border, scrollbar = false, col_offset=15},
         documentation = {border = border, scrollbar = false}
     },
     snippet = {
