@@ -217,8 +217,8 @@ local config = {
 
 require('lualine').setup(config)
 vim.cmd([[
-augroup lualine_augroup
-    autocmd!
-    autocmd User LspProgressStatusUpdated lua require("lualine").refresh()
-augroup END
+    augroup lualine_augroup
+        autocmd!
+        autocmd User LspProgressStatusUpdated lua require("lualine").refresh()
+    augroup END
 ]])

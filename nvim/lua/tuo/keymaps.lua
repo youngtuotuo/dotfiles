@@ -12,11 +12,14 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- command_mode = "c"
 -- term_mode = "t"
 
+
+-- <leader>p for exucute python, c, c++
 local ext = ""
 local sep = "/"
 local py = "python3"
 local c = "gcc -Wall -o main"
 local cpp = "g++ -Wall -std=c++14 -o main"
+---- different system needs different name
 if vim.fn.has("win32") == 1 then
     ext = ".exe"
     sep = "\\"
@@ -26,7 +29,9 @@ elseif vim.fn.has("mac") == 1 then
     cpp = "clang++ -Wall -std=c++14 -o main"
 end
 local cmd = ""
-
+---- deafult is python
+keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
+---- detect file type to change command
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
     callback = function()
        if vim.bo.filetype == "cpp" then
@@ -38,43 +43,8 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
        end
        keymap("n", "<leader>p", ":!" .. cmd .. "<CR>", {noremap = true, silent = false})
     end,
-    -- command = "echo 'yoyoyo'",
 })
 
-
-keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
-
-
--- c/c++ compile and run
--- keymap(
---     "n",
---     "<leader>c+",
---    ":!clang++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
---    {noremap = true, silent = false}
--- )
--- keymap(
---     "n",
---     "<leader>cc",
---     ":!clang -Wall -o main" .. ext .. " % && ." .. sep .. "vimc.out" .. ext,
---    {noremap = true, silent = false}
--- )
--- keymap(
---     "n",
---     "<leader>g+",
---     ":!g++ -Wall -std=c++14 -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
---     {noremap = true, silent = false}
--- )
--- keymap(
---     "n",
---     "<leader>gc",
---     ":!gcc -Wall -o main" .. ext .. " % && ." .. sep .. "main" .. ext,
---     {noremap = true, silent = false}
--- )
-
--- James Powell python3
--- TODO: windows path is a little different
--- keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", {noremap = true, silent = false})
--- keymap("n", "<leader>p", ":!" .. py .. " %<CR>", {noremap = true, silent = false})
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)

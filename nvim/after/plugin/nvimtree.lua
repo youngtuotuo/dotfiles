@@ -1,6 +1,6 @@
 if next(vim.api.nvim_list_uis()) ~= nil then
     local HEIGHT_RATIO = 0.8  -- You can change this
-    local WIDTH_RATIO = 0.15   -- You can change this too
+    local WIDTH_RATIO = 0.25   -- You can change this too
     require("nvim-tree").setup({
         sort_by = "case_sensitive",
         renderer = {
@@ -11,9 +11,9 @@ if next(vim.api.nvim_list_uis()) ~= nil then
             icons = {
                 show = {
                     file = false,
-                    folder = false,
+                    folder = true,
                     folder_arrow = false,
-                    git = false,
+                    git = true,
                 }
             },
             group_empty = true,
@@ -37,7 +37,29 @@ if next(vim.api.nvim_list_uis()) ~= nil then
             width = function()
               return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
             end,
+            preserve_window_proportions = true,
         },
+        diagnostics = {
+            enable = true,
+            show_on_dirs = false,
+            show_on_open_dirs = true,
+            debounce_delay = 50,
+            severity = {
+                min = vim.diagnostic.severity.HINT,
+                max = vim.diagnostic.severity.ERROR,
+            },
+            icons = {
+                hint = "",
+                info = "",
+                warning = "",
+                error = "",
+            },
+        },
+        actions = {
+            open_file = {
+                resize_window = true,
+            },
+        }
     })
     vim.api.nvim_create_user_command('E', 'NvimTreeToggle', {})
     local function open_nvim_tree(data)
