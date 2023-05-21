@@ -44,11 +44,7 @@ local plugins = {
             require('colorizer').setup()
         end
     },
-    {
-        "luukvbaal/statuscol.nvim", config = function()
-            require("statuscol").setup({})
-        end,
-    },
+    "luukvbaal/statuscol.nvim",
 
     -- productivity
     'tpope/vim-fugitive',
