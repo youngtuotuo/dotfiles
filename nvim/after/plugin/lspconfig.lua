@@ -10,8 +10,6 @@ if not snip_status_ok then return end
 local kind_status_ok, lspkind = pcall(require, "lspkind")
 if not kind_status_ok then return end
 
-vim.g.cmptoggle = false
-
 local util = require("lspconfig.util")
 
 -- "none": No border (default).
@@ -249,6 +247,7 @@ vim.diagnostic.config(diag_config)
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+vim.g.cmptoggle = true
 cmp.setup({
     window = {
         completion = {border = border, scrollbar = false},
@@ -309,6 +308,40 @@ cmp.setup({
         end
     end,
     complettion = {autocomplete = false},
+    formatting = {
+        fields = {"kind", "abbr", "menu"},
+        format = function(entry, vim_item)
+            if vim.tbl_contains({'path'}, entry.source.name) then
+                local icon, hl_group = require('nvim-web-devicons').get_icon(
+                                           entry:get_completion_item().label)
+                if icon then
+                    vim_item.kind = icon
+                    vim_item.kind_hl_group = hl_group
+                    return vim_item
+                end
+            end
+            local kind = lspkind.cmp_format({
+                -- 'text', 'text_symbol', 'symbol_text', 'symbol'
+                mode = 'symbol_text',
+                maxwidth = 40, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                maxheight = 40,
+                ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                menu = ({
+                    buffer = "[BUFF]",
+                    nvim_lsp = "[LSP]",
+                    luasnip = "[SNIP]",
+                    path = "[PATH]",
+                    nvim_lua = "[LUA]",
+                    cmdline = "[CMD]"
+                })
+            })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", {trimempty = true})
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
+                            (kind.menu or "")
+            return kind
+        end
+    },
     sources = cmp.config.sources({
         {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
@@ -350,7 +383,7 @@ require("lspsaga").setup({
         code_action = "💡",
         incoming = " ",
         outgoing = " ",
-        hover = '(́◉◞౪◟◉‵) ',
+        hover = 'σ`∀´)σ ',
         kind = {}
     },
     beacon = {enable = true, frequency = 20},
@@ -438,7 +471,7 @@ require("lspsaga").setup({
         respect_root = false,
         color_mode = false
     },
-    hover = {max_width = 0.6, open_link = 'gx', open_browser = '!chrome'}
+    hover = {max_width = 0.9, open_link = 'gx', open_browser = '!chrome'}
 })
 
 -- lsp saga

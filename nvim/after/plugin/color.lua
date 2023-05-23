@@ -26,18 +26,48 @@ require('kanagawa').setup({
     overrides = function(colors)
         local theme = colors.theme
         return {
-            DiagnosticShowBorder = { link = "SagaBorder" },
-            Conceal = { fg="#455574", bg = colors.palette.sumiInk0, nocombine=true },
             CmpCompletionBorder = { bg = colors.palette.sumiInk0},
+            CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", strikethrough = true },
+            CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold = true },
+            CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold = true },
+            CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
+            CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
+            CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
+            CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
+            CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
+            CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
+            CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
+            CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
+            CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
+            CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
+            CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+            CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
+            CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
+            CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
+            CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
+            CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
+            CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
+            CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
+            CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
+            CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
+            CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
+            CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
+            CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
+            CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
+            CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
+            CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic = true },
+            Conceal = { fg="#455574", bg = colors.palette.sumiInk0, nocombine=true },
+            DiagnosticShowBorder = { link = "SagaBorder" },
+            FloatBorder = { bg = colors.palette.sumiInk0},
             IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0, nocombine=true },
             LazyNormal = { bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim },
-            LspReferenceWrite = { bg= theme.ui.bg_p1, underline = false },
-            LspReferenceText = { bg = theme.ui.bg_p1, },
             LspInfoBorder = { bg = colors.palette.sumiInk0 },
+            LspReferenceText = { bg = theme.ui.bg_p1, },
+            LspReferenceWrite = { bg= theme.ui.bg_p1, underline = false },
             MasonNormal = { bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim },
             NormalFloat = { bg = colors.palette.sumiInk0},
-            FloatBorder = { bg = colors.palette.sumiInk0},
             Pmenu = { fg = "#C5CDD9", bg = theme.ui.bg_m3},
+            PmenuSel = { bg = "#282C34", fg = "NONE" },
             SagaBeacon = { bg = "#C5CDD9" },
             SagaBorder = { bg = colors.palette.sumiInk0},
             SagaNormal = { fg = "#C5CDD9", bg = theme.ui.bg},
@@ -53,7 +83,6 @@ require('kanagawa').setup({
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             VertSplit = { fg="White" },
             WinSeparator = { fg = "White"},
-
         }
     end,
     background = {               -- map the value of 'background' option to a theme
@@ -177,7 +206,7 @@ local auto = require('lualine.themes.auto')
 auto.normal.c.bg = 'none'
 local config = {
     options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = auto,
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
@@ -192,6 +221,7 @@ local config = {
         lualine_b = {},
         lualine_c = {
             {'mode'}, {'%='},
+            {'filetype', colored = true, icon_only = true, icon = {align = 'left'}, padding = {left = 0}},
             {'filename', path = 1}, {
                 require('lsp-progress').progress,
             }
