@@ -9,10 +9,11 @@ require("telescope").setup({
         layout_config = {
             anchor = "S",
             height = 0.5,
-            width = 0.95,
-            preview_width = 0.6,
+            width = 0.85,
+            preview_width = 0.5,
             prompt_position = 'top',
         },
+        color_devicons = true,
         prompt_prefix = "> ",
         selection_caret = " ",
         path_display = {"smart"},

@@ -96,12 +96,8 @@ local hover = function(_, result, ctx, config)
 end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover,
-                                          {border = border}),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
-                                                      .signature_help, {
-        border = border,
-    })
+    ["textDocument/hover"] = vim.lsp.with(hover, {border = border}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border, })
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -222,8 +218,7 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name,
-                       {texthl = sign.name, text = sign.text, numhl = ""})
+    vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""})
 end
 
 -- diagnostic after each line
@@ -247,7 +242,12 @@ vim.diagnostic.config(diag_config)
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-vim.g.cmptoggle = true
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 cmp.setup({
     window = {
         completion = {border = border, scrollbar = false},
@@ -260,54 +260,51 @@ cmp.setup({
     },
     preselect = cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.select_next_item({
-            behavior = cmp.SelectBehavior.Insert
-        }),
-        ["<C-t>"] = cmp.mapping({
-            i = function()
+        ["<C-n>"] = cmp.mapping(
+            function(fallback)
                 if cmp.visible() then
-                    cmp.abort()
-                else
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
                     cmp.complete()
+                else
+                    fallback()
                 end
-            end,
-            c = function()
+            end, {"i", "s"}),
+        ['<C-p>'] = cmp.mapping(
+            function(fallback)
                 if cmp.visible() then
-                    cmp.close()
-                else
+                    cmp.select_prev_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
                     cmp.complete()
+                else
+                    fallback()
                 end
-            end
-        }),
-        ['<C-p>'] = cmp.mapping.select_prev_item({
-            behavior = cmp.SelectBehavior.Insert
-        }),
+            end, {'i', 's'}),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({select = false}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "s"}),
-        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s"})
+        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s"}),
     }),
     enabled = function()
         -- disable completion in comments
         local context = require 'cmp.config.context'
         local tele_prompt = vim.bo.filetype == 'TelescopePrompt'
         -- keep command mode completion enabled when cursor is in a comment
-        if vim.g.cmptoggle == true then
-            if vim.api.nvim_get_mode().mode == 'c' then
-                return true
-            elseif tele_prompt then
-                return false
-            else
-                return not context.in_treesitter_capture("comment") and
-                           not context.in_syntax_group("Comment")
-            end
+        if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+        elseif tele_prompt then
+            return false
         else
-            return vim.g.cmptoggle
+            return not context.in_treesitter_capture("comment") and
+                       not context.in_syntax_group("Comment")
         end
     end,
-    complettion = {autocomplete = false},
+    completion = {autocomplete = false},
     formatting = {
         fields = {"kind", "abbr", "menu"},
         format = function(entry, vim_item)
@@ -326,14 +323,6 @@ cmp.setup({
                 maxwidth = 40, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                 maxheight = 40,
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                menu = ({
-                    buffer = "[BUFF]",
-                    nvim_lsp = "[LSP]",
-                    luasnip = "[SNIP]",
-                    path = "[PATH]",
-                    nvim_lua = "[LUA]",
-                    cmdline = "[CMD]"
-                })
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", {trimempty = true})
             kind.kind = " " .. (strings[1] or "") .. " "
@@ -383,7 +372,7 @@ require("lspsaga").setup({
         code_action = "💡",
         incoming = " ",
         outgoing = " ",
-        hover = 'σ`∀´)σ ',
+        hover = '  ',
         kind = {}
     },
     beacon = {enable = true, frequency = 20},
@@ -462,7 +451,7 @@ require("lspsaga").setup({
         virtual_text = true
     },
     symbol_in_winbar = {
-        enable = false,
+        enable = true,
         separator = " 〉",
         ignore_patterns = {},
         hide_keyword = true,
@@ -475,16 +464,17 @@ require("lspsaga").setup({
 })
 
 -- lsp saga
-local keymap = vim.keymap.set
+local keymap = vim.api.nvim_set_keymap
+local default_opts = {noremap = true, silent = true}
 
 -- LSP finder - Find the symbol's definition
 -- If there is no definition, it will instead be hidden
 -- When you use an action in finder like "open vsplit",
 -- you can use <C-t> to jump back
-keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
+keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
 
 -- Code action
-keymap({"n", "v"}, "ga", "<cmd>Lspsaga code_action<CR>")
+keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
 
 -- Rename all occurrences of the hovered word for the entire file
 -- keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
@@ -497,7 +487,7 @@ keymap({"n", "v"}, "ga", "<cmd>Lspsaga code_action<CR>")
 -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
 -- It also supports tagstack
 -- Use <C-t> to jump back
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", default_opts)
 
 -- Go to definition
 -- keymap("n","gd", "<cmd>Lspsaga goto_definition<CR>")
@@ -507,7 +497,7 @@ keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
 -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
 -- It also supports tagstack
 -- Use <C-t> to jump back
-keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", default_opts)
 
 -- Go to type definition
 -- keymap("n","gt", "<cmd>Lspsaga goto_type_definition<CR>")
@@ -515,7 +505,7 @@ keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 -- Show line diagnostics
 -- You can pass argument ++unfocus to
 -- unfocus the show_line_diagnostics floating window
-keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", default_opts)
 
 -- Show cursor diagnostics
 -- Like show_line_diagnostics, it supports passing the ++unfocus argument
@@ -527,8 +517,8 @@ keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>")
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
-keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", default_opts)
+keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", default_opts)
 
 -- Diagnostic jump with filters such as only jumping to an error
 -- keymap("n", "[E", function()
@@ -539,7 +529,7 @@ keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 -- end)
 
 -- Toggle outline
-keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>", default_opts)
 
 -- Hover Doc
 -- If there is no hover doc,
@@ -547,7 +537,7 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
 -- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", default_opts)
 
 -- If you want to keep the hover window in the top right hand corner,
 -- you can pass the ++keep argument
@@ -557,10 +547,8 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 -- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
 
 -- Call hierarchy
--- keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>")
--- keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>")
+keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>", default_opts)
+keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>", default_opts)
 
 -- Floating terminal
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-keymap("n", "<leader>tc", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>",
-       {desc = "toggle nvim-cmp"})
