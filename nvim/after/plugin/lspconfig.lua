@@ -49,7 +49,7 @@ local on_attach = function(client, bufnr)
     local opts = {noremap = true, silent = false}
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     -- buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa',
                    '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -99,11 +99,10 @@ end
 
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(hover,
-                                          {max_width = 80, border = border}),
+                                          {border = border}),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
                                                       .signature_help, {
         border = border,
-        max_width = 80
     })
 }
 
@@ -515,7 +514,7 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>")
 -- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
--- keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
 -- If you want to keep the hover window in the top right hand corner,
 -- you can pass the ++keep argument
