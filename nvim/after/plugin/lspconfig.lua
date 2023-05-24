@@ -247,6 +247,7 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+
 cmp.setup({
     window = {
         completion = {border = border, scrollbar = false},
@@ -283,6 +284,15 @@ cmp.setup({
                     fallback()
                 end
             end, {'i', 's'}),
+        ['<C-e>'] = cmp.mapping(
+            function(fallback)
+                if cmp.visible() then
+                    cmp.close()
+                else
+                    cmp.complete()
+                end
+            end
+        ),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<CR>'] = cmp.mapping.confirm({select = false}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
