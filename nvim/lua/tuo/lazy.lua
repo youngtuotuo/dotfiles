@@ -156,9 +156,6 @@ local plugins = {
 }
 
 local opts = {
-    defaults = {
-        lazy = true,
-    },
     ui = {
         border = "single",
         icons = {
