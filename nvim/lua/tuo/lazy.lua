@@ -17,7 +17,11 @@ local plugins = {
     'nvim-lua/plenary.nvim',
 
     -- ui stuffs
-    "rebelot/kanagawa.nvim",
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+    },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
@@ -96,7 +100,10 @@ local plugins = {
         }
       end
     },
-    'lervag/vimtex',
+    {
+        'lervag/vimtex',
+        ft = {'tex'}
+    },
     'numToStr/Comment.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
@@ -149,6 +156,9 @@ local plugins = {
 }
 
 local opts = {
+    defaults = {
+        lazy = true,
+    },
     ui = {
         border = "single",
         icons = {
@@ -159,8 +169,8 @@ local opts = {
             init = "",
             import = "",
             keys = "",
-            lazy = "",
-            -- lazy = "󰒲",
+            -- lazy = "",
+            lazy = "󰒲 ",
             loaded = "●",
             not_loaded = "○",
             plugin = " ",
@@ -176,9 +186,6 @@ local opts = {
             },
         },
     },
-    checker = {
-        enabled = false,
-    }
 }
 
 require("lazy").setup(plugins, opts)
