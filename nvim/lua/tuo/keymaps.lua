@@ -30,7 +30,8 @@ elseif vim.fn.has("mac") == 1 then
 end
 local cmd = ""
 ---- deafult is python
-keymap("v", "<leader>p", ":w !" .. py .. " %<CR>", default_opts)
+keymap("n", "<leader>p", ":!" .. py .. "<CR>", default_opts)
+keymap("v", "<leader>p", ":w !" .. py .. "<CR>", default_opts)
 ---- detect file type to change command
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
     callback = function()
