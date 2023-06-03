@@ -12,13 +12,14 @@ require('kanagawa').setup({
     terminalColors = true,       -- define vim.g.terminal_color_{0,17}
     colors = {                   -- add/modify theme and palette colors
         palette = {
-            -- sumiInk0 = "#000000",
+            sumiInk0 = "#000000",
         },
         theme = { wave = {}, lotus = {}, dragon = {},
             all = {
                 ui = {
                     bg_gutter = "none",
-                    bg = "#16161D"
+                    -- bg = "#16161D"
+                    bg = "#000000"
                 },
             }
         },
