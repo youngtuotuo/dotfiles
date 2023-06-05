@@ -194,7 +194,7 @@ require('lsp-progress').setup({
     --                        `client_messages` array, or ignored if return nil.
     client_format = function(client_name, spinner, series_messages)
         return #series_messages > 0 and
-                   (client_name .. " " .. spinner .. " " ..  table.concat(series_messages, ", ")) or (client_name)
+                   (client_name .. " " .. spinner--[[  .. " " ..  table.concat(series_messages, ", ") ]]) or (client_name)
     end,
 
     -- Format (final) message.
