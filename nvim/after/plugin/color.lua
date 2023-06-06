@@ -242,16 +242,16 @@ local config = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {{'mode'}, {'%='}, 
-            {require('lsp-progress').progress},
-        },
-        lualine_x = {
             {
                 'filetype',
                 colored = true,
                 icon_only = true,
                 icon = {align = 'left'},
                 padding = {left = 0}
-            }, {'filename', path = 1}
+            }, {'filename', path = 1, align='left'},
+        },
+        lualine_x = {
+            {require('lsp-progress').progress},
         },
         lualine_y = {},
         lualine_z = {}
