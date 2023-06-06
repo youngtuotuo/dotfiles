@@ -50,6 +50,14 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
 
     -- productivity
+    {
+        'grepsuzette/vim-sum',
+        config = function()
+            vim.cmd [[
+                vmap <Leader>a <Plug>VimSumVisual
+            ]]
+        end
+    },
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
     {
@@ -186,7 +194,3 @@ local opts = {
 }
 
 require("lazy").setup(plugins, opts)
-
-
-
-
