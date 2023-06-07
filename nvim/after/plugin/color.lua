@@ -120,21 +120,17 @@ require("kanagawa").load("wave") -- wave, dragon, lotus
 
 require('lsp-progress').setup({
     -- Spinning icons.
-    -- spinner = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾", },
-    -- spinner = { "┤", "┘", "┴", "└", "├", "┌", "┬", "┐"},
-    spinner = {
-        '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'
-    },
+    spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
 
     -- Spinning update time in milliseconds.
-    spin_update_time = 200,
+    spin_update_time = 100,
 
     -- Last message cached decay time in milliseconds.
     --
     -- Message could be really fast(appear and disappear in an
     -- instant) that user cannot even see it, thus we cache the last message
     -- for a while for user view.
-    decay = 1000,
+    decay = 2000,
 
     -- User event name.
     event = "LspProgressStatusUpdated",
@@ -193,8 +189,9 @@ require('lsp-progress').setup({
     --                        be passed to function `format` as one of the
     --                        `client_messages` array, or ignored if return nil.
     client_format = function(client_name, spinner, series_messages)
-        return #series_messages > 0 and
-                   (client_name .. " " .. spinner--[[  .. " " ..  table.concat(series_messages, ", ") ]]) or (client_name)
+        return #series_messages > 0
+            and (client_name .. " " .. spinner)
+            or client_name
     end,
 
     -- Format (final) message.
@@ -206,8 +203,10 @@ require('lsp-progress').setup({
     -- @return                A nil|string|table value. The returned value will be
     --                        returned from `progress` API.
     format = function(client_messages)
-        return #client_messages > 0 and (table.concat(client_messages, " ")) or
-                   ""
+        local sign = " " -- nf-fa-gear \uf013
+        return #client_messages > 0
+                and (sign .. " " .. table.concat(client_messages, " "))
+            or sign
     end,
 
     --- Enable debug.
@@ -250,9 +249,7 @@ local config = {
                 padding = {left = 0}
             }, {'filename', path = 1, align='left'},
         },
-        lualine_x = {
-            {require('lsp-progress').progress},
-        },
+        lualine_x = {require('lsp-progress').progress},
         lualine_y = {},
         lualine_z = {}
     },
