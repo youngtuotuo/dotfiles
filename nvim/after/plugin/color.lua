@@ -130,7 +130,7 @@ require('lsp-progress').setup({
     -- Message could be really fast(appear and disappear in an
     -- instant) that user cannot even see it, thus we cache the last message
     -- for a while for user view.
-    decay = 2000,
+    decay = 1000,
 
     -- User event name.
     event = "LspProgressStatusUpdated",
@@ -190,8 +190,7 @@ require('lsp-progress').setup({
     --                        `client_messages` array, or ignored if return nil.
     client_format = function(client_name, spinner, series_messages)
         return #series_messages > 0
-            and (client_name .. " " .. spinner)
-            or client_name
+            and (spinner) or ""
     end,
 
     -- Format (final) message.
@@ -203,10 +202,7 @@ require('lsp-progress').setup({
     -- @return                A nil|string|table value. The returned value will be
     --                        returned from `progress` API.
     format = function(client_messages)
-        local sign = " " -- nf-fa-gear \uf013
-        return #client_messages > 0
-                and (sign .. " " .. table.concat(client_messages, " "))
-            or sign
+        return #client_messages > 0 and (table.concat(client_messages, "")) or ""
     end,
 
     --- Enable debug.
@@ -223,6 +219,11 @@ require('lsp-progress').setup({
     -- For *NIX: `~/.local/share/nvim/lsp-progress.log`.
     file_log_name = "lsp-progress.log"
 })
+
+local function LspName()
+    local name = vim.lsp.get_active_clients({bufnr=0})[1].name
+    return name
+end
 local auto = require('lualine.themes.auto')
 auto.normal.c.bg = 'none'
 local config = {
@@ -240,16 +241,21 @@ local config = {
     sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {{'mode'}, {'%='}, 
+        lualine_c = {
+            {'mode'}, {'%='}, 
             {
                 'filetype',
                 colored = true,
                 icon_only = true,
-                icon = {align = 'left'},
+                icon = {align = 'right'},
                 padding = {left = 0}
-            }, {'filename', path = 1, align='left'},
+            },
+            {'filename', path = 1, align='left'},
         },
-        lualine_x = {require('lsp-progress').progress},
+        lualine_x = {
+            {require('lsp-progress').progress, align='right'},
+            {LspName, align='right', padding = { right = 0 }},
+        },
         lualine_y = {},
         lualine_z = {}
     },
@@ -261,10 +267,6 @@ local config = {
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {}
 }
 
 require('lualine').setup(config)

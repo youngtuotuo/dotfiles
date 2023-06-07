@@ -31,9 +31,6 @@ local plugins = {
     {
         'linrongbin16/lsp-progress.nvim',
         event = { 'VimEnter' },
-        config = function()
-            require('lsp-progress').setup()
-        end
     },
     'lukas-reineke/indent-blankline.nvim',
     'lewis6991/gitsigns.nvim',
