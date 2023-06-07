@@ -63,8 +63,8 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap('n', '<space>oc', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
     -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     -- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
 require("neodev").setup({})
@@ -187,7 +187,7 @@ require("mason-lspconfig").setup_handlers({
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            ignore = {'W391'},
+                            ignore = {'W391', 'W503'},
                             maxLineLength = 100
                         },
                         autopep8 = {
@@ -570,8 +570,8 @@ keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", default_opts)
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
--- keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", default_opts)
--- keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", default_opts)
+keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", default_opts)
+keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", default_opts)
 
 -- Diagnostic jump with filters such as only jumping to an error
 -- keymap("n", "[E", function()
