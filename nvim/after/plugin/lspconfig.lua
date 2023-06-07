@@ -73,7 +73,7 @@ require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
 local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright", "yamlls"
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", --[[ "pyright", ]] "pylsp", "yamlls"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
@@ -135,8 +135,47 @@ require("mason-lspconfig").setup_handlers({
             }
         }
     end,
-    ["pyright"] = function()
-        lspconfig.pyright.setup {
+    -- ["pyright"] = function()
+    --     lspconfig.pyright.setup {
+    --         on_attach = on_attach,
+    --         handlers = handlers,
+    --         capabilities = capabilities,
+    --         root_dir = util.root_pattern(unpack({
+    --             'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
+    --             'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
+    --         })),
+    --         settings = {
+    --             pyright = {
+    --                 -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
+    --                 disableOrganizeImports = false
+    --             },
+    --             python = {
+    --                 analysis = {
+    --                     -- Level of logging for Output panel. The default value for this option is "Information".
+    --                     -- ["Error", "Warning", "Information", or "Trace"]
+    --                     logLevel = "Information",
+    --                     -- Determines whether pyright offers auto-import completions.
+    --                     autoImportCompletions = true,
+    --                     -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
+    --                     autoSearchPaths = true,
+    --                     -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
+    --                     -- ["openFilesOnly", "workspace"]
+    --                     diagnosticMode = "workspace",
+    --                     -- Path to directory containing custom type stub files.
+    --                     -- stubPath = {},
+    --                     -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
+    --                     -- ["off", "basic", "strict"]
+    --                     typeCheckingMode = "off",
+    --                     -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
+    --                     useLibraryCodeForTypes = false
+    --                 }
+    --             }
+    --         }
+    --     }
+    -- end,
+    ['pylsp'] = function()
+        lspconfig.pylsp.setup {
+            cmd = {'pylsp'},
             on_attach = on_attach,
             handlers = handlers,
             capabilities = capabilities,
@@ -145,29 +184,24 @@ require("mason-lspconfig").setup_handlers({
                 'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
             })),
             settings = {
-                pyright = {
-                    -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
-                    disableOrganizeImports = false
-                },
-                python = {
-                    analysis = {
-                        -- Level of logging for Output panel. The default value for this option is "Information".
-                        -- ["Error", "Warning", "Information", or "Trace"]
-                        logLevel = "Information",
-                        -- Determines whether pyright offers auto-import completions.
-                        autoImportCompletions = true,
-                        -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
-                        autoSearchPaths = true,
-                        -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
-                        -- ["openFilesOnly", "workspace"]
-                        diagnosticMode = "workspace",
-                        -- Path to directory containing custom type stub files.
-                        -- stubPath = {},
-                        -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
-                        -- ["off", "basic", "strict"]
-                        typeCheckingMode = "off",
-                        -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                        useLibraryCodeForTypes = false
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            ignore = {'W391'},
+                            maxLineLength = 100
+                        },
+                        autopep8 = {
+                            enabled = false,
+                        },
+                        yapf = {
+                            enabled = false,
+                        },
+                        mccabe = {
+                            enabled = false,
+                        },
+                        rope_autoimport = {
+                            enabled = true,
+                        }
                     }
                 }
             }

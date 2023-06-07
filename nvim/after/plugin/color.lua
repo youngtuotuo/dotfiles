@@ -127,7 +127,7 @@ require('lsp-progress').setup({
     },
 
     -- Spinning update time in milliseconds.
-    spin_update_time = 100,
+    spin_update_time = 200,
 
     -- Last message cached decay time in milliseconds.
     --
