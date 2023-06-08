@@ -187,7 +187,7 @@ require("mason-lspconfig").setup_handlers({
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            ignore = {'W391', 'W503'},
+                            ignore = {'W391', 'W503', 'E501',},
                             maxLineLength = 100
                         },
                         autopep8 = {
