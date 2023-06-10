@@ -30,7 +30,7 @@ require("nvim-tree").setup({
     },
     filters = {
         dotfiles = false,
-        custom = { '/mnt' }
+        custom = { 'mnt' }
     },
     view = {
         width = function()
