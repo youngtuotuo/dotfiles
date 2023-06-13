@@ -1,4 +1,4 @@
-local WIDTH_RATIO = 0.25   -- You can change this too
+local WIDTH_RATIO = 0.2   -- You can change this too
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     renderer = {
@@ -36,7 +36,7 @@ require("nvim-tree").setup({
         width = function()
           return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
         end,
-        preserve_window_proportions = true,
+        preserve_window_proportions = false,
     },
     diagnostics = {
         enable = false,
