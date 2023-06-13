@@ -73,7 +73,7 @@ require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
 local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", --[[ "pyright", ]] "pylsp", "yamlls"
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", --[[ "pyright", ]] "pylsp", "yamlls", "gopls"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
@@ -187,6 +187,7 @@ require("mason-lspconfig").setup_handlers({
                 pylsp = {
                     plugins = {
                         pycodestyle = {
+                            enabled = false,
                             ignore = {'W391'},
                             maxLineLength = 100
                         },
