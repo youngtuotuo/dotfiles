@@ -191,6 +191,9 @@ require("mason-lspconfig").setup_handlers({
                             ignore = {'W391'},
                             maxLineLength = 100
                         },
+                        pyflakes = {
+                            enabled = false,
+                        },
                         autopep8 = {
                             enabled = false,
                         },
