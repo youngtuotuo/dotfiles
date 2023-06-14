@@ -73,7 +73,7 @@ require("mason").setup({ui = {border = border}})
 
 -- Ensure the servers above are installed
 local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", --[[ "pyright", ]] "pylsp", "yamlls", "gopls"
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright", "yamlls", "gopls"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
@@ -168,54 +168,6 @@ require("mason-lspconfig").setup_handlers({
                         typeCheckingMode = "off",
                         -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
                         useLibraryCodeForTypes = false
-                    }
-                }
-            }
-        }
-    end,
-    ['pylsp'] = function()
-        lspconfig.pylsp.setup {
-            cmd = {'pylsp'},
-            on_attach = on_attach,
-            handlers = handlers,
-            capabilities = capabilities,
-            root_dir = util.root_pattern(unpack({
-                'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
-                'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
-            })),
-            settings = {
-                pylsp = {
-                    plugins = {
-                        pycodestyle = {
-                            enabled = false,
-                            ignore = {'W391'},
-                            maxLineLength = 100
-                        },
-                        pyflakes = {
-                            enabled = false,
-                        },
-                        autopep8 = {
-                            enabled = false,
-                        },
-                        yapf = {
-                            enabled = false,
-                        },
-                        mccabe = {
-                            enabled = false,
-                        },
-                        rope_autoimport = {
-                            enabled = false,
-                        },
-                        jedi = {
-                            auto_import_modules = {
-                                "numpy", "pytorch", "matplotlib", "pandas"
-                            },
-                        },
-                        jedi_completion = {
-                            cache_for = {
-                                "numpy", "pytorch", "matplotlib", "pandas"
-                            }
-                        }
                     }
                 }
             }
