@@ -165,9 +165,9 @@ require("mason-lspconfig").setup_handlers({
                         -- stubPath = {},
                         -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
                         -- ["off", "basic", "strict"]
-                        typeCheckingMode = "off",
+                        typeCheckingMode = "basic",
                         -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-                        useLibraryCodeForTypes = false
+                        useLibraryCodeForTypes = true
                     }
                 }
             }
