@@ -47,8 +47,8 @@ local on_attach = function(client, bufnr)
     local opts = {noremap = true, silent = false}
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    -- buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa',
                    '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr',
@@ -62,7 +62,7 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap('n', '<space>ic', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
     -- buf_set_keymap('n', '<space>oc', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
     -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    -- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
@@ -96,12 +96,30 @@ local hover = function(_, result, ctx, config)
 end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover, {border = border}),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border, })
+    ["textDocument/hover"] = vim.lsp.with(hover, {border = border, title="Hover", max_width=80}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border, title="Signature", max_width=80})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+local diag_config = {
+    virtual_text = false,
+    signs = true,
+    underline = false,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        source = "if_many",
+        title = " σ`∀´)σ ",
+        border = border,
+        max_width = 80,
+    },
+    source = true
+}
+
+vim.diagnostic.config(diag_config)
 
 require("mason-lspconfig").setup_handlers({
     -- The first entry (without a key) will be the default handler
@@ -220,24 +238,6 @@ local signs = {
 for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""})
 end
-
--- diagnostic after each line
-local diag_config = {
-    virtual_text = false,
-    signs = true,
-    underline = false,
-    update_in_insert = false,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        source = "always",
-        header = "σ`∀´)σ",
-        border = border
-    },
-    source = true
-}
-
-vim.diagnostic.config(diag_config)
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -426,9 +426,9 @@ require("lspsaga").setup({
         show_code_action = true,
         show_source = true,
         jump_num_shortcut = true,
-        max_width = 0.7,
+        max_width = 80,
         max_height = 0.6,
-        max_show_width = 0.9,
+        max_show_width = 80,
         max_show_height = 0.6,
         text_hl_follow = true,
         border_follow = true,
@@ -514,7 +514,7 @@ keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", default_opts)
 -- Show line diagnostics
 -- You can pass argument ++unfocus to
 -- unfocus the show_line_diagnostics floating window
-keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", default_opts)
+-- keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", default_opts)
 
 -- Show cursor diagnostics
 -- Like show_line_diagnostics, it supports passing the ++unfocus argument
@@ -546,7 +546,7 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>", default_opts)
 -- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", default_opts)
+-- keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", default_opts)
 
 -- If you want to keep the hover window in the top right hand corner,
 -- you can pass the ++keep argument
