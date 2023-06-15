@@ -8,6 +8,9 @@ This repo includes:
 <p align="center">
     <img src="pictures/mac.png"/>
 </p>
+<p align="center">
+    <img src="pictures/win.png"/>
+</p>
 
 
 
@@ -54,6 +57,8 @@ mkdir ~/github
 git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
 ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
+Pyright Related Configuration
+[Configuration](https://github.com/microsoft/pyright/blob/main/docs/configuration.md)
 
 ## Latex Compiler
 
@@ -93,3 +98,6 @@ git clone https://github.com/novnc/noVNC ~/github/noVNC
 pip install numpy
 ./utils/novnc_proxy --vnc <host>:5902
 ```
+
+## Easy Install Tools
+RayCast, OpenVPN Client, Stats, AltTab, Rectangle

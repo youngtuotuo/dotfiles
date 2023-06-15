@@ -2,5 +2,6 @@
     "exclude": [
         "**/__pycache__",
         "mnt/*"
-    ]
+    ],
+    "reportGeneralTypeIssues": "warning"
 }
