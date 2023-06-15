@@ -47,4 +47,11 @@ vim.api.nvim_create_autocmd("BufEnter", {callback = function() vim.opt.formatopt
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "html,c,cpp",
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+    end
+})
 
