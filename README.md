@@ -1,98 +1,22 @@
-# Dotfiles (WIP)
+# Dotfiles
+
 This repo includes:
 * Tools I use for data science development in ubuntu/mac/windows.
 * Tools config files.
 * Url or Installation scripts that hard to find by simply google once.
 
-<details>
-    <summary><font size="4"><b>Folder Structure</b></font></summary>
-
-```
-├── alacritty/                  # alacritty config file
-│   └── alacritty.yml
-├── cv2/                        # .pyi file for cv2's auto-suggestions
-│   └── __init__.pyi
-├── nushell/                    # nusehll config files
-│   ├── config.nu
-│   └── env.nu
-├── nvim/                       # neovim config files
-│   ├── after/                       # auto-loaded plugin config 
-│   │   └── plugin/
-│   │       ├── color.lua           
-│   │       ├── comment.lua
-│   │       ├── gitsigns.lua
-│   │       ├── impatient.lua
-│   │       ├── indent-blankline.lua
-│   │       ├── lspconfig.lua
-│   │       ├── markdownpreview.lua
-│   │       ├── nvim-devicons.lua
-│   │       ├── nvimtree.lua
-│   │       ├── stabilize.lua
-│   │       ├── telescope.lua
-│   │       ├── todo.lua
-│   │       ├── treesitter.lua
-│   │       └── vim-tex.lua
-│   ├── after/                  # files loaded by init.lua
-│   │   └── tuo/
-│   └── init.lua                # require('tuo')
-├── pictures/                    
-├── .bashrc
-├── .gitconfig
-├── .gitignore
-├── .luarc.json
-├── .tmux.conf
-├── .vimrc
-├── .zshrc
-├── config.fish
-├── user_profile.ps1
-└── xstartup
-```
-</details>
-
-
-# Mac/Ubuntu
 <p align="center">
     <img src="pictures/mac.png"/>
 </p>
 
 
-## Gnome-Tweaks and Dconf-Editor
 
-```bash
-# Use `Tweaks` app to change caps to ctrl.
-sudo apt install gnome-tweaks -y
-# Use `dconf-editor` to change click app action be 'minimize-and-preview'. (org/gnome/shell/extensions/dash-to-dock/click-action)
-sudo apt install dconf-editor -y
-# (Optional) Disable laptop keybard
-xinput disable "AT Translated Set 2 keyboard"
-```
-
-
-## Clipboard Indicator
-
-Ubuntu
-
-[https://extensions.gnome.org/extension/779/clipboard-indicator/](https://extensions.gnome.org/extension/779/clipboard-indicator/)
-
-Mac
-
-[https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
-
-## Fira Code Nerd Font
+[Clipboard Inidicator](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12) Easily get copy history.
     
-[https://github.com/ryanoasis/nerd-fonts/releases](https://github.com/ryanoasis/nerd-fonts/releases)
+[Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases) Icon disaply for neovim.
 
-## Git-Credential-Manager
 
-[https://github.com/GitCredentialManager/git-credential-manager/releases](https://github.com/GitCredentialManager/git-credential-manager/releases)
-```bash
-sudo dpkg -i <path-to-package>
-git-credential-manager configure
-```
-
-## Cuda
-
-[https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)<br>
+[Cuda Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) No cuda, no machine learning.
 
 ```bash
 sudo apt-get install linux-headers-$(uname -r)
@@ -123,41 +47,18 @@ Mac (homebrew)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install --HEAD neovim
 ```
+Install Config for Neovim
   
-Both
 ```bash
-# Install Plugin Manager
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# Install Configuration
+mkdir ~/github
 git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
 ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
-
-# Run the following command to install LSP, formatter, etc.
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 ```
-#### Neovim Shortcut
-1. Select python code and press `\p` -> execute the selected codes
-2. Press `\p`  -> execute current file
-    - Currently support python, c, cpp
-
 
 ## Latex Compiler
 
 ```bash
 sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
-```
-
-## Okular PDF viewer for VimTex
-
-[https://binary-factory.kde.org/job/Okular_Release_macos/](https://binary-factory.kde.org/job/Okular_Release_macos/)
-
-
-## Rust (cargo, rustup)
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
 ```
 
 ## Solve cv2 typing issue with Pyright
@@ -168,31 +69,27 @@ cd ~/github/dotfiles
 cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 
-## RayCast, noVNC, tigerVNC, OpenVPN Connect, VLC, Stats, AltTab, Rectangle, Tmux
+## tigerVNC
 
-    TBD
-
-#### Tmux Shortcut
-1. `<c-\>>` move current window right
-2. `<c-\><` move current window right
-3. `<c-\>\` horizontal split
-3. `<c-\>|` vertical split
-
-# Windows
-<p align="center">
-    <img src="pictures/win.png"/>
-</p>
-
-## Scoop
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
-irm get.scoop.sh | iex
+```bash
+sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
+# setup password
+vncserver :2
+vncserver -kill :2
+sudo cp ~/github/dotfiles/xstartup ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
+```
+Useful vnc commands
+```bash
+vncserver -list
+vncserver -kill
+vncserver -localhost no -geometry 1920x1080
 ```
 
-## Neovim
+## noVNC
 
-```powershell
-# TODO: Other commands
-scoop install neovim
+```bash
+git clone https://github.com/novnc/noVNC ~/github/noVNC
+pip install numpy
+./utils/novnc_proxy --vnc <host>:5902
 ```

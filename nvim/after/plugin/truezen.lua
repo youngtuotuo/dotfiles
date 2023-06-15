@@ -16,7 +16,10 @@ require('true-zen').setup {
             },
             callbacks = { -- run functions when opening/closing Ataraxis mode
                 open_pre = nil,
-                open_pos = nil,
+                open_pos = function()
+                    vim.api.nvim_set_hl(0, "WinBar", { fg='#c8c093' })
+                    vim.api.nvim_set_hl(0, "WinBarNC", { fg='#c8c093' })
+                end,
                 close_pre = nil,
                 close_pos = nil
             },
@@ -52,7 +55,10 @@ require('true-zen').setup {
             run_ataraxis = true, -- display narrowed text in a Ataraxis session
             callbacks = { -- run functions when opening/closing Narrow mode
                 open_pre = nil,
-                open_pos = nil,
+                open_pos = function()
+                    vim.api.nvim_set_hl(0, "WinBar", { fg='#c8c093' })
+                    vim.api.nvim_set_hl(0, "WinBarNC", { fg='#c8c093' })
+                end,
                 close_pre = nil,
                 close_pos = nil
             },
