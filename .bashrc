@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# eval "$(oh-my-posh init bash --config ~/.poshthemes/material.omp.json)"
 
 # If not running interactively, don't do anything
 case $- in
@@ -92,7 +93,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -alh'
 alias vi='nvim'
-alias rsync='rsync -ravh --progress'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -118,7 +118,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=/usr/local/cuda-11.8/bin${PATH:+:${PATH}}
-export PATH=$PATH:/usr/local/go/bin
 
 . "$HOME/.cargo/env"
+export PATH=$PATH:/usr/local/go/bin
+export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export EDITOR=nvim
