@@ -313,7 +313,7 @@ cmp.setup({
                        not context.in_syntax_group("Comment")
         end
     end,
-    completion = {autocomplete = false},
+    -- completion = {autocomplete = true},
     formatting = {
         fields = {"kind", "abbr", "menu"},
         format = function(entry, vim_item)
