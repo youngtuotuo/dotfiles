@@ -96,8 +96,8 @@ local hover = function(_, result, ctx, config)
 end
 
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover, {border = border, title="Hover", max_width=80}),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border, title="Signature", max_width=80})
+    ["textDocument/hover"] = vim.lsp.with(hover, {border = border, title=" Hover ", max_width=80, zindex=500}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border, title=" Signature ", max_width=80})
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
