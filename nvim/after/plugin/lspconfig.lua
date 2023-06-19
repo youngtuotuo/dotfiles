@@ -580,3 +580,11 @@ keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>", default_opts)
 
 -- Floating terminal
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+
+require('nvim-custom-diagnostic-highlight').setup {
+    patterns_override = {
+        -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
+        '%sunused', '^unused', 'not used', 'never used',
+        'not read', 'never read', 'empty block', 'not accessed'
+    },
+}

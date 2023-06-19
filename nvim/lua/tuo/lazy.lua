@@ -28,26 +28,14 @@ local plugins = {
     'lewis6991/gitsigns.nvim',
     'nvim-tree/nvim-web-devicons',
     'luukvbaal/stabilize.nvim',
-    {
-        'norcalli/nvim-colorizer.lua',
-        config = function()
-            require('colorizer').setup()
-        end
-    },
+    'norcalli/nvim-colorizer.lua',
     "luukvbaal/statuscol.nvim",
     "dstein64/vim-startuptime",
     "nvim-tree/nvim-tree.lua",
     "Pocco81/true-zen.nvim",
 
     -- productivity
-    {
-        'grepsuzette/vim-sum',
-        config = function()
-            vim.cmd [[
-                vmap <Leader>a <Plug>VimSumVisual
-            ]]
-        end
-    },
+    'grepsuzette/vim-sum',
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
     {
@@ -57,25 +45,8 @@ local plugins = {
         }
     },
     'christoomey/vim-tmux-navigator',
-    {
-      "folke/twilight.nvim",
-      config = function()
-        require("twilight").setup {}
-      end
-    },
-    {
-      'Kasama/nvim-custom-diagnostic-highlight',
-      config = function()
-        require('nvim-custom-diagnostic-highlight').setup {
-            patterns_override = {
-            -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
-            '%sunused', '^unused', 'not used', 'never used',
-            'not read', 'never read', 'empty block', 'not accessed'
-          },
-
-        }
-      end
-    },
+    "folke/twilight.nvim",
+    'Kasama/nvim-custom-diagnostic-highlight',
 
 
     -- tool box
@@ -88,27 +59,13 @@ local plugins = {
         }
     },
     'lukas-reineke/cmp-under-comparator',
-    {
-      "folke/trouble.nvim",
-      config = function()
-        require("trouble").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
-    },
+    "folke/trouble.nvim",
     {
         'lervag/vimtex',
         ft = {'tex'}
     },
     'numToStr/Comment.nvim',
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = function()
-            pcall(require('nvim-treesitter.install').update {with_sync = true})
-        end
-    },
+    'nvim-treesitter/nvim-treesitter',
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
         dependencies = {'nvim-treesitter'}
