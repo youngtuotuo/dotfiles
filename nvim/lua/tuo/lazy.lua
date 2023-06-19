@@ -22,12 +22,7 @@ local plugins = {
         lazy = false,
         priority = 1000,
     },
-    {
-        'j-hui/fidget.nvim',
-        config = function()
-            require('fidget').setup()
-        end
-    },
+    'j-hui/fidget.nvim',
     'nvim-lualine/lualine.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'lewis6991/gitsigns.nvim',
