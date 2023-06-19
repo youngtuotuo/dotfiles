@@ -22,7 +22,10 @@ local plugins = {
         lazy = false,
         priority = 1000,
     },
-    'j-hui/fidget.nvim',
+    {
+        'j-hui/fidget.nvim',
+        tag='legacy',
+    },
     'nvim-lualine/lualine.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'lewis6991/gitsigns.nvim',
@@ -65,7 +68,12 @@ local plugins = {
         ft = {'tex'}
     },
     'numToStr/Comment.nvim',
-    'nvim-treesitter/nvim-treesitter',
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = function()
+            pcall(require('nvim-treesitter.install').update {with_sync = true})
+        end
+    },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
         dependencies = {'nvim-treesitter'}

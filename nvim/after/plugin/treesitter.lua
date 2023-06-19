@@ -1,4 +1,3 @@
-pcall(require('nvim-treesitter.install').update {with_sync = true})
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim", "rust", "go", "latex", "help", "regex",
