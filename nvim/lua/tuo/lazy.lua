@@ -23,15 +23,12 @@ local plugins = {
         priority = 1000,
     },
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = {
-            'linrongbin16/lsp-progress.nvim'
-        }
+        'j-hui/fidget.nvim',
+        config = function()
+            require('fidget').setup()
+        end
     },
-    {
-        'linrongbin16/lsp-progress.nvim',
-        event = { 'VimEnter' },
-    },
+    'nvim-lualine/lualine.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'lewis6991/gitsigns.nvim',
     'nvim-tree/nvim-web-devicons',

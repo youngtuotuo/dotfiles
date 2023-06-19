@@ -101,6 +101,7 @@ local handlers = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local diag_config = {
