@@ -3,7 +3,7 @@ require("nvim-treesitter.configs").setup({
         "markdown", "bash", "c", "cpp", "lua", "toml", "yaml", "python", "vim", "rust", "go", "latex", "help", "regex",
         "markdown_inline", "html"
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    indent = {enable = false},
+    indent = {enable = true},
     highlight = {
         enable = true, -- false will disable the whole extension
         disable = {"latex", "bash"}

@@ -1,4 +1,5 @@
 local options = {
+    autoindent = true,
     backspace = "indent,eol,start",
     backup = false,
     completeopt = "menuone,noinsert,noselect",
@@ -25,7 +26,7 @@ local options = {
     showmatch = true,
     showmode = false,
     smartcase = true,
-    smartindent = true,
+    smartindent = false,
     softtabstop = 4,
     splitbelow = true,
     splitright = true,
@@ -48,10 +49,10 @@ vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "html,c,cpp",
+    pattern = "html,c,cpp,yaml,json",
     callback = function()
         vim.opt_local.shiftwidth = 2
-        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
     end
 })
 
