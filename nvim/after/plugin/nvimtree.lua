@@ -1,4 +1,4 @@
-local WIDTH_RATIO = 0.1   -- You can change this too
+local WIDTH_RATIO = 0.13   -- You can change this too
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     renderer = {
