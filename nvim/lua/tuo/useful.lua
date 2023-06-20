@@ -4,6 +4,10 @@ P = function(v)
     return v
 end
 
--- local path_sep = "/"
--- -- :h has() for help
--- if vim.fn.has("win32") == 1 then path_sep = "\\" end
+-- "none": No border (default).
+-- "single": A single line box.
+-- "double": A double line box.
+-- "rounded": Like "single", but with rounded corners ("╭" etc.).
+-- "solid": Adds padding by a single whitespace cell.
+-- "shadow": A drop shadow effect by blending with the
+BORDER = 'single'

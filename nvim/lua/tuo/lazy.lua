@@ -120,7 +120,7 @@ local plugins = {
 
 local opts = {
     ui = {
-        border = "single",
+        border = BORDER,
         icons = {
             cmd = "",
             config = "",
