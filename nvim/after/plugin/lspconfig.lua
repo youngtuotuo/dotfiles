@@ -109,8 +109,7 @@ local hover = function(_, result, ctx, config)
         result.contents = s
         return vim.lsp.handlers.hover(_, result, ctx, config)
     else
-        local s =
-            string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
+        local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
         s = string.gsub(s, "\\\n", "\n")
         result.contents.value = s
         return vim.lsp.handlers.hover(_, result, ctx, config)
@@ -121,14 +120,14 @@ local handlers = {
     ["textDocument/hover"] = vim.lsp.with(hover, {
         border = BORDER,
         title = " Hover ",
-        max_width = 80,
+        max_width = 100,
         zindex = 500
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
                                                       .signature_help, {
         border = BORDER,
         title = " Signature ",
-        max_width = 80
+        max_width = 100
     })
 }
 
