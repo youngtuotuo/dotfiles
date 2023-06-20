@@ -205,7 +205,7 @@ require("mason-lspconfig").setup_handlers({
                         -- (Note: This setting used to be called "pyright.typeCheckingMode".
                         -- The old name is deprecated but is still currently honored.)
                         -- ["off", "basic", "strict"]
-                        typeCheckingMode = "basic",
+                        typeCheckingMode = "off",
                         -- Determines whether pyright reads, parses and analyzes library code
                         -- to extract type information in the absence of type stub files.
                         -- Type information will typically be incomplete.
