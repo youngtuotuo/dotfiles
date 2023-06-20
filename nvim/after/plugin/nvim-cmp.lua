@@ -132,15 +132,14 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'buffer'},
-        {name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
+        {name = 'luasnip',}, {name = 'nvim_lsp'}, {name = 'buffer'}},
+        {{name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
         {name = 'nvim_lsp_signature_help'}
     }),
     sorting = {
         comparators = {
-            cmp.config.compare.score, cmp.config.compare.offset,
-            cmp.config.compare.exact, require"cmp-under-comparator".under,
-            cmp.config.compare.kind, cmp.config.compare.sort_text,
+            cmp.config.compare.exact, cmp.config.compare.sort_text,
+            cmp.config.compare.score, cmp.config.compare.kind, cmp.config.compare.offset,
             cmp.config.compare.length, cmp.config.compare.order
         }
     },

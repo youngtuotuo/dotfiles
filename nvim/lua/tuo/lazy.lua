@@ -61,7 +61,6 @@ local plugins = {
           {"nvim-treesitter/nvim-treesitter"}
         }
     },
-    'lukas-reineke/cmp-under-comparator',
     "folke/trouble.nvim",
     {
         'lervag/vimtex',
