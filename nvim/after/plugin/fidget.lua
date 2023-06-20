@@ -1,3 +1,4 @@
+-- https://github.com/j-hui/fidget.nvim/blob/main/lua/fidget/spinners.lua
 require('fidget').setup({
     text = {
         spinner = "moon",         -- animation shown when tasks are ongoing
