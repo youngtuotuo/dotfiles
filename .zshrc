@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="awesomepanda"
+ZSH_THEME="bira"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,8 +74,8 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-NEWLINE=$'\n'
-PS1+="${NEWLINE}$ "
+# NEWLINE=$'\n'
+# PS1+="${NEWLINE}$ "
 
 # User configuration
 
@@ -107,8 +107,24 @@ alias cl="clear"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-fpath=(~/github/zsh-completions/src $fpath)
-path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
-export PATH
+# fpath=(~/github/zsh-completions/src $fpath)
+# path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
+# export PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
+# export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/support/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/support/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/support/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/support/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
