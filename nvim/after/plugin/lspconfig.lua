@@ -197,7 +197,7 @@ require("mason-lspconfig").setup_handlers({
                         -- files in the workspace, as indicated by the config file.
                         -- If this option is set to "openFilesOnly", pyright analyzes only open files.
                         -- ["openFilesOnly", "workspace"]
-                        diagnosticMode = "workspace",
+                        diagnosticMode = "openFilesOnly",
                         -- Path to directory containing custom type stub files.
                         -- stubPath = {},
                         -- Determines the default type-checking level used by pyright.
