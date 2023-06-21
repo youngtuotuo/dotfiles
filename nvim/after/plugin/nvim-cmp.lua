@@ -85,13 +85,11 @@ cmp.setup({
         fields = {"kind", "abbr", "menu"},
         format = function(entry, vim_item)
             local label = vim_item.abbr
-            local truncated_label = vim.fn
-                                        .strcharpart(label, 0, MAX_LABEL_WIDTH)
+            local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
             if truncated_label ~= label then
                 vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
             elseif string.len(label) < MIN_LABEL_WIDTH then
-                local padding = string.rep(' ',
-                                           MIN_LABEL_WIDTH - string.len(label))
+                local padding = string.rep(' ', MIN_LABEL_WIDTH - string.len(label))
                 vim_item.abbr = label .. padding
             end
             local menu = vim_item.menu
@@ -99,13 +97,11 @@ cmp.setup({
             if truncated_menu ~= menu then
                 vim_item.menu = truncated_menu .. ELLIPSIS_CHAR
             elseif string.len(menu) < MIN_LABEL_WIDTH then
-                local padding = string.rep(' ',
-                                           MIN_LABEL_WIDTH - string.len(menu))
+                local padding = string.rep(' ', MIN_LABEL_WIDTH - string.len(menu))
                 vim_item.menu = menu .. padding
             end
             if vim.tbl_contains({'path'}, entry.source.name) then
-                local icon, hl_group = require('nvim-web-devicons').get_icon(
-                                           entry:get_completion_item().label)
+                local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
                 if icon then
                     vim_item.kind = icon
                     vim_item.kind_hl_group = hl_group
@@ -126,8 +122,7 @@ cmp.setup({
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", {trimempty = true})
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "     (" .. (strings[2] or "") .. ")" .. " " ..
-                            (kind.menu or "")
+            kind.menu = "     (" .. (strings[2] or "") .. ")"--[[  .. " " .. (kind.menu or "") ]]
             return kind
         end
     },
