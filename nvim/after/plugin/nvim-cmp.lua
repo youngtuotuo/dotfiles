@@ -15,8 +15,8 @@ local has_words_before = function()
 end
 
 local ELLIPSIS_CHAR = '…'
-local MAX_LABEL_WIDTH = 10
-local MIN_LABEL_WIDTH = 10
+local MAX_LABEL_WIDTH = 20
+local MIN_LABEL_WIDTH = 20
 cmp.setup({
     -- completion = {autocomplete = true},
     window = {
