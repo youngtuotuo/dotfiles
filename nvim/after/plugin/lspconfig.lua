@@ -116,6 +116,49 @@ local hover = function(_, result, ctx, config)
     end
 end
 
+local function filter(arr, func)
+    -- Filter in place
+    -- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
+    local new_index = 1
+    local size_orig = #arr
+    for old_index, v in ipairs(arr) do
+        if func(v, old_index) then
+            arr[new_index] = v
+            new_index = new_index + 1
+        end
+    end
+    for i = new_index, size_orig do arr[i] = nil end
+end
+
+local function pyright_accessed_filter(diagnostic)
+    -- Allow kwargs to be unused, sometimes you want many functions to take the
+    -- same arguments but you don't use all the arguments in all the functions,
+    -- so kwargs is used to suck up all the extras
+    if diagnostic.message == '"kwargs" is not accessed' then
+    	return false
+    elseif diagnostic.message == '"args" is not accessed' then
+        return false
+    end
+    --
+    -- Allow variables starting with an underscore
+    -- if string.match(diagnostic.message, '"_.+" is not accessed') then
+    -- 	return false
+    -- end
+
+
+    -- For all messages "is not accessed"
+    -- if string.match(diagnostic.message, '".+" is not accessed') then
+    --     return false
+    -- end
+
+    return true
+end
+
+local function custom_on_publish_diagnostics(a, params, client_id, c, config)
+    filter(params.diagnostics, pyright_accessed_filter)
+    vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+end
+
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(hover, {
         border = BORDER,
@@ -123,12 +166,14 @@ local handlers = {
         max_width = 100,
         zindex = 500
     }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
-                                                      .signature_help, {
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = BORDER,
         title = " Signature ",
         max_width = 100
-    })
+    }),
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        custom_on_publish_diagnostics, {}
+    )
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
