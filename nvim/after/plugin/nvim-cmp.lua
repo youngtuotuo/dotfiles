@@ -63,7 +63,8 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        -- ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<C-j>'] = cmp.mapping.confirm({select = false}),
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "s"}),
         ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s"})
     }),
@@ -127,7 +128,7 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'luasnip',}, {name = 'nvim_lsp'}, {name = 'buffer'}},
+        {name = 'nvim_lsp'}, {name = 'luasnip',}, {name = 'buffer'}},
         {{name = 'path', keyword_length = 3}, {name = 'nvim_lua'},
         {name = 'nvim_lsp_signature_help'}
     }),
