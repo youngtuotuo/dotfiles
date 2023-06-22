@@ -11,7 +11,10 @@ require('kanagawa').setup({
     dimInactive = false, -- dim inactive window `:h hl-NormalNC`
     terminalColors = true, -- define vim.g.terminal_color_{0,17}
     colors = { -- add/modify theme and palette colors
-        palette = {sumiInk0 = "#000000"},
+        palette = {
+            -- sumiInk0 = "#000000"
+            sumiInk0 = "NONE"
+        },
         theme = {
             wave = {},
             lotus = {},
@@ -20,7 +23,8 @@ require('kanagawa').setup({
                 ui = {
                     bg_gutter = "none",
                     -- bg = "#16161D"
-                    bg = "#000000"
+                    -- bg = "#000000"
+                    bg = "NONE"
                 }
             }
         }
