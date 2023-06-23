@@ -33,9 +33,9 @@ require('kanagawa').setup({
         local theme = colors.theme
         return {
             CmpCompletionBorder = {bg = colors.palette.sumiInk0},
-            CmpItemAbbrDeprecated = {fg = "#7E8294", bg = colors.palette.sumiInk0, strikethrough = true},
-            CmpItemAbbrMatch = {fg = "#82AAFF", bg = colors.palette.sumiInk0, bold = true},
-            CmpItemAbbrMatchFuzzy = {fg = "#82AAFF", bg = colors.palette.sumiInk0, bold = true},
+            CmpItemAbbrDeprecated = {fg = "#808080", bg = colors.palette.sumiInk0, strikethrough = true},
+            CmpItemAbbrMatch = {fg = "#569CD6", bg = colors.palette.sumiInk0, bold = true},
+            CmpItemAbbrMatchFuzzy = {link = 'CmpItemAbbrMatch'},
             CmpItemKindClass = {fg = "#A377BF", bg = colors.palette.sumiInk0},
             CmpItemKindColor = {fg = "#58B5A8", bg = colors.palette.sumiInk0},
             CmpItemKindConstant = {fg = "#D4BB6C", bg = colors.palette.sumiInk0},
@@ -46,21 +46,27 @@ require('kanagawa').setup({
             CmpItemKindField = {fg = "#B5585F", bg = colors.palette.sumiInk0},
             CmpItemKindFile = {fg = "#7E8294", bg = colors.palette.sumiInk0},
             CmpItemKindFolder = {fg = "#D4A959", bg = colors.palette.sumiInk0},
-            CmpItemKindFunction = {fg = "#A377BF", bg = colors.palette.sumiInk0},
-            CmpItemKindInterface = {fg = "#58B5A8", bg = colors.palette.sumiInk0},
-            CmpItemKindKeyword = {fg = "#9FBD73", bg = colors.palette.sumiInk0},
-            CmpItemKindMethod = {fg = "#6C8ED4", bg = colors.palette.sumiInk0},
+            ---
+            CmpItemKindFunction = {fg = "#C586C0", bg = colors.palette.sumiInk0},
+            CmpItemKindMethod = {link='CmpItemKindFunction'},
+            ---
             CmpItemKindModule = {fg = "#A377BF", bg = colors.palette.sumiInk0},
             CmpItemKindOperator = {fg = "#A377BF", bg = colors.palette.sumiInk0},
-            CmpItemKindProperty = {fg = "#B5585F", bg = colors.palette.sumiInk0},
+            ---
+            CmpItemKindKeyword = {fg = "#D4D4D4", bg = colors.palette.sumiInk0},
+            CmpItemKindProperty = {link='CmpItemKindKeyword'},
+            CmpItemKindUnit = {link='CmpItemKindKeyword'},
+            ---
             CmpItemKindReference = {fg = "#D4BB6C", bg = colors.palette.sumiInk0},
             CmpItemKindSnippet = {fg = "#D4A959", bg = colors.palette.sumiInk0},
             CmpItemKindStruct = {fg = "#A377BF", bg = colors.palette.sumiInk0},
-            CmpItemKindText = {fg = "#9FBD73", bg = colors.palette.sumiInk0},
             CmpItemKindTypeParameter = {fg = "#58B5A8", bg = colors.palette.sumiInk0},
-            CmpItemKindUnit = {fg = "#D4A959", bg = colors.palette.sumiInk0},
             CmpItemKindValue = {fg = "#6C8ED4", bg = colors.palette.sumiInk0},
-            CmpItemKindVariable = {fg = "#7E8294", bg = colors.palette.sumiInk0},
+            ---
+            CmpItemKindVariable = {fg = "#9CDCFE", bg = colors.palette.sumiInk0},
+            CmpItemKindInterface = {link='CmpItemKindVariable'},
+            CmpItemKindText = {link='CmpItemKindVariable'},
+            ---
             CmpItemMenu = {fg = "#C792EA", bg = colors.palette.sumiInk0, italic = true},
             Conceal = {fg = "#455574", bg = colors.palette.sumiInk0, nocombine = true},
             DiagnosticShowBorder = {link = "SagaBorder"},
