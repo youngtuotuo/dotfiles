@@ -35,12 +35,6 @@ local plugins = {
     "luukvbaal/statuscol.nvim",
     "dstein64/vim-startuptime",
     "nvim-tree/nvim-tree.lua",
-    {
-        'stevearc/oil.nvim',
-        opts = {},
-        -- Optional dependencies
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
     "Pocco81/true-zen.nvim",
 
     -- productivity
