@@ -64,7 +64,7 @@ cmp.setup({
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         -- ['<CR>'] = cmp.mapping.confirm({select = false}),
-        ['<C-j>'] = cmp.mapping.confirm({select = false}),
+        ['<C-k>'] = cmp.mapping.confirm({select = false}),
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "s"}),
         ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s"})
     }),
@@ -83,7 +83,7 @@ cmp.setup({
         end
     end,
     formatting = {
-        fields = {"kind", "abbr", "menu"},
+        fields = {"abbr", "menu", "kind"},
         format = function(entry, vim_item)
             local label = vim_item.abbr
             local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
@@ -122,8 +122,8 @@ cmp.setup({
                 ellipsis_char = '...'
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", {trimempty = true})
+            kind.menu = ""
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "     (" .. (strings[2] or "") .. ")"--[[  .. " " .. (kind.menu or "") ]]
             return kind
         end
     },
@@ -150,6 +150,7 @@ cmp.setup.cmdline({'/', '?'}, {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({{name = 'path'}},
-                                 {{name = 'cmdline', keyword_length = 2}})
+    sources = cmp.config.sources({
+        {name = 'cmdline', keyword_length = 2}
+    })
 })

@@ -35,7 +35,8 @@ local plugins = {
     "luukvbaal/statuscol.nvim",
     "dstein64/vim-startuptime",
     "nvim-tree/nvim-tree.lua",
-    "Pocco81/true-zen.nvim",
+    -- "Pocco81/true-zen.nvim",
+    "folke/zen-mode.nvim",
 
     -- productivity
     'grepsuzette/vim-sum',
