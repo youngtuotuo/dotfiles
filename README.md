@@ -13,13 +13,17 @@ This repo includes:
 </p>
 
 
+# Easy Install Tools
+Tools listed here can be found by goolge once.<br>
+Fira Code Nerd Font, Clipboard Inidicator, RayCast, OpenVPN Client, Stats, AltTab, Rectangle, Zsh, zsh-autosuggestions, miniconda
 
-[Clipboard Inidicator](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12) Easily get copy history.
-    
-[Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases) Icon disaply for neovim.
-
-
-[Cuda Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) No cuda, no machine learning.
+# Other Configs
+## Miniconda disalbe prompt
+```bash
+conda config --system --set env_prompt ""
+```
+## Cuda
+[reference](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 
 ```bash
 sudo apt-get install linux-headers-$(uname -r)
@@ -98,6 +102,3 @@ git clone https://github.com/novnc/noVNC ~/github/noVNC
 pip install numpy
 ./utils/novnc_proxy --vnc <host>:5902
 ```
-
-## Easy Install Tools
-RayCast, OpenVPN Client, Stats, AltTab, Rectangle

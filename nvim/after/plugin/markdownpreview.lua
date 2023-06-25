@@ -6,7 +6,7 @@ vim.g.mkdp_auto_start = 0
 --  set to 1, the nvim will auto close current preview window when change
 --  from markdown buffer to another buffer
 --  default: 1
-vim.g.mkdp_auto_close = 1
+vim.g.mkdp_auto_close = 0
 
 --  set to 1, the vim will refresh markdown when save the buffer or
 --  leave from insert mode, default 0 is auto refresh markdown as you edit or
@@ -32,7 +32,7 @@ vim.g.mkdp_open_ip = '127.0.0.1'
 
 --  specify browser to open preview page
 --  default: ''
-vim.g.mkdp_browser = ''
+vim.g.mkdp_browser = 'none'
 
 --  set to 1, echo preview page url in command line when open preview page
 --  default is 0
