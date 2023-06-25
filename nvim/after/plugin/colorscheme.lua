@@ -92,7 +92,7 @@ require('kanagawa').setup({
             TelescopePreviewNormal = {bg = colors.palette.sumiInk0},
             TelescopePromptBorder = {fg = theme.ui.bg_p1, bg = colors.palette.sumiInk0},
             TelescopePromptNormal = {bg = colors.palette.sumiInk0},
-            TelescopeResultsBorder = {fg = theme.ui.bg_m1, bg = colors.palette.sumiInk0},
+            TelescopeResultsBorder = {fg = theme.ui.bg_p1, bg = colors.palette.sumiInk0},
             TelescopeResultsNormal = {fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0},
             TelescopeTitle = {fg = theme.ui.special, bold = true},
             VertSplit = {fg = "White"},

@@ -33,7 +33,6 @@ local plugins = {
     'luukvbaal/stabilize.nvim',
     'norcalli/nvim-colorizer.lua',
     "luukvbaal/statuscol.nvim",
-    "dstein64/vim-startuptime",
     {
         "folke/zen-mode.nvim",
         opts = {
