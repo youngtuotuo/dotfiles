@@ -107,23 +107,28 @@ alias cl="clear"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+. "$HOME/.cargo/env"
+export PATH=$PATH:/usr/local/go/bin
+export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export EDITOR=nvim
 # fpath=(~/github/zsh-completions/src $fpath)
 # path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 # export PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/support/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-conda config --set env_prompt ''
+__conda_setup="$('/home/tuo/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/support/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/support/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/tuo/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tuo/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/support/miniconda3/bin:$PATH"
+        export PATH="/home/tuo/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

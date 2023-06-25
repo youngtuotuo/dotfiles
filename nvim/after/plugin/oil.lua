@@ -3,9 +3,9 @@ require("oil").setup({
   -- See :help oil-columns
   columns = {
     "icon",
-    -- "permissions",
-    -- "size",
-    -- "mtime",
+    "permissions",
+    "size",
+    "mtime",
   },
   -- Buffer-local options to use for oil buffers
   buf_options = {
@@ -15,7 +15,7 @@ require("oil").setup({
   -- Window-local options to use for oil buffers
   win_options = {
     wrap = false,
-    signcolumn = "no",
+    signcolumn = "yes",
     cursorcolumn = false,
     foldcolumn = "0",
     spell = false,
@@ -86,7 +86,7 @@ require("oil").setup({
     -- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
     -- min_width and max_width can be a single value or a list of mixed integer/float types.
     -- max_width = {100, 0.8} means "the lesser of 100 columns or 80% of total"
-    max_width = 0.9,
+    max_width = 0.7,
     -- min_width = {40, 0.4} means "the greater of 40 columns or 40% of total"
     min_width = { 40, 0.4 },
     -- optionally define an integer/float for the exact width of the preview window
@@ -119,5 +119,5 @@ require("oil").setup({
     },
   },
 })
-vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+vim.keymap.set("n", "-", require("oil").open_float, { desc = "Open parent directory" })
 vim.api.nvim_create_user_command('E', 'Oil', {})

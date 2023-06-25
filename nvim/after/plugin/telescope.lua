@@ -50,6 +50,7 @@ pcall(require('telescope').load_extension, 'fzf')
 
 local default_opts = {noremap = true, silent = true}
 -- Telescope Stuff
+vim.api.nvim_set_keymap("n", "<space>a", ":lua require('telescope.builtin').builtin()<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<space>r", ":lua require('telescope.builtin').lsp_references()<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<space>e", ":lua require('telescope.builtin').find_files()<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<space>f", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", default_opts)

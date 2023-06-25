@@ -30,19 +30,9 @@ local plugins = {
     'lukas-reineke/indent-blankline.nvim',
     'lewis6991/gitsigns.nvim',
     'nvim-tree/nvim-web-devicons',
-    'luukvbaal/stabilize.nvim',
     'norcalli/nvim-colorizer.lua',
     "luukvbaal/statuscol.nvim",
-    {
-        "folke/zen-mode.nvim",
-        opts = {
-            plugins = {
-                twilight = {
-                    enabled = false
-                }
-            }
-        },
-    },
+    "folke/zen-mode.nvim",
     'stevearc/oil.nvim',
 
     -- productivity
