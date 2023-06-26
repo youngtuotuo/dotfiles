@@ -49,6 +49,7 @@ require("oil").setup({
     ["<C-t>"] = "actions.select_tab",
     ["<C-p>"] = "actions.preview",
     ["<C-c>"] = "actions.close",
+    ["q"] = "actions.close",
     ["<C-l>"] = "actions.refresh",
     ["-"] = "actions.parent",
     ["_"] = "actions.open_cwd",
@@ -60,7 +61,7 @@ require("oil").setup({
   use_default_keymaps = true,
   view_options = {
     -- Show files and directories that start with "."
-    show_hidden = false,
+    show_hidden = true,
     -- This function defines what is considered a "hidden" file
     is_hidden_file = function(name, bufnr)
       return vim.startswith(name, ".")
@@ -74,9 +75,9 @@ require("oil").setup({
   float = {
     -- Padding around the floating window
     padding = 2,
-    max_width = 70,
-    max_height = 50,
-    border = "rounded",
+    max_width = 60,
+    max_height = 40,
+    border = BORDER,
     win_options = {
       winblend = 10,
     },
