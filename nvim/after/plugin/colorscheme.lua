@@ -12,8 +12,8 @@ require('kanagawa').setup({
     terminalColors = true, -- define vim.g.terminal_color_{0,17}
     colors = { -- add/modify theme and palette colors
         palette = {
-            -- sumiInk0 = "#000000"
-            sumiInk0 = "none"
+            sumiInk0 = "#000000"
+            -- sumiInk0 = "none"
         },
         theme = {
             wave = {},
@@ -88,13 +88,6 @@ require('kanagawa').setup({
             StatusLine = {bg = colors.palette.sumiInk0},
             TODOBgFix = {fg = colors.palette.sumiInk0, bg = '#e82424', bold = true},
             TODOBgTODO = {fg = colors.palette.sumiInk0, bg = "#658594", bold = true},
-            TelescopePreviewBorder = {fg = theme.ui.bg_p1, bg = colors.palette.sumiInk0},
-            TelescopePreviewNormal = {bg = colors.palette.sumiInk0},
-            TelescopePromptBorder = {fg = theme.ui.bg_p1, bg = colors.palette.sumiInk0},
-            TelescopePromptNormal = {bg = colors.palette.sumiInk0},
-            TelescopeResultsBorder = {fg = theme.ui.bg_p1, bg = colors.palette.sumiInk0},
-            TelescopeResultsNormal = {fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0},
-            TelescopeTitle = {fg = theme.ui.special, bold = true},
             VertSplit = {fg = "White"},
             WinSeparator = {fg = "White"}
         }
