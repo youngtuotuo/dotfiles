@@ -33,7 +33,6 @@ local plugins = {
     'norcalli/nvim-colorizer.lua',
     "luukvbaal/statuscol.nvim",
     "folke/zen-mode.nvim",
-    'stevearc/oil.nvim',
 
     -- productivity
     'grepsuzette/vim-sum',

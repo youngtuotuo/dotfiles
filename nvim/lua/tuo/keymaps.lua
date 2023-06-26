@@ -12,7 +12,7 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- command_mode = "c"
 -- term_mode = "t"
 
-
+keymap("n", "-", ":E<cr>", default_opts)
 -- <leader>p for exucute python, c, c++
 local ext = ""
 local sep = "/"
