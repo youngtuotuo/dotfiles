@@ -60,3 +60,5 @@ require('zen-mode').setup {
   on_close = function()
   end,
 }
+
+vim.api.nvim_set_keymap("n", "<space>z", ":ZenMode<CR>",{noremap = true, silent = true})
