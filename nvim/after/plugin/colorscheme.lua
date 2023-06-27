@@ -21,10 +21,8 @@ require('kanagawa').setup({
             dragon = {},
             all = {
                 ui = {
-                    bg_gutter = "none",
-                    -- bg = "#16161D"
-                    -- bg = "#000000"
-                    bg = "NONE"
+                    bg = "none",
+                    bg_gutter = "none"
                 }
             }
         }
@@ -63,7 +61,7 @@ require('kanagawa').setup({
             CmpItemKindTypeParameter = {fg = "#58B5A8", bg = colors.palette.sumiInk0},
             CmpItemKindValue = {fg = "#6C8ED4", bg = colors.palette.sumiInk0},
             ---
-            CmpItemKindVariable = {fg = "#9CDCFE", bg = colors.palette.sumiInk0},
+            CmpItemKindVariable = {fg = "#9CDCFE", bg = "none"},
             CmpItemKindInterface = {link='CmpItemKindVariable'},
             CmpItemKindText = {link='CmpItemKindVariable'},
             ---
