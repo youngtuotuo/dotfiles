@@ -12,8 +12,8 @@ require('kanagawa').setup({
     terminalColors = true, -- define vim.g.terminal_color_{0,17}
     colors = { -- add/modify theme and palette colors
         palette = {
-            sumiInk0 = "#000000"
-            -- sumiInk0 = "none"
+            -- sumiInk0 = "#000000"
+            sumiInk0 = "none"
         },
         theme = {
             wave = {},
@@ -65,7 +65,7 @@ require('kanagawa').setup({
             CmpItemKindInterface = {link='CmpItemKindVariable'},
             CmpItemKindText = {link='CmpItemKindVariable'},
             ---
-            CmpItemMenu = {fg = "#C792EA", bg = colors.palette.sumiInk0, italic = true},
+            CmpItemMenu = {fg = "#C792EA", bg = colors.palette.sumiInk0},
             Conceal = {fg = "#455574", bg = colors.palette.sumiInk0, nocombine = true},
             DiagnosticShowBorder = {link = "SagaBorder"},
             FloatBorder = { bg = colors.palette.sumiInk0},
