@@ -35,12 +35,17 @@ require("lspsaga").setup({
         win_position = "left",
         win_with = "",
         win_width = 30,
+        preview_width = 0.1,
         show_detail = true,
         auto_preview = true,
         auto_refresh = true,
         auto_close = true,
+        auto_resize = false,
         custom_sort = nil,
-        keys = {jump = "o", expand_collapse = "u", quit = "q"}
+        keys = {
+            expand_or_jump = 'o',
+            quit = "q",
+        },
     },
     definition = {
         edit = "<C-c>o",
@@ -110,7 +115,7 @@ local default_opts = {noremap = true, silent = true}
 -- If there is no definition, it will instead be hidden
 -- When you use an action in finder like "open vsplit",
 -- you can use <C-t> to jump back
-keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
+-- keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
 
 -- Code action
 keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
@@ -126,7 +131,7 @@ keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
 -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
 -- It also supports tagstack
 -- Use <C-t> to jump back
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", default_opts)
+-- keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", default_opts)
 
 -- Go to definition
 -- keymap("n","gd", "<cmd>Lspsaga goto_definition<CR>")
@@ -136,7 +141,7 @@ keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", default_opts)
 -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
 -- It also supports tagstack
 -- Use <C-t> to jump back
-keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", default_opts)
+-- keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", default_opts)
 
 -- Go to type definition
 -- keymap("n","gt", "<cmd>Lspsaga goto_type_definition<CR>")
@@ -186,8 +191,8 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>", default_opts)
 -- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
 
 -- Call hierarchy
-keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>", default_opts)
-keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>", default_opts)
+-- keymap("n", "<space>ic", "<cmd>Lspsaga incoming_calls<CR>", default_opts)
+-- keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>", default_opts)
 
 -- Floating terminal
 -- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
