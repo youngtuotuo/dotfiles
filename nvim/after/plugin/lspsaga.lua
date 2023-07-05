@@ -37,7 +37,7 @@ require("lspsaga").setup({
         win_width = 30,
         preview_width = 0.1,
         show_detail = true,
-        auto_preview = true,
+        auto_preview = false,
         auto_refresh = true,
         auto_close = true,
         auto_resize = false,
@@ -121,10 +121,10 @@ local default_opts = {noremap = true, silent = true}
 keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
 
 -- Rename all occurrences of the hovered word for the entire file
--- keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
 
 -- Rename all occurrences of the hovered word for the selected files
--- keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
+keymap("n", "gn", "<cmd>Lspsaga rename ++project<CR>")
 
 -- Peek definition
 -- You can edit the file containing the definition in the floating window
