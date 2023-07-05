@@ -70,7 +70,7 @@ require('kanagawa').setup({
             DiagnosticShowBorder = {link = "SagaBorder"},
             FloatBorder = { bg = colors.palette.sumiInk0},
             -- FloatBorder = {bg='none'},
-            IndentBlanklineChar = {fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0, nocombine = true},
+            IndentBlanklineChar = {fg = colors.palette.sumiInk0, bg = "none"},
             LazyNormal = {bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim},
             LspInfoBorder = { bg = colors.palette.sumiInk0 },
             -- LspInfoBorder = {bg = 'none'},

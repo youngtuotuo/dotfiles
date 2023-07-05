@@ -218,8 +218,8 @@ require("mason-lspconfig").setup_handlers({
             handlers = handlers,
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
-                'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
-                'Pipfile', 'pyrightconfig.json', 'pyvenv.cfg'
+                'pyrightconfig.json', --'.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
+                -- 'Pipfile','pyvenv.cfg'
             })),
             settings = {
                 pyright = {
