@@ -115,16 +115,16 @@ local default_opts = {noremap = true, silent = true}
 -- If there is no definition, it will instead be hidden
 -- When you use an action in finder like "open vsplit",
 -- you can use <C-t> to jump back
--- keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
+keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
 
 -- Code action
 keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
 
 -- Rename all occurrences of the hovered word for the entire file
-keymap("n", "gr", "<cmd>Lspsaga rename<CR>", default_opts)
+keymap("n", "gn", "<cmd>Lspsaga rename<CR>", default_opts)
 
 -- Rename all occurrences of the hovered word for the selected files
-keymap("n", "gn", "<cmd>Lspsaga rename ++project<CR>", default_opts)
+-- keymap("n", "gn", "<cmd>Lspsaga rename ++project<CR>", default_opts)
 
 -- Peek definition
 -- You can edit the file containing the definition in the floating window
