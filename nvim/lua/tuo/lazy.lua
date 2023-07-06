@@ -40,7 +40,7 @@ local plugins = {
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
     {
-        'AmeerTaweel/todo.nvim',
+        'folke/todo-comments.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim'
         }
