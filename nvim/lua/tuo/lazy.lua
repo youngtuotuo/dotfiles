@@ -36,6 +36,7 @@ local plugins = {
 
     -- productivity
     'grepsuzette/vim-sum',
+    'tpope/vim-vinegar',
     'tpope/vim-fugitive',
     'sbdchd/neoformat',
     {
@@ -104,7 +105,7 @@ local plugins = {
     },
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        tag = '0.1.2',
         dependencies = {'nvim-lua/plenary.nvim'}
     },
     {
@@ -112,6 +113,9 @@ local plugins = {
         build = 'make',
         cond = vim.fn.executable 'make' == 1
     },
+    'xiyaowong/telescope-emoji.nvim',
+    'crispgm/telescope-heading.nvim',
+    'debugloop/telescope-undo.nvim',
 }
 
 local opts = {

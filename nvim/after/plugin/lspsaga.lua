@@ -115,7 +115,7 @@ local default_opts = {noremap = true, silent = true}
 -- If there is no definition, it will instead be hidden
 -- When you use an action in finder like "open vsplit",
 -- you can use <C-t> to jump back
-keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
+-- keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", default_opts)
 
 -- Code action
 keymap("n", "ga", "<cmd>Lspsaga code_action<CR>", default_opts)
