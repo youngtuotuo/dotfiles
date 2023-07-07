@@ -6,7 +6,7 @@ require("mason").setup({ui = {border = BORDER}})
 -- Ensure the servers above are installed
 local servers = {
     "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright", "yamlls",
-    "gopls"
+    "gopls", "marksman"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
