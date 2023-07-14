@@ -31,6 +31,7 @@ require('kanagawa').setup({
         local theme = colors.theme
         return {
             CmpCompletionBorder = {bg = colors.palette.sumiInk0},
+            CmpCompletionSel = {bg = "none", underline=true},
             CmpItemAbbrDeprecated = {fg = "#808080", bg = colors.palette.sumiInk0, strikethrough = true},
             CmpItemAbbrMatch = {fg = "#569CD6", bg = colors.palette.sumiInk0, bold = true},
             CmpItemAbbrMatchFuzzy = {link = 'CmpItemAbbrMatch'},
@@ -73,13 +74,12 @@ require('kanagawa').setup({
             IndentBlanklineChar = {fg = colors.palette.sumiInk0, bg = "none"},
             LazyNormal = {bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim},
             LspInfoBorder = { bg = colors.palette.sumiInk0 },
-            -- LspInfoBorder = {bg = 'none'},
             LspReferenceText = {bg = theme.ui.bg_p1},
             LspReferenceWrite = {bg = theme.ui.bg_p1, underline = false},
             MasonNormal = {bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim},
             NormalFloat = {bg = colors.palette.sumiInk0},
             Pmenu = {fg = "#C5CDD9", bg = theme.ui.bg_m3},
-            PmenuSel = {bg = "#282C34", fg = "none"},
+            PmenuSel = {bg = "none", fg = "none", underline=true},
             SagaBeacon = {bg = "#C5CDD9"},
             SagaBorder = {bg = 'none'},
             SagaNormal = {fg = "#C5CDD9", bg = theme.ui.bg},
@@ -87,6 +87,7 @@ require('kanagawa').setup({
             TODOBgFix = {fg = colors.palette.sumiInk0, bg = '#e82424', bold = true},
             TODOBgTODO = {fg = colors.palette.sumiInk0, bg = "#658594", bold = true},
             VertSplit = {fg = "White"},
+            Visual = {bg="none", underline=true},
             WinSeparator = {fg = "White"}
         }
     end,
