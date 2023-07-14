@@ -31,7 +31,7 @@ local config = {
             {'filename', path = 1, align='left'},
         },
         lualine_x = {
-            {LspName, align='right', padding = { right = 0 }},
+            {'location'}, {LspName, align='right', padding = { right = 0 }},
         },
         lualine_y = {},
         lualine_z = {}
