@@ -21,6 +21,7 @@ local c = "gcc -Wall -o main"
 local cpp = "g++ -Wall -std=c++14 -o main"
 local go = "go run"
 local rs = "cargo run"
+local hs = 'runghc'
 ---- different system needs different name
 if vim.fn.has("win32") == 1 then
     ext = ".exe"
@@ -47,6 +48,8 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
            cmd = go .. " %"
        elseif vim.bo.filetype == "rust" then
            cmd = rs .. " %"
+       elseif vim.bo.filetype == "haskell" then
+           cmd = hs .. " %"
        end
        keymap("n", "<leader>p", ":!" .. cmd .. "<CR>", default_opts)
     end,
