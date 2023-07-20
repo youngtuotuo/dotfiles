@@ -78,7 +78,7 @@ require('kanagawa').setup({
             LspReferenceWrite = {bg = theme.ui.bg_p1, underline = false},
             MasonNormal = {bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim},
             NormalFloat = {bg = colors.palette.sumiInk0},
-            Pmenu = {fg = "#C5CDD9", bg = theme.ui.bg_m3},
+            Pmenu = {fg = "#C5CDD9", bg = colors.palette.sumiInk0},
             PmenuSel = {bg = "none", fg = "none", underline=true},
             SagaBeacon = {bg = "#C5CDD9"},
             SagaBorder = {bg = 'none'},
