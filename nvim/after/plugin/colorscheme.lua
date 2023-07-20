@@ -92,8 +92,8 @@ require('kanagawa').setup({
         }
     end,
     background = { -- map the value of 'background' option to a theme
-        dark = "wave", -- try "dragon" !
+        dark = "dragon", -- try "dragon" !
         light = "lotus"
     }
 })
-require("kanagawa").load("wave") -- wave, dragon, lotus
+require("kanagawa").load("dragon") -- wave, dragon, lotus
