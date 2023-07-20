@@ -195,5 +195,7 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>", default_opts)
 -- keymap("n", "<space>oc", "<cmd>Lspsaga outgoing_calls<CR>", default_opts)
 
 -- Floating terminal
--- keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+keymap("n", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", default_opts)
+keymap("t", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", default_opts)
+keymap("i", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", default_opts)
 
