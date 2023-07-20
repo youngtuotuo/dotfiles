@@ -25,6 +25,7 @@ local options = {
     showcmd = false,
     showmatch = true,
     showmode = false,
+    signcolumn = 'auto:2',
     smartcase = true,
     smartindent = false,
     softtabstop = 4,
