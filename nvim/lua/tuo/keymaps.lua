@@ -20,6 +20,7 @@ local py = "python3"
 local c = "gcc -Wall -o main"
 local cpp = "g++ -Wall -std=c++14 -o main"
 local go = "go run"
+local rs = "cargo run"
 ---- different system needs different name
 if vim.fn.has("win32") == 1 then
     ext = ".exe"
@@ -44,6 +45,8 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
            cmd = py .. " %"
        elseif vim.bo.filetype == "go" then
            cmd = go .. " %"
+       elseif vim.bo.filetype == "rust" then
+           cmd = rs .. " %"
        end
        keymap("n", "<leader>p", ":!" .. cmd .. "<CR>", default_opts)
     end,
