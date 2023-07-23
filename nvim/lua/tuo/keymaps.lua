@@ -16,8 +16,8 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 local ext = ""
 local sep = "/"
 local py = "python3"
-local c = "gcc -Wall -o main"
-local cpp = "g++ -Wall -std=c++14 -o main"
+local c = "gcc -Wall -o " .. vim.fn.expand("%:t:r")
+local cpp = "g++ -Wall -std=c++14 -o " .. vim.fn.expand("%:t:r")
 local go = "go run"
 local rs = "cargo run"
 local hs = 'runghc'
@@ -27,13 +27,10 @@ if vim.fn.has("win32") == 1 then
     sep = "\\"
     py = "python"
 elseif vim.fn.has("mac") == 1 then
-    c = "clang -Wall -o main"
-    cpp = "clang++ -Wall -std=c++14 -o main"
+    c = "clang -Wall -o " .. vim.fn.expand("%:t:r")
+    cpp = "clang++ -Wall -std=c++14 -o " .. vim.fn.expand("%:t:r")
 end
 local cmd = ""
----- deafult is python
-keymap("n", "<leader>p", ":!" .. py .. "<CR>", default_opts)
-keymap("v", "<leader>p", ":w !" .. py .. "<CR>", default_opts)
 ---- detect file type to change command
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
     callback = function()
@@ -50,7 +47,8 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
        elseif vim.bo.filetype == "haskell" then
            cmd = hs .. " %"
        end
-       keymap("n", "<leader>p", ":sp | terminal " .. cmd .. "<CR>Gi", default_opts)
+        cmd = ":sp | terminal " .. cmd .. "<CR>Gi"
+       keymap("n", "<leader>p", cmd, default_opts)
     end,
 })
 
