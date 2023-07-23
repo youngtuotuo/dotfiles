@@ -12,7 +12,6 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- command_mode = "c"
 -- term_mode = "t"
 
--- keymap("n", "-", ":E<cr>", default_opts)
 -- <leader>p for exucute python, c, c++
 local ext = ""
 local sep = "/"
@@ -39,9 +38,9 @@ keymap("v", "<leader>p", ":w !" .. py .. "<CR>", default_opts)
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
     callback = function()
        if vim.bo.filetype == "cpp" then
-           cmd = cpp .. ext .. " % && ." .. sep .. "main" .. ext
+           cmd = cpp .. ext .. " " .. vim.fn.expand("%:t") .. " && ." .. sep .. vim.fn.expand("%:t:r") .. ext
        elseif vim.bo.filetype == "c" then
-           cmd = c .. ext .. " % && ." .. sep .. "main" .. ext
+           cmd = c .. ext .. " " .. vim.fn.expand("%:t") .. " && ." .. sep .. vim.fn.expand("%:t:r") .. ext
        elseif vim.bo.filetype == "python" then
            cmd = py .. " %"
        elseif vim.bo.filetype == "go" then
@@ -51,7 +50,7 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
        elseif vim.bo.filetype == "haskell" then
            cmd = hs .. " %"
        end
-       keymap("n", "<leader>p", ":!" .. cmd .. "<CR>", default_opts)
+       keymap("n", "<leader>p", ":sp | terminal " .. cmd .. "<CR>Gi", default_opts)
     end,
 })
 
@@ -98,8 +97,11 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
 keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
 
-vim.api.nvim_create_user_command('W', 'silent w', {})
-vim.api.nvim_create_user_command('Wa', 'silent wa', {})
+vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Wa', 'wa', {})
+vim.api.nvim_create_user_command('WA', 'wa', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})
+vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Qa', 'qa', {})
 
@@ -117,10 +119,12 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
 
 -- Quickfix list
+vim.api.nvim_create_user_command('Cnext', 'try | cnext | catch | cfirst | catch | endtry', {})
+vim.api.nvim_create_user_command('Cprev', 'try | cprev | catch | clast | catch | endtry', {})
 keymap("n", "co", ":copen<CR>", default_opts)
 keymap("n", "cc", ":cclose<CR>", default_opts)
-keymap("n", "cn", ":cnext<CR>zz", default_opts)
-keymap("n", "cp", ":cprev<CR>zz", default_opts)
+keymap("n", "cn", ":Cnext<CR>", default_opts)
+keymap("n", "cp", ":Cprev<CR>", default_opts)
 
 -- Undo break points
 keymap("i", ",", ",<C-g>u", default_opts)

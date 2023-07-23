@@ -84,6 +84,7 @@ require('kanagawa').setup({
             SagaBorder = {bg = colors.palette.sumiInk0},
             SagaNormal = {fg = "#C5CDD9", bg = theme.ui.bg},
             StatusLine = {bg = colors.palette.sumiInk0},
+            StatusLineNC = {bg = colors.palette.sumiInk0},
             TODOBgFix = {fg = colors.palette.sumiInk0, bg = '#e82424', bold = true},
             TODOBgTODO = {fg = colors.palette.sumiInk0, bg = "#658594", bold = true},
             VertSplit = {fg = "White"},

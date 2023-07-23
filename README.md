@@ -48,11 +48,16 @@ cd neovim
 sudo make -j$(nproc) CMAKE_BUILD_TYPE=Release && sudo make CMAKE_BUILD_TYPE=Release install
 ```
 
-Mac (homebrew)
+Mac (homebrew + build from source)
   
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install --HEAD neovim
+brew install ninja cmake gettext curl
+cd neovim
+make distclean
+make CMAKE_BUILD_TYPE=Release
+sudo make CMAKE_BUILD_TYPE=Release install
+export PATH=~/github/neovimm/build/bin:$PATH
 ```
 Install Config for Neovim
   

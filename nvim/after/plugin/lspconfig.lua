@@ -11,7 +11,7 @@ local servers = {
 require("mason-lspconfig").setup {ensure_installed = servers}
 
 local diag_config = {
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     underline = false,
     update_in_insert = false,
