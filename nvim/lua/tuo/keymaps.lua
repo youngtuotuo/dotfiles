@@ -98,10 +98,15 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
 keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
 
-vim.api.nvim_create_user_command('W', 'silent w', {})
-vim.api.nvim_create_user_command('Wa', 'silent wa', {})
+vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Wa', 'wa', {})
+vim.api.nvim_create_user_command('WA', 'wa', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})
+vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('Q!', 'q!', {})
 vim.api.nvim_create_user_command('Qa', 'qa', {})
+vim.api.nvim_create_user_command('Qa!', 'qa!', {})
 
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
