@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
        elseif vim.bo.filetype == "haskell" then
            cmd = hs .. " %"
        end
-       keymap("n", "<leader>p", ":terminal " .. cmd .. "<CR>", default_opts)
+       keymap("n", "<leader>p", ":5sp | terminal " .. cmd .. "<CR>i", default_opts)
     end,
 })
 
