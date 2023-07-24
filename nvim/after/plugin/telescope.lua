@@ -5,6 +5,7 @@ local actions = require 'telescope.actions'
 
 require("telescope").setup({
     defaults = {
+        layout_strategy = "vertical",
         layout_config = {
             horizontal = {
                 height = 0.9,
