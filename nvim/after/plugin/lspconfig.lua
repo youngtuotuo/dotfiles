@@ -159,23 +159,6 @@ local function custom_on_publish_diagnostics(a, params, client_id, c, config)
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
-local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(hover, {
-        border = BORDER,
-        title = " Hover ",
-        max_width = 100,
-        zindex = 500
-    }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = BORDER,
-        title = " Signature ",
-        max_width = 100
-    }),
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(
-        custom_on_publish_diagnostics, {}
-    )
-}
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -187,7 +170,22 @@ require("mason-lspconfig").setup_handlers({
     function(server_name) -- default handler (optional)
         lspconfig[server_name].setup({
             on_attach = on_attach,
-            handlers = handlers,
+            handlers = {
+                ["textDocument/hover"] = vim.lsp.with(hover, {
+                    border = BORDER,
+                    title = " " .. server_name .." ",
+                    max_width = 100,
+                    zindex = 500
+                }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                    border = BORDER,
+                    title = " Signature ",
+                    max_width = 100
+                }),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                    custom_on_publish_diagnostics, {}
+                )
+            },
             capabilities = capabilities
         })
     end,
@@ -195,7 +193,22 @@ require("mason-lspconfig").setup_handlers({
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup {
             on_attach = on_attach,
-            handlers = handlers,
+            handlers = {
+                ["textDocument/hover"] = vim.lsp.with(hover, {
+                    border = BORDER,
+                    title = " LuaLS ",
+                    max_width = 100,
+                    zindex = 500
+                }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                    border = BORDER,
+                    title = " Signature ",
+                    max_width = 100
+                }),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                    custom_on_publish_diagnostics, {}
+                )
+            },
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
                 ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
@@ -215,7 +228,22 @@ require("mason-lspconfig").setup_handlers({
     ["pyright"] = function()
         lspconfig.pyright.setup {
             on_attach = on_attach,
-            handlers = handlers,
+            handlers = {
+                ["textDocument/hover"] = vim.lsp.with(hover, {
+                    border = BORDER,
+                    title = " Pyright ",
+                    max_width = 100,
+                    zindex = 500
+                }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                    border = BORDER,
+                    title = " Signature ",
+                    max_width = 100
+                }),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                    custom_on_publish_diagnostics, {}
+                )
+            },
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
                 'pyrightconfig.json', --'.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
@@ -264,7 +292,22 @@ require("mason-lspconfig").setup_handlers({
     ['texlab'] = function()
         lspconfig.texlab.setup {
             on_attach = on_attach,
-            handlers = handlers,
+            handlers = {
+                ["textDocument/hover"] = vim.lsp.with(hover, {
+                    border = BORDER,
+                    title = " TexLab ",
+                    max_width = 100,
+                    zindex = 500
+                }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                    border = BORDER,
+                    title = " Signature ",
+                    max_width = 100
+                }),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                    custom_on_publish_diagnostics, {}
+                )
+            },
             capabilities = capabilities,
             settings = {
                 texlab = {
