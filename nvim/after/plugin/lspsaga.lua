@@ -198,5 +198,4 @@ keymap("n", "<space>o", "<cmd>Lspsaga outline<CR>", default_opts)
 -- Floating terminal
 keymap("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", default_opts)
 keymap("t", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", default_opts)
-keymap("i", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", default_opts)
 
