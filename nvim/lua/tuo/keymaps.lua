@@ -75,7 +75,7 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 
 -- number line
-keymap("n", "<leader>ss", ":set invnu invrnu<CR>", default_opts)
+keymap("n", "<leader>s", ":set invnu invrnu<CR>", default_opts)
 
 -- Y like C,D
 keymap("n", "Y", "y$", default_opts)
