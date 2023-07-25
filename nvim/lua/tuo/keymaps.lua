@@ -92,8 +92,8 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
 -- Jump list mutations
-keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
-keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
+-- keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
+-- keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
 
 vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Wa', 'wa', {})
