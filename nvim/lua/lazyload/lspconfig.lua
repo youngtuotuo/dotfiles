@@ -6,7 +6,7 @@ require("mason").setup({ui = {border = BORDER}})
 -- Ensure the servers above are installed
 local servers = {
     "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "pyright", "yamlls",
-    "gopls", "lemminx", "marksman", "hls",
+    "gopls", "lemminx", "hls",
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
@@ -159,33 +159,6 @@ require("mason-lspconfig").setup_handlers({
             },
             capabilities = capabilities
         })
-    end,
-    -- Next, you can provide targeted overrides for specific servers.
-    ["marksman"] = function()
-        lspconfig.marksman.setup {
-            on_attach = on_attach,
-            filetypes = {"markdown"},
-            handlers = {
-                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-                    border = BORDER,
-                    title = " LuaLS ",
-                    max_width = 100,
-                    zindex = 500
-                }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-                    border = BORDER,
-                    title = " Signature ",
-                    max_width = 100
-                }),
-                ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                    custom_on_publish_diagnostics, {}
-                )
-            },
-            capabilities = capabilities,
-            root_dir =util.root_pattern(unpack({
-                ".git"
-            })), 
-        }
     end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup {

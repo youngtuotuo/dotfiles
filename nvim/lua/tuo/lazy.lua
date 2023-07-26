@@ -158,7 +158,7 @@ local plugins = {
     {
         'numToStr/Comment.nvim',
         keys = {
-            {'gc'},{'gb'}
+            {'gc', mode={'n', 'v'}},{'gb', mode={'n', 'v'}}
         },
         config = function()
             require('lazyload.Comment')
@@ -246,10 +246,8 @@ local plugins = {
             'nvim-lua/plenary.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-                cond = vim.fn.executable 'make' == 1
+                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
             },
-            'xiyaowong/telescope-emoji.nvim',
             'crispgm/telescope-heading.nvim',
             'debugloop/telescope-undo.nvim',
         }

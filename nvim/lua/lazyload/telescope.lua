@@ -45,23 +45,10 @@ require("telescope").setup({
             case_mode = "smart_case" -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
         },
-        emoji = {
-            action = function(emoji)
-                -- argument emoji is a table.
-                -- {name="", value="", cagegory="", description=""}
-
-                vim.fn.setreg("*", emoji.value)
-                print([[Press p or "*p to paste this emoji]] .. emoji.value)
-
-                -- insert emoji when picked
-                -- vim.api.nvim_put({ emoji.value }, 'c', false, true)
-            end,
-        }
     }
 })
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, "emoji")
 pcall(require('telescope').load_extension, "heading")
 pcall(require('telescope').load_extension, "undo")
