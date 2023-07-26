@@ -33,10 +33,9 @@ require('fidget').setup({
         task =                    -- function to format each task line
             function(task_name, message, percentage)
                 return string.format(
-                    "%s%s [%s]",
+                    "%s%s",
                     message,
-                    percentage and string.format(" (%s%%)", percentage) or "",
-                    task_name
+                    percentage and string.format(" (%s%%)", percentage) or ""
                 )
             end,
     },

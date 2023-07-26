@@ -99,23 +99,6 @@ local on_attach = function(client, bufnr)
 end
 
 
-local hover = function(_, result, ctx, config)
-    if not (result and result.contents) then
-        return vim.lsp.handlers.hover(_, result, ctx, config)
-    end
-    if type(result.contents) == "string" then
-        local s = string.gsub(result.contents or "", "&nbsp;", " ")
-        s = string.gsub(s, [[\\\n]], [[\n]])
-        result.contents = s
-        return vim.lsp.handlers.hover(_, result, ctx, config)
-    else
-        local s = string.gsub((result.contents or {}).value or "", "&nbsp;", " ")
-        s = string.gsub(s, "\\\n", "\n")
-        result.contents.value = s
-        return vim.lsp.handlers.hover(_, result, ctx, config)
-    end
-end
-
 local function filter(arr, func)
     -- Filter in place
     -- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
@@ -171,7 +154,7 @@ require("mason-lspconfig").setup_handlers({
         lspconfig[server_name].setup({
             on_attach = on_attach,
             handlers = {
-                ["textDocument/hover"] = vim.lsp.with(hover, {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
                     title = " " .. server_name .." ",
                     max_width = 100,
@@ -195,7 +178,7 @@ require("mason-lspconfig").setup_handlers({
             on_attach = on_attach,
             filetypes = {"markdown"},
             handlers = {
-                ["textDocument/hover"] = vim.lsp.with(hover, {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
                     title = " LuaLS ",
                     max_width = 100,
@@ -220,7 +203,7 @@ require("mason-lspconfig").setup_handlers({
         lspconfig.lua_ls.setup {
             on_attach = on_attach,
             handlers = {
-                ["textDocument/hover"] = vim.lsp.with(hover, {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
                     title = " LuaLS ",
                     max_width = 100,
@@ -255,7 +238,7 @@ require("mason-lspconfig").setup_handlers({
         lspconfig.pyright.setup {
             on_attach = on_attach,
             handlers = {
-                ["textDocument/hover"] = vim.lsp.with(hover, {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
                     title = " Pyright ",
                     max_width = 100,
@@ -296,15 +279,15 @@ require("mason-lspconfig").setup_handlers({
                         -- files in the workspace, as indicated by the config file.
                         -- If this option is set to "openFilesOnly", pyright analyzes only open files.
                         -- ["openFilesOnly", "workspace"]
-                        diagnosticMode = "openFilesOnly",
+                        diagnosticMode = "workspace",
                         -- Path to directory containing custom type stub files.
-                        -- stubPath = {},
+                        stubPath = {vim.fn.stdpath("data") .. "/lazy/python-type-stubs"},
                         -- Determines the default type-checking level used by pyright.
                         -- This can be overridden in the configuration file.
                         -- (Note: This setting used to be called "pyright.typeCheckingMode".
                         -- The old name is deprecated but is still currently honored.)
                         -- ["off", "basic", "strict"]
-                        typeCheckingMode = "off",
+                        typeCheckingMode = "basic",
                         -- Determines whether pyright reads, parses and analyzes library code
                         -- to extract type information in the absence of type stub files.
                         -- Type information will typically be incomplete.
@@ -319,7 +302,7 @@ require("mason-lspconfig").setup_handlers({
         lspconfig.texlab.setup {
             on_attach = on_attach,
             handlers = {
-                ["textDocument/hover"] = vim.lsp.with(hover, {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
                     title = " TexLab ",
                     max_width = 100,
