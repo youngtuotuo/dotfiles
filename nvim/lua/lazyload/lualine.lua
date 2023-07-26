@@ -1,5 +1,5 @@
 local function LspName()
-    local name = vim.lsp.get_active_clients({bufnr=0})[1].name
+    local name = vim.lsp.get_clients({bufnr=0})[1].name
     return name
 end
 local auto = require('lualine.themes.auto')
@@ -47,9 +47,3 @@ local config = {
 }
 
 require('lualine').setup(config)
-vim.cmd([[
-    augroup lualine_augroup
-        autocmd!
-        autocmd User LspProgressStatusUpdated lua require("lualine").refresh()
-    augroup END
-]])

@@ -26,7 +26,10 @@ local plugins = {
     -- lazy load
     {
         'nvim-lualine/lualine.nvim',
-        event = 'ColorScheme',
+        event = 'BufRead',
+        config = function()
+            require('lazyload.lualine')
+        end
     },
     {
         'nvim-tree/nvim-web-devicons',
@@ -144,6 +147,9 @@ local plugins = {
     {
         'lervag/vimtex',
         ft = {'tex'},
+        keys = {
+            {"<leader>vc", "<cmd>VimtexCompile<CR>", mode={"n"}, default_opts}
+        },
         config = function()
             require('lazyload.vim-tex')
         end
@@ -175,7 +181,7 @@ local plugins = {
     },
     {
         'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
+        event = 'BufRead',
         config = function()
             require('lazyload.nvim-cmp')
         end,
