@@ -88,8 +88,8 @@ keymap("n", "n", "nzz", default_opts)
 keymap("n", "N", "Nzz", default_opts)
 
 -- Visual line wraps
-keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
-keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
+-- keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
+-- keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
 -- Jump list mutations
 -- keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
