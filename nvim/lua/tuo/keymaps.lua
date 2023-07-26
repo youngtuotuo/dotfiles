@@ -56,6 +56,9 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-C>", "<C-[>", default_opts)
 
+keymap("n", "<leader>l", "<Plug>NetrwRefresh", default_opts)
+keymap("n", "-", ":E<CR>", default_opts)
+
 -- Not show native menu
 keymap("i", "<C-n>", "<Nop>", default_opts)
 keymap("i", "<C-p>", "<Nop>", default_opts)

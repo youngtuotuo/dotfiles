@@ -1,4 +1,6 @@
-require("todo-comments").setup {
+vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope<CR>", {noremap = true, silent = true})
+
+require("todo-comments").setup({
   signs = true, -- show icons in the signs column
   sign_priority = 1, -- sign priority
   -- keywords recognized as todo comments
@@ -61,6 +63,4 @@ require("todo-comments").setup {
     pattern = [[\b(KEYWORDS):]], -- ripgrep regex
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
-}
-
-vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope<CR>", {noremap = true, silent = true})
+})

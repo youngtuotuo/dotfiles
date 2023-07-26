@@ -24,27 +24,68 @@ local plugins = {
     },
     {
         'j-hui/fidget.nvim',
+        event = 'BufRead',
         tag='legacy',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+        },
+        config = function()
+            require('lazyload.fidget')
+        end,
     },
     'nvim-lualine/lualine.nvim',
-    'lukas-reineke/indent-blankline.nvim',
-    'lewis6991/gitsigns.nvim',
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        event = 'BufRead',
+        config = function()
+            require('lazyload.indent-blankline')
+        end
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = 'BufRead',
+        config = function()
+            require('lazyload.gitsigns')
+        end
+    },
     'nvim-tree/nvim-web-devicons',
-    'norcalli/nvim-colorizer.lua',
-    "luukvbaal/statuscol.nvim",
+    {
+        'norcalli/nvim-colorizer.lua',
+        event = 'BufRead',
+        config = function()
+            require('lazyload.colorizer')
+        end,
+    },
+    {
+        "luukvbaal/statuscol.nvim",
+        event = 'BufRead',
+        config = function()
+            require('lazyload.statuscol')
+        end
+    },
     "folke/zen-mode.nvim",
-
     -- productivity
-    'grepsuzette/vim-sum',
-    'tpope/vim-vinegar',
+    {
+        'grepsuzette/vim-sum',
+        event = 'InsertEnter',
+        config = function()
+            require('lazyload.vim-sum')
+        end
+    },
     'tpope/vim-fugitive',
     {
         'sbdchd/neoformat',
         event = "BufRead",
+        config = function()
+            require('lazyload.neoformat')
+        end,
     },
     {
         'folke/todo-comments.nvim',
         event = 'BufRead',
+        config = function()
+            require('lazyload.todo')
+        end,
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
@@ -64,16 +105,35 @@ local plugins = {
           {"nvim-treesitter/nvim-treesitter"}
         }
     },
-    "folke/trouble.nvim",
+    {
+        "folke/trouble.nvim",
+        dependencies = {
+            'neovim/nvim-lspconfig',
+        },
+        config = function()
+            require('lazyload.trouble')
+        end,
+    },
     {
         'lervag/vimtex',
         ft = {'tex'}
     },
-    'numToStr/Comment.nvim',
+    {
+        'numToStr/Comment.nvim',
+        event = 'BufRead',
+        config = function()
+            local config = require('lazyload.Comment')
+            require('Comment').setup(config)
+        end,
+    },
     {
         'nvim-treesitter/nvim-treesitter',
+        event = 'BufReadPre',
         build = function()
             pcall(require('nvim-treesitter.install').update {with_sync = true})
+        end,
+        config = function()
+            require('lazyload.treesitter')
         end
     },
     {
@@ -99,7 +159,10 @@ local plugins = {
     {
         'iamcco/markdown-preview.nvim',
         build = 'cd app && npm install',
-        ft = {'markdown'}
+        ft = {'markdown'},
+        config = function()
+            require('lazyload.markdownpreview')
+        end
     },
     {
         'neovim/nvim-lspconfig',
