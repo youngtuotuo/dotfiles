@@ -12,7 +12,7 @@ vim.g.mkdp_auto_close = 0
 --  leave from insert mode, default 0 is auto refresh markdown as you edit or
 --  move the cursor
 --  default: 0
-vim.g.mkdp_refresh_slow = 0
+vim.g.mkdp_refresh_slow = 1
 
 --  set to 1, the MarkdownPreview command can be use for all files,
 --  by default it can be use in markdown file
@@ -32,7 +32,7 @@ vim.g.mkdp_open_ip = '127.0.0.1'
 
 --  specify browser to open preview page
 --  default: ''
-vim.g.mkdp_browser = 'none'
+vim.g.mkdp_browser = ''
 
 --  set to 1, echo preview page url in command line when open preview page
 --  default is 0
@@ -57,3 +57,5 @@ vim.g.mkdp_port = '8085'
 --  preview page title
 --  ${name} will be replace with the file name
 vim.g.mkdp_page_title = '「${name}」'
+
+vim.g.mkdp_theme = 'light'
