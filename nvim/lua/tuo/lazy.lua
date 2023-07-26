@@ -23,7 +23,6 @@ local plugins = {
         lazy = false,
         priority = 1000,
     },
-
     -- lazy load
     {
         'nvim-lualine/lualine.nvim',

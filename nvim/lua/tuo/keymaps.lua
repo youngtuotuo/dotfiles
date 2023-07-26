@@ -1,5 +1,5 @@
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local default_opts = {noremap = true, silent = true}
 local term_opts = {silent = true}
 local expr_opts = {noremap = true, expr = true, silent = true}
@@ -122,8 +122,22 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
 -- Quickfix list
 vim.api.nvim_create_user_command('Cnext', 'try | cnext | catch | cfirst | catch | endtry', {})
 vim.api.nvim_create_user_command('Cprev', 'try | cprev | catch | clast | catch | endtry', {})
-keymap("n", "co", ":copen<CR>", default_opts)
-keymap("n", "cc", ":cclose<CR>", default_opts)
+function Toggle_qf()
+    local qf_exists = false
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win["quickfix"] == 1 then
+            qf_exists = true
+        end
+    end
+    if qf_exists == true then
+        vim.cmd "cclose"
+        return
+    end
+    if not vim.tbl_isempty(vim.fn.getqflist()) then
+        vim.cmd "copen"
+    end
+end
+keymap("n", "co", "<cmd>lua Toggle_qf()<CR>", default_opts)
 keymap("n", "cn", ":Cnext<CR>", default_opts)
 keymap("n", "cp", ":Cprev<CR>", default_opts)
 

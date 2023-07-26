@@ -83,7 +83,7 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
     buf_set_keymap('n', 'gic', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
     buf_set_keymap('n', 'goc', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
-    -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -113,13 +113,10 @@ local function pyright_accessed_filter(diagnostic)
     elseif diagnostic.message == '"args" is not accessed' then
         return false
     end
-    --
     -- Allow variables starting with an underscore
     -- if string.match(diagnostic.message, '"_.+" is not accessed') then
     -- 	return false
     -- end
-
-
     -- For all messages "is not accessed"
     -- if string.match(diagnostic.message, '".+" is not accessed') then
     --     return false
