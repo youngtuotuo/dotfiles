@@ -40,15 +40,6 @@ for _, sign in ipairs(signs) do
                        {texthl = sign.name, text = sign.text, numhl = ""})
 end
 
-require('nvim-custom-diagnostic-highlight').setup {
-    patterns_override = {
-        -- Lua patterns to be tested against the diagnostic message.
-        -- Overrides default behavior
-        '%sunused', '^unused', 'not used', 'never used', 'not read',
-        'never read', 'empty block', 'not accessed'
-    }
-}
-
 local util = require("lspconfig.util")
 
 local on_attach = function(client, bufnr)

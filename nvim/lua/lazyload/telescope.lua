@@ -23,7 +23,9 @@ require("telescope").setup({
                 ["q"] = actions.close,
                 ["<C-c>"] = actions.close,
                 ["<Tab>"] = actions.move_selection_next,
-                ["<S-Tab>"] = actions.move_selection_previous
+                ["<S-Tab>"] = actions.move_selection_previous,
+                ["<C-p>"] = actions.move_selection_previous,
+                ["<C-n>"] = actions.move_selection_next,
             },
             i = {
                 ["<C-c>"] = actions.close,
@@ -63,18 +65,3 @@ pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, "emoji")
 pcall(require('telescope').load_extension, "heading")
 pcall(require('telescope').load_extension, "undo")
-
-local default_opts = {noremap = true, silent = true}
--- Telescope Stuff
-vim.api.nvim_set_keymap("n", "<space>a", ":lua require('telescope.builtin').builtin()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>r", ":lua require('telescope.builtin').lsp_references()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>e", ":lua require('telescope.builtin').find_files()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>f", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>g", ":lua require('telescope.builtin').git_files()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>d", ":lua require('telescope.builtin').diagnostics()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>l", ":lua require('telescope.builtin').live_grep()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>b", ":lua require('telescope.builtin').buffers()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>c", ":lua require('telescope.builtin').commands()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>h", ":lua require('telescope.builtin').help_tags()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>m", ":lua require('telescope.builtin').keymaps()<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<space>v", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", default_opts)

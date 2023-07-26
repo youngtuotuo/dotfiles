@@ -1,8 +1,5 @@
 -- vim.opt.list = true
 -- vim.opt.listchars = "eol:⏎"
-local default_opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap("n", "<leader>i", ":IndentBlanklineToggle<CR>", default_opts)
-
 require("indent_blankline").setup({
     enabled = false,
     space_char_blankline = " ",
