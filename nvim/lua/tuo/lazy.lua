@@ -38,11 +38,16 @@ local plugins = {
     'grepsuzette/vim-sum',
     'tpope/vim-vinegar',
     'tpope/vim-fugitive',
-    'sbdchd/neoformat',
+    {
+        'sbdchd/neoformat',
+        event = "BufRead",
+    },
     {
         'folke/todo-comments.nvim',
+        event = 'BufRead',
         dependencies = {
-            'nvim-lua/plenary.nvim'
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
         }
     },
     'christoomey/vim-tmux-navigator',
@@ -77,6 +82,7 @@ local plugins = {
     },
     {
         'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -101,6 +107,7 @@ local plugins = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
             'folke/neodev.nvim',
+            'hrsh7th/nvim-cmp',
         },
     },
     {
