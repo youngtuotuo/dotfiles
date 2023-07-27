@@ -18,12 +18,13 @@ local plugins = {
     'nvim-lua/plenary.nvim',
     'christoomey/vim-tmux-navigator',
     'tpope/vim-fugitive',
+    -- lazy load
     {
         "rebelot/kanagawa.nvim",
+        event = 'VimEnter',
         lazy = false,
         priority = 1000,
     },
-    -- lazy load
     {
         'nvim-lualine/lualine.nvim',
         event = 'BufRead',
@@ -48,7 +49,7 @@ local plugins = {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        event = 'BufReadPre',
+        event = 'VimEnter',
         keys = {
             {'<leader>i', '<cmd>IndentBlanklineToggle<cr>', mode={'n'}, default_opts}
         },
@@ -206,17 +207,30 @@ local plugins = {
         end
     },
     {
-        'neovim/nvim-lspconfig',
-        event = 'BufRead',
-        config = function()
-            require('lazyload.lspconfig')
-        end,
+        'williamboman/mason-lspconfig.nvim',
+        ft = {"lua", "c", "cpp", "rust", "tex", "html", "python", "yaml", "go", "haskell", "xml"},
         dependencies = {
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            'folke/neodev.nvim',
-            'hrsh7th/nvim-cmp',
-        },
+            {
+                'neovim/nvim-lspconfig',
+                event = 'BufRead',
+                cmd = {"LspInfo"},
+                dependencies = {
+                    'folke/neodev.nvim',
+                    'hrsh7th/nvim-cmp',
+                },
+            },
+            {
+                'williamboman/mason.nvim',
+                event = 'BufRead',
+                cmd = {"Mason"},
+                config = function()
+                    require('lazyload.lspconfig')
+                end,
+                dependencies = {
+                    'neovim/nvim-lspconfig',
+                }
+            },
+        }
     },
     {
         "microsoft/python-type-stubs",

@@ -1,5 +1,6 @@
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then return end
+
 require('lspconfig.ui.windows').default_options.border = BORDER
 require("neodev").setup({})
 require("mason").setup({ui = {border = BORDER}})
