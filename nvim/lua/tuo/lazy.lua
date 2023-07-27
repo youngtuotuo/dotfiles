@@ -22,6 +22,9 @@ local plugins = {
     {
         "rebelot/kanagawa.nvim",
         event = 'VimEnter',
+        config = function()
+            require('lazyload.colorscheme')
+        end,
         lazy = false,
         priority = 1000,
     },
@@ -251,7 +254,9 @@ local plugins = {
             {"<space>c", "<cmd>lua require('telescope.builtin').commands()<CR>", mode={'n'}, default_opts},
             {"<space>h", "<cmd>lua require('telescope.builtin').help_tags()<CR>", mode={'n'}, default_opts},
             {"<space>m", "<cmd>lua require('telescope.builtin').keymaps()<CR>", mode={'n'}, default_opts},
-            {"<space>v", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", mode={'n'}, default_opts}
+            {"<space>v", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", mode={'n'}, default_opts},
+            {"<space>u", "<cmd>lua require('telescope').extensions.undo.undo()<CR>", mode={'n'}, default_opts},
+            {"<space>3", "<cmd>lua require('telescope').extensions.heading.heading()<CR>", mode={'n'}, default_opts},
         },
         config = function()
             require('lazyload.telescope')
