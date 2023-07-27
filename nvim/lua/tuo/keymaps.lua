@@ -1,8 +1,8 @@
 -- Shorten function name
 local keymap = vim.keymap.set
-local default_opts = {noremap = true, silent = true}
-local term_opts = {silent = true}
-local expr_opts = {noremap = true, expr = true, silent = true}
+local default_opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- Modes
 -- normal_mode = "n"
@@ -12,56 +12,19 @@ local expr_opts = {noremap = true, expr = true, silent = true}
 -- command_mode = "c"
 -- term_mode = "t"
 
--- <leader>p for exucute python, c, c++
-local ext = ""
-local sep = "/"
-local py = "python3"
-local c = "gcc -Wall -o " .. vim.fn.expand("%:t:r")
-local cpp = "g++ -Wall -std=c++14 -o " .. vim.fn.expand("%:t:r")
-local go = "go run"
-local rs = "cargo run"
-local hs = 'runghc'
----- different system needs different name
-if vim.fn.has("win32") == 1 then
-    ext = ".exe"
-    sep = "\\"
-    py = "python"
-elseif vim.fn.has("mac") == 1 then
-    c = "clang -Wall -o " .. vim.fn.expand("%:t:r")
-    cpp = "clang++ -Wall -std=c++14 -o " .. vim.fn.expand("%:t:r")
-end
-local cmd = ""
----- detect file type to change command
-vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
-    callback = function()
-       if vim.bo.filetype == "cpp" then
-           cmd = cpp .. ext .. " " .. vim.fn.expand("%:t") .. " && ." .. sep .. vim.fn.expand("%:t:r") .. ext
-       elseif vim.bo.filetype == "c" then
-           cmd = c .. ext .. " " .. vim.fn.expand("%:t") .. " && ." .. sep .. vim.fn.expand("%:t:r") .. ext
-       elseif vim.bo.filetype == "python" then
-           cmd = py .. " %"
-       elseif vim.bo.filetype == "go" then
-           cmd = go .. " %"
-       elseif vim.bo.filetype == "rust" then
-           cmd = rs .. " %"
-       elseif vim.bo.filetype == "haskell" then
-           cmd = hs .. " %"
-       end
-        cmd = ":sp | terminal " .. cmd .. "<CR>Gi"
-       keymap("n", "<leader>p", cmd, default_opts)
-    end,
-})
-
+-- format
+keymap("n", "<leader>f", function() vim.lsp.buf.format() end, default_opts)
 
 -- <C-c> will raise interrupted error of lsp
-keymap("i", "<C-C>", "<C-[>", default_opts)
+keymap("i", "<C-c>", "<C-[>", default_opts)
 
 keymap("n", "<leader>l", "<Plug>NetrwRefresh", default_opts)
 keymap("n", "-", ":E<CR>", default_opts)
 
 -- Not show native menu
-keymap("i", "<C-n>", "<Nop>", default_opts)
-keymap("i", "<C-p>", "<Nop>", default_opts)
+keymap("i", "<C-n>", "<nop>", default_opts)
+keymap("i", "<C-p>", "<nop>", default_opts)
+keymap("n", "Q", "<nop>", default_opts)
 
 -- Easier pane navigation
 keymap("n", "<C-j>", "<C-w>j", default_opts)
@@ -82,9 +45,17 @@ keymap("n", "<leader>s", ":set invnu invrnu<CR>", default_opts)
 
 -- Y like C,D
 keymap("n", "Y", "y$", default_opts)
+-- system clipboard yank
+keymap({ "n", "v" }, "<leader>y", "\"+y", default_opts)
+keymap("n", "<leader>Y", "\"+Y", default_opts)
+-- delete avoid register
+keymap({ "n", "v" }, "<leader>d", "\"_d", default_opts)
 keymap("n", "J", "mzJ`z", default_opts)
 keymap("n", "n", "nzzzv", default_opts)
 keymap("n", "N", "Nzzzv", default_opts)
+
+keymap("n", "<C-d>", "<C-d>zz", default_opts)
+keymap("n", "<C-u>", "<C-u>zz", default_opts)
 
 -- Center search results
 keymap("n", "n", "nzz", default_opts)
@@ -111,13 +82,11 @@ keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
 
 -- Paste over currently selected text without yanking it
-keymap("v", "p", '"_dP', default_opts)
+keymap("v", "p", [["_dP]], default_opts)
 
 -- Move selected line / block of text in visual mode
-keymap("v", "K", ":move .-2<CR>==", default_opts)
-keymap("v", "J", ":move .+1<CR>==", default_opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
-keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
+keymap({ "v", "x" }, "K", "<cmd>move '<-2<CR>gv=gv", default_opts)
+keymap({ "v", "x" }, "J", "<cmd>move '>+1<CR>gv=gv", default_opts)
 
 -- Quickfix list
 vim.api.nvim_create_user_command('Cnext', 'try | cnext | catch | cfirst | catch | endtry', {})
@@ -137,9 +106,11 @@ function Toggle_qf()
         vim.cmd "copen"
     end
 end
+
+-- alt-j, alt-k, you can hold alt
 keymap("n", "co", "<cmd>lua Toggle_qf()<CR>", default_opts)
-keymap("n", "cn", ":Cnext<CR>", default_opts)
-keymap("n", "cp", ":Cprev<CR>", default_opts)
+keymap("n", "<M-j>", "<cmd>Cnext<cr>zz", default_opts)
+keymap("n", "<M-k>", "<cmd>Cprev<cr>zz", default_opts)
 
 -- Undo break points
 keymap("i", ",", ",<C-g>u", default_opts)
@@ -149,11 +120,15 @@ keymap("i", ".", ".<C-g>u", default_opts)
 keymap("n", "<ESC>", ":nohl<CR>", default_opts)
 
 -- Resizing panes
-keymap("n", "<S-Left>", ":vertical resize -1<CR>", default_opts)
-keymap("n", "<S-Right>", ":vertical resize +1<CR>", default_opts)
-keymap("n", "<S-Up>", ":resize +1<CR>", default_opts)
-keymap("n", "<S-Down>", ":resize -1<CR>", default_opts)
+keymap("n", "<S-Left>", "<cmd>vertical resize -1<CR>", default_opts)
+keymap("n", "<S-Right>", "<cmd>vertical resize +1<CR>", default_opts)
+keymap("n", "<S-Up>", "<cmd>resize +1<CR>", default_opts)
+keymap("n", "<S-Down>", "<cmd>resize -1<CR>", default_opts)
 
 keymap("i", "<S-Tab>", "<C-d>", default_opts)
 keymap("i", "<Tab>", "<C-i>", default_opts)
+
+-- better search and replace
+keymap("n", "<space>s", [[<cmd>%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
 
