@@ -356,7 +356,7 @@ local plugins = {
     },
     {
         'theprimeagen/harpoon',
-        event = 'VimEnter',
+        event = 'BufRead',
         keys = {
             { "<leader>a", ":lua require('harpoon.mark').add_file()<cr>",        mode = "n", default_opts },
             { "<C-q>",     ":lua require('harpoon.ui').toggle_quick_menu()<cr>", mode = "n", default_opts },
