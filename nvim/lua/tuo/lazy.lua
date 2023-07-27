@@ -18,10 +18,14 @@ local plugins = {
     'nvim-lua/plenary.nvim',
     'christoomey/vim-tmux-navigator',
     'tpope/vim-fugitive',
+    -- lazy load
     {
         'mbbill/undotree',
+        event = 'BufRead',
+        keys = {
+            {"<leader>u", vim.cmd.UndotreeToggle, mode="n"}
+        }
     },
-    -- lazy load
     {
         "rebelot/kanagawa.nvim",
         event = 'VimEnter',
