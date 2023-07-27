@@ -20,7 +20,6 @@ local config = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {
-            {'mode'}, {'%='}, 
             {
                 'filetype',
                 colored = true,
@@ -39,11 +38,25 @@ local config = {
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {{'%='}, {'filename', path = 1}},
-        lualine_x = {},
+        lualine_c = {
+            {
+                'filetype',
+                colored = true,
+                icon_only = true,
+                icon = {align = 'right'},
+                padding = {left = 0}
+            },
+            {'filename', path = 1}},
+        lualine_x = {{LspName, align='right', padding = { right = 0 }}},
         lualine_y = {},
         lualine_z = {}
     },
 }
 
 require('lualine').setup(config)
+vim.cmd([[
+    augroup lualine_augroup
+        autocmd!
+        autocmd User LspProgressStatusUpdated lua require("lualine").refresh()
+    augroup END
+]])

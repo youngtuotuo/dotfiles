@@ -31,6 +31,9 @@ local plugins = {
     {
         'nvim-lualine/lualine.nvim',
         event = 'BufRead',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+        },
         config = function()
             require('lazyload.lualine')
         end
