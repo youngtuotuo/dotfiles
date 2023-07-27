@@ -18,6 +18,9 @@ local plugins = {
     'nvim-lua/plenary.nvim',
     'christoomey/vim-tmux-navigator',
     'tpope/vim-fugitive',
+    {
+        'mbbill/undotree',
+    },
     -- lazy load
     {
         "rebelot/kanagawa.nvim",

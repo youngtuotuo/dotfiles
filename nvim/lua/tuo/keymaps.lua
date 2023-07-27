@@ -61,14 +61,6 @@ keymap("n", "<C-u>", "<C-u>zz", default_opts)
 keymap("n", "n", "nzz", default_opts)
 keymap("n", "N", "Nzz", default_opts)
 
--- Visual line wraps
--- keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
--- keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
-
--- Jump list mutations
--- keymap("n", "<expr> k", "(v:count > 5 ? 'm'' . v:count: '') . 'k'", expr_opts)
--- keymap("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count: '') . 'j'", expr_opts)
-
 vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Wa', 'wa', {})
 vim.api.nvim_create_user_command('WA', 'wa', {})
@@ -85,8 +77,8 @@ keymap("v", ">", ">gv", default_opts)
 keymap("v", "p", [["_dP]], default_opts)
 
 -- Move selected line / block of text in visual mode
-keymap({ "v", "x" }, "K", "<cmd>move '<-2<CR>gv=gv", default_opts)
-keymap({ "v", "x" }, "J", "<cmd>move '>+1<CR>gv=gv", default_opts)
+keymap({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", default_opts)
+keymap({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", default_opts)
 
 -- Quickfix list
 vim.api.nvim_create_user_command('Cnext', 'try | cnext | catch | cfirst | catch | endtry', {})
