@@ -6,16 +6,13 @@ This repo includes:
 * Url or Installation scripts that hard to find by simply google once.
 
 <p align="center">
-    <img src="pictures/mac.png"/>
-</p>
-<p align="center">
     <img src="pictures/win.png"/>
 </p>
 
 
 # Easy Install Tools
 Tools listed here can be found by goolge once.<br>
-Fira Code Nerd Font, Clipboard Inidicator, RayCast, OpenVPN Client, Stats, AltTab, Rectangle, Zsh, zsh-autosuggestions, miniconda
+Fira Code Nerd Font, Clipboard Inidicator, RayCast, OpenVPN Client, Stats, AltTab, Rectangle, Zsh, zsh-autosuggestions, miniconda, PowerShell, Git for windows
 
 # Other Configs
 ## Miniconda disalbe prompt
@@ -106,4 +103,12 @@ vncserver -localhost no -geometry 1920x1080
 git clone https://github.com/novnc/noVNC ~/github/noVNC
 pip install numpy
 ./utils/novnc_proxy --vnc <host>:5902
+```
+
+## PowerShell config
+[devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
+
+Load path:
+```powershell
+~/Documents/PowerShell/profile.ps1
 ```
