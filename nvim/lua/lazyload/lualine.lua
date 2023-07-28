@@ -31,6 +31,7 @@ local config = {
         },
         lualine_x = {
             {'location'}, {LspName, align='right', padding = { right = 0 }},
+            {'progress'},
         },
         lualine_y = {},
         lualine_z = {}

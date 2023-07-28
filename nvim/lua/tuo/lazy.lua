@@ -20,6 +20,15 @@ local plugins = {
     'tpope/vim-fugitive',
     -- lazy load
     {
+        'kessejones/term.nvim',
+        keys = {
+            { "<leader>t", "<cmd>lua require('term').toggle()<CR>", mode = { 'n', 't' }, default_opts },
+        },
+        config = function()
+            require('lazyload.term')
+        end,
+    },
+    {
         'mbbill/undotree',
         event = 'BufRead',
         keys = {
@@ -139,7 +148,6 @@ local plugins = {
             { "ga",        ":Lspsaga code_action<cr>",     mode = { 'n' },      default_opts },
             { "gn",        ":Lspsaga rename<CR>",          mode = { 'n' },      default_opts },
             { "<space>o",  "<cmd>Lspsaga outline<CR>",     mode = { 'n' },      default_opts },
-            { "<leader>t", "<cmd>Lspsaga term_toggle<CR>", mode = { 'n', 't' }, default_opts },
         },
         config = function()
             require('lazyload.lspsaga')
