@@ -43,18 +43,26 @@ local options = {
 
 for k, v in pairs(options) do vim.opt[k] = v end
 
-local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
+local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function() vim.highlight.on_yank() end,
     group = yank_augroup
 })
 vim.api.nvim_create_autocmd("BufEnter", {
-    callback = function() vim.opt.formatoptions:remove{"c", "r", "o"} end
+    callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end
 })
 
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"
+if vim.fn.has("win32") == 1 then
+    vim.cmd [[
+    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+    let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+    set shellquote= shellxquote=]]
+end
 
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1

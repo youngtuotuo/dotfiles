@@ -4,9 +4,7 @@ require("term").setup({
     height = 0.8,
     anchor = "NW",
     position = "center",
-    title = {
-        align = "center", -- left, center or right
-    },
+    title_align = "center",
     border = {
         chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         hl = "TermBorder",
