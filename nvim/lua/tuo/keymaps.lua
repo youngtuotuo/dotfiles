@@ -101,8 +101,8 @@ end
 
 -- alt-j, alt-k, you can hold alt
 keymap("n", "co", "<cmd>lua Toggle_qf()<CR>", default_opts)
-keymap("n", "<M-j>", "<cmd>Cnext<cr>zz", default_opts)
-keymap("n", "<M-k>", "<cmd>Cprev<cr>zz", default_opts)
+keymap("n", "<C-n>", "<cmd>Cnext<cr>zz", default_opts)
+keymap("n", "<C-p>", "<cmd>Cprev<cr>zz", default_opts)
 
 -- Undo break points
 keymap("i", ",", ",<C-g>u", default_opts)

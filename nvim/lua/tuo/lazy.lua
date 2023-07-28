@@ -16,7 +16,7 @@ local default_opts = { noremap = true, silent = false }
 local plugins = {
     -- auto load
     'nvim-lua/plenary.nvim',
-    'christoomey/vim-tmux-navigator',
+    -- 'christoomey/vim-tmux-navigator',
     'tpope/vim-fugitive',
     -- lazy load
     {

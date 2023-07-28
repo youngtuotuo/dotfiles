@@ -118,6 +118,13 @@ export EDITOR=nvim
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cl='clear'
+
+alias vi='nvim'
+alias cvat='python -m data_tools.cvat'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
