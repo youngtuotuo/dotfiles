@@ -5,11 +5,14 @@ require('lspconfig.ui.windows').default_options.border = BORDER
 require("neodev").setup({})
 require("mason").setup({ui = {border = BORDER}})
 -- Ensure the servers above are installed
-local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "yamlls",
-    "gopls", "lemminx", "hls", "pylsp"
-}
+local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "yamlls", "gopls", "lemminx", "hls", "pylsp"}
 require("mason-lspconfig").setup {ensure_installed = servers}
+local fmt_lint = {"black", "prettier", "clang-format", "mypy"}
+require("mason-tool-installer").setup {ensure_installed = fmt_lint}
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'MasonToolsStartingInstall',
+    callback = function() vim.schedule(function() print 'mason-tool-installer is starting' end) end
+})
 
 local diag_config = {
     virtual_text = false,
@@ -17,39 +20,25 @@ local diag_config = {
     underline = false,
     update_in_insert = false,
     severity_sort = true,
-    float = {
-        focusable = false,
-        source = "if_many",
-        title = " σ`∀´)σ ",
-        border = BORDER,
-        max_width = 80
-    },
+    float = {focusable = false, source = "always", title = " σ`∀´)σ ", border = BORDER, max_width = 80},
     source = true
 }
 
 vim.diagnostic.config(diag_config)
 
 local signs = {
-    {name = "DiagnosticSignError", text = ""},
-    {name = "DiagnosticSignWarn", text = ""},
-    {name = "DiagnosticSignHint", text = ""},
-    {name = "DiagnosticSignInfo", text = ""}
+    {name = "DiagnosticSignError", text = ""}, {name = "DiagnosticSignWarn", text = ""},
+    {name = "DiagnosticSignHint", text = ""}, {name = "DiagnosticSignInfo", text = ""}
 }
 
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name,
-                       {texthl = sign.name, text = sign.text, numhl = ""})
-end
+for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""}) end
 
 local util = require("lspconfig.util")
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup('lsp_document_highlight', {clear = false})
-        vim.api.nvim_clear_autocmds({
-            buffer = bufnr,
-            group = 'lsp_document_highlight'
-        })
+        vim.api.nvim_clear_autocmds({buffer = bufnr, group = 'lsp_document_highlight'})
         vim.api.nvim_create_autocmd({'CursorHold'}, {
             group = 'lsp_document_highlight',
             buffer = bufnr,
@@ -62,9 +51,7 @@ local on_attach = function(client, bufnr)
         })
     end
 
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     -- Mappings.
     local opts = {noremap = true, silent = false}
@@ -72,13 +59,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa',
-                   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr',
-                   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl',
-                   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-                   opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     -- buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
@@ -89,7 +72,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
-
 
 local function filter(arr, func)
     -- Filter in place
@@ -110,7 +92,7 @@ local function pyright_accessed_filter(diagnostic)
     -- same arguments but you don't use all the arguments in all the functions,
     -- so kwargs is used to suck up all the extras
     if diagnostic.message == '"kwargs" is not accessed' then
-    	return false
+        return false
     elseif diagnostic.message == '"args" is not accessed' then
         return false
     elseif diagnostic.message == '"_.+"reportGeneralTypeIssues' then
@@ -147,18 +129,13 @@ require("mason-lspconfig").setup_handlers({
             handlers = {
                 ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                     border = BORDER,
-                    title = " " .. server_name .." ",
+                    title = " " .. server_name .. " ",
                     max_width = 100,
                     zindex = 500
                 }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-                    border = BORDER,
-                    title = " Signature ",
-                    max_width = 100
-                }),
-                ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                    custom_on_publish_diagnostics, {}
-                )
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+                                                              {border = BORDER, title = " Signature ", max_width = 100}),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
             },
             capabilities = capabilities
         })
@@ -173,19 +150,14 @@ require("mason-lspconfig").setup_handlers({
                     max_width = 100,
                     zindex = 500
                 }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-                    border = BORDER,
-                    title = " Signature ",
-                    max_width = 100
-                }),
-                ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                    custom_on_publish_diagnostics, {}
-                )
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+                                                              {border = BORDER, title = " Signature ", max_width = 100}),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
             },
             capabilities = capabilities,
             root_dir = util.root_pattern(unpack({
-                ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
-                "stylua.toml", "selene.toml", "selene.yml", ".git"
+                ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml",
+                "selene.yml", ".git"
             })),
             settings = {
                 Lua = {
@@ -208,14 +180,9 @@ require("mason-lspconfig").setup_handlers({
                     max_width = 100,
                     zindex = 500
                 }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-                    border = BORDER,
-                    title = " Signature ",
-                    max_width = 100
-                }),
-                ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                    custom_on_publish_diagnostics, {}
-                )
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+                                                              {border = BORDER, title = " Signature ", max_width = 100}),
+                ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
             },
             capabilities = capabilities,
             settings = {
@@ -223,10 +190,7 @@ require("mason-lspconfig").setup_handlers({
                     rootDirectory = nil,
                     build = {
                         executable = 'latexmk',
-                        args = {
-                            '-xelatex', '-interaction=nonstopmode',
-                            '-synctex=1', '%f'
-                        },
+                        args = {'-xelatex', '-interaction=nonstopmode', '-synctex=1', '%f'},
                         -- executable = 'xelatex',
                         onSave = false,
                         forwardSearchAfter = false
@@ -247,4 +211,3 @@ require("mason-lspconfig").setup_handlers({
         }
     end
 })
-

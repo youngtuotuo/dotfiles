@@ -1,8 +1,8 @@
 -- Shorten function name
 local keymap = vim.keymap.set
-local default_opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-local expr_opts = { noremap = true, expr = true, silent = true }
+local default_opts = {noremap = true, silent = true}
+local term_opts = {silent = true}
+local expr_opts = {noremap = true, expr = true, silent = true}
 
 -- Modes
 -- normal_mode = "n"
@@ -46,10 +46,10 @@ keymap("n", "<leader>s", ":set invnu invrnu<CR>", default_opts)
 -- Y like C,D
 keymap("n", "Y", "y$", default_opts)
 -- system clipboard yank
-keymap({ "n", "v" }, "<leader>y", "\"+y", default_opts)
+keymap({"n", "v"}, "<leader>y", "\"+y", default_opts)
 keymap("n", "<leader>Y", "\"+Y", default_opts)
 -- delete avoid register
-keymap({ "n", "v" }, "<leader>d", "\"_d", default_opts)
+keymap({"n", "v"}, "<leader>d", "\"_d", default_opts)
 keymap("n", "J", "mzJ`z", default_opts)
 keymap("n", "n", "nzzzv", default_opts)
 keymap("n", "N", "Nzzzv", default_opts)
@@ -77,26 +77,26 @@ keymap("v", ">", ">gv", default_opts)
 keymap("v", "p", [["_dP]], default_opts)
 
 -- Move selected line / block of text in visual mode
-keymap({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", default_opts)
-keymap({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", default_opts)
+keymap({"v", "x"}, "J", ":move '>+1<CR>gv=gv", default_opts)
+keymap({"v", "x"}, "K", ":move '<-2<CR>gv=gv", default_opts)
 
 -- Quickfix list
-vim.api.nvim_create_user_command('Cnext', 'try | cnext | catch | cfirst | catch | endtry', {})
-vim.api.nvim_create_user_command('Cprev', 'try | cprev | catch | clast | catch | endtry', {})
+vim.api.nvim_create_user_command('Cnext',
+                                 'try | cnext | catch | cfirst | catch | endtry',
+                                 {})
+vim.api.nvim_create_user_command('Cprev',
+                                 'try | cprev | catch | clast | catch | endtry',
+                                 {})
 function Toggle_qf()
     local qf_exists = false
     for _, win in pairs(vim.fn.getwininfo()) do
-        if win["quickfix"] == 1 then
-            qf_exists = true
-        end
+        if win["quickfix"] == 1 then qf_exists = true end
     end
     if qf_exists == true then
         vim.cmd "cclose"
         return
     end
-    if not vim.tbl_isempty(vim.fn.getqflist()) then
-        vim.cmd "copen"
-    end
+    if not vim.tbl_isempty(vim.fn.getqflist()) then vim.cmd "copen" end
 end
 
 -- alt-j, alt-k, you can hold alt
@@ -123,4 +123,3 @@ keymap("i", "<Tab>", "<C-i>", default_opts)
 -- better search and replace
 keymap("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
-

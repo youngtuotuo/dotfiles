@@ -24,7 +24,6 @@ conda config --system --set env_prompt ""
 
 ```bash
 sudo apt-get install linux-headers-$(uname -r)
-# WARNING: the `ubuntu2004/x86_64` in the following url may be different, remember to change it.
 # you can find the feasible choices here https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#network-repo-installation-for-ubuntu
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
