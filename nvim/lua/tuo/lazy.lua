@@ -124,6 +124,13 @@ local plugins = {
         end,
     },
     {
+        'mhartington/formatter.nvim',
+        event = "BufRead",
+        config = function()
+            -- TODO:
+        end,
+    },
+    {
         'folke/todo-comments.nvim',
         event = 'BufRead',
         config = function()
@@ -230,6 +237,13 @@ local plugins = {
         end
     },
     {
+        'mfussenegger/nvim-lint',
+        event = 'BufRead',
+        config = function()
+            -- TODO:
+        end
+    },
+    {
         'williamboman/mason-lspconfig.nvim',
         ft = { "lua", "c", "cpp", "rust", "tex", "html", "python", "yaml", "go", "haskell", "xml" },
         dependencies = {
@@ -252,6 +266,11 @@ local plugins = {
                 dependencies = {
                     'neovim/nvim-lspconfig',
                 }
+            },
+            {
+                'WhoIsSethDaniel/mason-tool-installer.nvim',
+                event = 'BufRead',
+                -- TODO:
             },
         }
     },
