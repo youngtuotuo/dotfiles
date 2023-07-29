@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope<CR>", { noremap = true, silent = true })
 
 require("todo-comments").setup({
   signs = true, -- show icons in the signs column
@@ -47,7 +47,7 @@ require("todo-comments").setup({
     info = { "DiagnosticInfo", "#2563EB" },
     hint = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
-    test = { "Identifier", "#FF00FF" }
+    test = { "Identifier", "#FF00FF" },
   },
   search = {
     command = "rg",

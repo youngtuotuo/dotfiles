@@ -1,4 +1,4 @@
-require("twilight").setup {
+require("twilight").setup({
   dimming = {
     alpha = 0.25, -- amount of dimming
     -- we try to get the foreground from the highlight groups or fallback color
@@ -17,4 +17,4 @@ require("twilight").setup {
     "if_statement",
   },
   exclude = {}, -- exclude these filetypes
-}
+})
