@@ -27,16 +27,16 @@ keymap("i", "<C-p>", "<nop>", default_opts)
 keymap("n", "Q", "<nop>", default_opts)
 
 -- Easier pane navigation
-keymap("n", "<C-j>", "<C-w>j", default_opts)
-keymap("n", "<C-h>", "<C-w>h", default_opts)
-keymap("n", "<C-k>", "<C-w>k", default_opts)
-keymap("n", "<C-l>", "<C-w>l", default_opts)
+-- keymap("n", "<C-j>", "<C-w>j", default_opts)
+-- keymap("n", "<C-h>", "<C-w>h", default_opts)
+-- keymap("n", "<C-k>", "<C-w>k", default_opts)
+-- keymap("n", "<C-l>", "<C-w>l", default_opts)
 
 -- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+-- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+-- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+-- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+-- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- esc to exit terminal mode
 keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 
