@@ -45,8 +45,8 @@ for k, v in pairs(options) do vim.opt[k] = v end
 
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+    group = yank_augroup,
     callback = function() vim.highlight.on_yank() end,
-    group = yank_augroup
 })
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end

@@ -6,8 +6,8 @@ require("neodev").setup({})
 require("mason").setup({ui = {border = BORDER}})
 -- Ensure the servers above are installed
 local servers = {
-    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", --[[ "pyright", ]] "yamlls",
-    "gopls", "lemminx", "hls", "jedi_language_server"
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "yamlls",
+    "gopls", "lemminx", "hls", "pylsp"
 }
 require("mason-lspconfig").setup {ensure_installed = servers}
 
