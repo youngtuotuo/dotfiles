@@ -5,14 +5,10 @@ require('lspconfig.ui.windows').default_options.border = BORDER
 require("neodev").setup({})
 require("mason").setup({ui = {border = BORDER}})
 -- Ensure the servers above are installed
-local servers = {"lua_ls", "clangd", "rust_analyzer", "texlab", "html", "yamlls", "gopls", "lemminx", "hls", "pylsp"}
+local servers = {
+    "lua_ls", "clangd", "rust_analyzer", "texlab", "html", "yamlls", "gopls", "lemminx", "hls", "pylyzer"
+}
 require("mason-lspconfig").setup {ensure_installed = servers}
-local fmt_lint = {"black", "prettier", "clang-format", "mypy"}
-require("mason-tool-installer").setup {ensure_installed = fmt_lint}
-vim.api.nvim_create_autocmd('User', {
-    pattern = 'MasonToolsStartingInstall',
-    callback = function() vim.schedule(function() print 'mason-tool-installer is starting' end) end
-})
 
 local diag_config = {
     virtual_text = false,

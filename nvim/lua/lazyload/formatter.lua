@@ -10,22 +10,12 @@ require("formatter").setup {
     log_level = vim.log.levels.WARN,
     -- All formatter configurations are opt-in
     filetype = {
-        lua = {
-            function()
-                return {
-                    exe = "lua-format",
-                    args = {'--column-limit=120'},
-                    stdin = true
-                }
-            end
-        },
+        lua = { function() return { exe = "lua-format", args = { '--column-limit=120' }, stdin = true } end },
         c = {
             function()
                 return {
                     exe = "clang-format",
-                    args = {
-                        '--style="{IndentWidth: 2, AccessModifierOffset: -2}"'
-                    },
+                    args = { '--style="{IndentWidth: 2, AccessModifierOffset: -2}"' },
                     stdin = true
                 }
             end
@@ -34,19 +24,13 @@ require("formatter").setup {
             function()
                 return {
                     exe = "clang-format",
-                    args = {
-                        '--style="{IndentWidth: 2, AccessModifierOffset: -2}"'
-                    },
+                    args = { '--style="{IndentWidth: 2, AccessModifierOffset: -2}"' },
                     stdin = true
                 }
             end
         },
-        python = {
-            function()
-                return
-                    {exe = "black", args = {'-l 120', "-q", "-"}, stdin = true}
-            end
-        },
+        python = { function() return { exe = "black", args = { '-l 120', "-q", "-" }, stdin = true } end },
+        go = { function() return { exe = "gofmt", stdin = true } end },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ["*"] = {
@@ -56,8 +40,3 @@ require("formatter").setup {
         }
     }
 }
-local format_grp = vim.api
-                       .nvim_create_augroup("FormatAutogroup", {clear = true})
-
-vim.api.nvim_create_autocmd("BufWritePost",
-                            {group = format_grp, command = "FormatWrite"})
