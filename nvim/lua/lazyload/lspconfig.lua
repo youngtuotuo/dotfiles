@@ -157,6 +157,59 @@ require("mason-lspconfig").setup_handlers({
       capabilities = capabilities,
     })
   end,
+  ["pylsp"] = function()
+    lspconfig.pylsp.setup({
+      on_attach = on_attach,
+      handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+          border = BORDER,
+          title = " pylsp ",
+          max_width = 100,
+          zindex = 500,
+        }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(
+          vim.lsp.handlers.signature_help,
+          { border = BORDER, title = " Signature ", max_width = 100 }
+        ),
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
+      },
+      capabilities = capabilities,
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = { "W391" },
+              maxLineLength = 120,
+            },
+            autopep8 = {
+              enabled = false,
+            },
+            yapf = {
+              enabled = false,
+            },
+            mccabe = {
+              enabled = true,
+              threshold = 15,
+            },
+            rope_autoimport = {
+              enabled = true,
+            },
+            jedi_completion = {
+              cache_for = {
+                "pytorch",
+                "scipy",
+                "numpy",
+                "matplotlib"
+              },
+              include_class_objects = true,
+              include_function_objects = true,
+              fuzzy = true,
+            },
+          },
+        },
+      },
+    })
+  end,
   ["lua_ls"] = function()
     lspconfig.lua_ls.setup({
       on_attach = on_attach,
