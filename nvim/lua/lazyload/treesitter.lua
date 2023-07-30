@@ -1,5 +1,13 @@
+require('nvim-treesitter.parsers').get_parser_configs().asm = {
+    install_info = {
+        url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+        files = { 'src/parser.c' },
+        branch = 'main',
+    },
+}
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
+    "asm",
     "markdown",
     "bash",
     "c",
@@ -17,6 +25,7 @@ require("nvim-treesitter.configs").setup({
     "html",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   indent = { enable = true },
+  auto_install = true,
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = { "latex", "bash" },

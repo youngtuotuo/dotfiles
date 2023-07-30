@@ -167,9 +167,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "BufRead",
-    build = function()
-      pcall(require("nvim-treesitter.install").update({ with_sync = true }))
-    end,
     config = function()
       require("lazyload.treesitter")
     end,
