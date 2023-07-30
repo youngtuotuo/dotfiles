@@ -17,7 +17,7 @@ local servers = {
   "gopls",
   "lemminx",
   "hls",
-  "pylyzer",
+  "pylsp",
 }
 require("mason-lspconfig").setup({ ensure_installed = servers })
 
@@ -27,7 +27,7 @@ local diag_config = {
   underline = false,
   update_in_insert = false,
   severity_sort = true,
-  float = { focusable = false, source = "always", title = " σ`∀´)σ ", border = BORDER, max_width = 80 },
+  float = { focusable = true, source = "always", title = " σ`∀´)σ ", border = BORDER, max_width = 80 },
   source = true,
 }
 
