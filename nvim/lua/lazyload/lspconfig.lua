@@ -201,7 +201,7 @@ require("mason-lspconfig").setup_handlers({
       handlers ={
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
           border = BORDER,
-          title = " LuaLS ",
+          title = " Pyright ",
           max_width = 100,
           zindex = 500,
         }),
@@ -237,7 +237,7 @@ require("mason-lspconfig").setup_handlers({
             autoSearchPaths = true,
             -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
             -- ["openFilesOnly", "workspace"]
-            diagnosticMode = "workspace",
+            diagnosticMode = "openFilesOnly",
             -- Path to directory containing custom type stub files.
             -- stubPath = {},
             -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
