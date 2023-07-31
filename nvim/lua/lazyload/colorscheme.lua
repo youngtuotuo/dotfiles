@@ -97,4 +97,4 @@ require("kanagawa").setup({
     light = "lotus",
   },
 })
-require("kanagawa").load("dragon") -- wave, dragon, lotus
+require("kanagawa").load("wave") -- wave, dragon, lotus
