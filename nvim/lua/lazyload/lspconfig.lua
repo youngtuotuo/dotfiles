@@ -17,7 +17,8 @@ local servers = {
   "gopls",
   "lemminx",
   "hls",
-  "pyright",
+  -- "pyright",
+  "jedi_language_server",
 }
 require("mason-lspconfig").setup({ ensure_installed = servers })
 
