@@ -18,7 +18,9 @@ local servers = {
   "lemminx",
   "hls",
   -- "pyright",
-  "jedi_language_server",
+  -- "jedi_language_server",
+  "pylsp",
+  -- "ruff_lsp"
 }
 require("mason-lspconfig").setup({ ensure_installed = servers })
 
@@ -47,6 +49,32 @@ end
 
 local util = require("lspconfig.util")
 
+-- Global mappings
+vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspconfig", {}),
+  callback = function(ev)
+    -- Mappings.
+    local opts = { buffer = ev.buf }
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wl", "<cmd>print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cd>", opts)
+    vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
+    vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    -- vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- vim.keymap.set('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+  end,
+})
+
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
@@ -62,73 +90,6 @@ local on_attach = function(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
   end
-
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
-  -- Mappings.
-  local opts = { noremap = true, silent = false }
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  -- buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
-  buf_set_keymap("n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
-  buf_set_keymap("n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-end
-
-local function filter(arr, func)
-  -- Filter in place
-  -- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
-  local new_index = 1
-  local size_orig = #arr
-  for old_index, v in ipairs(arr) do
-    if func(v, old_index) then
-      arr[new_index] = v
-      new_index = new_index + 1
-    end
-  end
-  for i = new_index, size_orig do
-    arr[i] = nil
-  end
-end
-
-local function pyright_accessed_filter(diagnostic)
-  -- Allow kwargs to be unused, sometimes you want many functions to take the
-  -- same arguments but you don't use all the arguments in all the functions,
-  -- so kwargs is used to suck up all the extras
-  if diagnostic.message == '"kwargs" is not accessed' then
-    return false
-  elseif diagnostic.message == '"args" is not accessed' then
-    return false
-  elseif diagnostic.message == '"_.+"reportGeneralTypeIssues' then
-    return false
-  end
-  -- Allow variables starting with an underscore
-  -- if string.match(diagnostic.message, '"_.+" is not accessed') then
-  -- 	return false
-  -- end
-  -- For all messages "is not accessed"
-  -- if string.match(diagnostic.message, '".+" is not accessed') then
-  --     return false
-  -- end
-
-  return true
-end
-
-local function custom_on_publish_diagnostics(a, params, client_id, c, config)
-  filter(params.diagnostics, pyright_accessed_filter)
-  vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -140,157 +101,21 @@ require("mason-lspconfig").setup_handlers({
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
-    lspconfig[server_name].setup({
-      on_attach = on_attach,
-      handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = BORDER,
-          title = " " .. server_name .. " ",
-          max_width = 100,
-          zindex = 500,
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = BORDER, title = " Signature ", max_width = 100 }
-        ),
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
-      },
-      capabilities = capabilities,
-    })
+    lspconfig[server_name].setup(require("lazyload.lsp.general")(server_name, on_attach, capabilities, util))
   end,
   ["lua_ls"] = function()
-    lspconfig.lua_ls.setup({
-      on_attach = on_attach,
-      handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = BORDER,
-          title = " LuaLS ",
-          max_width = 100,
-          zindex = 500,
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = BORDER, title = " Signature ", max_width = 100 }
-        ),
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
-      },
-      capabilities = capabilities,
-      root_dir = util.root_pattern(unpack({
-        ".luarc.json",
-        ".luarc.jsonc",
-        ".luacheckrc",
-        ".stylua.toml",
-        "stylua.toml",
-        "selene.toml",
-        "selene.yml",
-        ".git",
-      })),
-      settings = {
-        Lua = {
-          runtime = { version = "Lua 5.1" },
-          diagnostics = { globals = { "vim", "use" } },
-          completion = { callSnippet = "Both" },
-          workspace = { checkThirdParty = false },
-          semantic = { enable = false },
-        },
-      },
-    })
+    lspconfig.lua_ls.setup(require("lazyload.lsp.lua_ls")(on_attach, capabilities, util))
+  end,
+  ["jedi_language_server"] = function()
+    lspconfig.jedi_language_server.setup(require("lazyload.lsp.jedi_language_server")(on_attach, capabilities, util))
+  end,
+  ["pylsp"] = function()
+    lspconfig.pylsp.setup(require("lazyload.lsp.pylsp")(on_attach, capabilities, util))
   end,
   ["pyright"] = function()
-    lspconfig.pyright.setup({
-      on_attach = on_attach,
-      handlers ={
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = BORDER,
-          title = " Pyright ",
-          max_width = 100,
-          zindex = 500,
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = BORDER, title = " Signature ", max_width = 100 }
-        ),
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
-      }, 
-      capabilities = capabilities,
-      root_dir = util.root_pattern(unpack({
-        -- "pyproject.toml",
-        -- "setup.py",
-        -- "setup.cfg",
-        -- "requirements.txt",
-        -- "Pipfile",
-        "pyrightconfig.json",
-        -- "pyvenv.cfg",
-      })),
-      settings = {
-        pyright = {
-          -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
-          disableOrganizeImports = false,
-        },
-        python = {
-          analysis = {
-            -- Level of logging for Output panel. The default value for this option is "Information".
-            -- ["Error", "Warning", "Information", or "Trace"]
-            logLevel = "Information",
-            -- Determines whether pyright offers auto-import completions.
-            autoImportCompletions = true,
-            -- Determines whether pyright automatically adds common search paths like "src" if there are no execution environments defined in the config file.
-            autoSearchPaths = true,
-            -- Determines whether pyright analyzes (and reports errors for) all files in the workspace, as indicated by the config file. If this option is set to "openFilesOnly", pyright analyzes only open files.
-            -- ["openFilesOnly", "workspace"]
-            diagnosticMode = "openFilesOnly",
-            -- Path to directory containing custom type stub files.
-            -- stubPath = {},
-            -- Determines the default type-checking level used by pyright. This can be overridden in the configuration file. (Note: This setting used to be called "pyright.typeCheckingMode". The old name is deprecated but is still currently honored.)
-            -- ["off", "basic", "strict"]
-            typeCheckingMode = "off",
-            -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-            useLibraryCodeForTypes = false,
-          },
-        },
-      },
-    })
+    lspconfig.pyright.setup(require("lazyload.lsp.pyright")(on_attach, capabilities, util))
   end,
   ["texlab"] = function()
-    lspconfig.texlab.setup({
-      on_attach = on_attach,
-      handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = BORDER,
-          title = " TexLab ",
-          max_width = 100,
-          zindex = 500,
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = BORDER, title = " Signature ", max_width = 100 }
-        ),
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
-      },
-      capabilities = capabilities,
-      settings = {
-        texlab = {
-          rootDirectory = nil,
-          build = {
-            executable = "latexmk",
-            args = { "-xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
-            -- executable = 'xelatex',
-            onSave = false,
-            forwardSearchAfter = false,
-          },
-          auxDirectory = ".",
-          forwardSearch = { executable = nil, args = {} },
-          chktex = { onOpenAndSave = false, onEdit = false },
-          diagnosticsDelay = 300,
-          latexFormatter = "latexindent",
-          latexindent = {
-            ["local"] = nil, -- local is a reserved keyword
-            modifyLineBreaks = false,
-          },
-          bibtexFormatter = "texlab",
-          formatterLineLength = 80,
-        },
-      },
-    })
+    lspconfig.texlab.setup(require("lazyload.lsp.texlab")(on_attach, capabilities, util))
   end,
 })
