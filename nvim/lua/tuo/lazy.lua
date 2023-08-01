@@ -139,17 +139,6 @@ local plugins = {
     },
   },
   {
-    "folke/trouble.nvim",
-    event = "BufRead",
-    keys = {
-      { "<space>d", ":TroubleToggle<cr>", mode = { "n" }, default_opts },
-    },
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("lazyload.trouble")
-    end,
-  },
-  {
     "lervag/vimtex",
     ft = { "tex" },
     keys = { { "<leader>vc", ":VimtexCompile<CR>", mode = { "n" }, default_opts } },
@@ -234,7 +223,7 @@ local plugins = {
         default_opts,
       },
       { "<space>g", ":lua require('telescope.builtin').git_files()<CR>", mode = { "n" }, default_opts },
-      -- {"<space>d", ":lua require('telescope.builtin').diagnostics()<CR>", mode = {'n'}, default_opts},
+      {"<space>d", ":lua require('telescope.builtin').diagnostics()<CR>", mode = {'n'}, default_opts},
       { "<space>l", ":lua require('telescope.builtin').live_grep()<CR>", mode = { "n" }, default_opts },
       { "<space>b", ":lua require('telescope.builtin').buffers()<CR>", mode = { "n" }, default_opts },
       { "<space>c", ":lua require('telescope.builtin').commands()<CR>", mode = { "n" }, default_opts },
