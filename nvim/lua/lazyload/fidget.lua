@@ -24,15 +24,16 @@ require("fidget").setup({
   fmt = {
     leftpad = true, -- right-justify text in fidget box
     stack_upwards = true, -- list of tasks grows upwards
-    max_width = 0, -- maximum width of the fidget box
+    max_width = 80, -- maximum width of the fidget box
     -- function to format fidget title
     fidget = function(fidget_name, spinner)
-      -- return string.format("%s %s", spinner, fidget_name)
-      return string.format("%s", spinner)
+      return string.format("%s %s", spinner, fidget_name)
+      -- return string.format("%s", spinner)
     end,
     -- function to format each task line
     task = function(task_name, message, percentage)
-      return string.format("%s%s", message, percentage and string.format(" (%s%%)", percentage) or "")
+      return string.format("%s%s [%s]", message, percentage and string.format(" (%s%%)", percentage) or "", task_name)
+      -- return string.format("%s%s", message, percentage and string.format(" (%s%%)", percentage) or "")
     end,
   },
 })

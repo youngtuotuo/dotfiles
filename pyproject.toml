@@ -1,0 +1,3 @@
+[too.pyright]
+stubPath = "~/.local/share/nvim/lazy/python-type-stubs/stubs"
+
