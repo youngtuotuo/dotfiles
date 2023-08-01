@@ -70,6 +70,8 @@ if vim.fn.has("win32") == 1 then
     set shellquote= shellxquote=]])
 end
 
+vim.g.netrw_banner = 0
+
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1

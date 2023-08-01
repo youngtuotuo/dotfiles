@@ -2,7 +2,6 @@
 local keymap = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
-local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- Modes
 -- normal_mode = "n"
@@ -17,11 +16,12 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 --   vim.lsp.buf.format()
 -- end, default_opts)
 
+vim.keymap.set("n", "-", ":E<CR>", { noremap = true, silent = true })
+
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-c>", "<C-[>", default_opts)
 
 keymap("n", "<leader>l", "<Plug>NetrwRefresh", default_opts)
-keymap("n", "-", ":E<CR>", default_opts)
 
 -- Not show native menu
 keymap("i", "<C-n>", "<nop>", default_opts)
