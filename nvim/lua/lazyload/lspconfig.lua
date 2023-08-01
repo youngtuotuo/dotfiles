@@ -18,9 +18,6 @@ local servers = {
   "lemminx",
   "hls",
   "pyright",
-  -- "jedi_language_server",
-  -- "pylsp",
-  -- "ruff_lsp"
 }
 require("mason-lspconfig").setup({ ensure_installed = servers })
 local util = require("lspconfig.util")
@@ -81,12 +78,6 @@ require("mason-lspconfig").setup_handlers({
   end,
   ["lua_ls"] = function()
     lspconfig.lua_ls.setup(require("lazyload.lsp.lua_ls")(on_attach, capabilities, util))
-  end,
-  ["jedi_language_server"] = function()
-    lspconfig.jedi_language_server.setup(require("lazyload.lsp.jedi_language_server")(on_attach, capabilities, util))
-  end,
-  ["pylsp"] = function()
-    lspconfig.pylsp.setup(require("lazyload.lsp.pylsp")(on_attach, capabilities, util))
   end,
   ["pyright"] = function()
     lspconfig.pyright.setup(require("lazyload.lsp.pyright")(on_attach, capabilities, util))
