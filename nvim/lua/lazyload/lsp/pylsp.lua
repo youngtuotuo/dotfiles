@@ -1,4 +1,5 @@
 local config = function(on_attach, capabilities, util)
+  vim.env.MYPYPATH = vim.fn.stdpath("data") .. "/lazy/python-type-stubs"
   return {
     on_attach = on_attach,
     root_dir = function(fname)

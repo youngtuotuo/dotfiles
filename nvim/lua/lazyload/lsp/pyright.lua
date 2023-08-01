@@ -30,18 +30,13 @@ local config = function(on_attach, capabilities, util)
     },
     capabilities = capabilities,
     root_dir = util.root_pattern(unpack({
-      -- "pyproject.toml",
-      -- "setup.py",
-      -- "setup.cfg",
-      -- "requirements.txt",
-      -- "Pipfile",
-      "pyrightconfig.json",
-      -- "pyvenv.cfg",
+      "pyproject.toml",
     })),
     settings = {
       pyright = {
         -- Disables the “Organize Imports” command. This is useful if you are using another extension that provides similar functionality and you don’t want the two extensions to fight each other.
         disableOrganizeImports = false,
+        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
       },
       python = {
         analysis = {
@@ -61,7 +56,7 @@ local config = function(on_attach, capabilities, util)
           -- ["off", "basic", "strict"]
           typeCheckingMode = "off",
           -- Determines whether pyright reads, parses and analyzes library code to extract type information in the absence of type stub files. Type information will typically be incomplete. We recommend using type stubs where possible. The default value for this option is false.
-          useLibraryCodeForTypes = false,
+          useLibraryCodeForTypes = true,
         },
       },
     },
