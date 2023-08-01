@@ -1,6 +1,5 @@
 -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
 -- Utilities for creating configurations
-local util = require("formatter.util")
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
@@ -12,48 +11,27 @@ require("formatter").setup({
   filetype = {
     lua = {
       function()
-        return {
-          exe = "stylua",
-          args = {
-            "--indent-type=spaces",
-            "--indent-width=2",
-            "--column-width=120",
-            "--search-parent-directories",
-            "--stdin-filepath",
-            util.escape_path(util.get_current_buffer_file_path()),
-            "--",
-            "-",
-          },
-          stdin = true,
-        }
+        return require('lazyload.formatters.stylua')
       end,
     },
     c = {
       function()
-        return {
-          exe = "clang-format",
-          args = { '--style="{BasedOnStyle: llvm, ColumnLimit: 120, IndentWidth: 2, AccessModifierOffset: -2}"' },
-          stdin = true,
-        }
+        return require('lazyload.formatters.clang-format')
       end,
     },
     cpp = {
       function()
-        return {
-          exe = "clang-format",
-          args = { '--style="{BasedOnStyle: llvm, ColumnLimit: 120, IndentWidth: 2, AccessModifierOffset: -2}"' },
-          stdin = true,
-        }
+        return require('lazyload.formatters.clang-format')
       end,
     },
     python = {
       function()
-        return { exe = "black", args = { "-l 120", "-q", "-" }, stdin = true }
+        return require('lazyload.formatters.black')
       end,
     },
     go = {
       function()
-        return { exe = "gofmt", stdin = true }
+        return require('lazyload.formatters.go')
       end,
     },
     -- Use the special "*" filetype for defining formatter configurations on

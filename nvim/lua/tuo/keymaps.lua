@@ -62,15 +62,6 @@ keymap("n", "<C-u>", "<C-u>zz", default_opts)
 -- Center search results
 keymap("n", "n", "nzz", default_opts)
 keymap("n", "N", "Nzz", default_opts)
-
-vim.api.nvim_create_user_command("W", "w", {})
-vim.api.nvim_create_user_command("Wa", "wa", {})
-vim.api.nvim_create_user_command("WA", "wa", {})
-vim.api.nvim_create_user_command("Wq", "wq", {})
-vim.api.nvim_create_user_command("WQ", "wq", {})
-vim.api.nvim_create_user_command("Q", "q", {})
-vim.api.nvim_create_user_command("Qa", "qa", {})
-
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
