@@ -1,26 +1,27 @@
 import:
   - ~\github\alacritty-theme\themes\xterm.yaml
 window:
-  opacity: 0.93
+  opacity: 0.7
 font:
-  # Normal (roman) font face
   normal:
     family: JetBrainsMono Nerd Font
     style: Regular
-
-  # Bold font face
   bold:
     family: JetBrainsMono Nerd Font
     style: Bold
-
-  # Italic font face
   italic:
     family: JetBrainsMono Nerd Font
     style: Regular
-  # Point size
   size: 13.0
+draw_bold_text_with_bright_colors: true
 shell:
  program: "ubuntu2204.exe"
+cursor:
+  style:
+    shape: Block
+    blinking: On
+  blink_timeout: 5
+
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
@@ -423,7 +424,7 @@ shell:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    #blinking: On
 
   # Vi mode cursor style
   #
@@ -462,7 +463,7 @@ shell:
 #   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
 #   - (Windows) powershell
 # shell:
-#  program: "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe"
+#  program: "pwsh.exe"
 
 # Startup directory
 #
