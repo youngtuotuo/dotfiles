@@ -9,6 +9,6 @@ if vim.fn.has("win32") == 1 then
   sep = "\\"
   compiler = "g++"
 end
-local cmd = ":sp | execute 'terminal " .. compiler .. " -Wall -std=c++14 -o " .. fname_next .. ext .. " %"
+local cmd = ":13sp | execute 'terminal " .. compiler .. " -Wall -std=c++14 -o " .. fname_next .. ext .. " %"
 cmd = cmd .. " && ." .. sep .. fname_next .. ext .. "' | star"
 vim.keymap.set("n", "<leader>p", cmd)
