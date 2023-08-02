@@ -121,6 +121,5 @@ fi
 
 . "$HOME/.cargo/env"
 export PATH=$PATH:/usr/local/go/bin
-export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
-export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
 export EDITOR=nvim
