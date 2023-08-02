@@ -1,21 +1,21 @@
 import:
-  - ~\github\alacritty-theme\themes\ayu_dark.yaml
+  - ~\github\alacritty-theme\themes\xterm.yaml
 window:
-  opacity: 0.92
+  opacity: 0.93
 font:
   # Normal (roman) font face
   normal:
-    family: FiraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Regular
 
   # Bold font face
   bold:
-    family: FiraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold
 
   # Italic font face
   italic:
-    family: FiraCode Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Regular
   # Point size
   size: 13.0

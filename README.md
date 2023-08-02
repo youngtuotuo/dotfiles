@@ -16,7 +16,7 @@ Tools listed here can be found by goolge once.<br>
 
 ### All OS
 
-Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm
+Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm, Alacritty, Alacritty-theme
 
 ### MacOS
 
