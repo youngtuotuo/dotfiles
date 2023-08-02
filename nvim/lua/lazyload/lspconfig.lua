@@ -91,7 +91,7 @@ require("mason-lspconfig").setup_handlers({
 
 local diag_config = {
   virtual_text = false,
-  signs = true,
+  signs = false,
   underline = false,
   update_in_insert = false,
   severity_sort = true,
