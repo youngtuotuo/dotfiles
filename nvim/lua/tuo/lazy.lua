@@ -103,6 +103,9 @@ local plugins = {
   },
   {
     "mhartington/formatter.nvim",
+    keys = {
+      { "<leader>f", ":Format ", mode = { "n" }},
+    },
     event = "BufRead",
     config = function()
       require("lazyload.formatter")

@@ -129,7 +129,7 @@ vncserver -localhost no -geometry 1920x1080
 ```bash
 git clone https://github.com/novnc/noVNC ~/github/noVNC
 pip install numpy
-./utils/novnc_proxy --vnc <host>:5902
+./utils/novnc_proxy --vnc <host>:5901
 ```
 
 ### PowerShell config
