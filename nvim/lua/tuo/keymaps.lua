@@ -95,4 +95,3 @@ keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
 
 -- better external command ouput
 keymap("n", "<leader>x", [[:13sp | terminal ]])
-

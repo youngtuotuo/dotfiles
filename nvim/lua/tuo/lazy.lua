@@ -36,12 +36,18 @@ local plugins = {
   -- lazy load
   {
     "kessejones/term.nvim",
-    keys = { { "<leader>t", "<cmd>lua require('term').toggle()<CR>", mode = { "n", "t" }, default_opts } },
+    keys = {
+      { "<leader>t", "<cmd>lua require('term').toggle()<CR>", mode = { "n", "t" }, default_opts },
+    },
     config = function()
       require("lazyload.term")
     end,
   },
-  { "mbbill/undotree", event = "BufRead", keys = { { "<leader>u", ":UndotreeToggle<cr>", mode = "n" } } },
+  {
+    "mbbill/undotree",
+    event = "BufRead",
+    keys = { { "<leader>u", ":UndotreeToggle<cr>", mode = "n" } },
+  },
   {
     "nvim-lualine/lualine.nvim",
     event = "BufRead",
@@ -97,10 +103,6 @@ local plugins = {
   },
   {
     "mhartington/formatter.nvim",
-    cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
-    keys = {
-      { "<leader>f", ":Format<cr>", mode = { "n" }, default_opts },
-    },
     event = "BufRead",
     config = function()
       require("lazyload.formatter")
@@ -160,7 +162,11 @@ local plugins = {
       require("lazyload.treesitter")
     end,
   },
-  { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufRead", dependencies = { "nvim-treesitter" } },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    event = "BufRead",
+    dependencies = { "nvim-treesitter" },
+  },
   {
     "hrsh7th/nvim-cmp",
     event = "BufRead",
@@ -213,25 +219,90 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
     keys = {
-      { "<space>a", ":lua require('telescope.builtin').builtin()<CR>", mode = { "n" }, default_opts },
-      { "<space>r", ":lua require('telescope.builtin').lsp_references()<CR>", mode = { "n" }, default_opts },
-      { "<space>e", ":lua require('telescope.builtin').find_files()<CR>", mode = { "n" }, default_opts },
+      {
+        "<space>a",
+        ":lua require('telescope.builtin').builtin()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>r",
+        ":lua require('telescope.builtin').lsp_references()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>e",
+        ":lua require('telescope.builtin').find_files()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
       {
         "<space>f",
         ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
         mode = { "n" },
         default_opts,
       },
-      { "<space>g", ":lua require('telescope.builtin').git_files()<CR>", mode = { "n" }, default_opts },
-      {"<space>d", ":lua require('telescope.builtin').diagnostics()<CR>", mode = {'n'}, default_opts},
-      { "<space>l", ":lua require('telescope.builtin').live_grep()<CR>", mode = { "n" }, default_opts },
-      { "<space>b", ":lua require('telescope.builtin').buffers()<CR>", mode = { "n" }, default_opts },
-      { "<space>c", ":lua require('telescope.builtin').commands()<CR>", mode = { "n" }, default_opts },
-      { "<space>h", ":lua require('telescope.builtin').help_tags()<CR>", mode = { "n" }, default_opts },
-      { "<space>m", ":lua require('telescope.builtin').keymaps()<CR>", mode = { "n" }, default_opts },
-      { "<space>v", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", mode = { "n" }, default_opts },
-      { "<space>u", ":lua require('telescope').extensions.undo.undo()<CR>", mode = { "n" }, default_opts },
-      { "<space>3", ":lua require('telescope').extensions.heading.heading()<CR>", mode = { "n" }, default_opts },
+      {
+        "<space>g",
+        ":lua require('telescope.builtin').git_files()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>d",
+        ":lua require('telescope.builtin').diagnostics()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>l",
+        ":lua require('telescope.builtin').live_grep()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>b",
+        ":lua require('telescope.builtin').buffers()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>c",
+        ":lua require('telescope.builtin').commands()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>h",
+        ":lua require('telescope.builtin').help_tags()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>m",
+        ":lua require('telescope.builtin').keymaps()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>v",
+        ":lua require('telescope.builtin').lsp_document_symbols()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>u",
+        ":lua require('telescope').extensions.undo.undo()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
+      {
+        "<space>3",
+        ":lua require('telescope').extensions.heading.heading()<CR>",
+        mode = { "n" },
+        default_opts,
+      },
     },
     config = function()
       require("lazyload.telescope")

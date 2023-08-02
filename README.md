@@ -1,38 +1,48 @@
 # Dotfiles
 
 This repo includes:
-* Tools I use for data science development in ubuntu/mac/windows/wsl.
-* Tools config files.
-* Url or Installation scripts that hard to find by simply google once.
+
+- Tools I use for data science development in ubuntu/mac/windows/wsl.
+- Tools config files.
+- Url or Installation scripts that hard to find by simply google once.
 
 <p align="center">
     <img src="pictures/win.png"/>
 </p>
 
-
 # Easy Install Tools
+
 Tools listed here can be found by goolge once.<br>
+
 ### All OS
+
 Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm
 
 ### MacOS
+
 Clipboard Inidicator, RayCast, Stats, AltTab, Rectangle, zsh-autosuggestions,
 
 ### Windows, WSL
+
 PowerShell, Git for windows, VcXrv, Scoop, cuda
 
 # Complicate ones
 
 ### One for all dependicies
+
 ```bash
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git nodejs npm
 ```
+
 ### Miniconda disalbe prompt
+
 ```bash
 conda config --system --set env_prompt ""
 conda config --set auto_activate_base false
 ```
+
 ### Cuda
+
 [reference](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 
 ```bash
@@ -45,8 +55,9 @@ sudo apt-get install cuda -y
 ```
 
 ### Neovim
-  
+
 Ubuntu
+
 ```bash
 # Build from Source
 git clone https://github.com/neovim/neovim.git
@@ -55,23 +66,26 @@ export CMAKE_BUILD_TYPE=Release && sudo make && sudo make install
 ```
 
 Mac (homebrew + build from source)
-  
+
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install ninja cmake gettext curl
 cd neovim
 make distclean
-make CMAKE_BUILD_TYPE=Release
-sudo make CMAKE_BUILD_TYPE=Release install
-export PATH=~/github/neovimm/build/bin:$PATH
+export CMAKE_BUILD_TYPE=Release
+make
+sudo make install
+export PATH=~/github/neovim/build/bin:$PATH
 ```
+
 Install Config for Neovim
-  
+
 ```bash
 mkdir ~/github
 git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
 ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
+
 Pyright Related [Configuration](https://github.com/microsoft/pyright/blob/main/docs/configuration.md)
 
 ### Latex Compiler
@@ -83,12 +97,14 @@ sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extr
 ### Solve cv2 typing issue with Pyright
 
 By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
+
 ```bash
 cd ~/github/dotfiles
 cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 
 ### tigerVNC
+
 Not works in WSL2.
 
 ```bash
@@ -99,7 +115,9 @@ vncserver -kill :2
 sudo cp ~/github/dotfiles/xstartup ~/.vnc/xstartup
 sudo chmod +x ~/.vnc/xstartup
 ```
+
 Useful vnc commands
+
 ```bash
 vncserver -list
 vncserver -kill
@@ -115,20 +133,40 @@ pip install numpy
 ```
 
 ### PowerShell config
+
 [devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
 
 Load path:
+
 ```powershell
 mkdir ~/github
 ~/Documents/PowerShell/profile.ps1
 ```
+
 Install clang
+
 ```powershell
 scoop install main/llvm
 ```
 
+Envs
+
+```powershell
+dir env:
+```
+
+Frequently used envs
+
+```powershell
+cd $env:APPDATA
+cd $env:LOCALAPPDATA
+cd $env:USERPROFILE
+```
+
 ### WSL2 config
+
 Git credential manager
+
 ```bash
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 ```

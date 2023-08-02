@@ -39,6 +39,11 @@ require("formatter").setup({
         return require('lazyload.formatters.rustfmt')
       end,
     },
+    markdown = {
+      function()
+        return require('lazyload.formatters.prettier')
+      end,
+    },
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype
     ["*"] = {
