@@ -10,4 +10,4 @@ end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-BORDER = "single"
+BORDER = "rounded"
