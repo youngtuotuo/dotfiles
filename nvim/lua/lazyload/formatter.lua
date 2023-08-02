@@ -34,6 +34,11 @@ require("formatter").setup({
         return require('lazyload.formatters.go')
       end,
     },
+    rust = {
+      function()
+        return require('lazyload.formatters.rustfmt')
+      end,
+    },
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype
     ["*"] = {
