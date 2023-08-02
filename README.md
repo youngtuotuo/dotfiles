@@ -12,12 +12,13 @@ This repo includes:
 
 # Easy Install Tools
 Tools listed here can be found by goolge once.<br>
-Fira Code Nerd Font, Clipboard Inidicator, RayCast, OpenVPN Client, Stats, AltTab, Rectangle, Zsh, zsh-autosuggestions, miniconda, PowerShell, Git for windows
+Fira Code Nerd Font, Clipboard Inidicator, RayCast, OpenVPN Client, Stats, AltTab, Rectangle, Zsh, zsh-autosuggestions, miniconda, PowerShell, Git for windows, Go, Haskell, Rust
 
 # Other Configs
 ## Miniconda disalbe prompt
 ```bash
 conda config --system --set env_prompt ""
+conda config --set auto_activate_base false
 ```
 ## Cuda
 [reference](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
@@ -59,7 +60,7 @@ Install Config for Neovim
   
 ```bash
 mkdir ~/github
-git clone git@github.com:youngtuotuo/dotfiles.git ~/github/dotfiles
+git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
 ln -s ~/github/dotfiles/nvim/ ~/.config/nvim
 ```
 Pyright Related Configuration
