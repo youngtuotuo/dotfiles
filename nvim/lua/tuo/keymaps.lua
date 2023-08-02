@@ -92,3 +92,7 @@ keymap("i", "<Tab>", "<C-i>", default_opts)
 -- better search and replace
 keymap("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
+
+-- better external command ouput
+keymap("n", "<leader>x", [[:sp | terminal ]])
+
