@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     -- vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    -- vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
     -- vim.keymap.set('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
   end,
 })

@@ -31,6 +31,7 @@ local config = function(on_attach, capabilities, util)
     },
     capabilities = capabilities,
     root_dir = util.root_pattern(unpack({
+      ".gitignore",
       "pyproject.toml",
     })),
     settings = {
