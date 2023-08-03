@@ -16,7 +16,7 @@ Tools listed here can be found by goolge once.<br>
 
 ### All OS
 
-Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm, Alacritty, Alacritty-theme
+Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm, Alacritty, Alacritty-theme, nu-shell
 
 ### MacOS
 
@@ -24,7 +24,8 @@ Clipboard Inidicator, RayCast, Stats, AltTab, Rectangle, zsh-autosuggestions,
 
 ### Windows, WSL
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda
+PowerShell, Git for windows, VcXrv, Scoop, cuda<cr>
+Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 
 # Complicate ones
 
@@ -39,6 +40,22 @@ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake c
 ```bash
 conda config --system --set env_prompt ""
 conda config --set auto_activate_base false
+```
+
+## Mason Legacy Haskell Language Server Version
+
+```bash
+ghcup install ghc-9.2.7
+```
+
+Linux/Mac
+```bash
+rm ~/.ghcup/bin/ghc && ln -s ~/.ghcup/ghc/9.2.7/bin/ghc-9.2.7  ~/.ghcup/bin/ghc
+```
+PowerShell
+```bash
+rm C:\ghcup\bin\ghc.exe
+cp C:\ghcup\bin\ghc-9.2.7.exe C:\ghcup\bin\ghc.exe
 ```
 
 ### Cuda
