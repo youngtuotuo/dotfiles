@@ -75,7 +75,6 @@ local plugins = {
   },
   {
     "norcalli/nvim-colorizer.lua",
-    event = "BufRead",
     config = function()
       require("lazyload.colorizer")
     end,
