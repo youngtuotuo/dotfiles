@@ -30,43 +30,11 @@ require("kanagawa").setup({
   overrides = function(colors)
     local theme = colors.theme
     return {
-      -- CmpCompletionSel = { bg = "none", underline = true },
-      CmpItemAbbrDeprecated = { fg = "#808080", bg = colors.palette.sumiInk0, strikethrough = true },
-      CmpItemAbbrMatch = { fg = "#569CD6", bg = colors.palette.sumiInk0, bold = true },
-      CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
-      CmpItemKindClass = { fg = "#A377BF", bg = colors.palette.sumiInk0 },
-      CmpItemKindColor = { fg = "#58B5A8", bg = colors.palette.sumiInk0 },
-      CmpItemKindConstant = { fg = "#D4BB6C", bg = colors.palette.sumiInk0 },
-      CmpItemKindConstructor = { fg = "#D4BB6C", bg = colors.palette.sumiInk0 },
-      CmpItemKindEnum = { fg = "#9FBD73", bg = colors.palette.sumiInk0 },
-      CmpItemKindEnumMember = { fg = "#6C8ED4", bg = colors.palette.sumiInk0 },
-      CmpItemKindEvent = { fg = "#B5585F", bg = colors.palette.sumiInk0 },
-      CmpItemKindField = { fg = "#B5585F", bg = colors.palette.sumiInk0 },
-      CmpItemKindFile = { fg = "#7E8294", bg = colors.palette.sumiInk0 },
-      CmpItemKindFolder = { fg = "#D4A959", bg = colors.palette.sumiInk0 },
-      ---
-      CmpItemKindFunction = { fg = "#C586C0", bg = colors.palette.sumiInk0 },
-      CmpItemKindMethod = { link = "CmpItemKindFunction" },
-      ---
-      CmpItemKindModule = { fg = "#A377BF", bg = colors.palette.sumiInk0 },
-      CmpItemKindOperator = { fg = "#A377BF", bg = colors.palette.sumiInk0 },
-      ---
-      CmpItemKindKeyword = { fg = "#D4D4D4", bg = colors.palette.sumiInk0 },
-      CmpItemKindProperty = { link = "CmpItemKindKeyword" },
-      CmpItemKindUnit = { link = "CmpItemKindKeyword" },
-      ---
-      CmpItemKindReference = { fg = "#D4BB6C", bg = colors.palette.sumiInk0 },
-      CmpItemKindSnippet = { fg = "#D4A959", bg = colors.palette.sumiInk0 },
-      CmpItemKindStruct = { fg = "#A377BF", bg = colors.palette.sumiInk0 },
-      CmpItemKindTypeParameter = { fg = "#58B5A8", bg = colors.palette.sumiInk0 },
-      CmpItemKindValue = { fg = "#6C8ED4", bg = colors.palette.sumiInk0 },
-      ---
-      CmpItemKindVariable = { fg = "#9CDCFE", bg = colors.palette.sumiInk0 },
-      CmpItemKindInterface = { link = "CmpItemKindVariable" },
-      CmpItemKindText = { link = "CmpItemKindVariable" },
-      ---
+      -- Menu
+      Pmenu = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
       CmpItemMenu = { fg = "#C792EA", bg = colors.palette.sumiInk0 },
       Conceal = { fg = "#455574", bg = colors.palette.sumiInk0, nocombine = true },
+      -- Border/Title
       FloatBorder = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
@@ -74,15 +42,13 @@ require("kanagawa").setup({
       LspInfoBorder = { link = "FloatBorder" },
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
+      -- Mics
       IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0 },
-      LazyNormal = { bg = colors.palette.sumiInk0, fg = theme.ui.fg_dim },
+      LazyNormal = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0 },
       LspReferenceText = { link = "Visual", nocombine=true },
       LspReferenceWrite = { link = "Visual", nocombine=true },
       MasonNormal = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0 },
       NormalFloat = { bg = colors.palette.sumiInk0 },
-      Pmenu = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
-      -- PmenuSel = { fg = "none", bg = colors.palette.sumiInk0, underline = true },
-      -- CursorLine = { link = "PmenuSel" },
       SagaBeacon = { bg = "#C5CDD9" },
       SagaNormal = { fg = "#C5CDD9", bg = theme.ui.bg },
       StatusLine = { bg = colors.palette.sumiInk0 },
@@ -90,8 +56,7 @@ require("kanagawa").setup({
       TODOBgFix = { fg = colors.palette.sumiInk0, bg = "#e82424", bold = true },
       TODOBgTODO = { fg = colors.palette.sumiInk0, bg = "#658594", bold = true },
       VertSplit = { fg = "White" },
-      -- Visual = { bg = colors.palette.sumiInk0none, underline = true },
-      WinSeparator = { fg = "White" },
+      WinSeparator = { link = "VertSplit" },
     }
   end,
   background = { -- map the value of 'background' option to a theme
