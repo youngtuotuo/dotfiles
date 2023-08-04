@@ -16,14 +16,15 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0
+    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local ELLIPSIS_CHAR = "…"
 local MAX_LABEL_WIDTH = 40
 local MIN_LABEL_WIDTH = 10
 cmp.setup({
-  -- completion = {autocomplete = true},
+  completion = { autocomplete = false },
   window = {
     completion = { border = BORDER, scrollbar = false, max_width = 80 },
     documentation = { border = BORDER, scrollbar = false, max_width = 80 },
@@ -105,7 +106,8 @@ cmp.setup({
         vim_item.menu = menu .. padding
       end
       if vim.tbl_contains({ "path" }, entry.source.name) then
-        local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+        local icon, hl_group =
+          require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
         if icon then
           vim_item.kind = icon
           vim_item.kind_hl_group = hl_group
@@ -134,7 +136,11 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
-  }, { { name = "path", keyword_length = 3 }, { name = "nvim_lua" }, { name = "nvim_lsp_signature_help" } }),
+  }, {
+    { name = "path", keyword_length = 3 },
+    { name = "nvim_lua" },
+    { name = "nvim_lsp_signature_help" },
+  }),
   sorting = {
     comparators = {
       cmp.config.compare.exact,
@@ -147,4 +153,25 @@ cmp.setup({
     },
   },
   experimental = { ghost_text = false },
+})
+-- `/` cmdline setup.
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    {
+      name = "cmdline",
+      option = {
+        ignore_cmds = { "Man", "!" },
+      },
+    },
+  }),
 })
