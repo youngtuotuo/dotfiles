@@ -14,6 +14,7 @@ require("kanagawa").setup({
     palette = {
       -- sumiInk0 = "#000000"
       sumiInk0 = "none",
+      float_bg = "#223249",
     },
     theme = {
       wave = {},
@@ -32,7 +33,6 @@ require("kanagawa").setup({
     return {
       -- Menu
       Pmenu = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
-      CmpItemMenu = { fg = "#C792EA", bg = colors.palette.sumiInk0 },
       Conceal = { fg = "#455574", bg = colors.palette.sumiInk0, nocombine = true },
       -- Border/Title
       FloatBorder = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
@@ -42,17 +42,23 @@ require("kanagawa").setup({
       LspInfoBorder = { link = "FloatBorder" },
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
-      -- Mics
-      IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0 },
-      LazyNormal = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0 },
-      LspReferenceText = { link = "Visual", nocombine=true },
-      LspReferenceWrite = { link = "Visual", nocombine=true },
-      MasonNormal = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0 },
-      NormalFloat = { bg = colors.palette.sumiInk0 },
-      SagaBeacon = { bg = "#C5CDD9" },
-      SagaNormal = { fg = "#C5CDD9", bg = theme.ui.bg },
+      -- Normal
+      NormalFloat = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0, nocombine = true },
+      LazyNormal = { link =  "NormalFloat" },
+      MasonNmeormal = { link =  "NormalFloat" },
+      SagaNormal = { link =  "NormalFloat" },
+      TelescopeNormal = { link =  "NormalFloat" },
+      TelescopePromptNormal = { link =  "NormalFloat" },
+      TelescopePreviewNormal = { link =  "NormalFloat" },
+      TelescopeResultsNormal = { link =  "NormalFloat" },
+      RenameNormal = { link =  "NormalFloat" },
       StatusLine = { bg = colors.palette.sumiInk0 },
       StatusLineNC = { bg = colors.palette.sumiInk0 },
+      -- Mics
+      IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0 },
+      LspReferenceText = { link = "Visual", nocombine = true },
+      LspReferenceWrite = { link = "Visual", nocombine = true },
+      SagaBeacon = { bg = "#C5CDD9" },
       TODOBgFix = { fg = colors.palette.sumiInk0, bg = "#e82424", bold = true },
       TODOBgTODO = { fg = colors.palette.sumiInk0, bg = "#658594", bold = true },
       VertSplit = { fg = "White" },
