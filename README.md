@@ -86,13 +86,8 @@ Mac (homebrew + build from source)
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install ninja cmake gettext curl
-cd neovim
-make distclean
-export CMAKE_BUILD_TYPE=Release
-make
-sudo make install
-export PATH=~/github/neovim/build/bin:$PATH
+brew tap austinliuigi/brew-neovim-nightly https://github.com/austinliuigi/brew-neovim-nightly.git
+brew install neovim-nightly
 ```
 
 Install Config for Neovim
