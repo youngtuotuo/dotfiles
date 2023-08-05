@@ -1,0 +1,2 @@
+-I/Library/Frameworks/Python.framework/Versions/3.11/include/python3.11
+-I/usr/include/python3.8
