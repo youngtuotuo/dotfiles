@@ -35,6 +35,18 @@ Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git nodejs npm
 ```
 
+### Clangd Language Server Configuration
+For `#include <Python.h>`. Put this file to projcet root. Remember to remove unused flags.
+
+```bash
+cp ~/github/dotfiles/compile_flags.txt .
+```
+
+Run this command to get the path of `Python.h`.
+```bash
+python -c "import sysconfig; print(sysconfig.get_paths())"
+```
+
 ### Miniconda disalbe prompt
 
 ```bash
