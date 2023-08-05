@@ -7,6 +7,10 @@ This repo includes:
 - Url or Installation scripts that hard to find by simply google once.
 
 <p align="center">
+    <img src="pictures/mac.png"/>
+</p>
+
+<p align="center">
     <img src="pictures/win.png"/>
 </p>
 
