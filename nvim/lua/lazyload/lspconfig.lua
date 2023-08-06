@@ -16,9 +16,10 @@ local servers = {
   "gopls",
   "lemminx",
   "hls",
+  "zls",
   "pyright",
 }
-require("mason-lspconfig").setup({ ensure_installed = servers })
+-- require("mason-lspconfig").setup({ ensure_installed = servers })
 local util = require("lspconfig.util")
 
 -- Global mappings
