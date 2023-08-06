@@ -20,15 +20,21 @@ Tools listed here can be found by goolge once.<br>
 
 ### All OS
 
-Fira Code Nerd Font, OpenVPN Client, miniconda, Go, Haskell, Rust, Git Credential Manager, Clang, Nodejs, Npm, Alacritty, Alacritty-theme, nu-shell
+Font:<br>
+Fira Code Nerd Font
+Language:<br>
+Go, Haskell, Zig
+Misc:<br>
+OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm
+
 
 ### MacOS
 
 Clipboard Inidicator, RayCast, Stats, AltTab, Rectangle, zsh-autosuggestions,
 
-### Windows, WSL
+### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda<cr>
+PowerShell, Git for windows, VcXrv, Scoop, cuda<br>
 Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 
 # Complicate ones
@@ -95,10 +101,10 @@ Ubuntu
 # Build from Source
 git clone https://github.com/neovim/neovim.git
 cd neovim
-export CMAKE_BUILD_TYPE=Release && sudo make && sudo make install
+sudo CMAKE_BUILD_TYPE=Release make && sudo make install
 ```
 
-Mac (homebrew + build from source)
+Mac (homebrew)
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
