@@ -15,6 +15,7 @@ require("nvim-treesitter.configs").setup({
     "regex",
     "markdown_inline",
     "html",
+    "zig",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   indent = { enable = true },
   auto_install = true,

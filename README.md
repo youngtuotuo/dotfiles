@@ -20,12 +20,9 @@ Tools listed here can be found by goolge once.<br>
 
 ### All OS
 
-Font:<br>
-Fira Code Nerd Font
-Language:<br>
-Go, Haskell, Zig
-Misc:<br>
-OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm
+Fira Code Nerd Font<br>
+Go, Haskell, Zig<br>
+OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm<br>
 
 
 ### MacOS
@@ -42,7 +39,9 @@ Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 ### One for all dependicies
 
 ```bash
-sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git nodejs npm
+sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git nodejs npm fd ripgrep
+echo 'export PATH=$HOME/.local/bin${PATH:+:${PATH}}' >> ~/.bashrc
+ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 ### Clangd Language Server Configuration
@@ -55,6 +54,22 @@ cp ~/github/dotfiles/compile_flags.txt .
 Run this command to get the path of `Python.h`.
 ```bash
 python -c "import sysconfig; print(sysconfig.get_paths())"
+```
+
+### Zig
+[apt.llvm.org](https://apt.llvm.org/)
+```bash
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh 16 all
+sudo apt install liblld-16 liblld-16-dev
+```
+[Building Zig from Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
+```bash
+mkdir build
+cd build
+cmake ..
+make install
 ```
 
 ### Miniconda disalbe prompt

@@ -122,4 +122,5 @@ fi
 . "$HOME/.cargo/env"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
+export PATH=$HOME/.local/bin${PATH:+:${PATH}}
 export EDITOR=nvim
