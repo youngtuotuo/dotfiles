@@ -10,7 +10,6 @@ require("mason").setup({ ui = { border = BORDER } })
 local servers = {
   "lua_ls",
   "clangd",
-  "rust_analyzer",
   "texlab",
   "html",
   "yamlls",
