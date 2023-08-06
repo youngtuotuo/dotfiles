@@ -34,10 +34,10 @@ local plugins = {
     priority = 1000,
   },
   -- lazy load
-  {
-    'ziglang/zig.vim',
-    ft = { 'zig' },
-  },
+  -- {
+  --   'ziglang/zig.vim',
+  --   ft = { 'zig' },
+  -- },
   {
     "kessejones/term.nvim",
     keys = {
