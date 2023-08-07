@@ -35,6 +35,10 @@ local plugins = {
   },
   -- lazy load
   {
+    'ziglang/zig.vim',
+    ft = { 'zig' },
+  },
+  {
     "kessejones/term.nvim",
     keys = {
       { "<leader>t", "<cmd>lua require('term').toggle()<CR>", mode = { "n", "t" }, default_opts },

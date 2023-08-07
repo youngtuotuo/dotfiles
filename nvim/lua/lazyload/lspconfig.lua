@@ -16,7 +16,7 @@ local servers = {
   "gopls",
   "lemminx",
   "hls",
-  "zls",
+  -- "zls",
   "pyright",
 }
 -- require("mason-lspconfig").setup({ ensure_installed = servers })

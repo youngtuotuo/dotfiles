@@ -15,13 +15,13 @@ require("nvim-treesitter.configs").setup({
     "regex",
     "markdown_inline",
     "html",
-    "zig",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "zig" },
   indent = { enable = true },
   auto_install = true,
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "latex", "bash" },
+    disable = { "latex", "bash", "zig" },
   },
   textobjects = {
     enable = true,
