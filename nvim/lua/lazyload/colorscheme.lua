@@ -11,18 +11,10 @@ require("kanagawa").setup({
   dimInactive = false, -- dim inactive window `:h hl-NormalNC`
   terminalColors = true, -- define vim.g.terminal_color_{0,17}
   colors = { -- add/modify theme and palette colors
-    palette = {
-      -- sumiInk0 = "#000000"
-      sumiInk0 = "none",
-      float_bg = "#223249",
-    },
     theme = {
-      wave = {},
-      lotus = {},
-      dragon = {},
       all = {
         ui = {
-          bg = "none",
+          -- bg = "none",
           bg_gutter = "none",
         },
       },
@@ -32,10 +24,13 @@ require("kanagawa").setup({
     local theme = colors.theme
     return {
       -- Menu
-      Pmenu = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
-      Conceal = { fg = "#455574", bg = colors.palette.sumiInk0, nocombine = true },
+      Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg },
+      PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+      PmenuSbar = { bg = theme.ui.bg_m1 },
+      PmenuThumb = { bg = theme.ui.bg_p2 },
+      Conceal = { fg = "#455574", bg = theme.ui.bg, nocombine = true },
       -- Border/Title
-      FloatBorder = { fg = "#C5CDD9", bg = colors.palette.sumiInk0 },
+      FloatBorder = { fg = "#C5CDD9", bg = theme.ui.bg },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
       CmpCompletionBorder = { link = "FloatBorder" },
@@ -43,7 +38,7 @@ require("kanagawa").setup({
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
       -- Normal
-      NormalFloat = { fg = theme.ui.fg_dim, bg = colors.palette.sumiInk0, nocombine = true },
+      NormalFloat = { fg = theme.ui.fg_dim, bg = theme.ui.bg, nocombine = true },
       LazyNormal = { link = "NormalFloat" },
       MasonNmeormal = { link = "NormalFloat" },
       SagaNormal = { link = "NormalFloat" },
@@ -52,16 +47,16 @@ require("kanagawa").setup({
       TelescopePreviewNormal = { link = "NormalFloat" },
       TelescopeResultsNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
-      StatusLine = { bg = colors.palette.sumiInk0 },
-      StatusLineNC = { bg = colors.palette.sumiInk0 },
+      StatusLine = { bg = theme.ui.bg },
+      StatusLineNC = { bg = theme.ui.bg },
       -- Mics
-      IndentBlanklineChar = { fg = colors.palette.sumiInk0, bg = colors.palette.sumiInk0 },
+      IndentBlanklineChar = { fg = theme.ui.bg, bg = theme.ui.bg },
       LspReferenceText = { nocombine = true, standout = true },
       LspReferenceWrite = { nocombine = true, standout = true },
       LspReferenceRead = { nocombine = true, standout = true },
       SagaBeacon = { bg = "#C5CDD9" },
-      TODOBgFix = { fg = colors.palette.sumiInk0, bg = "#e82424", bold = true },
-      TODOBgTODO = { fg = colors.palette.sumiInk0, bg = "#658594", bold = true },
+      TODOBgFix = { fg = theme.ui.bg, bg = "#e82424", bold = true },
+      TODOBgTODO = { fg = theme.ui.bg, bg = "#658594", bold = true },
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },
     }
