@@ -26,7 +26,7 @@ local MIN_LABEL_WIDTH = 10
 cmp.setup({
   completion = { autocomplete = false },
   window = {
-    completion = { border = BORDER, scrollbar = false, max_width = 80 },
+    completion = { border = BORDER, scrollbar = false, max_width = 80, col_offset = 3 },
     documentation = { border = BORDER, scrollbar = false, max_width = 80 },
   },
   snippet = {
