@@ -3,7 +3,7 @@ require("kanagawa").setup({
   compile = true, -- enable compiling the colorscheme
   undercurl = true, -- enable undercurls
   commentStyle = { italic = false },
-  functionStyle = { bold = false, italic = false },
+  functionStyle = { bold = true, italic = false },
   keywordStyle = { bold = true, italic = false },
   statementStyle = { bold = false },
   typeStyle = { italic = false },
@@ -14,7 +14,6 @@ require("kanagawa").setup({
     theme = {
       all = {
         ui = {
-          -- bg = "none",
           bg_gutter = "none",
         },
       },
@@ -52,7 +51,7 @@ require("kanagawa").setup({
       -- Mics
       IndentBlanklineChar = { fg = theme.ui.shade0, bg = theme.ui.bg },
       LspReferenceText = { nocombine = true, standout = true },
-      LspReferenceWrite = { nocombine = true, standout = true },
+      LspReferenceWrite = { nocombine = true, standout = true, underline = false },
       LspReferenceRead = { nocombine = true, standout = true },
       SagaBeacon = { bg = "#C5CDD9" },
       TODOBgFix = { fg = theme.ui.bg, bg = "#e82424", bold = true },
