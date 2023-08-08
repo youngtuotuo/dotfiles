@@ -50,7 +50,7 @@ require("kanagawa").setup({
       StatusLine = { bg = theme.ui.bg },
       StatusLineNC = { bg = theme.ui.bg },
       -- Mics
-      IndentBlanklineChar = { fg = theme.ui.bg, bg = theme.ui.bg },
+      IndentBlanklineChar = { fg = theme.ui.shade0, bg = theme.ui.bg },
       LspReferenceText = { nocombine = true, standout = true },
       LspReferenceWrite = { nocombine = true, standout = true },
       LspReferenceRead = { nocombine = true, standout = true },
