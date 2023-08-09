@@ -53,15 +53,12 @@ require("kanagawa").setup({
       LspReferenceText = { nocombine = true, standout = true },
       LspReferenceWrite = { nocombine = true, standout = true, underline = false },
       LspReferenceRead = { nocombine = true, standout = true },
-      SagaBeacon = { bg = "#C5CDD9" },
-      TODOBgFix = { fg = theme.ui.bg, bg = "#e82424", bold = true },
-      TODOBgTODO = { fg = theme.ui.bg, bg = "#658594", bold = true },
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },
     }
   end,
   background = { -- map the value of 'background' option to a theme
-    dark = "dragon", -- try "dragon" !
+    dark = "wave", -- try "dragon" !
     light = "lotus",
   },
 })
