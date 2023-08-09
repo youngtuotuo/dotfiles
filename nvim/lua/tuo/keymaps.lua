@@ -20,8 +20,8 @@ keymap("n", "-", ":E<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>t", function()
   local current_bufnr = vim.fn.bufnr()
   current_bufname = vim.api.nvim_buf_get_name(current_bufnr)
-  if current_bufname and vim.startswith(current_bufname, "term") then
-    vim.cmd("q" .. current_bufnr)
+  if vim.startswith(current_bufname, "term") then
+    vim.cmd("q")
     return
   end
   local terminal_bufnr = nil
