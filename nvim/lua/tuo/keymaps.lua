@@ -16,7 +16,7 @@ local term_opts = { silent = true }
 --   vim.lsp.buf.format()
 -- end, default_opts)
 
-keymap("n", "-", ":E<CR>", default_opts)
+keymap("n", "-", "<cmd>E<cr>", default_opts)
 keymap("n", "<leader>t", function()
   local current_bufnr = vim.fn.bufnr()
   local terminal_bufnr = nil
