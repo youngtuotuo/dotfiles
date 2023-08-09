@@ -23,7 +23,7 @@ require("kanagawa").setup({
     local theme = colors.theme
     return {
       -- Menu
-      Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+      Pmenu = { link = "NormalFloat" },
       PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
       PmenuSbar = { bg = theme.ui.bg_m1 },
       PmenuThumb = { bg = theme.ui.bg_p2 },
