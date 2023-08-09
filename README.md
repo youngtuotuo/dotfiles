@@ -39,9 +39,16 @@ Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 ### One for all dependicies
 
 ```bash
-sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git nodejs npm fd ripgrep
+sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git fd ripgrep
 echo 'export PATH=$HOME/.local/bin${PATH:+:${PATH}}' >> ~/.bashrc
 ln -s $(which fdfind) ~/.local/bin/fd
+# nodejs
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+# yarn
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
 ```
 
 ### Clangd Language Server Configuration
