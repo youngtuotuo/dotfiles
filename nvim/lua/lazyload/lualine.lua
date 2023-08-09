@@ -26,7 +26,7 @@ local config = {
         colored = true,
         icon_only = true,
         icon = { align = "right" },
-        padding = { left = 0 },
+        padding = { left = 1 },
       },
       { "filename", path = 1, align = "left" },
     },
@@ -47,7 +47,8 @@ local config = {
         colored = true,
         icon_only = true,
         icon = { align = "right" },
-        padding = { left = 0 },
+        padding = { left = 1 },
+
       },
       { "filename", path = 1, align = "left" },
     },
