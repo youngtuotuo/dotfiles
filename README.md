@@ -31,7 +31,7 @@ Clipboard Inidicator, RayCast, Stats, AltTab, Rectangle, zsh-autosuggestions,
 
 ### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda<br>
+PowerShell, Git for windows, VcXrv, Scoop, cuda, komorebi<br>
 Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
 
 # Complicate ones
