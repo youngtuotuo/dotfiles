@@ -13,7 +13,7 @@ local config = function(server_name, on_attach, capabilities, util)
         { border = BORDER, title = " Signature ", max_width = 100 }
       ),
       ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
+        virtual_text = true,
         signs = false,
         underline = false,
         update_in_insert = false,
