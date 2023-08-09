@@ -48,7 +48,7 @@ local config = {
         icon = { align = "right" },
         padding = { left = 0 },
       },
-      { "filename", path = 1 },
+      { "filename", path = 1, align = "left" },
     },
     lualine_x = { { LspName, align = "right", padding = { right = 0 } } },
     lualine_y = {},

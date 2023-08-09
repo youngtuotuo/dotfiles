@@ -32,19 +32,17 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(hl, c)
+    hl.FloatBorder = { fg = c.border_highlight, bg = c.bg_dark }
     hl.SagaBorder = { link = "FloatBorder" }
     hl.DiagnosticShowBorder = { link = "FloatBorder" }
     hl.CmpCompletionBorder = { link = "FloatBorder" }
     hl.LspInfoBorder = { link = "FloatBorder" }
     hl.TelescopeBorder = { link = "FloatBorder" }
     hl.FloatTitle = { link = "FloatBorder" }
+    hl.NormalFloat = { fg = c.fg, bg = c.bg_dark }
     hl.LazyNormal = { link = "NormalFloat" }
     hl.MasonNmeormal = { link = "NormalFloat" }
     hl.SagaNormal = { link = "NormalFloat" }
-    hl.TelescopeNormal = { link = "NormalFloat" }
-    hl.TelescopePromptNormal = { link = "NormalFloat" }
-    hl.TelescopePreviewNormal = { link = "NormalFloat" }
-    hl.TelescopeResultsNormal = { link = "NormalFloat" }
     hl.RenameNormal = { link = "NormalFloat" }
     hl.LspReferenceText = { nocombine = true, standout = true }
     hl.LspReferenceWrite = { nocombine = true, standout = true, underline = false }

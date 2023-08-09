@@ -23,13 +23,12 @@ require("kanagawa").setup({
     local theme = colors.theme
     return {
       -- Menu
-      Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg },
+      Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
       PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
       PmenuSbar = { bg = theme.ui.bg_m1 },
       PmenuThumb = { bg = theme.ui.bg_p2 },
       Conceal = { fg = "#455574", bg = theme.ui.bg, nocombine = true },
       -- Border/Title
-      FloatBorder = { fg = "#C5CDD9", bg = theme.ui.bg },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
       CmpCompletionBorder = { link = "FloatBorder" },
@@ -37,15 +36,11 @@ require("kanagawa").setup({
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
       -- Normal
-      NormalFloat = { fg = theme.ui.fg_dim, bg = theme.ui.bg, nocombine = true },
       LazyNormal = { link = "NormalFloat" },
       MasonNmeormal = { link = "NormalFloat" },
       SagaNormal = { link = "NormalFloat" },
-      TelescopeNormal = { link = "NormalFloat" },
-      TelescopePromptNormal = { link = "NormalFloat" },
-      TelescopePreviewNormal = { link = "NormalFloat" },
-      TelescopeResultsNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
+      -- Status line
       StatusLine = { bg = theme.ui.bg },
       StatusLineNC = { bg = theme.ui.bg },
       -- Mics
@@ -55,6 +50,34 @@ require("kanagawa").setup({
       LspReferenceRead = { nocombine = true, standout = true },
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },
+      -- Telescope
+      TelescopeNormal = {
+        bg = theme.ui.bg_p1,
+        fg = theme.ui.fg,
+      },
+      TelescopeBorder = {
+        bg = theme.ui.bg_p1,
+        fg = theme.ui.bg_p1,
+      },
+      TelescopePromptNormal = {
+        bg = theme.ui.bg_p2,
+      },
+      TelescopePromptBorder = {
+        bg = theme.ui.bg_p2,
+        fg = theme.ui.bg_p2,
+      },
+      TelescopePromptTitle = {
+        bg = theme.ui.bg_p2,
+        fg = theme.ui.bg_p2,
+      },
+      TelescopePreviewTitle = {
+        bg = theme.ui.bg_p1,
+        fg = theme.ui.bg_p1,
+      },
+      TelescopeResultsTitle = {
+        bg = theme.ui.bg_p1,
+        fg = theme.ui.bg_p1,
+      },
     }
   end,
   background = { -- map the value of 'background' option to a theme
