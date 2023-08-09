@@ -51,6 +51,8 @@ require("tokyonight").setup({
     hl.LspReferenceRead = { nocombine = true, standout = true }
     hl.VertSplit = { fg = "White" }
     hl.WinSeparator = { link = "VertSplit" }
+    hl.StatusLine = { bg = c.bg }
+    hl.StatusLineNC = { bg = c.bg }
     local prompt = "#2d3149"
     hl.TelescopeNormal = {
       bg = c.bg_dark,
