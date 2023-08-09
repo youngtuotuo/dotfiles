@@ -3,7 +3,7 @@ local function LspName()
   return name
 end
 local auto = require("lualine.themes.auto")
-auto.normal.c.bg = "none"
+-- auto.normal.c.bg = "none"
 auto.inactive.c.bg = "none"
 local config = {
   options = {
@@ -51,7 +51,11 @@ local config = {
       },
       { "filename", path = 1, align = "left" },
     },
-    lualine_x = { { LspName, align = "right", padding = { right = 0 } } },
+    lualine_x = {
+      { "location" },
+      { LspName, align = "right", padding = { right = 0 } },
+      { "progress" },
+    },
     lualine_y = {},
     lualine_z = {},
   },

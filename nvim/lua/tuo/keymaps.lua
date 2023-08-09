@@ -16,7 +16,39 @@ local term_opts = { silent = true }
 --   vim.lsp.buf.format()
 -- end, default_opts)
 
-vim.keymap.set("n", "-", ":E<CR>", { noremap = true, silent = true })
+keymap("n", "-", ":E<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>t", function()
+  local current_bufnr = vim.fn.bufnr()
+  current_bufname = vim.api.nvim_buf_get_name(current_bufnr)
+  if current_bufname and vim.startswith(current_bufname, "term") then
+    vim.cmd("q" .. current_bufnr)
+    return
+  end
+  local terminal_bufnr = nil
+  local buf = nil
+
+  -- Iterate through the buffer list
+  for _, b in ipairs(vim.fn.getbufinfo()) do
+    local bufname = b.name
+    -- Check if the buffer name starts with "term"
+    if bufname and vim.startswith(bufname, "term") then
+      terminal_bufnr = b.bufnr
+      buf = b
+      break
+    end
+  end
+  if terminal_bufnr then
+    -- Switch to the terminal buffer
+    if buf.hidden == 1 then
+      vim.cmd("13sp | b" .. terminal_bufnr)
+    else
+      vim.api.nvim_set_current_win(buf.windows[1])
+    end
+  else
+    -- Open a new terminal buffer
+    vim.cmd("13sp | terminal")
+  end
+end, { noremap = true, silent = true })
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-c>", "<C-[>", default_opts)
@@ -95,5 +127,3 @@ keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
 
 -- better external command ouput
 keymap("n", "<leader>x", [[:13sp | terminal ]])
-
-

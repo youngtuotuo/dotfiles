@@ -52,15 +52,6 @@ local plugins = {
     ft = { 'zig' },
   },
   {
-    "kessejones/term.nvim",
-    keys = {
-      { "<leader>t", "<cmd>lua require('term').toggle()<CR>", mode = { "n", "t" }, default_opts },
-    },
-    config = function()
-      require("lazyload.term")
-    end,
-  },
-  {
     "mbbill/undotree",
     event = "BufRead",
     keys = { { "<leader>u", ":UndotreeToggle<cr>", mode = "n" } },

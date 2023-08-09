@@ -57,6 +57,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
+-- vim.api.nvim_create_autocmd("TermOpen",
+--   {
+--     callback = function()
+--       vim.cmd [[startinsert]]
+--     end
+-- })
 
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
