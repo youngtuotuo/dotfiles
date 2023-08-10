@@ -1,7 +1,7 @@
 -- Default options:
 require("kanagawa").setup({
   compile = true, -- enable compiling the colorscheme
-  undercurl = true, -- enable undercurls
+  undercurl = false, -- enable undercurls
   commentStyle = { italic = false },
   functionStyle = { bold = false, italic = false },
   keywordStyle = { bold = false, italic = false },
@@ -63,7 +63,6 @@ require("kanagawa").setup({
       },
       TelescopePreviewNormal = {
         bg = theme.ui.bg_p2,
-        fg = theme.ui.bg_p2,
       },
       TelescopePreviewBorder = {
         bg = theme.ui.bg_p2,

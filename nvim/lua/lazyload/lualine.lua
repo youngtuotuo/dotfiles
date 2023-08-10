@@ -3,8 +3,8 @@ local function LspName()
   return name
 end
 local auto = require("lualine.themes.auto")
--- auto.normal.c.bg = "none"
-auto.inactive.c.bg = "none"
+auto.normal.c.bg = "none"
+-- auto.inactive.c.bg = "none"
 local config = {
   options = {
     icons_enabled = true,
@@ -14,7 +14,7 @@ local config = {
     disabled_filetypes = { statusline = {}, winbar = {} },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
   },
   sections = {
