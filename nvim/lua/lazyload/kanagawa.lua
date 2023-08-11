@@ -21,9 +21,9 @@ require("kanagawa").setup({
   },
   overrides = function(colors)
     local theme = colors.theme
-    local status_bg = "none"
-    if not TRANS then
-      status_bg = theme.ui.bg
+    local tran_bg = theme.ui.bg
+    if TRANS then
+      tran_bg = "none"
     end
     return {
       -- Menu
@@ -36,15 +36,16 @@ require("kanagawa").setup({
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
       -- Normal
+      NormalFloat = { bg = tran_bg },
       LazyNormal = { link = "NormalFloat" },
       MasonNmeormal = { link = "NormalFloat" },
       SagaNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
       -- Status line
-      StatusLine = { bg = status_bg },
-      StatusLineNC = { bg = status_bg },
+      StatusLine = { bg = tran_bg },
+      StatusLineNC = { bg = tran_bg },
       -- Mics
-      IndentBlanklineChar = { fg = theme.ui.shade0, bg = theme.ui.bg },
+      IndentBlanklineChar = { fg = theme.ui.shade0, bg = tran_bg },
       -- Highlight
       LspReferenceWrite = { underline = false },
       LspReferenceText = { link = "LspReferenceWrite" },
@@ -53,10 +54,10 @@ require("kanagawa").setup({
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },
       TelescopePromptNormal = {
-        bg = theme.ui.bg_p1,
+        bg = tran_bg,
       },
       TelescopePromptBorder = {
-        bg = theme.ui.bg_p1,
+        bg = tran_bg,
         fg = theme.ui.bg_p1,
       },
       TelescopePromptTitle = {
@@ -66,22 +67,22 @@ require("kanagawa").setup({
         fg = theme.ui.fg,
       },
       TelescopePreviewNormal = {
-        bg = theme.ui.bg_p2,
+        bg = tran_bg,
       },
       TelescopePreviewBorder = {
-        bg = theme.ui.bg_p2,
+        bg = tran_bg,
         fg = theme.ui.bg_p2,
       },
       TelescopeResultsTitle = {
-        bg = theme.ui.bg_m1,
+        bg = tran_bg,
         fg = theme.ui.fg,
       },
       TelescopeResultsNormal = {
-        bg = theme.ui.bg_m1,
+        bg = tran_bg,
         fg = theme.ui.fg_dim,
       },
       TelescopeResultsBorder = {
-        bg = theme.ui.bg_m1,
+        bg = tran_bg,
         fg = theme.ui.bg_m1,
       },
     }

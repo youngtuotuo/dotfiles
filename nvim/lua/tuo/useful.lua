@@ -10,6 +10,6 @@ end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-BORDER = "none"
+BORDER = "single"
 TRANS = true
-COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
+COLORSCHEME = "kanagawa" -- "tokyonight", "kanagawa"

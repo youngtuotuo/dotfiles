@@ -33,19 +33,20 @@ require("tokyonight").setup({
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
     local prompt = "#2d3149"
-    local status_bg = "none"
-    if not TRANS then
-      status_bg = colors.bg
+    local tran_bg = colors.bg
+    if TRANS then
+      tran_bg = "none"
     end
     highlights.NormalSB = { link = "Normal" }
-    highlights.FloatBorder = { fg = colors.border_highlight, bg = colors.bg_dark }
+    highlights.Pmenu = { bg = tran_bg }
+    highlights.FloatBorder = { fg = colors.border_highlight, bg = tran_bg }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
     highlights.TelescopeBorder = { link = "FloatBorder" }
     highlights.FloatTitle = { link = "FloatBorder" }
-    highlights.NormalFloat = { fg = colors.fg, bg = colors.bg_dark }
+    highlights.NormalFloat = { fg = colors.fg, bg = tran_bg }
     highlights.LazyNormal = { link = "NormalFloat" }
     highlights.MasonNmeormal = { link = "NormalFloat" }
     highlights.SagaNormal = { link = "NormalFloat" }
@@ -55,33 +56,33 @@ require("tokyonight").setup({
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { fg = "White" }
     highlights.WinSeparator = { link = "VertSplit" }
-    highlights.StatusLine = { fg = colors.fg, bg = status_bg }
-    highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
+    highlights.StatusLine = { fg = colors.fg, bg = tran_bg }
+    highlights.StatusLineNC = { fg = colors.fg_dark, bg = tran_bg }
     highlights.TelescopeNormal = {
-      bg = colors.bg_dark,
+      bg = tran_bg,
       fg = colors.fg,
     }
     highlights.TelescopeBorder = {
-      bg = colors.bg_dark,
+      bg = tran_bg,
       fg = colors.bg_dark,
     }
     highlights.TelescopePromptNormal = {
-      bg = prompt,
+      bg = tran_bg
     }
     highlights.TelescopePromptBorder = {
-      bg = prompt,
+      bg = tran_bg,
       fg = prompt,
     }
     highlights.TelescopePromptTitle = {
-      bg = prompt,
+      bg = tran_bg,
       fg = colors.fg_dark,
     }
     highlights.TelescopePreviewTitle = {
-      bg = colors.bg_dark,
+      bg = tran_bg,
       fg = colors.fg_dark,
     }
     highlights.TelescopeResultsTitle = {
-      bg = colors.bg_dark,
+      bg = tran_bg,
       fg = colors.fg_dark,
     }
   end,
