@@ -7,7 +7,7 @@ require("kanagawa").setup({
   keywordStyle = { bold = false, italic = false },
   statementStyle = { bold = false },
   typeStyle = { italic = false },
-  transparent = false, -- do not set background color
+  transparent = true, -- do not set background color
   dimInactive = false, -- dim inactive window `:h hl-NormalNC`
   terminalColors = true, -- define vim.g.terminal_color_{0,17}
   colors = { -- add/modify theme and palette colors
@@ -37,8 +37,8 @@ require("kanagawa").setup({
       SagaNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
       -- Status line
-      StatusLine = { bg = theme.ui.bg },
-      StatusLineNC = { bg = theme.ui.bg },
+      StatusLine = { bg = theme.ui.bg_gutter },
+      StatusLineNC = { bg = theme.ui.bg_gutter },
       -- Mics
       IndentBlanklineChar = { fg = theme.ui.shade0, bg = theme.ui.bg },
       -- Highlight
