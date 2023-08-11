@@ -4,7 +4,13 @@ local function LspName()
 end
 local auto = require("lualine.themes.auto")
 auto.normal.c.bg = "none"
--- auto.inactive.c.bg = "none"
+if COLORSCHEME == "kanagawa" then
+  local colors = require("kanagawa.colors").setup()
+  auto.normal.c.fg = colors.theme.fg
+elseif COLORSCHEME == "tokyonight" then
+  local colors = require("tokyonight.colors").setup()
+  auto.normal.c.fg = colors.fg
+end
 local config = {
   options = {
     icons_enabled = true,

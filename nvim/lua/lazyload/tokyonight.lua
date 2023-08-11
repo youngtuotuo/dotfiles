@@ -1,9 +1,9 @@
 require("tokyonight").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
-  style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   light_style = "day", -- The theme is used when the background is set to light
-  transparent = false, -- Enable this to disable setting the background color
+  transparent = TRANS, -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
   styles = {
     -- Style to be applied to different syntax groups
@@ -31,53 +31,57 @@ require("tokyonight").setup({
   --- function will be called with a Highlights and ColorScheme table
   ---@param highlights Highlights
   ---@param colors ColorScheme
-  on_highlights = function(hl, c)
-    hl.FloatBorder = { fg = c.border_highlight, bg = c.bg_dark }
-    hl.SagaBorder = { link = "FloatBorder" }
-    hl.DiagnosticShowBorder = { link = "FloatBorder" }
-    hl.CmpCompletionBorder = { link = "FloatBorder" }
-    hl.LspInfoBorder = { link = "FloatBorder" }
-    hl.TelescopeBorder = { link = "FloatBorder" }
-    hl.FloatTitle = { link = "FloatBorder" }
-    hl.NormalFloat = { fg = c.fg, bg = c.bg_dark }
-    hl.LazyNormal = { link = "NormalFloat" }
-    hl.MasonNmeormal = { link = "NormalFloat" }
-    hl.SagaNormal = { link = "NormalFloat" }
-    hl.RenameNormal = { link = "NormalFloat" }
-    hl.LspReferenceText = { nocombine = true, standout = true }
-    hl.LspReferenceWrite = { nocombine = true, standout = true, underline = false }
-    hl.LspReferenceRead = { nocombine = true, standout = true }
-    hl.VertSplit = { fg = "White" }
-    hl.WinSeparator = { link = "VertSplit" }
-    hl.StatusLine = { bg = c.bg }
-    hl.StatusLineNC = { bg = c.bg }
+  on_highlights = function(highlights, colors)
     local prompt = "#2d3149"
-    hl.TelescopeNormal = {
-      bg = c.bg_dark,
-      fg = c.fg_dark,
+    local status_bg = "none"
+    if not TRANS then
+      status_bg = colors.bg
+    end
+    highlights.FloatBorder = { fg = colors.border_highlight, bg = colors.bg_dark }
+    highlights.SagaBorder = { link = "FloatBorder" }
+    highlights.DiagnosticShowBorder = { link = "FloatBorder" }
+    highlights.CmpCompletionBorder = { link = "FloatBorder" }
+    highlights.LspInfoBorder = { link = "FloatBorder" }
+    highlights.TelescopeBorder = { link = "FloatBorder" }
+    highlights.FloatTitle = { link = "FloatBorder" }
+    highlights.NormalFloat = { fg = colors.fg, bg = colors.bg_dark }
+    highlights.LazyNormal = { link = "NormalFloat" }
+    highlights.MasonNmeormal = { link = "NormalFloat" }
+    highlights.SagaNormal = { link = "NormalFloat" }
+    highlights.RenameNormal = { link = "NormalFloat" }
+    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight }
+    highlights.LspReferenceText = { link = "LspReferenceWrite" }
+    highlights.LspReferenceRead = { link = "LspReferenceWrite" }
+    highlights.VertSplit = { fg = "White" }
+    highlights.WinSeparator = { link = "VertSplit" }
+    highlights.StatusLine = { fg = colors.fg, bg = status_bg }
+    highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
+    highlights.TelescopeNormal = {
+      bg = colors.bg_dark,
+      fg = colors.fg,
     }
-    hl.TelescopeBorder = {
-      bg = c.bg_dark,
-      fg = c.bg_dark,
+    highlights.TelescopeBorder = {
+      bg = colors.bg_dark,
+      fg = colors.bg_dark,
     }
-    hl.TelescopePromptNormal = {
+    highlights.TelescopePromptNormal = {
       bg = prompt,
     }
-    hl.TelescopePromptBorder = {
+    highlights.TelescopePromptBorder = {
       bg = prompt,
       fg = prompt,
     }
-    hl.TelescopePromptTitle = {
+    highlights.TelescopePromptTitle = {
       bg = prompt,
-      fg = prompt,
+      fg = colors.fg_dark,
     }
-    hl.TelescopePreviewTitle = {
-      bg = c.bg_dark,
-      fg = c.bg_dark,
+    highlights.TelescopePreviewTitle = {
+      bg = colors.bg_dark,
+      fg = colors.fg_dark,
     }
-    hl.TelescopeResultsTitle = {
-      bg = c.bg_dark,
-      fg = c.bg_dark,
+    highlights.TelescopeResultsTitle = {
+      bg = colors.bg_dark,
+      fg = colors.fg_dark,
     }
   end,
 })

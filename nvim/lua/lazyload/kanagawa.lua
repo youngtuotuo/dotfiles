@@ -7,7 +7,7 @@ require("kanagawa").setup({
   keywordStyle = { bold = false, italic = false },
   statementStyle = { bold = false },
   typeStyle = { italic = false },
-  transparent = true, -- do not set background color
+  transparent = TRANS, -- do not set background color
   dimInactive = false, -- dim inactive window `:h hl-NormalNC`
   terminalColors = true, -- define vim.g.terminal_color_{0,17}
   colors = { -- add/modify theme and palette colors
@@ -21,6 +21,10 @@ require("kanagawa").setup({
   },
   overrides = function(colors)
     local theme = colors.theme
+    local status_bg = "none"
+    if not TRANS then
+      status_bg = theme.ui.bg
+    end
     return {
       -- Menu
       Pmenu = { link = "NormalFloat" },
@@ -37,8 +41,8 @@ require("kanagawa").setup({
       SagaNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
       -- Status line
-      StatusLine = { bg = theme.ui.bg_gutter },
-      StatusLineNC = { bg = theme.ui.bg_gutter },
+      StatusLine = { bg = status_bg },
+      StatusLineNC = { bg = status_bg },
       -- Mics
       IndentBlanklineChar = { fg = theme.ui.shade0, bg = theme.ui.bg },
       -- Highlight
@@ -88,3 +92,4 @@ require("kanagawa").setup({
   },
 })
 require("kanagawa").load("wave") -- wave, dragon, lotus
+vim.cmd [[KanagawaCompile]]
