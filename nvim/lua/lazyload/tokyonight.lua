@@ -37,6 +37,7 @@ require("tokyonight").setup({
     if not TRANS then
       status_bg = colors.bg
     end
+    highlights.NormalSB = { link = "Normal" }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = colors.bg_dark }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
