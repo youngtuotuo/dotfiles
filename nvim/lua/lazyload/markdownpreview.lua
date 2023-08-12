@@ -28,7 +28,8 @@ vim.g.mkdp_open_to_the_world = 1
 --  useful when you work in remote vim and preview on local browser
 --  more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
 --  default empty
-vim.g.mkdp_open_ip = "127.0.0.1"
+-- vim.g.mkdp_open_ip = "127.0.0.1"
+vim.g.mkdp_open_ip = GET_LAN_IP()
 
 --  specify browser to open preview page
 --  default: ''

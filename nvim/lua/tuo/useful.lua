@@ -13,3 +13,9 @@ end
 BORDER = "single"
 TRANS = true
 COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
+
+GET_LAN_IP = function()
+    local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
+    local ip = vim.fn.system(cmd)
+    return ip:gsub("%s+", "")  -- Remove any leading/trailing whitespace
+end
