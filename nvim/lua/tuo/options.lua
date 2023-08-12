@@ -76,6 +76,14 @@ if vim.fn.has("win32") == 1 then
     set shellquote= shellxquote=]])
 end
 
+vim.cmd [[
+    augroup vimrc-incsearch-highlight
+      autocmd!
+      autocmd CmdlineEnter /,\? :set hlsearch
+      autocmd CmdlineLeave /,\? :set nohlsearch
+    augroup END
+]]
+
 vim.g.netrw_banner = 0
 
 vim.g.loaded_gzip = 1
