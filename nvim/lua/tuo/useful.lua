@@ -12,4 +12,4 @@ end
 -- "shadow": A drop shadow effect by blending with the
 BORDER = "single"
 TRANS = true
-COLORSCHEME = "kanagawa" -- "tokyonight", "kanagawa"
+COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
