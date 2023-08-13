@@ -18,11 +18,11 @@ GET_LAN_IP = function()
   if vim.fn.has("win32") == 1 then
     local ipconfig_command = io.popen("ipconfig")
     local output = ipconfig_command:read("*a")
+
+    local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
+
     ipconfig_command:close()
-
-    local lan_ip = output:match("IPv4 Address%s*:%s*([%d%.]+)")
-
-    return lan_ip
+    return "192" .. lan_ip
   else
     local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
     local ip = vim.fn.system(cmd)
