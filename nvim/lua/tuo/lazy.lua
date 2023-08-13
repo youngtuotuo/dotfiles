@@ -26,11 +26,12 @@ local plugins = {
   },
   {
     "rebelot/kanagawa.nvim",
+    cond = function()
+      return COLORSCHEME == "kanagawa"
+    end,
     event = "VimEnter",
     config = function()
-      if COLORSCHEME == "kanagawa" then
-        require("lazyload.kanagawa")
-      end
+      require("lazyload.kanagawa")
     end,
     lazy = false,
     priority = 1000,
@@ -38,10 +39,11 @@ local plugins = {
   {
     'folke/tokyonight.nvim',
     event = "VimEnter",
+    cond = function()
+      return COLORSCHEME == "tokyonight"
+    end,
     config = function()
-      if COLORSCHEME == "tokyonight" then
-        require("lazyload.tokyonight")
-      end
+      require("lazyload.tokyonight")
     end,
     lazy = false,
     priority = 1000,
