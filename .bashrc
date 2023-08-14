@@ -125,4 +125,4 @@ export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
 export PATH=$HOME/.local/bin${PATH:+:${PATH}}
 export EDITOR=nvim
 # I-Beam Cursor
-printf '\033[6 q'
+printf '\033[5 q'
