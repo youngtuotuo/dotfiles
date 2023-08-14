@@ -55,6 +55,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.cmd([[startinsert]])
+  end,
+})
+
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -85,13 +92,13 @@ if vim.fn.has("win32") == 1 then
 end
 vim.opt.undodir = os.getenv(home) .. sep .. ".vim" .. sep .. "undodir"
 
-vim.cmd [[
+vim.cmd([[
     augroup vimrc-incsearch-highlight
       autocmd!
       autocmd CmdlineEnter /,\? :set hlsearch
       autocmd CmdlineLeave /,\? :set nohlsearch
     augroup END
-]]
+]])
 
 vim.g.netrw_banner = 0
 
@@ -123,6 +130,3 @@ vim.api.nvim_create_user_command("Wq", "wq", {})
 vim.api.nvim_create_user_command("WQ", "wq", {})
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("Qa", "qa", {})
-
-
-

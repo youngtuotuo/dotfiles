@@ -1,4 +1,4 @@
-Set-PSReadLineOption -PredictionSource History
+# Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -EditMode Emacs
 
 # Alias
