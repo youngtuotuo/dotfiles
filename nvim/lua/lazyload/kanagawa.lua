@@ -47,7 +47,7 @@ require("kanagawa").setup({
       -- Mics
       IndentBlanklineChar = { fg = theme.ui.shade0, bg = tran_bg },
       -- Highlight
-      LspReferenceWrite = { underline = false },
+      LspReferenceWrite = { underline = false, standout = true },
       LspReferenceText = { link = "LspReferenceWrite" },
       LspReferenceRead = { link = "LspReferenceWrite" },
       -- window border

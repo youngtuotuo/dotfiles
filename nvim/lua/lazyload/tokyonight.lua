@@ -51,7 +51,7 @@ require("tokyonight").setup({
     highlights.MasonNmeormal = { link = "NormalFloat" }
     highlights.SagaNormal = { link = "NormalFloat" }
     highlights.RenameNormal = { link = "NormalFloat" }
-    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight }
+    highlights.LspReferenceWrite = { underline = false, standout = true }
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { fg = "White" }
