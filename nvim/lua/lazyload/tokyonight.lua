@@ -64,14 +64,14 @@ require("tokyonight").setup({
     }
     highlights.TelescopeBorder = {
       bg = tran_bg,
-      fg = colors.bg_dark,
+      fg = colors.fg,
     }
     highlights.TelescopePromptNormal = {
       bg = tran_bg
     }
     highlights.TelescopePromptBorder = {
       bg = tran_bg,
-      fg = prompt,
+      fg = colors.fg,
     }
     highlights.TelescopePromptTitle = {
       bg = tran_bg,
