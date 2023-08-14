@@ -7,20 +7,31 @@ require("lspconfig.ui.windows").default_options.border = BORDER
 require("neodev").setup({})
 require("mason").setup({ ui = { border = BORDER } })
 -- Ensure the servers above are installed
-local servers = {
-  "lua_ls",
-  "clangd",
-  "texlab",
-  "html",
-  "yamlls",
-  "gopls",
-  "lemminx",
-  "hls",
-  -- "zls",
-  "pyright",
-}
+-- local servers = {
+--   "lua_ls",
+--   "clangd",
+--   "texlab",
+--   "html",
+--   "yamlls",
+--   "gopls",
+--   "lemminx",
+--   "hls",
+--   -- "zls",
+--   "pyright",
+-- }
 -- require("mason-lspconfig").setup({ ensure_installed = servers })
 local util = require("lspconfig.util")
+
+LSP_HIGHLIGHT = false
+local toggle_lsp_highlight = function()
+  if LSP_HIGHLIGHT then
+    vim.lsp.buf.clear_references()
+    LSP_HIGHLIGHT = false
+  else
+    vim.lsp.buf.document_highlight()
+    LSP_HIGHLIGHT = true
+  end
+end
 
 -- Global mappings
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
@@ -47,28 +58,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
     vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    -- vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
     -- vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
-    -- vim.keymap.set('n', '<space>i', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+    vim.keymap.set('n', '<space>i', toggle_lsp_highlight)
   end,
 })
-
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
-    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
-    vim.api.nvim_create_autocmd({ "CursorHold" }, {
-      group = "lsp_document_highlight",
-      buffer = bufnr,
-      callback = vim.lsp.buf.document_highlight,
-    })
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      group = "lsp_document_highlight",
-      buffer = bufnr,
-      callback = vim.lsp.buf.clear_references,
-    })
-  end
-end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false

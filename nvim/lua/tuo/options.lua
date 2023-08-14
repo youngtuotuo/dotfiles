@@ -11,6 +11,8 @@ local options = {
   fillchars = "stl: ,stlnc: ,vert:│",
   guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175",
   hidden = true,
+  hlsearch = false,
+  incsearch = true,
   pumheight = 7,
   ignorecase = true,
   laststatus = 3,
@@ -20,7 +22,7 @@ local options = {
   nu = false,
   rnu = false,
   ru = true,
-  scrolloff = 2,
+  scrolloff = 5,
   shiftwidth = 4,
   showcmd = true,
   showmatch = true,
@@ -34,7 +36,9 @@ local options = {
   splitkeep = "screen",
   swapfile = false,
   termguicolors = true,
-  updatetime = 200,
+  updatetime = 50,
+  undodir = os.getenv("HOME") .. "/.vim/undodir",
+  undofile = true,
   viminfo = "'1000",
   visualbell = false,
   wrap = true,
@@ -57,12 +61,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
--- vim.api.nvim_create_autocmd("TermOpen",
---   {
---     callback = function()
---       vim.cmd [[startinsert]]
---     end
--- })
 
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
