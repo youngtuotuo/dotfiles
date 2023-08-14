@@ -225,6 +225,25 @@ Get-ExecutionPolicy -List
 Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
 ```
 
+Windows Terminal<br>
+"liga" is useless. Use "calt" to disable ligature.
+
+```json
+{
+    "font": 
+        {
+            "face": "CaskaydiaCove Nerd Font",
+            "features": 
+            {
+                "liga": 0,
+                "calt": 0,
+            },
+            "size": 12.0,
+            "weight": "normal"
+        },
+}
+```
+
 ### WSL2 config
 
 Git credential manager
