@@ -54,11 +54,6 @@ local plugins = {
     ft = { 'zig' },
   },
   {
-    "mbbill/undotree",
-    event = "BufRead",
-    keys = { { "<leader>u", ":UndotreeToggle<cr>", mode = "n" } },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     event = "BufRead",
     dependencies = { "neovim/nvim-lspconfig" },

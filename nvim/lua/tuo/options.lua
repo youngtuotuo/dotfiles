@@ -37,7 +37,6 @@ local options = {
   swapfile = false,
   termguicolors = true,
   updatetime = 50,
-  undodir = os.getenv("HOME") .. "/.vim/undodir",
   undofile = true,
   viminfo = "'1000",
   visualbell = false,
@@ -65,21 +64,26 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("ExitPre", {
   callback = function()
     vim.opt.guicursor = "a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
-    -- "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
   end,
 })
 
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
+local home = "HOME"
+local sep = "/"
 if vim.fn.has("win32") == 1 then
+  home = "USERPROFILE"
+  sep = "\\"
   vim.cmd([[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
     let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
     let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-    set shellquote= shellxquote=]])
+    set shellquote= shellxquote=
+  ]])
 end
+vim.opt.undodir = os.getenv(home) .. sep .. ".vim" .. sep .. "undodir"
 
 vim.cmd [[
     augroup vimrc-incsearch-highlight

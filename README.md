@@ -219,6 +219,12 @@ cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
 ```
 
+Execution Policy
+```powershell
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
+```
+
 ### WSL2 config
 
 Git credential manager
