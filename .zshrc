@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -70,8 +70,8 @@ ZSH_THEME="bira"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 # NEWLINE=$'\n'
@@ -104,42 +104,39 @@ export EDITOR="nvim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cl="clear"
+alias vi="nvim"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-. "$HOME/.cargo/env"
-export PATH=$PATH:/usr/local/go/bin
-# export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
-export PATH=/usr/local/cuda-12.0/bin${PATH:+:${PATH}}
-export EDITOR=nvim
 # fpath=(~/github/zsh-completions/src $fpath)
 # path+=('/Users/mikehung/Library/Python/3.9/bin' $path)
 # export PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
-
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias cl='clear'
-
-alias vi='nvim'
-alias cvat='python -m data_tools.cvat'
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/support/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/support/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/support/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/support/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/Users/mikehung/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/mikehung/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/mikehung/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/mikehung/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 
-[ -f "/home/support/.ghcup/env" ] && source "/home/support/.ghcup/env" # ghcup-env
+[ -f "/Users/mikehung/.ghcup/env" ] && source "/Users/mikehung/.ghcup/env" # ghcup-env
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+
+# opam configuration
+# [[ ! -r /Users/mikehung/.opam/opam-init/init.zsh ]] || source /Users/mikehung/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+# eval $(opam env)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+printf '\033[5 q'
