@@ -30,6 +30,7 @@ function LspName()
     return Progress_string()
   end
 end
+
 local auto = require("lualine.themes.auto")
 auto.normal.c.bg = "none"
 if COLORSCHEME == "kanagawa" then
@@ -65,8 +66,8 @@ local config = {
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
-      { "location" },
-      { LspName, align = "right", padding = { right = 0 } },
+      { "%l,%c%V", padding = { right = 6.6} },
+      { LspName },
       { "progress" },
     },
     lualine_y = {},
@@ -87,8 +88,8 @@ local config = {
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
-      { "location" },
-      { LspName, align = "right", padding = { right = 0 } },
+      { "%l,%c%V", padding = { right = 6.6} },
+      { LspName },
       { "progress" },
     },
     lualine_y = {},
