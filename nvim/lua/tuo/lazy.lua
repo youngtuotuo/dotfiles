@@ -63,15 +63,6 @@ local plugins = {
   },
   { "nvim-tree/nvim-web-devicons", event = "ColorScheme" },
   {
-    "j-hui/fidget.nvim",
-    event = "BufRead",
-    tag = "legacy",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("lazyload.fidget")
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
     config = function()

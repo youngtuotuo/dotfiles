@@ -1,6 +1,34 @@
-local function LspName()
-  local name = vim.lsp.get_clients({ bufnr = 0 })[1].name
-  return name
+local function progressIndicatorIterator(strings)
+    local index = 1
+    return function()
+        if index <= #strings then
+            local str = strings[index]
+            index = index + 1
+            return str
+        else
+            index = 1
+            return strings[index]
+        end
+    end
+end
+-- Global variable to keep status
+Progress_string = progressIndicatorIterator({
+    "🌑 ",
+    "🌒 ",
+    "🌓 ",
+    "🌔 ",
+    "🌕 ",
+    "🌖 ",
+    "🌗 ",
+    "🌘 ",
+  })
+
+function LspName()
+  if vim.lsp.status() == '' then
+    return vim.lsp.get_clients({ bufnr = 0 })[1].name
+  else
+    return Progress_string()
+  end
 end
 local auto = require("lualine.themes.auto")
 auto.normal.c.bg = "none"
@@ -21,7 +49,7 @@ local config = {
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = true,
-    refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+    refresh = { statusline = 150, tabline = 1000, winbar = 1000 },
   },
   sections = {
     lualine_a = {},
