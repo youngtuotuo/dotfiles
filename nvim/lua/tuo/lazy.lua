@@ -16,6 +16,7 @@ local plugins = {
   -- auto load
   "nvim-lua/plenary.nvim",
   "tpope/vim-fugitive",
+  "tpope/vim-vinegar",
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "VimEnter",

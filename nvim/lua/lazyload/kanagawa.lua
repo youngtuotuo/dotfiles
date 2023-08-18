@@ -29,6 +29,7 @@ require("kanagawa").setup({
       -- Menu
       Pmenu = { link = "NormalFloat" },
       -- Border/Title
+      FloatBorder = { bg = tran_bg },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
       CmpCompletionBorder = { link = "FloatBorder" },

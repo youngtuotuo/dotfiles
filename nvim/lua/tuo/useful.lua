@@ -12,7 +12,7 @@ end
 -- "shadow": A drop shadow effect by blending with the
 BORDER = "single"
 TRANS = true
-COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
+COLORSCHEME = "kanagawa" -- "tokyonight", "kanagawa"
 
 GET_LAN_IP = function()
   if vim.fn.has("win32") == 1 then

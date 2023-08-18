@@ -21,7 +21,7 @@ require("nvim-treesitter.configs").setup({
   auto_install = true,
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "latex", "bash", "zig", "markdown" },
+    disable = { "latex", "bash", "zig", "markdown", "python" },
   },
   textobjects = {
     enable = true,
