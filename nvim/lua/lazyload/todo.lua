@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap("n", "<space>t", ":TodoTelescope<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>t", ":TodoQuickFix<CR>", { noremap = true, silent = true })
 
 require("todo-comments").setup({
   signs = false, -- show icons in the signs column
@@ -34,8 +34,7 @@ require("todo-comments").setup({
     before = "", -- "fg" or "bg" or empty
     keyword = "fg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
     after = "", -- "fg" or "bg" or empty
-    -- pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-    pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
+    pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
     comments_only = true, -- uses treesitter to match keywords in comments only
     max_line_len = 400, -- ignore lines longer than this
     exclude = {}, -- list of file types to exclude highlighting
@@ -43,12 +42,12 @@ require("todo-comments").setup({
   -- list of named colors where we try to extract the guifg from the
   -- list of highlight groups or use the hex color if hl not found as a fallback
   colors = {
-    error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-    warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-    info = { "DiagnosticInfo", "#2563EB" },
-    hint = { "DiagnosticHint", "#10B981" },
-    default = { "Identifier", "#7C3AED" },
-    test = { "Identifier", "#FF00FF" },
+    error = { "#DC2626" },
+    warning = { "#FBBF24" },
+    info = { "#2563EB" },
+    hint = { "#10B981" },
+    default = { "#7C3AED" },
+    test = { "#FF00FF" },
   },
   search = {
     command = "rg",
@@ -61,7 +60,6 @@ require("todo-comments").setup({
     },
     -- regex that will be used to match keywords.
     -- don't replace the (KEYWORDS) placeholder
-    -- pattern = [[\b(KEYWORDS):]], -- ripgrep regex
-    pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
   },
 })

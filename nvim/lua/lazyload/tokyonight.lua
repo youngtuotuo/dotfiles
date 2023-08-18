@@ -37,6 +37,7 @@ require("tokyonight").setup({
     if TRANS then
       tran_bg = "none"
     end
+    highlights.Todo = { bg = tran_bg }
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { bg = tran_bg }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = tran_bg }
@@ -51,7 +52,7 @@ require("tokyonight").setup({
     highlights.MasonNmeormal = { link = "NormalFloat" }
     highlights.SagaNormal = { link = "NormalFloat" }
     highlights.RenameNormal = { link = "NormalFloat" }
-    highlights.LspReferenceWrite = { underline = false, standout = true }
+    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { fg = "White" }

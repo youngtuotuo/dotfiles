@@ -26,10 +26,11 @@ require("kanagawa").setup({
       tran_bg = "none"
     end
     return {
+      Todo = { bg = tran_bg },
       -- Menu
       Pmenu = { link = "NormalFloat" },
       -- Border/Title
-      FloatBorder = { bg = tran_bg },
+      FloatBorder = { fg = theme.ui.fg, bg = tran_bg },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
       CmpCompletionBorder = { link = "FloatBorder" },
@@ -59,7 +60,7 @@ require("kanagawa").setup({
       },
       TelescopePromptBorder = {
         bg = tran_bg,
-        fg = theme.ui.bg_p1,
+        fg = theme.ui.fg,
       },
       TelescopePromptTitle = {
         fg = theme.ui.fg,
@@ -72,7 +73,7 @@ require("kanagawa").setup({
       },
       TelescopePreviewBorder = {
         bg = tran_bg,
-        fg = theme.ui.bg_p2,
+        fg = theme.ui.fg,
       },
       TelescopeResultsTitle = {
         bg = tran_bg,
@@ -84,7 +85,7 @@ require("kanagawa").setup({
       },
       TelescopeResultsBorder = {
         bg = tran_bg,
-        fg = theme.ui.bg_m1,
+        fg = theme.ui.fg,
       },
     }
   end,
