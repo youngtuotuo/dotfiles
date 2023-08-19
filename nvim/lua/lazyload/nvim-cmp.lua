@@ -24,7 +24,7 @@ local ELLIPSIS_CHAR = "…"
 local MAX_LABEL_WIDTH = 40
 local MIN_LABEL_WIDTH = 10
 cmp.setup({
-  completion = { autocomplete = false },
+  -- completion = { autocomplete = false },
   window = {
     completion = { border = BORDER, scrollbar = false, max_width = 80, col_offset = 3 },
     documentation = { border = BORDER, scrollbar = false, max_width = 80 },
@@ -170,7 +170,7 @@ cmp.setup.cmdline(":", {
     {
       name = "cmdline",
       option = {
-        ignore_cmds = { "Man", "!" },
+        ignore_cmds = { "Man", "!", "write", "quit", "xit", "wall", "xall", "qall" },
       },
     },
   }),

@@ -21,16 +21,22 @@ require("kanagawa").setup({
   },
   overrides = function(colors)
     local theme = colors.theme
-    local tran_bg = theme.ui.bg
+    -- local float_bg = theme.ui.bg_m1
+    local float_bg = "#111616"
+    local tele_border_fg = theme.ui.fg
+    local status_bg = theme.ui.bg
     if TRANS then
-      tran_bg = "none"
+      status_bg = "none"
+    end
+    if BORDER == "none" then
+      tele_border_fg = float_bg
     end
     return {
-      Todo = { bg = tran_bg },
+      Todo = { bg = float_bg },
       -- Menu
       Pmenu = { link = "NormalFloat" },
       -- Border/Title
-      FloatBorder = { fg = theme.ui.fg, bg = tran_bg },
+      FloatBorder = { fg = theme.ui.fg, bg = float_bg },
       SagaBorder = { link = "FloatBorder" },
       DiagnosticShowBorder = { link = "FloatBorder" },
       CmpCompletionBorder = { link = "FloatBorder" },
@@ -38,16 +44,16 @@ require("kanagawa").setup({
       TelescopeBorder = { link = "FloatBorder" },
       FloatTitle = { link = "FloatBorder" },
       -- Normal
-      NormalFloat = { bg = tran_bg },
+      NormalFloat = { bg = float_bg },
       LazyNormal = { link = "NormalFloat" },
       MasonNmeormal = { link = "NormalFloat" },
       SagaNormal = { link = "NormalFloat" },
       RenameNormal = { link = "NormalFloat" },
       -- Status line
-      StatusLine = { bg = tran_bg },
-      StatusLineNC = { bg = tran_bg },
+      StatusLine = { bg = status_bg },
+      StatusLineNC = { bg = status_bg },
       -- Mics
-      IndentBlanklineChar = { fg = theme.ui.shade0, bg = tran_bg },
+      IndentBlanklineChar = { fg = theme.ui.shade0, bg = float_bg },
       -- Highlight
       LspReferenceWrite = { underline = false, standout = true },
       LspReferenceText = { link = "LspReferenceWrite" },
@@ -56,11 +62,11 @@ require("kanagawa").setup({
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },
       TelescopePromptNormal = {
-        bg = tran_bg,
+        bg = float_bg,
       },
       TelescopePromptBorder = {
-        bg = tran_bg,
-        fg = theme.ui.fg,
+        bg = float_bg,
+        fg = tele_border_fg,
       },
       TelescopePromptTitle = {
         fg = theme.ui.fg,
@@ -69,23 +75,23 @@ require("kanagawa").setup({
         fg = theme.ui.fg,
       },
       TelescopePreviewNormal = {
-        bg = tran_bg,
+        bg = float_bg,
       },
       TelescopePreviewBorder = {
-        bg = tran_bg,
-        fg = theme.ui.fg,
+        bg = float_bg,
+        fg = tele_border_fg,
       },
       TelescopeResultsTitle = {
-        bg = tran_bg,
+        bg = float_bg,
         fg = theme.ui.fg,
       },
       TelescopeResultsNormal = {
-        bg = tran_bg,
+        bg = float_bg,
         fg = theme.ui.fg_dim,
       },
       TelescopeResultsBorder = {
-        bg = tran_bg,
-        fg = theme.ui.fg,
+        bg = float_bg,
+        fg = tele_border_fg,
       },
     }
   end,

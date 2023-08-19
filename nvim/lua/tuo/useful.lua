@@ -10,9 +10,9 @@ end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-BORDER = "single"
+BORDER = "none"
 TRANS = true
-COLORSCHEME = "kanagawa" -- "tokyonight", "kanagawa"
+COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
 
 GET_LAN_IP = function()
   if vim.fn.has("win32") == 1 then
