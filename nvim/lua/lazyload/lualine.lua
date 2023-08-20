@@ -24,7 +24,7 @@ local progress_string = progressIndicatorIterator({
   })
 
 local count = 0
-local count_thres = 30
+local count_thres = 40
 local function lsp_progress()
   if vim.lsp.status() == '' then
     if count <= count_thres then
