@@ -24,7 +24,7 @@ local progress_string = progressIndicatorIterator({
   })
 
 local count = 0
-local count_thres = 4
+local count_thres = 30
 local function lsp_progress()
   if vim.lsp.status() == '' then
     if count <= count_thres then
@@ -32,7 +32,7 @@ local function lsp_progress()
     end
     if count >= count_thres then
       return "%l,%c%V%14.6P"
-    elseif count >= count_thres - 1 then
+    elseif count >= count_thres - 20 then
       return vim.lsp.get_clients({ bufnr = 0 })[1].name .. "  "
     else
       return vim.lsp.get_clients({ bufnr = 0 })[1].name .. " " .. progress_string()
@@ -62,7 +62,7 @@ local config = {
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = true,
-    refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+    refresh = { statusline = 100, tabline = 1000, winbar = 1000 },
   },
   sections = {
     lualine_a = {},
