@@ -12,7 +12,7 @@ local function progressIndicatorIterator(strings)
     end
 end
 -- Global variable to keep status
-Progress_string = progressIndicatorIterator({
+local progress_string = progressIndicatorIterator({
     "🌑 ",
     "🌒 ",
     "🌓 ",
@@ -23,11 +23,23 @@ Progress_string = progressIndicatorIterator({
     "🌘 ",
   })
 
-function LspName()
+local count = 0
+local count_thres = 4
+local function lsp_progress()
   if vim.lsp.status() == '' then
-    return vim.lsp.get_clients({ bufnr = 0 })[1].name
+    if count <= count_thres then
+      count = count + 1
+    end
+    if count >= count_thres then
+      return "%l,%c%V%14.6P"
+    elseif count >= count_thres - 1 then
+      return vim.lsp.get_clients({ bufnr = 0 })[1].name .. "  "
+    else
+      return vim.lsp.get_clients({ bufnr = 0 })[1].name .. " " .. progress_string()
+    end
   else
-    return Progress_string()
+    count = 0
+    return vim.lsp.get_clients({ bufnr = 0 })[1].name .. " " .. progress_string()
   end
 end
 
@@ -66,9 +78,7 @@ local config = {
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
-      { "%l,%c%V", padding = { right = 6.6} },
-      { LspName },
-      { "progress" },
+      { lsp_progress },
     },
     lualine_y = {},
     lualine_z = {},
@@ -88,9 +98,7 @@ local config = {
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
-      { "%l,%c%V", padding = { right = 6.6} },
-      { LspName },
-      { "progress" },
+      { lsp_progress },
     },
     lualine_y = {},
     lualine_z = {},
