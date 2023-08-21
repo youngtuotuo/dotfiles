@@ -40,7 +40,7 @@ require("tokyonight").setup({
     if TRANS then
       status_bg = "none"
     end
-    if BORDER == "none" then
+    if BORDER == "none" or BORDER == "solid" then
       tele_border_fg = float_bg
     end
     highlights.Todo = { bg = float_bg }
