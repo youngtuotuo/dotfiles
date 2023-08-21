@@ -170,7 +170,7 @@ cmp.setup.cmdline(":", {
     {
       name = "cmdline",
       option = {
-        ignore_cmds = { "Man", "!", "write", "quit", "xit", "wall", "xall", "qall" },
+        ignore_cmds = { "Man", "!", "write", "quit", "xit", "wall", "xall", "qall", "edit" },
       },
     },
   }),
