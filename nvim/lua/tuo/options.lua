@@ -68,12 +68,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd("ExitPre", {
-  callback = function()
-    vim.opt.guicursor = "a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
-  end,
-})
-
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
