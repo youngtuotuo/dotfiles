@@ -1,2 +1,2 @@
-local cmd = "<cmd>13sp | terminal go run %<cr>"
+local cmd = "<cmd>13sp | terminal go run %"
 vim.keymap.set("n", "<leader>p", cmd)
