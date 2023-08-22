@@ -15,6 +15,7 @@ require("telescope").setup({
         preview_width = 0.5,
       },
     },
+    -- border = false,
     results_title = "-- Results --",
     dynamic_preview_title = true,
     color_devicons = true,
