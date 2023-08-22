@@ -23,13 +23,10 @@ require("kanagawa").setup({
     local theme = colors.theme
     -- local float_bg = theme.ui.bg_m1
     local float_bg = "#111616"
-    local tele_border_fg = theme.ui.fg
+    local tele_border_fg = float_bg
     local status_bg = theme.ui.bg
     if TRANS then
       status_bg = "none"
-    end
-    if BORDER == "none" then
-      tele_border_fg = float_bg
     end
     return {
       Todo = { bg = float_bg },
