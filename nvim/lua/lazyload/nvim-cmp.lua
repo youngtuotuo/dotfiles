@@ -39,7 +39,7 @@ cmp.setup({
       local lspkind_ok, lspkind = pcall(require, "lspkind")
       if not lspkind_ok then
         -- From kind_icons array
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         -- Source
         vim_item.menu = ({
           buffer = "[Buffer]",
@@ -53,7 +53,7 @@ cmp.setup({
         -- From lspkind
         return lspkind.cmp_format()(entry, vim_item)
       end
-    end
+    end,
   },
   preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
@@ -138,7 +138,21 @@ cmp.setup.cmdline(":", {
     {
       name = "cmdline",
       option = {
-        ignore_cmds = { "Man", "!", "write", "quit", "xit", "wall", "xall", "qall", "edit", 'W', 'Q' },
+        ignore_cmds = {
+          "Man",
+          "!",
+          "write",
+          "quit",
+          "xit",
+          "wall",
+          "xall",
+          "qall",
+          "edit",
+          "W",
+          "Q",
+          "ls",
+          "bd",
+        },
       },
     },
   }),
