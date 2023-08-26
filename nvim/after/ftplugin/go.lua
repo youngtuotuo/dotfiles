@@ -1,3 +1,3 @@
 local cmd = "go run %"
-cmd = ":13sp | terminal echo '$ " .. cmd .. "' && " .. cmd
+cmd = ":sp | terminal echo '$ " .. cmd .. "' && " .. cmd
 vim.keymap.set("n", "<leader>p", cmd)
