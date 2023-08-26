@@ -19,11 +19,11 @@ if vim.fn.has("win32") == 1 then
   sep = "\\"
   compiler = "gcc"
 end
-local cmd = ":13sp | terminal "
-cmd = cmd .. compiler .. " -Wall -Wextra "
+local cmd = compiler .. " -Wall -Wextra "
 if check_math_h() then
   cmd = cmd .. "-lm "
 end
 cmd =  cmd .. "-o " .. fname_next .. ext .. " %"
 cmd = cmd .. " && ." .. sep .. fname_next .. ext
+cmd = ":13sp | terminal echo '$ " .. cmd .. "' && " .. cmd
 vim.keymap.set("n", "<leader>p", cmd)

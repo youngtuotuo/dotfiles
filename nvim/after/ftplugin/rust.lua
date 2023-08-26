@@ -1,2 +1,3 @@
-local cmd = ":13sp | terminal cargo run %"
+local cmd = "cargo run %"
+cmd = ":13sp | terminal echo '$ " .. cmd .. "' && " .. cmd
 vim.keymap.set("n", "<leader>p", cmd)
