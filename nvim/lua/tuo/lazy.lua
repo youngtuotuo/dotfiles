@@ -91,13 +91,6 @@ local plugins = {
     end,
   },
   {
-    "grepsuzette/vim-sum",
-    event = { "InsertEnter", "BufRead" },
-    config = function()
-      require("lazyload.vim-sum")
-    end,
-  },
-  {
     "mhartington/formatter.nvim",
     keys = {
       { "<leader>f", ":Format ", mode = { "n" }},
