@@ -76,15 +76,13 @@ keymap("n", "<leader>Y", '"+Y', default_opts)
 -- delete avoid register
 keymap({ "n", "v" }, "<leader>d", '"_d', default_opts)
 keymap("n", "J", "mzJ`z", default_opts)
-keymap("n", "n", "nzzzv", default_opts)
-keymap("n", "N", "Nzzzv", default_opts)
+-- keymap("n", "n", "nzzzv", default_opts)
+-- keymap("n", "N", "Nzzzv", default_opts)
 
-keymap("n", "<C-d>", "<C-d>zz", default_opts)
-keymap("n", "<C-u>", "<C-u>zz", default_opts)
+-- keymap("n", "<C-d>", "<C-d>zz", default_opts)
+-- keymap("n", "<C-u>", "<C-u>zz", default_opts)
 
 -- Center search results
-keymap("n", "n", "nzz", default_opts)
-keymap("n", "N", "Nzz", default_opts)
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
