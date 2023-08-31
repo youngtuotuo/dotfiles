@@ -1,3 +1,19 @@
+local get_lan_ip = function()
+  if vim.fn.has("win32") == 1 then
+    local ipconfig_command = io.popen("ipconfig")
+    local output = ipconfig_command:read("*a")
+
+    local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
+
+    ipconfig_command:close()
+    return "192" .. lan_ip
+  else
+    local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
+    local ip = vim.fn.system(cmd)
+    return ip:gsub("%s+", "")  -- Remove any leading/trailing whitespace
+  end
+end
+
 vim.g.mkdp_filetypes = { "markdown" }
 --  set to 1, nvim will open the preview window after entering the markdown buffer
 --  default: 0
@@ -29,7 +45,7 @@ vim.g.mkdp_open_to_the_world = 1
 --  more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
 --  default empty
 -- vim.g.mkdp_open_ip = "127.0.0.1"
-vim.g.mkdp_open_ip = GET_LAN_IP()
+vim.g.mkdp_open_ip = get_lan_ip()
 
 --  specify browser to open preview page
 --  default: ''

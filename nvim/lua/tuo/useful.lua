@@ -1,4 +1,7 @@
 -- some useful lua functions
+
+
+-- print details
 P = function(v)
   print(vim.inspect(v))
   return v
@@ -12,21 +15,7 @@ end
 -- "shadow": A drop shadow effect by blending with the
 -- BORDER = "none"
 BORDER = {' ', ' ', ' ', ' ', ' ', ' ',' ', ' '}
+-- transparent control
 TRANS = true
-COLORSCHEME = "tokyonight" -- "tokyonight", "kanagawa"
-
-GET_LAN_IP = function()
-  if vim.fn.has("win32") == 1 then
-    local ipconfig_command = io.popen("ipconfig")
-    local output = ipconfig_command:read("*a")
-
-    local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
-
-    ipconfig_command:close()
-    return "192" .. lan_ip
-  else
-    local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
-    local ip = vim.fn.system(cmd)
-    return ip:gsub("%s+", "")  -- Remove any leading/trailing whitespace
-  end
-end
+-- choose colorscheme
+COLORSCHEME = "kanagawa" -- "tokyonight", "kanagawa"
