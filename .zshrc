@@ -140,3 +140,5 @@ export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 # eval $(opam env)
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 printf '\033[5 q'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
