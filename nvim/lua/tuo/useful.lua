@@ -18,7 +18,7 @@ BORDER = {' ', ' ', ' ', ' ', ' ', ' ',' ', ' '}
 -- transparent control
 TRANS = true
 -- choose colorscheme
-COLORSCHEME = "habamax" -- "tokyonight", "kanagawa", "lunaperche", "habamax"
+COLORSCHEME = "rose-pine" -- "tokyonight", "kanagawa", "lunaperche", "habamax", "rose-pine"
 if COLORSCHEME == "lunaperche" or COLORSCHEME == "habamax" then
   local code = "colorscheme " .. COLORSCHEME
   vim.cmd(code)
