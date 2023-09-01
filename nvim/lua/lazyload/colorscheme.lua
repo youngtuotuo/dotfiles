@@ -1,18 +1,28 @@
 local float_bg = "#111616"
+local normal_bg = "#000000"
+local sel_bg =  '#151b25'
+local menu_bg = "#c6c6c6"
+if TRANS then
+  normal_bg = "none"
+end
 local highlights = {
+  Normal = { bg = normal_bg },
   -- Menu
-  Pmenu = { link = "NormalFloat" },
+  Pmenu = { fg = menu_bg, bg = float_bg },
+  PmenuSel = { fg = 'none', bg = sel_bg, bold=true},
   -- Border/Title
-  FloatBorder = { fg = "#c6c6c6", bg = float_bg },
+  FloatBorder = { fg = menu_bg, bg = float_bg },
   SagaBorder = { link = "FloatBorder" },
   DiagnosticShowBorder = { link = "FloatBorder" },
   CmpCompletionBorder = { link = "FloatBorder" },
   LspInfoBorder = { link = "FloatBorder" },
   TelescopeBorder = { link = "FloatBorder" },
   FloatTitle = { link = "FloatBorder" },
+  -- Visual
+  Visual = { bg = sel_bg },
   -- Status Line
-  StatusLine = { link = "Normal" },
-  StatusLineNC = { fg = "#c6c6c6", bg = "none" },
+  StatusLine = { fg = 'DarkGrey', bg = normal_bg },
+  StatusLineNC = { fg = menu_bg, bg = normal_bg },
   -- Normal
   NormalFloat = { bg = float_bg },
   LazyNormal = { link = "NormalFloat" },
