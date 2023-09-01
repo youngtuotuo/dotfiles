@@ -51,10 +51,11 @@ require("kanagawa").setup({
       StatusLineNC = { bg = status_bg },
       -- Mics
       IndentBlanklineChar = { fg = theme.ui.shade0, bg = float_bg },
-      -- Highlight
+      -- Lsp
       LspReferenceWrite = { underline = false, standout = true },
       LspReferenceText = { link = "LspReferenceWrite" },
       LspReferenceRead = { link = "LspReferenceWrite" },
+      luaParenError = { bg = 'none' },
       -- window border
       VertSplit = { fg = "White" },
       WinSeparator = { link = "VertSplit" },

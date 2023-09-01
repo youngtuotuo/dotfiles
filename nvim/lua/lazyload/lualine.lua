@@ -1,32 +1,32 @@
 local function progressIndicatorIterator(strings)
-    local index = 1
-    return function()
-        if index <= #strings then
-            local str = strings[index]
-            index = index + 1
-            return str
-        else
-            index = 1
-            return strings[index]
-        end
+  local index = 1
+  return function()
+    if index <= #strings then
+      local str = strings[index]
+      index = index + 1
+      return str
+    else
+      index = 1
+      return strings[index]
     end
+  end
 end
 -- Global variable to keep status
 local progress_string = progressIndicatorIterator({
-    "🌑 ",
-    "🌒 ",
-    "🌓 ",
-    "🌔 ",
-    "🌕 ",
-    "🌖 ",
-    "🌗 ",
-    "🌘 ",
-  })
+  "🌑 ",
+  "🌒 ",
+  "🌓 ",
+  "🌔 ",
+  "🌕 ",
+  "🌖 ",
+  "🌗 ",
+  "🌘 ",
+})
 
 local count = 0
 local count_thres = 40
 local function lsp_progress()
-  if vim.lsp.status() == '' then
+  if vim.lsp.status() == "" then
     if count <= count_thres then
       count = count + 1
     end
@@ -56,6 +56,22 @@ elseif COLORSCHEME == "tokyonight" then
   if status then
     local colors = colors.setup()
     auto.normal.c.fg = colors.fg
+  end
+elseif COLORSCHEME == "lunaperche" or COLORSCHEME == "habamax" then
+  if TRANS then
+    auto.normal.c.bg = "none"
+    auto.command.c.bg = "none"
+    auto.visual.c.bg = "none"
+    auto.inactive.c.bg = "none"
+    auto.replace.c.bg = "none"
+    auto.insert.c.bg = "none"
+  else
+    auto.normal.c.bg = "#000000"
+    auto.command.c.bg = "#000000"
+    auto.visual.c.bg = "#000000"
+    auto.inactive.c.bg = "#000000"
+    auto.replace.c.bg = "#000000"
+    auto.insert.c.bg = "#000000"
   end
 end
 local config = {
@@ -99,7 +115,6 @@ local config = {
         icon_only = true,
         icon = { align = "right" },
         padding = { left = 1 },
-
       },
       { "filename", path = 1, align = "left" },
     },
