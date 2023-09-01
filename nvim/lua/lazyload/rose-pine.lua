@@ -1,6 +1,6 @@
 local status_bg = "none"
 local float_bg = "#111616"
-local menu_bg = "#c6c6c6"
+local menu_bg = "surface"
 require("rose-pine").setup({
   --- @usage 'auto'|'main'|'moon'|'dawn'
   variant = "main",
@@ -43,12 +43,7 @@ require("rose-pine").setup({
   -- Change specific vim highlight groups
   -- https://github.com/rose-pine/neovim/wiki/Recipes
   highlight_groups = {
-    ColorColumn = { bg = "rose" },
-
-    -- By default each group adds to the existing config.
-    -- If you only want to set what is written in this config exactly,
-    -- you can set the inherit option:
-    Search = { bg = "gold", inherit = false },
+    ColorColumn = { bg = "base" },
     -- Menu
     Pmenu = { link = "NormalFloat" },
     -- Border/Title
@@ -72,7 +67,7 @@ require("rose-pine").setup({
     LspReferenceWrite = { underline = false, standout = true },
     LspReferenceText = { link = "LspReferenceWrite" },
     LspReferenceRead = { link = "LspReferenceWrite" },
-    luaParenError = { bg = "none" },
+    luaParenError = { fg = "Text", bg = "none" },
     -- window border
     VertSplit = { fg = "White" },
     WinSeparator = { link = "VertSplit" },
