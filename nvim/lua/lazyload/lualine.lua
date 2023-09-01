@@ -46,11 +46,17 @@ end
 local auto = require("lualine.themes.auto")
 auto.normal.c.bg = "none"
 if COLORSCHEME == "kanagawa" then
-  local colors = require("kanagawa.colors").setup()
-  auto.normal.c.fg = colors.theme.fg
+  local status, colors = pcall(require, "kanagawa.colors")
+  if status then
+    local colors = colors.setup()
+    auto.normal.c.fg = colors.theme.fg
+  end
 elseif COLORSCHEME == "tokyonight" then
-  local colors = require("tokyonight.colors").setup()
-  auto.normal.c.fg = colors.fg
+  local status, colors = pcall(require, "tokyonight.colors")
+  if status then
+    local colors = colors.setup()
+    auto.normal.c.fg = colors.fg
+  end
 end
 local config = {
   options = {

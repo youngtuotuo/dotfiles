@@ -32,7 +32,7 @@ local plugins = {
     end,
     event = "VimEnter",
     config = function()
-      require("lazyload.kanagawa")
+      -- require("lazyload.kanagawa")
     end,
     lazy = false,
     priority = 1000,
@@ -44,7 +44,7 @@ local plugins = {
       return COLORSCHEME == "tokyonight"
     end,
     config = function()
-      require("lazyload.tokyonight")
+      -- require("lazyload.tokyonight")
     end,
     lazy = false,
     priority = 1000,
