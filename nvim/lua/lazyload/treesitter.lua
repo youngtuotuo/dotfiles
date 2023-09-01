@@ -21,7 +21,7 @@ require("nvim-treesitter.configs").setup({
   indent = { enable = true },
   auto_install = false,
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = false, -- false will disable the whole extension
     disable = { "latex", "bash", "zig", "markdown" },
   },
   textobjects = {
