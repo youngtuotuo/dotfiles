@@ -18,9 +18,4 @@ BORDER = {' ', ' ', ' ', ' ', ' ', ' ',' ', ' '}
 -- transparent control
 TRANS = true
 -- choose colorscheme
-COLORSCHEME = "lunaperche" -- "tokyonight", "kanagawa", "lunaperche", "habamax", "rose-pine"
-if COLORSCHEME == "lunaperche" or COLORSCHEME == "habamax" then
-  local code = "colorscheme " .. COLORSCHEME
-  vim.cmd(code)
-  require('lazyload.colorscheme')
-end
+require('lazyload.colorscheme')

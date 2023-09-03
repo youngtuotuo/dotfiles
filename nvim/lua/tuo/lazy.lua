@@ -25,43 +25,6 @@ local plugins = {
       require("lazyload.indent-blankline")
     end,
   },
-  {
-    "rebelot/kanagawa.nvim",
-    cond = function()
-      return COLORSCHEME == "kanagawa"
-    end,
-    event = "VimEnter",
-    config = function()
-      require("lazyload.kanagawa")
-    end,
-    lazy = false,
-    priority = 1000,
-  },
-  {
-    "rose-pine/neovim",
-    cond = function()
-      return COLORSCHEME == "rose-pine"
-    end,
-    name = "rose-pine",
-    event = "VimEnter",
-    config = function()
-      require("lazyload.rose-pine")
-    end,
-    lazy = false,
-    priority = 1000,
-  },
-  {
-    "folke/tokyonight.nvim",
-    event = "VimEnter",
-    cond = function()
-      return COLORSCHEME == "tokyonight"
-    end,
-    config = function()
-      require("lazyload.tokyonight")
-    end,
-    lazy = false,
-    priority = 1000,
-  },
   -- lazy load
   {
     "ziglang/zig.vim",

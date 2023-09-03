@@ -1,3 +1,6 @@
+-- habamax, lunaperche
+vim.cmd.colorscheme("lunaperche")
+
 local float_bg = "#111616"
 local normal_bg = "#000000"
 local sel_bg = "#303030"
