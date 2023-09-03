@@ -1,12 +1,12 @@
 local float_bg = "#111616"
 local normal_bg = "#000000"
-local sel_bg = "#101010"
+local sel_bg = "#303030"
 local menu_bg = "#c6c6c6"
 if TRANS then
   normal_bg = "none"
 end
 local highlights = {
-  Normal = { bg = normal_bg },
+  Normal = { fg = menu_bg,bg = normal_bg },
   -- Menu
   Pmenu = { fg = menu_bg, bg = float_bg },
   PmenuSel = { fg = "none", bg = sel_bg, bold = true },
