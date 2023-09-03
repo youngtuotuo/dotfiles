@@ -42,12 +42,12 @@ require("todo-comments").setup({
   -- list of named colors where we try to extract the guifg from the
   -- list of highlight groups or use the hex color if hl not found as a fallback
   colors = {
-    -- error = { "#DC2626" },
-    -- warning = { "#FBBF24" },
-    -- info = { "#2563EB" },
-    -- hint = { "#10B981" },
-    -- default = { "#7C3AED" },
-    -- test = { "#FF00FF" },
+    error = { "#DC2626" },
+    warning = { "#FBBF24" },
+    info = { "#2563EB" },
+    hint = { "#10B981" },
+    default = { "#7C3AED" },
+    test = { "#FF00FF" },
   },
   search = {
     command = "rg",
