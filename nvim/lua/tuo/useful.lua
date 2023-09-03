@@ -17,5 +17,3 @@ end
 BORDER = {' ', ' ', ' ', ' ', ' ', ' ',' ', ' '}
 -- transparent control
 TRANS = true
--- choose colorscheme
-require('lazyload.colorscheme')

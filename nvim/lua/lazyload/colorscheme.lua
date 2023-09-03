@@ -1,5 +1,21 @@
--- habamax, lunaperche
-vim.cmd.colorscheme("lunaperche")
+-- habamax, lunaperche, gruber-darker
+require("gruber-darker").setup({
+  bold = true,
+  invert = {
+    signs = false,
+    tabline = false,
+    visual = false,
+  },
+  italic = {
+    strings = false,
+    comments = false,
+    operators = false,
+    folds = false,
+  },
+  undercurl = false,
+  underline = false,
+})
+vim.cmd.colorscheme("gruber-darker")
 
 local float_bg = "#111616"
 local normal_bg = "#000000"
@@ -9,7 +25,7 @@ if TRANS then
   normal_bg = "none"
 end
 local highlights = {
-  Normal = { fg = menu_bg,bg = normal_bg },
+  Normal = { fg = menu_bg, bg = normal_bg },
   -- Menu
   Pmenu = { fg = menu_bg, bg = float_bg },
   PmenuSel = { fg = "none", bg = sel_bg, bold = true },
@@ -22,7 +38,7 @@ local highlights = {
   TelescopeBorder = { link = "FloatBorder" },
   FloatTitle = { link = "FloatBorder" },
   -- Visual
-  Visual = { ctermbg=244, bg = sel_bg },
+  Visual = { ctermbg = 244, bg = sel_bg },
   -- Status Line
   StatusLine = { fg = "DarkGrey", bg = normal_bg },
   StatusLineNC = { fg = menu_bg, bg = normal_bg },
@@ -74,7 +90,7 @@ local highlights = {
     fg = float_bg,
   },
   -- Git
-  diffAdded = { bg = "#5f875f" }
+  diffAdded = { bg = "#5f875f" },
 }
 
 for name, value in pairs(highlights) do

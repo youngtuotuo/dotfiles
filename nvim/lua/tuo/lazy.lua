@@ -25,6 +25,18 @@ local plugins = {
       require("lazyload.indent-blankline")
     end,
   },
+  {
+    "blazkowolf/gruber-darker.nvim" ,
+    event = "VimEnter",
+    opts = {
+      italic = { strings = false, comments = false, folds = false },
+      undercurl = false,
+      underline = false,
+    },
+    config = function()
+      require('lazyload.colorscheme')
+    end
+  },
   -- lazy load
   {
     "ziglang/zig.vim",
