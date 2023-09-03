@@ -25,8 +25,11 @@ if TRANS then
   normal_bg = "none"
 end
 local highlights = {
+  -- Normal
   Normal = { fg = menu_bg, bg = normal_bg },
   NormalNC = { link = "Normal" },
+  -- Cursor
+  Cursor = { bg = menu_bg },
   -- Menu
   Pmenu = { fg = menu_bg, bg = float_bg },
   PmenuSel = { fg = "none", bg = sel_bg, bold = true },
