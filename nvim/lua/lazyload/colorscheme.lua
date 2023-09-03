@@ -19,7 +19,7 @@ local highlights = {
   TelescopeBorder = { link = "FloatBorder" },
   FloatTitle = { link = "FloatBorder" },
   -- Visual
-  Visual = { bg = sel_bg },
+  Visual = { ctermbg=244, bg = sel_bg },
   -- Status Line
   StatusLine = { fg = "DarkGrey", bg = normal_bg },
   StatusLineNC = { fg = menu_bg, bg = normal_bg },

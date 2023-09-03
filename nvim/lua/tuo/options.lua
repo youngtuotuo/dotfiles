@@ -35,7 +35,6 @@ local options = {
   splitright = true,
   splitkeep = "screen",
   swapfile = false,
-  termguicolors = true,
   updatetime = 50,
   undofile = true,
   viminfo = "'1000",
@@ -43,6 +42,12 @@ local options = {
   wrap = true,
   writebackup = false,
 }
+if vim.env.TERM == "nsterm" then
+    vim.opt['termguicolors'] = false
+elseif vim.env.TERM == "xterm-256color" or vim.env.TERM == "tmux-256color" then
+    vim.opt['termguicolors'] = true
+end
+
 
 for k, v in pairs(options) do
   vim.opt[k] = v
