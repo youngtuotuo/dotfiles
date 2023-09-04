@@ -93,11 +93,6 @@ local highlights = {
     bg = float_bg,
     fg = float_bg,
   },
-  -- Git
-  DiffAdd = { fg = "Black", bg = "#73d936" },
-  DiffChange = { fg = "Black", bg = "#ffdd33" },
-  DiffDelete = { fg = "Black", bg = "#ff4f58" },
-  DiffText = { fg = "Black", bg = "#ffdd33" },
 }
 
 for name, value in pairs(highlights) do
