@@ -93,6 +93,7 @@ local highlights = {
     bg = float_bg,
     fg = float_bg,
   },
+  Todo = { bg = 'none' },
 }
 
 for name, value in pairs(highlights) do
