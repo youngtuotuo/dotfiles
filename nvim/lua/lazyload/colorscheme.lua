@@ -1,6 +1,6 @@
 -- habamax, lunaperche, gruber-darker
 require("gruber-darker").setup({
-  bold = true,
+  bold = false,
   invert = {
     signs = false,
     tabline = false,
