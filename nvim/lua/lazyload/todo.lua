@@ -1,20 +1,20 @@
 vim.api.nvim_set_keymap("n", "<space>t", ":TodoQuickFix<CR>", { noremap = true, silent = true })
 
 require("todo-comments").setup({
-  signs = false, -- show icons in the signs column
-  sign_priority = 1, -- sign priority
+  signs = true, -- show icons in the signs column
+  sign_priority = 7, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
     FIX = {
       icon = " ", -- icon used for the sign, and in search results
       color = "error", -- can be a hex color, or a named color (see below)
-      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+      alt = { "ERROR", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO = { icon = " ", color = "hint" },
+    TODO = { icon = " ", color = "hint", alt = { "HINT" } },
     HACK = { icon = " ", color = "warning" },
     WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    PERF = { icon = " ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
     TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
   },
@@ -32,7 +32,7 @@ require("todo-comments").setup({
     multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
     multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
     before = "", -- "fg" or "bg" or empty
-    keyword = "fg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+    keyword = "wide_bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
     after = "fg", -- "fg" or "bg" or empty
     pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
     comments_only = true, -- uses treesitter to match keywords in comments only
@@ -47,7 +47,7 @@ require("todo-comments").setup({
     info = { "#2563EB" },
     hint = { "#10B981" },
     default = { "#7C3AED" },
-    test = { "#FF00FF" },
+    test = { "#4499FF" },
   },
   search = {
     command = "rg",

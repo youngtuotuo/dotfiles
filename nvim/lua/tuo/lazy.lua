@@ -18,6 +18,12 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("lazyload.colorizer")
+    end,
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = "VimEnter",
     keys = { { "<leader>i", ":IndentBlanklineToggle<cr>", mode = { "n" }, default_opts } },
@@ -56,12 +62,6 @@ local plugins = {
     event = "BufRead",
     config = function()
       require("lazyload.gitsigns")
-    end,
-  },
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("lazyload.colorizer")
     end,
   },
   {

@@ -30,6 +30,8 @@ local highlights = {
   NormalNC = { link = "Normal" },
   -- Cursor
   Cursor = { bg = menu_bg },
+  -- Comment
+  Comment = { fg = '#6e6d6d' },
   -- Menu
   Pmenu = { fg = menu_bg, bg = float_bg },
   PmenuSel = { fg = "none", bg = sel_bg, bold = true },
@@ -56,7 +58,7 @@ local highlights = {
   LspReferenceWrite = { underline = false, standout = true },
   LspReferenceText = { link = "LspReferenceWrite" },
   LspReferenceRead = { link = "LspReferenceWrite" },
-  luaParenError = { bg = "none" },
+  luaParenError = { link = "Normal" },
   -- window border
   VertSplit = { fg = "White" },
   WinSeparator = { link = "VertSplit" },
