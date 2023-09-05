@@ -1,12 +1,12 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "c", "cpp", "python", "lua", "markdown_inline", "markdown" 
+    "c", "cpp", "python", "lua", "markdown_inline", "markdown"
   },
   ignore_install = { "zig" },
   indent = { enable = true },
   auto_install = false,
   highlight = {
-    enable = false, -- false will disable the whole extension
+    enable = true, -- false will disable the whole extension
     disable = { "markdown" },
   },
   textobjects = {
