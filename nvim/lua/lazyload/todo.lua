@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap("n", "<space>t", ":TodoQuickFix<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<space>t", ":TodoQuickFix cwd=" .. vim.fn.fnameescape(vim.fn.expand("%:p")) .. "<cr>")
 
 require("todo-comments").setup({
   signs = true, -- show icons in the signs column
@@ -17,7 +17,7 @@ require("todo-comments").setup({
     PERF = { icon = " ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = "hint"   , alt = { "INFO" } },
     TEST = { icon = " ", color = "test"   , alt = { "TESTING", "PASSED", "FAILED" } },
-    IDEA = { icon = "" , color = "idea"   , alt = { "TRY", "HINT" }}
+    IDEA = { icon = " " , color = "idea"   , alt = { "TRY", "HINT" }}
   },
   gui_style = {
     fg = "NONE", -- The gui style to use for the fg highlight group.

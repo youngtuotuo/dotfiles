@@ -40,7 +40,6 @@ require("tokyonight").setup({
     if TRANS then
       status_bg = "none"
     end
-    highlights.Todo = { bg = float_bg }
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { bg = float_bg }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
@@ -62,6 +61,8 @@ require("tokyonight").setup({
     highlights.WinSeparator = { link = "VertSplit" }
     highlights.StatusLine = { fg = colors.fg, bg = status_bg }
     highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
+    highlights.luaParenError = { link = "Normal" }
+    highlights.SignColumnSB = { bg = "none" }
     highlights.TelescopeNormal = {
       bg = float_bg,
       fg = colors.fg,

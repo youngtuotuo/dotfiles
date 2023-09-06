@@ -18,7 +18,6 @@ local term_opts = { silent = true }
 
 keymap("n", "-", "<cmd>E<cr>", default_opts)
 keymap("n", "<leader>t", function()
-  local current_bufnr = vim.fn.bufnr()
   local terminal_bufnr = nil
   local buf = nil
   -- Iterate through the buffer list
@@ -33,7 +32,7 @@ keymap("n", "<leader>t", function()
   end
   if not terminal_bufnr then
     -- Open a new terminal buffer
-    vim.cmd("13sp | terminal")
+    vim.cmd("sp | terminal")
   else
     if buf.hidden == 1 then
       vim.cmd("13 sp | b" .. terminal_bufnr)
