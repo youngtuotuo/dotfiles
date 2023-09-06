@@ -21,7 +21,7 @@ require("todo-comments").setup({
     PERF = { icon = " ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = "hint"   , alt = { "INFO" } },
     TEST = { icon = " ", color = "test"   , alt = { "TESTING", "PASSED", "FAILED" } },
-    IDEA = { icon = " " , color = "idea"   , alt = { "TRY", "HINT" }}
+    IDEA = { icon = " " , color = "idea"   , alt = { "TRY", "HINT", "THINK" }}
   },
   gui_style = {
     fg = "NONE", -- The gui style to use for the fg highlight group.
@@ -53,7 +53,7 @@ require("todo-comments").setup({
     hint = { "#10B981" },
     default = { "#7C3AED" },
     test = { "#4499FF" },
-    idea = { "#FBFF24" }
+    idea = { "#A0FFFF" }
   },
   search = {
     command = "rg",
