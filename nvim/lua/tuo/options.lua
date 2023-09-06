@@ -86,14 +86,6 @@ if vim.fn.has("win32") == 1 then
 end
 vim.opt.undodir = os.getenv(home) .. sep .. ".vim" .. sep .. "undodir"
 
-vim.cmd([[
-    augroup vimrc-incsearch-highlight
-      autocmd!
-      autocmd CmdlineEnter /,\? :set hlsearch
-      autocmd CmdlineLeave /,\? :set nohlsearch
-    augroup END
-]])
-
 vim.g.netrw_banner = 0
 
 vim.g.loaded_gzip = 1
