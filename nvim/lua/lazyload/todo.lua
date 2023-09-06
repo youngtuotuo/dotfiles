@@ -11,12 +11,13 @@ require("todo-comments").setup({
       alt = { "ERROR", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO = { icon = " ", color = "hint", alt = { "HINT" } },
-    HACK = { icon = " ", color = "warning" },
+    TODO = { icon = " ", color = "hint" },
+    HACK = { icon = " ", color = "error" },
     WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
     PERF = { icon = " ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-    TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+    NOTE = { icon = " ", color = "hint"   , alt = { "INFO" } },
+    TEST = { icon = " ", color = "test"   , alt = { "TESTING", "PASSED", "FAILED" } },
+    IDEA = { icon = "" , color = "idea"   , alt = { "TRY", "HINT" }}
   },
   gui_style = {
     fg = "NONE", -- The gui style to use for the fg highlight group.
@@ -48,6 +49,7 @@ require("todo-comments").setup({
     hint = { "#10B981" },
     default = { "#7C3AED" },
     test = { "#4499FF" },
+    idea = { "#FBFF24" }
   },
   search = {
     command = "rg",

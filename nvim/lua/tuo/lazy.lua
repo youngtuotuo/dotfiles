@@ -32,16 +32,13 @@ local plugins = {
     end,
   },
   {
-    "blazkowolf/gruber-darker.nvim" ,
+    'folke/tokyonight.nvim',
     event = "VimEnter",
-    opts = {
-      italic = { strings = false, comments = false, folds = false },
-      undercurl = false,
-      underline = false,
-    },
     config = function()
-      require('lazyload.colorscheme')
-    end
+      require("lazyload.colorscheme")
+    end,
+    lazy = false,
+    priority = 1000,
   },
   -- lazy load
   {
