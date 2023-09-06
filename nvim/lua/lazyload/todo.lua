@@ -1,4 +1,8 @@
-vim.keymap.set("n", "<space>t", ":TodoQuickFix cwd=" .. vim.fn.fnameescape(vim.fn.expand("%:p")) .. "<cr>")
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.keymap.set("n", "<space>t", ":TodoQuickFix cwd=" .. vim.fn.fnameescape(vim.fn.expand("%:p")) .. "<cr>")
+  end,
+})
 
 require("todo-comments").setup({
   signs = true, -- show icons in the signs column
