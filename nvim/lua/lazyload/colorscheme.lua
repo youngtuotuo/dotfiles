@@ -1,4 +1,3 @@
--- habamax, lunaperche, gruber-darker
 require("gruber-darker").setup({
   bold = false,
   invert = {
@@ -15,7 +14,8 @@ require("gruber-darker").setup({
   undercurl = false,
   underline = false,
 })
-vim.cmd.colorscheme("gruber-darker")
+-- habamax, lunaperche, gruber-darker
+vim.cmd.colorscheme("retrobox")
 
 local float_bg = "#111616"
 local normal_bg = "#000000"
