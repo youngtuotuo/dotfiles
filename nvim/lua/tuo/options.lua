@@ -40,7 +40,7 @@ local options = {
   undofile = true,
   viminfo = "'1000",
   visualbell = false,
-  wrap = true,
+  wrap = false,
   writebackup = false,
 }
 
