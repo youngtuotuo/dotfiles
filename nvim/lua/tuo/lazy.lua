@@ -24,6 +24,12 @@ local plugins = {
     end,
   },
   {
+    "theprimeagen/harpoon",
+    config = function()
+      require("lazyload.harpoon")
+    end,
+  },
+  {
     'folke/tokyonight.nvim',
     event = "VimEnter",
     config = function()
@@ -189,13 +195,6 @@ local plugins = {
       "crispgm/telescope-heading.nvim",
       "debugloop/telescope-undo.nvim",
     },
-  },
-  {
-    "theprimeagen/harpoon",
-    event = "BufRead",
-    config = function()
-      require("lazyload.harpoon")
-    end,
   },
 }
 
