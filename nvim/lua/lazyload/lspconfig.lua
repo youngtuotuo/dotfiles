@@ -32,16 +32,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set(
-      "n",
-      "<space>wl",
-      "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
-      opts
-    )
+    vim.keymap.set("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
     vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
     vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>i', toggle_lsp_highlight)
+    vim.keymap.set("n", "<space>i", toggle_lsp_highlight)
   end,
 })
 
@@ -54,9 +49,7 @@ require("mason-lspconfig").setup_handlers({
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
-    lspconfig[server_name].setup(
-      require("lazyload.lsp.general")(server_name, on_attach, capabilities, util)
-    )
+    lspconfig[server_name].setup(require("lazyload.lsp.general")(server_name, on_attach, capabilities, util))
   end,
   ["lua_ls"] = function()
     lspconfig.lua_ls.setup(require("lazyload.lsp.lua_ls")(on_attach, capabilities, util))

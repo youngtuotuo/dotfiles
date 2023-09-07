@@ -10,7 +10,7 @@ local get_lan_ip = function()
   else
     local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
     local ip = vim.fn.system(cmd)
-    return ip:gsub("%s+", "")  -- Remove any leading/trailing whitespace
+    return ip:gsub("%s+", "") -- Remove any leading/trailing whitespace
   end
 end
 

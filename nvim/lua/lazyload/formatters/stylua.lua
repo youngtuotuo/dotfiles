@@ -1,4 +1,4 @@
-local util = require("formatter.util") 
+local util = require("formatter.util")
 return {
   exe = "stylua",
   args = {

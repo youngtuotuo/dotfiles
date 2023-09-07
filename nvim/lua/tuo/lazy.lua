@@ -30,7 +30,7 @@ local plugins = {
     end,
   },
   {
-    'folke/tokyonight.nvim',
+    "folke/tokyonight.nvim",
     event = "VimEnter",
     config = function()
       require("lazyload.colorscheme")
@@ -198,7 +198,7 @@ local plugins = {
   },
 }
 
-local border = require('tuo.global').border
+local border = require("tuo.global").border
 local opts = {
   ui = {
     border = border,

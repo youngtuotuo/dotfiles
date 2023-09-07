@@ -6,7 +6,6 @@ local check_math_h = function()
     return false
   end
   return true
-
 end
 
 local fname_next = vim.fn.expand("%:t:r")

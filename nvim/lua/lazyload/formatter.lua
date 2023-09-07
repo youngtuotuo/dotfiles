@@ -11,37 +11,37 @@ require("formatter").setup({
   filetype = {
     lua = {
       function()
-        return require('lazyload.formatters.stylua')
+        return require("lazyload.formatters.stylua")
       end,
     },
     c = {
       function()
-        return require('lazyload.formatters.clang-format')
+        return require("lazyload.formatters.clang-format")
       end,
     },
     cpp = {
       function()
-        return require('lazyload.formatters.clang-format')
+        return require("lazyload.formatters.clang-format")
       end,
     },
     python = {
       function()
-        return require('lazyload.formatters.black')
+        return require("lazyload.formatters.black")
       end,
     },
     go = {
       function()
-        return require('lazyload.formatters.go')
+        return require("lazyload.formatters.go")
       end,
     },
     rust = {
       function()
-        return require('lazyload.formatters.rustfmt')
+        return require("lazyload.formatters.rustfmt")
       end,
     },
     markdown = {
       function()
-        return require('lazyload.formatters.prettier')
+        return require("lazyload.formatters.prettier")
       end,
     },
     -- Use the special "*" filetype for defining formatter configurations on

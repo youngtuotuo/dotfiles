@@ -6,7 +6,6 @@ local check_math_h = function()
     return false
   end
   return true
-
 end
 
 local fname_next = vim.fn.expand("%:t:r")
@@ -22,7 +21,7 @@ local cmd = compiler .. " -Wall -Wextra "
 if check_math_h() then
   cmd = cmd .. "-lm "
 end
-cmd =  cmd .. "-o " .. fname_next .. ext .. " %"
+cmd = cmd .. "-o " .. fname_next .. ext .. " %"
 cmd = cmd .. " && ." .. sep .. fname_next .. ext
 cmd = ":sp | terminal echo '$ " .. cmd .. "' && " .. cmd
 vim.keymap.set("n", "<leader>p", cmd)

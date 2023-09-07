@@ -23,4 +23,3 @@ local default_opts = { noremap = true, silent = true }
 keymap("n", "co", "<cmd>lua Toggle_qf()<CR>", default_opts)
 keymap("n", "<C-n>", "<cmd>Cnext<cr>zz", default_opts)
 keymap("n", "<C-p>", "<cmd>Cprev<cr>zz", default_opts)
-

@@ -1,4 +1,4 @@
-local g = require('tuo.global')
+local g = require("tuo.global")
 require("tokyonight").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
@@ -73,7 +73,7 @@ require("tokyonight").setup({
       fg = tele_border_fg,
     }
     highlights.TelescopePromptNormal = {
-      bg = float_bg
+      bg = float_bg,
     }
     highlights.TelescopePromptBorder = {
       bg = float_bg,
