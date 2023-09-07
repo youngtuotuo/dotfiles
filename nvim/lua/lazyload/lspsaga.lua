@@ -1,10 +1,11 @@
+local g = require("tuo.global")
 require("lspsaga").setup({
   preview = { lines_above = 0, lines_below = 10 },
   scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
   request_timeout = 2000,
   ui = {
     title = true,
-    border = BORDER,
+    border = g.border,
     winblend = 0,
     expand = "",
     collapse = "",
@@ -107,3 +108,6 @@ require("lspsaga").setup({
   },
   hover = { max_width = 0.9, open_link = "gx", open_browser = "!chrome" },
 })
+vim.keymap.set("n", "ga", ":Lspsaga code_action<cr>", { noremap = true })
+vim.keymap.set("n", "gn", ":Lspsaga rename<CR>", { noremap = true })
+vim.keymap.set("n", "<space>o", ":Lspsaga outline<CR>", { noremap = true })

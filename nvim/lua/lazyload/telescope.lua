@@ -1,8 +1,4 @@
-local status_ok, _ = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
+local g = require("tuo.global")
 local actions = require("telescope.actions")
 
 require("telescope").setup({
@@ -16,7 +12,7 @@ require("telescope").setup({
       },
     },
     -- border = false,
-    borderchars = BORDER,
+    borderchars = g.border,
     results_title = "-- Results --",
     dynamic_preview_title = true,
     color_devicons = true,
@@ -65,3 +61,16 @@ require("telescope").setup({
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "heading")
 pcall(require("telescope").load_extension, "undo")
+
+local keymap = vim.keymap.set
+keymap("n", "<space>a", require('telescope.builtin').builtin)
+keymap("n", "<space>r", require('telescope.builtin').lsp_references)
+keymap("n", "<space>e", require('telescope.builtin').find_files)
+keymap("n", "<space>f", require('telescope.builtin').current_buffer_fuzzy_find)
+keymap("n", "<space>g", require('telescope.builtin').git_files)
+keymap("n", "<space>d", require('telescope.builtin').diagnostics)
+keymap("n", "<space>l", require('telescope.builtin').live_grep)
+keymap("n", "<space>b", require('telescope.builtin').buffers)
+keymap("n", "<space>v", require('telescope.builtin').lsp_document_symbols)
+keymap("n", "<space>u", require('telescope').extensions.undo.undo)
+keymap("n", "<space>3", require('telescope').extensions.heading.heading)

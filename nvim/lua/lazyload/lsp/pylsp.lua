@@ -1,3 +1,4 @@
+local g = require("tuo.global")
 local config = function(on_attach, capabilities, util)
   vim.env.MYPYPATH = vim.fn.stdpath("data") .. "/lazy/python-type-stubs"
   return {
@@ -10,14 +11,14 @@ local config = function(on_attach, capabilities, util)
     end,
     handlers = {
       ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = BORDER,
+        border = g.border,
         title = " pylsp ",
         max_width = 100,
         zindex = 500,
       }),
       ["textDocument/signatureHelp"] = vim.lsp.with(
         vim.lsp.handlers.signature_help,
-        { border = BORDER, title = " Signature ", max_width = 100 }
+        { border = g.border, title = " Signature ", max_width = 100 }
       ),
       ["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -30,7 +31,7 @@ local config = function(on_attach, capabilities, util)
             focusable = true,
             source = "always",
             title = " Pylsp σ`∀´)σ ",
-            border = BORDER,
+            border = g.border,
             max_width = 80,
           },
           source = true,

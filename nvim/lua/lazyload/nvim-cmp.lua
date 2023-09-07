@@ -11,6 +11,8 @@ if not kind_status_ok then
   return
 end
 
+local g = require("tuo.global")
+
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
@@ -20,14 +22,11 @@ local has_words_before = function()
     and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local ELLIPSIS_CHAR = "…"
-local MAX_LABEL_WIDTH = 40
-local MIN_LABEL_WIDTH = 10
 cmp.setup({
   -- completion = { autocomplete = false },
   window = {
-    completion = { border = BORDER, scrollbar = false, max_width = 80, col_offset = 3 },
-    documentation = { border = BORDER, scrollbar = false, max_width = 80 },
+    completion = { border = g.border, scrollbar = false, max_width = 80, col_offset = 3 },
+    documentation = { border = g.border, scrollbar = false, max_width = 80 },
   },
   snippet = {
     expand = function(args)
@@ -36,7 +35,6 @@ cmp.setup({
   },
   formatting = {
     format = function(entry, vim_item)
-      local lspkind_ok, lspkind = pcall(require, "lspkind")
       if not lspkind_ok then
         -- From kind_icons array
         vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind

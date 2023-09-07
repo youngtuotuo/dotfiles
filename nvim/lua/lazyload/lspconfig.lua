@@ -1,35 +1,18 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
-require("lspconfig.ui.windows").default_options.border = BORDER
+local g = require("tuo.global")
+local lspconfig = require("lspconfig")
+require("lspconfig.ui.windows").default_options.border = g.border
 require("neodev").setup({})
-require("mason").setup({ ui = { border = BORDER } })
--- Ensure the servers above are installed
--- local servers = {
---   "lua_ls",
---   "clangd",
---   "texlab",
---   "html",
---   "yamlls",
---   "gopls",
---   "lemminx",
---   "hls",
---   -- "zls",
---   "pyright",
--- }
--- require("mason-lspconfig").setup({ ensure_installed = servers })
+require("mason").setup({ ui = { border = g.border } })
 local util = require("lspconfig.util")
 
-LSP_HIGHLIGHT = false
+local lsp_highlight = false
 local toggle_lsp_highlight = function()
-  if LSP_HIGHLIGHT then
+  if lsp_highlight then
     vim.lsp.buf.clear_references()
-    LSP_HIGHLIGHT = false
+    lsp_highlight = false
   else
     vim.lsp.buf.document_highlight()
-    LSP_HIGHLIGHT = true
+    lsp_highlight = true
   end
 end
 
@@ -58,8 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
     vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    -- vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
-    -- vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', '<space>i', toggle_lsp_highlight)
   end,
 })
@@ -98,7 +79,7 @@ local diag_config = {
     focusable = true,
     source = "always",
     title = " σ`∀´)σ ",
-    border = BORDER,
+    border = g.border,
     max_width = 80,
   },
   source = true,

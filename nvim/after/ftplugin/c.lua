@@ -9,7 +9,6 @@ local check_math_h = function()
 
 end
 
-
 local fname_next = vim.fn.expand("%:t:r")
 local ext = ""
 local sep = "/"

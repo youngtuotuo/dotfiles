@@ -1,9 +1,10 @@
+local g = require('tuo.global')
 require("tokyonight").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
   style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   light_style = "day", -- The theme is used when the background is set to light
-  transparent = TRANS, -- Enable this to disable setting the background color
+  transparent = g.trans, -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
   styles = {
     -- Style to be applied to different syntax groups
@@ -37,7 +38,7 @@ require("tokyonight").setup({
     local float_bg = "#151b25"
     local tele_border_fg = float_bg
     local status_bg = colors.bg
-    if TRANS then
+    if g.trans then
       status_bg = "none"
     end
     highlights.NormalSB = { link = "Normal" }
@@ -47,7 +48,7 @@ require("tokyonight").setup({
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
-    highlights.TelescopeBorder = { link = "FloatBorder" }
+    highlights.TelescopeBorder = { link = "g.trans" }
     highlights.FloatTitle = { link = "FloatBorder" }
     highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
     highlights.LazyNormal = { link = "NormalFloat" }

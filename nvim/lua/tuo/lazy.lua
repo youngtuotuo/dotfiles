@@ -11,22 +11,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local default_opts = { noremap = true, silent = false }
 local plugins = {
   -- auto load
   "nvim-lua/plenary.nvim",
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("lazyload.colorizer")
-    end,
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "VimEnter",
-    keys = { { "<leader>i", ":IndentBlanklineToggle<cr>", mode = { "n" }, default_opts } },
     config = function()
       require("lazyload.indent-blankline")
     end,
@@ -70,16 +62,12 @@ local plugins = {
   },
   {
     "folke/zen-mode.nvim",
-    keys = { { "<space>z", ":ZenMode<cr>", mode = { "n" }, default_opts, desc = "ZenMode" } },
     config = function()
       require("lazyload.zen-mode")
     end,
   },
   {
     "mhartington/formatter.nvim",
-    keys = {
-      { "<leader>f", ":Format ", mode = { "n" } },
-    },
     event = "BufRead",
     config = function()
       require("lazyload.formatter")
@@ -103,11 +91,6 @@ local plugins = {
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
-    keys = {
-      { "ga", ":Lspsaga code_action<cr>", mode = { "n" }, default_opts },
-      { "gn", ":Lspsaga rename<CR>", mode = { "n" }, default_opts },
-      { "<space>o", "<cmd>Lspsaga outline<CR>", mode = { "n" }, default_opts },
-    },
     config = function()
       require("lazyload.lspsaga")
     end,
@@ -120,14 +103,12 @@ local plugins = {
   {
     "lervag/vimtex",
     ft = { "tex" },
-    keys = { { "<leader>vc", ":VimtexCompile<CR>", mode = { "n" }, default_opts } },
     config = function()
       require("lazyload.vim-tex")
     end,
   },
   {
     "numToStr/Comment.nvim",
-    keys = { { "gc", mode = { "n", "v" } }, { "gb", mode = { "n", "v" } } },
     config = function()
       require("lazyload.Comment")
     end,
@@ -196,92 +177,6 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
-    keys = {
-      {
-        "<space>a",
-        ":lua require('telescope.builtin').builtin()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>r",
-        ":lua require('telescope.builtin').lsp_references()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>e",
-        ":lua require('telescope.builtin').find_files()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>f",
-        ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>g",
-        ":lua require('telescope.builtin').git_files()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>d",
-        ":lua require('telescope.builtin').diagnostics()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>l",
-        ":lua require('telescope.builtin').live_grep()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>b",
-        ":lua require('telescope.builtin').buffers()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>c",
-        ":lua require('telescope.builtin').commands()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>h",
-        ":lua require('telescope.builtin').help_tags()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>m",
-        ":lua require('telescope.builtin').keymaps()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>v",
-        ":lua require('telescope.builtin').lsp_document_symbols()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>u",
-        ":lua require('telescope').extensions.undo.undo()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-      {
-        "<space>3",
-        ":lua require('telescope').extensions.heading.heading()<CR>",
-        mode = { "n" },
-        default_opts,
-      },
-    },
     config = function()
       require("lazyload.telescope")
     end,
@@ -298,23 +193,16 @@ local plugins = {
   {
     "theprimeagen/harpoon",
     event = "BufRead",
-    keys = {
-      { "<leader>a", ":lua require('harpoon.mark').add_file()<cr>", mode = "n", default_opts },
-      { "<C-q>", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", mode = "n", default_opts },
-      { "<M-1>", ":lua require('harpoon.ui').nav_file(1)<cr>", mode = "n", default_opts },
-      { "<M-2>", ":lua require('harpoon.ui').nav_file(2)<cr>", mode = "n", default_opts },
-      { "<M-3>", ":lua require('harpoon.ui').nav_file(3)<cr>", mode = "n", default_opts },
-      { "<M-4>", ":lua require('harpoon.ui').nav_file(4)<cr>", mode = "n", default_opts },
-    },
     config = function()
       require("lazyload.harpoon")
     end,
   },
 }
 
+local border = require('tuo.global').border
 local opts = {
   ui = {
-    border = BORDER,
+    border = border,
     icons = {
       cmd = "",
       config = "",
@@ -323,7 +211,6 @@ local opts = {
       init = "",
       import = "",
       keys = "",
-      -- lazy = "",
       lazy = "󰒲 ",
       loaded = "●",
       not_loaded = "○",

@@ -53,3 +53,4 @@ require("formatter").setup({
     },
   },
 })
+vim.keymap.set("n", "<leader>f", ":Format ", { noremap = true })

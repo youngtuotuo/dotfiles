@@ -1,4 +1,3 @@
--- this cause pyright frequently lag
 -- temporay solution
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
