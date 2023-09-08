@@ -40,6 +40,13 @@ local plugins = {
   },
   -- lazy load
   {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
+    config = function()
+      require("lazyload.colorizer")
+    end,
+  },
+  {
     "ziglang/zig.vim",
     ft = { "zig" },
   },
@@ -55,8 +62,8 @@ local plugins = {
     "nvim-tree/nvim-web-devicons",
     event = "ColorScheme",
     config = function()
-      require('nvim-web-devicons').setup {}
-    end
+      require("nvim-web-devicons").setup({})
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

@@ -3,21 +3,27 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
-    layout_strategy = "horizontal",
+    layout_strategy = "vertical",
     layout_config = {
       horizontal = {
         height = 0.9,
         width = 0.95,
         preview_width = 0.5,
       },
+      vertical = {
+        height = 0.9,
+        width = 0.8,
+        preview_height = 0.5,
+        scroll_speed = 5,
+      },
     },
-    -- border = false,
     borderchars = g.border,
-    results_title = "-- Results --",
+    results_title = "Results",
     dynamic_preview_title = true,
     color_devicons = true,
     selection_caret = " ❯ ",
-    entry_prefix = "   ",
+    entry_prefix = "  ",
+    prompt_prefix = "  ",
     path_display = { "smart" },
     initial_mode = "insert",
     mappings = {

@@ -33,8 +33,6 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    local prompt = "#2d3149"
-    -- local float_bg = colors.bg_dark
     local float_bg = "#151b25"
     local tele_border_fg = float_bg
     local status_bg = colors.bg
@@ -80,15 +78,15 @@ require("tokyonight").setup({
       fg = tele_border_fg,
     }
     highlights.TelescopePromptTitle = {
-      bg = float_bg,
+      bg = colors.bg_popup,
       fg = colors.fg_dark,
     }
     highlights.TelescopePreviewTitle = {
-      bg = float_bg,
+      bg = colors.bg_popup,
       fg = colors.fg_dark,
     }
     highlights.TelescopeResultsTitle = {
-      bg = float_bg,
+      bg = colors.bg_popup,
       fg = colors.fg_dark,
     }
   end,
