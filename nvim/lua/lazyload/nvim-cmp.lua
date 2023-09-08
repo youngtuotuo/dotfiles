@@ -24,7 +24,7 @@ end
 cmp.setup({
   -- completion = { autocomplete = false },
   window = {
-    completion = { border = g.border, scrollbar = true, col_offset = 3 },
+    completion = { scrollbar = true, col_offset = 3 },
     documentation = { border = g.border, scrollbar = true },
   },
   snippet = {
