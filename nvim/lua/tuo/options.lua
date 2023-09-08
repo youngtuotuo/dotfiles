@@ -55,7 +55,7 @@ local options = {
 }
 
 vim.opt.pumblend = 5
-vim.opt.wildmode = "longest:full"
+vim.opt.wildmode = "full"
 vim.opt.wildoptions = "pum"
 
 for k, v in pairs(options) do
