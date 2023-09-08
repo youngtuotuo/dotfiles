@@ -10,7 +10,7 @@ local options = {
   belloff = "all",
   backspace = "indent,eol,start",
   backup = false,
-  completeopt = "menuone,noinsert,noselect",
+  completeopt = "menu,menuone,noinsert,noselect",
   cmdheight = 1,
   errorbells = false,
   expandtab = true,
@@ -54,7 +54,7 @@ local options = {
   writebackup = false,
 }
 
-vim.opt.pumblend = 17
+vim.opt.pumblend = 5
 vim.opt.wildmode = "longest:full"
 vim.opt.wildoptions = "pum"
 

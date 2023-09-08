@@ -24,8 +24,8 @@ end
 cmp.setup({
   -- completion = { autocomplete = false },
   window = {
-    completion = { border = g.border, scrollbar = true, max_width = 80, col_offset = 3 },
-    documentation = { border = g.border, scrollbar = true, max_width = 80 },
+    completion = { border = g.border, scrollbar = true, col_offset = 3 },
+    documentation = { border = g.border, scrollbar = true },
   },
   snippet = {
     expand = function(args)
@@ -69,8 +69,8 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-5),
+    ["<C-f>"] = cmp.mapping.scroll_docs(5),
     -- Accept currently selected item.
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<C-l>"] = cmp.mapping.confirm({ select = false }),
@@ -127,38 +127,3 @@ cmp.setup({
   },
   experimental = { ghost_text = false },
 })
--- `/` cmdline setup.
--- cmp.setup.cmdline("/", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = "buffer" },
---   },
--- })
--- `:` cmdline setup.
--- cmp.setup.cmdline(":", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = "path" },
---   }, {
---     {
---       name = "cmdline",
---       option = {
---         ignore_cmds = {
---           "Man",
---           "!",
---           "write",
---           "quit",
---           "xit",
---           "wall",
---           "xall",
---           "qall",
---           "edit",
---           "W",
---           "Q",
---           "ls",
---           "bd",
---         },
---       },
---     },
---   }),
--- })
