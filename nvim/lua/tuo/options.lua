@@ -54,7 +54,12 @@ local options = {
   writebackup = false,
 }
 
-vim.opt.pumblend = 5
+local g = require("tuo.global")
+if not g.trans then
+  vim.opt.pumblend = 0
+else
+  vim.opt.pumblend = 5
+end
 vim.opt.wildmode = "full"
 vim.opt.wildoptions = "pum"
 
