@@ -1,7 +1,9 @@
 require("harpoon").setup()
-vim.keymap.set("n", "<leader>a", ":lua require('harpoon.mark').add_file()<cr>", { noremap = true })
-vim.keymap.set("n", "<C-q>", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", { noremap = true })
-vim.keymap.set("n", "<M-1>", ":lua require('harpoon.ui').nav_file(1)<cr>", { noremap = true })
-vim.keymap.set("n", "<M-2>", ":lua require('harpoon.ui').nav_file(2)<cr>", { noremap = true })
-vim.keymap.set("n", "<M-3>", ":lua require('harpoon.ui').nav_file(3)<cr>", { noremap = true })
-vim.keymap.set("n", "<M-4>", ":lua require('harpoon.ui').nav_file(4)<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
+vim.keymap.set("n", "<C-q>", require("harpoon.ui").toggle_quick_menu)
+
+for i = 1, 5 do
+  vim.keymap.set("n", string.format("<M-%s>", i), function()
+    require("harpoon.ui").nav_file(i)
+  end, { desc = string.format("require('harpoon.ui').nav_file(%s)", i) })
+end
