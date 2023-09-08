@@ -52,9 +52,9 @@ require("mason-lspconfig").setup_handlers({
   ["pyright"] = function()
     lspconfig.pyright.setup(require("lazyload.lsp.pyright")(on_attach, capabilities, util))
   end,
-  ["texlab"] = function()
-    lspconfig.texlab.setup(require("lazyload.lsp.texlab")(on_attach, capabilities, util))
-  end,
+  -- ["texlab"] = function()
+  --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(on_attach, capabilities, util))
+  -- end,
 })
 
 local diag_config = {

@@ -9,6 +9,6 @@ local M = {}
 -- BORDER = "none"
 M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
 -- transparent control
-M.trans = false
+M.trans = true
 
 return M
