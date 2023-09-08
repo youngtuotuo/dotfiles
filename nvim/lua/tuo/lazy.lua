@@ -51,7 +51,13 @@ local plugins = {
       require("lazyload.lualine")
     end,
   },
-  { "nvim-tree/nvim-web-devicons", event = "ColorScheme" },
+  {
+    "nvim-tree/nvim-web-devicons",
+    event = "ColorScheme",
+    config = function()
+      require('nvim-web-devicons').setup {}
+    end
+  },
   {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",

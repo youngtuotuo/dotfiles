@@ -16,8 +16,8 @@ require("telescope").setup({
     results_title = "-- Results --",
     dynamic_preview_title = true,
     color_devicons = true,
-    prompt_prefix = "> ",
-    selection_caret = " ",
+    selection_caret = " ❯ ",
+    entry_prefix = "   ",
     path_display = { "smart" },
     initial_mode = "insert",
     mappings = {
