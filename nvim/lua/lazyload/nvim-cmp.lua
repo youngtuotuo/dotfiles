@@ -11,8 +11,6 @@ if not kind_status_ok then
   return
 end
 
-local g = require("tuo.global")
-
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
@@ -24,8 +22,8 @@ end
 cmp.setup({
   -- completion = { autocomplete = false },
   window = {
-    completion = { scrollbar = true, col_offset = 3 },
-    documentation = { border = g.border, scrollbar = true },
+    completion = { scrollbar = true },
+    documentation = { scrollbar = true },
   },
   snippet = {
     expand = function(args)
@@ -61,18 +59,14 @@ cmp.setup({
     ["<C-p>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
     end, { "i", "s" }),
     ["<C-b>"] = cmp.mapping.scroll_docs(-5),
     ["<C-f>"] = cmp.mapping.scroll_docs(5),
-    -- Accept currently selected item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
     ["<C-l>"] = cmp.mapping.confirm({ select = false }),
     ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
@@ -104,7 +98,6 @@ cmp.setup({
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
-
       -- copied from cmp-under, but I don't think I need the plugin for this.
       -- I might add some more of my own.
       function(entry1, entry2)
@@ -118,7 +111,6 @@ cmp.setup({
           return true
         end
       end,
-
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
@@ -127,3 +119,17 @@ cmp.setup({
   },
   experimental = { ghost_text = false },
 })
+
+-- TODO: Buffer specific config
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = "*.lua",
+--   callback = function()
+--     require("cmp").setup.buffer {
+--       sources = {
+--         { name = "nvim_lua" },
+--         { name = "buffer" },
+--       },
+--     }
+--   end
+-- })
