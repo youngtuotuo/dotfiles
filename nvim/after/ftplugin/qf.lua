@@ -1,4 +1,5 @@
 -- Quickfix list
+vim.opt.cursorline = true
 vim.api.nvim_create_user_command("Cnext", "try | cnext | catch | cfirst | catch | endtry", {})
 vim.api.nvim_create_user_command("Cprev", "try | cprev | catch | clast | catch | endtry", {})
 function Toggle_qf()
