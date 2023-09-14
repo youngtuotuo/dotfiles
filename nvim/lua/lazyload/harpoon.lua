@@ -1,6 +1,6 @@
 require("harpoon").setup()
 vim.keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
-vim.keymap.set("n", "<C-q>", require("harpoon.ui").toggle_quick_menu)
+vim.keymap.set("n", "<leader>q", require("harpoon.ui").toggle_quick_menu)
 
 for i = 1, 5 do
   vim.keymap.set("n", string.format("<M-%s>", i), function()
