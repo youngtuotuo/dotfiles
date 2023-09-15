@@ -165,6 +165,17 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     if vim.opt_local.filetype ~= "mojo" then
       vim.opt_local.filetype = "mojo"
       vim.cmd [[ runtime syntax/python.vim ]]
+      vim.cmd [[
+        syn keyword mojoKeywords let var inout owned borrowed alias
+        syn keyword mojoKeywords struct fn nextgroup=mojoName skipwhite
+        syn match mojoName '\h\w*' display contained
+        syn match mojoRefName '\h\w*&' display contains=mojoName
+        syn region mojoDialect start="`" end="`" display
+
+        hi def link mojoKeywords Keyword
+        hi def link mojoRefName Identifier
+        hi def link mojoDialect Special
+      ]]
     end
   end,
 })
