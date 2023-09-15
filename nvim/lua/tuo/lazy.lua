@@ -62,7 +62,7 @@ local plugins = {
     "nvim-tree/nvim-web-devicons",
     event = "ColorScheme",
     config = function()
-      require("nvim-web-devicons").setup({})
+      require("lazyload.webdevicons")
     end,
   },
   {
