@@ -159,3 +159,33 @@ end
 set_cursorline("WinLeave", false)
 set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.🔥", "*.mojo" },
+  callback = function()
+    if vim.bo.filetype ~= "mojo" then
+      vim.bo.filetype = "mojo"
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "mojo",
+  callback = function()
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 4
+    vim.cmd [[
+      " include python syntax
+      runtime syntax/python.vim
+
+      syn keyword mojoKeywords let var inout owned borrowed alias
+      syn keyword mojoKeywords struct fn nextgroup=mojoName skipwhite
+      syn match mojoName '\h\w*' display contained
+      syn match mojoRefName '\h\w*&' display contains=mojoName
+      syn region mojoDialect start="`" end="`" display
+
+      hi def link mojoKeywords Keyword
+      hi def link mojoRefName Identifier
+      hi def link mojoDialect Special
+    ]]
+  end,
+})
