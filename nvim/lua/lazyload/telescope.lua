@@ -24,6 +24,9 @@ require("telescope").setup({
     color_devicons = true,
     selection_caret = " ❯ ",
     entry_prefix = "  ",
+    preview = {
+      treesitter = false,
+    },
     prompt_prefix = "  ",
     path_display = { "smart" },
     initial_mode = "insert",
