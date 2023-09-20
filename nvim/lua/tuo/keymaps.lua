@@ -11,7 +11,7 @@ local term_opts = { silent = true }
 -- command_mode = "c"
 -- term_mode = "t"
 
-keymap("n", "-", "<cmd>E<cr>", default_opts)
+-- keymap("n", "-", "<cmd>Ex<cr>", default_opts)
 
 -- <C-c> will raise interrupted error of lsp
 keymap("i", "<C-c>", "<C-[>", default_opts)
