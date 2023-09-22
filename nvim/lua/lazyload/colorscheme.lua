@@ -39,6 +39,7 @@ require("tokyonight").setup({
     if g.trans then
       status_bg = "none"
     end
+    highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { bg = float_bg }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
