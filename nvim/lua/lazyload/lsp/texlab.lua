@@ -1,7 +1,6 @@
 local g = require("tuo.global")
-local config = function(on_attach, capabilities, util)
+local config = function(capabilities, util)
   return {
-    on_attach = on_attach,
     handlers = {
       ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = g.border,

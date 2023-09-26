@@ -17,7 +17,6 @@ require("telescope").setup({
         scroll_speed = 5,
       },
     },
-    borderchars = g.border,
     results_title = "Results",
     sorting_strategy = "ascending",
     dynamic_preview_title = true,

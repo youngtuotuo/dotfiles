@@ -27,7 +27,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
+    vim.keymap.set(
+      "n",
+      "<space>wl",
+      "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
+      opts
+    )
     vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
     vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
@@ -39,23 +44,28 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("mason-lspconfig").setup_handlers({
+local handlers = {
   -- The first entry (without a key) will be the default handler
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
-    lspconfig[server_name].setup(require("lazyload.lsp.general")(server_name, on_attach, capabilities, util))
+    local cfg = require("lazyload.lsp.general")(server_name, capabilities)
+    lspconfig[server_name].setup(cfg)
   end,
   ["lua_ls"] = function()
-    lspconfig.lua_ls.setup(require("lazyload.lsp.lua_ls")(on_attach, capabilities, util))
+    local cfg = require("lazyload.lsp.lua_ls")(capabilities, util)
+    lspconfig.lua_ls.setup(cfg)
   end,
   ["pyright"] = function()
-    lspconfig.pyright.setup(require("lazyload.lsp.pyright")(on_attach, capabilities, util))
+    local cfg = require("lazyload.lsp.pyright")(capabilities, util)
+    lspconfig.pyright.setup(cfg)
   end,
   -- ["texlab"] = function()
   --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(on_attach, capabilities, util))
   -- end,
-})
+}
+
+require("mason-lspconfig").setup({ handlers = handlers })
 
 local diag_config = {
   virtual_text = true,
