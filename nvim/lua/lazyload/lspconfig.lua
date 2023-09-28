@@ -1,9 +1,9 @@
 local g = require("tuo.global")
 local lspconfig = require("lspconfig")
-require("lspconfig.ui.windows").default_options.border = g.border
-require("neodev").setup({})
-require("mason").setup({ ui = { border = g.border } })
 local util = require("lspconfig.util")
+require("lspconfig.ui.windows").default_options.border = g.border
+require("neodev").setup({}) -- for lua_ls
+require("mason").setup({ ui = { border = g.border } })
 
 local lsp_highlight = false
 local toggle_lsp_highlight = function()
@@ -61,7 +61,7 @@ local handlers = {
     lspconfig.pyright.setup(cfg)
   end,
   -- ["texlab"] = function()
-  --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(on_attach, capabilities, util))
+  --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(capabilities))
   -- end,
 }
 
