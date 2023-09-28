@@ -18,6 +18,7 @@ local plugins = {
   "tpope/vim-vinegar",
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     event = "VimEnter",
     config = function()
       require("lazyload.indent-blankline")
