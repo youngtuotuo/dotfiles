@@ -4,6 +4,7 @@ local wezterm = require 'wezterm'
 -- This table will hold the configuration.
 local config = {}
 
+
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
@@ -12,7 +13,8 @@ end
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font 'CaskaydiaCove Nerd Font'
-config.font_size = 20
+config.font_size = 15
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.window_background_image_hsb = {
   -- Darken the background image by reducing it to 1/3rd
   brightness = 0.02,
