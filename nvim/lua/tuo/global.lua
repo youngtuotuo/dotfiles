@@ -10,6 +10,6 @@ local M = {}
 -- M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
 M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- transparent control
-M.trans = false
+M.trans = true
 
 return M
