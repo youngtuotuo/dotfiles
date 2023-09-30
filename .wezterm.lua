@@ -46,5 +46,19 @@ config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
 config.color_scheme = 'Dark Pastel'
 
+config.tab_bar_at_bottom = true
+
+local dimmer = { brightness = 0.1 }
+local file = os.getenv('HOME') .. '/github/dotfiles/pictures/future-buildings-minimal-ve.jpg'
+config.background = {
+    {
+    source = {
+      File = file,
+    },
+    vertical_offset = '-70%',
+    hsb = dimmer,
+  },
+}
+
 -- and finally, return the configuration to wezterm
 return config
