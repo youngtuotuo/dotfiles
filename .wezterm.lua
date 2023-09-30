@@ -55,7 +55,6 @@ config.background = {
     source = {
       File = file,
     },
-    vertical_offset = '-70%',
     hsb = dimmer,
   },
 }
