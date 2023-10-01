@@ -63,12 +63,13 @@ config.color_scheme = "Dark Pastel"
 config.tab_bar_at_bottom = true
 
 local dimmer = { brightness = 0.1 }
+local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
 local file = ""
 if os.getenv("HOME") then
-  file = os.getenv("HOME") .. "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
+  file = os.getenv("HOME") .. bg
 end
 if getOS() == "Windows" then
-  file = "C:/Users/User/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
+  file = "C:/Users/User" .. bg
   config.default_domain = 'WSL:Ubuntu-20.04'
 end
 config.background = {
