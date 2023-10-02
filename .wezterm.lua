@@ -27,7 +27,7 @@ end
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
-config.font_size = 15
+config.font_size = 11
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.window_background_image_hsb = {
   -- Darken the background image by reducing it to 1/3rd
