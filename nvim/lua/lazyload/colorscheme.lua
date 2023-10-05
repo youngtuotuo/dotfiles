@@ -48,7 +48,7 @@ require("tokyonight").setup({
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
     highlights.TelescopeBorder = { link = "g.trans" }
-    highlights.FloatTitle = { link = "FloatBorder" }
+    highlights.FloatTitle = { link = "Search" }
     highlights.Sagatitle = { link = "FloatBorder" }
     highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
     highlights.LazyNormal = { link = "NormalFloat" }
@@ -69,26 +69,12 @@ require("tokyonight").setup({
       bg = float_bg,
       fg = colors.fg,
     }
-    highlights.TelescopeBorder = {
-      bg = float_bg,
-      fg = tele_border_fg,
-    }
-    highlights.TelescopePromptNormal = {
-      bg = float_bg,
-    }
-    highlights.TelescopePromptBorder = {
-      bg = float_bg,
-      fg = tele_border_fg,
-    }
-    highlights.TelescopePromptTitle = {
-      link = "Search",
-    }
-    highlights.TelescopePreviewTitle = {
-      link = "Search",
-    }
-    highlights.TelescopeResultsTitle = {
-      link = "Search",
-    }
+    highlights.TelescopeBorder = { link = "FloatBorder" }
+    highlights.TelescopePromptNormal = { bg = float_bg }
+    highlights.TelescopePromptBorder = { link="FloatBorder" }
+    highlights.TelescopePromptTitle = { link = "Search" }
+    highlights.TelescopePreviewTitle = { link = "Search" }
+    highlights.TelescopeResultsTitle = { link = "Search" }
   end,
 })
 
