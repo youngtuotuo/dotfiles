@@ -17,14 +17,6 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    event = "VimEnter",
-    config = function()
-      require("lazyload.indent-blankline")
-    end,
-  },
-  {
     "theprimeagen/harpoon",
     config = function()
       require("lazyload.harpoon")
@@ -40,6 +32,15 @@ local plugins = {
     priority = 1000,
   },
   -- lazy load
+  {
+    'nvimdev/indentmini.nvim',
+    event = 'BufEnter',
+    config = function()
+        require('indentmini').setup({
+        char = "│",
+      })
+    end,
+  },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufRead",

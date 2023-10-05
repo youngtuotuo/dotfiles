@@ -63,6 +63,7 @@ require("tokyonight").setup({
     highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
     highlights.luaParenError = { link = "Normal" }
     highlights.SignColumnSB = { bg = "none" }
+    highlights.IndentLine = { link = "SignColumn" }
     highlights.TelescopeNormal = {
       bg = float_bg,
       fg = colors.fg,
