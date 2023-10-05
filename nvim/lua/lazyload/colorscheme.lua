@@ -49,6 +49,7 @@ require("tokyonight").setup({
     highlights.LspInfoBorder = { link = "FloatBorder" }
     highlights.TelescopeBorder = { link = "g.trans" }
     highlights.FloatTitle = { link = "FloatBorder" }
+    highlights.Sagatitle = { link = "FloatBorder" }
     highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
     highlights.LazyNormal = { link = "NormalFloat" }
     highlights.MasonNmeormal = { link = "NormalFloat" }
