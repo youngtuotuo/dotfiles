@@ -33,8 +33,7 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    local float_bg = "#151b25"
-    local tele_border_fg = float_bg
+    local float_bg = "none"
     local status_bg = colors.bg
     if g.trans then
       status_bg = "none"
