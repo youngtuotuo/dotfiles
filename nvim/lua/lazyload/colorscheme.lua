@@ -57,7 +57,7 @@ require("tokyonight").setup({
     highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
-    highlights.VertSplit = { fg = "White" }
+    highlights.VertSplit = { link = "SignColumn" }
     highlights.WinSeparator = { link = "VertSplit" }
     highlights.StatusLine = { fg = colors.fg, bg = status_bg }
     highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
