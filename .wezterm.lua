@@ -27,19 +27,8 @@ end
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
-config.font_size = 11
+config.font_size = 16
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
--- config.window_background_image_hsb = {
---   -- Darken the background image by reducing it to 1/3rd
---   brightness = 0.1,
---
---   -- You can adjust the hue by scaling its value.
---   -- a multiplier of 1.0 leaves the value unchanged.
---   hue = 1.0,
---
---   -- You can adjust the saturation also.
---   saturation = 1.0,
--- }
 config.hide_tab_bar_if_only_one_tab = true
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.mouse_bindings = {
