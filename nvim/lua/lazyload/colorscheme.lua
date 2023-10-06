@@ -38,6 +38,7 @@ require("tokyonight").setup({
     if g.trans then
       status_bg = "none"
     end
+    highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { bg = float_bg }
