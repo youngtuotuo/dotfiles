@@ -19,11 +19,13 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local border = require('tuo.global').border
+
 cmp.setup({
   -- completion = { autocomplete = false },
   window = {
-    completion = { scrollbar = true },
-    documentation = { scrollbar = true },
+    completion = { scrollbar = true, border = border },
+    documentation = { scrollbar = true, border = border  },
   },
   snippet = {
     expand = function(args)
@@ -35,7 +37,7 @@ cmp.setup({
       with_text = true,
       menu = {
         buffer = "[buf]",
-        nvim_lsp = "[LSP]",
+        nvim_lsp = "[lsp]",
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
