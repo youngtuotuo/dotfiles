@@ -41,7 +41,7 @@ require("tokyonight").setup({
     highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.NormalSB = { link = "Normal" }
-    highlights.Pmenu = { bg = float_bg }
+    highlights.Pmenu = { link = "FloatBorder" }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
