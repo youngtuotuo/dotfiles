@@ -46,6 +46,7 @@ require("tokyonight").setup({
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
+    highlights.CmpDocumentationBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
     highlights.TelescopeBorder = { link = "g.trans" }
     highlights.FloatTitle = { link = "Search" }

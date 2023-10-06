@@ -23,9 +23,12 @@ local border = require('tuo.global').border
 
 cmp.setup({
   -- completion = { autocomplete = false },
+  view = {
+    docs = { auto_open = false }
+  },
   window = {
-    completion = { scrollbar = true, border = border },
-    documentation = { scrollbar = true, border = border  },
+    completion = { scrollbar = false, border = border },
+    documentation = { scrollbar = false, border = border },
   },
   snippet = {
     expand = function(args)
@@ -34,6 +37,9 @@ cmp.setup({
   },
   formatting = {
     format = lspkind.cmp_format({
+      maxwidth = 40,
+      maxheight = 40,
+      ellipsis_char = '...',
       with_text = true,
       menu = {
         buffer = "[buf]",
