@@ -1,4 +1,3 @@
-local g = require("tuo.global")
 local actions = require("telescope.actions")
 
 require("telescope").setup({

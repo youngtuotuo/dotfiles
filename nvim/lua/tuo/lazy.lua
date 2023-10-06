@@ -17,24 +17,41 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
-    "theprimeagen/harpoon",
-    config = function()
-      require("lazyload.harpoon")
-    end,
-  },
-  {
     "folke/tokyonight.nvim",
-    event = "VimEnter",
     config = function()
       require("lazyload.colorscheme")
     end,
     lazy = false,
     priority = 1000,
   },
+  { "microsoft/python-type-stubs", cond = false },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
+    config = function()
+      require("lazyload.telescope")
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
+      "crispgm/telescope-heading.nvim",
+      "debugloop/telescope-undo.nvim",
+    },
+  },
   -- lazy load
   {
+    "theprimeagen/harpoon",
+    event = 'BufRead',
+    config = function()
+      require("lazyload.harpoon")
+    end,
+  },
+  {
     'nvimdev/indentmini.nvim',
-    event = 'BufEnter',
+    event = 'BufRead',
     config = function()
         require('indentmini').setup({
         char = "│",
@@ -192,23 +209,6 @@ local plugins = {
         end,
         dependencies = { "neovim/nvim-lspconfig" },
       },
-    },
-  },
-  { "microsoft/python-type-stubs", cond = false },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.2",
-    config = function()
-      require("lazyload.telescope")
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      },
-      "crispgm/telescope-heading.nvim",
-      "debugloop/telescope-undo.nvim",
     },
   },
 }
