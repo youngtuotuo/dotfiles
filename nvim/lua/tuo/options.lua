@@ -54,7 +54,6 @@ local options = {
   writebackup = false,
 }
 
-local g = require("tuo.global")
 vim.opt.pumblend = 0
 vim.opt.wildmode = "full"
 vim.opt.wildoptions = "pum"

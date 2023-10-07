@@ -9,5 +9,9 @@ end
 vim.loader.enable()
 require("tuo.options")
 require("tuo.keymaps")
-require("tuo.useful")
 require("tuo.lazy")
+
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end

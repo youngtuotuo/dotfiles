@@ -41,6 +41,23 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
     },
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('oil').setup({
+        keymaps = {
+          ["<C-h>"] = "actions.select_vsplit",
+          ["<C-s>"] = "actions.select_split",
+        },
+        view_options = {
+          show_hidden = true
+        }
+      })
+    end
+  },
   -- lazy load
   {
     "theprimeagen/harpoon",
