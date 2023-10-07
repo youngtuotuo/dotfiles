@@ -38,40 +38,40 @@ require("tokyonight").setup({
     if g.trans then
       status_bg = "none"
     end
+    highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
+    highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
+    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
+    highlights.StatusLine = { fg = colors.fg, bg = status_bg }
+    highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
+    highlights.TelescopeNormal = {
+      bg = float_bg,
+      fg = colors.fg,
+    }
+    highlights.TelescopePromptNormal = { bg = float_bg }
     highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.NormalSB = { link = "Normal" }
-    -- highlights.Pmenu = { link = "SignColumn" }
-    highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
+    highlights.Pmenu = { link = "FloatBorder" }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
     highlights.CmpDocumentationBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
-    highlights.TelescopeBorder = { link = "g.trans" }
+    highlights.TelescopeBorder = { link = "FloatBorder" }
     highlights.FloatTitle = { link = "Search" }
     highlights.Sagatitle = { link = "FloatBorder" }
-    highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
     highlights.LazyNormal = { link = "NormalFloat" }
     highlights.MasonNmeormal = { link = "NormalFloat" }
     highlights.SagaNormal = { link = "NormalFloat" }
     highlights.RenameNormal = { link = "NormalFloat" }
-    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { link = "SignColumn" }
     highlights.WinSeparator = { link = "VertSplit" }
-    highlights.StatusLine = { fg = colors.fg, bg = status_bg }
-    highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
     highlights.luaParenError = { link = "Normal" }
     highlights.SignColumnSB = { bg = "none" }
     highlights.IndentLine = { link = "SignColumn" }
-    highlights.TelescopeNormal = {
-      bg = float_bg,
-      fg = colors.fg,
-    }
     highlights.TelescopeBorder = { link = "FloatBorder" }
-    highlights.TelescopePromptNormal = { bg = float_bg }
     highlights.TelescopePromptBorder = { link="FloatBorder" }
     highlights.TelescopePromptTitle = { link = "Search" }
     highlights.TelescopePreviewTitle = { link = "Search" }
