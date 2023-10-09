@@ -31,6 +31,7 @@ local config = function(capabilities, util)
         completion = { callSnippet = "Both" },
         workspace = { checkThirdParty = false },
         semantic = { enable = false },
+        hint = { enable = true }
       },
     },
   }

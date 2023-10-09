@@ -20,7 +20,7 @@ require("telescope").setup({
     sorting_strategy = "ascending",
     dynamic_preview_title = true,
     color_devicons = true,
-    selection_caret = " ❯ ",
+    selection_caret = "❯ ",
     entry_prefix = "  ",
     preview = {
       treesitter = false,

@@ -67,6 +67,7 @@ require("tokyonight").setup({
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { link = "SignColumn" }
+    highlights.LspInlayHint = { link = "SignColumn" }
     highlights.WinSeparator = { link = "VertSplit" }
     highlights.luaParenError = { link = "Normal" }
     highlights.SignColumnSB = { bg = "none" }
