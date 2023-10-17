@@ -58,14 +58,13 @@ local plugins = {
       })
     end
   },
-  -- lazy load
   {
     "theprimeagen/harpoon",
-    event = 'BufRead',
     config = function()
       require("lazyload.harpoon")
     end,
   },
+  -- lazy load
   {
     'nvimdev/indentmini.nvim',
     event = 'BufRead',
