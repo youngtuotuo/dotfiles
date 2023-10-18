@@ -48,7 +48,13 @@ config.mouse_bindings = {
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
-config.color_scheme = "Tokyo Night (Gogh)"
+config.color_scheme = "Tokyo Night"
+
+config.colors = {
+  cursor_fg = "black",
+  cursor_bg = "#bfc7d5",
+  cursor_border = "#bfc7d5"
+}
 
 config.tab_bar_at_bottom = true
 
