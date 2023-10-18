@@ -52,7 +52,7 @@ require("tokyonight").setup({
     highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.SignColumnSB = { bg = "none" }
     highlights.IblScop = { fg = "#cccccc" }
-    highlights.EoLSpace = { fg = "#884455" }
+    highlights.EoLSpace = { bg = "#884455" }
     -- all link below
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { link = "FloatBorder" }
