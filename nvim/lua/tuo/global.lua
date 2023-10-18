@@ -7,8 +7,8 @@ local M = {}
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
 -- BORDER = "none"
--- M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
-M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
+-- M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- transparent control
 M.trans = true
 

@@ -24,7 +24,7 @@ local border = require('tuo.global').border
 cmp.setup({
   -- completion = { autocomplete = false },
   view = {
-    docs = { auto_open = false }
+    docs = { auto_open = true }
   },
   window = {
     completion = { scrollbar = false, border = border },

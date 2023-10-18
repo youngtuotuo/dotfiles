@@ -33,36 +33,39 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    local float_bg = colors.bg_float
+    local float_bg = colors.fg_gutter
     local status_bg = colors.bg
+    local tele_bg = colors.bg_popup
     if g.trans then
-      status_bg = "none"
+      status_bg = colors.none
     end
     highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
     highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
     highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
     highlights.StatusLine = { fg = colors.fg, bg = status_bg }
     highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
-    highlights.TelescopeNormal = {
-      fg = colors.fg,
-      bg = float_bg,
-    }
+    highlights.TelescopeNormal = { fg = colors.fg, bg = tele_bg }
+    highlights.TelescopeBorder = { fg = tele_bg, bg = tele_bg }
+    highlights.TelescopePromptBorder = { fg = tele_bg, bg = tele_bg }
+    highlights.TelescopePromptNormal = { bg = tele_bg }
     highlights.Pmenu = { bg = float_bg }
-    highlights.TelescopePromptNormal = { bg = float_bg }
-    highlights["@text.literal.markdown_inline"] = { bg = "none" }
-    highlights.Todo = { fg = "#10B981", bg = "none" }
-    highlights.SignColumnSB = { bg = "none" }
+    highlights["@text.literal.markdown_inline"] = { bg = colors.none }
+    highlights.Todo = { fg = "#10B981", bg = colors.none }
+    highlights.SignColumnSB = { bg = colors.none }
     highlights.IblScope = { fg = "#cccccc" }
     highlights.EoLSpace = { bg = "#884455" }
+    highlights.FloatTitle = { fg = colors.bg, bg = colors.blue }
+    highlights.TelescopePromptTitle = { bg = colors.blue }
+    highlights.TelescopePreviewTitle = { bg = colors.blue }
+    highlights.TelescopeResultsTitle = { bg = colors.blue }
     -- all link below
     highlights.NormalSB = { link = "Normal" }
+    highlights.luaParenError = { link = "Normal" }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
     highlights.CmpDocumentationBorder = { link = "FloatBorder" }
     highlights.LspInfoBorder = { link = "FloatBorder" }
-    highlights.TelescopeBorder = { link = "FloatBorder" }
-    highlights.FloatTitle = { link = "Search" }
     highlights.Sagatitle = { link = "FloatBorder" }
     highlights.LazyNormal = { link = "NormalFloat" }
     highlights.MasonNmeormal = { link = "NormalFloat" }
@@ -74,12 +77,6 @@ require("tokyonight").setup({
     highlights.IdlIndent = { link = "SignColumn" }
     highlights.LspInlayHint = { link = "SignColumn" }
     highlights.WinSeparator = { link = "VertSplit" }
-    highlights.luaParenError = { link = "Normal" }
-    highlights.TelescopeBorder = { link = "FloatBorder" }
-    highlights.TelescopePromptBorder = { link="FloatBorder" }
-    highlights.TelescopePromptTitle = { link = "Search" }
-    highlights.TelescopePreviewTitle = { link = "Search" }
-    highlights.TelescopeResultsTitle = { link = "Search" }
   end,
 })
 
