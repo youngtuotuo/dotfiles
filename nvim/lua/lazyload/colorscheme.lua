@@ -33,7 +33,7 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    local float_bg = "none"
+    local float_bg = colors.bg_float
     local status_bg = colors.bg
     if g.trans then
       status_bg = "none"
@@ -44,9 +44,10 @@ require("tokyonight").setup({
     highlights.StatusLine = { fg = colors.fg, bg = status_bg }
     highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
     highlights.TelescopeNormal = {
-      bg = float_bg,
       fg = colors.fg,
+      bg = float_bg,
     }
+    highlights.Pmenu = { bg = float_bg }
     highlights.TelescopePromptNormal = { bg = float_bg }
     highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
@@ -55,7 +56,6 @@ require("tokyonight").setup({
     highlights.EoLSpace = { bg = "#884455" }
     -- all link below
     highlights.NormalSB = { link = "Normal" }
-    highlights.Pmenu = { link = "FloatBorder" }
     highlights.SagaBorder = { link = "FloatBorder" }
     highlights.DiagnosticShowBorder = { link = "FloatBorder" }
     highlights.CmpCompletionBorder = { link = "FloatBorder" }
