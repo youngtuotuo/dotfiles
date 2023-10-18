@@ -58,10 +58,10 @@ config.tab_bar_at_bottom = true
 -- if os.getenv("HOME") then
 --   file = os.getenv("HOME") .. bg
 -- end
--- if getOS() == "Windows" then
---   file = "C:/Users/User" .. bg
---   config.default_domain = 'WSL:Ubuntu-20.04'
--- end
+if getOS() == "Windows" then
+  -- file = "C:/Users/User" .. bg
+  config.default_domain = 'WSL:Ubuntu-20.04'
+end
 -- config.background = {
 --   {
 --     source = {
