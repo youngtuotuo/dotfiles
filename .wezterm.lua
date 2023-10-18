@@ -48,28 +48,28 @@ config.mouse_bindings = {
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
-config.color_scheme = "Dark Pastel"
+config.color_scheme = "Tokyo Night (Gogh)"
 
 config.tab_bar_at_bottom = true
 
-local dimmer = { brightness = 0.05 }
-local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
-local file = ""
-if os.getenv("HOME") then
-  file = os.getenv("HOME") .. bg
-end
-if getOS() == "Windows" then
-  file = "C:/Users/User" .. bg
-  config.default_domain = 'WSL:Ubuntu-20.04'
-end
-config.background = {
-  {
-    source = {
-      File = file,
-    },
-    hsb = dimmer,
-  },
-}
+-- local dimmer = { brightness = 0.05 }
+-- local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
+-- local file = ""
+-- if os.getenv("HOME") then
+--   file = os.getenv("HOME") .. bg
+-- end
+-- if getOS() == "Windows" then
+--   file = "C:/Users/User" .. bg
+--   config.default_domain = 'WSL:Ubuntu-20.04'
+-- end
+-- config.background = {
+--   {
+--     source = {
+--       File = file,
+--     },
+--     hsb = dimmer,
+--   },
+-- }
 
 -- and finally, return the configuration to wezterm
 return config
