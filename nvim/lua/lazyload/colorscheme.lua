@@ -51,7 +51,7 @@ require("tokyonight").setup({
     highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
     highlights.SignColumnSB = { bg = "none" }
-    highlights.IblScop = { fg = "#cccccc" }
+    highlights.IblScope = { fg = "#cccccc" }
     highlights.EoLSpace = { bg = "#884455" }
     -- all link below
     highlights.NormalSB = { link = "Normal" }
