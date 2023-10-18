@@ -42,21 +42,21 @@ local plugins = {
     },
   },
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require('oil').setup({
+      require("oil").setup({
         keymaps = {
           ["<C-h>"] = "actions.select_vsplit",
           ["<C-s>"] = "actions.select_split",
         },
         view_options = {
-          show_hidden = true
-        }
+          show_hidden = true,
+        },
       })
-    end
+    end,
   },
   {
     "theprimeagen/harpoon",
@@ -66,12 +66,11 @@ local plugins = {
   },
   -- lazy load
   {
-    'nvimdev/indentmini.nvim',
-    event = 'BufRead',
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "BufRead",
     config = function()
-        require('indentmini').setup({
-        char = "│",
-      })
+      require("lazyload.indent_blankline")
     end,
   },
   {

@@ -63,6 +63,11 @@ for k, v in pairs(options) do
 end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 
+-- highlight group for trailing white space
+vim.cmd [[
+  match EoLSpace /\s\+$/
+]]
+
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = yank_augroup,

@@ -50,6 +50,10 @@ require("tokyonight").setup({
     highlights.TelescopePromptNormal = { bg = float_bg }
     highlights["@text.literal.markdown_inline"] = { bg = "none" }
     highlights.Todo = { fg = "#10B981", bg = "none" }
+    highlights.SignColumnSB = { bg = "none" }
+    highlights.IblScop = { fg = "#cccccc" }
+    highlights.EoLSpace = { fg = "#884455" }
+    -- all link below
     highlights.NormalSB = { link = "Normal" }
     highlights.Pmenu = { link = "FloatBorder" }
     highlights.SagaBorder = { link = "FloatBorder" }
@@ -67,11 +71,10 @@ require("tokyonight").setup({
     highlights.LspReferenceText = { link = "LspReferenceWrite" }
     highlights.LspReferenceRead = { link = "LspReferenceWrite" }
     highlights.VertSplit = { link = "SignColumn" }
+    highlights.IdlIndent = { link = "SignColumn" }
     highlights.LspInlayHint = { link = "SignColumn" }
     highlights.WinSeparator = { link = "VertSplit" }
     highlights.luaParenError = { link = "Normal" }
-    highlights.SignColumnSB = { bg = "none" }
-    highlights.IndentLine = { link = "SignColumn" }
     highlights.TelescopeBorder = { link = "FloatBorder" }
     highlights.TelescopePromptBorder = { link="FloatBorder" }
     highlights.TelescopePromptTitle = { link = "Search" }
