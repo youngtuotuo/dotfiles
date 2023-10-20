@@ -49,7 +49,7 @@ require("tokyonight").setup({
     highlights.TelescopePromptBorder = { fg = tele_bg, bg = tele_bg }
     highlights.TelescopePromptNormal = { bg = tele_bg }
     highlights.Pmenu = { bg = float_bg }
-    highlights.PmenuSel = { fg = colors.blue }
+    highlights.PmenuSel = { fg = colors.blue, bg = colors.black }
     highlights["@text.literal.markdown_inline"] = { bg = colors.none }
     highlights.Todo = { fg = "#10B981", bg = colors.none }
     highlights.SignColumnSB = { bg = colors.none }
