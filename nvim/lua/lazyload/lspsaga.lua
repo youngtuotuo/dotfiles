@@ -16,22 +16,6 @@ require("lspsaga").setup({
     kind = {},
   },
   beacon = { enable = true, frequency = 20 },
-  finder = {
-    -- percentage
-    max_height = 0.5,
-    min_width = 30,
-    force_max_height = false,
-    keys = {
-      jump_to = "p",
-      edit = { "o", "<CR>" },
-      vsplit = "s",
-      split = "i",
-      tabe = "t",
-      tabnew = "r",
-      quit = { "q", "<ESC>" },
-      close_in_preview = "<ESC>",
-    },
-  },
   outline = {
     win_position = "left",
     win_width = 30,
@@ -49,65 +33,38 @@ require("lspsaga").setup({
       jump = "e",
     },
   },
-  definition = {
-    edit = "<C-c>o",
-    vsplit = "<C-c>v",
-    split = "<C-c>i",
-    tabe = "<C-c>t",
-    quit = "q",
-  },
-  diagnostic = {
-    on_insert = false,
-    on_insert_follow = false,
-    insert_winblend = 0,
-    show_code_action = true,
-    show_source = true,
-    jump_num_shortcut = true,
-    max_width = 80,
-    max_height = 0.6,
-    max_show_width = 80,
-    max_show_height = 0.6,
-    text_hl_follow = true,
-    border_follow = true,
-    extend_relatedInformation = false,
-    keys = {
-      exec_action = "o",
-      quit = "q",
-      expand_or_jump = "<CR>",
-      quit_in_show = { "q", "<ESC>" },
-    },
-  },
   callhierarchy = {
-    show_detail = false,
     keys = {
       edit = "e",
       vsplit = "s",
       split = "i",
       tabe = "t",
-      jump = "o",
       quit = "q",
-      expand_collapse = "u",
+      shuttle = "[w",
+      toggle_or_req = "u",
+      close = "<C-c>k",
     },
+    layout = "float",
   },
   lightbulb = {
     enable = false,
-    enable_in_insert = false,
-    sign = true,
-    sign_priority = 40,
-    virtual_text = false,
   },
   symbol_in_winbar = {
-    enable = false,
-    separator = " 〉",
-    ignore_patterns = {},
+    enable = true,
+    separator = " › ",
     hide_keyword = true,
     show_file = true,
-    folder_level = 2,
-    respect_root = false,
-    color_mode = false,
+    folder_level = 1,
+    color_mode = true,
   },
-  hover = { max_width = 0.9, open_link = "gx", open_browser = "!chrome" },
+  code_action = {
+    num_shortcut = true,
+    show_server_name = true,
+    extend_gitsigns = false,
+  }
 })
-vim.keymap.set("n", "ga", ":Lspsaga code_action<cr>", { noremap = true })
-vim.keymap.set("n", "gn", ":Lspsaga rename<CR>", { noremap = true })
-vim.keymap.set("n", "<space>o", ":Lspsaga outline<CR>", { noremap = true })
+vim.keymap.set("n", "ga",       ":Lspsaga code_action<cr>", { noremap = true })
+vim.keymap.set("n", "gn",       ":Lspsaga rename<cr>", { noremap = true })
+vim.keymap.set("n", "gic",      ":Lspsaga incoming_calls<cr>", { noremap = true })
+vim.keymap.set("n", "goc",      ":Lspsaga outgoing_calls<cr>", { noremap = true })
+vim.keymap.set("n", "<space>o", ":Lspsaga outline<cr>", { noremap = true })

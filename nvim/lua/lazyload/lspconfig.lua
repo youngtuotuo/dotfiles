@@ -33,8 +33,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
       opts
     )
-    vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
-    vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
+    -- vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
+    -- vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", opts)
     vim.keymap.set("n", "<space>i", toggle_lsp_highlight)
