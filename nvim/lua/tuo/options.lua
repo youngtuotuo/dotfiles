@@ -171,6 +171,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     if vim.opt_local.filetype ~= "mojo" then
       vim.opt_local.filetype = "mojo"
       vim.cmd [[ runtime syntax/python.vim ]]
+      vim.cmd [[ runtime indent/python.vim ]]
       vim.cmd [[
         syn keyword mojoKeywords let var inout owned borrowed alias
         syn keyword mojoKeywords struct fn nextgroup=mojoName skipwhite
