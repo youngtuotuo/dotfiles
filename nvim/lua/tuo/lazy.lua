@@ -17,8 +17,8 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
-  'folke/tokyonight.nvim',
-  config = function()
+    'catppuccin/nvim',
+    config = function()
       require("lazyload.colorscheme")
     end,
   },
