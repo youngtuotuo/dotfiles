@@ -48,7 +48,7 @@ config.mouse_bindings = {
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Catppuccin Mocha"
 
 config.colors = {
   cursor_fg = "black",
