@@ -17,12 +17,10 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   {
-    "folke/tokyonight.nvim",
-    config = function()
+  'folke/tokyonight.nvim',
+  config = function()
       require("lazyload.colorscheme")
     end,
-    lazy = false,
-    priority = 1000,
   },
   { "microsoft/python-type-stubs", cond = false },
   {

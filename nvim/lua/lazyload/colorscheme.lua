@@ -22,63 +22,54 @@ require("tokyonight").setup({
   hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
   dim_inactive = false, -- dims inactive windows
   lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-
-  --- You can override specific color groups to use other groups or a hex color
-  --- function will be called with a ColorScheme table
-  ---@param colors ColorScheme
-  on_colors = function(colors) end,
-
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights Highlights
-  ---@param colors ColorScheme
-  on_highlights = function(highlights, colors)
-    local float_bg = colors.fg_gutter
-    local status_bg = colors.bg
-    local tele_bg = colors.bg_popup
-    if g.trans then
-      status_bg = colors.none
-    end
-    highlights.NormalFloat = { fg = colors.fg, bg = float_bg }
-    highlights.FloatBorder = { fg = colors.border_highlight, bg = float_bg }
-    highlights.LspReferenceWrite = { underline = false, bg = colors.bg_highlight, standout = true }
-    highlights.StatusLine = { fg = colors.fg, bg = status_bg }
-    highlights.StatusLineNC = { fg = colors.fg_dark, bg = status_bg }
-    highlights.TelescopeNormal = { fg = colors.fg, bg = tele_bg }
-    highlights.TelescopeBorder = { fg = tele_bg, bg = tele_bg }
-    highlights.TelescopePromptBorder = { fg = tele_bg, bg = tele_bg }
-    highlights.TelescopePromptNormal = { bg = tele_bg }
-    highlights.Pmenu = { bg = float_bg }
-    highlights.PmenuSel = { fg = colors.blue, bg = colors.black }
-    highlights["@text.literal.markdown_inline"] = { bg = colors.none }
-    highlights.Todo = { fg = "#10B981", bg = colors.none }
-    highlights.SignColumnSB = { bg = colors.none }
-    highlights.IblScope = { fg = "#cccccc" }
-    highlights.EoLSpace = { bg = "#884455" }
-    highlights.FloatTitle = { fg = colors.bg, bg = colors.blue }
-    highlights.TelescopePromptTitle = { bg = colors.blue }
-    highlights.TelescopePreviewTitle = { bg = colors.blue }
-    highlights.TelescopeResultsTitle = { bg = colors.blue }
-    -- all link below
-    highlights.NormalSB = { link = "Normal" }
-    highlights.luaParenError = { link = "Normal" }
-    highlights.SagaBorder = { link = "FloatBorder" }
-    highlights.DiagnosticShowBorder = { link = "FloatBorder" }
-    highlights.CmpCompletionBorder = { link = "FloatBorder" }
-    highlights.CmpDocumentationBorder = { link = "FloatBorder" }
-    highlights.LspInfoBorder = { link = "FloatBorder" }
-    highlights.Sagatitle = { link = "FloatBorder" }
-    highlights.LazyNormal = { link = "NormalFloat" }
-    highlights.MasonNmeormal = { link = "NormalFloat" }
-    highlights.SagaNormal = { link = "NormalFloat" }
-    highlights.RenameNormal = { link = "NormalFloat" }
-    highlights.LspReferenceText = { link = "LspReferenceWrite" }
-    highlights.LspReferenceRead = { link = "LspReferenceWrite" }
-    highlights.VertSplit = { link = "SignColumn" }
-    highlights.IdlIndent = { link = "SignColumn" }
-    highlights.LspInlayHint = { link = "SignColumn" }
-    highlights.WinSeparator = { link = "VertSplit" }
-  end,
 })
 
 vim.cmd([[colorscheme tokyonight]])
+
+local transparent = "none"
+local blue = "#82aaff"
+local dim = "#222436"
+local fg = "#c8d3f5"
+local fg_dark = "#828bb8"
+local float_bg = "#3b4261"
+local border_fg = "#589ed7"
+local lsp_reference_bg = "#2f334d"
+vim.api.nvim_set_hl(0, "NormalFloat", { fg = fg, bg = float_bg })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_fg, bg = float_bg })
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = false, bg = lsp_reference_bg, standout = true })
+vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = transparent })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = fg_dark, bg = transparent })
+vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = fg, bg = float_bg })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = float_bg, bg = float_bg })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = float_bg, bg = float_bg })
+vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = float_bg })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg })
+vim.api.nvim_set_hl(0, "PmenuSel", { fg = blue, bg = dim })
+vim.api.nvim_set_hl(0, "@text.literal.markdown_inline", { bg = transparent })
+vim.api.nvim_set_hl(0, "Todo", { fg = "#10B981", bg = transparent })
+vim.api.nvim_set_hl(0, "SignColumnSB", { bg = transparent })
+vim.api.nvim_set_hl(0, "IblScope", { fg = "#cccccc" })
+vim.api.nvim_set_hl(0, "EoLSpace", { bg = "#884455" })
+vim.api.nvim_set_hl(0, "FloatTitle", { fg = dim, bg = blue })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = blue })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = blue })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = blue })
+-- link
+vim.api.nvim_set_hl(0, "NormalSB", { link = "Normal" })
+vim.api.nvim_set_hl(0, "luaParenError", { link = "Normal" })
+vim.api.nvim_set_hl(0, "SagaBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "DiagnosticShowBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "CmpCompletionBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "Sagatitle", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "LazyNormal", { link = "NormalFloat" })
+vim.api.nvim_set_hl(0, "MasonNmeormal", { link = "NormalFloat" })
+vim.api.nvim_set_hl(0, "SagaNormal", { link = "NormalFloat" })
+vim.api.nvim_set_hl(0, "RenameNormal", { link = "NormalFloat" })
+vim.api.nvim_set_hl(0, "LspReferenceText", { link = "LspReferenceWrite" })
+vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceWrite" })
+vim.api.nvim_set_hl(0, "VertSplit", { link = "SignColumn" })
+vim.api.nvim_set_hl(0, "IdlIndent", { link = "SignColumn" })
+vim.api.nvim_set_hl(0, "LspInlayHint", { link = "SignColumn" })
+vim.api.nvim_set_hl(0, "WinSeparator", { link = "VertSplit" })
