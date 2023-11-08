@@ -62,13 +62,13 @@ local config = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      {
-        "filetype",
-        colored = true,
-        icon_only = true,
-        icon = { align = "right" },
-        padding = { left = 1 },
-      },
+      -- {
+      --   "filetype",
+      --   colored = true,
+      --   icon_only = true,
+      --   icon = { align = "right" },
+      --   padding = { left = 1 },
+      -- },
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
@@ -81,13 +81,13 @@ local config = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      {
-        "filetype",
-        colored = true,
-        icon_only = true,
-        icon = { align = "right" },
-        padding = { left = 1 },
-      },
+      -- {
+      --   "filetype",
+      --   colored = true,
+      --   icon_only = true,
+      --   icon = { align = "right" },
+      --   padding = { left = 1 },
+      -- },
       { "filename", path = 1, align = "left" },
     },
     lualine_x = {
