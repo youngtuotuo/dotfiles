@@ -83,14 +83,6 @@ local plugins = {
     ft = { "zig" },
   },
   {
-    "nvim-lualine/lualine.nvim",
-    event = "BufRead",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("lazyload.lualine")
-    end,
-  },
-  {
     "nvim-tree/nvim-web-devicons",
     event = "ColorScheme",
     config = function()
