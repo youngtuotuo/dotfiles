@@ -126,6 +126,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
           virt_text = virt_texts,
           hl_mode = "combine",
+          virt_text_pos = "eol"
         })
       end,
     })
@@ -171,13 +172,13 @@ vim.keymap.set("n", "[d", function()
   vim.diagnostic.goto_prev({
     severity = get_highest_error_severity(),
     wrap = true,
-    float = true,
+    float = false,
   })
 end)
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.goto_next({
     severity = get_highest_error_severity(),
     wrap = true,
-    float = true,
+    float = false,
   })
 end)
