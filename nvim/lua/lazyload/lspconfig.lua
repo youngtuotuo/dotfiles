@@ -182,3 +182,4 @@ vim.keymap.set("n", "]d", function()
     float = false,
   })
 end)
+vim.keymap.set("n", "<leader>m", ":Mason<cr>", { noremap = true })

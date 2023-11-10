@@ -58,7 +58,6 @@ require("zen-mode").setup({
   },
   -- callback where you can add custom code when the Zen window opens
   on_open = function(win)
-    print("Zen On")
   end,
   -- callback where you can add custom code when the Zen window closes
   on_close = function()
