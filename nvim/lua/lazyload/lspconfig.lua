@@ -118,33 +118,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local icons = { " ", " ", " ", " " }
         local curline, curcol = unpack(vim.api.nvim_win_get_cursor(0))
         local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
-          local virt_texts = { { (" "):rep(4) } }
-          for _, diag in ipairs(diagnostics) do
-            if curcol >= diag.col and curcol < diag.end_col  then
-              virt_texts[#virt_texts + 1] =
-                { icons[diag.severity] .. diag.message, "Diagnostic" .. hi[diag.severity] }
-            end
+        for _, diag in ipairs(diagnostics) do
+          if curcol >= diag.col and curcol < diag.end_col  then
+            vim.diagnostic.open_float({
+              bufnr = 0,
+              scope = "c",
+              source = "if_many",
+              header = "",
+              focusable = false,
+              prefix = { icons[diag.severity], "Diagnostic" .. hi[diag.severity] }
+            })
+            break
           end
-          vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
-            virt_text = virt_texts,
-            hl_mode = "combine",
-            virt_text_pos = "eol"
-          })
+        end
         end
     })
   end,
 })
 
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
+-- local signs = {
+--   { name = "DiagnosticSignError", text = "" },
+--   { name = "DiagnosticSignWarn", text = "" },
+--   { name = "DiagnosticSignHint", text = "" },
+--   { name = "DiagnosticSignInfo", text = "" },
+-- }
+--
+-- for _, sign in ipairs(signs) do
+--   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+-- end
 
 -- Go to the next diagnostic, but prefer going to errors first
 -- In general, I pretty much never want to go to the next hint
@@ -166,8 +167,12 @@ end
 
 -- Global mappings
 vim.keymap.set("n", "gl", function()
-  vim.diagnostic.open_float(0, {
+  vim.diagnostic.open_float({
+    bufnr = 0,
     scope = "line",
+    source = "if_many",
+    header = "",
+    focusable = false,
   })
 end)
 vim.keymap.set("n", "[d", function()
