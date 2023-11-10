@@ -53,6 +53,9 @@ local options = {
   wildignore = "__pycache__",
   writebackup = false,
 }
+vim.cmd [[
+  set statusline=%{repeat('─',winwidth('.'))}
+]]
 
 vim.opt.pumblend = 0
 vim.opt.wildmode = "full"
