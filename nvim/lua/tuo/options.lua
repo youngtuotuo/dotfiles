@@ -22,20 +22,20 @@ local options = {
   -- search
   hlsearch = true,
   incsearch = true, -- Makes search act like search in modern browsers
-  pumheight = 7,
   ignorecase = true, -- Ignore case when searching...
-  smartcase = true, -- ... unless there is a capital letter in the query
   laststatus = 3,
   matchtime = 1,
   mouse = "a",
   mousemoveevent = true,
   nu = false,
+  pumheight = 7,
   rnu = false,
   ru = true,
   smoothscroll = true,
   scrolloff = 10,
   shiftwidth = 4,
   showcmd = true,
+  smartcase = true, -- ... unless there is a capital letter in the query
   showmatch = true, -- show matching brackets when text indicator is over them
   showmode = true,
   signcolumn = "yes:2",
@@ -65,7 +65,10 @@ vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 
 -- highlight group for trailing white space
 vim.cmd [[
+  highlight default EoLSpace guibg=Red
   match EoLSpace /\s\+$/
+  autocmd InsertEnter * hi EoLSpace guibg=NONE
+  autocmd InsertLeave * hi EoLSpace guibg=Red
 ]]
 
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
