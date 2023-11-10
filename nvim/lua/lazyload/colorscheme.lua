@@ -43,8 +43,6 @@ require("catppuccin").setup({
     },
     indent_blankline = {
       enabled = true,
-      scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
-      colored_indent_levels = false,
     },
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
