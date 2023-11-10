@@ -15,7 +15,6 @@ local plugins = {
   -- auto load
   "nvim-lua/plenary.nvim",
   "tpope/vim-fugitive",
-  "tpope/vim-vinegar",
   {
     'catppuccin/nvim',
     config = function()
