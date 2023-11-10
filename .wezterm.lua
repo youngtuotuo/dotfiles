@@ -67,7 +67,7 @@ config.tab_bar_at_bottom = true
 if getOS() == "Windows" then
   -- file = "C:/Users/User" .. bg
   config.default_domain = 'WSL:Ubuntu-20.04'
-  config.window_background_opacity = 0
+  config.window_background_opacity = 0.7
   config.win32_system_backdrop = 'Acrylic'
 else
   config.window_background_opacity = 0.9
