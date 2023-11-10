@@ -53,7 +53,8 @@ config.color_scheme = "Catppuccin Mocha"
 config.colors = {
   cursor_fg = "black",
   cursor_bg = "#bfc7d5",
-  cursor_border = "#bfc7d5"
+  cursor_border = "#bfc7d5",
+  background = "rgba(0%,0%,0%,60%)"
 }
 
 config.tab_bar_at_bottom = true
