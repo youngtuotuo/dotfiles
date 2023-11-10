@@ -56,12 +56,5 @@ require("zen-mode").setup({
       font = "+4", -- (10% increase per step)
     },
   },
-  -- callback where you can add custom code when the Zen window opens
-  on_open = function(win)
-  end,
-  -- callback where you can add custom code when the Zen window closes
-  on_close = function()
-    print("Zen Off")
-  end,
 })
 vim.keymap.set("n", "<space>z", ":ZenMode<cr>", { noremap = true })
