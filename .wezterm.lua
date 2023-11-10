@@ -54,7 +54,6 @@ config.colors = {
   cursor_fg = "black",
   cursor_bg = "#bfc7d5",
   cursor_border = "#bfc7d5",
-  background = "rgba(0%,0%,0%,60%)"
 }
 
 config.tab_bar_at_bottom = true
@@ -68,6 +67,11 @@ config.tab_bar_at_bottom = true
 if getOS() == "Windows" then
   -- file = "C:/Users/User" .. bg
   config.default_domain = 'WSL:Ubuntu-20.04'
+  config.window_background_opacity = 0
+  config.win32_system_backdrop = 'Acrylic'
+else
+  config.window_background_opacity = 0.85
+  config.macos_window_background_blur = 10
 end
 -- config.background = {
 --   {
