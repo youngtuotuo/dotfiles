@@ -58,29 +58,24 @@ config.colors = {
 
 config.tab_bar_at_bottom = true
 
--- local dimmer = { brightness = 0.05 }
--- local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
--- local file = ""
--- if os.getenv("HOME") then
---   file = os.getenv("HOME") .. bg
--- end
-if getOS() == "Windows" then
-  -- file = "C:/Users/User" .. bg
-  config.default_domain = 'WSL:Ubuntu-20.04'
-  -- config.window_background_opacity = 0.87
-  -- config.win32_system_backdrop = 'Acrylic'
-else
-  config.window_background_opacity = 0.9
-  config.macos_window_background_blur = 10
+local dimmer = { brightness = 0.3 }
+local bg = "/github/dotfiles/pictures/eat-sleep.jpg"
+local file = ""
+if os.getenv("HOME") then
+  file = os.getenv("HOME") .. bg
 end
--- config.background = {
---   {
---     source = {
---       File = file,
---     },
---     hsb = dimmer,
---   },
--- }
+if getOS() == "Windows" then
+  file = "C:/Users/User" .. bg
+  config.default_domain = 'WSL:Ubuntu-20.04'
+end
+config.background = {
+  {
+    source = {
+      File = file,
+    },
+    hsb = dimmer,
+  },
+}
 
 -- and finally, return the configuration to wezterm
 return config
