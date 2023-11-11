@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 require("todo-comments").setup({
-  signs = true, -- show icons in the signs column
+  signs = false, -- show icons in the signs column
   sign_priority = 7, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
