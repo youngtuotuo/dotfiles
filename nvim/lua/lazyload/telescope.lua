@@ -19,7 +19,7 @@ require("telescope").setup({
     results_title = "Results",
     sorting_strategy = "ascending",
     dynamic_preview_title = true,
-    color_devicons = true,
+    color_devicons = false,
     selection_caret = "❯ ",
     entry_prefix = "  ",
     preview = {

@@ -71,7 +71,7 @@ require("mason-lspconfig").setup({ handlers = handlers })
 local diag_config = {
   virtual_text = false,
   signs = false,
-  underline = true,
+  underline = false,
   update_in_insert = false,
   severity_sort = true,
   float = {
@@ -115,14 +115,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       callback = function()
         pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
         local hi = { "Error", "Warn", "Info", "Hint" }
-        local icons = { " ", " ", " ", " " }
         local curline, curcol = unpack(vim.api.nvim_win_get_cursor(0))
         local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
         local virt_texts = { { (" "):rep(4) } }
         for _, diag in ipairs(diagnostics) do
           if curcol >= diag.col and curcol < diag.end_col  then
             virt_texts[#virt_texts + 1] =
-            { icons[diag.severity] .. diag.message, "Diagnostic" .. hi[diag.severity] }
+            { diag.message, "Diagnostic" .. hi[diag.severity] }
           end
         end
         vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {

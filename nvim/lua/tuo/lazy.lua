@@ -65,13 +65,6 @@ local plugins = {
     ft = { "zig" },
   },
   {
-    "nvim-tree/nvim-web-devicons",
-    event = "ColorScheme",
-    config = function()
-      require("lazyload.webdevicons")
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
     config = function()
@@ -160,7 +153,6 @@ local plugins = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "onsails/lspkind-nvim",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lua",

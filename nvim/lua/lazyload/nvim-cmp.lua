@@ -6,25 +6,22 @@ local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
 end
-local kind_status_ok, lspkind = pcall(require, "lspkind")
-if not kind_status_ok then
-  return
-end
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0
+    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local border = require('tuo.global').border
+local border = require("tuo.global").border
 
 cmp.setup({
   -- completion = { autocomplete = false },
   view = {
-    docs = { auto_open = true }
+    docs = { auto_open = true },
   },
   window = {
     completion = { scrollbar = false, border = border },
@@ -34,22 +31,6 @@ cmp.setup({
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
     end,
-  },
-  formatting = {
-    format = lspkind.cmp_format({
-      maxwidth = 40,
-      maxheight = 40,
-      ellipsis_char = '...',
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[lsp]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[snip]",
-        latex_symbols = "[LaTeX]",
-      },
-    }),
   },
   preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
