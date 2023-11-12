@@ -33,7 +33,7 @@ require("gitsigns").setup({
       linehl = "GitSignsAddLn",
     },
   },
-  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+  signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
   numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
@@ -93,12 +93,19 @@ require("gitsigns").setup({
     -- Actions
     map("n", "<leader>gs", gs.stage_hunk, { desc = "gitsigns stage hunk" })
     map("n", "<leader>gr", gs.reset_hunk, { desc = "gitsigns reset hunk" })
-    map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "gitsigns stage hunk" })
-    map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "gitsigns reset hunk" })
+    map("v", "<leader>gs", function()
+      gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "gitsigns stage hunk" })
+    map("v", "<leader>gr", function()
+      gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "gitsigns reset hunk" })
     map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "gitsigns undo stage hunk" })
     map("n", "<leader>gp", gs.preview_hunk, { desc = "gitsigns preview hunk" })
-    map('n', '<leader>gb', function() gs.blame_line{full=true} end, { desc = "gitsigns blame line" })
-    map('n', '<leader>gd', gs.diffthis, { desc = "gitsigns diffthis" })
+    map("n", "<leader>gb", function()
+      gs.blame_line({ full = true })
+    end, { desc = "gitsigns blame line" })
+    map("n", "<leader>gd", gs.diffthis, { desc = "gitsigns diffthis" })
     map("n", "<leader>gt", gs.toggle_deleted, { desc = "gitsigns toggle deleted" })
+    map("n", "<leader>gl", gs.toggle_signs, { desc = "gitsigns toggle signs" })
   end,
 })
