@@ -155,26 +155,3 @@ vim.api.nvim_create_user_command("Wq", "wq", {})
 vim.api.nvim_create_user_command("WQ", "wq", {})
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("Qa", "qa", {})
-
--- mojo filetype
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = { "*.🔥", "*.mojo" },
-  callback = function()
-    if vim.opt_local.filetype ~= "mojo" then
-      vim.opt_local.filetype = "mojo"
-      vim.cmd [[ runtime syntax/python.vim ]]
-      vim.cmd [[ runtime indent/python.vim ]]
-      vim.cmd [[
-        syn keyword mojoKeywords let var inout owned borrowed alias
-        syn keyword mojoKeywords struct fn nextgroup=mojoName skipwhite
-        syn match mojoName '\h\w*' display contained
-        syn match mojoRefName '\h\w*&' display contains=mojoName
-        syn region mojoDialect start="`" end="`" display
-
-        hi def link mojoKeywords Keyword
-        hi def link mojoRefName Identifier
-        hi def link mojoDialect Special
-      ]]
-    end
-  end,
-})
