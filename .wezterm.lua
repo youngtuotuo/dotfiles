@@ -1,5 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local act = wezterm.action
+act { SpawnCommandInNewTab = { cwd = wezterm.home_dir } }
 
 -- This table will hold the configuration.
 local config = {}
@@ -58,7 +60,7 @@ config.colors = {
 
 config.tab_bar_at_bottom = true
 
-local dimmer = { brightness = 0.3 }
+local dimmer = { brightness = 0.15 }
 local bg = "/github/dotfiles/pictures/eat-sleep.jpg"
 local file = ""
 if os.getenv("HOME") then
@@ -66,7 +68,7 @@ if os.getenv("HOME") then
 end
 if getOS() == "Windows" then
   file = "C:/Users/User" .. bg
-  config.default_domain = 'WSL:Ubuntu-20.04'
+  config.default_prog = { "pwsh.exe" }
 end
 config.background = {
   {
