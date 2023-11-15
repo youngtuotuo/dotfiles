@@ -60,24 +60,10 @@ config.colors = {
 
 config.tab_bar_at_bottom = true
 
-local dimmer = { brightness = 0.15 }
-local bg = "/github/dotfiles/pictures/eat-sleep.jpg"
-local file = ""
-if os.getenv("HOME") then
-  file = os.getenv("HOME") .. bg
-end
+config.colors = { background = "black" }
 if getOS() == "Windows" then
-  file = "C:/Users/User" .. bg
   config.default_prog = { "pwsh.exe" }
 end
-config.background = {
-  {
-    source = {
-      File = file,
-    },
-    hsb = dimmer,
-  },
-}
 
 -- and finally, return the configuration to wezterm
 return config
