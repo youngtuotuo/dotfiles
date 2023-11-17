@@ -19,7 +19,7 @@ local function pyright_accessed_filter(diagnostic)
   -- Allow kwargs to be unused, sometimes you want many functions to take the
   -- same arguments but you don't use all the arguments in all the functions,
   -- so kwargs is used to suck up all the extras
-  if diagnostic.message == '"kwargs" is not accessed' then
+  if diagnostic.message == '"kwargs" is not accessed' or diagnostic.message == '"args" is not accessed' then
   	return false
   end
   --
@@ -29,9 +29,9 @@ local function pyright_accessed_filter(diagnostic)
   -- end
 
   -- For all messages "is not accessed"
-  if string.match(diagnostic.message, '".+" is not accessed') then
-    return false
-  end
+  -- if string.match(diagnostic.message, '".+" is not accessed') then
+  --   return false
+  -- end
 
   return true
 end
