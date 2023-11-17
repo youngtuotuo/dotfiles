@@ -50,7 +50,7 @@ keymap("v", "p", [["_dP]], default_opts)
 keymap({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", default_opts)
 keymap({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", default_opts)
 keymap({ "v", "x" }, "H", "<gv", default_opts)
-keymap({ "v", "x" }, "K", ">gv", default_opts)
+keymap({ "v", "x" }, "L", ">gv", default_opts)
 
 -- Undo break points
 keymap("i", ",", ",<C-g>u", default_opts)
