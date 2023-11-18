@@ -17,7 +17,7 @@ local options = {
   equalalways = false,
   fileencoding = "utf-8",
   fillchars = "stl: ,stlnc: ",
-  guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50",
+  guicursor = "a:block",
   hidden = true,
   -- search
   hlsearch = true,
