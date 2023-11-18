@@ -23,6 +23,12 @@ cmp.setup({
   view = {
     docs = { auto_open = true },
   },
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+      return vim_item
+    end,
+  },
   window = {
     completion = { scrollbar = false, border = border },
     documentation = { scrollbar = false, border = border },
@@ -84,9 +90,9 @@ cmp.setup({
   }),
   sorting = {
     comparators = {
-      cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
+      cmp.config.compare.offset,
       -- copied from cmp-under, but I don't think I need the plugin for this.
       -- I might add some more of my own.
       function(entry1, entry2)

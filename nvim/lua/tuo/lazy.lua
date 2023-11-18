@@ -196,24 +196,6 @@ local border = require("tuo.global").border
 local opts = {
   ui = {
     border = border,
-    icons = {
-      cmd = "",
-      config = "",
-      event = "",
-      ft = "",
-      init = "",
-      import = "",
-      keys = "",
-      lazy = "󰒲 ",
-      loaded = "●",
-      not_loaded = "○",
-      plugin = " ",
-      runtime = " ",
-      source = " ",
-      start = "",
-      task = "✔ ",
-      list = { "●", "➜", "★", "‒" },
-    },
   },
 }
 
