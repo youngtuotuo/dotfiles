@@ -29,6 +29,7 @@ local options = {
   mousemoveevent = true,
   nu = false,
   pumheight = 7,
+  pumblend = 6,
   rnu = false,
   ru = true,
   smoothscroll = true,
