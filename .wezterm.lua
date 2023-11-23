@@ -27,6 +27,9 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+if getOS() == "Windows" then
+  config.default_prog = { "pwsh.exe" }
+end
 -- This is where you actually apply your config choices
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 16
@@ -46,7 +49,19 @@ config.mouse_bindings = {
     action = wezterm.action.ExtendSelectionToMouseCursor("Word"),
   },
 }
-
+config.window_frame = {
+  border_left_width = '0.2cell',
+  border_right_width = '0.2cell',
+  border_bottom_height = '0.1cell',
+  border_top_height = '0.1cell',
+}
+config.window_decorations = "RESIZE"
+config.window_padding = {
+  left = 10,
+  right = 10,
+  top = 10,
+  bottom = 10
+}
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
@@ -61,9 +76,6 @@ config.colors = {
 config.tab_bar_at_bottom = true
 
 config.colors = { background = "black" }
-if getOS() == "Windows" then
-  config.default_prog = { "pwsh.exe" }
-end
 
 -- and finally, return the configuration to wezterm
 return config
