@@ -144,6 +144,11 @@ local plugins = {
     dependencies = { "nvim-treesitter" },
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufRead",
+    dependencies = { "nvim-treesitter" },
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "BufRead",
     config = function()
