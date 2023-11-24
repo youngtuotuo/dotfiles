@@ -43,25 +43,14 @@ config.mouse_bindings = {
     action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
     mods = "NONE",
   },
-  {
-    event = { Up = { streak = 1, button = "Left" } },
-    mods = "SHIFT",
-    action = wezterm.action.ExtendSelectionToMouseCursor("Word"),
-  },
 }
-config.window_frame = {
-  border_left_width = '0.2cell',
-  border_right_width = '0.2cell',
-  border_bottom_height = '0.1cell',
-  border_top_height = '0.1cell',
-}
-config.window_decorations = "RESIZE"
 config.window_padding = {
   left = 10,
   right = 10,
   top = 10,
   bottom = 10
 }
+config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
