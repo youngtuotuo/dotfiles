@@ -61,9 +61,9 @@ config.window_frame = {
   border_left_width = '0.1cell',
   border_right_width = '0.1cell',
   border_bottom_height = '0.05cell',
-  border_left_color = '#555555',
-  border_right_color = '#555555',
-  border_bottom_color = '#555555',
+  border_left_color = '#323234',
+  border_right_color = '#323234',
+  border_bottom_color = '#323234',
 }
 
 config.colors = {
