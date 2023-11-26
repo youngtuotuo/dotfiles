@@ -27,12 +27,11 @@ OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld 
 
 ### MacOS
 
-Clipboard Inidicator, RayCast, Stats, AltTab, Rectangle, zsh-autosuggestions,
+Clipboard Inidicator, Stats, AltTab, Rectangle, zsh-autosuggestions, humming-bird
 
 ### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda, komorebi, Rainmeter, AllStartBack, noVNC<br>
-Note: Ubuntu 22.04 will took roughly 26G, run `.\wsl_usage.ps1` to check.
+PowerShell, Git for windows, VcXrv, Scoop, cuda, komorebi, Rainmeter, AllStartBack, noVNC, AltSnap
 
 # Complicate ones
 
