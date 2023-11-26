@@ -56,6 +56,7 @@ local options = {
 }
 vim.cmd [[
   set statusline=%{repeat('─',winwidth('.'))}
+  set indentkeys-=:
 ]]
 
 vim.opt.pumblend = 0
