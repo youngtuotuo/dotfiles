@@ -25,7 +25,8 @@ cmp.setup({
   },
   formatting = {
     format = function(entry, vim_item)
-      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+      vim_item.menu = entry.source.name
       return vim_item
     end,
   },
