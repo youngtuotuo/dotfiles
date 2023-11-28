@@ -30,8 +30,8 @@ cmp.setup({
     end,
   },
   window = {
-    completion = { scrollbar = false, border = border },
-    documentation = { scrollbar = false, border = border },
+    completion = { scrollbar = false, border = border, max_width = 40 },
+    documentation = { scrollbar = false, border = border, max_width = 40 },
   },
   snippet = {
     expand = function(args)
