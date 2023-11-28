@@ -46,7 +46,6 @@ local function split_lines(value)
   value = string.gsub(value, '\r\n?', '\n')
   value = string.gsub(value, '&nbsp;', ' ')
   value = string.gsub(value, '\\', '')
-  value = string.gsub(value, '_', '')
   return vim.split(value, '\n', { plain = true, trimempty = true })
 end
 
