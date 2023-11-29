@@ -4,5 +4,4 @@ vim.g.vimtex_compiler_latexmk_engines = {
   _ = "-xelatex",
 }
 vim.g.vimtex_quickfix_enabled = 0
-vim.opt.conceallevel = 2
-vim.keymap.set("n", "<leader>vc", ":VimtexCompile<CR>", { noremap = true })
+vim.g.vimtex_imaps_enabled = 0
