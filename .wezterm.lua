@@ -27,15 +27,23 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+local dimmer = { brightness = 0.05 }
+local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
+local file = ""
+if os.getenv("HOME") then
+  file = os.getenv("HOME") .. bg
+end
+
 if getOS() == "Windows" then
+  file = "C:/Users/User" .. bg
   config.default_prog = { "pwsh.exe" }
-  config.window_decorations = "NONE"
+  -- config.window_decorations = "NONE"
 else
-  config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
+  config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 end
 -- This is where you actually apply your config choices
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 16
+config.font_size = 11
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.hide_tab_bar_if_only_one_tab = true
@@ -57,24 +65,24 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
 config.color_scheme = "Catppuccin Mocha"
-config.window_frame = {
-  border_left_width = '0.1cell',
-  border_right_width = '0.1cell',
-  border_bottom_height = '0.05cell',
-  border_left_color = '#323234',
-  border_right_color = '#323234',
-  border_bottom_color = '#323234',
-}
 
 config.colors = {
   cursor_fg = "black",
   cursor_bg = "#bfc7d5",
   cursor_border = "#bfc7d5",
+  -- background = "black"
 }
 
+config.background = {
+  {
+    source = {
+      File = file,
+    },
+    hsb = dimmer,
+  },
+}
 config.tab_bar_at_bottom = true
 
-config.colors = { background = "black" }
 
 -- and finally, return the configuration to wezterm
 return config
