@@ -55,6 +55,7 @@ local fg = "#c8d3f5"
 local fg_dark = "#828bb8"
 local bg_dark = "#181819"
 local border_fg = "#589ed7"
+vim.api.nvim_set_hl(0, "Error", { fg = transparent })
 vim.api.nvim_set_hl(0, "NormalFloat", { fg = fg, bg = transparent })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_fg, bg = transparent })
 vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = transparent })
