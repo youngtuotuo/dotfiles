@@ -16,7 +16,7 @@ This repo includes:
 
 # Easy Install Tools
 
-Tools listed here can be found by goolge once.<br>
+Tools listed here can be found by goolging once.<br>
 
 ### All OS
 
@@ -33,7 +33,7 @@ Clipboard Inidicator, Stats, AltTab, Rectangle, zsh-autosuggestions, humming-bir
 
 PowerShell, Git for windows, VcXrv, Scoop, cuda, komorebi, Rainmeter, AllStartBack, noVNC, AltSnap
 
-# Complicate ones
+# Complicated ones
 
 ### One for all dependicies
 
@@ -51,11 +51,12 @@ sudo apt-get update && sudo apt-get install yarn
 ```
 
 ### Clangd Language Server Configuration
-For `#include <Python.h>`. Put this file to projcet root. Remember to remove unused flags.
+For `#include <Python.h>`, put this file to projcet root:
 
 ```bash
 cp ~/github/dotfiles/compile_flags.txt .
 ```
+Remember to remove unused flags.
 
 Run this command to get the path of `Python.h`.
 ```bash
@@ -63,6 +64,7 @@ python -c "import sysconfig; print(sysconfig.get_paths())"
 ```
 
 ### Zig
+Install llvm first.  
 [apt.llvm.org](https://apt.llvm.org/)
 ```bash
 wget https://apt.llvm.org/llvm.sh
@@ -160,7 +162,7 @@ cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 
 ### tigerVNC
 
-Not works in WSL2.
+Not work in WSL2.
 
 ```bash
 sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
