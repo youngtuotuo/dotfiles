@@ -56,10 +56,10 @@ config.mouse_bindings = {
   },
 }
 config.window_padding = {
-  left = 10,
-  right = 10,
-  top = 10,
-  bottom = 10
+  left = "2cell",
+  right = "2cell",
+  top = "0.5cell",
+  bottom = "0.5cell"
 }
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
@@ -70,12 +70,11 @@ config.colors = {
   cursor_fg = "black",
   cursor_bg = "#bfc7d5",
   cursor_border = "#bfc7d5",
-  -- background = "black"
 }
 config.window_frame = {
-  border_left_width = '0.1cell',
-  border_right_width = '0.1cell',
-  border_bottom_height = '0.05cell',
+  border_left_width = '0.2cell',
+  border_right_width = '0.2cell',
+  border_bottom_height = '0.1cell',
   border_left_color = '#333233',
   border_right_color = '#333233',
   border_bottom_color = '#333233',
