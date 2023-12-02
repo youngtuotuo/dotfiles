@@ -16,7 +16,7 @@ local plugins = {
   "nvim-lua/plenary.nvim",
   "tpope/vim-fugitive",
   {
-    'catppuccin/nvim',
+    "catppuccin/nvim",
     config = function()
       require("lazyload.colorscheme")
     end,
