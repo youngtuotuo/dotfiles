@@ -61,6 +61,10 @@ local handlers = {
     local cfg = require("lazyload.lsp.pyright")(capabilities, util)
     lspconfig.pyright.setup(cfg)
   end,
+  ["ruff_lsp"] = function()
+    local cfg = require("lazyload.lsp.ruff")(capabilities, util)
+    lspconfig.ruff_lsp.setup(cfg)
+  end
   -- ["texlab"] = function()
   --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(capabilities))
   -- end,
@@ -75,33 +79,32 @@ local diag_config = {
   update_in_insert = false,
   severity_sort = true,
   float = {
-    show_header = true,
+    header = true,
+    prefix = function() return "" end,
     focusable = true,
-    source = "always",
     title = " σ`∀´)σ ",
     border = g.border,
     max_width = 80,
-    format = function(d)
-      if not d.code and not d.user_data then
-        return d.message
-      end
-
-      local t = vim.deepcopy(d)
-      local code = d.code
-      if not code then
-        if not d.user_data.lsp then
-          return d.message
-        end
-
-        code = d.user_data.lsp.code
-      end
-      if code then
-        t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
-      end
-      return t.message
-    end,
+    -- format = function(d)
+    --   if not d.code and not d.user_data then
+    --     return d.message
+    --   end
+    --
+    --   local t = vim.deepcopy(d)
+    --   local code = d.code
+    --   if not code then
+    --     if not d.user_data.lsp then
+    --       return d.message
+    --     end
+    --
+    --     code = d.user_data.lsp.code
+    --   end
+    --   if code then
+    --     t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
+    --   end
+    --   return t.message
+    -- end,
   },
-  source = true,
 }
 
 vim.diagnostic.config(diag_config)

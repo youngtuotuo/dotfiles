@@ -28,6 +28,9 @@ require("formatter").setup({
       function()
         return require("lazyload.formatters.black")
       end,
+      function()
+        return require("lazyload.formatters.ruff")
+      end,
     },
     go = {
       function()
