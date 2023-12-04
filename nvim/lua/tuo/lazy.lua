@@ -39,7 +39,9 @@ local plugins = {
     },
   },
   {
-    "theprimeagen/harpoon",
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { {"nvim-lua/plenary.nvim"} },
     config = function()
       require("lazyload.harpoon")
     end,
