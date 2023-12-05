@@ -22,7 +22,7 @@
       ]
     },
     {
-      "description": "control + left click -> contorl + command + left click",
+      "description": "control + left click -> contorl + command",
       "manipulators": [
         {
           "type": "basic",
@@ -37,7 +37,7 @@
           "to": [
             {
               "repeat": true,
-              "pointing_button": "button1",
+              "key_code": "left_control",
               "modifiers": [
                 "left_control",
                 "left_command"
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "description": "control + right click -> contorl + command + right click",
+      "description": "control + right click -> contorl + alt",
       "manipulators": [
         {
           "type": "basic",
@@ -63,10 +63,10 @@
           "to": [
             {
               "repeat": true,
-              "pointing_button": "button2",
+              "key_code": "left_control",
               "modifiers": [
                 "left_control",
-                "left_command"
+                "left_alt"
               ]
             }
           ]
