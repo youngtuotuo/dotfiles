@@ -89,6 +89,13 @@ config.background = {
   },
 }
 config.tab_bar_at_bottom = true
+config.ssh_domains = {
+  {
+    name = 'ubuntu',
+    remote_address = '192.168.0.123',
+    username = 'support',
+  },
+}
 
 
 -- and finally, return the configuration to wezterm
