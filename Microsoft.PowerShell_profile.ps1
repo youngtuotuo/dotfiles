@@ -1,7 +1,9 @@
-# Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Alias
+
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias ll ls
@@ -58,12 +60,8 @@ function reboot {
 	shutdown /r /t 0
 }
 
-#region conda initialize
-# !! Contents within this block are managed by 'conda init' !!
-If (Test-Path "C:\Users\User\miniconda3\Scripts\conda.exe") {
-    (& "C:\Users\User\miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
-}
-#endregion
+
+# edit prompt
 function prompt {
-    "PS $(Get-Location)`r`n> "
+    "$(Get-Location)`r`n$ "
 }
