@@ -1,1 +1,1 @@
-return { exe = "gofmt", stdin = true }
+return function() return { exe = "gofmt", stdin = true } end
