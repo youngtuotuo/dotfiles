@@ -59,9 +59,3 @@ set-alias find-name find-file
 function reboot {
 	shutdown /r /t 0
 }
-
-
-# edit prompt
-function prompt {
-    "$(Get-Location)`r`n$ "
-}
