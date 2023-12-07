@@ -46,7 +46,6 @@ config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 14
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.hide_tab_bar_if_only_one_tab = true
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.mouse_bindings = {
   {
@@ -70,6 +69,11 @@ config.colors = {
   cursor_fg = "black",
   cursor_bg = "#bfc7d5",
   cursor_border = "#bfc7d5",
+  tab_bar = {
+    -- The color of the strip that goes along the top of the window
+    -- (does not apply when fancy tab bar is in use)
+    background = "rgba(0, 0, 0, 0)",
+  },
 }
 config.window_frame = {
   border_left_width = '0.2cell',
@@ -88,11 +92,13 @@ config.background = {
     hsb = dimmer,
   },
 }
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 
 config.ssh_domains = {
   {
-    -- This name identifies the domain
+    -- This name identifies the domainV
     name = 'ubuntu',
     -- The hostname or address to connect to. Will be used to match settings
     -- from your ssh config file
@@ -110,6 +116,21 @@ config.keys = {
   },
   { key = '{', mods = 'SHIFT|ALT', action = act.MoveTabRelative(-1) },
   { key = '}', mods = 'SHIFT|ALT', action = act.MoveTabRelative(1) },
+  {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
 }
 
 -- and finally, return the configuration to wezterm
