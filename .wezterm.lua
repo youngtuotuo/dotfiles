@@ -1,10 +1,17 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local act = wezterm.action
+act { SpawnCommandInNewTab = { cwd = wezterm.home_dir } }
 
 -- This table will hold the configuration.
 local config = {}
 
 local function getOS()
+  -- ask LuaJIT first
+  if jit then
+    return jit.os
+  end
+
   -- Unix, Linux variants
   local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
   if fh then
@@ -36,7 +43,7 @@ else
 end
 -- This is where you actually apply your config choices
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 11
+config.font_size = 14
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.hide_tab_bar_if_only_one_tab = true
@@ -57,6 +64,7 @@ config.window_padding = {
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
+config.color_scheme = "Catppuccin Mocha"
 
 config.colors = {
   cursor_fg = "black",
@@ -81,14 +89,26 @@ config.background = {
   },
 }
 config.tab_bar_at_bottom = true
+
 config.ssh_domains = {
   {
+    -- This name identifies the domain
     name = 'ubuntu',
+    -- The hostname or address to connect to. Will be used to match settings
+    -- from your ssh config file
     remote_address = '192.168.0.123',
+    -- The username to use on the remote host
     username = 'support',
   },
 }
-
+config.keys = {
+  { key = 'U', mods = 'CTRL|SHIFT', action = act.AttachDomain 'ubuntu' },
+  {
+    key = 'D',
+    mods = 'CTRL|SHIFT',
+    action = act.DetachDomain 'CurrentPaneDomain',
+  },
+}
 
 -- and finally, return the configuration to wezterm
 return config
