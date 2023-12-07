@@ -20,18 +20,16 @@ Tools listed here can be found by goolging once.<br>
 
 ### All OS
 
-Fira Code Nerd Font<br>
-Go, Haskell, Zig<br>
-OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm<br>
+Wireguard, OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm<br>
 
 
 ### MacOS
 
-Clipboard Inidicator, Stats, AltTab, Rectangle, zsh-autosuggestions, humming-bird
+Brew, Clipboard Inidicator, AltTab, Rectangle, zsh-autosuggestions, Karadiner-Elements, [Easy-Move-Resize(100hz v.)](https://drive.google.com/file/d/1bdyYV0fyfmAnF1Lla08BVVKNLJTMiQwU/view?usp=drive_link)
 
 ### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda, komorebi, Rainmeter, AllStartBack, noVNC, AltSnap
+PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC, AltSnap
 
 # Complicated ones
 
