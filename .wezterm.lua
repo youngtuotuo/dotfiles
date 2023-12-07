@@ -37,10 +37,8 @@ end
 if getOS() == "Windows" then
   file = "C:/Users/User" .. bg
   config.default_prog = { "pwsh.exe" }
-  -- config.window_decorations = "NONE"
-else
-  config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 end
+config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 -- This is where you actually apply your config choices
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 -- config.font_size = 14
@@ -60,15 +58,8 @@ config.window_padding = {
   top = "0.5cell",
   bottom = "0.5cell"
 }
-config.cursor_blink_ease_in = "Constant"
-config.cursor_blink_ease_out = "Constant"
-config.cursor_blink_rate = 800
-config.color_scheme = "Catppuccin Mocha"
 
 config.colors = {
-  cursor_fg = "black",
-  cursor_bg = "#bfc7d5",
-  cursor_border = "#bfc7d5",
   tab_bar = {
     background = 'rgba(0,0,0,0)',
   }
