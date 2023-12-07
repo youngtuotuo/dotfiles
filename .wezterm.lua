@@ -70,10 +70,8 @@ config.colors = {
   cursor_bg = "#bfc7d5",
   cursor_border = "#bfc7d5",
   tab_bar = {
-    -- The color of the strip that goes along the top of the window
-    -- (does not apply when fancy tab bar is in use)
-    background = "rgba(0, 0, 0, 0)",
-  },
+    background = 'rgba(0,0,0,0)',
+  }
 }
 config.window_frame = {
   border_left_width = '0.2cell',
@@ -82,6 +80,13 @@ config.window_frame = {
   border_left_color = '#333233',
   border_right_color = '#333233',
   border_bottom_color = '#333233',
+  -- The overall background color of the tab bar when
+  -- the window is focused
+  active_titlebar_bg = '#333333',
+
+  -- The overall background color of the tab bar when
+  -- the window is not focused
+  inactive_titlebar_bg = '#333333',
 }
 
 config.background = {
@@ -93,7 +98,7 @@ config.background = {
   },
 }
 config.tab_bar_at_bottom = false
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 
 config.ssh_domains = {
