@@ -121,7 +121,7 @@
       ]
     },
     {
-      "description": "1 finger touch + ctrl + command -> ctrl + command + left click",
+      "description": "1 finger touch + command + ctrl -> ctrl + command + left click",
       "manipulators": [
         {
           "type": "basic",
@@ -154,7 +154,40 @@
       ]
     },
     {
-      "description": "1 finger touch + ctrl + alt -> ctrl + command + right click",
+      "description": "1 finger touch + ctrl + command -> ctrl + command + left click",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "repeat": true,
+              "pointing_button": "button1",
+              "modifiers": [
+                "left_control",
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "multitouch_extension_finger_count_total",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "1 finger touch + alt + ctrl -> ctrl + command + right click",
       "manipulators": [
         {
           "type": "basic",
@@ -163,6 +196,39 @@
             "modifiers": {
               "mandatory": [
                 "left_alt"
+              ]
+            }
+          },
+          "to": [
+            {
+              "repeat": true,
+              "pointing_button": "button2",
+              "modifiers": [
+                "left_control",
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "multitouch_extension_finger_count_total",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "1 finger touch + ctrl + alt -> ctrl + command + right click",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_alt",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
               ]
             }
           },
