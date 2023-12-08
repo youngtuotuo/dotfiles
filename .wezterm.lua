@@ -7,17 +7,11 @@ act { SpawnCommandInNewTab = { cwd = wezterm.home_dir } }
 local config = {}
 
 local function getOS()
-  -- ask LuaJIT first
-  if jit then
-    return jit.os
-  end
-
   -- Unix, Linux variants
   local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
   if fh then
     osname = fh:read()
   end
-
   return osname or "Windows"
 end
 
@@ -41,7 +35,6 @@ end
 config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 -- This is where you actually apply your config choices
 config.font = wezterm.font("JetBrainsMono Nerd Font")
--- config.font_size = 14
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
@@ -52,17 +45,13 @@ config.mouse_bindings = {
     mods = "NONE",
   },
 }
-config.window_padding = {
-  left = "2cell",
-  right = "2cell",
-  top = "0.5cell",
-  bottom = "0.5cell"
-}
 
 config.colors = {
   tab_bar = {
-    background = 'rgba(0,0,0,0)',
-  }
+    -- The color of the strip that goes along the top of the window
+    -- (does not apply when fancy tab bar is in use)
+    background = "rgba(0, 0, 0, 0)",
+  },
 }
 config.window_frame = {
   border_left_width = '0.2cell',
