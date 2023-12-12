@@ -11,7 +11,6 @@ local options = {
   backspace = "indent,eol,start",
   backup = false,
   completeopt = "menu,menuone,noinsert,noselect",
-  cmdheight = 1,
   errorbells = false,
   expandtab = true,
   equalalways = false,
@@ -23,13 +22,11 @@ local options = {
   hlsearch = true,
   incsearch = true, -- Makes search act like search in modern browsers
   ignorecase = true, -- Ignore case when searching...
-  laststatus = 0,
   matchtime = 1,
   mouse = "a",
   mousemoveevent = true,
   nu = false,
   pumheight = 7,
-  -- pumblend = 6,
   rnu = false,
   ru = true,
   smoothscroll = true,
@@ -54,10 +51,6 @@ local options = {
   wildignore = "__pycache__",
   writebackup = false,
 }
-vim.cmd [[
-  set statusline=%{repeat('─',winwidth('.'))}
-  set indentkeys-=:
-]]
 
 vim.opt.wildmode = "full"
 vim.opt.wildoptions = "pum"
