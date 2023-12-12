@@ -31,7 +31,9 @@ cmp.setup({
     end,
   },
   window = {
-    completion = { scrollbar = false, border = border, max_width = 40 },
+    completion = {
+      winhighlight = '', -- keep this
+      scrollbar = false, border = border, max_width = 40 },
     documentation = { scrollbar = false, border = border, max_width = 40 },
   },
   snippet = {
