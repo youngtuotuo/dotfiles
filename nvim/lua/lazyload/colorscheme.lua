@@ -3,10 +3,10 @@ local fg = "#c8d3f5"
 local fg_dark = "#828bb8"
 vim.api.nvim_set_hl(0, "Normal", { bg = transparent })
 vim.api.nvim_set_hl(0, "Error", { fg = transparent })
+vim.api.nvim_set_hl(0, "LspReferenceRead", { reverse = true })
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { reverse = true })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = transparent })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = transparent })
--- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg })
--- vim.api.nvim_set_hl(0, "StatusLineNC", { fg = fg_dark })
 vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
 vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = "NvimLightGreen", bg = transparent })
 vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = "NvimLightBlue", bg = transparent })
