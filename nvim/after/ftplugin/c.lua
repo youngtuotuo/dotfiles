@@ -23,5 +23,5 @@ if check_math_h() then
 end
 cmd = cmd .. "-o " .. fname_next .. ext .. " %"
 cmd = cmd .. " && ." .. sep .. fname_next .. ext
-cmd = ":sp | terminal echo '$ " .. cmd .. "' && " .. cmd
+cmd = ":sp | terminal " .. cmd
 vim.keymap.set("n", "<leader>p", cmd)
