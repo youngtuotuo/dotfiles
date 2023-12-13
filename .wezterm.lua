@@ -1,7 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
-act { SpawnCommandInNewTab = { cwd = wezterm.home_dir } }
+act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } })
 
 -- This table will hold the configuration.
 local config = {}
@@ -33,8 +33,11 @@ if getOS() == "Windows" then
   config.default_prog = { "pwsh.exe" }
 end
 config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
--- This is where you actually apply your config choices
-config.font = wezterm.font("CaskaydiaCove Nerd Font")
+config.font = wezterm.font_with_fallback({
+  family = "CaskaydiaCove Nerd Font",
+  weight = "Regular",
+  italic = false,
+})
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
@@ -47,12 +50,12 @@ config.mouse_bindings = {
 }
 
 config.window_frame = {
-  border_left_width = '0.2cell',
-  border_right_width = '0.2cell',
-  border_bottom_height = '0.1cell',
-  border_left_color = '#333233',
-  border_right_color = '#333233',
-  border_bottom_color = '#333233',
+  border_left_width = "0.2cell",
+  border_right_width = "0.2cell",
+  border_bottom_height = "0.1cell",
+  border_left_color = "#333233",
+  border_right_color = "#333233",
+  border_bottom_color = "#333233",
 }
 
 config.background = {
@@ -70,28 +73,28 @@ config.hide_tab_bar_if_only_one_tab = true
 config.ssh_domains = {
   {
     -- This name identifies the domainV
-    name = 'ubuntu',
+    name = "ubuntu",
     -- The hostname or address to connect to. Will be used to match settings
     -- from your ssh config file
-    remote_address = '192.168.0.123',
+    remote_address = "192.168.0.123",
     -- The username to use on the remote host
-    username = 'support',
+    username = "support",
   },
 }
 config.keys = {
-  { key = 'U', mods = 'CTRL|SHIFT', action = act.AttachDomain 'ubuntu' },
+  { key = "U", mods = "CTRL|SHIFT", action = act.AttachDomain("ubuntu") },
   {
-    key = 'D',
-    mods = 'CTRL|SHIFT',
-    action = act.DetachDomain 'CurrentPaneDomain',
+    key = "D",
+    mods = "CTRL|SHIFT",
+    action = act.DetachDomain("CurrentPaneDomain"),
   },
-  { key = '{', mods = 'SHIFT|ALT', action = act.MoveTabRelative(-1) },
-  { key = '}', mods = 'SHIFT|ALT', action = act.MoveTabRelative(1) },
+  { key = "{", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
+  { key = "}", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
   {
-    key = 'E',
-    mods = 'CTRL|SHIFT',
-    action = act.PromptInputLine {
-      description = 'Enter new name for tab',
+    key = "E",
+    mods = "CTRL|SHIFT",
+    action = act.PromptInputLine({
+      description = "Enter new name for tab",
       action = wezterm.action_callback(function(window, pane, line)
         -- line will be `nil` if they hit escape without entering anything
         -- An empty string if they just hit enter
@@ -100,7 +103,7 @@ config.keys = {
           window:active_tab():set_title(line)
         end
       end),
-    },
+    }),
   },
 }
 
