@@ -2,6 +2,7 @@ local options = {
   -- indent
   autoindent = true,
   cindent = true,
+  colorcolumn = "101",
   wrap = true,
   breakindent = true,
   showbreak = string.rep(" ", 3),
@@ -16,7 +17,7 @@ local options = {
   equalalways = false,
   fileencoding = "utf-8",
   fillchars = "stl: ,stlnc: ",
-  guicursor = "a:block",
+  guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   hidden = true,
   -- search
   hlsearch = true,
@@ -61,12 +62,12 @@ end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 
 -- highlight group for trailing white space
-vim.cmd [[
+vim.cmd([[
   highlight default EoLSpace guibg=Red
   match EoLSpace /\s\+$/
   autocmd InsertEnter * hi EoLSpace guibg=NONE
   autocmd InsertLeave * hi EoLSpace guibg=Red
-]]
+]])
 
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

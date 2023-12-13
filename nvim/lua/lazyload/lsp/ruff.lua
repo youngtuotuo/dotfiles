@@ -1,4 +1,3 @@
-local g = require("tuo.global")
 local config = function(capabilities, util)
   return {
     on_attach = function(client, bufnr)
