@@ -16,7 +16,7 @@ local options = {
   equalalways = false,
   fileencoding = "utf-8",
   fillchars = "stl: ,stlnc: ",
-  guicursor = "a:block",
+  guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   hidden = true,
   -- search
   hlsearch = true,
