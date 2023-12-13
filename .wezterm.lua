@@ -34,7 +34,7 @@ if getOS() == "Windows" then
 end
 config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
 -- This is where you actually apply your config choices
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("CaskaydiaCove Nerd Font")
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
