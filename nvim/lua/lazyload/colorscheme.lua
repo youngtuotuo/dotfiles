@@ -1,7 +1,7 @@
 local transparent = "none"
 local function basic_hl()
-  vim.api.nvim_set_hl(0, "Normal", { bg = transparent })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = transparent })
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = transparent })
+  -- vim.api.nvim_set_hl(0, "NormalNC", { bg = transparent })
   vim.api.nvim_set_hl(0, "Error", { fg = transparent })
 
   vim.api.nvim_set_hl(0, "LspReferenceRead", { reverse = true })
