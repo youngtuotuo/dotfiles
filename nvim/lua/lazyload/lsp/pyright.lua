@@ -70,6 +70,7 @@ local config = function(capabilities, util)
       ["textDocument/hover"] = vim.lsp.with(hover, {
         border = g.border,
         title = " Pyright ",
+        max_width = 100,
         zindex = 500,
       }),
       ["textDocument/signatureHelp"] = vim.lsp.with(

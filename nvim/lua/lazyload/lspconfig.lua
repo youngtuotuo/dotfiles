@@ -61,6 +61,10 @@ local handlers = {
     local cfg = require("lazyload.lsp.pyright")(capabilities, util)
     lspconfig.pyright.setup(cfg)
   end,
+  ["clangd"] = function()
+    local cfg = require("lazyload.lsp.clangd")(capabilities, util)
+    lspconfig.clangd.setup(cfg)
+  end,
   ["ruff_lsp"] = function()
     local cfg = require("lazyload.lsp.ruff")(capabilities, util)
     lspconfig.ruff_lsp.setup(cfg)
