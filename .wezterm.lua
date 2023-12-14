@@ -1,19 +1,9 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
-act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } })
 
 -- This table will hold the configuration.
 local config = {}
-
-local function getOS()
-  -- Unix, Linux variants
-  local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
-  if fh then
-    osname = fh:read()
-  end
-  return osname or "Windows"
-end
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -21,22 +11,8 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-local dimmer = { brightness = 0.05 }
-local bg = "/github/dotfiles/pictures/future-buildings-minimal-ve.jpg"
-local file = ""
-if os.getenv("HOME") then
-  file = os.getenv("HOME") .. bg
-end
-
-if getOS() == "Windows" then
-  file = "C:/Users/User" .. bg
-  config.default_prog = { "pwsh.exe" }
-end
-config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
-
-config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic=false })
+config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic = false })
 config.adjust_window_size_when_changing_font_size = false
-config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.mouse_bindings = {
   {
@@ -55,14 +31,6 @@ config.window_frame = {
   border_bottom_color = "#333233",
 }
 
-config.background = {
-  {
-    source = {
-      File = file,
-    },
-    hsb = dimmer,
-  },
-}
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
