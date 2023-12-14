@@ -51,21 +51,15 @@ local function hover(_, result, ctx, config)
     end
     return
   end
-  local format = 'markdown'
   local contents ---@type string[]
-  if type(result.contents) == 'table' and result.contents.kind == 'plaintext' then
-    format = 'plaintext'
-    contents = vim.split(result.contents.value or '', '\n', { trimempty = true })
-  else
-    contents = convert_input_to_markdown_lines(result.contents)
-  end
+  contents = convert_input_to_markdown_lines(result.contents)
   if vim.tbl_isempty(contents) then
     if config.silent ~= true then
       vim.notify('No information available')
     end
     return
   end
-  return util.open_floating_preview(contents, format, config)
+  return util.open_floating_preview(contents, 'plaintext', config)
 end
 
 
