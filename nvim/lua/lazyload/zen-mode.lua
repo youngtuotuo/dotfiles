@@ -11,8 +11,8 @@ require("zen-mode").setup({
     -- uncomment any of the options below, or add other vim.wo options you want to apply
     options = {
       signcolumn = "yes:1", -- disable signcolumn
-      number = false, -- disable number column
-      relativenumber = false, -- disable relative numbers
+      number = true, -- disable number column
+      relativenumber = true, -- disable relative numbers
       -- cursorline = false, -- disable cursorline
       -- cursorcolumn = false, -- disable cursor column
       -- foldcolumn = "0", -- disable fold column
@@ -56,5 +56,14 @@ require("zen-mode").setup({
       font = "+4", -- (10% increase per step)
     },
   },
+    -- callback where you can add custom code when the Zen window opens
+  on_open = function(win)
+    vim.cmd([[
+      highlight default EoLSpace guibg=Red
+      match EoLSpace /\s\+$/
+      autocmd InsertEnter * hi EoLSpace guibg=NONE
+      autocmd InsertLeave * hi EoLSpace guibg=Red
+    ]])
+  end,
 })
 vim.keymap.set("n", "<space>z", ":ZenMode<cr>", { noremap = true })
