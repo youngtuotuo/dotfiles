@@ -3,18 +3,6 @@ require("lspsaga").setup({
   preview = { lines_above = 0, lines_below = 10 },
   scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
   request_timeout = 2000,
-  ui = {
-    title = true,
-    border = g.border,
-    winblend = 0,
-    expand = "",
-    collapse = "",
-    code_action = "💡",
-    incoming = " ",
-    outgoing = " ",
-    hover = "  ",
-    kind = {},
-  },
   beacon = { enable = true, frequency = 20 },
   outline = {
     win_position = "left",
