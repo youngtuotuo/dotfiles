@@ -5,33 +5,35 @@ local function split_lines(value)
   value = string.gsub(value, '\r\n?', '\n')
   value = string.gsub(value, '&nbsp;', ' ')
   value = string.gsub(value, '\\', '')
+  value = string.gsub(value, '```python', '')
+  value = string.gsub(value, '```', '')
   return vim.split(value, '\n', { plain = true, trimempty = true })
 end
 
 local function convert_input_to_markdown_lines(input, contents)
   contents = contents or {}
   -- MarkedString variation 1
-  if type(input) == 'string' then
-    vim.list_extend(contents, split_lines(input))
+  -- if type(input) == 'string' then
+  --   vim.list_extend(contents, split_lines(input))
+  -- else
+  assert(type(input) == 'table', 'Expected a table for LSP input')
+  -- MarkupContent
+  if input.kind then
+    local value = input.value or ''
+    vim.list_extend(contents, split_lines(value))
+    -- MarkupString variation 2
+  elseif input.language then
+    -- table.insert(contents, '```' .. input.language)
+    vim.list_extend(contents, split_lines(input.value or ''))
+    -- table.insert(contents, '```')
+    -- By deduction, this must be MarkedString[]
   else
-    assert(type(input) == 'table', 'Expected a table for LSP input')
-    -- MarkupContent
-    if input.kind then
-      local value = input.value or ''
-      vim.list_extend(contents, split_lines(value))
-      -- MarkupString variation 2
-    elseif input.language then
-      table.insert(contents, '```' .. input.language)
-      vim.list_extend(contents, split_lines(input.value or ''))
-      table.insert(contents, '```')
-      -- By deduction, this must be MarkedString[]
-    else
-      -- Use our existing logic to handle MarkedString
-      for _, marked_string in ipairs(input) do
-        convert_input_to_markdown_lines(marked_string, contents)
-      end
+    -- Use our existing logic to handle MarkedString
+    for _, marked_string in ipairs(input) do
+      convert_input_to_markdown_lines(marked_string, contents)
     end
   end
+  -- end
   if (contents[1] == '' or contents[1] == nil) and #contents == 1 then
     return {}
   end
