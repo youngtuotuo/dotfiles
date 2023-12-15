@@ -1,19 +1,7 @@
 local g = require("tuo.global")
 
-local function find_executable_path(executable_name)
-  local handle
-  if vim.fn.has("win32") then
-    handle = io.popen("where " .. executable_name)
-  else
-    handle = io.popen("which " .. executable_name)
-  end
-  local result = handle:read("*a")
-  handle:close()
-
-  result = result:gsub("\n", "")
-  -- result = result:gsub("\\", "/")
-
-  return result
+if vim.fn.has("win32") then
+  return {}
 end
 
 local config = function(capabilities, util)
@@ -31,9 +19,6 @@ local config = function(capabilities, util)
       ),
     },
     capabilities = capabilities,
-    -- cmd = {
-    --   "clangd", "--query-driver=" .. find_executable_path("gcc")-- .. "," .. find_executable_path("clang++") .. "," .. find_executable_path("gcc") .. "," .. find_executable_path("g++")
-    -- }
   }
 end
 
