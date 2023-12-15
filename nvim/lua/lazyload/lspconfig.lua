@@ -62,7 +62,7 @@ local handlers = {
     lspconfig.pyright.setup(cfg)
   end,
   ["clangd"] = function()
-    if not vim.fn.has("win32") then
+    if vim.fn.has("win32") == 0 then
       local cfg = require("lazyload.lsp.clangd")(capabilities, util)
       lspconfig.clangd.setup(cfg)
     end

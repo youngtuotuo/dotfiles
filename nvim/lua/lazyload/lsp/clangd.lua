@@ -1,9 +1,5 @@
 local g = require("tuo.global")
 
-if vim.fn.has("win32") then
-  return {}
-end
-
 local config = function(capabilities, util)
   return {
     handlers = {
