@@ -5,6 +5,7 @@ local options = {
   colorcolumn = "101",
   wrap = true,
   breakindent = true,
+  termsync = false,
   showbreak = string.rep(" ", 3),
   linebreak = true,
   -- in case
