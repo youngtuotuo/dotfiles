@@ -16,6 +16,7 @@ local plugins = {
   "nvim-lua/plenary.nvim",
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
+  "Vimjas/vim-python-pep8-indent",
   {
     "catppuccin/nvim",
     config = function()
