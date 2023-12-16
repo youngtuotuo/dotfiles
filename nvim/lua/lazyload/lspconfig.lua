@@ -16,6 +16,17 @@ local toggle_lsp_highlight = function()
   end
 end
 
+vim.g.inlay_hints_visible = false
+local function toggle_inlay_hints()
+  if vim.g.inlay_hints_visible then
+    vim.g.inlay_hints_visible = false
+    vim.lsp.inlay_hint.enable(0, false)
+  else
+    vim.g.inlay_hints_visible = true
+    vim.lsp.inlay_hint.enable(0, true)
+  end
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspconfig", {}),
   callback = function(ev)
@@ -36,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, opts)
     -- vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", opts)
+    vim.keymap.set("n", "gh", toggle_inlay_hints, opts)
     vim.keymap.set("n", "<space>i", toggle_lsp_highlight)
   end,
 })
