@@ -13,7 +13,7 @@ require("nvim-treesitter.configs").setup({
   auto_install = false,
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "markdown" },
+    -- disable = { "markdown" },
   },
   textobjects = {
     enable = true,

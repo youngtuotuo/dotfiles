@@ -7,6 +7,7 @@ local function split_lines(value)
   value = string.gsub(value, '\\',        '')
   value = string.gsub(value, '```python', '')
   value = string.gsub(value, '```',       '')
+  value = string.gsub(value, "`", "")
   return vim.split(value, '\n', { plain = true, trimempty = true })
 end
 
