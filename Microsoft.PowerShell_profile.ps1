@@ -2,6 +2,8 @@ Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -Colors @{ InlinePrediction = "$([char]0x1b)[38;5;238m" }
+Set-PSReadlineOption -BellStyle None
 
 
 Set-Alias vim nvim
