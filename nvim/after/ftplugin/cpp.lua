@@ -8,20 +8,24 @@ local check_math_h = function()
   return true
 end
 
-local fname_next = vim.fn.expand("%:t:r")
-local ext = ""
-local sep = "/"
-local compiler = "clang++"
-if vim.fn.has("win32") == 1 then
-  ext = ".exe"
-  sep = "\\"
-  compiler = "clang-cl"
-end
-local cmd = compiler .. " -Wall -std=c++14 "
-if check_math_h() then
-  cmd = cmd .. "-lm "
-end
-cmd = cmd .. "-o " .. fname_next .. ext .. " %"
-cmd = cmd .. " && ." .. sep .. fname_next .. ext
-cmd = ":sp | terminal " .. cmd
-vim.keymap.set("n", "<leader>p", cmd)
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    local fname_next = vim.fn.expand("%:t:r")
+    local ext = ""
+    local sep = "/"
+    local compiler = "clang++"
+    if vim.fn.has("win32") == 1 then
+      ext = ".exe"
+      sep = "\\"
+      compiler = "clang-cl"
+    end
+    local cmd = compiler .. " -Wall -std=c++14 "
+    if check_math_h() then
+      cmd = cmd .. "-lm "
+    end
+    cmd = cmd .. "-o " .. fname_next .. ext .. " %"
+    cmd = cmd .. " && ." .. sep .. fname_next .. ext
+    cmd = ":sp | terminal " .. cmd
+    vim.keymap.set("n", "<leader>p", cmd)
+  end,
+})
