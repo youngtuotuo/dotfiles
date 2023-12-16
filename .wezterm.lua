@@ -2,6 +2,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -11,12 +12,14 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- windows
-if package.config:sub(1, 1) == "\\" then
+if package.config:sub(1,1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
 
-config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic = false })
+config.font = wezterm.font(
+  "CaskaydiaCove Nerd Font",
+  { weight = "Regular", italic = false }
+)
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
@@ -27,6 +30,7 @@ config.mouse_bindings = {
     mods = "NONE",
   },
 }
+config.audible_bell = "Disabled"
 
 config.window_frame = {
   border_left_width = "0.2cell",
@@ -35,6 +39,12 @@ config.window_frame = {
   border_left_color = "#333233",
   border_right_color = "#333233",
   border_bottom_color = "#333233",
+}
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
 }
 
 config.tab_bar_at_bottom = true
@@ -74,20 +84,6 @@ config.keys = {
           window:active_tab():set_title(line)
         end
       end),
-    }),
-  },
-  {
-    key = "_",
-    mods = "CTRL|SHIFT|ALT",
-    action = wezterm.action.SplitVertical({
-      domain = "CurrentPaneDomain",
-    }),
-  },
-  {
-    key = "|",
-    mods = "CTRL|SHIFT|ALT",
-    action = wezterm.action.SplitHorizontal({
-      domain = "CurrentPaneDomain",
     }),
   },
 }
