@@ -15,7 +15,7 @@ local compiler = "clang++"
 if vim.fn.has("win32") == 1 then
   ext = ".exe"
   sep = "\\"
-  compiler = "g++"
+  compiler = "clang-cl"
 end
 local cmd = compiler .. " -Wall -std=c++14 "
 if check_math_h() then
