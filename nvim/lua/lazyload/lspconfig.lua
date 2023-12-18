@@ -33,23 +33,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Mappings.
     local opts = { buffer = ev.buf }
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set(
-      "n",
-      "<space>wl",
-      function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-      opts
-    )
+    vim.keymap.set("n", "<space>wl", function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "gh", toggle_inlay_hints, opts)
     vim.keymap.set("n", "<space>i", toggle_lsp_highlight)
+    vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
   end,
 })
 
@@ -82,7 +80,7 @@ local handlers = {
   ["ruff_lsp"] = function()
     local cfg = require("lazyload.lsp.ruff")(capabilities, util)
     lspconfig.ruff_lsp.setup(cfg)
-  end
+  end,
   -- ["texlab"] = function()
   --   lspconfig.texlab.setup(require("lazyload.lsp.texlab")(capabilities))
   -- end,
@@ -98,7 +96,9 @@ local diag_config = {
   severity_sort = true,
   float = {
     header = true,
-    prefix = function() return "" end,
+    prefix = function()
+      return ""
+    end,
     focusable = true,
     title = " σ`∀´)σ ",
     border = g.border,

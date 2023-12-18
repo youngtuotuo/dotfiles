@@ -76,6 +76,13 @@ local plugins = {
     end,
   },
   {
+    "stevearc/aerial.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lazyload.aerial")
+    end
+  },
+  {
     "luukvbaal/statuscol.nvim",
     event = "BufRead",
     config = function()
@@ -109,18 +116,6 @@ local plugins = {
     config = function()
       require("lazyload.twilight")
     end,
-  },
-  {
-    "glepnir/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      require("lazyload.lspsaga")
-    end,
-    dependencies = {
-      -- Please make sure you install markdown and markdown_inline parser
-      { "nvim-treesitter/nvim-treesitter" },
-      { "neovim/nvim-lspconfig" },
-    },
   },
   {
     "lervag/vimtex",
