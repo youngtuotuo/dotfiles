@@ -78,7 +78,7 @@ local handlers = {
     -- end
   end,
   ["ruff_lsp"] = function()
-    local cfg = require("lazyload.lsp.ruff")(capabilities, util)
+    local cfg = require("lazyload.lsp.ruff_lsp")(capabilities, util)
     lspconfig.ruff_lsp.setup(cfg)
   end,
   -- ["texlab"] = function()

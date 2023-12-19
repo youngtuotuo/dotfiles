@@ -11,9 +11,11 @@ local config = function(capabilities, util)
       ".gitignore",
       "pyproject.toml",
     })),
-    settings = {
-      args = {},
-    },
+    init_options = {
+      settings = {
+        args = { "--ignore=E701" },
+      },
+    }
   }
 end
 
