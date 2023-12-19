@@ -30,6 +30,8 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspconfig", {}),
   callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
     -- Mappings.
     local opts = { buffer = ev.buf }
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -39,6 +41,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "gn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
     vim.keymap.set("n", "<space>wl", function()
@@ -150,4 +153,4 @@ vim.keymap.set("n", "]d", function()
     float = false,
   })
 end)
-vim.keymap.set("n", "<leader>m", ":Mason<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>m", "<cmd>Mason<cr>", { noremap = true })
