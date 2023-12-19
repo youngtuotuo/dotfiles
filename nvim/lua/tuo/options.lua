@@ -1,7 +1,6 @@
 local options = {
   expandtab = true,
   softtabstop = 4,
-  colorcolumn = "101",
   wrap = true,
   termsync = false,
   showbreak = string.rep(" ", 3),
