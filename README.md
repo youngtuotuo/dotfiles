@@ -29,7 +29,7 @@ Brew, Clipboard Inidicator, AltTab, Rectangle, zsh-autosuggestions, Karadiner-El
 
 ### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC, AltSnap
+PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC, AltSnap, QuickLook, ZoomIt
 
 # Complicated ones
 
