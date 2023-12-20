@@ -3,8 +3,6 @@ local util = require("vim.lsp.util")
 
 local function split_lines(value)
   value = string.gsub(value, "\n%-%-%-", "%-%-%-")
-  value = string.gsub(value, "\\%[", "[[")
-  value = string.gsub(value, "\\%]", "]]")
   value = string.gsub(value, "&nbsp;", " ")
   value = string.gsub(value, "&gt;", ">")
   value = string.gsub(value, "\\", "")
@@ -48,7 +46,7 @@ local function hover(_, result, ctx, config)
     end
     return
   end
-  return util.open_floating_preview(contents, "markdown", config)
+  return util.open_floating_preview(contents, "plaintext", config)
 end
 
 local config = function(capabilities, util)
