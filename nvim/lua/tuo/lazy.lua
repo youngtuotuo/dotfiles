@@ -151,7 +151,7 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     event = "BufRead",
     config = function()
-      -- require("lazyload.nvim-cmp")
+      require("lazyload.nvim-cmp")
     end,
     dependencies = {
       "hrsh7th/cmp-buffer",
