@@ -27,5 +27,3 @@ end
 basic_hl()
 
 vim.api.nvim_create_autocmd("ColorScheme", { callback = basic_hl })
-
-vim.cmd [[colo catppuccin]]
