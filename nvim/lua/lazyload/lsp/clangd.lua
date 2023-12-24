@@ -2,7 +2,7 @@ local g = require("tuo.global")
 local util = require("vim.lsp.util")
 
 local function split_lines(value)
-  value = string.gsub(value, "\\", "")
+  value = string.gsub(value, "\\\\", "\\")
   value = string.gsub(value, "```cpp", "")
   value = string.gsub(value, "```", "")
   value = string.gsub(value, "`", "")
