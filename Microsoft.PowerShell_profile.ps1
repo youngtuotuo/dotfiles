@@ -11,7 +11,11 @@ Set-Alias vi nvim
 Set-Alias ll ls
 Set-Alias tig 'C:\Program Files\Git\usr\bin\tig.exe'
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
-function dev {C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64;cd ~}
+function dev {
+    $curDir = Get-Location;
+    C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64;
+    cd $curDir
+}
 
 function l { ls | Format-Wide -Column 3 }
 
