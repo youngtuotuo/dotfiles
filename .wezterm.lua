@@ -15,7 +15,7 @@ end
 if package.config:sub(1,1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
-config.color_scheme = 'Macintosh (base16)'
+config.color_scheme = 'iTerm2 Default'
 config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic = false })
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
