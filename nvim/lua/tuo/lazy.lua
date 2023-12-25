@@ -17,12 +17,8 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-vinegar",
   "Vimjas/vim-python-pep8-indent",
-  {
-    "catppuccin/nvim",
-    config = function()
-      require("lazyload.colorscheme")
-    end,
-  },
+  "catppuccin/nvim",
+  'Mofiqul/vscode.nvim',
   { "microsoft/python-type-stubs", cond = false },
   {
     "nvim-telescope/telescope.nvim",

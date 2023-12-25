@@ -9,6 +9,7 @@ end
 vim.loader.enable()
 require("tuo.options")
 require("tuo.keymaps")
+require("tuo.colorscheme")
 require("tuo.lazy")
 
 P = function(v)
