@@ -8,6 +8,7 @@ local options = {
   linebreak = true,
   -- in case
   belloff = "all",
+  cinoptions="l1",
   backspace = "indent,eol,start",
   backup = false,
   completeopt = "menu,menuone,noinsert,noselect",
