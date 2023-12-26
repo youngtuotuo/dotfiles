@@ -117,6 +117,7 @@ vim.g.netrw_altfile = 1
 vim.g.netrw_cursor = 5
 vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
+vim.g.netrw_hide = 0
 
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
