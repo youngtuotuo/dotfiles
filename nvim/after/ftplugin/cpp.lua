@@ -1,5 +1,6 @@
-vim.opt_local.shiftwidth = 2
-vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 4
+vim.opt_local.softtabstop = 4
+vim.opt_local.tabstop = 4
 local check_math_h = function()
   local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   if vim.fn.match(content, "math.h") == -1 then

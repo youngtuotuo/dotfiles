@@ -1,6 +1,7 @@
 local options = {
   expandtab = true,
   softtabstop = 4,
+  smartindent = true,
   wrap = true,
   termsync = false,
   showbreak = string.rep(" ", 3),
