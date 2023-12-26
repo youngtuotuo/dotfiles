@@ -29,6 +29,7 @@ local options = {
   ru = true,
   smoothscroll = true,
   scrolloff = 10,
+  mousemodel = "extend",
   shiftwidth = 4,
   termguicolors = true,
   showcmd = true,
