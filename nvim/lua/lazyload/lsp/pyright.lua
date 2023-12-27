@@ -47,7 +47,7 @@ local function hover(_, result, ctx, config)
     end
     return
   end
-  return util.open_floating_preview(contents, "markdown", config)
+  return util.open_floating_preview(contents, "plaintext", config)
 end
 
 local config = function(capabilities, util)
