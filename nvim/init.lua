@@ -1,4 +1,3 @@
--- temporay solution
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
   -- disable lsp watcher. Too slow on linux
@@ -6,13 +5,14 @@ if ok then
     return function() end
   end
 end
-vim.loader.enable()
-require("tuo.options")
-require("tuo.keymaps")
-require("tuo.colorscheme")
-require("tuo.lazy")
 
 P = function(v)
   print(vim.inspect(v))
   return v
 end
+vim.loader.enable()
+require("tuo.options")
+require("tuo.keymaps")
+require("tuo.colorscheme")
+require("tuo.lazy")
+vim.cmd[[colo vim]]
