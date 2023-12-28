@@ -49,15 +49,17 @@ local options = {
   visualbell = false,
   wildignore = "__pycache__",
   writebackup = false,
+  wildmode = "full",
+  wildoptions = "pum"
 }
-
-vim.opt.wildmode = "full"
-vim.opt.wildoptions = "pum"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
+vim.opt.shortmess:append("c")
+vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.iskeyword:append("-")
 
 -- highlight group for trailing white space
 vim.cmd([[
@@ -86,20 +88,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
-vim.opt.formatoptions = vim.opt.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
+-- vim.opt.formatoptions = vim.opt.formatoptions
+--   - "a" -- Auto formatting is BAD.
+--   - "t" -- Don't auto format my code. I got linters for that.
+--   + "c" -- In general, I like it when comments respect textwidth
+--   + "q" -- Allow formatting comments w/ gq
+--   - "o" -- O and o, don't continue comments
+--   + "r" -- But do continue when pressing enter.
+--   + "n" -- Indent past the formatlistpat, not underneath it.
+--   + "j" -- Auto-remove comments if possible.
+--   - "2" -- I'm not in gradeschool anymore
 
-vim.opt.shortmess:append("c")
-vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.iskeyword:append("-")
 local home = "HOME"
 local sep = "/"
 if vim.fn.has("win32") == 1 then
