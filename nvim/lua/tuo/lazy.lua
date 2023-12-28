@@ -18,6 +18,7 @@ local plugins = {
   "tpope/vim-vinegar",
   "Vimjas/vim-python-pep8-indent",
   "catppuccin/nvim",
+  "p00f/alabaster.nvim",
   'Mofiqul/vscode.nvim',
   { "microsoft/python-type-stubs", cond = false },
   {
