@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
     "markdown",
   },
   ignore_install = { "zig" },
-  indent = { enable = false },
+  indent = { enable = true },
   auto_install = false,
   highlight = {
     enable = true, -- false will disable the whole extension
