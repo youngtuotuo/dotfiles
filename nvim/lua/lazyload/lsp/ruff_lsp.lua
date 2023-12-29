@@ -13,7 +13,7 @@ local config = function(capabilities, util)
     })),
     init_options = {
       settings = {
-        args = { "--ignore=E701" },
+        args = { "--ignore=E701,E702" },
       },
     }
   }
