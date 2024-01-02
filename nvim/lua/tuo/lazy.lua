@@ -18,7 +18,8 @@ local plugins = {
   "tpope/vim-vinegar",
   "catppuccin/nvim",
   "p00f/alabaster.nvim",
-  'Mofiqul/vscode.nvim',
+  "Mofiqul/vscode.nvim",
+  "Vimjas/vim-python-pep8-indent",
   { "microsoft/python-type-stubs", cond = false },
   {
     "nvim-telescope/telescope.nvim",
@@ -39,7 +40,7 @@ local plugins = {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    requires = { {"nvim-lua/plenary.nvim"} },
+    requires = { { "nvim-lua/plenary.nvim" } },
     config = function()
       require("lazyload.harpoon")
     end,
@@ -76,7 +77,7 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require("lazyload.aerial")
-    end
+    end,
   },
   {
     "luukvbaal/statuscol.nvim",
