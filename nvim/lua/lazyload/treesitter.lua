@@ -3,13 +3,13 @@ require("nvim-treesitter.configs").setup({
     "bash",
     "c",
     "cpp",
-    "python",
     "lua",
     "markdown_inline",
     "markdown",
   },
   ignore_install = { "zig" },
   indent = { enable = false },
+  disable = { "python" },
   auto_install = false,
   highlight = {
     enable = true, -- false will disable the whole extension
