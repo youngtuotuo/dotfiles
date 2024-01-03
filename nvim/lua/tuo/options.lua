@@ -19,7 +19,7 @@ local options = {
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   hidden = true,
   -- search
-  hlsearch = true,
+  hlsearch = false,
   incsearch = true, -- Makes search act like search in modern browsers
   ignorecase = true, -- Ignore case when searching...
   matchtime = 1,
