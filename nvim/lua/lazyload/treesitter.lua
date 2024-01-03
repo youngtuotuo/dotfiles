@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
   },
   ignore_install = { "zig" },
   indent = { enable = false },
-  disable = { "python" },
+  disable = true,
   auto_install = false,
   highlight = {
     enable = true, -- false will disable the whole extension
