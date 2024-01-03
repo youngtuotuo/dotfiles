@@ -90,7 +90,7 @@ cmp.setup({
     { name = "luasnip" },
   }, {
     { name = "buffer" },
-    { name = "path", keyword_length = 3 },
+    { name = "async_path", keyword_length = 3 },
     { name = "nvim_lua" },
     { name = "nvim_lsp_signature_help" },
   }),
