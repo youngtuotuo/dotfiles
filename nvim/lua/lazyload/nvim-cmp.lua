@@ -18,14 +18,10 @@ end
 
 local border = require("tuo.global").border
 
-
 cmp.setup({
   completion = { autocomplete = false },
   view = {
     docs = { auto_open = true },
-    entries = {
-      follow_cursor = true
-    }
   },
   formatting = {
     format = function(entry, vim_item)
@@ -36,8 +32,11 @@ cmp.setup({
   },
   window = {
     completion = {
-      winhighlight = '', -- keep this
-      scrollbar = false, border = border, max_width = 40 },
+      winhighlight = "", -- keep this
+      scrollbar = false,
+      border = border,
+      max_width = 40,
+    },
     documentation = { scrollbar = false, border = border, max_width = 40 },
   },
   snippet = {
