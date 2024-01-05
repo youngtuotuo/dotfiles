@@ -37,6 +37,10 @@ keymap("n", "<leader>Y", '"+Y', default_opts)
 keymap({ "n", "v" }, "<leader>d", '"_d', default_opts)
 keymap("n", "J", "mzJ`z", default_opts)
 
+-- search item center
+keymap("n", "n", "nzz", default_opts)
+keymap("n", "N", "Nzz", default_opts)
+
 -- Better indent
 keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
