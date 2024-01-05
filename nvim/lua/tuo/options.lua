@@ -18,6 +18,7 @@ local options = {
   fillchars = "stl: ,stlnc: ",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   hidden = true,
+  laststatus = 0,
   -- search
   hlsearch = false,
   incsearch = true, -- Makes search act like search in modern browsers
