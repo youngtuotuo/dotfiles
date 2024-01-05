@@ -127,23 +127,23 @@ local plugins = {
       require("lazyload.Comment")
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = "BufRead",
-    config = function()
-      require("lazyload.treesitter")
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = "BufRead",
-    dependencies = { "nvim-treesitter" },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufRead",
-    dependencies = { "nvim-treesitter" },
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("lazyload.treesitter")
+  --   end,
+  -- },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  --   event = "BufRead",
+  --   dependencies = { "nvim-treesitter" },
+  -- },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-context",
+  --   event = "BufRead",
+  --   dependencies = { "nvim-treesitter" },
+  -- },
   {
     "hrsh7th/nvim-cmp",
     event = "BufRead",

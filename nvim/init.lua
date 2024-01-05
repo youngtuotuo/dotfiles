@@ -15,4 +15,4 @@ require("tuo.options")
 require("tuo.keymaps")
 require("tuo.colorscheme")
 require("tuo.lazy")
-vim.cmd[[colo alabaster]]
+vim.cmd[[colo default]]
