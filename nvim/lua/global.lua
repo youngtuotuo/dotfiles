@@ -1,5 +1,9 @@
-local M = {}
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
 
+local M = {}
 -- "none": No border (default).
 -- "single": A single line box.
 -- "double": A double line box.

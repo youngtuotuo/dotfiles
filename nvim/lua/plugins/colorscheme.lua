@@ -56,3 +56,9 @@ end
 basic_hl()
 
 vim.api.nvim_create_autocmd("ColorScheme", { callback = basic_hl })
+
+return {
+  { "catppuccin/nvim", lazy = true },
+  { "p00f/alabaster.nvim", lazy = true },
+  { "Mofiqul/vscode.nvim", lazy = true },
+}

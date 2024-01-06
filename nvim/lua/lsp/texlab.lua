@@ -1,4 +1,4 @@
-local g = require("tuo.global")
+local g = require("global")
 local config = function(capabilities)
   return {
     handlers = {

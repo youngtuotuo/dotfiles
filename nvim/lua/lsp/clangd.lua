@@ -1,4 +1,4 @@
-local g = require("tuo.global")
+local g = require("global")
 local util = require("vim.lsp.util")
 
 local function split_lines(value)
