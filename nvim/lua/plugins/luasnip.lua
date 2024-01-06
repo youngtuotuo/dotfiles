@@ -4,6 +4,7 @@ return {
     event = "LspAttach",
     version = "v2.*",
     config = function()
+      local ls = require("luasnip")
       local home = "HOME"
       local sep = "/"
       local snippet_path = ""
@@ -23,14 +24,30 @@ return {
           .. "snippets"
           .. sep
       else
-        snippet_path = os.getenv(home) .. sep .. ".config/nvim/lua/snippets/"
+        snippet_path = os.getenv(home)
+          .. sep
+          .. ".config"
+          .. sep
+          .. "nvim"
+          .. sep
+          .. "lua"
+          .. sep
+          .. "snippets"
+          .. sep
       end
       -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = snippet_path })
 
-      vim.cmd(
-        [[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]
-      )
+      vim.keymap.set({ "i", "s" }, "<C-j>", function()
+        if ls.jumpable(1) then
+          ls.jump(1)
+        end
+      end, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-k>", function()
+        if ls.jumpable(-1) then
+          ls.jump(-1)
+        end
+      end, { silent = true })
     end,
   },
 }
