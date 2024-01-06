@@ -3,6 +3,7 @@ return {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     ft = { "markdown" },
+    cmd = "MarkdownPreview",
     config = function()
       local get_lan_ip = function()
         if vim.fn.has("win32") == 1 then

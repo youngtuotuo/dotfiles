@@ -1,7 +1,10 @@
 return {
   {
     "mhartington/formatter.nvim",
-    event = "BufRead",
+    keys = {
+      { "<leader>f", ":Format" },
+    },
+    cmd = "Format",
     config = function()
       -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
       -- Utilities for creating configurations
@@ -44,7 +47,6 @@ return {
           },
         },
       })
-      vim.keymap.set("n", "<leader>f", ":Format ", { noremap = true })
     end,
   },
 }

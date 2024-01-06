@@ -2,7 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-        { "<space>a", "<cmd>Telescope builtins<cr>" },
+        { "<space>a", "<cmd>Telescope builtin<cr>" },
         { "<space>r", "<cmd>Telescope lsp_references<cr>" },
         { "<space>e", "<cmd>Telescop find_files<cr>" },
         { "<space>f", "<cmd>Telescop current_buffer_fuzzy_find<cr>" },

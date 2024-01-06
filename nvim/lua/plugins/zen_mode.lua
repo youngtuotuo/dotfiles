@@ -1,7 +1,9 @@
 return {
   {
     "folke/zen-mode.nvim",
-    event = "BufRead",
+    keys = {
+      { "<space>z", "<cmd>ZenMode<cr>"}
+    },
     config = function()
       require("zen-mode").setup({
         window = {
@@ -61,17 +63,7 @@ return {
             font = "+4", -- (10% increase per step)
           },
         },
-        -- callback where you can add custom code when the Zen window opens
-        on_open = function(win)
-          vim.cmd([[
-      highlight default EoLSpace guibg=Red
-      match EoLSpace /\s\+$/
-      autocmd InsertEnter * hi EoLSpace guibg=NONE
-      autocmd InsertLeave * hi EoLSpace guibg=Red
-    ]])
-        end,
       })
-      vim.keymap.set("n", "<space>z", ":ZenMode<cr>", { noremap = true })
     end,
   },
 }

@@ -2,6 +2,20 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
+    keys = {
+      { "]c",         function() require("gitsigns").next_hunk() end, { buffer = 0 }},
+      { "[c",         function() require("gitsigns").prev_hunk() end, { buffer = 0 }},
+      { "<leader>gs", function() require("gitsigns").stage_hunk() end, { buffer = 0 }},
+      { "<leader>gs", function() require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { buffer = 0 }, mode = "v"},
+      { "<leader>gr", function() require("gitsigns").reset_hunk() end, { buffer = 0 }},
+      { "<leader>gr", function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { buffer = 0 }, mode = "v"},
+      { "<leader>gu", function() require("gitsigns").undo_stage_hunk() end, { buffer = 0 }},
+      { "<leader>gp", function() require("gitsigns").preview_hunk() end, { buffer = 0 }},
+      { "<leader>gb", function() require("gitsigns").blame_line({ full = true }) end, { buffer = 0 }},
+      { "<leader>gd", function() require("gitsigns").diffthis() end, { buffer = 0 }},
+      { "<leader>gt", function() require("gitsigns").toggle_deleted() end, { buffer = 0 }},
+      { "<leader>gl", function() require("gitsigns").toggle_signs() end, { buffer = 0 }},
+    },
     config = function()
       local g = require("global")
       require("gitsigns").setup({
@@ -40,54 +54,6 @@ return {
           col = 1,
         },
         yadm = { enable = false },
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map("n", "]c", function()
-            if vim.wo.diff then
-              return "]c"
-            end
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
-            return "<Ignore>"
-          end, { desc = "gitsigns next hunk", expr = true })
-
-          map("n", "[c", function()
-            if vim.wo.diff then
-              return "[c"
-            end
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
-            return "<Ignore>"
-          end, { desc = "gitsigns previous hunk", expr = true })
-
-          -- Actions
-          map("n", "<leader>gs", gs.stage_hunk, { desc = "gitsigns stage hunk" })
-          map("n", "<leader>gr", gs.reset_hunk, { desc = "gitsigns reset hunk" })
-          map("v", "<leader>gs", function()
-            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end, { desc = "gitsigns stage hunk" })
-          map("v", "<leader>gr", function()
-            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end, { desc = "gitsigns reset hunk" })
-          map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "gitsigns undo stage hunk" })
-          map("n", "<leader>gp", gs.preview_hunk, { desc = "gitsigns preview hunk" })
-          map("n", "<leader>gb", function()
-            gs.blame_line({ full = true })
-          end, { desc = "gitsigns blame line" })
-          map("n", "<leader>gd", gs.diffthis, { desc = "gitsigns diffthis" })
-          map("n", "<leader>gt", gs.toggle_deleted, { desc = "gitsigns toggle deleted" })
-          map("n", "<leader>gl", gs.toggle_signs, { desc = "gitsigns toggle signs" })
-        end,
       })
     end,
   },

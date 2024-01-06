@@ -1,7 +1,9 @@
 return {
   {
     "folke/twilight.nvim",
-    event = "BufRead",
+    keys = {
+      { "<leader>t", "<cmd>Twilight<cr>" }
+    },
     config = function()
       require("twilight").setup({
         dimming = {

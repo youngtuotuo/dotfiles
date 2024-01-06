@@ -1,7 +1,15 @@
 return {
   {
     "stevearc/aerial.nvim",
-    event = "LspAttach",
+    keys = {
+      {
+        "<space>o",
+        function()
+          require("aerial").toggle({ focus = true })
+        end,
+        { noremap = true, silent = true },
+      },
+    },
     config = function()
       require("aerial").setup({
         layout = {
@@ -10,9 +18,6 @@ return {
           min_width = 30,
         },
       })
-      vim.keymap.set("n", "<space>o", function()
-        require("aerial").toggle({ focus = true })
-      end, { noremap = true, silent = true })
     end,
   },
 }

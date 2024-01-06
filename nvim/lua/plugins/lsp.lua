@@ -1,25 +1,34 @@
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    ft = { "lua", "c", "cpp", --[[ "rust", "tex", "html",  ]]"python", --[[ "yaml", "go", "haskell", "xml" ]] },
+    ft = { "lua", "c", "cpp", "python" },
     dependencies = {
       {
         "neovim/nvim-lspconfig",
-        event = "BufRead",
         cmd = { "LspInfo" },
         dependencies = { "folke/neodev.nvim", "hrsh7th/nvim-cmp" },
-      },
-      {
-        "williamboman/mason.nvim",
-        event = "BufRead",
-        cmd = { "Mason" },
         config = function()
           local g = require("global")
-          local lspconfig = require("lspconfig")
-          local util = require("lspconfig.util")
           require("lspconfig.ui.windows").default_options.border = g.border
-          require("neodev").setup({}) -- for lua_ls
-          require("mason").setup({ ui = { border = g.border } })
+          local diag_config = {
+            virtual_text = true,
+            signs = false,
+            underline = false,
+            update_in_insert = false,
+            severity_sort = true,
+            float = {
+              header = true,
+              prefix = function()
+                return ""
+              end,
+              focusable = true,
+              title = " σ`∀´)σ ",
+              border = g.border,
+              max_width = 80,
+            },
+          }
+
+          vim.diagnostic.config(diag_config)
 
           local lsp_highlight = false
           local toggle_lsp_highlight = function()
@@ -69,6 +78,61 @@ return {
               vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
             end,
           })
+          -- Go to the next diagnostic, but prefer going to errors first
+          -- In general, I pretty much never want to go to the next hint
+          local severity_levels = {
+            vim.diagnostic.severity.ERROR,
+            vim.diagnostic.severity.WARN,
+            vim.diagnostic.severity.INFO,
+            vim.diagnostic.severity.HINT,
+          }
+
+          local get_highest_error_severity = function()
+            for _, level in ipairs(severity_levels) do
+              local diags = vim.diagnostic.get(0, { severity = { min = level } })
+              if #diags > 0 then
+                return level, diags
+              end
+            end
+          end
+          vim.keymap.set("n", "gl", function()
+            vim.diagnostic.open_float({
+              bufnr = 0,
+              scope = "line",
+              source = "if_many",
+              header = "",
+              focusable = false,
+            })
+          end)
+          vim.keymap.set("n", "[d", function()
+            vim.diagnostic.goto_prev({
+              severity = get_highest_error_severity(),
+              wrap = true,
+              float = false,
+            })
+          end)
+          vim.keymap.set("n", "]d", function()
+            vim.diagnostic.goto_next({
+              severity = get_highest_error_severity(),
+              wrap = true,
+              float = false,
+            })
+          end)
+        end,
+      },
+      {
+        "williamboman/mason.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+        cmd = { "Mason" },
+        keys = {
+          { "<leader>m", "<cmd>Mason<cr>", { noremap = true } },
+        },
+        config = function()
+          local g = require("global")
+          local lspconfig = require("lspconfig")
+          local util = require("lspconfig.util")
+          require("neodev").setup({}) -- for lua_ls
+          require("mason").setup({ ui = { border = g.border } })
 
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
@@ -106,72 +170,7 @@ return {
           }
 
           require("mason-lspconfig").setup({ handlers = handlers })
-
-          local diag_config = {
-            virtual_text = true,
-            signs = false,
-            underline = false,
-            update_in_insert = false,
-            severity_sort = true,
-            float = {
-              header = true,
-              prefix = function()
-                return ""
-              end,
-              focusable = true,
-              title = " σ`∀´)σ ",
-              border = g.border,
-              max_width = 80,
-            },
-          }
-
-          vim.diagnostic.config(diag_config)
-
-          -- Go to the next diagnostic, but prefer going to errors first
-          -- In general, I pretty much never want to go to the next hint
-          local severity_levels = {
-            vim.diagnostic.severity.ERROR,
-            vim.diagnostic.severity.WARN,
-            vim.diagnostic.severity.INFO,
-            vim.diagnostic.severity.HINT,
-          }
-
-          local get_highest_error_severity = function()
-            for _, level in ipairs(severity_levels) do
-              local diags = vim.diagnostic.get(0, { severity = { min = level } })
-              if #diags > 0 then
-                return level, diags
-              end
-            end
-          end
-
-          -- Global mappings
-          vim.keymap.set("n", "gl", function()
-            vim.diagnostic.open_float({
-              bufnr = 0,
-              scope = "line",
-              source = "if_many",
-              header = "",
-              focusable = false,
-            })
-          end)
-          vim.keymap.set("n", "[d", function()
-            vim.diagnostic.goto_prev({
-              severity = get_highest_error_severity(),
-              wrap = true,
-              float = false,
-            })
-          end)
-          vim.keymap.set("n", "]d", function()
-            vim.diagnostic.goto_next({
-              severity = get_highest_error_severity(),
-              wrap = true,
-              float = false,
-            })
-          end)
-          vim.keymap.set("n", "<leader>m", "<cmd>Mason<cr>", { noremap = true })
         end,
-        dependencies = { "neovim/nvim-lspconfig" },
       },
     },
   },

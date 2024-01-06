@@ -1,7 +1,17 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "BufRead",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "FelipeLema/cmp-async-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+    },
+    event = "InsertEnter",
     config = function()
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
@@ -18,8 +28,7 @@ return {
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
-          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s")
-            == nil
+          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
       local border = require("global").border
@@ -127,31 +136,6 @@ return {
         },
         experimental = { ghost_text = false },
       })
-
-      -- TODO: Buffer specific config
-
-      -- vim.api.nvim_create_autocmd("BufEnter", {
-      --   pattern = "*.lua",
-      --   callback = function()
-      --     require("cmp").setup.buffer {
-      --       sources = {
-      --         { name = "nvim_lua" },
-      --         { name = "buffer" },
-      --       },
-      --     }
-      --   end
-      -- })
     end,
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "FelipeLema/cmp-async-path",
-      "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-    },
   },
 }
