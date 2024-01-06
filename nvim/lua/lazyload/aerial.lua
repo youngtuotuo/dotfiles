@@ -6,5 +6,5 @@ require("aerial").setup({
   },
 })
 vim.keymap.set("n", "<space>o", function()
-  require("aerial").toggle({ focus = false })
+  require("aerial").toggle({ focus = true })
 end, { noremap = true, silent = true })
