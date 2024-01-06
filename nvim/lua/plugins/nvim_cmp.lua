@@ -2,14 +2,13 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-buffer",
-      "FelipeLema/cmp-async-path",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
+      "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
+      { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
+      "saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
+      "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
+      "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
+      "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
     event = "InsertEnter",
     config = function()
@@ -31,9 +30,8 @@ return {
           and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-
       cmp.setup({
-        completion = { autocomplete = false },
+        -- completion = { autocomplete = false },
         view = {
           docs = { auto_open = true },
         },

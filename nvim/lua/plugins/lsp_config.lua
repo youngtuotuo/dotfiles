@@ -29,6 +29,7 @@ return {
       }
 
       require("mason-lspconfig").setup({ handlers = handlers })
+      require("language_servers.handlers").setup()
     end,
     dependencies = {
       {
@@ -156,7 +157,6 @@ return {
               float = false,
             })
           end)
-          require("language_servers.handlers").setup()
         end,
       },
       {

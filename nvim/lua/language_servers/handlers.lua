@@ -10,7 +10,7 @@ local function split_lines(value)
   value = string.gsub(value, "```%a*\n", "")
   value = string.gsub(value, "```", "")
   value = string.gsub(value, "`_", "`")
-  return value
+  return { value }
 end
 
 local function hover(_, result, ctx, config)
@@ -26,8 +26,11 @@ local function hover(_, result, ctx, config)
     end
     return
   end
-  local value = split_lines(result.contents.value)
-  return require("vim.lsp.util").open_floating_preview({ value }, result.contents.kind, config)
+  return require("vim.lsp.util").open_floating_preview(
+    split_lines(result.contents.value),
+    result.contents.kind,
+    config
+  )
 end
 
 function M.setup()
@@ -35,6 +38,7 @@ function M.setup()
     border = BORDER,
     title = " Hover ",
     max_width = 100,
+    max_height = 20,
     zindex = 500,
     focusable = true,
   })
