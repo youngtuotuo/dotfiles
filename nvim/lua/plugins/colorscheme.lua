@@ -4,10 +4,10 @@ local function basic_hl()
   -- vim.api.nvim_set_hl(0, "NormalNC", { bg = transparent })
 
   vim.api.nvim_set_hl(0, "Error", { fg = transparent })
-  vim.api.nvim_set_hl(0, "Comment", { fg = "#515151" })
   vim.api.nvim_set_hl(0, "StatusLine", { reverse = true, bold = true })
   vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = "NvimLightYellow" })
+  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = "#929292" })
 
   vim.api.nvim_set_hl(0, "LspReferenceRead", { reverse = true })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { reverse = true })

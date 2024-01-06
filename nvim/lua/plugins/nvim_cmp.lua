@@ -31,7 +31,6 @@ return {
           and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      local border = require("global").border
 
       cmp.setup({
         completion = { autocomplete = false },
@@ -49,10 +48,10 @@ return {
           completion = {
             winhighlight = "", -- keep this
             scrollbar = false,
-            border = border,
+            border = BORDER,
             max_width = 40,
           },
-          documentation = { scrollbar = false, border = border, max_width = 40 },
+          documentation = { scrollbar = false, border = BORDER, max_width = 40 },
         },
         snippet = {
           expand = function(args)

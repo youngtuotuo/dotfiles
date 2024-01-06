@@ -8,6 +8,7 @@ end
 
 vim.loader.enable()
 
+require("global")
 require("options")
 require("keymaps")
 
@@ -26,13 +27,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- plugins
-local border = require("global").border
 local opts = {
   spec = {
     { import = "plugins" },
   },
   ui = {
-    border = border,
+    border = BORDER,
   },
   default = { lazy = true },
   performance = {

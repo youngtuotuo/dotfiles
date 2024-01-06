@@ -33,7 +33,6 @@ return {
             },
           },
           results_title = "Results",
-          sorting_strategy = "ascending",
           dynamic_preview_title = true,
           color_devicons = false,
           selection_caret = "❯ ",

@@ -2,14 +2,52 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     ft = { "lua", "c", "cpp", "python" },
+    config = function()
+      local lspconfig = require("lspconfig")
+      local handlers = {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+          lspconfig[server_name].setup({})
+        end,
+        ["lua_ls"] = function()
+          local cfg = require("language_servers.lua_ls")
+          lspconfig.lua_ls.setup(cfg)
+        end,
+        ["pyright"] = function()
+          local cfg = require("language_servers.pyright")
+          lspconfig.pyright.setup(cfg)
+        end,
+        ["ruff_lsp"] = function()
+          local cfg = require("language_servers.ruff_lsp")
+          lspconfig.ruff_lsp.setup(cfg)
+        end,
+        ["texlab"] = function()
+          lspconfig.texlab.setup(require("lsp.texlab"))
+        end,
+      }
+
+      require("mason-lspconfig").setup({ handlers = handlers })
+    end,
     dependencies = {
       {
         "neovim/nvim-lspconfig",
+        opts = {
+          inlay_hints = { enabled = true },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = false,
+              },
+            },
+          },
+        },
         cmd = { "LspInfo" },
         dependencies = { "folke/neodev.nvim", "hrsh7th/nvim-cmp" },
         config = function()
-          local g = require("global")
-          require("lspconfig.ui.windows").default_options.border = g.border
+          require("lspconfig.ui.windows").default_options.border = BORDER
+
           local diag_config = {
             virtual_text = true,
             signs = false,
@@ -23,7 +61,7 @@ return {
               end,
               focusable = true,
               title = " σ`∀´)σ ",
-              border = g.border,
+              border = BORDER,
               max_width = 80,
             },
           }
@@ -118,6 +156,7 @@ return {
               float = false,
             })
           end)
+          require("language_servers.handlers").setup()
         end,
       },
       {
@@ -125,51 +164,11 @@ return {
         dependencies = { "neovim/nvim-lspconfig" },
         cmd = { "Mason" },
         keys = {
-          { "<leader>m", "<cmd>Mason<cr>", { noremap = true } },
+          { "<leader>m", "<cmd>Mason<cr>" },
         },
         config = function()
-          local g = require("global")
-          local lspconfig = require("lspconfig")
-          local util = require("lspconfig.util")
           require("neodev").setup({}) -- for lua_ls
-          require("mason").setup({ ui = { border = g.border } })
-
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-          capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-          local handlers = {
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function(server_name) -- default handler (optional)
-              local cfg = require("lsp.general")(server_name, capabilities)
-              lspconfig[server_name].setup(cfg)
-            end,
-            ["lua_ls"] = function()
-              local cfg = require("lsp.lua_ls")(capabilities, util)
-              lspconfig.lua_ls.setup(cfg)
-            end,
-            ["pyright"] = function()
-              local cfg = require("lsp.pyright")(capabilities, util)
-              lspconfig.pyright.setup(cfg)
-            end,
-            ["clangd"] = function()
-              -- if vim.fn.has("win32") == 0 then
-              local cfg = require("lsp.clangd")(capabilities, util)
-              lspconfig.clangd.setup(cfg)
-              -- end
-            end,
-            ["ruff_lsp"] = function()
-              local cfg = require("lsp.ruff_lsp")(capabilities, util)
-              lspconfig.ruff_lsp.setup(cfg)
-            end,
-            -- ["texlab"] = function()
-            --   lspconfig.texlab.setup(require("lsp.texlab")(capabilities))
-            -- end,
-          }
-
-          require("mason-lspconfig").setup({ handlers = handlers })
+          require("mason").setup({ ui = { border = BORDER } })
         end,
       },
     },

@@ -17,7 +17,6 @@ return {
       { "<leader>gl", function() require("gitsigns").toggle_signs() end, { buffer = 0 }},
     },
     config = function()
-      local g = require("global")
       require("gitsigns").setup({
         signs = {
           add = { text = "│" },
@@ -47,7 +46,7 @@ return {
         max_file_length = 40000, -- Disable if file is longer than this (in lines)
         preview_config = {
           -- Options passed to nvim_open_win
-          border = g.border,
+          border = BORDER,
           style = "minimal",
           relative = "cursor",
           row = 0,

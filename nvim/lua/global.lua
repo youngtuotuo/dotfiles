@@ -3,7 +3,6 @@ P = function(v)
   return v
 end
 
-local M = {}
 -- "none": No border (default).
 -- "single": A single line box.
 -- "double": A double line box.
@@ -12,8 +11,7 @@ local M = {}
 -- "shadow": A drop shadow effect by blending with the
 -- BORDER = "none"
 -- M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
-M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- transparent control
-M.trans = true
+TRANS = true
 
-return M
