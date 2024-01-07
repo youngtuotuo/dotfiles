@@ -42,6 +42,12 @@ return {
                 dynamicRegistration = false,
               },
             },
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              }
+            }
           },
         },
         cmd = { "LspInfo" },

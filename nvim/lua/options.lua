@@ -15,7 +15,6 @@ local options = {
   errorbells = false,
   equalalways = false,
   fileencoding = "utf-8",
-  fillchars = "stl: ,stlnc: ",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   hidden = true,
   -- search
@@ -86,6 +85,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
   end,
 })
 -- vim.opt.formatoptions = vim.opt.formatoptions
@@ -99,11 +99,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --   + "j" -- Auto-remove comments if possible.
 --   - "2" -- I'm not in gradeschool anymore
 
-local home = "HOME"
-local sep = "/"
 if vim.fn.has("win32") == 1 then
-  home = "USERPROFILE"
-  sep = "\\"
   vim.cmd([[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
     let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
@@ -112,7 +108,7 @@ if vim.fn.has("win32") == 1 then
     set shellquote= shellxquote=
   ]])
 end
-vim.opt.undodir = os.getenv(home) .. sep .. ".vim" .. sep .. "undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
 
 vim.g.netrw_altfile = 1
 vim.g.netrw_cursor = 5

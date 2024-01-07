@@ -14,4 +14,8 @@ end
 BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- transparent control
 TRANS = true
+SEP = "/"
+if vim.fn.has("win32") == 1 then
+  SEP = "\\"
+end
 

@@ -5,38 +5,15 @@ return {
     version = "v2.*",
     config = function()
       local ls = require("luasnip")
-      local home = "HOME"
-      local sep = "/"
       local snippet_path = ""
-      if vim.fn.has("win32") == 1 then
-        home = "USERPROFILE"
-        sep = "\\"
-        snippet_path = os.getenv(home)
-          .. sep
-          .. "github"
-          .. sep
-          .. "dotfiles"
-          .. sep
-          .. "nvim"
-          .. sep
-          .. "lua"
-          .. sep
-          .. "snippets"
-          .. sep
-      else
-        snippet_path = os.getenv(home)
-          .. sep
-          .. ".config"
-          .. sep
-          .. "nvim"
-          .. sep
-          .. "lua"
-          .. sep
-          .. "snippets"
-          .. sep
-      end
+      snippet_path = vim.fn.stdpath("config") .. string.format("%slua%ssnippets%s", SEP, SEP, SEP)
       -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = snippet_path })
+      ls.config.set_config({
+        history = true,
+        updateevents = "TextChanged,TextChangedI",
+        enable_autosnippets = true,
+      })
 
       vim.keymap.set({ "i", "s" }, "<C-j>", function()
         if ls.jumpable(1) then
@@ -46,6 +23,11 @@ return {
       vim.keymap.set({ "i", "s" }, "<C-k>", function()
         if ls.jumpable(-1) then
           ls.jump(-1)
+        end
+      end, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-e>", function()
+        if ls.choice_active() then
+          ls.change_choice(1)
         end
       end, { silent = true })
     end,
