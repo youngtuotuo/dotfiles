@@ -16,10 +16,6 @@ return {
       if not cmp_status_ok then
         return
       end
-      local snip_status_ok, luasnip = pcall(require, "luasnip")
-      if not snip_status_ok then
-        return
-      end
 
       require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -96,22 +92,21 @@ return {
           end
         end,
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "async_path", keyword_length = 3 },
+          { name = "nvim_lsp" },
+          { name = "nvim_lsp_signature_help" },
         }, {
           { name = "buffer" },
-          { name = "async_path", keyword_length = 3 },
-          { name = "nvim_lua" },
-          { name = "nvim_lsp_signature_help" },
+          { name = "nvim_lua" }, -- nvim lua api
         }),
         sorting = {
+          priority_weight = 1.0,
           comparators = {
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
+            cmp.config.compare.locality,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
             cmp.config.compare.offset,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
             cmp.config.compare.order,
           },
         },

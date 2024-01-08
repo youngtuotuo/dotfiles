@@ -2,7 +2,7 @@ local options = {
   expandtab = true,
   softtabstop = 4,
   smartindent = true,
-  wrap = true,
+  wrap = false,
   termsync = false,
   showbreak = string.rep(" ", 3),
   linebreak = true,
@@ -48,8 +48,6 @@ local options = {
   visualbell = false,
   wildignore = "__pycache__",
   writebackup = false,
-  wildmode = "full",
-  wildoptions = "pum"
 }
 
 for k, v in pairs(options) do
