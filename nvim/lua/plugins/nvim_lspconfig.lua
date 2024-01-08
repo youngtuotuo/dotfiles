@@ -174,7 +174,7 @@ return {
         },
         config = function()
           require("neodev").setup({}) -- for lua_ls
-          require("mason").setup({ ui = { border = BORDER } })
+          require("mason").setup({ ui = { border = BORDER, height = 0.8 } })
         end,
       },
     },
