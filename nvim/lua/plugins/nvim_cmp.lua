@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = "LspAttach",
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
@@ -10,7 +11,6 @@ return {
       "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
       "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
-    event = "InsertEnter",
     config = function()
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then

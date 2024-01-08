@@ -77,3 +77,10 @@ keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
 
 -- better external command ouput
 keymap("n", "<leader>x", [[:sp | terminal ]])
+
+
+-- keymap("c", "<C-A>", "<Home>", default_opts)
+-- keymap("c", "<C-F>", "<Right>", default_opts)
+-- keymap("c", "<c-b>", "<Left>", default_opts)
+-- keymap("c", "<Esc>b", "<S-Left>", default_opts)
+-- keymap("c", "<Esc>f", "<S-Right>", default_opts)

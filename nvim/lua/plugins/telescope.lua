@@ -15,6 +15,26 @@ return {
     tag = "0.1.5",
     config = function()
       local actions = require("telescope.actions")
+      local maps = {
+        n = {
+          ["q"] = actions.close,
+          ["<C-c>"] = actions.close,
+          ["<Tab>"] = actions.move_selection_next,
+          ["<S-Tab>"] = actions.move_selection_previous,
+          ["<C-p>"] = actions.move_selection_previous,
+          ["<C-n>"] = actions.move_selection_next,
+        },
+        i = {
+          ["<C-c>"] = actions.close,
+          ["<Tab>"] = actions.move_selection_next,
+          ["<S-Tab>"] = actions.move_selection_previous,
+        },
+      }
+      local trouble_status, trouble = pcall(require, "trouble.providers.telescope")
+      if trouble_status then
+        maps.i = vim.tbl_extend("keep", maps.i, { ["<c-t>"] = trouble.open_with_trouble })
+        maps.n = vim.tbl_extend("keep", maps.n, { ["<c-t>"] = trouble.open_with_trouble })
+      end
 
       require("telescope").setup({
         defaults = {
@@ -43,21 +63,7 @@ return {
           prompt_prefix = ">_ ",
           path_display = { "smart" },
           initial_mode = "insert",
-          mappings = {
-            n = {
-              ["q"] = actions.close,
-              ["<C-c>"] = actions.close,
-              ["<Tab>"] = actions.move_selection_next,
-              ["<S-Tab>"] = actions.move_selection_previous,
-              ["<C-p>"] = actions.move_selection_previous,
-              ["<C-n>"] = actions.move_selection_next,
-            },
-            i = {
-              ["<C-c>"] = actions.close,
-              ["<Tab>"] = actions.move_selection_next,
-              ["<S-Tab>"] = actions.move_selection_previous,
-            },
-          },
+          mappings = maps,
           vimgrep_arguments = {
             "rg",
             "--color=never",
@@ -96,6 +102,7 @@ return {
           require("telescope").load_extension("undo")
         end,
       },
+      "folke/trouble.nvim"
     },
   },
 }
