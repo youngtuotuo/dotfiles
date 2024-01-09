@@ -58,9 +58,6 @@ keymap({ "v", "x" }, "L", ">gv", default_opts)
 keymap("i", ",", ",<C-g>u", default_opts)
 keymap("i", ".", ".<C-g>u", default_opts)
 
--- Cancel search highlighting with ESC
-keymap("n", "<ESC>", ":noh<CR>", default_opts)
-
 -- Resizing panes
 keymap("n", "<S-Left>", "<cmd>vertical resize -1<CR>", default_opts)
 keymap("n", "<S-Right>", "<cmd>vertical resize +1<CR>", default_opts)

@@ -1,41 +1,32 @@
 local options = {
   expandtab = true,
   softtabstop = 4,
+  shiftwidth = 4,
   smartindent = true,
-  wrap = false,
   termsync = false,
-  showbreak = string.rep(" ", 3),
-  linebreak = true,
-  -- in case
-  belloff = "all",
-  cinoptions="l1",
-  backspace = "indent,eol,start",
-  backup = false,
+  wrap = false,
+  cinoptions="l1", -- for switch, case alignment
+  writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
-  errorbells = false,
-  equalalways = false,
-  fileencoding = "utf-8",
-  guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  hidden = true,
+  -- equalalways = false, -- equal remaining windows after close
+  guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor", -- all block with blink
   -- search
   hlsearch = false,
-  incsearch = true, -- Makes search act like search in modern browsers
   ignorecase = true, -- Ignore case when searching...
-  matchtime = 1,
+  smartcase = true, -- ... unless there is a capital letter in the query
+  matchtime = 1, -- display of current match paren faster
+  showmatch = true, -- show matching brackets when text indicator is over them
   mouse = "a",
-  mousemoveevent = true,
+  mousemodel = "extend",
+  -- mousemoveevent = true,
   nu = false,
   rnu = false,
-  pumheight = 7,
   ru = true,
-  smoothscroll = true,
+  -- pumheight = 7,
+  -- smoothscroll = true,
   scrolloff = 10,
-  mousemodel = "extend",
-  shiftwidth = 4,
   termguicolors = true,
   showcmd = true,
-  smartcase = true, -- ... unless there is a capital letter in the query
-  showmatch = true, -- show matching brackets when text indicator is over them
   showmode = true,
   signcolumn = "yes:1",
   splitbelow = true,
@@ -44,19 +35,15 @@ local options = {
   swapfile = false,
   updatetime = 50,
   undofile = true,
-  viminfo = "'1000",
-  visualbell = false,
-  wildignore = "__pycache__",
-  writebackup = false,
 }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
-vim.opt.shortmess:append("c")
-vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.iskeyword:append("-")
+-- vim.opt.shortmess:append("c")
+vim.opt.whichwrap:append("<,>,[,]")
+vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
 
 -- highlight group for trailing white space
 vim.cmd([[
@@ -96,7 +83,6 @@ if vim.fn.has("win32") == 1 then
     set shellquote= shellxquote=
   ]])
 end
-vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
 
 vim.g.netrw_altfile = 1
 vim.g.netrw_cursor = 5
