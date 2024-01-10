@@ -74,7 +74,7 @@ return {
           end, { "i", "s" }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-5),
           ["<C-f>"] = cmp.mapping.scroll_docs(5),
-          ["<C-l>"] = cmp.mapping.confirm({ select = false }),
+          ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
           ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         }),
