@@ -34,7 +34,14 @@ return {
         formatting = {
           format = function(entry, vim_item)
             vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
-            vim_item.menu = entry.source.name
+            vim_item.menu = ({
+              buffer = "cmp_buffer",
+              nvim_lsp = "nvim_lsp",
+              luasnip = "luasnip",
+              nvim_lua = "nvim_lua",
+              nvim_lsp_signature_help = "nvim_sig",
+              latex_symbols = "laTeX",
+            })[entry.source.name]
             return vim_item
           end,
         },
