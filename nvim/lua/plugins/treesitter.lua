@@ -7,6 +7,9 @@ return {
         "nvim-treesitter/nvim-treesitter",
         config = function()
           require("nvim-treesitter.configs").setup({
+            highlight = {
+              enable = false
+            },
             ensure_installed = {
               "gitcommit",
               "gitignore",

@@ -54,4 +54,4 @@ local opts = {
 require("lazy").setup(opts)
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { noremap = true })
 
-vim.cmd[[colo default]]
+vim.cmd[[colo alabaster]]

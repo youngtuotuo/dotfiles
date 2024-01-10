@@ -5,7 +5,7 @@ return {
     config = function()
       local handlers = {
         function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup()
+          require("lspconfig")[server_name].setup({})
         end,
         ["clangd"] = require("language_servers.clangd"),
         ["lua_ls"] = require("language_servers.lua_ls"),
@@ -13,7 +13,6 @@ return {
         ["ruff_lsp"] = require("language_servers.ruff_lsp"),
         ["texlab"] = require("language_servers..texlab"),
       }
-
       require("mason-lspconfig").setup({ handlers = handlers })
     end,
     dependencies = {
