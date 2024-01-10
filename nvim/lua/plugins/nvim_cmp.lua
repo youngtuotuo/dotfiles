@@ -12,6 +12,7 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
     config = function()
+      vim.opt.pumheight = 15
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
         return
@@ -46,7 +47,7 @@ return {
             border = BORDER,
             max_width = 40,
           },
-          documentation = { scrollbar = false, border = BORDER, max_width = 40 },
+          documentation = { scrollbar = false, border = BORDER, max_width = 40, max_height = 30 },
         },
         snippet = {
           expand = function(args)
