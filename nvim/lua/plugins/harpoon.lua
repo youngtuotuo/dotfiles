@@ -2,28 +2,17 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    config = function()
-      local harpoon = require("harpoon")
-      harpoon:setup()
-      vim.keymap.set("n", "<leader>c", function()
-        harpoon:list():append()
-      end)
-      vim.keymap.set("n", "<leader>q", function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
-
-      vim.keymap.set("n", "<M-1>", function()
-        harpoon:list():select(1)
-      end)
-      vim.keymap.set("n", "<M-2>", function()
-        harpoon:list():select(2)
-      end)
-      vim.keymap.set("n", "<M-3>", function()
-        harpoon:list():select(3)
-      end)
-      vim.keymap.set("n", "<M-4>", function()
-        harpoon:list():select(4)
-      end)
+    -- stylua: ignore
+    keys = {
+      {"<leader>c", function() require("harpoon"):list():append() end, mode = "n"},
+      {"<leader>q", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, mode = "n"},
+      {"<M-1>", function() require("harpoon"):list():select(1) end, mode = "n"},
+      {"<M-2>", function() require("harpoon"):list():select(2) end, mode = "n"},
+      {"<M-3>", function() require("harpoon"):list():select(3) end, mode = "n"},
+      {"<M-4>", function() require("harpoon"):list():select(4) end, mode = "n"},
+    },
+    config = function(_, opts)
+      require("harpoon"):setup()
     end,
     dependencies = { { "nvim-lua/plenary.nvim" } },
   },

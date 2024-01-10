@@ -2,9 +2,9 @@ return {
   {
     "luukvbaal/statuscol.nvim",
     event = "BufRead",
-    config = function()
+    opts = function()
       local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
+      return {
         foldfunc = "builtin",
         setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         -- want to use the click handlers in their own 'statuscolumn': _G.Sc[SFL]a().
@@ -48,7 +48,7 @@ return {
           GitSignsDelete = builtin.gitsigns_click,
           gitsigns_extmark_signs_ = builtin.gitsigns_click,
         },
-      })
+      }
     end,
   },
 }

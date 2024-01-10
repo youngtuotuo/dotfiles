@@ -1,19 +1,16 @@
 return {
   {
     "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     event = "BufRead",
-    config = function()
+    opts = function()
       vim.api.nvim_create_autocmd("BufEnter", {
         callback = function()
-          vim.keymap.set(
-            "n",
-            "<space>t",
-            ":TodoQuickFix cwd=" .. vim.fn.fnameescape(vim.fn.expand("%:p")) .. "<cr>"
-          )
+          -- stylua: ignore
+          vim.keymap.set( "n", "<space>t", ":TodoQuickFix cwd=" .. vim.fn.fnameescape(vim.fn.expand("%:p")) .. "<cr>")
         end,
       })
-
-      require("todo-comments").setup({
+      return {
         signs = false, -- show icons in the signs column
         sign_priority = 7, -- sign priority
         -- keywords recognized as todo comments
@@ -76,8 +73,7 @@ return {
           -- don't replace the (KEYWORDS) placeholder
           pattern = [[\s\b(KEYWORDS):]], -- ripgrep regex
         },
-      })
+      }
     end,
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
   },
 }

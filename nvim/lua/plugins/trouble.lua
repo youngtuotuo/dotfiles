@@ -2,11 +2,12 @@ return {
   "folke/trouble.nvim",
   events = "LspAttach",
   keys = {
-    { "co", "<cmd>TroubleToggle<cr>" }
+    { "<leader>t", ":TroubleToggle " },
+    { "gr", "<cmd>TroubleToggle lsp_references<cr>" },
   },
   opts = {
     padding = false,
-    auto_fold = true,
+    auto_fold = false,
     win_config = { border = BORDER },
     icons = false,
     fold_open = "", -- icon used for open folds
@@ -17,7 +18,7 @@ return {
       error = "error",
       warning = "warn",
       hint = "hint",
-      information = "info"
+      information = "info",
     },
     use_diagnostic_signs = false,
   },

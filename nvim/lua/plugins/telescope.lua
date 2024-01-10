@@ -1,19 +1,20 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     keys = {
-        { "<space>a", "<cmd>Telescope builtin<cr>" },
-        { "<space>r", "<cmd>Telescope lsp_references<cr>" },
-        { "<space>e", "<cmd>Telescop find_files<cr>" },
-        { "<space>f", "<cmd>Telescop current_buffer_fuzzy_find<cr>" },
-        { "<space>g", "<cmd>Telescop git_files<cr>" },
-        { "<space>d", "<cmd>Telescop diagnostics severity_bound=0<cr>" },
-        { "<space>l", "<cmd>Telescop live_grep<cr>" },
-        { "<space>b", "<cmd>Telescop buffers<cr>" },
-        { "<space>v", "<cmd>Telescop lsp_document_symbols<cr>" },
+      { "<space>a", "<cmd>Telescope builtin<cr>" },
+      { "<space>r", "<cmd>Telescope lsp_references<cr>" },
+      { "<space>e", "<cmd>Telescop find_files<cr>" },
+      { "<space>f", "<cmd>Telescop current_buffer_fuzzy_find<cr>" },
+      { "<space>g", "<cmd>Telescop git_files<cr>" },
+      { "<space>d", "<cmd>Telescop diagnostics severity_bound=0<cr>" },
+      { "<space>l", "<cmd>Telescop live_grep<cr>" },
+      { "<space>b", "<cmd>Telescop buffers<cr>" },
+      { "<space>v", "<cmd>Telescop lsp_document_symbols<cr>" },
     },
-    tag = "0.1.5",
-    config = function()
+    version = false,
+    opts = function()
       local actions = require("telescope.actions")
       local maps = {
         n = {
@@ -30,13 +31,8 @@ return {
           ["<S-Tab>"] = actions.move_selection_previous,
         },
       }
-      local trouble_status, trouble = pcall(require, "trouble.providers.telescope")
-      if trouble_status then
-        maps.i = vim.tbl_extend("keep", maps.i, { ["<c-t>"] = trouble.open_with_trouble })
-        maps.n = vim.tbl_extend("keep", maps.n, { ["<c-t>"] = trouble.open_with_trouble })
-      end
 
-      require("telescope").setup({
+      return {
         defaults = {
           layout_strategy = "vertical",
           layout_config = {
@@ -84,13 +80,13 @@ return {
             -- the default case_mode is "smart_case"
           },
         },
-      })
+      }
     end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
         "crispgm/telescope-heading.nvim",
-        keys = { {"<space>3", "<cmd>Telescope heading<cr>" } },
+        keys = { { "<space>3", "<cmd>Telescope heading<cr>" } },
         config = function()
           require("telescope").load_extension("heading")
         end,
@@ -102,7 +98,14 @@ return {
           require("telescope").load_extension("undo")
         end,
       },
-      "folke/trouble.nvim"
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        enabled = vim.fn.executable("make") == 1,
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
     },
   },
 }

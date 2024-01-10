@@ -2,15 +2,12 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    keys = {
-      { "<leader>i", "<cmd>IBLToggle<cr>" }
+    -- stylua: ignore
+    keys = { { "<leader>i", "<cmd>IBLToggle<cr>" } },
+    opts = {
+      enabled = false,
+      scope = { enabled = true, show_start = false, show_end = false },
+      indent = { char = "│" },
     },
-    config = function()
-      require("ibl").setup({
-        enabled = false,
-        scope = { enabled = true, show_start = false, show_end = false },
-        indent = { char = "│" },
-      })
-    end,
   },
 }

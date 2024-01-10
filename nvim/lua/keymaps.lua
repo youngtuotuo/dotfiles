@@ -75,7 +75,7 @@ keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
 -- better external command ouput
 keymap("n", "<leader>x", [[:sp | terminal ]])
 
-vim.cmd [[
+vim.cmd([[
   set wildcharm=<Tab>
   cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
   cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
@@ -84,4 +84,4 @@ vim.cmd [[
   cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
   cnoremap <expr> <c-k> wildmenumode() ? " \<bs>\<C-Z>" : "\<c-k>"
   cnoremap <c-n> <Tab>
-]]
+]])

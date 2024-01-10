@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "LspAttach" },
+    event = { "BufReadPre" },
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
@@ -11,7 +11,7 @@ return {
       "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
       "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
-    config = function()
+    opts = function()
       vim.opt.pumheight = 5
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
@@ -26,8 +26,11 @@ return {
             == nil
       end
 
-      cmp.setup({
-        -- completion = { autocomplete = false },
+      return {
+        completion = {
+          -- autocomplete = false,
+          completeopt = "menu,menuone,noinsert",
+        },
         view = {
           docs = { auto_open = true },
         },
@@ -77,9 +80,16 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+          ["<C-y>"] = cmp.mapping(function(fallback)
+            cmp.abort()
+            fallback()
+          end, { "i", "s" }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-5),
           ["<C-f>"] = cmp.mapping.scroll_docs(5),
-          ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
+          ["<C-l>"] = cmp.mapping.confirm({
+            select = false,
+            behavior = cmp.ConfirmBehavior.Replace,
+          }),
           ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         }),
@@ -111,13 +121,19 @@ return {
           comparators = {
             cmp.config.compare.locality,
             cmp.config.compare.recently_used,
-            cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+            cmp.config.compare.score,
             cmp.config.compare.offset,
             cmp.config.compare.order,
           },
         },
         experimental = { ghost_text = false },
-      })
+      }
+    end,
+    config = function(_, opts)
+      for _, source in ipairs(opts.sources) do
+        source.group_index = source.group_index or 1
+      end
+      require("cmp").setup(opts)
     end,
   },
 }

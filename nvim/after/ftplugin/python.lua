@@ -1,4 +1,4 @@
-vim.cmd[[set indentkeys-=:]]
+vim.cmd([[set indentkeys-=:]])
 local py = "python3"
 if vim.fn.has("win32") == 1 then
   py = "python"

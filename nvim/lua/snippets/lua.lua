@@ -1,10 +1,24 @@
 local ls = require("luasnip")
 local s = ls.snippet
-local t = ls.text_node
-local f = ls.function_node
 local i = ls.insert_node
-local rep = require("luasnip.extras").rep
+local fmt = require("luasnip.extras.fmt").fmt
 local snippets, autosnippets = {}, {}
 
+local lfunction = s(
+  "lfuntcion",
+  fmt(
+    [[
+local {} = function({})
+  {}
+end
+]],
+    {
+      i(1),
+      i(2),
+      i(3),
+    }
+  )
+)
+table.insert(snippets, lfunction)
 
 return snippets, autosnippets

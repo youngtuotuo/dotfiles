@@ -1,6 +1,6 @@
 return {
   {
     "tpope/vim-vinegar",
-    keys = { "-" }
-  }
+    keys = { "-" },
+  },
 }

@@ -2,8 +2,33 @@ require("lspconfig.ui.windows").default_options.border = BORDER
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+-- for clangd
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig.util").default_config.capabilities = capabilities
+
+-- Go to the next diagnostic, but prefer going to errors first
+-- In general, I pretty much never want to go to the next hint
+local severity_levels = {
+  vim.diagnostic.severity.ERROR,
+  vim.diagnostic.severity.WARN,
+  vim.diagnostic.severity.INFO,
+  vim.diagnostic.severity.HINT,
+}
+
+local get_highest_error_severity = function()
+  for _, level in ipairs(severity_levels) do
+    local diags = vim.diagnostic.get(0, { severity = { min = level } })
+    if #diags > 0 then
+      return level, diags
+    end
+  end
+end
+-- stylua: ignore
+vim.keymap.set("n", "gl", function() vim.diagnostic.open_float({ bufnr = 0, scope = "line", source = "if_many", header = "", focusable = false, }) end)
+-- stylua: ignore
+vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ severity = get_highest_error_severity(), wrap = true, float = false, }) end)
+-- stylua: ignore
+vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ severity = get_highest_error_severity(), wrap = true, float = false, }) end)
 
 local diag_config = {
   virtual_text = true,
@@ -73,3 +98,9 @@ local handlers = {
   ),
 }
 require("lspconfig.util").default_config.handlers = handlers
+
+local format = {
+  formatting_options = nil,
+  timeout_ms = nil,
+}
+require("lspconfig.util").default_config.format = format
