@@ -12,7 +12,7 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
     config = function()
-      vim.opt.pumheight = 15
+      vim.opt.pumheight = 5
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
         return
