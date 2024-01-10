@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "LspAttach",
+    event = { "LspAttach" },
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
@@ -17,8 +17,6 @@ return {
       if not cmp_status_ok then
         return
       end
-
-      require("luasnip.loaders.from_vscode").lazy_load()
 
       local has_words_before = function()
         unpack = unpack or table.unpack

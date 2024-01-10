@@ -3,78 +3,29 @@ return {
     "williamboman/mason-lspconfig.nvim",
     ft = { "lua", "c", "cpp", "python" },
     config = function()
-      local lspconfig = require("lspconfig")
       local handlers = {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
         function(server_name) -- default handler (optional)
-          lspconfig[server_name].setup({})
+          require("lspconfig")[server_name].setup()
         end,
-        ["lua_ls"] = function()
-          local cfg = require("language_servers.lua_ls")
-          lspconfig.lua_ls.setup(cfg)
-        end,
-        ["pyright"] = function()
-          local cfg = require("language_servers.pyright")
-          lspconfig.pyright.setup(cfg)
-        end,
-        ["ruff_lsp"] = function()
-          local cfg = require("language_servers.ruff_lsp")
-          lspconfig.ruff_lsp.setup(cfg)
-        end,
-        ["texlab"] = function()
-          lspconfig.texlab.setup(require("lsp.texlab"))
-        end,
+        ["clangd"] = require("language_servers.clangd"),
+        ["lua_ls"] = require("language_servers.lua_ls"),
+        ["pyright"] = require("language_servers.pyright"),
+        ["ruff_lsp"] = require("language_servers.ruff_lsp"),
+        ["texlab"] = require("language_servers..texlab"),
       }
 
       require("mason-lspconfig").setup({ handlers = handlers })
-      require("language_servers.handlers").setup()
     end,
     dependencies = {
       {
         "neovim/nvim-lspconfig",
         opts = {
           inlay_hints = { enabled = true },
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = {
-                dynamicRegistration = false,
-              },
-            },
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-              }
-            }
-          },
         },
         cmd = { "LspInfo" },
         dependencies = { "folke/neodev.nvim", "hrsh7th/nvim-cmp" },
         config = function()
-          require("lspconfig.ui.windows").default_options.border = BORDER
-
-          local diag_config = {
-            virtual_text = true,
-            signs = false,
-            underline = false,
-            update_in_insert = false,
-            severity_sort = true,
-            float = {
-              header = true,
-              prefix = function()
-                return ""
-              end,
-              focusable = true,
-              title = " σ`∀´)σ ",
-              border = BORDER,
-              max_width = 80,
-            },
-          }
-
-          vim.diagnostic.config(diag_config)
-
+          require("language_servers.defaults")
           local lsp_highlight = false
           local toggle_lsp_highlight = function()
             if lsp_highlight then

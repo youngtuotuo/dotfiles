@@ -1,4 +1,29 @@
-local M = {}
+require("lspconfig.ui.windows").default_options.border = BORDER
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig.util").default_config.capabilities = capabilities
+
+local diag_config = {
+  virtual_text = true,
+  signs = false,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    header = true,
+    prefix = function()
+      return ""
+    end,
+    focusable = true,
+    title = " σ`∀´)σ ",
+    border = BORDER,
+    max_width = 80,
+  },
+}
+
+vim.diagnostic.config(diag_config)
 
 local function split_lines(value)
   value = string.gsub(value, "&nbsp;", " ")
@@ -33,15 +58,18 @@ local function hover(_, result, ctx, config)
   )
 end
 
-function M.setup()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(hover, {
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(hover, {
     border = BORDER,
     title = " Hover ",
     max_width = 100,
     max_height = 20,
     zindex = 500,
     focusable = true,
-  })
-end
-
-return M
+  }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = BORDER, title = " Signature ", max_width = 100 }
+  ),
+}
+require("lspconfig.util").default_config.handlers = handlers

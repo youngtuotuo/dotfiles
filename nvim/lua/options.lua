@@ -7,7 +7,7 @@ local options = {
   wrap = false,
   cinoptions="l1", -- for switch, case alignment
   writebackup = false, -- no need this with undo history plugin
-  -- completeopt = "menu,menuone,noinsert,noselect",
+  completeopt = "menu,menuone,noinsert,noselect",
   -- equalalways = false, -- equal remaining windows after close
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor", -- all block with blink
   -- search
@@ -40,7 +40,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
--- vim.opt.shortmess:append("c")
+vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,]")
 vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
 

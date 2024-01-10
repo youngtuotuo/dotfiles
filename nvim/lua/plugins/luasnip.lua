@@ -7,7 +7,7 @@ return {
       local ls = require("luasnip")
       local snippet_path = ""
       snippet_path = vim.fn.stdpath("config") .. string.format("%slua%ssnippets%s", SEP, SEP, SEP)
-      -- require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = snippet_path })
       ls.config.set_config({
         history = true,
