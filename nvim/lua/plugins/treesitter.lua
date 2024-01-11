@@ -16,7 +16,7 @@ return {
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        config = function(_, opts)
+        config = function(_, _)
           local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
           -- vim way: ; goes to the direction you were moving.

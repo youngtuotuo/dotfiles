@@ -8,33 +8,31 @@ vim.api.nvim_create_autocmd("InsertLeave", { callback = function() vim.api.nvim_
 
 local transparent = "none"
 local function basic_hl()
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = transparent })
-  -- vim.api.nvim_set_hl(0, "NormalNC", { bg = transparent })
+  vim.api.nvim_set_hl(0, "Error", { fg = transparent })
+  vim.api.nvim_set_hl(0, "FoldColumn", { bg = transparent })
+  vim.api.nvim_set_hl(0, "WinBar", { bg = transparent })
+  vim.api.nvim_set_hl(0, "WinBarNC", { bg = transparent })
+  vim.api.nvim_set_hl(0, "StatusLine", { reverse = true, bold = true })
+  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = "NvimLightYellow" })
+  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = "#929292" })
 
-  -- stylua: ignore start
-  vim.api.nvim_set_hl(0, "Error",                   { fg = transparent })
-  vim.api.nvim_set_hl(0, "StatusLine",              { reverse = true, bold = true })
-  vim.api.nvim_set_hl(0, "StatusLineNC",            { reverse = true })
-  vim.api.nvim_set_hl(0, "netrwMarkFile",           { fg = "NvimLightYellow" })
-  vim.api.nvim_set_hl(0, "markdownBlockquote",      { fg = "#929292" })
-
-  vim.api.nvim_set_hl(0, "LspReferenceRead",        { reverse = true })
-  vim.api.nvim_set_hl(0, "LspReferenceWrite",       { reverse = true })
-  vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk",    { fg = "NvimLightGreen", bg = transparent })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint",  { fg = "NvimLightBlue", bg = transparent })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo",  { fg = "NvimLightCyan", bg = transparent })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn",  { fg = "NvimLightYellow", bg = transparent })
+  vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#453545" })
+  vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#453545" })
+  vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#453545" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = "NvimLightGreen", bg = transparent })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = "NvimLightBlue", bg = transparent })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = "NvimLightCyan", bg = transparent })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = "NvimLightYellow", bg = transparent })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = "NvimLightRed", bg = transparent })
-  vim.api.nvim_set_hl(0, "DiffAdd",                 { link = "DiagnosticFloatingOk"})
-  vim.api.nvim_set_hl(0, "DiffChange",              { link = "DiagnosticFloatingWarn" })
-  vim.api.nvim_set_hl(0, "DiffDelete",              { link = "DiagnosticFloatingError" })
+  vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
+  vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
+  vim.api.nvim_set_hl(0, "DiffDelete", { link = "DiagnosticFloatingError" })
 
-  vim.api.nvim_set_hl(0, "NormalFloat",             { bg = transparent })
-  vim.api.nvim_set_hl(0, "FloatBorder",             { link = "LspInfoBorder" })
-  vim.api.nvim_set_hl(0, "CmpCompletionBorder",     { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "CmpDocumentationBorder",  { link = "NormalFloat" })
-  -- stylua: ignore end
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = transparent })
+  vim.api.nvim_set_hl(0, "FloatTitle", { bg = transparent })
+  vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
+  vim.api.nvim_set_hl(0, "CmpCompletionBorder", { link = "LspInfoBorder" })
+  vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { link = "LspInfoBorder" })
 
   local path = vim.fn.stdpath("config") .. string.format("%sinit.lua", SEP)
 
@@ -63,9 +61,6 @@ end
 basic_hl()
 
 vim.api.nvim_create_autocmd("ColorScheme", { callback = basic_hl })
+vim.api.nvim_create_user_command("L", "Lazy", {})
 
-return {
-  { "catppuccin/nvim", lazy = true, name = "catppuccin" },
-  { "p00f/alabaster.nvim", lazy = true },
-  { "Mofiqul/vscode.nvim", lazy = true },
-}
+return {}

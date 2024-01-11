@@ -67,9 +67,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gh",        toggle_inlay_hints,                  { buffer = ev.buf, desc = "toggle inlay hints" })
     vim.keymap.set("n", "<space>i",  toggle_lsp_highlight,                { buffer = ev.buf, desc = "toggle lsp highlight"})
     vim.keymap.set("n", "ga",        vim.lsp.buf.code_action,             { buffer = ev.buf, desc = "code action" })
-    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder,    { buffer = ev.buf, desc = "add workspace folder" })
-    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "remove workspace folder" })
-    vim.keymap.set("n", "<space>wl", function()
+    vim.keymap.set("n", "gwa",       vim.lsp.buf.add_workspace_folder,    { buffer = ev.buf, desc = "add workspace folder" })
+    vim.keymap.set("n", "gwr",       vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "remove workspace folder" })
+    vim.keymap.set("n", "gwl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,     { buffer = ev.buf, desc = "print workspace folder" }
     )
   end,

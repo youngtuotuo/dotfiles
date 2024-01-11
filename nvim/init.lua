@@ -53,4 +53,4 @@ local opts = {
 }
 require("lazy").setup(opts)
 
-vim.cmd[[colo alabaster]]
+vim.cmd[[colo default]]

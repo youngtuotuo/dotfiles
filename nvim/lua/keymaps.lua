@@ -35,8 +35,8 @@ vim.keymap.set({ "n" }, "n", "nzz", { noremap = true, desc = "n, with cursor kee
 vim.keymap.set({ "n" }, "N", "Nzz", { noremap = true, desc = "N, with cursor keep in middle" })
 
 vim.keymap.set({ "v", "x" }, "p", [["_dP]],   { noremap = true, desc = "[[\"_dP]], Paste over currently selected text without yanking it" })
-vim.keymap.set({ "n" }, "p", "p'[v']<esc>==", { noremap = true, desc = "p'[v']<esc>==, Paste with indent" })
-vim.keymap.set({ "n" }, "P", "P'[v']<esc>==", { noremap = true, desc = "P'[v']<esc>==, Paste with indent" })
+vim.keymap.set({ "n" }, "p", "p'.V']=", { noremap = true, desc = "p'[v']<esc>==, Paste with indent" })
+vim.keymap.set({ "n" }, "P", "P'.V']=", { noremap = true, desc = "P'[v']<esc>==, Paste with indent" })
 
 vim.keymap.set({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
 vim.keymap.set({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
@@ -50,14 +50,11 @@ vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo 
 
 vim.keymap.set({ "n" }, "<S-Right>", "<cmd>vertical resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" })
 vim.keymap.set({ "n" }, "<S-Left>",  "<cmd>vertical resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Up>",    "<cmd>resize +1<CR>",          { noremap = true, desc = "horizontal add pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Down>",  "<cmd>resize -1<CR>",          { noremap = true, desc = "horizontal reduce pane 1 size" })
 
 -- More indents options
 vim.keymap.set({ "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" })
 
 -- better search and replace
-vim.keymap.set({ "n" }, "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { noremap = true, desc = "replace text under cursor" })
 if vim.fn.has("win32") == 1 then
   vim.keymap.set({ "n" }, "<space>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" })
 end

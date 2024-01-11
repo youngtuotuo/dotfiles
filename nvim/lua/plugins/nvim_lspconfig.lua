@@ -9,6 +9,9 @@ return {
         {
           "williamboman/mason.nvim",
           cmd = "Mason",
+          init = function()
+            vim.api.nvim_create_user_command("M", "Mason", {})
+          end,
           opts = {
             ui = { border = BORDER, height = 0.8 },
           },
@@ -33,10 +36,9 @@ return {
           },
         },
       },
-      config = function(_, opts)
+      config = function(_, _)
         -- LspInfo command
         require("lspconfig.ui.windows").default_options.border = BORDER
-
         -- all server agnostic settings
         require("language_servers.format")
         require("language_servers.capabilities")
