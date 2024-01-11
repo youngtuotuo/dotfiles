@@ -1,9 +1,10 @@
 return {
   "folke/trouble.nvim",
-  events = "LspAttach",
+  lazy = true,
+  cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
   keys = {
-    { "<leader>t", ":TroubleToggle " },
-    { "gr", "<cmd>TroubleToggle lsp_references<cr>" },
+    { "<space>d", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
+    { "gr",       "<cmd>TroubleToggle lsp_references<cr>", desc = "TroubleToggle lsp_references" },
   },
   opts = {
     padding = false,

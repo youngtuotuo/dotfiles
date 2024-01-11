@@ -9,6 +9,7 @@ local options = {
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor", -- all block with blink
+  laststatus = 3,
   -- search
   hlsearch = false,
   ignorecase = true, -- Ignore case when searching...
@@ -33,35 +34,18 @@ local options = {
   undofile = true,
 }
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+-- stylua: ignore start
+for k, v in pairs(options) do vim.opt[k] = v end
+
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,]")
 vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
 
--- highlight group for trailing white space
-vim.cmd([[
-  highlight default EoLSpace guibg=Red
-  match EoLSpace /\s\+$/
-  autocmd InsertEnter * hi EoLSpace guibg=NONE
-  autocmd InsertLeave * hi EoLSpace guibg=Red
-]])
-
 local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = yank_augroup,
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+vim.api.nvim_create_autocmd("TextYankPost", { group = yank_augroup, callback = function() vim.highlight.on_yank() end, })
 
-vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function()
-    vim.cmd([[startinsert]])
-  end,
-})
+vim.api.nvim_create_autocmd("TermOpen", { callback = function() vim.api.nvim_input("i") end, })
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
@@ -71,13 +55,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 if vim.fn.has("win32") == 1 then
-  vim.cmd([[
-    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-    let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
-    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-    set shellquote= shellxquote=
-  ]])
+  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+  vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+  vim.opt.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
 end
 
 vim.g.netrw_altfile = 1
@@ -86,10 +69,15 @@ vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
 vim.g.netrw_hide = 0
 
-vim.api.nvim_create_user_command("W", "w", {})
-vim.api.nvim_create_user_command("Wa", "wa", {})
-vim.api.nvim_create_user_command("WA", "wa", {})
-vim.api.nvim_create_user_command("Wq", "wq", {})
-vim.api.nvim_create_user_command("WQ", "wq", {})
-vim.api.nvim_create_user_command("Q", "q", {})
-vim.api.nvim_create_user_command("Qa", "qa", {})
+-- illusions that I can type fast without any typo
+for _, c in ipairs({"w", "x", "q"}) do
+  for _, a in ipairs({"", "a", "A"}) do
+    -- W, X, Q <-> a, A
+    vim.api.nvim_create_user_command(c:upper() .. a, c, { bang = true, bar = true })
+    if c == "q" then
+      -- W <-> q, Q <-> a, A
+      vim.api.nvim_create_user_command("W" .. c         .. a, c, { bang = true, bar = true })
+      vim.api.nvim_create_user_command("W" .. c:upper() .. a, c, { bang = true, bar = true })
+    end
+  end
+end

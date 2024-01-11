@@ -1,87 +1,73 @@
--- Shorten function name
-local keymap = vim.keymap.set
-local default_opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+-- stylua: ignore start
+--  CHAR	MODE
+-- <Space>      Normal, Visual, Select and Operator-pending
+-- n            Normal
+-- v            Visual and Select
+-- s            Select
+-- x            Visual
+-- o            Operator-pending
+-- !            Insert and Command-line
+-- i            Insert
+-- l            ":lmap" mappings for Insert, Command-line and Lang-Arg
+-- c            Command-line
+-- t            Terminal-Job
 
--- Modes
--- normal_mode = "n"
--- insert_mode = "i"
--- visual_mode = "v"
--- visual_block_mode = "x"
--- command_mode = "c"
--- term_mode = "t"
+vim.keymap.set({ "i" }, "<C-c>", "<C-[>",       { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
+vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true, desc = "Term mode to normal mode with Esc" })
 
--- <C-c> will raise interrupted error of lsp
-keymap("i", "<C-c>", "<C-[>", default_opts)
+vim.keymap.set({ "i" }, "<C-n>", "<nop>", { noremap = true, desc = "Not show native menu" })
+vim.keymap.set({ "i" }, "<C-p>", "<nop>", { noremap = true, desc = "Not show native menu" })
+vim.keymap.set({ "n" }, "Q",     "<nop>", { noremap = true, desc = "Q repeat the last recorded register [count] times, no need" })
+vim.keymap.set({ "n" }, "<C-q>", "<nop>", { noremap = true, desc = "Never use C-q to enter visual block mode" })
 
-keymap("n", "<leader>l", "<Plug>NetrwRefresh", default_opts)
+vim.keymap.set({ "n" }, "<leader>s", "<cmd>set invnu invrnu<cr>", { noremap = true, desc = "<cmd>set invnu invrnu<cr>, Toggle nu and rnu" })
 
--- Not show native menu
-keymap("i", "<C-n>", "<nop>", default_opts)
-keymap("i", "<C-p>", "<nop>", default_opts)
-keymap("n", "Q", "<nop>", default_opts)
+vim.keymap.set({ "n" }, "Y", "y$", { noremap = true, desc = "y$, Y like C, D" })
 
-keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" })
+vim.keymap.set({ "n" },           "<leader>Y", '"+y$', { noremap = true, desc = "y$, but yank to system clipboard" })
 
--- number line
-keymap("n", "<leader>s", ":set invnu invrnu<CR>", default_opts)
+vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"_d', { noremap = true, desc = "d, but not go to register" })
 
--- Y like C,D
-keymap("n", "Y", "y$", default_opts)
+vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" })
 
--- system clipboard yank
-keymap({ "n", "v" }, "<leader>y", '"+y', default_opts)
-keymap("n", "<leader>Y", '"+Y', default_opts)
+vim.keymap.set({ "n" }, "n", "nzz", { noremap = true, desc = "n, with cursor keep in middle" })
+vim.keymap.set({ "n" }, "N", "Nzz", { noremap = true, desc = "N, with cursor keep in middle" })
 
--- delete avoid register
-keymap({ "n", "v" }, "<leader>d", '"_d', default_opts)
-keymap("n", "J", "mzJ`z", default_opts)
+vim.keymap.set({ "v", "x" }, "p", [["_dP]],   { noremap = true, desc = "[[\"_dP]], Paste over currently selected text without yanking it" })
+vim.keymap.set({ "n" }, "p", "p'[v']<esc>==", { noremap = true, desc = "p'[v']<esc>==, Paste with indent" })
+vim.keymap.set({ "n" }, "P", "P'[v']<esc>==", { noremap = true, desc = "P'[v']<esc>==, Paste with indent" })
 
--- search item center
-keymap("n", "n", "nzz", default_opts)
-keymap("n", "N", "Nzz", default_opts)
+vim.keymap.set({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
+vim.keymap.set({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
+vim.keymap.set({ "v", "x" }, "H", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
+vim.keymap.set({ "v", "x" }, "L", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
+vim.keymap.set({ "v", "x" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
+vim.keymap.set({ "v", "x" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
 
--- Better indent
-keymap("v", "<", "<gv", default_opts)
-keymap("v", ">", ">gv", default_opts)
+vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
+vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
--- Paste over currently selected text without yanking it
-keymap("v", "p", [["_dP]], default_opts)
-
--- Move selected line / block of text in visual mode
-keymap({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", default_opts)
-keymap({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", default_opts)
-keymap({ "v", "x" }, "H", "<gv", default_opts)
-keymap({ "v", "x" }, "L", ">gv", default_opts)
-
--- Undo break points
-keymap("i", ",", ",<C-g>u", default_opts)
-keymap("i", ".", ".<C-g>u", default_opts)
-
--- Resizing panes
-keymap("n", "<S-Left>", "<cmd>vertical resize -1<CR>", default_opts)
-keymap("n", "<S-Right>", "<cmd>vertical resize +1<CR>", default_opts)
-keymap("n", "<S-Up>", "<cmd>resize +1<CR>", default_opts)
-keymap("n", "<S-Down>", "<cmd>resize -1<CR>", default_opts)
+vim.keymap.set({ "n" }, "<S-Right>", "<cmd>vertical resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" })
+vim.keymap.set({ "n" }, "<S-Left>",  "<cmd>vertical resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" })
+vim.keymap.set({ "n" }, "<S-Up>",    "<cmd>resize +1<CR>",          { noremap = true, desc = "horizontal add pane 1 size" })
+vim.keymap.set({ "n" }, "<S-Down>",  "<cmd>resize -1<CR>",          { noremap = true, desc = "horizontal reduce pane 1 size" })
 
 -- More indents options
-keymap("i", "<S-Tab>", "<C-d>", default_opts)
-keymap("i", "<Tab>", "<C-i>", default_opts)
+vim.keymap.set({ "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" })
 
 -- better search and replace
-keymap("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-keymap("n", "<space>x", "<cmd>!chmod +x %<cr>", default_opts)
+vim.keymap.set({ "n" }, "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { noremap = true, desc = "replace text under cursor" })
+if vim.fn.has("win32") == 1 then
+  vim.keymap.set({ "n" }, "<space>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" })
+end
 
 -- better external command ouput
-keymap("n", "<leader>x", [[:sp | terminal ]])
+vim.keymap.set({ "n" }, "<leader>x", [[:sp | terminal<C-b>]], { noremap = true, desc = ":sp | terminal , execute external command with output to pane" })
 
-vim.cmd([[
-  set wildcharm=<Tab>
-  cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
-  cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
-  cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
-  cnoremap <expr> <c-j> wildmenumode() ? "\<up>" : "\<c-j>"
-  cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
-  cnoremap <expr> <c-k> wildmenumode() ? " \<bs>\<C-Z>" : "\<c-k>"
-  cnoremap <c-n> <Tab>
-]])
+-- more intuitive command mode keys
+vim.opt.wildcharm = vim.fn.char2nr('^I')
+vim.keymap.set({ "c" }, "<up>",    function() if vim.fn.wildmenumode() == 1 then return "<left>"         else return "<up>"    end end, { noremap = true, expr = true })
+vim.keymap.set({ "c" }, "<down>",  function() if vim.fn.wildmenumode() == 1 then return "<right>"        else return "<down>"  end end, { noremap = true, expr = true })
+vim.keymap.set({ "c" }, "<left>",  function() if vim.fn.wildmenumode() == 1 then return "<up>"           else return "<left>"  end end, { noremap = true, expr = true })
+vim.keymap.set({ "c" }, "<right>", function() if vim.fn.wildmenumode() == 1 then return "<bs><c-z><c-z>" else return "<right>" end end, { noremap = true, expr = true })

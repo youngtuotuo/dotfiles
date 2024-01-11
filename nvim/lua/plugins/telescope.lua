@@ -2,32 +2,32 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
+    init = function()
+      vim.api.nvim_create_user_command("T", "Telescope", {})
+    end,
+    -- stylua: ignore
     keys = {
-      { "<space>a", "<cmd>Telescope builtin<cr>" },
-      { "<space>r", "<cmd>Telescope lsp_references<cr>" },
       { "<space>e", "<cmd>Telescop find_files<cr>" },
-      { "<space>f", "<cmd>Telescop current_buffer_fuzzy_find<cr>" },
       { "<space>g", "<cmd>Telescop git_files<cr>" },
-      { "<space>d", "<cmd>Telescop diagnostics severity_bound=0<cr>" },
       { "<space>l", "<cmd>Telescop live_grep<cr>" },
       { "<space>b", "<cmd>Telescop buffers<cr>" },
-      { "<space>v", "<cmd>Telescop lsp_document_symbols<cr>" },
     },
     version = false,
     opts = function()
       local actions = require("telescope.actions")
+      -- stylua: ignore
       local maps = {
         n = {
-          ["q"] = actions.close,
-          ["<C-c>"] = actions.close,
-          ["<Tab>"] = actions.move_selection_next,
+          ["q"]       = actions.close,
+          ["<C-c>"]   = actions.close,
+          ["<Tab>"]   = actions.move_selection_next,
           ["<S-Tab>"] = actions.move_selection_previous,
-          ["<C-p>"] = actions.move_selection_previous,
-          ["<C-n>"] = actions.move_selection_next,
+          ["<C-p>"]   = actions.move_selection_previous,
+          ["<C-n>"]   = actions.move_selection_next,
         },
         i = {
-          ["<C-c>"] = actions.close,
-          ["<Tab>"] = actions.move_selection_next,
+          ["<C-c>"]   = actions.close,
+          ["<Tab>"]   = actions.move_selection_next,
           ["<S-Tab>"] = actions.move_selection_previous,
         },
       }

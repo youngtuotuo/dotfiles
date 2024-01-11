@@ -4,7 +4,7 @@ return {
   dependencies = { "kevinhwang91/promise-async" },
   opts = {
     provider_selector = function(_, _, _)
-      return { "lsp", "indent" }
+      return { "indent" }
     end,
   },
   config = function(_, opts)
@@ -14,7 +14,9 @@ return {
     vim.o.foldenable = true
 
     -- stylua: ignore
-    vim.keymap.set("n", "zK", function() local winid = require("ufo").peekFoldedLinesUnderCursor() if not winid then vim.lsp.buf.hover() end end, { desc = "Peek fold" })
+    vim.keymap.set("n", "zK", function()
+      local winid = require("ufo").peekFoldedLinesUnderCursor() if not winid then vim.lsp.buf.hover() end end, { desc = "Peek fold" }
+    )
 
     require("ufo").setup(opts)
   end,

@@ -1,22 +1,21 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "BufReadPre" },
+    event = { "BufRead" },
+    -- stylua: ignore
     dependencies = {
-      "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
-      "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
+      "hrsh7th/cmp-buffer",                     -- nvim-cmp source for buffer words
+      "FelipeLema/cmp-async-path",              -- nvim-cmp source for path (async version)
+      "saadparwaiz1/cmp_luasnip",               -- luasnip completion source for nvim-cmp
+      "hrsh7th/cmp-nvim-lua",                   -- nvim-cmp source for neovim Lua API.
+      "hrsh7th/cmp-nvim-lsp",                   -- nvim-cmp source for neovim's built-in language server client.
+      "hrsh7th/cmp-nvim-lsp-signature-help",    -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
       { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
-      "saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
-      "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
-      "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
-      "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     },
+    -- stylua: ignore
     opts = function()
-      vim.opt.pumheight = 5
       local cmp_status_ok, cmp = pcall(require, "cmp")
-      if not cmp_status_ok then
-        return
-      end
+      if not cmp_status_ok then return end
 
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -86,10 +85,7 @@ return {
           end, { "i", "s" }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-5),
           ["<C-f>"] = cmp.mapping.scroll_docs(5),
-          ["<C-l>"] = cmp.mapping.confirm({
-            select = false,
-            behavior = cmp.ConfirmBehavior.Replace,
-          }),
+          ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace, }),
           ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         }),

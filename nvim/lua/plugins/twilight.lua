@@ -1,7 +1,7 @@
 return {
   {
     "folke/twilight.nvim",
-    event = "BufEnter",
+    event = "BufRead",
     opts = {},
   },
 }

@@ -1,3 +1,3 @@
 return function()
-  require("lspconfig").clangd.setup({})
+  require("lspconfig").clangd.setup({}) -- {} is required
 end

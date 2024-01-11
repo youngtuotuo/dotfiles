@@ -6,7 +6,6 @@ return {
   {
     "microsoft/python-type-stubs",
     ft = { "python" },
-    event = "LspAttach",
     cond = false,
   },
 }

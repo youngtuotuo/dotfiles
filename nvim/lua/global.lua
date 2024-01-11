@@ -1,7 +1,5 @@
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
+-- stylua: ignore start
+P = function(v) print(vim.inspect(v)) return v end
 
 -- "none": No border (default).
 -- "single": A single line box.
@@ -9,12 +7,13 @@ end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
+--
 -- BORDER = "none"
--- M.border = { " ", " ", " ", " ", " ", " ", " ", " " }
+-- BORDER = { " ", " ", " ", " ", " ", " ", " ", " " }
 BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+
 -- transparent control
 TRANS = true
-SEP = "/"
-if vim.fn.has("win32") == 1 then
-  SEP = "\\"
-end
+-- fk u MS
+SEP = vim.fn.has("win32") == 1 and "\\" or "/"
+-- stylua: ignore end
