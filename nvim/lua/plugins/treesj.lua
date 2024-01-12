@@ -1,6 +1,9 @@
 return {
   "Wansmer/treesj",
   cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+  init = function()
+    vim.api.nvim_create_user_command("TSJ", "TSJToggle", {})
+  end,
   keys = {
     { "<space>j", "<cmd>TSJToggle", desc = "TSJToggle" }
   },
