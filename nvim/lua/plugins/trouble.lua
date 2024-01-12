@@ -5,6 +5,8 @@ return {
   keys = {
     { "<space>d", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
     { "gr",       "<cmd>TroubleToggle lsp_references<cr>", desc = "TroubleToggle lsp_references" },
+    { "gd",       "<cmd>TroubleToggle lsp_definitions<cr>", desc = "TroubleToggle lsp_references" },
+    { "gt",       "<cmd>TroubleToggle lsp_type_definitions<cr>", desc = "TroubleToggle lsp_references" },
   },
   opts = {
     padding = false,

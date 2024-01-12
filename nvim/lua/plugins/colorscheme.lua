@@ -1,9 +1,9 @@
 -- highlight group for trailing white space
 vim.fn.matchadd("EoLSpace", "\\s\\+$")
-vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" })
 
 local transparent = "none"
 local function basic_hl()
+  vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" })
   vim.api.nvim_set_hl(0, "Error", { fg = transparent })
   vim.api.nvim_set_hl(0, "FoldColumn", { bg = transparent })
   vim.api.nvim_set_hl(0, "WinBar", { bg = transparent })
@@ -28,7 +28,17 @@ local function basic_hl()
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = transparent })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
 
-  local path = vim.fn.stdpath("config") .. string.format("%sinit.lua", SEP)
+  vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
+  vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
+  vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
+
+  vim.api.nvim_set_hl(0, "DropBarPreview", { bold = true })
+  vim.api.nvim_set_hl(0, "DropBarHover", { fg = "NvimLightCyan", bold = true })
+  vim.api.nvim_set_hl(0, "DropBarCurrentContext", { bold = true })
+  vim.api.nvim_set_hl(0, "DropBarMenuHoverEntry", { fg = "NvimLightCyan", bold = true })
+  vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { fg = "NvimLightYellow", bold = false })
+
+  local path = os.getenv(HOME) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", SEP, SEP, SEP, SEP)
 
   local file = io.open(path, "r")
   local fileContent = {}

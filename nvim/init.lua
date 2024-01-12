@@ -54,4 +54,5 @@ local opts = {
 }
 require("lazy").setup(opts)
 
+-- for auto update colorscheme, don't edit this line
 vim.cmd[[colo default]]

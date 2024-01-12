@@ -1,17 +1,15 @@
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = group,
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("TermOpen", {
   group = group,
-  callback = function()
-    vim.api.nvim_input("i")
-  end,
+  callback = function() vim.api.nvim_input("i") end,
 })
 
 local check_math_h = function()
@@ -22,49 +20,33 @@ local check_math_h = function()
   return true
 end
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   pattern = "*.c",
   callback = function()
     local fname_next = vim.fn.expand("%:t:r")
-    local ext = ""
-    local sep = "/"
-    local compiler = "clang"
-    if vim.fn.has("win32") == 1 then
-      ext = ".exe"
-      sep = "\\"
-      compiler = "clang-cl"
-    end
+    local compiler = vim.fn.has("win32") and "clang-cl" or "clang"
     local cmd = compiler .. " -Wall -Wextra "
-    if check_math_h() then
-      cmd = cmd .. "-lm "
-    end
-    cmd = cmd .. "-o " .. fname_next .. ext .. " %"
-    cmd = cmd .. " && ." .. sep .. fname_next .. ext
+    if check_math_h() then cmd = cmd .. "-lm " end
+    cmd = cmd .. "-o " .. fname_next .. EXT .. " %"
+    cmd = cmd .. " && ." .. SEP .. fname_next .. EXT
     cmd = ":sp | terminal " .. cmd
     vim.keymap.set("n", "<leader>p", cmd)
   end,
 })
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   pattern = "*.cpp",
   callback = function()
     local fname_next = vim.fn.expand("%:t:r")
-    local ext = ""
-    local sep = "/"
-    local compiler = "clang++"
-    if vim.fn.has("win32") == 1 then
-      ext = ".exe"
-      sep = "\\"
-      compiler = "clang-cl"
-    end
+    local compiler = vim.fn.has("win32") and "clang-cl" or "clang++"
     local cmd = compiler .. " -Wall -std=c++14 "
-    if check_math_h() then
-      cmd = cmd .. "-lm "
-    end
-    cmd = cmd .. "-o " .. fname_next .. ext .. " %"
-    cmd = cmd .. " && ." .. sep .. fname_next .. ext
+    if check_math_h() then cmd = cmd .. "-lm " end
+    cmd = cmd .. "-o " .. fname_next .. EXT .. " %"
+    cmd = cmd .. " && ." .. SEP .. fname_next .. EXT
     cmd = ":sp | terminal " .. cmd
     vim.keymap.set("n", "<leader>p", cmd)
   end,
@@ -82,6 +64,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
   end,
 })
+
 vim.api.nvim_create_autocmd("WinLeave", {
   pattern = "*",
   group = group,
@@ -92,23 +75,21 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("Filetype", {
   group = group,
   pattern = "help",
-  callback = function()
-    vim.cmd("wincmd L")
-  end,
+  callback = function() vim.cmd("wincmd L") end,
 })
 
+-- stylua: ignore
 vim.api.nvim_create_autocmd("InsertEnter", {
   group = group,
-  callback = function()
-    vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "none" })
-  end,
+  callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end,
 })
+
+-- stylua: ignore
 vim.api.nvim_create_autocmd("InsertLeave", {
   group = group,
-  callback = function()
-    vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" })
-  end,
+  callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "Red" }) end,
 })
