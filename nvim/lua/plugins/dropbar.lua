@@ -9,7 +9,7 @@ return {
   "Bekaboo/dropbar.nvim",
   event = { "LspAttach" },
   init = function()
-    vim.api.nvim_create_user_command("Dr", toggle_bar, {})
+    vim.api.nvim_create_user_command("DR", toggle_bar, {})
   end,
   -- stylua: ignore
   keys = {
@@ -21,23 +21,6 @@ return {
   opts = {
     general = {
       attach_events = {},
-      update_events = {
-        win = {
-          "CursorMoved",
-          "CursorMovedI",
-          "WinEnter",
-        },
-        buf = {
-          "BufModifiedSet",
-          "FileChangedShellPost",
-          "TextChanged",
-          "TextChangedI",
-        },
-        global = {
-          "DirChanged",
-          "VimResized",
-        },
-      },
     },
     menu = {
       preview = false,
