@@ -4,10 +4,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "folke/trouble.nvim" },
     lazy = true,
     -- stylua: ignore
-    cmd = "TodoTrouble",
     keys = {
       {
-        "<space>t", string.format("<cmd>TodoTrouble cmd=%s<cr>", vim.fn.expand("%:p:h")), desc = "TodoTrouble"
+        "<space>t", string.format("<cmd>TroubleToggle todo cmd=%s<cr>", vim.fn.expand("%:p:h")), desc = "TodoTrouble"
       },
     },
     opts = {
