@@ -1,10 +1,6 @@
 -- highlight group for trailing white space
 vim.fn.matchadd("EoLSpace", "\\s\\+$")
 vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" })
--- stylua: ignore start
-vim.api.nvim_create_autocmd("InsertEnter", { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "none" }) end })
-vim.api.nvim_create_autocmd("InsertLeave", { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" }) end })
--- stylua: ignore end
 
 local transparent = "none"
 local function basic_hl()
@@ -31,8 +27,6 @@ local function basic_hl()
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = transparent })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = transparent })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
-  vim.api.nvim_set_hl(0, "CmpCompletionBorder", { link = "LspInfoBorder" })
-  vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { link = "LspInfoBorder" })
 
   local path = vim.fn.stdpath("config") .. string.format("%sinit.lua", SEP)
 

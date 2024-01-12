@@ -35,8 +35,8 @@ vim.keymap.set({ "n" }, "n", "nzz", { noremap = true, desc = "n, with cursor kee
 vim.keymap.set({ "n" }, "N", "Nzz", { noremap = true, desc = "N, with cursor keep in middle" })
 
 vim.keymap.set({ "v", "x" }, "p", [["_dP]],   { noremap = true, desc = "[[\"_dP]], Paste over currently selected text without yanking it" })
-vim.keymap.set({ "n" }, "p", "p'.V']=", { noremap = true, desc = "p'[v']<esc>==, Paste with indent" })
-vim.keymap.set({ "n" }, "P", "P'.V']=", { noremap = true, desc = "P'[v']<esc>==, Paste with indent" })
+vim.keymap.set({ "n", "v", "x" }, "p", "p'.V']=", { noremap = true, desc = "p'[v']<esc>==, Paste with indent" })
+vim.keymap.set({ "n", "v", "x" }, "P", "P'.V']=", { noremap = true, desc = "P'[v']<esc>==, Paste with indent" })
 
 vim.keymap.set({ "v", "x" }, "J", ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
 vim.keymap.set({ "v", "x" }, "K", ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })

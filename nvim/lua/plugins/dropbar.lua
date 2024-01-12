@@ -22,34 +22,35 @@ return {
         },
         entry = {
           padding = {
-            left = 0, right = 0
-          }
-        }
+            left = 1,
+            right = 0,
+          },
+        },
       },
       icons = {
         enable = true,
-        kind = {
-          use_devicons = false
-        }
-      },
-      ui = {
-        bar = {
-          separator = "",
-          extends = "…",
+        kinds = {
+          use_devicons = false,
         },
-        menu = {
-          separator = "",
-          indicator = "",
+        ui = {
+          bar = {
+            separator = " ",
+            extends = "…",
+          },
+          menu = {
+            separator = "",
+            indicator = "",
+          },
         },
       },
     },
     config = function(_, opts)
       require("dropbar").setup(opts)
-      vim.api.nvim_set_hl(0, "DropBarPreview", { bold = false })
-      vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { bold = false })
-      vim.api.nvim_set_hl(0, "DropBarHover", { bold = true })
+      vim.api.nvim_set_hl(0, "DropBarPreview", { bold = true })
+      vim.api.nvim_set_hl(0, "DropBarHover", { fg = "NvimLightCyan", bold = true })
       vim.api.nvim_set_hl(0, "DropBarCurrentContext", { bold = true })
-      vim.api.nvim_set_hl(0, "DropBarMenuHoverEntry", { bold = true })
-    end
+      vim.api.nvim_set_hl(0, "DropBarMenuHoverEntry", { fg = "NvimLightCyan", bold = true })
+      vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { fg = "NvimLightYellow", bold = false })
+    end,
   },
 }
