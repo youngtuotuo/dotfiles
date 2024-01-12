@@ -91,5 +91,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 -- stylua: ignore
 vim.api.nvim_create_autocmd("InsertLeave", {
   group = group,
-  callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "Red" }) end,
+  callback = function()
+    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "Red" })
+  end,
 })

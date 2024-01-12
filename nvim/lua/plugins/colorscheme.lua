@@ -1,9 +1,5 @@
--- highlight group for trailing white space
-vim.fn.matchadd("EoLSpace", "\\s\\+$")
-
 local transparent = "none"
 local function basic_hl()
-  vim.api.nvim_set_hl(0, "EoLSpace", { default = true, bg = "Red" })
   vim.api.nvim_set_hl(0, "Error", { fg = transparent })
   vim.api.nvim_set_hl(0, "FoldColumn", { bg = transparent })
   vim.api.nvim_set_hl(0, "WinBar", { bg = transparent })
