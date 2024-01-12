@@ -2,6 +2,7 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "folke/trouble.nvim" },
+    event = "BufRead",
     -- stylua: ignore
     keys = {
       {
