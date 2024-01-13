@@ -1,16 +1,4 @@
 -- stylua: ignore start
-local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
-
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = group,
-  callback = function() vim.highlight.on_yank() end,
-})
-
-vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = group,
-  callback = function() vim.api.nvim_input("i") end,
-})
-
 local check_math_h = function()
   local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   if vim.fn.match(content, "math.h") == -1 then
@@ -19,81 +7,55 @@ local check_math_h = function()
   return true
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = group,
-  pattern = "*.c",
-  callback = function()
-    local fname_next = vim.fn.expand("%:t:r")
-    local compiler = vim.fn.has("win32") and "clang-cl" or "clang"
-    local cmd = compiler .. " -Wall -Wextra "
-    if check_math_h() then cmd = cmd .. "-lm " end
-    cmd = cmd .. "-o " .. fname_next .. EXT .. " %"
-    cmd = cmd .. " && ." .. SEP .. fname_next .. EXT
-    cmd = ":sp | terminal " .. cmd
-    vim.keymap.set("n", "<leader>p", cmd)
-  end,
-})
+local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = group,
-  pattern = "*.cpp",
-  callback = function()
-    local fname_next = vim.fn.expand("%:t:r")
-    local compiler = vim.fn.has("win32") and "clang-cl" or "clang++"
-    local cmd = compiler .. " -Wall -std=c++14 "
-    if check_math_h() then cmd = cmd .. "-lm " end
-    cmd = cmd .. "-o " .. fname_next .. EXT .. " %"
-    cmd = cmd .. " && ." .. SEP .. fname_next .. EXT
-    cmd = ":sp | terminal " .. cmd
-    vim.keymap.set("n", "<leader>p", cmd)
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = "*",
-  group = group,
-  callback = function()
-    if vim.o.filetype == "dropbar_menu" then
-      vim.opt_local.guicursor = "n:ver25,i:block,n:blinkwait1-blinkoff1000-blinkon1-Normal,i:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
-    else
-      vim.opt.formatoptions:remove({ "c", "r", "o" })
-    end
-    -- some buffer will change this, don't know why
-    vim.opt.fillchars = {
-      fold      = " ",
-      foldopen  = "",
-      foldsep   = " ",
-      foldclose = "",
+-- event = config[]
+local cmds = {
+  TextYankPost = { { callback = function() vim.highlight.on_yank() end } },
+  TermOpen     = { { callback = function() vim.api.nvim_input("i") end } },
+  FileType     = { { pattern = "help", callback = function() vim.cmd([[wincmd L]]) end } },
+  InsertEnter  = { { pattern = "*", callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end } },
+  InsertLeave  = { { pattern = "*", callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" }) end } },
+  BufEnter     = {
+    {
+      pattern = { "*.c", "*.cpp" }, callback = function()
+        local bufname = vim.fn.expand("%:t:r")
+        local bufext = vim.fn.expand("%:e")
+        local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
+        local cmd = string.format("%s -Wall -Wextra", compiler)
+        -- # include <math.h>
+        if check_math_h() then cmd = string.format("%s -l", cmd) end
+        --  cpp14
+        if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
+        -- compiler -Wall -Wextra -lm -std=c++14 -o fnameEXT && ./fnameEXT
+        cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, EXT, SEP, bufname, EXT)
+        cmd = ":sp | terminal " .. cmd
+        vim.keymap.set("n", "<leader>p", cmd)
+      end
+    },
+    {
+      pattern = "*",
+      callback = function()
+        vim.opt.formatoptions = "jql"
+      end
     }
-  end,
-})
+  },
+  WinLeave = {
+    {
+      pattern = "*", callback = function()
+        if vim.o.filetype == "dropbar_menu" then
+          vim.opt.guicursor = [[a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]]
+        end
+      end,
+    }
+  },
+}
 
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
-  pattern = "*",
-  group = group,
-  callback = function()
-    if vim.o.filetype == "dropbar_menu" then
-      vim.opt.guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "Filetype" }, {
-  group = group,
-  pattern = "help",
-  callback = function() vim.cmd("wincmd L") end,
-})
-
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  group = group,
-  callback = function()
-    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" })
+for e, configs in pairs(cmds) do
+  for _, config in ipairs(configs) do
+    config.group = group
+    vim.api.nvim_create_autocmd(e, config)
   end
-})
+end
 
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  group = group,
-  callback = function()
-    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
-  end
-})
+return {}

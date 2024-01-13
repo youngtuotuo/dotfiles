@@ -15,13 +15,12 @@ BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- transparent control
 TRANS = true
 -- fk u MS
-SEP = vim.fn.has("win32") == 1 and "\\" or "/"
+SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
 HOME = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 EXT = vim.fn.has("win32") == 1 and ".exe" or ""
 
 FILLCHARS = function()
   vim.opt.fillchars = {
-    verthoriz="┼",
     fold=" ",
     foldopen="",
     foldsep=" ",

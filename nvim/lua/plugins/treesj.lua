@@ -5,7 +5,7 @@ return {
     vim.api.nvim_create_user_command("TSJ", "TSJToggle", {})
   end,
   keys = {
-    { "<space>j", "<cmd>TSJToggle", desc = "TSJToggle" }
+    { "<space>j", "<cmd>TSJToggle<cr>", desc = "TSJToggle" }
   },
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   opts = {

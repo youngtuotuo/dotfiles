@@ -6,9 +6,8 @@ return {
   -- stylua: ignore
   keys = {
     {
-      "<leader>f",
-      function() require("conform").format({ timeout_ms = 3000 })
-      end, mode = { "n", "v" }, desc = "Format buffer"
+      "<leader>f", function() require("conform").format({ timeout_ms = 3000 }) end,
+      mode = { "n", "v" }, desc = "Format buffer"
     }
   },
   init = function()

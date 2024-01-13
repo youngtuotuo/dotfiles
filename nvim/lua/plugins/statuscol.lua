@@ -1,6 +1,6 @@
 return {
   "luukvbaal/statuscol.nvim",
-  event = "BufRead",
+  event = { "BufRead" },
   -- stylua: ignore
   opts = function()
     local builtin = require("statuscol.builtin")

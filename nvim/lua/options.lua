@@ -1,3 +1,4 @@
+-- stylua: ignore start
 local options = {
   expandtab = true,
   softtabstop = 4,
@@ -10,6 +11,7 @@ local options = {
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   laststatus = 3,
+  formatoptions = "jql",
   -- search
   hlsearch = false,
   ignorecase = true, -- Ignore case when searching...
@@ -33,49 +35,69 @@ local options = {
   swapfile = false,
   updatetime = 50,
   undofile = true,
+  wildcharm = vim.fn.char2nr('^I'),
+  undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP),
+  pumblend = 8,
 }
 
--- stylua: ignore start
-for k, v in pairs(options) do vim.opt[k] = v end
-
-if vim.o.laststatus == 0 then
-  vim.opt.statusline = "%{repeat('─',winwidth('.'))}"
+if options.laststatus == 0 then
+  options.statusline = "%{repeat('─',winwidth('.'))}"
 end
 
-
-vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
-vim.opt.shortmess:append("c")
-vim.opt.whichwrap:append("<,>,[,]")
-vim.opt.undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP)
+-- fk u MS
 if vim.fn.has("win32") == 1 then
-  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-  vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
-  vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-  vim.opt.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-  vim.opt.shellquote = ""
-  vim.opt.shellxquote = ""
+  options.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  options.shellcmdflag = [[-NoLogo -ExecutionPolicy RemoteSigned ]]
+    .. [[-Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();
+        "$PSDefaultParameterValues['Out-File:Encoding']='utf8';
+        "Remove-Alias -Force -ErrorAction SilentlyContinue tee;]]
+  options.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+  options.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+  options.shellquote = ""
+  options.shellxquote = ""
 end
 
-vim.g.netrw_altfile = 1
-vim.g.netrw_cursor = 5
-vim.g.netrw_preview = 1
-vim.g.netrw_alto = 0
-vim.g.netrw_hide = 0
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
 
--- illusions that I can type fast without any typo
-for _, c in ipairs({"w", "x", "q"}) do
-  -- W, X, Q
-  vim.api.nvim_create_user_command(c:upper(), c, { bang = true, bar = true })
-  for _, a in ipairs({"", "a", "A"}) do
-    -- Wa, Xa, Qa, WA, XA, QA
-    vim.api.nvim_create_user_command(c:upper() .. a,         c .. a, { bang = true, bar = true })
-    vim.api.nvim_create_user_command(c:upper() .. a:upper(), c .. a, { bang = true, bar = true })
-    if c == "q" then
-      -- Wqa, WQa, WqA, WQA
-      vim.api.nvim_create_user_command("W" .. c         .. a,         "w" .. c .. a, { bang = true, bar = true })
-      vim.api.nvim_create_user_command("W" .. c         .. a:upper(), "w" .. c .. a, { bang = true, bar = true })
-      vim.api.nvim_create_user_command("W" .. c:upper() .. a,         "w" .. c .. a, { bang = true, bar = true })
-      vim.api.nvim_create_user_command("W" .. c:upper() .. a:upper(), "w" .. c .. a, { bang = true, bar = true })
-    end
+-- append options
+local edits = {
+  wildignore = { "*.o", "*~", "*.pyc", "*pycache*" },
+  shortmess  = "c",
+  whichwrap  = "<,>,[,]"
+}
+
+for k, v in pairs(edits) do
+  vim.opt[k]:append(v)
+end
+
+-- netrw stuff
+local globals = {
+  netrw_altfile = 1,
+  netrw_cursor = 5,
+  netrw_preview = 1,
+  netrw_alto = 0,
+  netrw_hide = 0,
+}
+
+for k, v in pairs(globals) do
+  vim.g[k] = v
+end
+
+local slow_fingers = {
+  w   = { "W" },
+  q   = { "Q" },
+  x   = { "X" },
+  wq  = { "WQ", "Wq" },
+  wa  = { "WA", "Wa" },
+  qa  = { "QA", "Qa" },
+  wqa = { "WQA", "WQa", "Wqa" },
+  xa  = { "XA", "Xa" },
+}
+
+for k, v in pairs(slow_fingers) do
+  for _, new in ipairs(v) do
+    vim.api.nvim_create_user_command(new, k, { bang = true, bar = true })
   end
 end

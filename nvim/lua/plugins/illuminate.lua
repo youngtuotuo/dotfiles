@@ -1,6 +1,11 @@
 return {
   "RRethy/vim-illuminate",
-  event = "BufRead",
+  event = "LspAttach",
+  -- stylua: ignore
+  keys = {
+    { "<c-p>", function() require("illuminate").goto_prev_reference() end, { desc = "go to previous reference" } },
+    { "<c-n>", function() require("illuminate").goto_next_reference() end, { desc = "go to next reference" } },
+  },
   opts = {
     providers = {
       "lsp",
@@ -13,13 +18,10 @@ return {
       "netrw",
     },
   },
-  -- stylua: ignore
   config = function(_, opts)
     require("illuminate").configure(opts)
-    vim.keymap.set( { "n" }, "<c-p>", require("illuminate").goto_prev_reference, { desc = "go to previous reference" })
-    vim.keymap.set( { "n" }, "<c-n>", require("illuminate").goto_next_reference, { desc = "go to next reference" })
     vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
-    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
+    vim.api.nvim_set_hl(0, "IlluminatedWordWrite",{ underline = false })
     vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
   end,
 }

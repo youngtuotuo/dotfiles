@@ -46,7 +46,7 @@ return {
       layout = {
         { type = "padding", val = 3 },
         header,
-        { type = "padding", val = 3 },
+        { type = "padding", val = 2 },
         footer,
         { type = "padding", val = 1 },
         lazystats,
@@ -60,7 +60,6 @@ return {
   end,
   config = function(_, opts)
     require("alpha").setup(opts)
-
     vim.api.nvim_create_autocmd("User", {
       group = vim.api.nvim_create_augroup("TuoGroup", { clear = false }),
       pattern = "LazyVimStarted",

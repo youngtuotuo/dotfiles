@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- vim.keymap.set("n", "gd",        vim.lsp.buf.definition,              { buffer = ev.buf, desc = "go to definition" })
     vim.keymap.set("n", "gi",        vim.lsp.buf.implementation,          { buffer = ev.buf, desc = "go to implementation" })
     -- vim.keymap.set("n", "gt",        vim.lsp.buf.type_definition,         { buffer = ev.buf, desc = "go to type type_definition" })
-    vim.keymap.set("n", "K",         vim.lsp.buf.hover,                   { buffer = ev.buf, desc = "lsp hover" })
+    -- vim.keymap.set("n", "K",         vim.lsp.buf.hover,                   { buffer = ev.buf, desc = "lsp hover" })
     vim.keymap.set("n", "gs",        vim.lsp.buf.signature_help,          { buffer = ev.buf, desc = "signature help" })
     vim.keymap.set("n", "gn",        vim.lsp.buf.rename,                  { buffer = ev.buf, desc = "lsp rename" })
     vim.keymap.set("n", "gh",        toggle_inlay_hints,                  { buffer = ev.buf, desc = "toggle inlay hints" })

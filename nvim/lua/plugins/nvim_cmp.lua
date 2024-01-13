@@ -31,9 +31,7 @@ return {
         -- autocomplete = false,
         completeopt = "menu,menuone,noinsert",
       },
-      view = {
-        docs = { auto_open = true },
-      },
+      view = { docs = { auto_open = true } },
       formatting = {
         format = function(entry, vim_item)
           vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
@@ -50,12 +48,17 @@ return {
       },
       window = {
         completion = {
-          winhighlight = "NormalFloat:None,FloatBorder:None,Search:None",
+          winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
           scrollbar = false,
           border = BORDER,
           max_width = 40,
         },
-        documentation = { scrollbar = false, border = BORDER, max_width = 50, max_height = 30 },
+        documentation = {
+          scrollbar = false,
+          border = BORDER,
+          max_width = 50,
+          max_height = 30,
+        },
       },
       snippet = {
         expand = function(args)
@@ -111,7 +114,7 @@ return {
         { name = "nvim_lsp_signature_help" },
       }, {
         { name = "buffer" },
-        { name = "nvim_lua" }, -- nvim lua api
+        { name = "nvim_lua" },
       }),
       sorting = {
         priority_weight = 1.0,

@@ -44,17 +44,22 @@ return {
     local gs = require("gitsigns")
     gs.setup(opts)
 
-    vim.keymap.set("n", "]c",         function() require("gitsigns").next_hunk() end,  { buffer = 0, desc = "Gitsigns next hunk" })
-    vim.keymap.set("n", "[c",         function() require("gitsigns").prev_hunk() end,  { buffer = 0, desc = "Gitsigns previous hunk" })
-    vim.keymap.set("n", "<leader>gs", function() require("gitsigns").stage_hunk() end, { buffer = 0, desc = "Gitsigns stage hunk" })
-    vim.keymap.set("n", "<leader>gr", function() require("gitsigns").reset_hunk() end, { buffer = 0, desc = "Gitsigns reset hunk" })
-    vim.keymap.set("n", "<leader>gp", function() require("gitsigns").preview_hunk() end, { buffer = 0, desc = "Gitsigns preview hunk" })
-
-    local ts_obj_status, ts_rep_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+    local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+    local next_hunk, prev_hunk = gs.next_hunk, gs.prev_hunk
     if ts_obj_status then
-      local next_hunk_repeat, prev_hunk_repeat = ts_rep_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
-      vim.keymap.set({ "n", "x", "o" }, "]c", next_hunk_repeat, { buffer = 0, desc = "Gitsigns next hunk" })
-      vim.keymap.set({ "n", "x", "o" }, "[c", prev_hunk_repeat, { buffer = 0, desc = "Gitsigns previous hunk" })
+      next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
     end
+
+    local keyms = {
+      { "n", "]c",         function() next_hunk() end,  { buffer = 0, desc = "Gitsigns next hunk" } },
+      { "n", "[c",         function() prev_hunk() end,  { buffer = 0, desc = "Gitsigns previous hunk" } },
+      { "n", "<leader>gs", function() require("gitsigns").stage_hunk() end, { buffer = 0, desc = "Gitsigns stage hunk" } },
+      { "n", "<leader>gr", function() require("gitsigns").reset_hunk() end, { buffer = 0, desc = "Gitsigns reset hunk" } },
+      { "n", "<leader>gp", function() require("gitsigns").preview_hunk() end, { buffer = 0, desc = "Gitsigns preview hunk" } },
+    }
+    for _, v in ipairs(keyms) do
+      vim.keymap.set(unpack(v))
+    end
+
   end,
 }
