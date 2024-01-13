@@ -1,15 +1,6 @@
 return {
   "Bekaboo/dropbar.nvim",
   event = { "LspAttach" },
-  init = function()
-    vim.api.nvim_create_user_command("DR", function()
-      if vim.o.winbar == "" then
-        vim.o.winbar = "%{%v:lua.dropbar.get_dropbar_str()%}"
-      else
-        vim.o.winbar = ""
-      end
-    end, {})
-  end,
   -- stylua: ignore
   keys = {
     { "<space>w", function() require("dropbar.api").pick() end, { desc = "dropbar selection" } },
@@ -18,6 +9,9 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
   },
   opts = {
+    general = {
+      attach_events = {},
+    },
     menu = {
       preview = false,
       win_configs = {
@@ -47,4 +41,7 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("dropbar").setup(opts)
+  end
 }

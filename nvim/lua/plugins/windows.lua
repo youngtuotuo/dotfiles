@@ -1,6 +1,6 @@
 return {
   "anuvyklack/windows.nvim",
-  event = "WinEnter",
+  event = "BufRead",
   dependencies = "anuvyklack/middleclass",
   opts = {},
 }
