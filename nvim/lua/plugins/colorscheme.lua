@@ -4,9 +4,16 @@ local function basic_hl()
   vim.api.nvim_set_hl(0, "FoldColumn", { bg = transparent })
   vim.api.nvim_set_hl(0, "WinBar", { bg = transparent })
   vim.api.nvim_set_hl(0, "WinBarNC", { bg = transparent })
-  vim.api.nvim_set_hl(0, "StatusLine", { reverse = true, bold = true })
+  if vim.o.laststatus == 0 then
+    vim.api.nvim_set_hl(0, "StatusLine", { link = "WinSeparator" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { link = "WinSeparator" })
+  else
+    vim.api.nvim_set_hl(0, "StatusLine", { reverse = true, bold = true })
+  end
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = "NvimLightYellow" })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = "#929292" })
+
+  vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
 
   vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#453545" })
   vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#453545" })
@@ -34,6 +41,8 @@ local function basic_hl()
   vim.api.nvim_set_hl(0, "DropBarMenuHoverEntry", { fg = "NvimLightCyan", bold = true })
   vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { fg = "NvimLightYellow", bold = false })
 
+  -- update the last line of ~/github/dotfiles/nvim/init.lua
+  -- stylua: ignore
   local path = os.getenv(HOME) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", SEP, SEP, SEP, SEP)
 
   local file = io.open(path, "r")
@@ -54,13 +63,18 @@ local function basic_hl()
     file:write(value .. "\n")
   end
   io.close(file)
+
   if vim.fn.expand("%:p") == path then
     vim.cmd([[e ]])
   end
 end
 basic_hl()
+vim.fn.matchadd("EoLSpace", "\\s\\+$")
 
-vim.api.nvim_create_autocmd("ColorScheme", { callback = basic_hl })
-vim.api.nvim_create_user_command("L", "Lazy", {})
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("TuoGroup", { clear = false }),
+    callback = basic_hl,
+  }
+)
 
 return {}

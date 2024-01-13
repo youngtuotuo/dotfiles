@@ -1,2 +1,6 @@
-vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
-
+vim.opt.fillchars = {
+  fold = " ",
+  foldopen = "",
+  foldsep = " ",
+  foldclose = "",
+}

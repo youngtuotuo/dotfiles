@@ -53,6 +53,7 @@ local opts = {
   },
 }
 require("lazy").setup(opts)
+vim.api.nvim_create_user_command("L", "Lazy", {})
 
--- for auto update colorscheme, don't edit this line
+-- for auto update colorscheme, always keep this at the last line
 vim.cmd[[colo default]]

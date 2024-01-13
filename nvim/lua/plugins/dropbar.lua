@@ -1,15 +1,14 @@
-local toggle_bar = function()
-  if vim.o.winbar == "" then
-    vim.o.winbar = "%{%v:lua.dropbar.get_dropbar_str()%}"
-  else
-    vim.o.winbar = ""
-  end
-end
 return {
   "Bekaboo/dropbar.nvim",
   event = { "LspAttach" },
   init = function()
-    vim.api.nvim_create_user_command("DR", toggle_bar, {})
+    vim.api.nvim_create_user_command("DR", function()
+      if vim.o.winbar == "" then
+        vim.o.winbar = "%{%v:lua.dropbar.get_dropbar_str()%}"
+      else
+        vim.o.winbar = ""
+      end
+    end, {})
   end,
   -- stylua: ignore
   keys = {
@@ -19,9 +18,6 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
   },
   opts = {
-    general = {
-      attach_events = {},
-    },
     menu = {
       preview = false,
       win_configs = {
@@ -51,12 +47,4 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    require("dropbar").setup(opts)
-    vim.api.nvim_set_hl(0, "DropBarPreview", { bold = true })
-    vim.api.nvim_set_hl(0, "DropBarHover", { fg = "NvimLightCyan", bold = true })
-    vim.api.nvim_set_hl(0, "DropBarCurrentContext", { bold = true })
-    vim.api.nvim_set_hl(0, "DropBarMenuHoverEntry", { fg = "NvimLightCyan", bold = true })
-    vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { fg = "NvimLightYellow", bold = false })
-  end,
 }

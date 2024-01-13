@@ -9,7 +9,7 @@ local options = {
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  laststatus = 3,
+  laststatus = 0,
   -- search
   hlsearch = false,
   ignorecase = true, -- Ignore case when searching...
@@ -37,6 +37,11 @@ local options = {
 -- stylua: ignore start
 for k, v in pairs(options) do vim.opt[k] = v end
 
+if vim.o.laststatus == 0 then
+  vim.opt.statusline = "%{repeat('─',winwidth('.'))}"
+end
+
+
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,]")
@@ -58,13 +63,18 @@ vim.g.netrw_hide = 0
 
 -- illusions that I can type fast without any typo
 for _, c in ipairs({"w", "x", "q"}) do
+  -- W, X, Q
+  vim.api.nvim_create_user_command(c:upper(), c, { bang = true, bar = true })
   for _, a in ipairs({"", "a", "A"}) do
-    -- W, X, Q <-> a, A
-    vim.api.nvim_create_user_command(c:upper() .. a, c, { bang = true, bar = true })
+    -- Wa, Xa, Qa, WA, XA, QA
+    vim.api.nvim_create_user_command(c:upper() .. a,         c .. a, { bang = true, bar = true })
+    vim.api.nvim_create_user_command(c:upper() .. a:upper(), c .. a, { bang = true, bar = true })
     if c == "q" then
-      -- W <-> q, Q <-> a, A
-      vim.api.nvim_create_user_command("W" .. c         .. a, c, { bang = true, bar = true })
-      vim.api.nvim_create_user_command("W" .. c:upper() .. a, c, { bang = true, bar = true })
+      -- Wqa, WQa, WqA, WQA
+      vim.api.nvim_create_user_command("W" .. c         .. a,         "w" .. c .. a, { bang = true, bar = true })
+      vim.api.nvim_create_user_command("W" .. c         .. a:upper(), "w" .. c .. a, { bang = true, bar = true })
+      vim.api.nvim_create_user_command("W" .. c:upper() .. a,         "w" .. c .. a, { bang = true, bar = true })
+      vim.api.nvim_create_user_command("W" .. c:upper() .. a:upper(), "w" .. c .. a, { bang = true, bar = true })
     end
   end
 end

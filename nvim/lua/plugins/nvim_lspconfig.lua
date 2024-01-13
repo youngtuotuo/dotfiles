@@ -14,7 +14,7 @@ return {
       opts = {
         library = {
           -- disalbe this to avoid double lsp reference
-          runtime = false,
+          runtime = true,
         },
       },
     },

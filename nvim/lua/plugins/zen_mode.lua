@@ -26,11 +26,21 @@ return {
     },
     -- callback where you can add custom code when the Zen window opens
     on_open = function(_)
-      vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
+      vim.opt.fillchars = {
+        fold = " ",
+        foldopen = "",
+        foldsep = " ",
+        foldclose = "",
+      }
     end,
     -- callback where you can add custom code when the Zen window closes
     on_close = function()
-      vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
+      vim.opt.fillchars = {
+        fold = " ",
+        foldopen = "",
+        foldsep = " ",
+        foldclose = "",
+      }
     end,
     plugins = {
       options = {

@@ -1,13 +1,12 @@
+-- stylua: ignore start
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = group,
   callback = function() vim.highlight.on_yank() end,
 })
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = group,
   callback = function() vim.api.nvim_input("i") end,
 })
@@ -20,8 +19,7 @@ local check_math_h = function()
   return true
 end
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
   pattern = "*.c",
   callback = function()
@@ -36,8 +34,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
   pattern = "*.cpp",
   callback = function()
@@ -52,7 +49,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = "*",
   group = group,
   callback = function()
@@ -61,11 +58,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
     else
       vim.opt.formatoptions:remove({ "c", "r", "o" })
     end
-    vim.opt.fillchars = "stl: ,stlnc: ,fold: ,foldopen:,foldsep: ,foldclose:"
+    -- some buffer will change this, don't know why
+    vim.opt.fillchars = {
+      fold      = " ",
+      foldopen  = "",
+      foldsep   = " ",
+      foldclose = "",
+    }
   end,
 })
 
-vim.api.nvim_create_autocmd("WinLeave", {
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
   pattern = "*",
   group = group,
   callback = function()
@@ -75,23 +78,22 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd({ "Filetype" }, {
   group = group,
   pattern = "help",
   callback = function() vim.cmd("wincmd L") end,
 })
 
--- stylua: ignore
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = group,
-  callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end,
-})
-
--- stylua: ignore
-vim.api.nvim_create_autocmd("InsertLeave", {
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   group = group,
   callback = function()
-    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "Red" })
-  end,
+    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" })
+  end
+})
+
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+  group = group,
+  callback = function()
+    vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
+  end
 })

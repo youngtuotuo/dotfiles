@@ -5,20 +5,17 @@ return {
   cmd = "ConformInfo",
   -- stylua: ignore
   keys = {
-    { "<leader>f", function()
-      require("conform").format({ async = true, lsp_fallback = true })
-    end, mode = { "n", "v" }, desc = "Format buffer" }
+    {
+      "<leader>f",
+      function() require("conform").format({ timeout_ms = 3000 })
+      end, mode = { "n", "v" }, desc = "Format buffer"
+    }
   },
   init = function()
-    -- If you want the formatexpr, here is the place to set it
-    vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+    -- use gq to format
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
   end,
   opts = {
-    format = {
-      timeout_ms = 3000,
-      async = false, -- not recommended to change
-      quiet = false, -- not recommended to change
-    },
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff_format" },
@@ -36,13 +33,7 @@ return {
         prepend_args = { "--line-length", "150" },
       },
     },
+    format_on_save = nil,
+    format_after_save = nil,
   },
-  config = function(_, opts)
-    for _, key in ipairs({ "format_on_save", "format_after_save" }) do
-      if opts[key] then
-        opts[key] = nil
-      end
-    end
-    require("conform").setup(opts)
-  end,
 }
