@@ -30,7 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins
 local opts = {
   spec = {
-    { import = "plugins" },
+    { import = "plugins" }, -- auto import lua/plugins/*.lua
   },
   ui = {
     border = BORDER,

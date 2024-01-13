@@ -11,11 +11,10 @@ return {
       p.upper_case,
       p.number,
       p.hex_color,
-      [[\v\=+]]
-      -- [[\v.+]],
-      -- [[\v,+]],
-      -- [[\v"+]],
-      -- [[\v'+]]
+      [[\v\=+]],
+      [[\v\(+]],
+      [[\v\{+]],
+      [[\v\[+]]
     )
 
     local forward_start, forward_end = hops.forward_start, hops.forward_end

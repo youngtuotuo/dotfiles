@@ -13,12 +13,12 @@ local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 local cmds = {
   TextYankPost = { { callback = function() vim.highlight.on_yank() end } },
   TermOpen     = { { callback = function() vim.api.nvim_input("i") end } },
-  FileType     = { { pattern = "help", callback = function() vim.cmd([[wincmd L]]) end } },
-  InsertEnter  = { { pattern = "*", callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end } },
-  InsertLeave  = { { pattern = "*", callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" }) end } },
+  InsertEnter  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end } },
+  InsertLeave  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" }) end } },
   BufEnter     = {
     {
-      pattern = { "*.c", "*.cpp" }, callback = function()
+      pattern = { "*.c", "*.cpp" },
+      callback = function()
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
         local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
@@ -42,7 +42,8 @@ local cmds = {
   },
   WinLeave = {
     {
-      pattern = "*", callback = function()
+      pattern = "*",
+      callback = function()
         if vim.o.filetype == "dropbar_menu" then
           vim.opt.guicursor = [[a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]]
         end
