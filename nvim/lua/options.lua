@@ -9,7 +9,7 @@ local options = {
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  laststatus = 0,
+  laststatus = 3,
   -- search
   hlsearch = false,
   ignorecase = true, -- Ignore case when searching...
