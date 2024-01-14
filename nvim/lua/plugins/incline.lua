@@ -3,20 +3,12 @@ return {
   event = "BufRead",
   opts = {
     render = function(props)
-      local bg = "NvimDarkGrey3"
+      local bg = "NvimDarkGrey4"
       local text = {
-        Error = "error",
-        Warn  = "warn",
-        Info  = "info",
-        Hint  = "hint",
-        Ok    = "ok",
-      }
-      local his = {
-        Error = "NvimLightRed",
-        Warn  = "NvimLightYellow",
-        Info  = "NvimLightCyan",
-        Hint  = "NvimLightBlue",
-        Ok    = "NvimLightGreen"
+        Error = { text = "error", fg = "NvimLightRed",    bg = bg },
+        Warn  = { text = "warn",  fg = "NvimLightYellow", bg = bg },
+        Info  = { text = "info",  fg = "NvimLightCyan",   bg = bg },
+        Hint  = { text = "hint",  fg = "NvimLightBlue",   bg = bg },
       }
 
       local label = {}
@@ -24,7 +16,7 @@ return {
       for s, t in pairs(text) do
         local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(s)] })
         if n > 0 then
-          table.insert(label, { string.format("%s %d ", t, n), guifg = his[s], guibg = bg})
+          table.insert(label, { string.format("%s %d ", t.text, n), guifg = t.fg, guibg = t.bg})
         end
       end
       return label

@@ -9,7 +9,6 @@ end
 
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
--- event = config[]
 local cmds = {
   TextYankPost = { { callback = function() vim.highlight.on_yank() end } },
   TermOpen     = { { callback = function() vim.api.nvim_input("i") end } },
@@ -24,32 +23,31 @@ local cmds = {
         local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
         local cmd = string.format("%s -Wall -Wextra", compiler)
         -- # include <math.h>
-        if check_math_h() then cmd = string.format("%s -l", cmd) end
+        if check_math_h() then cmd = string.format("%s -lm", cmd) end
         --  cpp14
         if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
         -- compiler -Wall -Wextra -lm -std=c++14 -o fnameEXT && ./fnameEXT
         cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, EXT, SEP, bufname, EXT)
         cmd = ":sp | terminal " .. cmd
-        vim.keymap.set("n", "<leader>p", cmd)
+        vim.keymap.set("n", "<leader>p", cmd, { desc = "c/c++ compile and run" })
+      end
+    },
+  },
+  BufWinEnter = {
+    {
+      pattern = "*.txt",
+      callback = function()
+        if vim.o.filetype == "help" then
+          vim.cmd[[wincmd L]]
+        end
       end
     },
     {
-      pattern = "*",
       callback = function()
         vim.opt.formatoptions = "jql"
       end
     }
-  },
-  WinLeave = {
-    {
-      pattern = "*",
-      callback = function()
-        if vim.o.filetype == "dropbar_menu" then
-          vim.opt.guicursor = [[a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]]
-        end
-      end,
-    }
-  },
+  }
 }
 
 for e, configs in pairs(cmds) do

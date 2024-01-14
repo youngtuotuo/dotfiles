@@ -10,10 +10,10 @@ local options = {
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  laststatus = 3,
-  formatoptions = "jql",
   -- search
   hlsearch = false,
+  formatoptions = "jql",
+  fillchars=[[foldsep: ,foldopen:,foldclose:,fold: ]],
   ignorecase = true, -- Ignore case when searching...
   smartcase = true, -- ... unless there is a capital letter in the query
   matchtime = 1, -- display of current match paren faster
