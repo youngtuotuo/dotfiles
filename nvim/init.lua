@@ -9,9 +9,9 @@ end
 vim.loader.enable()
 
 require("global")
-require("aucmds")
-require("options")
+require("opts")
 require("keymaps")
+require("aucmds")
 
 -- lazy bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

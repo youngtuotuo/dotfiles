@@ -13,11 +13,21 @@ local cmds = {
   TextYankPost = { { callback = function() vim.highlight.on_yank() end } },
   TermOpen     = { { callback = function() vim.api.nvim_input("i") end } },
   InsertEnter  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end } },
-  InsertLeave  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" }) end } },
+  InsertLeave  = {
+    {
+      callback = function()
+        if vim.o.filetype ~= "alpha" then
+          vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
+        end
+      end
+    },
+  },
   BufEnter     = {
     {
       pattern = { "*.c", "*.cpp" },
       callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
         local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
@@ -29,9 +39,83 @@ local cmds = {
         -- compiler -Wall -Wextra -lm -std=c++14 -o fnameEXT && ./fnameEXT
         cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, EXT, SEP, bufname, EXT)
         cmd = ":sp | terminal " .. cmd
-        vim.keymap.set("n", "<leader>p", cmd, { desc = "c/c++ compile and run" })
+        vim.keymap.set("n", "<leader>p", cmd)
+        vim.keymap.set("v", "<leader>p", "<nop>")
       end
     },
+    {
+      pattern = { "*.lua" },
+      callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.keymap.set("n", "<leader>p", ":sp | terminal lua %")
+        vim.keymap.set("v", "<leader>p", ":w !lua")
+      end
+    },
+    {
+      pattern = { "*.py" },
+      callback = function()
+        local py = vim.fn.has("win32") and "python" or "python3"
+        vim.keymap.set("n", "<leader>p", string.format(":sp | terminal %s %%", py))
+        vim.keymap.set("v", "<leader>p", string.format(":w !%s", py))
+      end
+    },
+    {
+      pattern = { "Makefile" },
+      callback = function()
+        vim.opt_local.shiftwidth = 8
+        vim.opt_local.softtabstop = 0
+        vim.opt_local.expandtab = false
+      end
+    },
+    {
+      pattern = { "*.mojo" },
+      callback = function()
+        if vim.fn.has("win32") == 0 then
+          vim.opt_local.shiftwidth = 4
+          vim.opt_local.softtabstop = 4
+          vim.keymap.set("n", "<leader>p", ":sp | terminal mojo %")
+          vim.keymap.set("v", "<leader>p", ":w !mojo")
+        end
+      end
+    },
+    {
+      pattern = { "*.json", "*.html", "*.yaml" },
+      callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+      end
+    },
+    {
+      pattern = { "*.tex" },
+      callback = function()
+        vim.opt_local.conceallevel = 2
+        vim.keymap.set("n", "<leader>p", ":VimtexCompile")
+        vim.keymap.set("v", "<leader>p", "<nop>")
+      end
+    },
+    {
+      pattern = { "*.rs" },
+      callback = function()
+        vim.keymap.set("n", "<leader>p", ":sp | terminal cargo run %")
+        vim.keymap.set("v", "<leader>p", "<nop>")
+      end
+    },
+    {
+      pattern = { "*.go" },
+      callback = function()
+        vim.keymap.set("n", "<leader>p", ":sp | terminal go run %")
+        vim.keymap.set("v", "<leader>p", "<nop>")
+      end
+    },
+    {
+      pattern = { "*.zig" },
+      callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.g.zig_fmt_autosave = 0
+      end
+    }
   },
   BufWinEnter = {
     {
@@ -42,10 +126,10 @@ local cmds = {
         end
       end
     },
+  },
+  ColorScheme = {
     {
-      callback = function()
-        vim.opt.formatoptions = "jql"
-      end
+      callback = COLORSET
     }
   }
 }
@@ -56,5 +140,3 @@ for e, configs in pairs(cmds) do
     vim.api.nvim_create_autocmd(e, config)
   end
 end
-
-return {}

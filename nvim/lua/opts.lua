@@ -12,12 +12,12 @@ local options = {
   guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   -- search
   hlsearch = false,
-  formatoptions = "jql",
-  fillchars=[[foldsep: ,foldopen:,foldclose:,fold: ]],
+  formatoptions = "jql", -- :h fo-table
   ignorecase = true, -- Ignore case when searching...
   smartcase = true, -- ... unless there is a capital letter in the query
   matchtime = 1, -- display of current match paren faster
   showmatch = true, -- show matching brackets when text indicator is over them
+  shadafile = "NONE",
   mouse = "a",
   mousemoveevent = true,
   mousemodel = "extend",
@@ -37,7 +37,7 @@ local options = {
   undofile = true,
   wildcharm = vim.fn.char2nr('^I'),
   undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP),
-  pumblend = 8,
+  pumblend = 10,
 }
 
 if options.laststatus == 0 then
@@ -65,12 +65,14 @@ end
 local edits = {
   wildignore = { "*.o", "*~", "*.pyc", "*pycache*" },
   shortmess  = "c",
-  whichwrap  = "<,>,[,]"
 }
 
 for k, v in pairs(edits) do
   vim.opt[k]:append(v)
 end
+
+-- if on, some option will change
+vim.cmd[[filetype plugin off]]
 
 -- netrw stuff
 local globals = {
