@@ -16,7 +16,7 @@ local cmds = {
   InsertLeave  = {
     {
       callback = function()
-        if vim.o.filetype ~= "alpha" then
+        if vim.o.filetype ~= "alpha" or vim.o.buftype ~= "nofile" then
           vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
         end
       end
