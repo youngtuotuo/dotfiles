@@ -12,7 +12,7 @@ P = function(v) print(vim.inspect(v)) return v end
 BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
 FLOATW = 65
-FLOATWRAP = false
+FLOATWRAP = true
 
 -- transparent control
 TRANS = true
