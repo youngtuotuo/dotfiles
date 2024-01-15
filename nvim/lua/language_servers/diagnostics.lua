@@ -12,7 +12,7 @@ local diag_config = {
     focusable = true,
     title = " σ`∀´)σ ",
     border = BORDER,
-    max_width = 80,
+    max_width = 40,
   },
 }
 

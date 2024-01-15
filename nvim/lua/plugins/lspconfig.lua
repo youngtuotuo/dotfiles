@@ -54,5 +54,6 @@ return {
     require("language_servers.keymaps")
     require("language_servers.diagnostics")
     require("language_servers.handlers")
+    require("language_servers.floatwin")
   end,
 }

@@ -1,4 +1,6 @@
 -- stylua: ignore start
+
+-- print(vim.inspect(v))
 P = function(v) print(vim.inspect(v)) return v end
 
 -- "none": No border (default).
@@ -7,10 +9,10 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
---
--- BORDER = "none"
--- BORDER = { " ", " ", " ", " ", " ", " ", " ", " " }
 BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+
+FLOATW = 65
+FLOATWRAP = false
 
 -- transparent control
 TRANS = true
@@ -18,15 +20,6 @@ TRANS = true
 SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
 HOME = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 EXT = vim.fn.has("win32") == 1 and ".exe" or ""
-
-FILLCHARS = function()
-  vim.opt.fillchars = {
-    fold=" ",
-    foldopen="",
-    foldsep=" ",
-    foldclose="",
-  }
-end
 
 local transparent = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"

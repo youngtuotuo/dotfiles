@@ -26,8 +26,6 @@ local cmds = {
     {
       pattern = { "*.c", "*.cpp" },
       callback = function()
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.softtabstop = 2
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
         local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
