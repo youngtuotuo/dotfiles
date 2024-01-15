@@ -27,7 +27,8 @@ local function hover(_, result, ctx, config)
   end
   return require("vim.lsp.util").open_floating_preview(
     split_lines(result.contents.value),
-    result.contents.kind,
+    -- result.contents.kind,
+    "plaintext",
     config
   )
 end
