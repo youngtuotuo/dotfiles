@@ -84,7 +84,7 @@ return {
     "nvim-lua/plenary.nvim",
     {
       "crispgm/telescope-heading.nvim",
-      keys = { { "<space>3", "<cmd>Telescope heading<cr>" } },
+      keys = { { "<space>h", "<cmd>Telescope heading<cr>" } },
       config = function()
         require("telescope").load_extension("heading")
       end,
