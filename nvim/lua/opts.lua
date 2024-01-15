@@ -37,7 +37,7 @@ local options = {
   undofile = true,
   wildcharm = vim.fn.char2nr('^I'),
   undodir = vim.fn.stdpath("data") .. string.format("%sundodir%s", SEP, SEP),
-  pumblend = 10,
+  pumblend = 15,
 }
 
 if options.laststatus == 0 then

@@ -54,6 +54,7 @@ return {
           max_width = 40,
         },
         documentation = {
+          winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
           scrollbar = false,
           border = BORDER,
           max_width = 50,
