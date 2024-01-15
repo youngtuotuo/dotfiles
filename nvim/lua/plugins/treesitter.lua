@@ -44,7 +44,8 @@ return {
       enable = true,
     },
     matchup = {
-      enable = true
+      enable = true,
+      disable_virtual_text = true,
     },
     incremental_selection = {
       enable = true,
