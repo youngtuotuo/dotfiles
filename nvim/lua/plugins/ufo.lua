@@ -4,7 +4,7 @@ return {
   dependencies = { "kevinhwang91/promise-async" },
   opts = {
     provider_selector = function(_, _, _)
-      return { "indent" }
+      return { "treesitter", "indent" }
     end,
   },
   config = function(_, opts)
