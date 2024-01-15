@@ -104,6 +104,9 @@ local cmds = {
     {
       pattern = { "*.go" },
       callback = function()
+        vim.opt_local.shiftwidth = 8
+        vim.opt_local.softtabstop = 0
+        vim.opt_local.expandtab = false
         vim.keymap.set("n", "<leader>p", ":sp | terminal go run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end

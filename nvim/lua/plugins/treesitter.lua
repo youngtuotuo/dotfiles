@@ -58,10 +58,12 @@ return {
     ensure_installed = {
       "gitcommit",
       "gitignore",
+      "go",
       "python",
       "c",
       "cpp",
       "lua",
+      "zig",
       "markdown",
       "markdown_inline",
       "query",
