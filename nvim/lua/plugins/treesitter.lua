@@ -13,6 +13,7 @@ return {
     require("nvim-treesitter.query_predicates")
   end,
   dependencies = {
+    { "nvim-treesitter/playground" },
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       config = function(_, _)
@@ -98,24 +99,34 @@ return {
         goto_next_start = {
           ["]m"] = "@function.outer",
           ["]]"] = { query = "@class.outer", desc = "Next class start" },
-          ["]l"] = "@loop.*",
+          ["]l"] = "@loop.outer",
+          ["]i"] = "@conditional.outer",
           ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
           ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_next_end = {
           ["]M"] = "@function.outer",
           ["]["] = "@class.outer",
+          ["]L"] = "@loop.outer",
+          ["]I"] = "@conditional.outer",
+          ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+          ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_previous_start = {
           ["[m"] = "@function.outer",
           ["[["] = "@class.outer",
-          ["[l"] = "@loop.*",
+          ["[l"] = "@loop.outer",
+          ["[i"] = "@conditional.outer",
           ["[s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
           ["[z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_previous_end = {
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
+          ["[L"] = "@loop.outer",
+          ["[I"] = "@conditional.outer",
+          ["[S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+          ["[Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
       },
     },
