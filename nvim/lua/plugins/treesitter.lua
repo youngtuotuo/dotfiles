@@ -37,7 +37,16 @@ return {
   },
   opts = {
     highlight = {
-      enable = false,
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "<CR>", -- set to `false` to disable one of the mappings
+        node_incremental = "<CR>",
+        scope_incremental = "<TAB>",
+        node_decremental = "<S-TAB>",
+      },
     },
     ensure_installed = {
       "gitcommit",
@@ -89,7 +98,7 @@ return {
         goto_next_start = {
           ["]m"] = "@function.outer",
           ["]]"] = { query = "@class.outer", desc = "Next class start" },
-          ["]o"] = "@loop.*",
+          ["]l"] = "@loop.*",
           ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
           ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
@@ -100,7 +109,7 @@ return {
         goto_previous_start = {
           ["[m"] = "@function.outer",
           ["[["] = "@class.outer",
-          ["[o"] = "@loop.*",
+          ["[l"] = "@loop.*",
           ["[s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
           ["[z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },

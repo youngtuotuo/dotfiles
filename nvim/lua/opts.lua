@@ -72,7 +72,7 @@ for k, v in pairs(edits) do
 end
 
 -- if on, some option will change
-vim.cmd[[filetype plugin off]]
+vim.cmd [[filetype plugin indent off]]
 
 -- netrw stuff
 local globals = {
