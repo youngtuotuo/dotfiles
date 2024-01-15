@@ -96,37 +96,12 @@
       ]
     },
     {
-      "description": "Shift + Esc to ~",
+      "description": "Control + ` to esc",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "escape",
-            "modifiers": {
-              "mandatory": [
-                "shift"
-              ]
-            }
-          },
-          "to": [
-            {
-              "repeat": true,
-              "key_code": "grave_accent_and_tilde",
-              "modifiers": [
-                "left_shift"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Control + Esc to `",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "escape",
+            "key_code": "grave_accent_and_tilde",
             "modifiers": {
               "mandatory": [
                 "control"
@@ -135,7 +110,7 @@
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde",
+              "key_code": "escape",
               "modifiers": []
             }
           ]
