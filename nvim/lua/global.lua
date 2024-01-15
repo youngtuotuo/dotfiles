@@ -65,17 +65,6 @@ COLORSET = function()
     NormalFloat = { bg = transparent },
     FloatTitle  = { bg = transparent },
     FloatBorder = { link = "LspInfoBorder" },
-
-    IlluminatedWordText  = { underline = false },
-    IlluminatedWordWrite = { underline = false },
-    IlluminatedWordRead  = { underline = false },
-
-    DropBarPreview            = { bold = true },
-    DropBarCurrentContext     = { bold = true },
-    DropBarMenuHoverIcon      = { bold = false },
-    DropBarMenuCurrentContext = { bold = false },
-    DropBarHover              = { bg = dgrey3, bold = true },
-    DropBarMenuHoverEntry     = { bg = dgrey3, bold = true },
   }
   if vim.o.laststatus == 0 then
     hls.StatusLine   = { link = "WinSeparator" }
