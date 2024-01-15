@@ -37,6 +37,9 @@ return {
     },
   },
   opts = {
+    indent = {
+      enable = true
+    },
     highlight = {
       enable = true,
     },
