@@ -9,17 +9,17 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-FLOATW = 65
-FLOATWRAP = true
+vim.g.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+vim.g.floatw = 65
+vim.g.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
-LSPFTS = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
+vim.g.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
 
 -- fk u MS
-SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
-HOME = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
-EXT = vim.fn.has("win32") == 1 and ".exe" or ""
+vim.g.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
+vim.g.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
+vim.g.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
 local transparent = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
@@ -29,7 +29,7 @@ local dgrey1 = "NvimDarkGrey1"
 
 vim.fn.matchadd("EoLSpace", "\\s\\+$")
 
-COLORSET = function()
+vim.g.colorset = function()
   local hls = {
     Error              = { fg = transparent },
     FoldColumn         = { fg = dgrey3, bg = transparent },
@@ -57,7 +57,10 @@ COLORSET = function()
 
     NormalFloat = { bg = transparent },
     FloatTitle  = { bg = transparent },
+    LspInfoBorder = { link = "Label" },
     FloatBorder = { link = "LspInfoBorder" },
+    TelescopeBorder = { link = "LspInfoBorder" },
+    TelescopeSelectionCaret = { link = "TelescopeSelection" }
   }
   if vim.o.laststatus == 0 then
     hls.StatusLine   = { link = "WinSeparator" }
@@ -71,7 +74,7 @@ COLORSET = function()
 
   -- stylua: ignore
   -- update the last line of                      /github /dotfiles /nvim /init.lua
-  local path = os.getenv(HOME) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", SEP, SEP, SEP, SEP)
+  local path = os.getenv(vim.g.home) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", vim.g.sep, vim.g.sep, vim.g.sep, vim.g.sep)
 
   local file = io.open(path, "r")
   local fileContent = {}
@@ -96,4 +99,4 @@ COLORSET = function()
     vim.cmd([[e ]])
   end
 end
-COLORSET()
+vim.g.colorset()

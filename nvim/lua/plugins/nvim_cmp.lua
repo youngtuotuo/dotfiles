@@ -48,13 +48,13 @@ return {
         completion = {
           winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
           scrollbar = false,
-          border = BORDER,
+          border = vim.g.border,
           max_width = 40,
         },
         documentation = {
           winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
           scrollbar = false,
-          border = BORDER,
+          border = vim.g.border,
           max_width = 50,
           max_height = 30,
         },
@@ -138,15 +138,15 @@ return {
   {
     "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
     cond = function()
-      return vim.fn.getcwd() == os.getenv(HOME) .. string.format("%sgithub%sdotfiles", SEP, SEP)
+      return vim.fn.getcwd() == os.getenv(vim.g.home) .. string.format("%sgithub%sdotfiles", vim.g.sep, vim.g.sep)
     end,
   },
   {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
-    ft = LSPFTS,
+    ft = vim.g.lspfts,
   },
   {
     "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
-    ft = LSPFTS,
+    ft = vim.g.lspfts,
   },
 }

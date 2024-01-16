@@ -20,7 +20,7 @@ return {
   config = function(_, opts)
     local ls = require("luasnip")
     local snippet_path = ""
-    snippet_path = vim.fn.stdpath("config") .. string.format("%slua%ssnippets%s", SEP, SEP, SEP)
+    snippet_path = vim.fn.stdpath("config") .. string.format("%slua%ssnippets%s", vim.g.sep, vim.g.sep, vim.g.sep)
     require("luasnip.loaders.from_lua").load({ paths = snippet_path })
     ls.config.set_config(opts)
   end,

@@ -9,7 +9,7 @@ return {
   opts = {
     padding = false,
     auto_fold = false,
-    win_config = { border = BORDER },
+    win_config = { border = vim.g.border },
     icons = false,
     fold_open = "", -- icon used for open folds
     fold_closed = "", -- icon used for closed folds

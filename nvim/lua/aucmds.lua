@@ -35,7 +35,7 @@ local cmds = {
         --  cpp14
         if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
         -- compiler -Wall -Wextra -lm -std=c++14 -o fnameEXT && ./fnameEXT
-        cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, EXT, SEP, bufname, EXT)
+        cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, vim.g.ext, vim.g.sep, bufname, vim.g.ext)
         cmd = ":sp | terminal " .. cmd
         vim.keymap.set("n", "<leader>p", cmd)
         vim.keymap.set("v", "<leader>p", "<nop>")
@@ -135,7 +135,7 @@ local cmds = {
   },
   ColorScheme = {
     {
-      callback = COLORSET
+      callback = vim.g.colorset
     }
   }
 }

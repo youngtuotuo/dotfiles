@@ -35,7 +35,7 @@ end
 
 -- customize hover when pressing K
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(hover, {
-  border = BORDER,
+  border = vim.g.border,
   title = " Hover ",
   max_width = 100,
   max_height = 20,
@@ -45,5 +45,5 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(hover, {
 -- customize signature help when pressing gs
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
-  { border = BORDER, title = " Signature ", max_width = 100 }
+  { border = vim.g.border, title = " Signature ", max_width = 100 }
 )

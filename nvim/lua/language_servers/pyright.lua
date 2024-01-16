@@ -11,7 +11,7 @@ return function()
       python = {
         analysis = {
           stubPath = vim.fn.stdpath("data")
-            .. string.format("%slazy%spython-type-stubs%sstubs", SEP, SEP, SEP),
+            .. string.format("%slazy%spython-type-stubs%sstubs", vim.g.sep, vim.g.sep, vim.g.sep),
           -- Level of logging for Output panel. The default value for this option is "Information".
           -- ["Error", "Warning", "Information", or "Trace"]
           logLevel = "Information",

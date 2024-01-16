@@ -33,42 +33,15 @@ return {
 
     return {
       defaults = {
-        layout_strategy = "vertical",
-        layout_config = {
-          horizontal = {
-            height = 0.9,
-            width = 0.95,
-            preview_width = 0.5,
-          },
-          vertical = {
-            height = 0.9,
-            width = 0.8,
-            preview_height = 0.7,
-            scroll_speed = 5,
-          },
-        },
+        winblend = vim.o.winblend,
         results_title = "Results",
         dynamic_preview_title = true,
         color_devicons = false,
-        selection_caret = "❯ ",
-        entry_prefix = "  ",
         preview = {
-          treesitter = false,
+          treesitter = true,
         },
-        prompt_prefix = ">_ ",
         path_display = { "smart" },
-        initial_mode = "insert",
         mappings = maps,
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          "-u",
-        },
       },
       extensions = {
         fzf = {
