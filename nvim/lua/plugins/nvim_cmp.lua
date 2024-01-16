@@ -1,17 +1,15 @@
 return {
-  "hrsh7th/nvim-cmp",
-  cond = function()
-    return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
-  end,
-  event = { "BufRead" },
+  {
+    "hrsh7th/nvim-cmp",
+    cond = function()
+      return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
+    end,
+    event = { "BufRead" },
   -- stylua: ignore
   dependencies = {
     "hrsh7th/cmp-buffer",                     -- nvim-cmp source for buffer words
     "FelipeLema/cmp-async-path",              -- nvim-cmp source for path (async version)
     "saadparwaiz1/cmp_luasnip",               -- luasnip completion source for nvim-cmp
-    "hrsh7th/cmp-nvim-lua",                   -- nvim-cmp source for neovim Lua API.
-    "hrsh7th/cmp-nvim-lsp",                   -- nvim-cmp source for neovim's built-in language server client.
-    "hrsh7th/cmp-nvim-lsp-signature-help",    -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
     -- "micangl/cmp-vimtex"                   -- use this one day
   },
@@ -130,10 +128,25 @@ return {
       experimental = { ghost_text = false },
     }
   end,
-  config = function(_, opts)
-    for _, source in ipairs(opts.sources) do
-      source.group_index = source.group_index or 1
-    end
-    require("cmp").setup(opts)
-  end,
+    config = function(_, opts)
+      for _, source in ipairs(opts.sources) do
+        source.group_index = source.group_index or 1
+      end
+      require("cmp").setup(opts)
+    end,
+  },
+  {
+    "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
+    cond = function()
+      return vim.fn.getcwd() == os.getenv(HOME) .. string.format("%sgithub%sdotfiles", SEP, SEP)
+    end,
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
+    ft = LSPFTS,
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
+    ft = LSPFTS,
+  },
 }

@@ -10,12 +10,11 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
 BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
 FLOATW = 65
 FLOATWRAP = true
 
--- transparent control
-TRANS = true
+LSPFTS = { "c", "lua", "cpp", "python" }
+
 -- fk u MS
 SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
 HOME = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"

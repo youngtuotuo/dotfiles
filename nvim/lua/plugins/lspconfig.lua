@@ -4,7 +4,7 @@ return {
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
   end,
   cmd = { "LspInfo" },
-  ft = { "lua", "c", "cpp", "python" },
+  ft = LSPFTS,
   dependencies = {
     {
       "folke/neodev.nvim",
