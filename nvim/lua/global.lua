@@ -41,9 +41,9 @@ COLORSET = function()
     PmenuSel           = { bg = dgrey3 },
     TelescopeSelection = { link = "PmenuSel" },
 
-    LspReferenceText  = { bg = dgrey3 },
-    LspReferenceRead  = { bg = dgrey3 },
-    LspReferenceWrite = { bg = dgrey3 },
+    LspReferenceText  = { reverse = true },
+    LspReferenceRead  = { reverse = true },
+    LspReferenceWrite = { reverse = true },
 
     DiagnosticFloatingOk    = { fg = g, bg = transparent },
     DiagnosticFloatingHint  = { fg = b, bg = transparent },
