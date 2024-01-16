@@ -64,7 +64,6 @@ return {
       "c",
       "cpp",
       "lua",
-      "zig",
       "markdown",
       "markdown_inline",
       "query",
