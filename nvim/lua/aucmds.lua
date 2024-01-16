@@ -114,11 +114,7 @@ local cmds = {
       callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.softtabstop = 2
-        local bufname = vim.fn.expand("%:t:r")
-        local bufext = vim.fn.expand("%:e")
-        local zig = vim.fn.has("win32") and "zig.exe" or "zig"
-        local cmd = string.format(":sp | terminal %s build-exe %s.%s && .%s%s%s", zig, bufname, bufext, SEP, bufname, EXT)
-        vim.keymap.set("n", "<leader>p", cmd)
+        vim.keymap.set("n", "<leader>p", ":sp | terminal zig run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end
     }
