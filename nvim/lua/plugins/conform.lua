@@ -19,6 +19,7 @@ return {
       lua = { "stylua" },
       python = { "ruff_format" },
       go = { "gofumpt" },
+      c = { "clang_format" },
     },
     formatters = {
       stylua = {
@@ -26,11 +27,16 @@ return {
         prepend_args = {
           "--indent-type=spaces",
           "--indent-width=2",
-          "--column-width=100",
+          "--column-width=150",
         },
       },
       ruff_fmt = {
         prepend_args = { "--line-length", "150" },
+      },
+      clang_format = {
+        prepend_args = {
+          '-style={BasedOnStyle: llvm, ColumnLimit: 150, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}',
+        },
       },
     },
     format_on_save = nil,
