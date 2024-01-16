@@ -17,7 +17,7 @@ local options = {
   smartcase = true, -- ... unless there is a capital letter in the query
   matchtime = 1, -- display of current match paren faster
   showmatch = true, -- show matching brackets when text indicator is over them
-  shadafile = "NONE",
+  -- shadafile = "NONE",
   mouse = "a",
   mousemoveevent = true,
   mousemodel = "extend",
@@ -81,6 +81,11 @@ local globals = {
   netrw_preview = 1,
   netrw_alto = 0,
   netrw_hide = 0,
+  loaded_ruby_provider = 0,
+  loaded_python_provider = 0,
+  loaded_python3_provider = 0,
+  loaded_perl_provider = 0,
+  loaded_node_provider = 0,
 }
 
 for k, v in pairs(globals) do
