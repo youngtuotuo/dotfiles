@@ -35,7 +35,7 @@ return {
           function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup({})
           end,
-          ["clangd"] = require("language_servers.clangd"),
+          -- ["clangd"] = require("language_servers.clangd"),
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
           ["ruff_lsp"] = require("language_servers.ruff_lsp"),

@@ -13,7 +13,8 @@ BORDER = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 FLOATW = 65
 FLOATWRAP = true
 
-LSPFTS = { "c", "lua", "cpp", "python" }
+-- file types to trigger nvim-lspconfig
+LSPFTS = { "c", "lua", "cpp", "python", "rust", "zig" }
 
 -- fk u MS
 SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
