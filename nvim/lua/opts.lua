@@ -17,7 +17,7 @@ local options = {
   smartcase = true, -- ... unless there is a capital letter in the query
   matchtime = 1, -- display of current match paren faster
   showmatch = true, -- show matching brackets when text indicator is over them
-  shadafile = "NONE",
+  -- shadafile = "NONE", -- for command history
   mouse = "a",
   mousemoveevent = true,
   mousemodel = "extend",
@@ -71,8 +71,10 @@ for k, v in pairs(edits) do
   vim.opt[k]:append(v)
 end
 
--- if on, some option will change
-vim.cmd [[filetype plugin indent off]]
+vim.cmd [[
+  syntax off
+  filetype indent off
+]]
 
 -- netrw stuff
 local globals = {

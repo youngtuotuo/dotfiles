@@ -59,6 +59,7 @@ local keyms = {
   { { "c" }, "<down>",  function() if vim.fn.wildmenumode() == 1 then return "<right>"        else return "<down>"  end end, { noremap = true, expr = true } },
   { { "c" }, "<left>",  function() if vim.fn.wildmenumode() == 1 then return "<up>"           else return "<left>"  end end, { noremap = true, expr = true } },
   { { "c" }, "<right>", function() if vim.fn.wildmenumode() == 1 then return "<bs><c-z><c-z>" else return "<right>" end end, { noremap = true, expr = true } },
+  { { "c" }, "<c-a>", "<c-b>", { noremap = true } },
 }
 
 -- better search and replace

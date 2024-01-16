@@ -132,6 +132,11 @@ local cmds = {
         end
       end
     },
+    {
+      callback = function()
+        vim.opt.formatoptions = "jql"
+      end
+    }
   },
   ColorScheme = {
     {
