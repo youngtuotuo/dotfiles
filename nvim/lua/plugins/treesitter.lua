@@ -51,6 +51,7 @@ return {
       enable = true,
       keymaps = {
         init_selection = "<TAB>", -- set to `false` to disable one of the mappings
+        scope_incremental = false,
         node_incremental = "<TAB>",
         node_decremental = "<S-TAB>",
       },
