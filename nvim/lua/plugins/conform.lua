@@ -20,6 +20,8 @@ return {
       python = { "ruff_format" },
       go = { "gofumpt" },
       c = { "clang_format" },
+      zig = { "zigfmt" },
+      rust = { "rustfmt" },
     },
     formatters = {
       stylua = {
