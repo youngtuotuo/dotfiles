@@ -14,7 +14,7 @@ FLOATW = 65
 FLOATWRAP = true
 
 -- file types to trigger nvim-lspconfig
-LSPFTS = { "c", "lua", "cpp", "python", "rust", "zig" }
+LSPFTS = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
 
 -- fk u MS
 SEP = vim.fn.has("win32") == 1 and [[\]] or "/"
