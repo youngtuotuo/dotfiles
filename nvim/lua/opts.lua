@@ -72,7 +72,6 @@ for k, v in pairs(edits) do
 end
 
 vim.cmd [[
-  syntax off
   filetype indent off
 ]]
 
