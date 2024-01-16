@@ -4,6 +4,7 @@ local options = {
   softtabstop = 4,
   shiftwidth = 4,
   smartindent = true,
+
   termsync = false,
   wrap = false,
   cinoptions = "l1", -- for switch, case alignment
@@ -24,7 +25,6 @@ local options = {
   nu = false,
   rnu = false,
   ru = true,
-  scrolloff = 10,
   termguicolors = true,
   showcmd = true,
   showmode = true,
@@ -75,7 +75,6 @@ vim.cmd [[
   filetype indent off
 ]]
 
--- netrw stuff
 local globals = {
   netrw_altfile = 1,
   netrw_cursor = 5,
