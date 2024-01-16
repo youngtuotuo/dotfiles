@@ -113,8 +113,6 @@ local cmds = {
       pattern = { "*.zig" },
       callback = function()
         vim.g.zig_fmt_autosave = 0
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.softtabstop = 2
         vim.keymap.set("n", "<leader>p", ":sp | terminal zig run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end
