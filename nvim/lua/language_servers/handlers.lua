@@ -3,7 +3,9 @@ local function split_lines(value)
   value = string.gsub(value, "&nbsp;", " ")
   value = string.gsub(value, "&gt;", ">")
   value = string.gsub(value, "&lt;", "<")
-  value = string.gsub(value, "\\", "")
+  if vim.fn.has("win32") == 0 then
+    value = string.gsub(value, "\\", "")
+  end
   -- value = string.gsub(value, "%[", "%[%[")
   -- value = string.gsub(value, "%]", "%]%]")
   value = string.gsub(value, "```%a*\n", "")
