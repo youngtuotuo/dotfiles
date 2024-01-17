@@ -10,7 +10,8 @@ local options = {
   cinoptions = "l1", -- for switch, case alignment
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
-  guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  -- guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  guicursor = "",
   -- search
   hlsearch = false,
   formatoptions = "jql", -- :h fo-table
