@@ -9,7 +9,7 @@ return {
     {
       "folke/neodev.nvim",
       cond = function()
-        return vim.fn.getcwd() == os.getenv(_G.home) .. "/github/dotfiles"
+        return vim.fn.getcwd() == os.getenv(_G.home) .. "\\github\\dotfiles"
       end,
       opts = {
         library = {

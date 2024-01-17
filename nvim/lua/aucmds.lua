@@ -10,16 +10,17 @@ end
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
 local cmds = {
-  TextYankPost = { { callback = function() vim.highlight.on_yank() end } },
-  TermOpen     = { { callback = function() vim.api.nvim_input("i") end } },
-  InsertEnter  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end } },
+  TextYankPost = { { callback = function() vim.highlight.on_yank() end, desc = "Yank Short Indicator" } },
+  TermOpen     = { { callback = function() vim.api.nvim_input("i") end, desc = "Enter Terminal with Insert Mode" } },
+  InsertEnter  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end, desc = "Disable EoLSpace highlight" } },
   InsertLeave  = {
     {
       callback = function()
         if vim.o.filetype ~= "alpha" or vim.o.buftype ~= "nofile" then
           vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
         end
-      end
+      end,
+      desc = "Enable EoLSpace highlgiht"
     },
   },
   BufEnter     = {
@@ -39,7 +40,8 @@ local cmds = {
         cmd = ":sp | terminal " .. cmd
         vim.keymap.set("n", "<leader>p", cmd)
         vim.keymap.set("v", "<leader>p", "<nop>")
-      end
+      end,
+      desc = "<leader>p for c/c++"
     },
     {
       pattern = { "*.lua" },
@@ -48,7 +50,8 @@ local cmds = {
         vim.opt_local.softtabstop = 2
         vim.keymap.set("n", "<leader>p", ":sp | terminal lua %")
         vim.keymap.set("v", "<leader>p", ":w !lua")
-      end
+      end,
+      desc = "<leader>p for lua"
     },
     {
       pattern = { "*.py" },
@@ -56,7 +59,8 @@ local cmds = {
         local py = vim.fn.has("win32") and "python" or "python3"
         vim.keymap.set("n", "<leader>p", string.format(":sp | terminal %s %%", py))
         vim.keymap.set("v", "<leader>p", string.format(":w !%s", py))
-      end
+      end,
+      desc = "<leader>p for python"
     },
     {
       pattern = { "Makefile" },
@@ -64,7 +68,8 @@ local cmds = {
         vim.opt_local.shiftwidth = 8
         vim.opt_local.softtabstop = 0
         vim.opt_local.expandtab = false
-      end
+      end,
+      desc = "Change indent to tab for Makefile"
     },
     {
       pattern = { "*.mojo" },
@@ -75,14 +80,16 @@ local cmds = {
           vim.keymap.set("n", "<leader>p", ":sp | terminal mojo %")
           vim.keymap.set("v", "<leader>p", ":w !mojo")
         end
-      end
+      end,
+      desc = "<leader>p for mojo"
     },
     {
       pattern = { "*.json", "*.html", "*.yaml" },
       callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.softtabstop = 2
-      end
+      end,
+      desc = "Change indent level to 2 for json, html, yaml"
     },
     {
       pattern = { "*.tex" },
@@ -90,14 +97,16 @@ local cmds = {
         vim.opt_local.conceallevel = 2
         vim.keymap.set("n", "<leader>p", ":VimtexCompile")
         vim.keymap.set("v", "<leader>p", "<nop>")
-      end
+      end,
+      desc = "<leader>p for latex"
     },
     {
       pattern = { "*.rs" },
       callback = function()
         vim.keymap.set("n", "<leader>p", ":sp | terminal cargo run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
-      end
+      end,
+      desc = "<leader>p for rust"
     },
     {
       pattern = { "*.go" },
@@ -107,7 +116,8 @@ local cmds = {
         vim.opt_local.expandtab = false
         vim.keymap.set("n", "<leader>p", ":sp | terminal go run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
-      end
+      end,
+      desc = "<leader>p for go"
     },
     {
       pattern = { "*.zig" },
@@ -115,7 +125,8 @@ local cmds = {
         vim.g.zig_fmt_autosave = 0
         vim.keymap.set("n", "<leader>p", ":sp | terminal zig run %")
         vim.keymap.set("v", "<leader>p", "<nop>")
-      end
+      end,
+      desc = "<leader>p for zig"
     }
   },
   BufWinEnter = {
@@ -125,17 +136,44 @@ local cmds = {
         if vim.o.filetype == "help" then
           vim.cmd [[wincmd L]]
         end
-      end
+      end,
+      desc = "Let help file go to vertical split"
     },
     {
       callback = function()
         vim.opt.formatoptions = "jql"
-      end
+      end,
+      desc = "All buffer need formatoptions = jql"
     }
   },
   ColorScheme = {
     {
-      callback = _G.colorset
+      callback = _G.colorset,
+      desc = "Auto set some colors for colorsecheme change"
+    }
+  },
+  [{ "InsertLeave", "WinEnter" }] = {
+    {
+      callback = function()
+        local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+        if ok and cl then
+          vim.wo.cursorline = true
+          vim.api.nvim_win_del_var(0, "auto-cursorline")
+        end
+      end,
+      desc = "Disalbe local cursorline"
+    }
+  },
+  [{ "InsertEnter", "WinLeave" }] = {
+    {
+      callback = function()
+        local cl = vim.wo.cursorline
+        if cl then
+          vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+          vim.wo.cursorline = false
+        end
+      end,
+      desc = "Enable local cursorline"
     }
   }
 }

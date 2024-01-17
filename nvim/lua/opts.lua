@@ -4,7 +4,6 @@ local options = {
   softtabstop = 4,
   shiftwidth = 4,
   smartindent = true,
-
   termsync = false,
   wrap = false,
   cinoptions = "l1", -- for switch, case alignment
@@ -12,6 +11,7 @@ local options = {
   completeopt = "menu,menuone,noinsert,noselect",
   -- guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   guicursor = "",
+  cursorline = true,
   -- search
   hlsearch = false,
   formatoptions = "jql", -- :h fo-table
@@ -28,6 +28,7 @@ local options = {
   ru = true,
   termguicolors = true,
   showcmd = true,
+  laststatus = 3,
   showmode = true,
   signcolumn = "yes:1",
   splitbelow = true,
