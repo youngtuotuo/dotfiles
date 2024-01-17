@@ -69,7 +69,7 @@ return {
   {
     "crispgm/telescope-heading.nvim",
     ft = { "markdown" },
-    keys = { { "<space>h", "<cmd>Telescope heading<cr>" } },
+    keys = { { "<space>h", "<cmd>Telescope heading<cr>", desc = "telescope heading" } },
     config = function()
       require("telescope").load_extension("heading")
     end,
@@ -77,7 +77,7 @@ return {
   {
     "debugloop/telescope-undo.nvim",
     event = "BufRead",
-    keys = { { "<space>u", "<cmd>Telescope undo<cr>" } },
+    keys = { { "<space>u", "<cmd>Telescope undo<cr>", desc = "telescope undo (C-R/C-CR) for select" } },
     config = function()
       require("telescope").load_extension("undo")
     end,
