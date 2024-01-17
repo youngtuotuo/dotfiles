@@ -4,12 +4,12 @@ return {
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
   end,
   cmd = { "LspInfo" },
-  ft = vim.g.lspfts,
+  ft = _G.lspfts,
   dependencies = {
     {
       "folke/neodev.nvim",
       cond = function()
-        return vim.fn.getcwd() == os.getenv(vim.g.home) .. string.format("%sgithub%sdotfiles", vim.g.sep, vim.g.sep)
+        return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
       end,
       opts = {
         library = {
@@ -25,7 +25,22 @@ return {
         vim.api.nvim_create_user_command("M", "Mason", {})
       end,
       opts = {
-        ui = { border = vim.g.border, height = 0.8 },
+        ui = { border = _G.border, height = 0.8 },
+        ensure_installed = {
+          "clang-format",
+          "clangd",
+          "gofumpt",
+          "gopls",
+          "lua_ls",
+          "markdownlint",
+          "marksman",
+          "prettier",
+          "pyright",
+          "ruff",
+          "ruff_lsp",
+          "stylua",
+          "xmlformatter",
+        },
       },
     },
     {
@@ -47,7 +62,7 @@ return {
   },
   config = function(_, _)
     -- LspInfo command
-    require("lspconfig.ui.windows").default_options.border = vim.g.border
+    require("lspconfig.ui.windows").default_options.border = _G.border
     -- all server agnostic settings
     require("language_servers.format")
     require("language_servers.capabilities")

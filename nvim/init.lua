@@ -33,7 +33,7 @@ local opts = {
     { import = "plugins" }, -- auto import lua/plugins/*.lua
   },
   ui = {
-    border = vim.g.border,
+    border = _G.border,
   },
   default = { lazy = true },
   performance = {

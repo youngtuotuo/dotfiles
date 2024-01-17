@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    ft = vim.g.lspfts,
+    ft = _G.lspfts,
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
@@ -45,13 +45,13 @@ return {
           completion = {
             winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
             scrollbar = false,
-            border = vim.g.border,
+            border = _G.border,
             max_width = 40,
           },
           documentation = {
             winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
             scrollbar = false,
-            border = vim.g.border,
+            border = _G.border,
             max_width = 50,
             max_height = 30,
           },
@@ -135,15 +135,15 @@ return {
     "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
     ft = "lua",
     cond = function()
-      return vim.fn.getcwd() == os.getenv(vim.g.home) .. string.format("%sgithub%sdotfiles", vim.g.sep, vim.g.sep)
+      return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
     end,
   },
   {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
-    ft = vim.g.lspfts,
+    ft = _G.lspfts,
   },
   {
     "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
-    ft = vim.g.lspfts,
+    ft = _G.lspfts,
   },
 }

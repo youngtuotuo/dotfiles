@@ -11,7 +11,7 @@ local diag_config = {
     end,
     focusable = true,
     title = " σ`∀´)σ ",
-    border = vim.g.border,
+    border = _G.border,
     max_width = 40,
   },
 }

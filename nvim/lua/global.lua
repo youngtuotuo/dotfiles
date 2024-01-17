@@ -9,17 +9,17 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "rounded": Like "single", but with rounded corners ("╭" etc.).
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
-vim.g.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-vim.g.floatw = 65
-vim.g.floatwrap = true
+_G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+_G.floatw = 65
+_G.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
-vim.g.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go", "markdown" }
+_G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go", "markdown" }
 
 -- fk u MS
-vim.g.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
-vim.g.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
-vim.g.ext = vim.fn.has("win32") == 1 and ".exe" or ""
+_G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
+_G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
+_G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
 local transparent = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
@@ -29,7 +29,7 @@ local dgrey1 = "NvimDarkGrey1"
 
 vim.fn.matchadd("EoLSpace", "\\s\\+$")
 
-vim.g.colorset = function()
+_G.colorset = function()
   local hls = {
     Error              = { fg = transparent },
     FoldColumn         = { fg = dgrey3, bg = transparent },
@@ -74,7 +74,7 @@ vim.g.colorset = function()
 
   -- stylua: ignore
   -- update the last line of                      /github /dotfiles /nvim /init.lua
-  local path = os.getenv(vim.g.home) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", vim.g.sep, vim.g.sep, vim.g.sep, vim.g.sep)
+  local path = os.getenv(_G.home) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", _G.sep, _G.sep, _G.sep, _G.sep)
 
   local file = io.open(path, "r")
   local fileContent = {}
@@ -99,4 +99,4 @@ vim.g.colorset = function()
     vim.cmd([[e ]])
   end
 end
-vim.g.colorset()
+_G.colorset()
