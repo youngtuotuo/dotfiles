@@ -75,6 +75,7 @@ return {
       "markdown_inline",
       "query",
       "rust",
+      "zig",
       "vim",
       "vimdoc",
     },
