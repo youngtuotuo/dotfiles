@@ -28,13 +28,13 @@ local cmds = {
       callback = function()
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
-        local compiler = vim.fn.has("win32") == 1 and "clang-cl" or (bufext == "c" and "clang" or "clang++")
+        local compiler = bufext == "c" and "clang" or "clang++"
         local cmd = string.format("%s -Wall -Wextra", compiler)
         -- # include <math.h>
         if check_math_h() then cmd = string.format("%s -lm", cmd) end
         --  cpp14
         if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
-        -- compiler -Wall -Wextra -lm -std=c++14 -o fnameEXT && ./fnameEXT
+        -- compiler -Wall -Wextra -lm -o fnameEXT && ./fnameEXT
         cmd = string.format("%s -o %s%s %% && .%s%s%s", cmd, bufname, _G.ext, _G.sep, bufname, _G.ext)
         cmd = ":sp | terminal " .. cmd
         vim.keymap.set("n", "<leader>p", cmd)
