@@ -4,6 +4,7 @@ return {
   build = ":TSUpdate",
   event = { "BufRead" },
   init = function(plugin)
+    -- copy from folke
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
     -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
     -- no longer trigger the **nvim-treeitter** module to be loaded in time.

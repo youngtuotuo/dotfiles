@@ -9,7 +9,7 @@ return {
     {
       "folke/neodev.nvim",
       cond = function()
-        return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
+        return vim.fn.getcwd() == os.getenv(_G.home) .. "/github/dotfiles"
       end,
       opts = {
         library = {
@@ -25,7 +25,7 @@ return {
         vim.api.nvim_create_user_command("M", "Mason", {})
       end,
       opts = {
-        ui = { border = _G.border, height = 0.8 },
+        ui = { border = _G.border },
         ensure_installed = {
           "clang-format",
           "clangd",
@@ -33,13 +33,13 @@ return {
           "gopls",
           "lua_ls",
           "markdownlint",
-          "marksman",
           "prettier",
           "pyright",
           "ruff",
           "ruff_lsp",
           "stylua",
-          "xmlformatter",
+          "rust_analyzer",
+          "zls"
         },
       },
     },
@@ -50,7 +50,6 @@ return {
           function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup({})
           end,
-          -- ["clangd"] = require("language_servers.clangd"),
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
           ["ruff_lsp"] = require("language_servers.ruff_lsp"),

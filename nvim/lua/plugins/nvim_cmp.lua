@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    ft = _G.lspfts,
+    event = "BufRead",
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
@@ -135,7 +135,7 @@ return {
     "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
     ft = "lua",
     cond = function()
-      return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
+      return vim.fn.getcwd() == os.getenv(_G.home) .. "/github/dotfiles"
     end,
   },
   {

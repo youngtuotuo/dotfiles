@@ -17,7 +17,7 @@ _G.floatwrap = true
 _G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
 
 -- fk u MS
-_G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
+-- _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
@@ -73,8 +73,8 @@ _G.colorset = function()
   end
 
   -- stylua: ignore
-  -- update the last line of                      /github /dotfiles /nvim /init.lua
-  local path = os.getenv(_G.home) .. string.format("%sgithub%sdotfiles%snvim%sinit.lua", _G.sep, _G.sep, _G.sep, _G.sep)
+  -- update the last line
+  local path = os.getenv(_G.home) .. "/github/dotfiles/nvim/init.lua"
 
   local file = io.open(path, "r")
   local fileContent = {}
