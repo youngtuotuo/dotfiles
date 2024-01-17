@@ -84,19 +84,14 @@ return {
         -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
         keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
-          -- You can optionally set descriptions to the mappings (used in the desc parameter of
-          -- nvim_buf_set_keymap) which plugins like which-key display
-          ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-          -- You can also use captures from other query groups like `locals.scm`
-          ["as"] = {
-            query = "@scope",
-            query_group = "locals",
-            desc = "Select language scope",
-          },
+          ["ic"] = "@class.inner",
+          ["al"] = "@loop.outer",
+          ["il"] = "@loop.inner",
+          ["ai"] = "@conditional.outer",
+          ["ii"] = "@conditional.inner",
         },
         include_surrounding_whitespace = false,
       },
@@ -114,35 +109,27 @@ return {
         set_jumps = true,
         goto_next_start = {
           ["]m"] = "@function.outer",
-          ["]]"] = { query = "@class.outer", desc = "Next class start" },
+          ["]]"] = "@class.outer",
           ["]l"] = "@loop.outer",
           ["]i"] = "@conditional.outer",
-          ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-          ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_next_end = {
           ["]M"] = "@function.outer",
           ["]["] = "@class.outer",
           ["]L"] = "@loop.outer",
           ["]I"] = "@conditional.outer",
-          ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-          ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_previous_start = {
           ["[m"] = "@function.outer",
           ["[["] = "@class.outer",
           ["[l"] = "@loop.outer",
           ["[i"] = "@conditional.outer",
-          ["[s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-          ["[z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
         goto_previous_end = {
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
           ["[L"] = "@loop.outer",
           ["[I"] = "@conditional.outer",
-          ["[S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-          ["[Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
         },
       },
     },
