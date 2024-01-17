@@ -1,7 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-# eval "$(oh-my-posh init bash --config ~/.poshthemes/material.omp.json)"
 
 # If not running interactively, don't do anything
 case $- in
@@ -58,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -86,13 +85,19 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -alh'
+alias l='ls -CF'
+alias cl='clear'
+
 alias vi='nvim'
+alias cvat_center='python -m data_tools.cvat --auth admin:ForceField123 --server-host cvat-data.standalone.powerarena.com --server-port 8080'
+alias cvat_mike='python -m data_tools.cvat --auth mike:powerarena --server-host 192.168.0.123 --server-port 8080'
+alias cvat_green='python -m data_tools.cvat --auth admin:1 --server-host cvat-green.standalone.powerarena.com --server-port 8080'
+alias cvat_old='python -m data_tools.cvat --auth admin:ForceField123 --server-host cvat-old.standalone.powerarena.com --server-port 8080'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -119,10 +124,14 @@ if ! shopt -oq posix; then
 fi
 
 
-. "$HOME/.cargo/env"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
 export PATH=$HOME/.local/bin${PATH:+:${PATH}}
+. "$HOME/.cargo/env"
 export EDITOR=nvim
-# I-Beam Cursor
-printf '\033[5 q'
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export MODULAR_HOME="/home/support/.modular"
+export PATH="/home/support/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+echo -ne "\e[2 q"
