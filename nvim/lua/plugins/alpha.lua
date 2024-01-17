@@ -69,6 +69,9 @@ return {
     math.randomseed(os.time())
     header.val = headers[math.random(1, #headers)]
     local footer = { opts = { hl = "Type", position = "center" }, type = "text", val = {} }
+    local version = { opts = { hl = "Type", position = "center" }, type = "text", val = {} }
+    local v = vim.version()
+    version.val = string.format("Neovim v%d.%d.%d-%s+%s", v.major, v.minor, v.patch, v.prerelease, v.build)
 
     return {
       layout = {
@@ -76,10 +79,13 @@ return {
         header,
         { type = "padding", val = 2 },
         footer,
+        { type = "padding", val = 1 },
+        version,
       },
       section = {
         header = header,
         footer = footer,
+        version = version,
       },
     }
   end,
@@ -90,8 +96,7 @@ return {
       pattern = "LazyVimStarted",
       callback = function()
         local stats = require("lazy").stats()
-        local footer_val =
-          string.format("󱐋 %d plugins loaded in %.3f ms", stats.count, stats.startuptime)
+        local footer_val = string.format("󱐋 %d plugins loaded in %.3f ms", stats.count, stats.startuptime)
         opts.section.footer.val = footer_val
         pcall(vim.cmd.AlphaRedraw)
       end,

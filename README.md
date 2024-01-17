@@ -6,71 +6,79 @@ This repo includes:
 - Tools config files.
 - Url or Installation scripts that hard to find by simply google once.
 
-<p align="center">
-    <img src="pictures/startup.png"/>
-</p>
+![image](pictures/startup.png)
 
-<p align="center">
-    <img src="pictures/file.png"/>
-</p>
+## Easy Install Tools
 
-# Easy Install Tools
-
-Tools listed here can be found by goolging once.<br>
+Tools listed here can be found by goolging once.
 
 ### All OS
 
-Wireguard, OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16, llvm >= 16, lld >= 16, Nodejs, Npm<br>
-
+Wezterm, Wireguard, OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16,\
+llvm >= 16, lld >= 16, Nodejs, Npm
 
 ### MacOS
 
-Brew, Clipboard Inidicator, AltTab, Rectangle, zsh-autosuggestions, Karadiner-Elements, [Easy-Move-Resize(100hz v.)](https://drive.google.com/file/d/1bdyYV0fyfmAnF1Lla08BVVKNLJTMiQwU/view?usp=drive_link)
+Brew, Clipboard Inidicator, AltTab, Rectangle, zsh-autosuggestions,\
+Karadiner-Elements, [Easy-Move-Resize(100hz v.)](https://drive.google.com/file/d/1bdyYV0fyfmAnF1Lla08BVVKNLJTMiQwU/view?usp=drive_link)
 
 ### Windows, WSL (ubuntu 20.04 prefer)
 
-PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC, AltSnap, QuickLook, ZoomIt
+PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC,\
+AltSnap, QuickLook, ZoomIt
 
-# Complicated ones
+## Complicated ones
 
 ### One for all dependicies
 
 ```bash
-sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y build-essential clang libevent-dev ncurses-dev build-essential bison pkg-config git fd ripgrep
+sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf \
+    automake cmake g++ pkg-config unzip curl doxygen -y build-essential \
+    clang libevent-dev ncurses-dev build-essential bison pkg-config git fd ripgrep
+
 echo 'export PATH=$HOME/.local/bin${PATH:+:${PATH}}' >> ~/.bashrc
 ln -s $(which fdfind) ~/.local/bin/fd
 # nodejs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
 # yarn
-curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | \
+    sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | \
+    sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
 ```
 
 ### Clangd Language Server Configuration
+
 For `#include <Python.h>`, put this file to projcet root:
 
 ```bash
 cp ~/github/dotfiles/compile_flags.txt .
 ```
+
 Remember to remove unused flags.
 
 Run this command to get the path of `Python.h`.
+
 ```bash
 python -c "import sysconfig; print(sysconfig.get_paths())"
 ```
 
 ### Zig
-Install llvm first.  
+
+Install llvm first.\
 [apt.llvm.org](https://apt.llvm.org/)
+
 ```bash
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh 16 all
 sudo apt install liblld-16 liblld-16-dev
 ```
+
 [Building Zig from Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
+
 ```bash
 mkdir build
 cd build
@@ -92,10 +100,13 @@ ghcup install ghc-9.2.7
 ```
 
 Linux/Mac
+
 ```bash
 rm ~/.ghcup/bin/ghc && ln -s ~/.ghcup/ghc/9.2.7/bin/ghc-9.2.7  ~/.ghcup/bin/ghc
 ```
+
 PowerShell
+
 ```bash
 rm C:\ghcup\bin\ghc.exe
 cp C:\ghcup\bin\ghc-9.2.7.exe C:\ghcup\bin\ghc.exe
@@ -146,12 +157,14 @@ Pyright Related [Configuration](https://github.com/microsoft/pyright/blob/main/d
 ### Latex Compiler
 
 ```bash
-sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
+sudo apt install texlive-latex-base texlive-fonts-recommended \
+    texlive-fonts-extra texlive-latex-extra texlive-xetex \
+    latexmk -y
 ```
 
 ### Solve cv2 typing issue with Pyright
 
-By adding the `__init__.pyi` file, you'll get suggestion from Pyright.<br>
+By adding the `__init__.pyi` file, you'll get suggestion from Pyright.\
 
 ```bash
 cd ~/github/dotfiles
@@ -219,20 +232,21 @@ cd $env:USERPROFILE
 ```
 
 Execution Policy
+
 ```powershell
 Get-ExecutionPolicy -List
 Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
 ```
 
-Windows Terminal<br>
+Windows Terminal\
 "liga" is useless. Use "calt" to disable ligature.
 
 ```json
 {
-    "font": 
+    "font":
         {
             "face": "CaskaydiaCove Nerd Font",
-            "features": 
+            "features":
             {
                 "liga": 0,
                 "calt": 0,

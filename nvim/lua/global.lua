@@ -14,7 +14,7 @@ vim.g.floatw = 65
 vim.g.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
-vim.g.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
+vim.g.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go", "markdown" }
 
 -- fk u MS
 vim.g.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
