@@ -12,15 +12,3 @@ curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor |
 echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" |
 	sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
-
-echo "============== Go =============="
-tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
-
-echo "============== Rust =============="
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-echo "============== Zig =============="
-snap install zig
-
-echo "============== Zig =============="
-sudo apt install lua5.3
