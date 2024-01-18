@@ -23,6 +23,7 @@ return {
       c = { "clang_format" },
       zig = { "zigfmt" },
       rust = { "rustfmt" },
+      sh = { "shfmt" }
     },
     formatters = {
       stylua = {
