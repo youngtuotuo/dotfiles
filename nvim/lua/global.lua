@@ -10,8 +10,8 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
 _G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-_G.floatw = 65
-_G.floatwrap = true
+_G.floatw = 70
+_G.floatwrap = false
 
 -- file types to trigger nvim-lspconfig
 _G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
