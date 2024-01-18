@@ -14,8 +14,8 @@ Tools listed here can be found by goolging once.
 
 ### All OS
 
-Wezterm, Wireguard, OpenVPN Client, miniconda, Git Credential Manager, Clang >= 16,\
-llvm >= 16, lld >= 16, Nodejs, Npm
+Wezterm, Wireguard, OpenVPN Client, Git Credential Manager, Clang >= 16,\
+Nodejs, Npm, Go, Rust, Zig, Lua, tmux (exclude Windows)
 
 ### MacOS
 
@@ -25,7 +25,7 @@ Karadiner-Elements, [Easy-Move-Resize(100hz v.)](https://drive.google.com/file/d
 ### Windows, WSL (ubuntu 20.04 prefer)
 
 PowerShell, Git for windows, VcXrv, Scoop, cuda, AllStartBack, noVNC,\
-AltSnap, QuickLook, ZoomIt
+AltSnap, QuickLook, ZoomIt, AutoHotKey
 
 ## Complicated ones
 
@@ -33,20 +33,27 @@ AltSnap, QuickLook, ZoomIt
 
 ```bash
 sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf \
-    automake cmake g++ pkg-config unzip curl doxygen -y build-essential \
-    clang libevent-dev ncurses-dev build-essential bison pkg-config git fd ripgrep
+    automake cmake g++ pkg-config unzip curl doxygen build-essential \
+    clang libevent-dev ncurses-dev bison git fd ripgrep -y
 
-echo 'export PATH=$HOME/.local/bin${PATH:+:${PATH}}' >> ~/.bashrc
+# fdfind link
 ln -s $(which fdfind) ~/.local/bin/fd
+
 # nodejs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
 # yarn
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | \
     sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | \
     sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
+
+
+# ------------------ important -----------------
+cp ~/github/dotfiles/.bashrc ~/
+cp ~/github/dotfiles/.profile ~/
 ```
 
 ### Clangd Language Server Configuration
@@ -63,53 +70,6 @@ Run this command to get the path of `Python.h`.
 
 ```bash
 python -c "import sysconfig; print(sysconfig.get_paths())"
-```
-
-### Zig
-
-Install llvm first.\
-[apt.llvm.org](https://apt.llvm.org/)
-
-```bash
-wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-sudo ./llvm.sh 16 all
-sudo apt install liblld-16 liblld-16-dev
-```
-
-[Building Zig from Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
-
-```bash
-mkdir build
-cd build
-cmake ..
-make install
-```
-
-### Miniconda disalbe prompt
-
-```bash
-conda config --system --set env_prompt ""
-conda config --set auto_activate_base false
-```
-
-## Mason Legacy Haskell Language Server Version
-
-```bash
-ghcup install ghc-9.2.7
-```
-
-Linux/Mac
-
-```bash
-rm ~/.ghcup/bin/ghc && ln -s ~/.ghcup/ghc/9.2.7/bin/ghc-9.2.7  ~/.ghcup/bin/ghc
-```
-
-PowerShell
-
-```bash
-rm C:\ghcup\bin\ghc.exe
-cp C:\ghcup\bin\ghc-9.2.7.exe C:\ghcup\bin\ghc.exe
 ```
 
 ### Cuda
@@ -130,10 +90,13 @@ sudo apt-get install cuda -y
 Ubuntu
 
 ```bash
+mkdir $HOME/.local
 # Build from Source
 git clone https://github.com/neovim/neovim.git
 cd neovim
-sudo CMAKE_BUILD_TYPE=Release make && sudo make install
+make distclean
+make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
+make install
 ```
 
 Mac (homebrew)
@@ -171,9 +134,9 @@ cd ~/github/dotfiles
 cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 
-### tigerVNC
+### tigerVNC & noVNC
 
-Not work in WSL2.
+TigerVNC (Not work in WSL2)
 
 ```bash
 sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
@@ -192,7 +155,7 @@ vncserver -kill
 vncserver -localhost no -geometry 1920x1080
 ```
 
-### noVNC
+noVNC
 
 ```bash
 git clone https://github.com/novnc/noVNC ~/github/noVNC
@@ -202,13 +165,15 @@ pip install numpy
 
 ### PowerShell config
 
-[devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
+ 1. [devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
+ 2. Download PowerShell from Microsoft Store
 
-Load path:
+Load path
 
 ```powershell
 mkdir ~/github
-~/Documents/PowerShell/profile.ps1
+git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
+cp ~/github/dotfiles/Microsoft.PowerShell_profile.ps1 ~/Documents/PowerShell/
 ```
 
 Install clang

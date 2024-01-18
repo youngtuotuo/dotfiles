@@ -22,9 +22,50 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-. "$HOME/.cargo/env"
+# if [ -d "$HOME/.local/bin" ] ; then
+#     PATH="$HOME/.local/bin:$PATH"
+# fi
+case ":${PATH}:" in
+    *:"$HOME/.local/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"/usr/local/go/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="/usr/local/go/bin${PATH:+:${PATH}}"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"/usr/local/cuda-12.2/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="/usr/local/cuda-12.2/bin${PATH:+:${PATH}}"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"/home/support/.modular/pkg/packages.modular.com_mojo/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="/home/support/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
+        ;;
+esac
 
-export PATH=$PATH:/usr/local/go/bin
+case ":${PATH}:" in
+    *:"$HOME/.cargo/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.cargo/bin:$PATH"
+        ;;
+esac
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export MODULAR_HOME="/home/support/.modular"

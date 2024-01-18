@@ -12,22 +12,14 @@ function ask() {
     [ "$response_lc" = "y" ]
 }
 
-# Check what shell is being used
-SH="${HOME}/.bashrc"
+# TODO: auto update, go, rust, zig, lua, nodejs, npm, yarn, gcm, clang,
 
-echo >> $SH
-echo '# -------------- dotfiles install ---------------' >> $SH
+# Bash
+if ask "Do you want to install .bashrc and .profile?"; then
+    cp "$(realpath .bashrc)" ~/.bashrc
+    cp "$(realpath .profile)" ~/.profile
+fi
 
-# Ask which files should be sourced
-echo "Do you want $SH to source: "
-for file in scripts/*; do
-    if [ -f "$file" ]; then
-        filename=$(basename "$file")
-        if ask "${filename}?"; then
-            echo "source $(realpath "$file")" >> "$SH"
-        fi
-    fi
-done
 
 # Tmux conf
 if ask "Do you want to install .tmux.conf?"; then
@@ -36,5 +28,5 @@ fi
 
 # neovim conf
 if ask "Do you want to install nvim config?"; then
-    ln -s "$($basename "nvim")" ~/.config/nvim
+    ln -s "$(realpath "nvim")" ~/.config/nvim
 fi

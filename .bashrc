@@ -123,15 +123,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-export PATH=$PATH:/usr/local/go/bin
-export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
-export PATH=$HOME/.local/bin${PATH:+:${PATH}}
-. "$HOME/.cargo/env"
 export EDITOR=nvim
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export MODULAR_HOME="/home/support/.modular"
-export PATH="/home/support/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 echo -ne "\e[2 q"
