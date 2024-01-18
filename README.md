@@ -15,7 +15,7 @@ Tools listed here can be found by goolging once.
 ### All OS
 
 Wezterm, Wireguard, OpenVPN Client, Git Credential Manager, Clang >= 16,\
-Nodejs, Npm, Go, Rust, Zig, Lua, tmux (exclude Windows)
+Nodejs, Npm, Go, Rust, Zig, Lua, tmux, mojo, fzf
 
 ### MacOS
 
