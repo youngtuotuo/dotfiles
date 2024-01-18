@@ -12,24 +12,19 @@ function ask() {
 	[ "$response_lc" = "y" ]
 }
 
-echo "============== Creat baisic folder: ~/github/ =============="
-mkdir ~/github
-echo "============== Clone dotfiles: ~/github/dotfiles =============="
-git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
-
 # Bash
-if ask "Do you want to install .bashrc and .profile?"; then
+if ask "============ Do you want to install .bashrc and .profile? ============"; then
 	cp "$(realpath .bashrc)" ~/.bashrc
 	cp "$(realpath .profile)" ~/.profile
 fi
 
 # Tmux conf
-if ask "Do you want to install .tmux.conf?"; then
+if ask "============ Do you want to install .tmux.conf? ============"; then
 	ln -s "$(realpath ".tmux.conf")" ~/.tmux.conf
 fi
 
 # Install neovim
-if ask "Do you want to install neovim?"; then
+if ask "============ Do you want to install neovim? ============"; then
 	mkdir $HOME/.local
 	git clone https://github.com/neovim/neovim.git ~/github/neovim
 	cd ~/github/neovim
@@ -39,6 +34,12 @@ if ask "Do you want to install neovim?"; then
 fi
 
 # neovim conf
-if ask "Do you want to install nvim config?"; then
-	ln -s "$(realpath "nvim")" ~/.config/nvim
+if ask "============ Do you want to install nvim config? ============"; then
+	mkdir $HOME/.config
+	ln -s "$(realpath "nvim")" $HOME/.config/nvim
+fi
+
+# fd conf
+if ask "============ Do you want to link fd to fdfind? ============"; then
+	ln -s $(which fdfind) ~/.local/bin/fd
 fi

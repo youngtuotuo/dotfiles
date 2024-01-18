@@ -2,9 +2,7 @@
 
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf \
-	automake cmake g++ pkg-config unzip curl doxygen build-essential \
-	clang libevent-dev ncurses-dev bison git fd ripgrep -y
+sudo apt-get install zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential clang libevent-dev libncurses-dev bison git fd-find ripgrep -y
 
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -22,7 +20,7 @@ echo "============== Rust =============="
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "============== Zig =============="
-snap install zig --classic --beta
+snap install zig
 
 echo "============== Zig =============="
-sudo apt install lua
+sudo apt install lua5.3
