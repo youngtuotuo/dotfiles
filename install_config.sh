@@ -20,8 +20,9 @@ if ask "============ Do you want to install go? ============"; then
 	else
 		wget $resp -O $HOME/go.tar.xz
 		cd $HOME
-		tar xz go.tar.xz
+		tar xf go.tar.xz
 		mv go/ $HOME/.local/go
+                rm $HOME/go.tar.xz
 	fi
 fi
 
@@ -41,6 +42,7 @@ if ask "============ Do you want to install zig? ============"; then
 		cd $HOME
 		tar xf zig.tar.xz -C zig --strip-components 1
 		mv zig/ $HOME/.local/zig
+                rm $HOME/zig.tar.xz
 
 	fi
 fi
