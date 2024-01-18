@@ -19,7 +19,6 @@ local options = {
   smartcase = true, -- ... unless there is a capital letter in the query
   matchtime = 1, -- display of current match paren faster
   showmatch = true, -- show matching brackets when text indicator is over them
-  -- shadafile = "NONE", -- for command history
   mouse = "a",
   mousemoveevent = true,
   mousemodel = "extend",
@@ -57,6 +56,7 @@ if vim.fn.has("win32") == 1 then
   options.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
   options.shellquote = ""
   options.shellxquote = ""
+  options.shadafile = "NONE" -- for command history
 end
 
 for k, v in pairs(options) do
