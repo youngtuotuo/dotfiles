@@ -23,3 +23,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "============== Zig =============="
 snap install zig --classic --beta
+
+echo "============== Zig =============="
+sudo apt install lua
