@@ -9,7 +9,9 @@ return {
     {
       "folke/neodev.nvim",
       cond = function()
-        return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
+        -- fk u MS
+        return vim.fn.getcwd() == os.getenv(_G.home)
+          .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
       end,
       opts = {
         library = {
@@ -31,14 +33,14 @@ return {
           "clangd",
           "gofumpt",
           "gopls",
-          "lua_ls",
+          "lua-language-serve",
           "markdownlint",
           "prettier",
           "pyright",
           "ruff",
-          "ruff_lsp",
+          "ruff-lsp",
+          "rust-analyzer",
           "stylua",
-          "rust_analyzer",
           "zls"
         },
       },
