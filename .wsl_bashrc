@@ -126,4 +126,4 @@ fi
 export EDITOR=nvim
 
 echo -ne "\e[2 q"
-echo "Set: sudo ip link set eth0 mtu 1400 to let git works"
+echo "Set: sudo ip link set eth0 mtu 1400 to let network works"
