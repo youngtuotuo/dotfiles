@@ -33,10 +33,17 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/usr/local/go/bin":*)
+    *:"$HOME/.local/go/bin":*)
         ;;
     *)
-        export PATH="/usr/local/go/bin${PATH:+:${PATH}}"
+        export PATH="$HOME/.local/go/bin${PATH:+:${PATH}}"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"$HOME/.local/zig":*)
+        ;;
+    *)
+        export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
         ;;
 esac
 case ":${PATH}:" in
