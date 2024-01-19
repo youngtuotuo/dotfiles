@@ -41,7 +41,7 @@ Ubuntu/WSL
 
 ```bash
 ./sudo_install.sh
-./install_config.sh
+./local_install.sh
 ```
 
 Windows
@@ -61,7 +61,7 @@ WIP
 For `#include <Python.h>`, put this file to projcet root:
 
 ```bash
-cp ~/github/dotfiles/compile_flags.txt .
+cp $HOME/github/dotfiles/compile_flags.txt .
 ```
 
 Remember to remove unused flags.
@@ -70,19 +70,6 @@ Run this command to get the path of `Python.h`.
 
 ```bash
 python -c "import sysconfig; print(sysconfig.get_paths())"
-```
-
-### Cuda
-
-[cuda-installation-guide-linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
-
-```bash
-sudo apt-get install linux-headers-$(uname -r)
-# you can find the feasible choices here https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#network-repo-installation-for-ubuntu
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-sudo dpkg -i cuda-keyring_1.0-1_all.deb
-sudo apt-get update
-sudo apt-get install cuda -y
 ```
 
 ### Neovim
@@ -205,45 +192,28 @@ clangd, gopls, lua_ls, pyright, ruff_lsp, texlab, zls,
 
 </details>
 
-### Latex Compiler
-
-```bash
-sudo apt install texlive-latex-base texlive-fonts-recommended \
-    texlive-fonts-extra texlive-latex-extra texlive-xetex \
-    latexmk -y
-```
-
 ### Solve cv2 typing issue with Pyright
 
 By adding the `__init__.pyi` file, you'll get suggestion from Pyright.\
 
 ```bash
-cd ~/github/dotfiles
-cp cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
+cd $HOME/github/dotfiles
+cp $HOME/github/dotfiles/cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.8/site-packages/cv2/__init__.pyi
 ```
 
-### tigerVNC & noVNC
+### tigerVNC
 
 TigerVNC (Not work in WSL2)
 
 ```bash
-sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
-# setup password
 vncserver :2
 vncserver -kill :2
-sudo cp ~/github/dotfiles/xstartup ~/.vnc/xstartup
-sudo chmod +x ~/.vnc/xstartup
-```
-
-Useful vnc commands
-
-```bash
 vncserver -list
 vncserver -kill
 vncserver -localhost no -geometry 1920x1080
 ```
 
-noVNC
+### noVNC
 
 ```bash
 git clone https://github.com/novnc/noVNC ~/github/noVNC
@@ -270,15 +240,10 @@ Install clang
 scoop install main/llvm
 ```
 
-Envs
-
-```powershell
-dir env:
-```
-
 Frequently used envs
 
 ```powershell
+dir env:
 cd $env:APPDATA
 cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
@@ -308,12 +273,4 @@ Windows Terminal\
             "weight": "normal"
         },
 }
-```
-
-### WSL2 config
-
-Git credential manager
-
-```bash
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 ```

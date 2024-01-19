@@ -47,10 +47,10 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/usr/local/cuda-12.2/bin":*)
+    *:"/usr/local/cuda/bin":*)
         ;;
     *)
-        export PATH="/usr/local/cuda-12.2/bin${PATH:+:${PATH}}"
+        export PATH="/usr/local/cuda/bin${PATH:+:${PATH}}"
         ;;
 esac
 case ":${PATH}:" in

@@ -112,6 +112,7 @@ if ask "============ Do you want to install gcm? ============"; then
 		wget $resp -O $HOME/gcm.deb
                 sudo dpkg -i $HOME/gcm.deb
                 git-credential-manager configure
+                git config --global credential.credentialStore cache
 	fi
 fi
 
