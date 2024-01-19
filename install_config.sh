@@ -93,14 +93,12 @@ fi
 
 # git credential manager
 if ask "============ Do you want to install gcm? ============"; then
-	read -p "Please give current gcm tar file url: " resp
+	read -p "Please give current gcm deb file url: " resp
 	if [ -z "$resp" ]; then
 		echo "Empty url, skip."
 	else
-		wget $resp -O $HOME/gcm.tar.xz
-		cd $HOME
-		tar xf gcm.tar.xz -C $HOME/.local/bin
-                rm $HOME/gcm.tar.xz
+		wget $resp -O $HOME/gcm.deb
+                sudo dpkg -i $HOME/gcm.deb
                 git-credential-manager configure
 	fi
 fi
