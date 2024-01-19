@@ -94,10 +94,6 @@ alias l='ls -CF'
 alias cl='clear'
 
 alias vi='nvim'
-alias cvat_center='python -m data_tools.cvat --auth admin:ForceField123 --server-host cvat-data.standalone.powerarena.com --server-port 8080'
-alias cvat_mike='python -m data_tools.cvat --auth mike:powerarena --server-host 192.168.0.123 --server-port 8080'
-alias cvat_green='python -m data_tools.cvat --auth admin:1 --server-host cvat-green.standalone.powerarena.com --server-port 8080'
-alias cvat_old='python -m data_tools.cvat --auth admin:ForceField123 --server-host cvat-old.standalone.powerarena.com --server-port 8080'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
