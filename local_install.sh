@@ -47,11 +47,6 @@ if ask "============ Do you want to install zig? ============"; then
 	fi
 fi
 
-# Lua
-if ask "============ Do you want to install lua? ============"; then
-	sudo apt install lua5.3
-fi
-
 # Bash
 if ask "============ Do you want to install .bashrc and .profile? ============"; then
 	cp "$(realpath .bashrc)" ~/.bashrc
@@ -91,6 +86,23 @@ if ask "============ Do you want to install fzf? ============"; then
         ./fzf/install
 fi
 
+# Case-insensitive bash
+# from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
+# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc
+# so it won't get overriden
+if ask "============ Do you want to set case case-insensitive in bash? ============"; then
+	if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' >~/.inputrc; fi
+
+	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
+	echo 'set completion-ignore-case On' >>~/.inputrc
+fi
+
+# wsl.conf file
+if ask "============ Do you want to install wsl.conf? ============"; then
+        cd $HOME/github
+        cp ./wsl.conf /etc/wsl.conf
+fi
+
 # git credential manager
 if ask "============ Do you want to install gcm? ============"; then
 	read -p "Please give current gcm deb file url: " resp
@@ -103,20 +115,12 @@ if ask "============ Do you want to install gcm? ============"; then
 	fi
 fi
 
-
-# Case-insensitive bash
-# from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
-# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc
-# so it won't get overriden
-if ask "============ Do you want to set case case-insensitive in bash? ============"; then
-	if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' >~/.inputrc; fi
-
-	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
-	echo 'set completion-ignore-case On' >>~/.inputrc
-fi
-
-# wsl net
-if ask "============ Do you want to change default mtu to 1400? ============"; then
-        cd $HOME/github
-        cp ./wsl.conf /etc/wsl.conf
+# tmux
+if ask "============ Do you want to install tmux? ============"; then
+        git clone https://github.com/tmux/tmux.git $HOME/github/tmux
+        cd $HOME/github/tmux
+        sh autogen.sh
+        ./configure
+        make
+        sudo make install
 fi
