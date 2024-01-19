@@ -33,7 +33,7 @@ fi
 
 # Zig
 if ask "============ Do you want to install zig? ============"; then
-	read -p "Please give current go tar file url: " resp
+	read -p "Please give current zig tar file url: " resp
 	if [ -z "$resp" ]; then
 		echo "Empty url, skip."
 	else
@@ -90,6 +90,21 @@ if ask "============ Do you want to install fzf? ============"; then
         cd $HOME/github
         ./fzf/install
 fi
+
+# git credential manager
+if ask "============ Do you want to install gcm? ============"; then
+	read -p "Please give current gcm tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		wget $resp -O $HOME/gcm.tar.xz
+		cd $HOME
+		tar xf gcm.tar.xz -C $HOME/.local/bin
+                rm $HOME/gcm.tar.xz
+                git-credential-manager configure
+	fi
+fi
+
 
 # Case-insensitive bash
 # from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
