@@ -62,11 +62,11 @@ local headers = {
 return {
   "goolord/alpha-nvim",
   opts = function()
-    local header = { opts = { hl = "Type", position = "center" }, type = "text", val = {} }
+    local header = { opts = { hl = "Normal", position = "center" }, type = "text", val = {} }
     math.randomseed(os.time())
     header.val = headers[math.random(1, #headers)]
-    local footer = { opts = { hl = "Type", position = "center" }, type = "text", val = {} }
-    local version = { opts = { hl = "Type", position = "center" }, type = "text", val = {} }
+    local footer = { opts = { hl = "Normal", position = "center" }, type = "text", val = {} }
+    local version = { opts = { hl = "Normal", position = "center" }, type = "text", val = {} }
     local v = vim.version()
     version.val = string.format("Neovim v%d.%d.%d-%s+%s", v.major, v.minor, v.patch, v.prerelease, v.build)
 
