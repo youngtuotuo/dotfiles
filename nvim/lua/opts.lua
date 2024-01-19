@@ -56,7 +56,7 @@ if vim.fn.has("win32") == 1 then
   options.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
   options.shellquote = ""
   options.shellxquote = ""
-  options.shadafile = "NONE" -- for command history
+  options.shadafile = "!,'100,<50,s10,h" -- for command history
 end
 
 for k, v in pairs(options) do
