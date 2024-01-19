@@ -104,5 +104,6 @@ fi
 
 # wsl net
 if ask "============ Do you want to change default mtu to 1400? ============"; then
-        cp ./wsl_net.conf /etc/wsl.conf
+        cd $HOME/github
+        cp ./wsl.conf /etc/wsl.conf
 fi
