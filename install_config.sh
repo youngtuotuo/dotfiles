@@ -84,6 +84,13 @@ if ask "============ Do you want to link fd to fdfind? ============"; then
 	ln -s $(which fdfind) ~/.local/bin/fd
 fi
 
+# fzf
+if ask "============ Do you want to install fzf? ============"; then
+	git clone https://github.com/junegunn/fzf.git $HOME/github/fzf
+        cd $HOME/github
+        ./fzf/install
+fi
+
 # Case-insensitive bash
 # from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
 # If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc
