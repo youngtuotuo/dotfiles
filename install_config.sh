@@ -94,3 +94,6 @@ if ask "============ Do you want to set case case-insensitive in bash? =========
 	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
 	echo 'set completion-ignore-case On' >>~/.inputrc
 fi
+if ask "============ Do you want to change default mtu to 1400? ============"; then
+        cp ./wsl_net.conf /etc/wsl.conf
+fi
