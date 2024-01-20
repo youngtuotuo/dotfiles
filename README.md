@@ -176,10 +176,6 @@ split-and-window
 
 + [anuvyklack/windows.nvim](https://dotfyle.com/plugins/anuvyklack/windows.nvim)
 
-startup
-
-+ [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
-
 syntax
 
 + [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
