@@ -32,6 +32,8 @@ local keyms = {
 
   { { "n" }, "<S-Right>", "<cmd>vertical resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" } },
   { { "n" }, "<S-Left>",  "<cmd>vertical resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" } },
+  { { "n" }, "<S-Up>",    "<cmd>resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" } },
+  { { "n" }, "<S-Down>",  "<cmd>resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" } },
 
   -- better external command ouput
   { { "n" }, "<leader>x", [[:sp | terminal<C-b>]], { noremap = true, desc = ":sp | terminal , execute external command with output to pane" } },
