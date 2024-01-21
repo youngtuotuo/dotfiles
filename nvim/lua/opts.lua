@@ -40,6 +40,8 @@ local options = {
   wildcharm = vim.fn.char2nr('^I'),
   undodir = vim.fn.stdpath("data") .. "/undodir/",
   pumblend = 15,
+  winfixwidth = true,
+  winfixheight = true,
 }
 
 if options.laststatus == 0 then
