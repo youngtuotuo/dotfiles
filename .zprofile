@@ -1,6 +1,14 @@
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+case ":${PATH}:" in
+    *:"$HOME/.local/bin":*)
+        ;;
+    *)
+        export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+        ;;
+esac
+
 # export PATH
 case ":${MANPATH}:" in
     *:"/usr/local/man":*)
@@ -21,13 +29,6 @@ case ":${PATH}:" in
         ;;
     *)
         export PATH="/opt/homebrew/opt/llvm/bin${PATH:+:${PATH}}"
-        ;;
-esac
-case ":${PATH}:" in
-    *:"/Users/mikehung/Library/Python/3.9/bin":*)
-        ;;
-    *)
-        export PATH="/Users/mikehung/Library/Python/3.9/bin${PATH:+:${PATH}}"
         ;;
 esac
 case ":${PATH}:" in
