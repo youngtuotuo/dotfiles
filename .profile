@@ -54,10 +54,10 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/home/support/.modular/pkg/packages.modular.com_mojo/bin":*)
+    *:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*)
         ;;
     *)
-        export PATH="/home/support/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
+        export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
         ;;
 esac
 
@@ -70,4 +70,4 @@ case ":${PATH}:" in
 esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export MODULAR_HOME="/home/support/.modular"
+export MODULAR_HOME="$HOME/.modular"

@@ -38,7 +38,15 @@ case ":${PATH}:" in
         export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin${PATH:+:${PATH}}"
         ;;
 esac
+case ":${PATH}:" in
+    *:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*)
+        ;;
+    *)
+        export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
+        ;;
+esac
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH
+export MODULAR_HOME="$HOME/.modular"
+

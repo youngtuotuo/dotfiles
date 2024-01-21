@@ -12,9 +12,9 @@ function ask() {
 }
 
 if ask "============ Do you want to install neovim? ============"; then
-  brew install ninja cmake gettext curl
-  make distclean
-	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
-	make install
-  rm $HOME/.local/nvim/parser/*
+brew install ninja cmake gettext curl
+make distclean
+make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
+make install
+rm $HOME/.local/nvim/parser/*
 fi
