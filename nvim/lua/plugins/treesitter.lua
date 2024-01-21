@@ -69,8 +69,9 @@ return {
       "gitignore",
       "go",
       "python",
-      "c",
-      "cpp",
+      -- will cause slow startup when opening .h files
+      -- "c",
+      -- "cpp",
       "lua",
       "markdown",
       "markdown_inline",
