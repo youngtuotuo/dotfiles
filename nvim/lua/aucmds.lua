@@ -131,9 +131,9 @@ local cmds = {
   },
   BufWinEnter = {
     {
-      pattern = "*.txt",
+      pattern = { "*.txt", "*.md" },
       callback = function()
-        if vim.o.filetype == "help" then
+        if vim.o.filetype == "help" or vim.o.filetype == "markdown" then
           vim.cmd [[wincmd L]]
         end
       end,

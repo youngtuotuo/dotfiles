@@ -20,6 +20,7 @@ local options = {
   matchtime = 1, -- display of current match paren faster
   showmatch = true, -- show matching brackets when text indicator is over them
   mouse = "a",
+  statusline = " %f %m %= %l:%c ",
   mousemoveevent = true,
   mousemodel = "extend",
   nu = false,

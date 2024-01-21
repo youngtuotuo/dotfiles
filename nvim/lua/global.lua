@@ -39,7 +39,6 @@ _G.colorset = function()
     markdownBlockquote = { fg = grey },
     Pmenu              = { bg = dgrey1 },
     PmenuSel           = { bg = dgrey3 },
-    TelescopeSelection = { link = "PmenuSel" },
 
     LspReferenceText  = { reverse = true },
     LspReferenceRead  = { reverse = true },
@@ -60,13 +59,10 @@ _G.colorset = function()
     LspInfoBorder = { link = "Label" },
     FloatBorder = { link = "LspInfoBorder" },
     TelescopeBorder = { link = "LspInfoBorder" },
-    TelescopeSelectionCaret = { link = "TelescopeSelection" }
   }
   if vim.o.laststatus == 0 then
     hls.StatusLine   = { link = "WinSeparator" }
     hls.StatusLineNC = { link = "WinSeparator" }
-  else
-    hls.StatusLine = { reverse = true, bold = true }
   end
   for k, v in pairs(hls) do
     vim.api.nvim_set_hl(0, k, v)
