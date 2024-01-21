@@ -6,9 +6,10 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # You may need to manually set your language environment
 
 export EDITOR="nvim"
-alias ll='ls -alF'
-alias l="ls -l"
-alias la="ls -a"
+alias ls="ls -G"
+alias ll='ls -alFG'
+alias l="ls -lG"
+alias la="ls -aG"
 alias cl="clear"
 alias vi="nvim"
 
