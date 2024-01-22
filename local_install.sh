@@ -60,8 +60,8 @@ fi
 
 # Bash
 if ask "============ Do you want to install .bashrc and .profile? ============"; then
-	ln -s "$(realpath .bashrc)" ~/.bashrc
-	ln -s "$(realpath .profile)" ~/.profile
+	ln -s $HOME/github/dotfiles/.bashrc ~/.bashrc
+	ln -s $HOME/github/dotfiles/.profile ~/.profile
 fi
 
 # Neovim
@@ -82,7 +82,7 @@ fi
 # neovim config
 if ask "============ Do you want to install nvim config? ============"; then
 	mkdir -p $HOME/.config
-	ln -s "$(realpath "nvim")" $HOME/.config/nvim
+	ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
 fi
 
 # fd link
@@ -149,15 +149,15 @@ fi
 
 # tmux config
 if ask "============ Do you want to install .tmux.conf? ============"; then
-	ln -s "$(realpath ".tmux.conf")" ~/.tmux.conf
+	ln -s $HOME/github/dotfiles/.tmux.conf ~/.tmux.conf
 fi
 
 # vimrc
 if ask "============ Do you want to install .vimrc? ============"; then
-	ln -s "$(realpath ".vimrc")" ~/.vimrc
+	ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
 fi
 
 # wezterm
 if ask "============ Do you want to install .wezterm.lua? ============"; then
-	ln -s "$(realpath ".wezterm.lua")" ~/.wezterm.lua
+	ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
 fi
