@@ -60,8 +60,8 @@ fi
 
 # Bash
 if ask "============ Do you want to install .bashrc and .profile? ============"; then
-	cp "$(realpath .bashrc)" ~/.bashrc
-	cp "$(realpath .profile)" ~/.profile
+	ln -s "$(realpath .bashrc)" ~/.bashrc
+	ln -s "$(realpath .profile)" ~/.profile
 fi
 
 # Neovim
@@ -150,4 +150,14 @@ fi
 # tmux config
 if ask "============ Do you want to install .tmux.conf? ============"; then
 	ln -s "$(realpath ".tmux.conf")" ~/.tmux.conf
+fi
+
+# vimrc
+if ask "============ Do you want to install .vimrc? ============"; then
+	ln -s "$(realpath ".vimrc")" ~/.vimrc
+fi
+
+# wezterm
+if ask "============ Do you want to install .wezterm.lua? ============"; then
+	ln -s "$(realpath ".wezterm.lua")" ~/.wezterm.lua
 fi
