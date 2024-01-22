@@ -21,6 +21,7 @@ return {
     --   "Module",
     --   "Method",
     --   "Struct",
+    --   "TypeParameter",
     -- }
     -- filter_kind = false
   },
