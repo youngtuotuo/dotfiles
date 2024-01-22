@@ -19,7 +19,8 @@ fi
 
 # dependencies
 if ask "============ Do you want to install all dependencies? ============"; then
-	sudo apt-get install python3.8-venv zstd ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential clang libevent-dev libncurses-dev bison git fd-find ripgrep -y
+	sudo apt-get install python3.8-venv zstd ninja-build gettext libtool libtool-bin autoconf automake g++ pkg-config unzip curl doxygen build-essential clang libevent-dev libncurses-dev bison git fd-find ripgrep -y
+	sudo snape install cmake
 fi
 
 # nodejs
@@ -83,4 +84,14 @@ if ask "============ Do you want to install tigerVNC? ============"; then
 	mkdir $HOME/.vnc
 	cp $HOME/github/dotfiles/xstartup $HOME/.vnc/xstartup
 	sudo chmod +x ~/.vnc/xstartup
+fi
+
+# nvtop
+if ask "============ Do you want to install nvtop? ============"; then
+	if ! command -v nvtop >/dev/null; then
+		sudo add-apt-repository ppa:flexiondotorg/nvtop
+		sudo apt install nvtop
+	else
+		echo -e "\033[93mINFO\033[0m nvtop exists: $(which nvtop)"
+	fi
 fi

@@ -64,11 +64,6 @@ if ask "============ Do you want to install .bashrc and .profile? ============";
 	cp "$(realpath .profile)" ~/.profile
 fi
 
-# Tmux
-if ask "============ Do you want to install .tmux.conf? ============"; then
-	ln -s "$(realpath ".tmux.conf")" ~/.tmux.conf
-fi
-
 # Neovim
 if ask "============ Do you want to install neovim? ============"; then
 	if ! command -v nvim >/dev/null; then
@@ -150,4 +145,9 @@ if ask "============ Do you want to install tmux? ============"; then
 	else
 		echo -e "\033[93mINFO\033[0m tmux exists: $(which tmux)"
 	fi
+fi
+
+# tmux config
+if ask "============ Do you want to install .tmux.conf? ============"; then
+	ln -s "$(realpath ".tmux.conf")" ~/.tmux.conf
 fi
