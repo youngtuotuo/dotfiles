@@ -25,7 +25,7 @@ local transparent = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
 local grey = "NvimLightGrey4"
 local dgrey3 = "NvimDarkGrey3"
-local dgrey1 = "NvimDarkGrey1"
+-- local dgrey1 = "NvimDarkGrey1"
 
 vim.fn.matchadd("EoLSpace", "\\s\\+$")
 
@@ -37,8 +37,8 @@ _G.colorset = function()
     WinBarNC           = { bg = transparent },
     netrwMarkFile      = { fg = y },
     markdownBlockquote = { fg = grey },
-    Pmenu              = { bg = dgrey1 },
-    PmenuSel           = { bg = dgrey3 },
+    Pmenu              = { bg = dgrey3 },
+    -- PmenuSel           = { bg = dgrey3 },
 
     LspReferenceText  = { reverse = true },
     LspReferenceRead  = { reverse = true },

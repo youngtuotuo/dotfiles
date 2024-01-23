@@ -36,7 +36,7 @@ local keyms = {
   { { "n" }, "<S-Down>",  "<cmd>resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" } },
 
   -- better external command ouput
-  { { "n" }, "<leader>x", [[:terminal <C-b>]], { noremap = true, desc = ":terminal , execute external command with output to pane" } },
+  { { "n" }, "<space>x", [[:terminal <C-b>]], { noremap = true, desc = ":terminal , execute external command with output to pane" } },
 
   { { "n", "v", "x" }, "<leader>d", '"_d',  { noremap = true, desc = "d, but not go to register" } },
   { { "n", "v", "x" }, "<leader>y", '"+y',  { noremap = true, desc = "y, but yank to system clipboard" } },
@@ -65,7 +65,7 @@ local keyms = {
 }
 
 if vim.fn.has("win32") == 0 then
-  table.insert(keyms, { { "n" }, "<space>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } })
+  table.insert(keyms, { { "n" }, "<leader>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } })
 end
 
 for _, v in ipairs(keyms) do
