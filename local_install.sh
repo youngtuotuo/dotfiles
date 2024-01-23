@@ -12,6 +12,22 @@ function ask() {
 	[ "$response_lc" = "y" ]
 }
 
+# python
+if ask "============ Do you want to install another python? ============"; then
+	read -p "Please give current python tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		wget $resp -O $HOME/python.tgz
+		cd $HOME
+		tar xf python.tgz -C python --strip-components 1
+                cd python
+                ./configure --prefix=$HOME/.local --enable-optimizations
+		make
+                make install
+	fi
+fi
+
 # Go
 if ask "============ Do you want to install go? ============"; then
 	if ! command -v go >/dev/null; then
