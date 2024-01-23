@@ -1,36 +1,3 @@
--- Go to the next diagnostic, but prefer going to errors first
--- In general, I pretty much never want to go to the next hint
-local severity_levels = {
-  vim.diagnostic.severity.ERROR,
-  vim.diagnostic.severity.WARN,
-  vim.diagnostic.severity.INFO,
-  vim.diagnostic.severity.HINT,
-}
-
-local get_highest_error_severity = function()
-  for _, level in ipairs(severity_levels) do
-    local diags = vim.diagnostic.get(0, { severity = { min = level } })
-    if #diags > 0 then
-      return level, diags
-    end
-  end
-end
-
--- stylua: ignore start
-vim.keymap.set("n", "gl",
-  function() vim.diagnostic.open_float({ bufnr = 0, scope = "line", source = "if_many", header = "", focusable = false, }) end,
-  { desc = "show line diagnostics" }
-)
-vim.keymap.set("n", "[d",
-  function() vim.diagnostic.goto_prev({ severity = get_highest_error_severity(), wrap = true, float = false, }) end,
-  { desc = "go to previous diagnostic" }
-)
-vim.keymap.set("n", "]d",
-  function() vim.diagnostic.goto_next({ severity = get_highest_error_severity(), wrap = true, float = false, }) end,
-  { desc = "go to next diagnostic" }
-)
--- stylua: ignore end
-
 local lsp_highlight = false
 local toggle_lsp_highlight = function()
   if lsp_highlight then
@@ -66,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>n",  vim.lsp.buf.rename,                  { buffer = ev.buf, desc = "lsp rename" })
     vim.keymap.set("n", "<space>h",  toggle_inlay_hints,                  { buffer = ev.buf, desc = "toggle inlay hints" })
     vim.keymap.set("n", "<space>i",  toggle_lsp_highlight,                { buffer = ev.buf, desc = "toggle lsp highlight"})
-    vim.keymap.set("n", "<space>a",  vim.lsp.buf.code_action,             { buffer = ev.buf, desc = "code action" })
+    vim.keymap.set("n", "ga",        vim.lsp.buf.code_action,             { buffer = ev.buf, desc = "code action" })
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder,    { buffer = ev.buf, desc = "add workspace folder" })
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "remove workspace folder" })
     vim.keymap.set("n", "<space>wl", function()
@@ -74,3 +41,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
   end,
 })
+
+local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+local goto_next = function() vim.diagnostic.goto_next({ float = false }); vim.cmd[[norm zz]] end
+local goto_prev = function() vim.diagnostic.goto_prev({ float = false }); vim.cmd[[norm zz]] end
+if ts_obj_status then
+  goto_next, goto_prev = ts_rep.make_repeatable_move_pair(goto_next, goto_prev)
+end
+
+local keyms = {
+  {
+    "n", "gl",
+    function()
+      vim.diagnostic.open_float({ bufnr = 0, scope = "line", source = "if_many", header = "", focusable = false })
+    end, { desc = "Show line diagnostics" },
+  },
+  { "n", "]d", goto_next, { desc = "go to next diagnostic" }, },
+  { "n", "[d", goto_prev, { desc = "go to previous diagnostic" }, },
+}
+for _, v in ipairs(keyms) do
+  vim.keymap.set(unpack(v))
+end

@@ -1,4 +1,5 @@
 return {
+
   "lewis6991/gitsigns.nvim",
   cond = vim.fn.finddir(".git", vim.fn.getcwd() .. ";") ~= "",
   event = { "BufRead" },
@@ -45,16 +46,17 @@ return {
     gs.setup(opts)
 
     local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-    local next_hunk, prev_hunk = gs.next_hunk, gs.prev_hunk
+    local next_hunk = function() gs.next_hunk(); vim.cmd[[norm zz]] end
+    local prev_hunk = function() gs.prev_hunk(); vim.cmd[[norm zz]] end
     if ts_obj_status then
-      next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+      next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
     end
 
     local keyms = {
-      { "n", "]c",         function() next_hunk() end,  { desc = "Gitsigns next hunk" } },
-      { "n", "[c",         function() prev_hunk() end,  { desc = "Gitsigns previous hunk" } },
-      { "n", "gs", function() require("gitsigns").stage_hunk() end, { desc = "Gitsigns stage hunk" } },
-      { "n", "gr", function() require("gitsigns").reset_hunk() end, { desc = "Gitsigns reset hunk" } },
+      { "n", "gj", function() next_hunk() end,                        { desc = "Gitsigns next hunk" } },
+      { "n", "gk", function() prev_hunk() end,                        { desc = "Gitsigns previous hunk" } },
+      { "n", "gs", function() require("gitsigns").stage_hunk() end,   { desc = "Gitsigns stage hunk" } },
+      { "n", "gr", function() require("gitsigns").reset_hunk() end,   { desc = "Gitsigns reset hunk" } },
       { "n", "gp", function() require("gitsigns").preview_hunk() end, { desc = "Gitsigns preview hunk" } },
     }
     for _, v in ipairs(keyms) do
