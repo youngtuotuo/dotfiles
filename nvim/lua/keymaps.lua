@@ -64,7 +64,6 @@ local keyms = {
   { { "c" }, "<c-a>", "<c-b>", { noremap = true } },
 }
 
--- better search and replace
 if vim.fn.has("win32") == 0 then
   table.insert(keyms, { { "n" }, "<space>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } })
 end
