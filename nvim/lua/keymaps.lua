@@ -12,11 +12,12 @@
 -- t            Terminal-Job
 -- stylua: ignore
 local keyms = {
-  { { "i" }, "<C-c>", "<C-[>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
   { { "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
   { { "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
   { { "i" }, "<C-n>", "<nop>",   { noremap = true, desc = "Not show native menu" } },
   { { "i" }, "<C-p>", "<nop>",   { noremap = true, desc = "Not show native menu" } },
+  { { "i" }, "<C-c>", "<nop>",   { noremap = true, desc = "Disable interrupt" } },
+  { { "i" }, "<C-c>", "<C-[>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
 
   -- More indents options
   { { "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" } },
