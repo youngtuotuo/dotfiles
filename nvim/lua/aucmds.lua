@@ -56,9 +56,8 @@ local cmds = {
     {
       pattern = { "*.py" },
       callback = function()
-        local py = vim.fn.has("win32") and "python" or "python3"
-        vim.keymap.set("n", "<leader>p", string.format(":sp | terminal %s %%", py))
-        vim.keymap.set("v", "<leader>p", string.format(":w !%s", py))
+        vim.keymap.set("n", "<leader>p", ":sp | terminal python3 %%")
+        vim.keymap.set("v", "<leader>p", ":w !python3")
       end,
       desc = "<leader>p for python"
     },
