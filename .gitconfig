@@ -1,10 +1,5 @@
 [user]
 	name = youngtuotuo
 	email = youngtuotuo@protonmail.com
-[credential]
-	credentialStore = cache
-	helper = /usr/local/bin/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [alias]
 	tree = log --oneline --graph --decorate --all
