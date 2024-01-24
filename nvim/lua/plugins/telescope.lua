@@ -17,7 +17,7 @@ return {
     end,
   -- stylua: ignore
   keys = {
-    { "<space>e", "<cmd>Telescope find_files<cr>" },
+    { "<space>e", "<cmd>Telescope fd<cr>" },
     { "<space>g", tele_git },
     { "<space>c", tele_git_commit },
     { "<space>l", "<cmd>Telescope live_grep<cr>" },
