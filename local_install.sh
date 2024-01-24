@@ -155,9 +155,9 @@ if ask "============ Do you want to install tmux? ============"; then
 		git clone https://github.com/tmux/tmux.git $HOME/github/tmux
 		cd $HOME/github/tmux
 		sh autogen.sh
-		./configure
+		./configure --prefix=$HOME/.local
 		make
-		sudo make install
+		make install
 	else
 		echo -e "\033[93mINFO\033[0m tmux exists: $(which tmux)"
 	fi
