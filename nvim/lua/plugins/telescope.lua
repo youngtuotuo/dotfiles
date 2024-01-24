@@ -1,3 +1,13 @@
+local function tele_git()
+  if not pcall(require("telescope.builtin").git_files) then
+    vim.notify("[Telescope git_files] Not a git repository", 3)
+  end
+end
+local function tele_git_commit()
+  if not pcall(require("telescope.builtin").git_bcommits) then
+    vim.notify("[Telescop git_bcommits] Not a git repository", 3)
+  end
+end
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -7,30 +17,30 @@ return {
     end,
   -- stylua: ignore
   keys = {
-    { "<space>e", "<cmd>Telescop find_files<cr>" },
-    { "<space>g", "<cmd>Telescop git_files<cr>" },
-    { "<space>l", "<cmd>Telescop live_grep<cr>" },
-    { "<space>b", "<cmd>Telescop buffers<cr>" },
+    { "<space>e", "<cmd>Telescope find_files<cr>" },
+    { "<space>g", tele_git },
+    { "<space>c", tele_git_commit },
+    { "<space>l", "<cmd>Telescope live_grep<cr>" },
+    { "<space>b", "<cmd>Telescope buffers<cr>" },
   },
     version = false,
     opts = function()
       local actions = require("telescope.actions")
-    -- stylua: ignore
-    local maps = {
-      n = {
-        ["q"]       = actions.close,
-        ["<C-c>"]   = actions.close,
-        ["<Tab>"]   = actions.move_selection_next,
-        ["<S-Tab>"] = actions.move_selection_previous,
-        ["<C-p>"]   = actions.move_selection_previous,
-        ["<C-n>"]   = actions.move_selection_next,
-      },
-      i = {
-        ["<C-c>"]   = actions.close,
-        ["<Tab>"]   = actions.move_selection_next,
-        ["<S-Tab>"] = actions.move_selection_previous,
-      },
-    }
+      local maps = {
+        n = {
+          ["q"]       = actions.close,
+          ["<C-c>"]   = actions.close,
+          ["<Tab>"]   = actions.move_selection_next,
+          ["<S-Tab>"] = actions.move_selection_previous,
+          ["<C-p>"]   = actions.move_selection_previous,
+          ["<C-n>"]   = actions.move_selection_next,
+        },
+        i = {
+          ["<C-c>"]   = actions.close,
+          ["<Tab>"]   = actions.move_selection_next,
+          ["<S-Tab>"] = actions.move_selection_previous,
+        },
+      }
 
       return {
         defaults = {
