@@ -1,5 +1,8 @@
 [user]
 	name = youngtuotuo
 	email = youngtuotuo@protonmail.com
+[credential]
+	credentialStore = cache
+	cacheOptions = --timeout 3600
 [alias]
 	tree = log --oneline --graph --decorate --all
