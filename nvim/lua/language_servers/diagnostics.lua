@@ -5,7 +5,7 @@ local diag_config = {
   update_in_insert = false,
   severity_sort = true,
   float = {
-    header = true,
+    header = "",
     prefix = function()
       return ""
     end,
@@ -17,5 +17,3 @@ local diag_config = {
 }
 
 vim.diagnostic.config(diag_config)
-
-

@@ -53,7 +53,7 @@ local keyms = {
   {
     "n", "gl",
     function()
-      vim.diagnostic.open_float({ bufnr = 0, scope = "line", source = "if_many", header = "", focusable = false })
+      vim.diagnostic.open_float({ bufnr = 0, scope = "line", source = "if_many" })
     end, { desc = "Show line diagnostics" },
   },
   { "n", "]d", goto_next, { desc = "go to next diagnostic" }, },
