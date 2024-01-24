@@ -119,7 +119,7 @@ if ask "============ Do you want to install neovim? ============"; then
 		make distclean
 		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 		make install
-		rm $HOME/.local/nvim/parser/*
+		rm $HOME/.local/lib/nvim/parser/*.so
 	else
 		echo -e "\033[93mINFO\033[0m nvim exists: $(which nvim)"
 	fi
