@@ -43,6 +43,8 @@ local options = {
   winfixwidth = true,
   winfixheight = true,
   list = true,
+  -- listchars = "trail:-"
+  listchars = [[tab:  ,trail:-,nbsp:+]],
 }
 
 if options.laststatus == 0 then
