@@ -24,6 +24,7 @@ _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 local transparent = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
 local grey = "NvimLightGrey4"
+local w = "NvimLightGrey1"
 local dgrey3 = "NvimDarkGrey3"
 -- local dgrey1 = "NvimDarkGrey1"
 
@@ -40,6 +41,7 @@ _G.colorset = function()
     markdownBlockquote = { fg = grey },
     Pmenu              = { bg = dgrey3 },
     -- PmenuSel           = { bg = dgrey3 },
+    ModeMsg            = { fg = w, bold = true },
 
     LspReferenceText  = { reverse = true },
     LspReferenceRead  = { reverse = true },
