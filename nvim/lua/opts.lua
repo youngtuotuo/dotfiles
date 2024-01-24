@@ -42,6 +42,7 @@ local options = {
   pumblend = 15,
   winfixwidth = true,
   winfixheight = true,
+  list = true,
 }
 
 if options.laststatus == 0 then

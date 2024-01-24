@@ -12,17 +12,6 @@ local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 local cmds = {
   TextYankPost = { { callback = function() vim.highlight.on_yank() end, desc = "Yank Short Indicator" } },
   TermOpen     = { { callback = function() vim.api.nvim_input("i") end, desc = "Enter Terminal with Insert Mode" } },
-  InsertEnter  = { { callback = function() vim.api.nvim_set_hl(0, "EoLSpace", { bg = "none" }) end, desc = "Disable EoLSpace highlight" } },
-  InsertLeave  = {
-    {
-      callback = function()
-        if vim.o.filetype ~= "alpha" or vim.o.buftype ~= "nofile" then
-          vim.api.nvim_set_hl(0, "EoLSpace", { bg = "NvimLightRed" })
-        end
-      end,
-      desc = "Enable EoLSpace highlgiht"
-    },
-  },
   BufEnter     = {
     {
       pattern = { "*.c", "*.cpp" },
