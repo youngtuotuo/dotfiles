@@ -19,12 +19,34 @@ if ask "============ Do you want to install another python? ============"; then
 		echo "Empty url, skip."
 	else
 		wget $resp -O $HOME/python.tgz
+                mkdir -p $HOME/python
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
                 cd python
                 ./configure --prefix=$HOME/.local --enable-optimizations
 		make
                 make install
+	fi
+fi
+
+# lua
+if ask "============ Do you want to install another lua? ============"; then
+	if ! command -v lua >/dev/null; then
+            read -p "Please give current lua tar file url: " resp
+            if [ -z "$resp" ]; then
+                    echo "Empty url, skip."
+            else
+                    wget $resp -O $HOME/lua.tar.gz
+                    mkdir -p $HOME/lua
+                    cd $HOME
+                    tar zxf lua.tar.gz -C lua --strip-components 1
+                    cd lua
+                    sed -i "s/INSTALL_TOP= \/usr\/local/INSTALL_TOP= $\(HOME\)\/\.local/" Makefile
+                    make all test
+                    make install
+            fi
+	else
+		echo -e "\033[93mINFO\033[0m lua exists: $(which lua)"
 	fi
 fi
 
