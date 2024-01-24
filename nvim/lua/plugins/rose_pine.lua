@@ -9,7 +9,6 @@ return {
       transparency = true,
     },
     highlight_groups = {
-      -- StatusLine = { fg = "iris", bg = "iris", blend = 10 },
       TelescopeSelection = { fg = "text", bg = "base" },
       TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
     },
