@@ -1,50 +1,48 @@
 -- stylua: ignore start
 local options = {
-  expandtab = true,
+  expandtab   = true,
   softtabstop = 4,
-  shiftwidth = 4,
+  shiftwidth  = 4,
   smartindent = true,
-  termsync = false,
-  wrap = false,
-  cinoptions = "l1", -- for switch, case alignment
+  termsync    = false,
+  wrap        = false,
+  cinoptions  = "l1", -- for switch, case alignment
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
-  -- guicursor = "a:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  guicursor = "",
-  cursorline = true,
+  guicursor   = "", -- i hate blink and vertical line
+  cursorline  = true,
   -- search
-  hlsearch = false,
-  formatoptions = "jql", -- :h fo-table
-  ignorecase = true, -- Ignore case when searching...
-  smartcase = true, -- ... unless there is a capital letter in the query
-  matchtime = 1, -- display of current match paren faster
-  showmatch = true, -- show matching brackets when text indicator is over them
-  mouse = "a",
-  -- statusline = " %f %m %= %l:%c ",
-  mousemoveevent = true,
-  mousemodel = "extend",
-  nu = false,
-  rnu = false,
-  ru = true,
-  termguicolors = true,
-  showcmd = true,
-  laststatus = 0,
-  showmode = true,
-  signcolumn = "yes:1",
-  splitbelow = true,
-  splitright = true,
+  hlsearch    = false,
+  ignorecase  = true, -- Ignore case when searching...
+  smartcase   = true, -- ... unless there is a capital letter in the query
+  matchtime   = 1, -- display of current match paren faster
+  showmatch   = true, -- show matching brackets when text indicator is over them
+  mouse       = "a",
+  nu          = false,
+  rnu         = false,
+  ru          = true,
+  mousemodel  = "extend",
+  showcmd     = true,
+  laststatus  = 0,
+  showmode    = true,
+  signcolumn  = "yes:1",
+  splitbelow  = true,
+  splitright  = true,
+  list        = true,
+  listchars   = [[tab:  ,trail:-,nbsp:+]],
   -- splitkeep = "screen",
-  swapfile = false,
-  updatetime = 50,
-  undofile = true,
-  wildcharm = vim.fn.char2nr('^I'),
-  undodir = vim.fn.stdpath("data") .. "/undodir/",
-  pumblend = 15,
+  swapfile    = false,
+  updatetime  = 50,
+  undofile    = true,
+  wildcharm   = vim.fn.char2nr('^I'),
+  undodir     = vim.fn.stdpath("data") .. "/undodir/",
+  pumblend    = 15,
   winfixwidth = true,
   winfixheight = true,
-  list = true,
-  -- listchars = "trail:-"
-  listchars = [[tab:  ,trail:-,nbsp:+]],
+  -- statusline = " %f %m %= %l:%c ",
+  mousemoveevent = true,
+  formatoptions  = "jql", -- :h fo-table
+  termguicolors  = true,
 }
 
 if options.laststatus == 0 then
