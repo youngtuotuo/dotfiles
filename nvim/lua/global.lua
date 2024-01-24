@@ -36,7 +36,6 @@ _G.colorset = function()
     FoldColumn         = { fg = dgrey3, bg = transparent },
     WinBar             = { bg = transparent },
     WinBarNC           = { bg = transparent },
-    WhiteSpace         = { bg = r },
     netrwMarkFile      = { fg = y },
     markdownBlockquote = { fg = grey },
     Pmenu              = { bg = dgrey3 },
