@@ -9,8 +9,8 @@ return {
   config = function(_, opts)
     require("illuminate").configure(opts)
     local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-    local next_ref = function() require("illuminate").goto_next_reference(); vim.cmd[[norm zz]] end
-    local prev_ref = function() require("illuminate").goto_prev_reference(); vim.cmd[[norm zz]] end
+    local next_ref = function() require("illuminate").goto_next_reference() end
+    local prev_ref = function() require("illuminate").goto_prev_reference() end
     if ts_obj_status then
       next_ref, prev_ref = ts_rep.make_repeatable_move_pair(next_ref, prev_ref)
     end

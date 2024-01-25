@@ -27,17 +27,19 @@ local grey = "NvimLightGrey4"
 local w = "NvimLightGrey1"
 local dgrey3 = "NvimDarkGrey3"
 local dgrey1 = "#26233a"
+local select_fg = "#e0def4"
 
 _G.colorset = function()
   local hls = {
-    Error              = { fg = transparent },
-    FoldColumn         = { fg = dgrey3, bg = transparent },
-    WinBar             = { bg = transparent },
-    WinBarNC           = { bg = transparent },
-    netrwMarkFile      = { fg = y },
-    markdownBlockquote = { fg = grey },
-    Pmenu              = { bg = dgrey3 },
-    ModeMsg            = { fg = w, bold = true },
+    Error              = { fg = transparent                              },
+    FoldColumn         = { fg = dgrey3,    bg = transparent              },
+    WinBar             = {                 bg = transparent              },
+    WinBarNC           = {                 bg = transparent              },
+    netrwMarkFile      = { fg = y                                        },
+    markdownBlockquote = { fg = grey                                     },
+    Pmenu              = { fg = grey,      bg = dgrey1                   },
+    PmenuSel           = { fg = w,         bg = dgrey1                   },
+    ModeMsg            = { fg = w,                           bold = true },
 
     LspReferenceText  = { reverse = true },
     LspReferenceRead  = { reverse = true },
@@ -58,6 +60,7 @@ _G.colorset = function()
     LspInfoBorder   = { link = "Label" },
     FloatBorder     = { link = "LspInfoBorder" },
     TelescopeBorder = { link = "LspInfoBorder" },
+    TelescopeSelection = { fg = select_fg, bold = true },
 
     IlluminatedWordText  = { bg = dgrey1 },
     IlluminatedWordWrite = { bg = dgrey1 },

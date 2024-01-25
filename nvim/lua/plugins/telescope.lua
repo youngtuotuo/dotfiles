@@ -15,14 +15,14 @@ return {
     init = function()
       vim.api.nvim_create_user_command("T", "Telescope", {})
     end,
-  -- stylua: ignore
-  keys = {
-    { "<space>e", "<cmd>Telescope fd<cr>" },
-    { "<space>g", tele_git },
-    { "<space>c", tele_git_commit },
-    { "<space>l", "<cmd>Telescope live_grep<cr>" },
-    { "<space>b", "<cmd>Telescope buffers<cr>" },
-  },
+    -- stylua: ignore
+    keys = {
+      { "<space>e", "<cmd>Telescope fd<cr>", desc = "Telescope fd" },
+      { "<space>g", tele_git, desc = "Telescope git_files" },
+      { "<space>c", tele_git_commit, desc = "Telescope git_bcommits" },
+      { "<space>l", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
+      { "<space>b", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+    },
     version = false,
     opts = function()
       local actions = require("telescope.actions")
@@ -44,7 +44,15 @@ return {
 
       return {
         defaults = {
-          winblend = vim.o.winblend,
+          layout_config = {
+            horizontal = {
+              height = 0.95,
+              preview_cutoff = 120,
+              prompt_position = "bottom",
+              preview_width = 0.65,
+              width = 0.95
+            },
+          },
           results_title = "Results",
           dynamic_preview_title = true,
           color_devicons = false,
