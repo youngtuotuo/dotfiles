@@ -15,8 +15,6 @@ end
 if package.config:sub(1,1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
-config.color_scheme = 'iTerm2 Default'
--- config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic = false })
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
@@ -28,6 +26,10 @@ config.mouse_bindings = {
   },
 }
 config.audible_bell = "Disabled"
+config.colors = {
+  cursor_fg = 'black',
+  cursor_bg = 'grey'
+}
 
 config.window_frame = {
   border_left_width = "0.2cell",
