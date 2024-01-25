@@ -26,9 +26,7 @@ local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimL
 local grey = "NvimLightGrey4"
 local w = "NvimLightGrey1"
 local dgrey3 = "NvimDarkGrey3"
--- local dgrey1 = "NvimDarkGrey1"
-
-vim.fn.matchadd("EoLSpace", "\\s\\+$")
+local dgrey1 = "#26233a"
 
 _G.colorset = function()
   local hls = {
@@ -39,7 +37,6 @@ _G.colorset = function()
     netrwMarkFile      = { fg = y },
     markdownBlockquote = { fg = grey },
     Pmenu              = { bg = dgrey3 },
-    -- PmenuSel           = { bg = dgrey3 },
     ModeMsg            = { fg = w, bold = true },
 
     LspReferenceText  = { reverse = true },
@@ -56,11 +53,15 @@ _G.colorset = function()
     DiffChange = { link = "DiagnosticFloatingWarn" },
     DiffDelete = { link = "DiagnosticFloatingError" },
 
-    NormalFloat = { bg = transparent },
-    FloatTitle  = { bg = transparent },
-    LspInfoBorder = { link = "Label" },
-    FloatBorder = { link = "LspInfoBorder" },
+    NormalFloat     = { bg = transparent },
+    FloatTitle      = { bg = transparent },
+    LspInfoBorder   = { link = "Label" },
+    FloatBorder     = { link = "LspInfoBorder" },
     TelescopeBorder = { link = "LspInfoBorder" },
+
+    IlluminatedWordText  = { bg = dgrey1 },
+    IlluminatedWordWrite = { bg = dgrey1 },
+    IlluminatedWordRead  = { bg = dgrey1 },
   }
   if vim.o.laststatus == 0 then
     hls.StatusLine   = { link = "WinSeparator" }

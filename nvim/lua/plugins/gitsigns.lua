@@ -62,6 +62,5 @@ return {
     for _, v in ipairs(keyms) do
       vim.keymap.set(unpack(v))
     end
-
   end,
 }

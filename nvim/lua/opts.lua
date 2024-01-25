@@ -37,8 +37,8 @@ local options = {
   wildcharm   = vim.fn.char2nr('^I'),
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
   pumblend    = 15,
-  winfixwidth = true,
-  winfixheight = true,
+  -- winfixwidth = true,
+  -- winfixheight = true,
   -- statusline = " %f %m %= %l:%c ",
   mousemoveevent = true,
   formatoptions  = "jql", -- :h fo-table
