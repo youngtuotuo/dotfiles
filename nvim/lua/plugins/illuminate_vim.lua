@@ -1,5 +1,6 @@
 return {
   "RRethy/vim-illuminate",
+  ft = _G.lspfts,
   opts = {
     modes_denylist = { "t" },
     filetypes_denylist = {},
