@@ -103,7 +103,6 @@ wezterm.on("ActivatePaneDown", function(window, pane)
   activatePane(window, pane, "Down", "j")
 end)
 
-config.leader = { key = "`", mods = "", timeout_milliseconds = 1000 }
 config.keys = {
   {
     key = "U",
@@ -133,34 +132,34 @@ config.keys = {
     }),
   },
   {
-    key = "\\",
-    mods = "LEADER",
+    key = "|",
+    mods = "CTRL|SHIFT|ALT",
     action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "-",
-    mods = "LEADER",
+    key = "_",
+    mods = "CTRL|SHIFT|ALT",
     action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "w",
-    mods = "LEADER",
+    key = "9",
+    mods = "CTRL",
     action = act.PaneSelect({
       alphabet = "1234567890",
     }),
   },
   {
     key = "0",
-    mods = "LEADER",
+    mods = "CTRL",
     action = act.PaneSelect({
       mode = "SwapWithActive",
       alphabet = "1234567890",
     }),
   },
-  { key = "h", mods = "LEADER", action = act.EmitEvent("ActivatePaneLeft") },
-  { key = "j", mods = "LEADER", action = act.EmitEvent("ActivatePaneDown") },
-  { key = "k", mods = "LEADER", action = act.EmitEvent("ActivatePaneUp") },
-  { key = "l", mods = "LEADER", action = act.EmitEvent("ActivatePaneRight") },
+  { key = "h", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneLeft") },
+  { key = "j", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneDown") },
+  { key = "k", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneUp") },
+  { key = "l", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneRight") },
 }
 
 -- and finally, return the configuration to wezterm
