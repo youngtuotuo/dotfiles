@@ -103,7 +103,7 @@ wezterm.on("ActivatePaneDown", function(window, pane)
   activatePane(window, pane, "Down", "j")
 end)
 
-config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "`", mods = "", timeout_milliseconds = 1000 }
 config.keys = {
   {
     key = "U",
