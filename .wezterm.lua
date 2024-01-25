@@ -61,48 +61,6 @@ config.ssh_domains = {
   },
 }
 
-local function isVim(pane)
-  local tty = pane:get_tty_name()
-  if tty == nil then
-    return false
-  end
-
-  local success, _, _ = wezterm.run_child_process({
-    "sh",
-    "-c",
-    "ps -o state= -o comm= -t" .. wezterm.shell_quote_arg(tty) .. " | " .. "grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'",
-  })
-
-  return success
-end
-
-local function activatePane(window, pane, direction, vim_key)
-  if isVim(pane) then
-    window:perform_action(
-      act.Multiple({
-        act.SendKey({ key = "w", mods = "CTRL" }),
-        act.SendKey({ key = vim_key }),
-      }),
-      pane
-    )
-  else
-    window:perform_action(act.ActivatePaneDirection(direction), pane)
-  end
-end
-
-wezterm.on("ActivatePaneRight", function(window, pane)
-  activatePane(window, pane, "Right", "l")
-end)
-wezterm.on("ActivatePaneLeft", function(window, pane)
-  activatePane(window, pane, "Left", "h")
-end)
-wezterm.on("ActivatePaneUp", function(window, pane)
-  activatePane(window, pane, "Up", "k")
-end)
-wezterm.on("ActivatePaneDown", function(window, pane)
-  activatePane(window, pane, "Down", "j")
-end)
-
 config.keys = {
   {
     key = "U",
@@ -155,11 +113,7 @@ config.keys = {
       mode = "SwapWithActive",
       alphabet = "1234567890",
     }),
-  },
-  { key = "h", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneLeft") },
-  { key = "j", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneDown") },
-  { key = "k", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneUp") },
-  { key = "l", mods = "CTRL|SHIFT", action = act.EmitEvent("ActivatePaneRight") },
+  }
 }
 
 -- and finally, return the configuration to wezterm
