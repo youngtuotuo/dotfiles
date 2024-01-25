@@ -60,7 +60,11 @@ config.ssh_domains = {
   },
 }
 config.keys = {
-  { key = "U", mods = "CTRL|SHIFT", action = act.AttachDomain("ubuntu") },
+  {
+    key = "U",
+    mods = "CTRL|SHIFT",
+    action = act.AttachDomain("ubuntu"),
+  },
   {
     key = "D",
     mods = "CTRL|SHIFT",
@@ -82,6 +86,31 @@ config.keys = {
         end
       end),
     }),
+  },
+  {
+    key = '9',
+    mods = 'CTRL',
+    action = act.PaneSelect {
+      alphabet = '1234567890',
+    },
+  },
+  {
+    key = '0',
+    mods = 'CTRL',
+    action = act.PaneSelect {
+      mode = 'SwapWithActive',
+      alphabet = '1234567890',
+    },
+  },
+  {
+    key = '|',
+    mods = 'CTRL|SHIFT|ALT',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = '_',
+    mods = 'CTRL|SHIFT|ALT',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
 }
 
