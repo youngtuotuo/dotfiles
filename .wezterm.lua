@@ -2,7 +2,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-
 -- This table will hold the configuration.
 local config = {}
 
@@ -12,7 +11,7 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-if package.config:sub(1,1) == "\\" then
+if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
 config.adjust_window_size_when_changing_font_size = false
@@ -27,8 +26,8 @@ config.mouse_bindings = {
 }
 config.audible_bell = "Disabled"
 config.colors = {
-  cursor_fg = 'black',
-  cursor_bg = 'grey'
+  cursor_fg = "black",
+  cursor_bg = "grey",
 }
 
 config.window_frame = {
@@ -61,6 +60,7 @@ config.ssh_domains = {
     username = "support",
   },
 }
+
 config.keys = {
   {
     key = "U",
@@ -72,8 +72,8 @@ config.keys = {
     mods = "CTRL|SHIFT",
     action = act.DetachDomain("CurrentPaneDomain"),
   },
-  { key = "{", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
-  { key = "}", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
+  { key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
+  { key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
   {
     key = "E",
     mods = "CTRL|SHIFT",
@@ -90,29 +90,19 @@ config.keys = {
     }),
   },
   {
-    key = '9',
-    mods = 'CTRL',
-    action = act.PaneSelect {
-      alphabet = '1234567890',
-    },
+    key = "9",
+    mods = "CTRL",
+    action = act.PaneSelect({
+      alphabet = "1234567890",
+    }),
   },
   {
-    key = '0',
-    mods = 'CTRL',
-    action = act.PaneSelect {
-      mode = 'SwapWithActive',
-      alphabet = '1234567890',
-    },
-  },
-  {
-    key = '|',
-    mods = 'CTRL|SHIFT|ALT',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  },
-  {
-    key = '_',
-    mods = 'CTRL|SHIFT|ALT',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+    key = "0",
+    mods = "CTRL",
+    action = act.PaneSelect({
+      mode = "SwapWithActive",
+      alphabet = "1234567890",
+    }),
   },
 }
 
