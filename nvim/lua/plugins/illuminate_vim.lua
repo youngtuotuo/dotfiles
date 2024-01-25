@@ -2,13 +2,7 @@ return {
   "RRethy/vim-illuminate",
   opts = {
     modes_denylist = { "t" },
-    filetypes_denylist = {
-      "dirbuf",
-      "dirvish",
-      "fugitive",
-      "help",
-      "markdown",
-    },
+    filetypes_allowlist = _G.lspfts,
   },
   config = function(_, opts)
     require("illuminate").configure(opts)
