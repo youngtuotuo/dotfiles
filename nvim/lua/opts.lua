@@ -10,7 +10,6 @@ local options = {
   writebackup = false, -- no need this with undo history plugin
   completeopt = "menu,menuone,noinsert,noselect",
   guicursor   = "", -- i hate blink and vertical line
-  -- cursorline  = true,
   -- search
   hlsearch    = false,
   ignorecase  = true, -- Ignore case when searching...

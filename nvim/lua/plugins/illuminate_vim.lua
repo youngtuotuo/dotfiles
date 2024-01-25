@@ -2,6 +2,7 @@ return {
   "RRethy/vim-illuminate",
   opts = {
     modes_denylist = { "t" },
+    filetypes_denylist = {},
     filetypes_allowlist = _G.lspfts,
   },
   config = function(_, opts)

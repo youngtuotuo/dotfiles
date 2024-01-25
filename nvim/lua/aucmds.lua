@@ -140,26 +140,26 @@ local cmds = {
       desc = "Auto set some colors for colorsecheme change"
     }
   },
-  [{ "InsertLeave", "WinEnter" }] = {
-    {
-      callback = function()
-        if vim.wo.cursorline == false then
-          vim.wo.cursorline = true
-        end
-      end,
-      desc = "Disable local cursorline"
-    }
-  },
-  [{ "InsertEnter", "WinLeave" }] = {
-    {
-      callback = function()
-        if vim.wo.cursorline == true then
-          vim.wo.cursorline = false
-        end
-      end,
-      desc = "Enable local cursorline"
-    }
-  }
+  -- [{ "InsertLeave", "WinEnter" }] = {
+  --   {
+  --     callback = function()
+  --       if vim.wo.cursorline == false then
+  --         vim.wo.cursorline = true
+  --       end
+  --     end,
+  --     desc = "Disable local cursorline"
+  --   }
+  -- },
+  -- [{ "InsertEnter", "WinLeave" }] = {
+  --   {
+  --     callback = function()
+  --       if vim.wo.cursorline == true then
+  --         vim.wo.cursorline = false
+  --       end
+  --     end,
+  --     desc = "Enable local cursorline"
+  --   }
+  -- }
 }
 
 for e, configs in pairs(cmds) do
