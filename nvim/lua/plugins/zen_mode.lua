@@ -34,7 +34,7 @@ return {
       options = {
         -- you may turn on/off statusline in zen mode by setting 'laststatus'
         -- statusline will be shown only if 'laststatus' == 3
-        laststatus = 3, -- turn off the statusline in zen mode
+        laststatus = 0, -- turn off the statusline in zen mode
       },
       twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
       gitsigns = { enabled = true }, -- disables git signs
