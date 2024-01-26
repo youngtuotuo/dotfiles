@@ -53,11 +53,12 @@ return {
     end
 
     local keyms = {
-      { "n", "gj", function() next_hunk() end,                        { desc = "Gitsigns next hunk" } },
-      { "n", "gk", function() prev_hunk() end,                        { desc = "Gitsigns previous hunk" } },
-      { "n", "gs", function() require("gitsigns").stage_hunk() end,   { desc = "Gitsigns stage hunk" } },
-      { "n", "gr", function() require("gitsigns").reset_hunk() end,   { desc = "Gitsigns reset hunk" } },
-      { "n", "gp", function() require("gitsigns").preview_hunk() end, { desc = "Gitsigns preview hunk" } },
+      { "n", "gj", function() next_hunk() end,                              { desc = "Gitsigns next hunk" } },
+      { "n", "gk", function() prev_hunk() end,                              { desc = "Gitsigns previous hunk" } },
+      { "n", "gs", function() require("gitsigns").stage_hunk() end,         { desc = "Gitsigns stage hunk" } },
+      { "n", "gr", function() require("gitsigns").reset_hunk() end,         { desc = "Gitsigns reset hunk" } },
+      { "n", "gp", function() require("gitsigns").preview_hunk() end,       { desc = "Gitsigns preview hunk" } },
+      { "n", "gv", function() require("gitsigns").blame_line() end,         { desc = "Gitsigns line blame" } },
     }
     for _, v in ipairs(keyms) do
       vim.keymap.set(unpack(v))
