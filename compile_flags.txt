@@ -1,2 +1,3 @@
 -I/Library/Frameworks/Python.framework/Versions/3.11/include/python3.11
--I/usr/include/python3.8
+-I$HOME/.local/include/python3.11
+-I"C:\Users\User\AppData\Local\Programs\Python\Python312\Include"

@@ -96,6 +96,11 @@ if ask "============ Do you want to install tmux? ============"; then
 	fi
 fi
 
+# tmux config
+if ask "============ Do you want to install .tmux.conf? ============"; then
+	ln -s $HOME/github/dotfiles/.tmux.conf ~/.tmux.conf
+fi
+
 # fd
 if ask "============ Do you want to install fd ============"; then
 	if ! command -v fd >/dev/null; then
@@ -128,11 +133,6 @@ if ask "============ Do you want to install gcm? ============"; then
 	brew install --cask git-credential-manager
 fi
 
-# tmux config
-if ask "============ Do you want to install .tmux.conf? ============"; then
-	ln -s $HOME/github/dotfiles/.tmux.conf ~/.tmux.conf
-fi
-
 # vimrc
 if ask "============ Do you want to install .vimrc? ============"; then
 	ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
@@ -145,10 +145,10 @@ fi
 
 # zshrc
 if ask "============ Do you want to install .zshrc? ============"; then
-	ln -s $HOME/github/dotfiles/.zshrc ~/.zshrc
+	ln -s $HOME/github/dotfiles/mac/.zshrc ~/.zshrc
 fi
 
 # zprofile
 if ask "============ Do you want to install .zprofile? ============"; then
-	ln -s $HOME/github/dotfiles/.zprofile ~/.zprofile
+	ln -s $HOME/github/dotfiles/mac/.zprofile ~/.zprofile
 fi
