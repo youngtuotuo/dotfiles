@@ -44,15 +44,15 @@ return {
         window = {
           completion = {
             winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
-            scrollbar = false,
+            -- scrollbar = false,
             border = _G.border,
             max_width = 40,
           },
           documentation = {
             winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
-            scrollbar = false,
+            -- scrollbar = false,
             border = _G.border,
-            max_width = 50,
+            -- max_width = 50,
             max_height = 30,
           },
         },
@@ -83,11 +83,11 @@ return {
             cmp.abort()
             fallback()
           end, { "i", "s" }),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-5),
-          ["<C-f>"] = cmp.mapping.scroll_docs(5),
+          ["<C-u>"] = cmp.mapping.scroll_docs(-10),
+          ["<C-d>"] = cmp.mapping.scroll_docs(10),
           ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
-          ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+          -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+          -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         }),
         enabled = function()
           -- disable completion in comments

@@ -3,11 +3,13 @@ local function tele_git()
     vim.notify("[Telescope git_files] Not a git repository", 3)
   end
 end
+
 local function tele_git_commit()
   if not pcall(require("telescope.builtin").git_bcommits) then
     vim.notify("[Telescop git_bcommits] Not a git repository", 3)
   end
 end
+
 return {
   {
     "nvim-telescope/telescope.nvim",

@@ -10,7 +10,7 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
 _G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-_G.floatw = 70
+_G.floatw = 120
 _G.floatwrap = false
 
 -- file types to trigger nvim-lspconfig
@@ -21,50 +21,49 @@ _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
-local transparent = "none"
+local trsp = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
-local grey = "NvimLightGrey4"
+local gr = "NvimLightGrey4"
 local w = "NvimLightGrey1"
-local dgrey3 = "NvimDarkGrey3"
-local dgrey1 = "#26233a"
-local select_fg = "#e0def4"
+local dgr3 = "NvimDarkGrey3"
+local dgr1 = "#26233a"
+local selfg = "#e0def4"
 
 _G.colorset = function()
   local hls = {
-    Error              = { fg = transparent                              },
-    FoldColumn         = { fg = dgrey3,    bg = transparent              },
-    WinBar             = {                 bg = transparent              },
-    WinBarNC           = {                 bg = transparent              },
-    netrwMarkFile      = { fg = y                                        },
-    markdownBlockquote = { fg = grey                                     },
-    Pmenu              = { fg = grey,      bg = dgrey1                   },
-    PmenuSel           = { fg = w,         bg = dgrey1                   },
-    ModeMsg            = { fg = w,                           bold = true },
+    Error              = { fg = trsp },
+    netrwMarkFile      = { fg = y    },
+    markdownBlockquote = { fg = gr   },
+    PmenuSel           = { fg = w    },
 
-    LspReferenceText  = { reverse = true },
-    LspReferenceRead  = { reverse = true },
-    LspReferenceWrite = { reverse = true },
+    WinBar           = { bg = trsp },
+    WinBarNC         = { bg = trsp },
+    NormalFloat      = { bg = trsp },
+    FloatTitle       = { bg = trsp },
+    LspReferenceText = { bg = dgr1 },
 
-    DiagnosticFloatingOk    = { fg = g, bg = transparent },
-    DiagnosticFloatingHint  = { fg = b, bg = transparent },
-    DiagnosticFloatingInfo  = { fg = c, bg = transparent },
-    DiagnosticFloatingWarn  = { fg = y, bg = transparent },
-    DiagnosticFloatingError = { fg = r, bg = transparent },
 
-    DiffAdd    = { link = "DiagnosticFloatingOk" },
-    DiffChange = { link = "DiagnosticFloatingWarn" },
-    DiffDelete = { link = "DiagnosticFloatingError" },
+    ModeMsg            = { fg = w,     bold = true },
+    TelescopeSelection = { fg = selfg, bold = true },
 
-    NormalFloat     = { bg = transparent },
-    FloatTitle      = { bg = transparent },
-    LspInfoBorder   = { link = "Label" },
-    FloatBorder     = { link = "LspInfoBorder" },
-    TelescopeBorder = { link = "LspInfoBorder" },
-    TelescopeSelection = { fg = select_fg, bold = true },
+    DiagnosticFloatingOk    = { fg = g,    bg = trsp },
+    DiagnosticFloatingHint  = { fg = b,    bg = trsp },
+    DiagnosticFloatingInfo  = { fg = c,    bg = trsp },
+    DiagnosticFloatingWarn  = { fg = y,    bg = trsp },
+    DiagnosticFloatingError = { fg = r,    bg = trsp },
+    FoldColumn              = { fg = dgr3, bg = trsp },
 
-    IlluminatedWordText  = { bg = dgrey1 },
-    IlluminatedWordWrite = { bg = dgrey1 },
-    IlluminatedWordRead  = { bg = dgrey1 },
+    LspReferenceRead     = { link = "LspReferenceText" },
+    LspReferenceWrite    = { link = "LspReferenceText" },
+    IlluminatedWordText  = { link = "LspReferenceText" },
+    IlluminatedWordWrite = { link = "LspReferenceText" },
+    IlluminatedWordRead  = { link = "LspReferenceText" },
+    DiffAdd              = { link = "DiagnosticFloatingOk" },
+    DiffChange           = { link = "DiagnosticFloatingWarn" },
+    DiffDelete           = { link = "DiagnosticFloatingError" },
+    LspInfoBorder        = { link = "Label" },
+    FloatBorder          = { link = "LspInfoBorder" },
+    TelescopeBorder      = { link = "LspInfoBorder" },
   }
   if vim.o.laststatus == 0 then
     hls.StatusLine   = { link = "WinSeparator" }
