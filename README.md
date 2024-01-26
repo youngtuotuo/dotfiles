@@ -40,8 +40,8 @@ AltSnap, QuickLook, ZoomIt, AutoHotKey
 Ubuntu/WSL
 
 ```bash
-./sudo_install.sh
-./local_install.sh
+./ubuntu/sudo_install.sh
+./ubuntu/local_install.sh
 ```
 
 Windows
@@ -53,7 +53,7 @@ WIP
 Mac
 
 ```zsh
-WIP
+./mac/mac_install.sh
 ```
 
 ### Clangd Language Server Configuration
@@ -73,14 +73,6 @@ python -c "import sysconfig; print(sysconfig.get_paths())"
 ```
 
 ### Neovim
-
-Mac (homebrew)
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew tap austinliuigi/brew-neovim-nightly https://github.com/austinliuigi/brew-neovim-nightly.git
-brew install neovim-nightly
-```
 
 <details>
 <summary>Plugins</summary>
