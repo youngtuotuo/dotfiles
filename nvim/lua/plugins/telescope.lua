@@ -21,7 +21,6 @@ return {
       { "<space>g", tele_git, desc = "Telescope git_files" },
       { "<space>c", tele_git_commit, desc = "Telescope git_bcommits" },
       { "<space>l", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
-      { "<space>b", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
     },
     version = false,
     opts = function()
