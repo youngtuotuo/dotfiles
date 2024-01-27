@@ -7,9 +7,9 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export EDITOR="nvim"
 alias ls="ls -G"
-alias ll='ls -alFG'
-alias l="ls -lG"
-alias la="ls -aG"
+alias ll='ls -hAlFG'
+alias l="ls -lCFG"
+alias la="ls -AG"
 alias cl="clear"
 alias vi="nvim"
 
