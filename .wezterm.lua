@@ -2,6 +2,15 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+wezterm.on("update-right-status", function(window)
+  local time = wezterm.strftime("%H:%M")
+
+  window:set_right_status(wezterm.format({
+    { Foreground = { Color = "#cacaca" } },
+    { Text = " " .. time .. "  " },
+  }))
+end)
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -14,6 +23,12 @@ end
 if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
+
+config.colors = {
+  cursor_fg = "black",
+  cursor_bg = "grey",
+}
+
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
@@ -25,10 +40,9 @@ config.mouse_bindings = {
   },
 }
 config.audible_bell = "Disabled"
-config.colors = {
-  cursor_fg = "black",
-  cursor_bg = "grey",
-}
+
+config.window_decorations = "RESIZE"
+config.show_new_tab_button_in_tab_bar = false
 
 config.window_frame = {
   border_left_width = "0.2cell",
@@ -38,6 +52,7 @@ config.window_frame = {
   border_right_color = "#333233",
   border_bottom_color = "#333233",
 }
+
 config.window_padding = {
   left = 0,
   right = 0,
@@ -45,7 +60,7 @@ config.window_padding = {
   bottom = 0,
 }
 
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 
 config.ssh_domains = {
   {
@@ -111,7 +126,7 @@ config.keys = {
       mode = "SwapWithActive",
       alphabet = "1234567890",
     }),
-  }
+  },
 }
 
 -- and finally, return the configuration to wezterm
