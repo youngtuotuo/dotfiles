@@ -11,7 +11,7 @@ P = function(v) print(vim.inspect(v)) return v end
 -- "shadow": A drop shadow effect by blending with the
 _G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 _G.floatw = 120
-_G.floatwrap = false
+_G.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
 _G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
