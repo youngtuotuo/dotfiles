@@ -29,7 +29,7 @@ config.colors = {
   cursor_bg = "grey",
 }
 
-config.color_scheme = 'Bamboo'
+config.color_scheme = 'Builtin Tango Dark'
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
