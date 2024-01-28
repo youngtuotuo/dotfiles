@@ -2,11 +2,16 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local fg = wezterm.color.parse("#cacaca")
+local bg = wezterm.color.parse("#000000")
+local active_bg = wezterm.color.parse("#333233")
+
 wezterm.on("update-right-status", function(window)
   local time = wezterm.strftime("%H:%M")
 
   window:set_right_status(wezterm.format({
-    { Foreground = { Color = "#cacaca" } },
+    { Foreground = { Color = fg } },
+    { Background = { Color = bg } },
     { Text = " " .. time .. "  " },
   }))
 end)
@@ -25,8 +30,19 @@ if package.config:sub(1, 1) == "\\" then
 end
 
 config.colors = {
-  cursor_fg = "black",
-  cursor_bg = "grey",
+  cursor_fg = bg,
+  cursor_bg = fg,
+  tab_bar = {
+      active_tab = {
+        bg_color = active_bg,
+        fg_color = fg,
+      },
+      inactive_tab = {
+        bg_color = bg,
+        fg_color = fg,
+      },
+    inactive_tab_edge = bg,
+  }
 }
 
 config.color_scheme = 'Builtin Tango Dark'
@@ -47,12 +63,16 @@ config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
 
 config.window_frame = {
+  border_top_height = "0.1cell",
   border_left_width = "0.2cell",
   border_right_width = "0.2cell",
   border_bottom_height = "0.1cell",
-  border_left_color = "#333233",
-  border_right_color = "#333233",
-  border_bottom_color = "#333233",
+  border_top_color = active_bg,
+  border_left_color = active_bg,
+  border_right_color = active_bg,
+  border_bottom_color = active_bg,
+  active_titlebar_bg = bg,
+  inactive_titlebar_bg = bg,
 }
 
 config.window_padding = {
