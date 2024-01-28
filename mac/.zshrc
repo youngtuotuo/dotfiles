@@ -1,5 +1,6 @@
 # User configuration
 bindkey -e
+bindkey \^U backward-kill-line
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 

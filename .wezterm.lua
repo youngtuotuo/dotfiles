@@ -33,23 +33,25 @@ if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
 
+config.use_fancy_tab_bar = false
 config.colors = {
   cursor_fg = bg,
   cursor_bg = fg,
   tab_bar = {
-      active_tab = {
-        bg_color = active_bg,
-        fg_color = fg,
-      },
-      inactive_tab = {
-        bg_color = bg,
-        fg_color = fg,
-      },
+    background = bg,
+    active_tab = {
+      bg_color = active_bg,
+      fg_color = fg,
+    },
+    inactive_tab = {
+      bg_color = bg,
+      fg_color = fg,
+    },
     inactive_tab_edge = bg,
-  }
+  },
 }
 
-config.color_scheme = 'Builtin Tango Dark'
+config.color_scheme = "Builtin Tango Dark"
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
