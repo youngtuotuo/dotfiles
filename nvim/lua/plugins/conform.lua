@@ -4,12 +4,14 @@ return {
   lazy = true,
   cmd = "ConformInfo",
   -- stylua: ignore
-  keys = {
-    {
-      "<leader>f", function() require("conform").format({ timeout_ms = 3000 }) end,
-      mode = { "n", "v" }, desc = "Format buffer"
+  keys = function()
+    local format = function()
+      require("conform").format({ timeout_ms = 3000 })
+    end
+    return {
+      { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" }
     }
-  },
+  end,
   init = function()
     -- use gq to format
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

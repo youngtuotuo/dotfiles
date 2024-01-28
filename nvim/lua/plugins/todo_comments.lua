@@ -23,9 +23,9 @@ return {
       HACK = { icon = " ", color = "error" },
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
       PERF = { icon = "󰖷 ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-      TEST = { icon = " ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-      IDEA = { icon = " ", color = "test", alt = { "TRY", "HINT", "THINK", "FEAT" } },
+      NOTE = { icon = " ", color = "hint",    alt = { "INFO" } },
+      TEST = { icon = " ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
+      IDEA = { icon = " ", color = "test",    alt = { "TRY", "HINT", "THINK", "FEAT" } },
     },
     gui_style = {
       fg = "NONE", -- The gui style to use for the fg highlight group.
@@ -51,12 +51,12 @@ return {
     -- list of named colors where we try to extract the guifg from the
     -- list of highlight groups or use the hex color if hl not found as a fallback
     colors = {
-      error = { "#DC2626" },
+      error   = { "#DC2626" },
       warning = { "#FBBF24" },
-      info = { "#2563EB" },
-      hint = { "#10B981" },
+      info    = { "#2563EB" },
+      hint    = { "#10B981" },
       default = { "#7C3AED" },
-      test = { "#4499FF" },
+      test    = { "#4499FF" },
     },
     search = {
       command = "rg",

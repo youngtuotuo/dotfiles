@@ -12,11 +12,28 @@ return {
     enable_autosnippets = true,
   },
   -- stylua: ignore
-  keys = {
-    {"<C-j>", function() if require("luasnip").jumpable(1) then require("luasnip").jump(1) end end,              silent = true, mode = { "i", "s" }},
-    {"<C-k>", function() if require("luasnip").jumpable(-1) then require("luasnip").jump(-1) end end,            silent = true, mode = { "i", "s" }},
-    {"<C-e>", function() if require("luasnip").choice_active() then require("luasnip").change_choice(1) end end, silent = true, mode = { "i", "s" }},
-  },
+  keys = function()
+    local next_node = function()
+      if require("luasnip").jumpable(1) then
+        require("luasnip").jump(1)
+      end
+    end
+    local prev_node = function()
+      if require("luasnip").jumpable(-1) then
+        require("luasnip").jump(-1)
+      end
+    end
+    local cycle_choice = function()
+      if require("luasnip").choice_active() then
+        require("luasnip").change_choice(1)
+      end
+    end
+    return {
+      {"<C-j>", next_node,    silent = true, mode = { "i", "s" }},
+      {"<C-k>", prev_node,    silent = true, mode = { "i", "s" }},
+      {"<C-e>", cycle_choice, silent = true, mode = { "i", "s" }},
+    }
+  end,
   config = function(_, opts)
     local ls = require("luasnip")
     local snippet_path = ""

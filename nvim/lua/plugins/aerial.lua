@@ -2,9 +2,12 @@ return {
   "stevearc/aerial.nvim",
   lazy = true,
   -- stylua: ignore
-  keys = {
-    { "<space>o", function() require("aerial").toggle({ focus = true }) end, noremap = true, desc = "Code outline" },
-  },
+  keys = function()
+    local toggle = function() require("aerial").toggle({ focus = true }) end
+    return {
+      { "<space>o", toggle, noremap = true, desc = "Code outline" },
+    }
+  end,
   opts = {
     layout = {
       default_direction = "left",

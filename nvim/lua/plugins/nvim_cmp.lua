@@ -23,7 +23,7 @@ return {
 
       return {
         completion = {
-          -- autocomplete = false,
+          autocomplete = false,
           completeopt = "menu,menuone,noinsert",
         },
         view = { docs = { auto_open = true } },
@@ -79,15 +79,12 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-y>"] = cmp.mapping(function(fallback)
+          ["<C-y>"] = cmp.mapping(function(_)
             cmp.abort()
-            fallback()
           end, { "i", "s" }),
           ["<C-u>"] = cmp.mapping.scroll_docs(-10),
           ["<C-d>"] = cmp.mapping.scroll_docs(10),
           ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
-          -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-          -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         }),
         enabled = function()
           -- disable completion in comments

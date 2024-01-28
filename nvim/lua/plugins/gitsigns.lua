@@ -1,5 +1,4 @@
 return {
-
   "lewis6991/gitsigns.nvim",
   cond = vim.fn.finddir(".git", vim.fn.getcwd() .. ";") ~= "",
   event = { "BufRead" },
@@ -45,20 +44,25 @@ return {
     local gs = require("gitsigns")
     gs.setup(opts)
 
+    local next_hunk    = function() gs.next_hunk(); vim.cmd[[norm zz]] end
+    local prev_hunk    = function() gs.prev_hunk(); vim.cmd[[norm zz]] end
+    local stage_hunk   = require("gitsigns").stage_hunk
+    local reset_hunk   = require("gitsigns").reset_hunk
+    local preview_hunk = require("gitsigns").preview_hunk
+    local blame_line   = require("gitsigns").blame_line
+
     local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-    local next_hunk = function() gs.next_hunk(); vim.cmd[[norm zz]] end
-    local prev_hunk = function() gs.prev_hunk(); vim.cmd[[norm zz]] end
     if ts_obj_status then
       next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
     end
 
     local keyms = {
-      { "n", "gj", function() next_hunk() end,                              { desc = "Gitsigns next hunk" } },
-      { "n", "gk", function() prev_hunk() end,                              { desc = "Gitsigns previous hunk" } },
-      { "n", "gs", function() require("gitsigns").stage_hunk() end,         { desc = "Gitsigns stage hunk" } },
-      { "n", "gr", function() require("gitsigns").reset_hunk() end,         { desc = "Gitsigns reset hunk" } },
-      { "n", "gp", function() require("gitsigns").preview_hunk() end,       { desc = "Gitsigns preview hunk" } },
-      { "n", "gv", function() require("gitsigns").blame_line() end,         { desc = "Gitsigns line blame" } },
+      { "n", "gj", next_hunk,    { desc = "Gitsigns next hunk"     } },
+      { "n", "gk", prev_hunk,    { desc = "Gitsigns previous hunk" } },
+      { "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } },
+      { "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } },
+      { "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } },
+      { "n", "gv", blame_line,   { desc = "Gitsigns line blame"    } },
     }
     for _, v in ipairs(keyms) do
       vim.keymap.set(unpack(v))
