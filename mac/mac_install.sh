@@ -3,7 +3,7 @@
 function ask() {
 	read -p "$1 (Y/n): " resp
 	if [ -z "$resp" ]; then
-		response_lc="y" # empty is Yes
+		response_lc="n" # empty is No
 	else
 		response_lc=$(echo "$resp" | tr '[:upper:]' '[:lower:]') # case insensitive
 	fi
