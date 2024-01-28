@@ -10,6 +10,10 @@ wezterm.on("update-right-status", function(window)
   local time = wezterm.strftime("%H:%M")
 
   window:set_right_status(wezterm.format({
+    { Foreground = { Color = "#ca7a5c" } },
+    { Background = { Color = bg } },
+    { Text = "[T] " },
+    --
     { Foreground = { Color = fg } },
     { Background = { Color = bg } },
     { Text = " " .. time .. "  " },
