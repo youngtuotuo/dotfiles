@@ -5,18 +5,19 @@ local act = wezterm.action
 local fg = wezterm.color.parse("#cacaca")
 local bg = wezterm.color.parse("#000000")
 local active_bg = wezterm.color.parse("#333233")
+local time_indicator_fg = wezterm.color.parse("#ca7a5c")
 
 wezterm.on("update-right-status", function(window)
   local time = wezterm.strftime("%H:%M")
 
   window:set_right_status(wezterm.format({
-    { Foreground = { Color = "#ca7a5c" } },
+    { Foreground = { Color = time_indicator_fg } },
     { Background = { Color = bg } },
     { Text = "[T] " },
     --
     { Foreground = { Color = fg } },
     { Background = { Color = bg } },
-    { Text = " " .. time .. "  " },
+    { Text = time .. " " },
   }))
 end)
 
