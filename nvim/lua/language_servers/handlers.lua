@@ -1,16 +1,23 @@
 -- I hate defualt markdown inline hover
 local function split_lines(value)
-  value = string.gsub(value, "&nbsp;", " ")
-  value = string.gsub(value, "&gt;", ">")
-  value = string.gsub(value, "&lt;", "<")
+  value = string.gsub(value, "```%a*\n", "")
+  value = string.gsub(value, "```", "")
+  if vim.o.filetype == "python" then
+    value = string.gsub(value, "&nbsp;", " ")
+    value = string.gsub(value, "&gt;", ">")
+    value = string.gsub(value, "&lt;", "<")
+    value = string.gsub(value, "_,", ",")
+    value = string.gsub(value, "_.", ".")
+    -- value = string.gsub(value, "`", "")
+    value = string.gsub(value, "*", "`")
+  elseif vim.o.filetype == "c" or vim.o.filetype == "cpp" then
+    value = string.gsub(value, "\n%-%-%-", "---")
+    value = string.gsub(value, "### ", "")
+    -- value = string.gsub(value, "`", "")
+  end
   if vim.fn.has("win32") == 0 then
     value = string.gsub(value, "\\", "")
   end
-  -- value = string.gsub(value, "%[", "%[%[")
-  -- value = string.gsub(value, "%]", "%]%]")
-  value = string.gsub(value, "```%a*\n", "")
-  value = string.gsub(value, "```", "")
-  value = string.gsub(value, "`_", "`")
   return { value }
 end
 
