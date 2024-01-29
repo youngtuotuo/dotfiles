@@ -45,7 +45,7 @@
       ]
     },
     {
-      "description": "control + right click -> contorl + option + right click",
+      "description": "control + right click -> contorl + command + right click",
       "manipulators": [
         {
           "type": "basic",
@@ -63,7 +63,7 @@
               "pointing_button": "button2",
               "modifiers": [
                 "left_control",
-                "left_option"
+                "left_command"
               ]
             }
           ]
