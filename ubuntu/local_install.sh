@@ -14,6 +14,7 @@ function ask() {
 
 # python
 if ask "============ Do you want to install another python? ============"; then
+        echo "Python download page: https://www.python.org/downloads/"
 	read -p "Please give current python tar file url: " resp
 	if [ -z "$resp" ]; then
 		echo "Empty url, skip."
@@ -40,6 +41,7 @@ fi
 # lua
 if ask "============ Do you want to install another lua? ============"; then
 	if ! command -v lua >/dev/null; then
+                echo "Lua download page: https://www.lua.org/download.html"
 		read -p "Please give current lua tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -61,6 +63,7 @@ fi
 # Go
 if ask "============ Do you want to install go? ============"; then
 	if ! command -v go >/dev/null; then
+                echo "Go install page: https://go.dev/dl/"
 		read -p "Please give current go tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -88,6 +91,7 @@ fi
 # Zig
 if ask "============ Do you want to install zig? ============"; then
 	if ! command -v zig >/dev/null; then
+                echo "Zig download page: https://ziglang.org/download/"
 		read -p "Please give current zig tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
