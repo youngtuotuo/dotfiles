@@ -67,11 +67,12 @@ config.colors = {
   cursor_fg = bg,
   cursor_bg = fg,
   tab_bar = {
-    inactive_tab_edge = bg
-  }
+    inactive_tab_edge = bg,
+  },
 }
 
 config.color_scheme = "Builtin Tango Dark"
+config.font = wezterm.font("FiraCode Nerd Font Mono")
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
