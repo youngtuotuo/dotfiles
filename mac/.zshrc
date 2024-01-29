@@ -25,3 +25,5 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+echo "σ\`∀´)σ"
+alias taunt='echo "σ\`∀´)σ"'
