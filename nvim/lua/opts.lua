@@ -34,6 +34,7 @@ local options = {
   undofile    = true,
   wildcharm   = vim.fn.char2nr('^I'),
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
+  virtualedit = "block",
   -- pumblend    = 15,
   pumheight = 10,
   -- winblend    = 15,
