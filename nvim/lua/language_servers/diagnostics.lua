@@ -6,13 +6,10 @@ local diag_config = {
   severity_sort = true,
   float = {
     header = "",
-    prefix = function()
-      return ""
-    end,
+    prefix = "",
     focusable = true,
     title = " σ`∀´)σ ",
     border = _G.border,
-    max_width = 40,
     source = true,
   },
 }
