@@ -5,16 +5,11 @@ local act = wezterm.action
 local fg = wezterm.color.parse("#cacaca")
 local bg = wezterm.color.parse("#000000")
 local active_bg = wezterm.color.parse("#333233")
-local time_indicator_fg = wezterm.color.parse("#ca7a5c")
 
 wezterm.on("update-right-status", function(window)
   local time = wezterm.strftime("%H:%M")
 
   window:set_right_status(wezterm.format({
-    { Foreground = { Color = time_indicator_fg } },
-    { Background = { Color = bg } },
-    { Text = "[T] " },
-    --
     { Foreground = { Color = fg } },
     { Background = { Color = bg } },
     { Text = time .. " " },
@@ -34,25 +29,50 @@ if package.config:sub(1, 1) == "\\" then
   config.default_prog = { "pwsh.exe" }
 end
 
-config.use_fancy_tab_bar = false
+config.status_update_interval = 50
+
+local function tab_title(tab_info)
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane
+  -- in that tab
+  return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
+  local foreground = fg
+  if tab.is_active then
+    foreground = fg:lighten(0.7)
+  else
+    foreground = fg:darken(0.6)
+  end
+
+  local title = tab_title(tab)
+
+  return {
+    { Background = { Color = bg } },
+    { Text = " " },
+    { Background = { Color = bg } },
+    { Foreground = { Color = foreground } },
+    { Text = (tab.tab_index + 1) .. ": " .. title },
+    { Background = { Color = bg } },
+    { Text = " " },
+  }
+end)
+
 config.colors = {
   cursor_fg = bg,
   cursor_bg = fg,
   tab_bar = {
-    background = bg,
-    active_tab = {
-      bg_color = active_bg,
-      fg_color = fg,
-    },
-    inactive_tab = {
-      bg_color = bg,
-      fg_color = fg,
-    },
     inactive_tab_edge = bg,
   },
 }
 
 config.color_scheme = "Builtin Tango Dark"
+config.font = wezterm.font("FiraCode Nerd Font Mono")
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
