@@ -54,7 +54,10 @@ local function signature_help(_, result, ctx, config)
     end
     return
   end
-  result.signatures[1].documentation.value = split_lines(result.signatures[1].documentation.value)
+  -- P(result)
+  if result.signatures[1].documentation then
+    result.signatures[1].documentation.value = split_lines(result.signatures[1].documentation.value)
+  end
   local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
   local triggers = vim.tbl_get(client.server_capabilities, 'signatureHelpProvider', 'triggerCharacters')
   local ft = vim.bo[ctx.bufnr].filetype
@@ -65,9 +68,12 @@ local function signature_help(_, result, ctx, config)
     end
     return
   end
-  table.remove(lines, #lines)
-  if vim.startswith(lines[1], '```') then table.remove(lines, 1) end
-  if vim.startswith(lines[2], '```') then lines[2] = "---" end
+  -- P(lines)
+  if lines then
+    if #lines > 3 then table.remove(lines, #lines) end
+    if vim.startswith(lines[1], '```') then table.remove(lines, 1) end
+    if vim.startswith(lines[2], '```') then lines[2] = "---" end
+  end
   local fbuf, fwin = require("vim.lsp.util").open_floating_preview(lines, 'plaintext', config)
   if hl then
     -- Highlight the second line if the signature is wrapped in a Markdown code block.
