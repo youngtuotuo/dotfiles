@@ -6,11 +6,9 @@ local function split_lines(value)
     value = string.gsub(value, "&nbsp;", " ")
     value = string.gsub(value, "&gt;", ">")
     value = string.gsub(value, "&lt;", "<")
-    -- value = string.gsub(value, "`", "")
   elseif vim.o.filetype == "c" or vim.o.filetype == "cpp" then
     value = string.gsub(value, "\n%-%-%-", "---")
     value = string.gsub(value, "### ", "")
-    -- value = string.gsub(value, "`", "")
   end
   if vim.fn.has("win32") == 0 then
     value = string.gsub(value, "\\", "")
@@ -86,9 +84,10 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   {
     border = _G.border,
     title = " |･ω･) ? ",
-    max_height = 20,
+    -- max_height = 20,
     zindex = 500,
     focusable = true,
+    -- max_width = 100,
   }
 )
 -- customize signature help when pressing gs
@@ -97,6 +96,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   {
     border = _G.border,
     title = " (・・ ) ? ",
-    max_height = 20,
+    -- max_height = 20,
+    max_width = _G.floatw,
   }
 )
