@@ -79,12 +79,9 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-y>"] = cmp.mapping(function(_)
-            cmp.abort()
-          end, { "i", "s" }),
           ["<C-u>"] = cmp.mapping.scroll_docs(-10),
           ["<C-d>"] = cmp.mapping.scroll_docs(10),
-          ["<C-l>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
+          ["<C-e>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
         }),
         enabled = function()
           -- disable completion in comments
