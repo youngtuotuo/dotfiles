@@ -26,7 +26,7 @@ local cmds = {
         if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
         -- compiler -Wall -Wextra -lm -o fnameEXT && ./fnameEXT
         cmd = string.format("%s -o %s%s %% && ./%s%s", cmd, bufname, _G.ext, bufname, _G.ext)
-        cmd = ":sp | terminal " .. cmd
+        cmd = ":terminal " .. cmd .. " <C-b>"
         vim.keymap.set("n", "<leader>p", cmd)
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
@@ -37,7 +37,7 @@ local cmds = {
       callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.softtabstop = 2
-        vim.keymap.set("n", "<leader>p", ":sp | terminal lua %")
+        vim.keymap.set("n", "<leader>p", ":terminal lua % <C-b>")
         vim.keymap.set("v", "<leader>p", ":w !lua")
       end,
       desc = "<leader>p for lua"
@@ -45,7 +45,7 @@ local cmds = {
     {
       pattern = { "*.py" },
       callback = function()
-        vim.keymap.set("n", "<leader>p", ":sp | terminal python3 %")
+        vim.keymap.set("n", "<leader>p", ":terminal python3 % <C-b>")
         vim.keymap.set("v", "<leader>p", ":w !python3")
       end,
       desc = "<leader>p for python"
@@ -65,7 +65,7 @@ local cmds = {
         if vim.fn.has("win32") == 0 then
           vim.opt_local.shiftwidth = 4
           vim.opt_local.softtabstop = 4
-          vim.keymap.set("n", "<leader>p", ":sp | terminal mojo %")
+          vim.keymap.set("n", "<leader>p", ":terminal mojo % <C-b>")
           vim.keymap.set("v", "<leader>p", ":w !mojo")
         end
       end,
@@ -91,7 +91,7 @@ local cmds = {
     {
       pattern = { "*.rs" },
       callback = function()
-        vim.keymap.set("n", "<leader>p", ":sp | terminal cargo run %")
+        vim.keymap.set("n", "<leader>p", ":terminal cargo run % <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for rust"
@@ -102,7 +102,7 @@ local cmds = {
         vim.opt_local.shiftwidth = 8
         vim.opt_local.softtabstop = 0
         vim.opt_local.expandtab = false
-        vim.keymap.set("n", "<leader>p", ":sp | terminal go run %")
+        vim.keymap.set("n", "<leader>p", ":terminal go run % <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for go"
@@ -111,7 +111,7 @@ local cmds = {
       pattern = { "*.zig" },
       callback = function()
         vim.g.zig_fmt_autosave = 0
-        vim.keymap.set("n", "<leader>p", ":sp | terminal zig run %")
+        vim.keymap.set("n", "<leader>p", ":terminal zig run % <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for zig"
