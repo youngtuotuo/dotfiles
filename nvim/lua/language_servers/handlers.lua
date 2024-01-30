@@ -6,7 +6,7 @@ local function split_lines(value)
     value = string.gsub(value, "&nbsp;", " ")
     value = string.gsub(value, "&gt;", ">")
     value = string.gsub(value, "&lt;", "<")
-    value = string.gsub(value, "`", "")
+    -- value = string.gsub(value, "`", "")
   elseif vim.o.filetype == "c" or vim.o.filetype == "cpp" then
     value = string.gsub(value, "\n%-%-%-", "---")
     value = string.gsub(value, "### ", "")
@@ -33,8 +33,8 @@ local function hover(_, result, ctx, config)
   end
   return require("vim.lsp.util").open_floating_preview(
     { split_lines(result.contents.value) },
-    -- result.contents.kind,
-    "plaintext",
+    result.contents.kind,
+    -- "plaintext",
     config
   )
 end
@@ -54,7 +54,6 @@ local function signature_help(_, result, ctx, config)
     end
     return
   end
-  -- P(result)
   if result.signatures[1].documentation then
     result.signatures[1].documentation.value = split_lines(result.signatures[1].documentation.value)
   end
@@ -68,13 +67,12 @@ local function signature_help(_, result, ctx, config)
     end
     return
   end
-  -- P(lines)
   if lines then
     if #lines > 3 then table.remove(lines, #lines) end
     if vim.startswith(lines[1], '```') then table.remove(lines, 1) end
     if vim.startswith(lines[2], '```') then lines[2] = "---" end
   end
-  local fbuf, fwin = require("vim.lsp.util").open_floating_preview(lines, 'plaintext', config)
+  local fbuf, fwin = require("vim.lsp.util").open_floating_preview(lines, 'markdown', config)
   if hl then
     -- Highlight the second line if the signature is wrapped in a Markdown code block.
     vim.api.nvim_buf_add_highlight(fbuf, -1, 'LspSignatureActiveParameter', 0, unpack(hl))
