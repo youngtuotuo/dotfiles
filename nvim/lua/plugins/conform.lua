@@ -36,7 +36,7 @@ return {
           "--column-width=150",
         },
       },
-      ruff_fmt = {
+      ruff_format = {
         prepend_args = { "--line-length", "150" },
       },
       clang_format = {
