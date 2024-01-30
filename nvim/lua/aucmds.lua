@@ -45,7 +45,7 @@ local cmds = {
     {
       pattern = { "*.py" },
       callback = function()
-        vim.keymap.set("n", "<leader>p", ":sp | terminal python3 %%")
+        vim.keymap.set("n", "<leader>p", ":sp | terminal python3 %")
         vim.keymap.set("v", "<leader>p", ":w !python3")
       end,
       desc = "<leader>p for python"
@@ -140,26 +140,6 @@ local cmds = {
       desc = "Auto set some colors for colorsecheme change"
     }
   },
-  -- [{ "InsertLeave", "WinEnter" }] = {
-  --   {
-  --     callback = function()
-  --       if vim.wo.cursorline == false then
-  --         vim.wo.cursorline = true
-  --       end
-  --     end,
-  --     desc = "Disable local cursorline"
-  --   }
-  -- },
-  -- [{ "InsertEnter", "WinLeave" }] = {
-  --   {
-  --     callback = function()
-  --       if vim.wo.cursorline == true then
-  --         vim.wo.cursorline = false
-  --       end
-  --     end,
-  --     desc = "Enable local cursorline"
-  --   }
-  -- }
 }
 
 for e, configs in pairs(cmds) do
