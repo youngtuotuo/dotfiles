@@ -3,7 +3,7 @@ return {
   main = "ssr",
   keys = {
     {
-      "<space>s", function() require("ssr").open() end, mode = { "n", "x"}
+      "<space>v", function() require("ssr").open() end, mode = { "n", "x"}
     }
   },
   opts = {
