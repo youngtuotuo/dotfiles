@@ -41,6 +41,7 @@ _G.colorset = function()
     NormalFloat      = { bg = trsp },
     FloatTitle       = { bg = trsp },
     LspReferenceText = { bg = dgr1 },
+    Todo             = { bg = trsp },
 
 
     ModeMsg            = { fg = w,     bold = true },
