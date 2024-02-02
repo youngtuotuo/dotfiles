@@ -44,8 +44,8 @@ return {
     local gs = require("gitsigns")
     gs.setup(opts)
 
-    local next_hunk    = function() gs.next_hunk(); vim.cmd[[norm zz]] end
-    local prev_hunk    = function() gs.prev_hunk(); vim.cmd[[norm zz]] end
+    local next_hunk    = function() gs.next_hunk() end
+    local prev_hunk    = function() gs.prev_hunk() end
     local stage_hunk   = require("gitsigns").stage_hunk
     local reset_hunk   = require("gitsigns").reset_hunk
     local preview_hunk = require("gitsigns").preview_hunk
