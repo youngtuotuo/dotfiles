@@ -1,13 +1,30 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    init = function()
+      --
+    end,
+    cmd = "",
     config = function()
-      -- TODO: Try to setup corss platform debugger
-      -- TODO: At least being able to debug in python, c, and, cpp for all platforms.
-
-      -- TODO: Create auto debugpy setup
-      -- TODO: Config keymaps for command
       local dap = require("dap")
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" }
+      }
+      dap.configurations.c = {
+        {
+          name = "Launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = "${workspaceFolder}",
+        },
+      }
+      dap.configurations.cpp = dap.configurations.c
+
       dap.adapters.python = function(cb, config)
         if config.request == "attach" then
           ---@diagnostic disable-next-line: undefined-field
@@ -25,8 +42,8 @@ return {
         else
           cb({
             type = "executable",
-            command = os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python",
-            args = { "-m", "debugpy.adapter" },
+            command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/debugpy-adapter",
+            args = {},
             options = {
               source_filetype = "python",
             },
@@ -66,6 +83,6 @@ return {
     "rcarriga/nvim-dap-ui",
     config = function()
       require("dapui").setup()
-    end
+    end,
   },
 }
