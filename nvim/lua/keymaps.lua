@@ -39,9 +39,7 @@ local keyms = {
   -- better external command ouput
   { { "n" }, "<space>x", [[:terminal <C-b>]], { noremap = true, desc = ":terminal , execute external command with output to pane" } },
 
-  { { "n", "v", "x" }, "<leader>d", '"_d',  { noremap = true, desc = "d, but not go to register" } },
   { { "n", "v", "x" }, "<leader>y", '"+y',  { noremap = true, desc = "y, but yank to system clipboard" } },
-  { { "n" },           "<leader>Y", '"+y$', { noremap = true, desc = "y$, but yank to system clipboard" } },
 
   { { "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" } },
 

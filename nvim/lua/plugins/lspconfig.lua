@@ -15,7 +15,6 @@ return {
       end,
       opts = {
         library = {
-          -- disalbe this to avoid double lsp reference
           runtime = true,
           plugins = { "nvim-dap-ui" },
           types = true

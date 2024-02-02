@@ -23,7 +23,7 @@ return {
       HACK = { icon = " ", color = "error" },
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
       PERF = { icon = "󰖷 ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "hint",    alt = { "INFO" } },
+      NOTE = { icon = " ", color = "info",    alt = { "INFO" } },
       TEST = { icon = " ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
       IDEA = { icon = " ", color = "test",    alt = { "TRY", "HINT", "THINK", "FEAT" } },
     },
