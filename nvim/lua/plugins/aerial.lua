@@ -26,6 +26,6 @@ return {
     --   "Struct",
     --   "TypeParameter",
     -- }
-    filter_kind = false
+    -- filter_kind = false
   },
 }
