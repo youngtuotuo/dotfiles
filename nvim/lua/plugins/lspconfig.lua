@@ -22,6 +22,7 @@ return {
     },
     {
       "williamboman/mason.nvim",
+      cmd = { "Mason" },
       init = function()
         vim.api.nvim_create_user_command("M", "Mason", {})
       end,
