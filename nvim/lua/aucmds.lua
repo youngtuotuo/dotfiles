@@ -19,12 +19,12 @@ local cmds = {
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
         local compiler = bufext == "c" and "clang" or "clang++"
+        if vim.fn.has("win32") == 1 then compiler = "clang-cl" end
         local cmd = string.format("%s -Wall -Wextra", compiler)
         -- # include <math.h>
         if check_math_h() then cmd = string.format("%s -lm", cmd) end
-        --  cpp14
-        if bufext == "cpp" then cmd = string.format("%s -std=c++14", cmd) end
-        -- compiler -Wall -Wextra -lm -o fnameEXT && ./fnameEXT
+        --  cpp17
+        if bufext == "cpp" then cmd = string.format("%s -std=c++17", cmd) end
         cmd = string.format("%s -o %s%s %% && ./%s%s", cmd, bufname, _G.ext, bufname, _G.ext)
         cmd = ":terminal " .. cmd .. " <C-b>"
         vim.keymap.set("n", "<leader>p", cmd)
