@@ -66,11 +66,15 @@ return {
     -- LspInfo command
     require("lspconfig.ui.windows").default_options.border = _G.border
     -- all server agnostic settings
-    require("language_servers.format")
-    require("language_servers.capabilities")
-    require("language_servers.keymaps")
-    require("language_servers.diagnostics")
-    require("language_servers.handlers")
-    require("language_servers.floatwin")
+    for _, m in ipairs({
+      "format",
+      "capabilities",
+      "keymaps",
+      "diagnostics",
+      "handlers",
+      "floatwin",
+    }) do
+      require(string.format("language_servers.%s", m))
+    end
   end,
 }

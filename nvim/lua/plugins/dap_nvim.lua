@@ -1,15 +1,37 @@
 -- INFO: Currently work in WSL2
+-- The REPL can be used to evaluate expressions. A `omnifunc` is set to
+-- support completion of expressions. It supports the following special
+-- commands:
+--
+--   .exit               Closes the REPL
+--   .c or .continue     Same as |dap.continue|
+--   .n or .next         Same as |dap.step_over|
+--   .into               Same as |dap.step_into|
+--   .into_target        Same as |dap.step_into{askForTargets=true}|
+--   .out                Same as |dap.step_out|
+--   .up                 Same as |dap.up|
+--   .down               Same as |dap.down|
+--   .goto               Same as |dap.goto_|
+--   .scopes             Prints the variables in the current scopes
+--   .threads            Prints all threads
+--   .frames             Print the stack frames
+--   .capabilities       Print the capabilities of the debug adapter
+--   .b or .back         Same as |dap.step_back|
+--   .rc or
+--   .reverse-continue   Same as |dap.reverse_continue|
+
 return {
   {
     "rcarriga/nvim-dap-ui",
     cmd = { "DB" },
-    init = function()
-      vim.api.nvim_create_user_command("DB", function()
-        require("dapui").toggle()
-      end, {})
-      vim.api.nvim_create_user_command("DBC", function()
-        require("dapui").close()
-      end, {})
+    keys = function()
+      local toggle = function() require("dapui").toggle() end
+      return {
+        { "<M-r>", toggle, mode = "n", desc = "[dap-ui] toggle ui" },
+      }
+    end,
+    config = function()
+      require("dapui").setup()
     end,
     dependencies = {
       {
@@ -17,30 +39,30 @@ return {
         lazy = true,
         keys = function()
           -- stylua: ignore start
-          local continue = function() require("dap").continue() end
-          local step_over = function() require("dap").step_over() end
-          local step_into = function() require("dap").step_into() end
-          local step_out = function() require("dap").step_out() end
-          local breakpoint = function() require("dap").toggle_breakpoint() end
-          local repl = function() require("dap").repl.open() end
-          local float_frames = function() local widgets = require("dap.ui.widgets") widgets.centered_float(widgets.frames) end
-          local float_scopes = function() local widgets = require("dap.ui.widgets") widgets.centered_float(widgets.scopes) end
+          local continue     = function() require("dap").continue() end
+          local step_over    = function() require("dap").step_over() end
+          local step_into    = function() require("dap").step_into() end
+          local step_out     = function() require("dap").step_out() end
+          local breakpoint   = function() require("dap").toggle_breakpoint() end
+          local close        = function() require("dap").close() end
+          local float_frames = function()
+            local widgets = require("dap.ui.widgets")
+            widgets.centered_float(widgets.frames)
+          end
+          local float_scopes = function()
+            local widgets = require("dap.ui.widgets")
+            widgets.centered_float(widgets.scopes)
+          end
 
-          -- local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-          -- if ts_obj_status then
-          --   next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
-          -- end
-
-          -- TODO: Think bettwe shortcuts here
           return {
-            { mode = "n", "<leader><leader>c", continue },
-            { mode = "n", "<leader><leader>s", step_over },
-            { mode = "n", "<leader><leader>i", step_into },
-            { mode = "n", "<leader><leader>o", step_out },
-            { mode = "n", "<Leader><leader>b", breakpoint },
-            { mode = "n", "<Leader><leader>r", repl },
-            { mode = "n", "<Leader><leader>f", float_frames },
-            { mode = "n", "<Leader><leader>S", float_scopes },
+            { "<M-q>", close,        mode = "n", desc = "[dap] close dap" },
+            { "<M-x>", continue,     mode = "n", desc = "[dap] continue execution till next breakpoint" },
+            { "<M-n>", step_over,    mode = "n", desc = "[dap] forward one execution" },
+            { "<M-i>", step_into,    mode = "n", desc = "[dap] step into a function or method" },
+            { "<M-o>", step_out,     mode = "n", desc = "[dap] step out of a function or method" },
+            { "<M-a>", breakpoint,   mode = "n", desc = "[dap] toggle breakpoint" },
+            { "<M-f>", float_frames, mode = "n", desc = "[dap] inspect frames in float" },
+            { "<M-s>", float_scopes, mode = "n", desc = "[dap] inspect scopes in float" },
           }
         end,
         config = function()
@@ -69,7 +91,7 @@ return {
 
           dap.adapters.python = {
             type = "executable",
-            command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/debugpy-adapter",
+            command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/debugpy-adapter",
             args = {},
             options = {
               source_filetype = "python",
@@ -95,6 +117,9 @@ return {
                 elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
                   return cwd .. "/.venv/bin/python"
                 else
+                  if vim.fn.has("win32") then
+                    return "C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.exe"
+                  end
                   return os.getenv("HOME") .. "/.local/bin/python3"
                 end
               end,
@@ -103,8 +128,5 @@ return {
         end,
       },
     },
-    config = function()
-      require("dapui").setup()
-    end,
   },
 }
