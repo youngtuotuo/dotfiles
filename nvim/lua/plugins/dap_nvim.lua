@@ -67,12 +67,18 @@ return {
         end,
         config = function()
           local dap = require("dap")
+          local cppdbg = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7"
+          local detached = true
+          if vim.fn.has("win32") then
+            cppdbg = cppdbg .. ".cmd"
+            detached = false
+          end
           dap.adapters.cppdbg = {
             id = "cppdbg",
             type = "executable",
-            command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7",
+            command = cppdbg,
             options = {
-              detached = vim.fn.has("win32") and false or true,
+              detached = detached,
             },
           }
           dap.configurations.c = {
