@@ -25,7 +25,9 @@ return {
     "rcarriga/nvim-dap-ui",
     cmd = { "DB" },
     keys = function()
-      local toggle = function() require("dapui").toggle() end
+      local toggle = function()
+        require("dapui").toggle()
+      end
       return {
         { "<M-r>", toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
@@ -34,6 +36,8 @@ return {
       require("dapui").setup()
     end,
     dependencies = {
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
       {
         "mfussenegger/nvim-dap",
         lazy = true,
@@ -67,7 +71,7 @@ return {
         end,
         config = function()
           local dap = require("dap")
-          if vim.fn.has("win32") == 1 then
+          if vim.fn.has("win32") == 1 then -- cpptools
             dap.adapters.cppdbg = {
               id = "cppdbg",
               type = "executable",
@@ -88,11 +92,33 @@ return {
                 stopAtEntry = true,
               },
             }
-          else
+          elseif vim.fn.has("mac") == 1 then -- codelldb
+            dap.adapters.codelldb = {
+              type = "server",
+              port = "${port}",
+              executable = {
+                -- CHANGE THIS to your path!
+                command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+                args = { "--port", "${port}" },
+              },
+            }
+            dap.configurations.c = {
+              {
+                name = "Launch file",
+                type = "codelldb",
+                request = "launch",
+                program = function()
+                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                end,
+                cwd = "${workspaceFolder}",
+                stopOnEntry = false,
+              },
+            }
+          else -- gdb
             dap.adapters.gdb = {
               type = "executable",
               command = "gdb",
-              args = { "-i", "dap" }
+              args = { "-i", "dap" },
             }
             dap.configurations.c = {
               {
@@ -100,7 +126,7 @@ return {
                 type = "gdb",
                 request = "launch",
                 program = function()
-                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
                 end,
                 cwd = "${workspaceFolder}",
               },
@@ -137,8 +163,11 @@ return {
                 elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
                   return cwd .. "/.venv/bin/python"
                 else
+                  -- TODO: Maybe we can use $ which python3
                   if vim.fn.has("win32") == 1 then
                     return "C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.exe"
+                  elseif vim.fn.has("mac") == 1 then
+                    return "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
                   end
                   return os.getenv("HOME") .. "/.local/bin/python3"
                 end

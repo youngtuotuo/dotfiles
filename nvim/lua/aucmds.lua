@@ -18,8 +18,14 @@ local cmds = {
       callback = function()
         local bufname = vim.fn.expand("%:t:r")
         local bufext = vim.fn.expand("%:e")
-        local compiler = bufext == "c" and "clang" or "clang++"
-        if vim.fn.has("win32") == 1 then compiler = "clang-cl" end
+
+        local compiler = bufext == "c" and "gcc" or "g++"
+        if vim.fn.has("win32") == 1 then
+          compiler = "cl"
+        elseif vim.fn.has("mac") == 1 then
+          compiler = "clang"
+        end
+
         local cmd = string.format("%s -Wall -Wextra", compiler)
         -- # include <math.h>
         if check_math_h() then cmd = string.format("%s -lm", cmd) end

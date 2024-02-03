@@ -10,40 +10,23 @@ return {
       "folke/neodev.nvim",
       cond = function()
         -- fk u MS
-        return vim.fn.getcwd() == os.getenv(_G.home)
-          .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
+        return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
       end,
       opts = {
         library = {
           runtime = true,
           plugins = { "nvim-dap-ui" },
-          types = true
+          types = true,
         },
       },
     },
     {
       "williamboman/mason.nvim",
-      cmd = "Mason",
       init = function()
         vim.api.nvim_create_user_command("M", "Mason", {})
       end,
       opts = {
         ui = { border = _G.border },
-        ensure_installed = {
-          "clang-format",
-          "clangd",
-          "gofumpt",
-          "gopls",
-          "lua-language-serve",
-          "markdownlint",
-          "prettier",
-          "pyright",
-          "ruff",
-          "ruff-lsp",
-          "rust-analyzer",
-          "stylua",
-          "zls"
-        },
       },
     },
     {
@@ -60,6 +43,36 @@ return {
           -- ["texlab"] = require("language_servers.texlab"),
         },
       },
+    },
+    {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      opts = function()
+        local ensure_installed = {
+          "clang-format",
+          "clangd",
+          "gofumpt",
+          "shfmt",
+          "gopls",
+          "lua_ls",
+          "markdownlint",
+          "prettier",
+          "pyright",
+          "ruff",
+          "ruff_lsp",
+          "rust_analyzer",
+          "stylua",
+          "zls",
+          "debugpy"
+        }
+        if vim.fn.has("win32") == 1 then
+          vim.list_extend(ensure_installed, { "cpptools" })
+        elseif vim.fn.has("mac") == 1 then
+          vim.list_extend(ensure_installed, { "codelldb" })
+        end
+        return {
+          ensure_installed = ensure_installed,
+        }
+      end,
     },
   },
   config = function(_, _)
