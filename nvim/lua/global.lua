@@ -42,6 +42,8 @@ _G.colorset = function()
     FloatTitle       = { bg = trsp },
     LspReferenceText = { bg = dgr1 },
     Todo             = { bg = trsp },
+    StatusLine       = { fg = dgr1, bg = selfg },
+    StatusLineNC     = { fg = dgr3, bg = selfg },
 
 
     ModeMsg            = { fg = w,     bold = true },
