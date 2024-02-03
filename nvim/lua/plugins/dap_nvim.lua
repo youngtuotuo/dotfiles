@@ -67,32 +67,45 @@ return {
         end,
         config = function()
           local dap = require("dap")
-          local cppdbg = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7"
-          local detached = true
-          if vim.fn.has("win32") then
-            cppdbg = cppdbg .. ".cmd"
-            detached = false
+          if vim.fn.has("win32") == 1 then
+            dap.adapters.cppdbg = {
+              id = "cppdbg",
+              type = "executable",
+              command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7.cmd",
+              options = {
+                detached = true,
+              },
+            }
+            dap.configurations.c = {
+              {
+                name = "Launch file",
+                type = "cppdbg",
+                request = "launch",
+                program = function()
+                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                end,
+                cwd = "${workspaceFolder}",
+                stopAtEntry = true,
+              },
+            }
+          else
+            dap.adapters.gdb = {
+              type = "executable",
+              command = "gdb",
+              args = { "-i", "dap" }
+            }
+            dap.configurations.c = {
+              {
+                name = "Launch",
+                type = "gdb",
+                request = "launch",
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = "${workspaceFolder}",
+              },
+            }
           end
-          dap.adapters.cppdbg = {
-            id = "cppdbg",
-            type = "executable",
-            command = cppdbg,
-            options = {
-              detached = detached,
-            },
-          }
-          dap.configurations.c = {
-            {
-              name = "Launch file",
-              type = "cppdbg",
-              request = "launch",
-              program = function()
-                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-              end,
-              cwd = "${workspaceFolder}",
-              stopAtEntry = true,
-            },
-          }
           dap.configurations.cpp = dap.configurations.c
 
           dap.adapters.python = {
@@ -117,13 +130,14 @@ return {
                 -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
                 -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
                 -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+                -- TODO: Handle mac python path
                 local cwd = vim.fn.getcwd()
                 if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
                   return cwd .. "/venv/bin/python"
                 elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
                   return cwd .. "/.venv/bin/python"
                 else
-                  if vim.fn.has("win32") then
+                  if vim.fn.has("win32") == 1 then
                     return "C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.exe"
                   end
                   return os.getenv("HOME") .. "/.local/bin/python3"

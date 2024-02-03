@@ -14,7 +14,7 @@ function ask() {
 
 # python
 if ask "============ Do you want to install another python? ============"; then
-        echo "Python download page: https://www.python.org/downloads/"
+	echo "Python download page: https://www.python.org/downloads/"
 	read -p "Please give current python tar file url: " resp
 	if [ -z "$resp" ]; then
 		echo "Empty url, skip."
@@ -34,14 +34,14 @@ fi
 if ask "============ Do you want to install another pip? ============"; then
 	wget https://bootstrap.pypa.io/get-pip.py -O $HOME/get-pip.py
 	cd $HOME
-        python3 get-pip.py
+	python3 get-pip.py
 
 fi
 
 # lua
 if ask "============ Do you want to install another lua? ============"; then
 	if ! command -v lua >/dev/null; then
-                echo "Lua download page: https://www.lua.org/download.html"
+		echo "Lua download page: https://www.lua.org/download.html"
 		read -p "Please give current lua tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -63,7 +63,7 @@ fi
 # Go
 if ask "============ Do you want to install go? ============"; then
 	if ! command -v go >/dev/null; then
-                echo "Go install page: https://go.dev/dl/"
+		echo "Go install page: https://go.dev/dl/"
 		read -p "Please give current go tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -72,7 +72,6 @@ if ask "============ Do you want to install go? ============"; then
 			cd $HOME
 			tar xf go.tar.xz
 			mv go/ $HOME/.local/go
-			rm $HOME/go.tar.xz
 		fi
 	else
 		echo -e "\033[93mINFO\033[0m go exists: $(which go)"
@@ -91,7 +90,7 @@ fi
 # Zig
 if ask "============ Do you want to install zig? ============"; then
 	if ! command -v zig >/dev/null; then
-                echo "Zig download page: https://ziglang.org/download/"
+		echo "Zig download page: https://ziglang.org/download/"
 		read -p "Please give current zig tar file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -101,10 +100,31 @@ if ask "============ Do you want to install zig? ============"; then
 			cd $HOME
 			tar xf zig.tar.xz -C zig --strip-components 1
 			mv zig/ $HOME/.local/zig
-			rm $HOME/zig.tar.xz
 		fi
 	else
 		echo -e "\033[93mINFO\033[0m zig exists: $(which zig)"
+	fi
+fi
+
+# gdb
+if ask "============ Do you want to install gdb? ============"; then
+	if ! command -v gdb >/dev/null; then
+		echo "gdb download page: https://ftp.gnu.org/gnu/gdb/"
+		read -p "Please give current gdb tar file url: " resp
+		if [ -z "$resp" ]; then
+			echo "Empty url, skip."
+		else
+			wget $resp -O $HOME/gdb.tar.gz
+			mkdir -p $HOME/gdb
+			cd $HOME
+			tar zxf gdb.tar.gz -C gdb --strip-components 1
+			cd gdb
+            ./configure --prefix=$HOME/.local
+			make
+			make install
+		fi
+	else
+		echo -e "\033[93mINFO\033[0m gdb exists: $(which gdb)"
 	fi
 fi
 
