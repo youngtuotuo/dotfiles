@@ -25,13 +25,6 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/opt/homebrew/opt/llvm/bin":*)
-        ;;
-    *)
-        export PATH="/opt/homebrew/opt/llvm/bin${PATH:+:${PATH}}"
-        ;;
-esac
-case ":${PATH}:" in
     *:"/Library/Frameworks/Python.framework/Versions/3.11/bin":*)
         ;;
     *)
@@ -43,6 +36,13 @@ case ":${PATH}:" in
         ;;
     *)
         export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"/opt/homebrew/opt/llvm/bin":*)
+        ;;
+    *)
+        export PATH="/opt/homebrew/opt/llvm/bin${PATH:+:${PATH}}"
         ;;
 esac
 
