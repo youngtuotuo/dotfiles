@@ -57,126 +57,12 @@ WIP (Maybe I will never create this)
 
 ### Neovim
 
-<details>
-<summary>Plugins</summary>
+#### Clangd Configuration for Python.h
 
-bars-and-lines
-
-+ [luukvbaal/statuscol.nvim](https://dotfyle.com/plugins/luukvbaal/statuscol.nvim)
-
-color
-
-+ [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
-
-colorscheme
-
-+ [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
-
-comment
-
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
-+ [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
-+ [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
-
-completion
-
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
-
-diagnostics
-
-+ [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
-
-editing-support
-
-+ [debugloop/telescope-undo.nvim](https://dotfyle.com/plugins/debugloop/telescope-undo.nvim)
-+ [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
-+ [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
-+ [cshuaimin/ssr.nvim](https://dotfyle.com/plugins/cshuaimin/ssr.nvim)
-+ [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
-
-formatting
-
-+ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
-
-fuzzy-finder
-
-+ [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
-
-git
-
-+ [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
-
-indent
-
-+ [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
-
-lsp
-
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
-+ [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
-+ [stevearc/aerial.nvim](https://dotfyle.com/plugins/stevearc/aerial.nvim)
-
-lsp-installer
-
-+ [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
-
-markdown-and-latex
-
-+ [micangl/cmp-vimtex](https://dotfyle.com/plugins/micangl/cmp-vimtex)
-+ [iamcco/markdown-preview.nvim](https://dotfyle.com/plugins/iamcco/markdown-preview.nvim)
-
-marks
-
-+ [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
-
-motion
-
-+ [backdround/neowords.nvim](https://dotfyle.com/plugins/backdround/neowords.nvim)
-
-nvim-dev
-
-+ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
-+ [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
-
-plugin-manager
-
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
-
-snippet
-
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
-
-split-and-window
-
-+ [anuvyklack/windows.nvim](https://dotfyle.com/plugins/anuvyklack/windows.nvim)
-
-syntax
-
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
-
-Language Servers
-
-clangd, gopls, lua_ls, pyright, ruff_lsp, texlab, zls,
-
-</details>
-
-#### Pyright's cv2 typing issue
-
-By adding the `__init__.pyi` file, you'll get suggestion from Pyright.
-
-```bash
-cp $HOME/github/dotfiles/cv2/__init__.pyi $VIRTUAL_ENV/lib/python3.11/site-packages/cv2/__init__.pyi
-```
-
-#### Clangd Language Server Configuration
-
-For `#include <Python.h>`, put `compile_flags.txt` to projcet's root.\
+- To resolve `#include <Python.h>`, put `compile_flags.txt` to projcet's root.\
 Remember to remove unused flags inside `compile_flags.txt`.
 
-Run this command to get the path of `Python.h`.
+- Run this command to get the path of `Python.h`.
 
 ```bash
 python -c "import sysconfig; print(sysconfig.get_paths())"
