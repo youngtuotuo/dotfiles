@@ -9,18 +9,14 @@ return {
   config = function()
     local get_lan_ip = function()
       if vim.fn.has("win32") == 1 then
-        local ipconfig_command = io.popen("ipconfig")
-        local output = ipconfig_command:read("*a")
-
+        local output = vim.fn.system("ipconfig")
         local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
-
-        ipconfig_command:close()
         return "192" .. lan_ip
-      elseif vim.uv.os_uname().sysname == "Darwin" then
+      elseif vim.fn.has("mac") == 1 then
         local cmd = "ipconfig getifaddr en0"
-        local ip = vim.fn.system(cmd):match("192([%d%.]+)")
-        return "192" .. ip
-      else
+        local ip = vim.fn.system(cmd):match("([%d%.]+)%\n")
+        return ip
+      elseif vim.fn.has("linux") == 1 or vim.fn.has("wsl") == 1 then
         local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
         local ip = vim.fn.system(cmd)
         return ip:gsub("%s+", "") -- Remove any leading/trailing whitespace

@@ -10,7 +10,7 @@ local diag_config = {
     focusable = true,
     title = " σ`∀´)σ ",
     border = _G.border,
-    source = true,
+    source = false,
   },
 }
 
