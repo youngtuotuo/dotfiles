@@ -26,63 +26,12 @@ local cmds = {
   } },
   BufEnter = {
     {
-      pattern = { "*.c" },
+      pattern = { "*.c", "*.cpp" },
       callback = function()
-        local bufname = vim.fn.expand("%:t:r")
-
-        local compiler = "clang" -- linux, mac, wsl
-        if vim.fn.has("win32") == 1 then -- idiot os
-          compiler = "cl"
-        end
-
-        -- warning
-        local cmd = compiler
-        if vim.fn.has("win32") == 0 then -- fk u
-          cmd = string.format("%s -Wall -Wextra", cmd)
-          -- # include <math.h>
-          if check_math_h() then
-            cmd = string.format("%s -lm", cmd)
-          end
-          -- output
-          cmd = string.format("%s -o %s %%", cmd, bufname)
-        elseif vim.fn.has("win32") == 1 then
-          cmd = string.format("%s -Zi %%", cmd)
-        end
-        -- execute
-        cmd = string.format("%s && %s%s", cmd, bufname, _G.ext)
-        cmd = ":terminal " .. cmd .. " <C-b>"
-        vim.keymap.set("n", "<leader>p", cmd)
+        vim.keymap.set("n", "<leader>p", ":terminal ./buil.sh <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
-      desc = "<leader>p for c",
-    },
-    {
-      pattern = { "*.cpp" },
-      callback = function()
-        local bufname = vim.fn.expand("%:t:r")
-
-        local compiler = "clang++" -- linux, mac, wsl
-        if vim.fn.has("win32") == 1 then -- idiot os
-          compiler = "cl"
-        end
-
-        local cmd = compiler
-        if vim.fn.has("win32") == 0 then
-          cmd = string.format("%s -Wall -Wextra -std=c++17", compiler)
-          -- # include <math.h>
-          if check_math_h() then
-            cmd = string.format("%s -lm", cmd)
-          end
-          cmd = string.format("%s -o %s %%", cmd, bufname)
-        elseif vim.fn.has("win32") == 1 then
-          cmd = string.format("%s -Zi %%", cmd)
-        end
-        cmd = string.format("%s && %s%s", cmd, bufname, _G.ext)
-        cmd = ":terminal " .. cmd .. " <C-b>"
-        vim.keymap.set("n", "<leader>p", cmd)
-        vim.keymap.set("v", "<leader>p", "<nop>")
-      end,
-      desc = "<leader>p for c++",
+      desc = "<leader>p for c/cpp",
     },
     {
       pattern = { "*.lua" },
