@@ -38,11 +38,11 @@ return {
           elements = {
             {
               id = "repl",
-              size = 0.5,
+              size = 0.65,
             },
             {
               id = "console",
-              size = 0.5,
+              size = 0.35,
             },
           },
           position = "bottom",
@@ -51,12 +51,12 @@ return {
         {
           elements = {
             {
-              id = "breakpoints",
-              size = 0.25,
+              id = "scopes",
+              size = 0.5,
             },
             {
               id = "watches",
-              size = 0.75,
+              size = 0.5,
             },
           },
           position = "left",
@@ -65,16 +65,16 @@ return {
         {
           elements = {
             {
-              id = "scopes",
-              size = 0.5,
+              id = "breakpoints",
+              size = 0.2,
             },
             {
               id = "stacks",
-              size = 0.5,
+              size = 0.8,
             },
           },
           position = "right",
-          size = 40,
+          size = 50,
         },
       },
     },
