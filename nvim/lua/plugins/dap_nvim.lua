@@ -29,7 +29,7 @@ return {
         require("dapui").toggle()
       end
       return {
-        { "<M-r>", toggle, mode = "n", desc = "[dap-ui] toggle ui" },
+        { "<M-d>", toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
     end,
     config = function()
