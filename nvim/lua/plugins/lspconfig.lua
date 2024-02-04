@@ -63,7 +63,8 @@ return {
           "rust_analyzer",
           "stylua",
           "zls",
-          "debugpy"
+          "debugpy",
+          "jq",
         }
         if vim.fn.has("win32") == 1 then
           vim.list_extend(ensure_installed, { "cpptools" })
