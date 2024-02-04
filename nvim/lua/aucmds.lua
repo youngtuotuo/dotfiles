@@ -28,7 +28,7 @@ local cmds = {
     {
       pattern = { "*.c", "*.cpp" },
       callback = function()
-        vim.keymap.set("n", "<leader>p", ":terminal ./buil.sh <C-b>")
+        vim.keymap.set("n", "<leader>p", ":terminal ./build.sh <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for c/cpp",
