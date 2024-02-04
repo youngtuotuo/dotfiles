@@ -189,11 +189,11 @@ return {
                   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
                 end,
                 cwd = "${workspaceFolder}",
+                args = function()
+                  local argument_string = vim.fn.input("Program arguments: ")
+                  return vim.fn.split(argument_string, " ", true)
+                end,
               },
-              args = function()
-                local argument_string = vim.fn.input("Program arguments: ")
-                return vim.fn.split(argument_string, " ", true)
-              end,
             }
           end
           dap.configurations.cpp = dap.configurations.c
