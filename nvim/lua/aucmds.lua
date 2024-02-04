@@ -39,8 +39,10 @@ local cmds = {
         if vim.fn.has("win32") == 0 then -- fk u
           cmd = string.format("%s -Wall -Wextra", cmd)
           -- # include <math.h>
-          if check_math_h() then cmd = string.format("%s -lm", cmd) end
-          -- output 
+          if check_math_h() then
+            cmd = string.format("%s -lm", cmd)
+          end
+          -- output
           cmd = string.format("%s -o %s %%", cmd, bufname)
         elseif vim.fn.has("win32") == 1 then
           cmd = string.format("%s -Zi %%", cmd)
@@ -69,7 +71,9 @@ local cmds = {
         if vim.fn.has("win32") == 0 then
           cmd = string.format("%s -Wall -Wextra -std=c++17", compiler)
           -- # include <math.h>
-          if check_math_h() then cmd = string.format("%s -lm", cmd) end
+          if check_math_h() then
+            cmd = string.format("%s -lm", cmd)
+          end
           cmd = string.format("%s -o %s %%", cmd, bufname)
         elseif vim.fn.has("win32") == 1 then
           cmd = string.format("%s -Zi %%", cmd)
