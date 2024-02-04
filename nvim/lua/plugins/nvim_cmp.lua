@@ -4,7 +4,7 @@ return {
     event = "BufRead",
     dependencies = {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
-      "FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
+      "https://codeberg.org/FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
       "saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
       { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
       -- "micangl/cmp-vimtex"                   -- use this one day
