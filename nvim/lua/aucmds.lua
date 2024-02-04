@@ -30,11 +30,9 @@ local cmds = {
       callback = function()
         local bufname = vim.fn.expand("%:t:r")
 
-        local compiler = "gcc" -- linux
+        local compiler = "clang" -- linux, mac, wsl
         if vim.fn.has("win32") == 1 then -- idiot os
           compiler = "cl"
-        elseif vim.fn.has("mac") == 1 then -- mac
-          compiler = "clang"
         end
 
         -- warning
@@ -63,11 +61,9 @@ local cmds = {
       callback = function()
         local bufname = vim.fn.expand("%:t:r")
 
-        local compiler = "g++" -- linux
+        local compiler = "clang++" -- linux, mac, wsl
         if vim.fn.has("win32") == 1 then -- idiot os
           compiler = "cl"
-        elseif vim.fn.has("mac") == 1 then -- mac
-          compiler = "clang++"
         end
 
         local cmd = compiler
