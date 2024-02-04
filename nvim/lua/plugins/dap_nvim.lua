@@ -33,7 +33,11 @@ return {
       }
     end,
     config = function()
-      require("dapui").setup()
+      require("dapui").setup({
+        controls = {
+          enabled = false,
+        }
+      })
     end,
     dependencies = {
       { "williamboman/mason.nvim" },
