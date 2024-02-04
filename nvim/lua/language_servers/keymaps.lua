@@ -24,9 +24,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspconfig", {}),
   callback = function(ev)
     -- stylua: ignore start
-    -- vim.keymap.set("n", "gD",        vim.lsp.buf.declaration,             { buffer = ev.buf, desc = "go to declaration" })
+    vim.keymap.set("n", "gD",        vim.lsp.buf.declaration,             { buffer = ev.buf, desc = "go to declaration" })
     vim.keymap.set("n", "gd",        vim.lsp.buf.definition,              { buffer = ev.buf, desc = "go to definition" })
-    -- vim.keymap.set("n", "gi",        vim.lsp.buf.implementation,          { buffer = ev.buf, desc = "go to implementation" })
+    vim.keymap.set("n", "gi",        vim.lsp.buf.implementation,          { buffer = ev.buf, desc = "go to implementation" })
     vim.keymap.set("n", "gt",        vim.lsp.buf.type_definition,         { buffer = ev.buf, desc = "go to type type_definition" })
     vim.keymap.set("n", "K",         vim.lsp.buf.hover,                   { buffer = ev.buf, desc = "lsp hover" })
     vim.keymap.set("n", "<space>s",  vim.lsp.buf.signature_help,          { buffer = ev.buf, desc = "signature help" })
