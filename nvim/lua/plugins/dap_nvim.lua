@@ -94,6 +94,10 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopAtEntry = true,
+                args = function()
+                  local argument_string = vim.fn.input('Program arguments: ')
+                  return vim.fn.split(argument_string, " ", true)
+                end,
               },
             }
           elseif vim.fn.has("mac") == 1 then -- codelldb
@@ -101,7 +105,6 @@ return {
               type = "server",
               port = "${port}",
               executable = {
-                -- CHANGE THIS to your path!
                 command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
                 args = { "--port", "${port}" },
               },
@@ -116,6 +119,10 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
+                args = function()
+                  local argument_string = vim.fn.input('Program arguments: ')
+                  return vim.fn.split(argument_string, " ", true)
+                end,
               },
             }
           else -- gdb
@@ -134,6 +141,10 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
               },
+              args = function()
+                local argument_string = vim.fn.input('Program arguments: ')
+                return vim.fn.split(argument_string, " ", true)
+              end,
             }
           end
           dap.configurations.cpp = dap.configurations.c

@@ -16,7 +16,10 @@ local cmds = {
     desc = "Yank Short Indicator",
   } },
   TermOpen = { {
-    callback = function()
+    callback = function(opts)
+      if opts.file:match('dap%-terminal') then
+          return
+        end
       vim.api.nvim_input("i")
     end,
     desc = "Enter Terminal with Insert Mode",
