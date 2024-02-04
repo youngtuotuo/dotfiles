@@ -119,7 +119,9 @@ WIP (Maybe I will never create this)
 - To resolve `#include <Python.h>`, run the following command to get the path of `Python.h`, and, add `-I/path/to/Python.h` in your `compile_commands.json` file.
 
     ```console
-    python -c "import sysconfig; print(sysconfig.get_paths())"
+    python -c "import sysconfig; print(sysconfig.get_paths()['include'])"
+    # or
+    python3 -c "import sysconfig; print(sysconfig.get_paths()['include'])"
     ```
 
 ### tigerVNC
