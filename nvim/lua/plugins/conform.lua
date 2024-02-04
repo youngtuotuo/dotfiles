@@ -25,7 +25,8 @@ return {
       c = { "clang_format" },
       zig = { "zigfmt" },
       rust = { "rustfmt" },
-      sh = { "shfmt" }
+      sh = { "shfmt" },
+      json = { "jq" }
     },
     formatters = {
       stylua = {

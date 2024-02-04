@@ -57,16 +57,70 @@ WIP (Maybe I will never create this)
 
 ### Neovim
 
-#### Clangd Configuration for Python.h
+#### Clangd's Extremely not user-friendly compile_commands.json
 
-- To resolve `#include <Python.h>`, put `compile_flags.txt` to projcet's root.\
-Remember to remove unused flags inside `compile_flags.txt`.
+- It's normal that you think the [official document](https://clang.llvm.org/docs/JSONCompilationDatabase.html#format) is opaque.
 
-- Run this command to get the path of `Python.h`.
+- If you have this compile command:
 
-```bash
-python -c "import sysconfig; print(sysconfig.get_paths())"
-```
+    ```console
+    clang -c -O0 -g -o main file1.c file2.c file3.c
+    ```
+
+    You need compile_commands.json like:
+
+    ```json
+    [
+      {
+        "arguments": [
+          "abs/path/to/compiler",
+          "-c",
+          "-O0",
+          "-g",
+          "-o",
+          "main",
+          "file1.c"
+        ],
+        "directory": "project/abs/path",
+        "file": "abs/path/to/file1.c",
+        "output": "abs/path/to/main"
+      },
+      {
+        "arguments": [
+          "abs/path/to/compiler",
+          "-c",
+          "-O0",
+          "-g",
+          "-o",
+          "main",
+          "file2.c"
+        ],
+        "directory": "project/abs/path",
+        "file": "abs/path/to/file2.c",
+        "output": "abs/path/to/main"
+      },
+      {
+        "arguments": [
+          "abs/path/to/compiler",
+          "-c",
+          "-O0",
+          "-g",
+          "-o",
+          "main",
+          "file3.c"
+        ],
+        "directory": "project/abs/path",
+        "file": "abs/path/to/file3.c",
+        "output": "abs/path/to/main"
+      }
+    ]
+    ```
+
+- To resolve `#include <Python.h>`, run the following command to get the path of `Python.h`, and, add `-I/path/to/Python.h` in your `compile_commands.json` file.
+
+    ```console
+    python -c "import sysconfig; print(sysconfig.get_paths())"
+    ```
 
 ### tigerVNC
 

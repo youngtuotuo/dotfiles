@@ -110,6 +110,15 @@ if ask "============ Do you want to install fd ============"; then
 	fi
 fi
 
+# bear
+if ask "============ Do you want to install bear? ============"; then
+	if ! command -v bear >/dev/null; then
+		brew install bear
+	else
+		echo -e "\033[93mINFO\033[0m bear exists: $(which bear)"
+	fi
+fi
+
 # nodejs
 if ask "============ Do you want to install nodejs? ============"; then
 	if ! command -v node >/dev/null; then
