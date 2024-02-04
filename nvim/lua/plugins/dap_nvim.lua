@@ -149,7 +149,7 @@ return {
                 end,
               },
             }
-          elseif vim.fn.has("mac") == 1 then -- codelldb
+          elseif vim.fn.has("mac") == 1 or vim.fn.has("linux") == 1 or vim.fn.has("wsl") == 1 then -- codelldb
             dap.adapters.codelldb = {
               type = "server",
               port = "${port}",
@@ -168,27 +168,6 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
-                args = function()
-                  local argument_string = vim.fn.input("Program arguments: ")
-                  return vim.fn.split(argument_string, " ", true)
-                end,
-              },
-            }
-          else -- gdb
-            dap.adapters.gdb = {
-              type = "executable",
-              command = "gdb",
-              args = { "-i", "dap" },
-            }
-            dap.configurations.c = {
-              {
-                name = "Launch",
-                type = "gdb",
-                request = "launch",
-                program = function()
-                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                end,
-                cwd = "${workspaceFolder}",
                 args = function()
                   local argument_string = vim.fn.input("Program arguments: ")
                   return vim.fn.split(argument_string, " ", true)
