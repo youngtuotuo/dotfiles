@@ -25,19 +25,78 @@ return {
     "rcarriga/nvim-dap-ui",
     cmd = { "DB" },
     keys = function()
-      local toggle = function()
-        require("dapui").toggle()
-      end
       return {
-        { "<M-d>", toggle, mode = "n", desc = "[dap-ui] toggle ui" },
+        { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
     end,
-    config = function()
-      require("dapui").setup({
-        controls = {
-          enabled = false,
-        }
-      })
+    opts = {
+      controls = {
+        enabled = false,
+      },
+      layouts = {
+        {
+          elements = {
+            {
+              id = "repl",
+              size = 0.5,
+            },
+            {
+              id = "console",
+              size = 0.5,
+            },
+          },
+          position = "bottom",
+          size = 10,
+        },
+        {
+          elements = {
+            {
+              id = "breakpoints",
+              size = 0.25,
+            },
+            {
+              id = "watches",
+              size = 0.75,
+            },
+          },
+          position = "left",
+          size = 40,
+        },
+        {
+          elements = {
+            {
+              id = "scopes",
+              size = 0.5,
+            },
+            {
+              id = "stacks",
+              size = 0.5,
+            },
+          },
+          position = "right",
+          size = 40,
+        },
+      },
+    },
+    config = function(_, opts)
+      require("dapui").setup(opts)
+      local toggle_scopes = function()
+        require("dapui").toggle({ layout = 3, reset = true })
+      end
+      local toggle_breakpoints = function()
+        require("dapui").toggle({ layout = 2, reset = true })
+      end
+      local toggle_repl = function()
+        require("dapui").toggle({ layout = 1, reset = true })
+      end
+      local keys = {
+        { "n", "<M-r>", toggle_repl,        { desc = "[dap-ui] toggle repl" } },
+        { "n", "<M-s>", toggle_scopes,      { desc = "[dap-ui] toggle scopes" } },
+        { "n", "<M-b>", toggle_breakpoints, { desc = "[dap-ui] toggle scopes" } },
+      }
+      for _, v in ipairs(keys) do
+        vim.keymap.set(unpack(v))
+      end
     end,
     dependencies = {
       { "williamboman/mason.nvim" },
@@ -53,14 +112,6 @@ return {
           local step_out     = function() require("dap").step_out() end
           local breakpoint   = function() require("dap").toggle_breakpoint() end
           local close        = function() require("dap").close() end
-          local float_frames = function()
-            local widgets = require("dap.ui.widgets")
-            widgets.centered_float(widgets.frames)
-          end
-          local float_scopes = function()
-            local widgets = require("dap.ui.widgets")
-            widgets.centered_float(widgets.scopes)
-          end
 
           return {
             { "<M-q>", close,        mode = "n", desc = "[dap] close dap" },
@@ -69,8 +120,6 @@ return {
             { "<M-i>", step_into,    mode = "n", desc = "[dap] step into a function or method" },
             { "<M-o>", step_out,     mode = "n", desc = "[dap] step out of a function or method" },
             { "<M-a>", breakpoint,   mode = "n", desc = "[dap] toggle breakpoint" },
-            { "<M-f>", float_frames, mode = "n", desc = "[dap] inspect frames in float" },
-            { "<M-s>", float_scopes, mode = "n", desc = "[dap] inspect scopes in float" },
           }
         end,
         config = function()
@@ -95,7 +144,7 @@ return {
                 cwd = "${workspaceFolder}",
                 stopAtEntry = true,
                 args = function()
-                  local argument_string = vim.fn.input('Program arguments: ')
+                  local argument_string = vim.fn.input("Program arguments: ")
                   return vim.fn.split(argument_string, " ", true)
                 end,
               },
@@ -120,7 +169,7 @@ return {
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
                 args = function()
-                  local argument_string = vim.fn.input('Program arguments: ')
+                  local argument_string = vim.fn.input("Program arguments: ")
                   return vim.fn.split(argument_string, " ", true)
                 end,
               },
@@ -142,7 +191,7 @@ return {
                 cwd = "${workspaceFolder}",
               },
               args = function()
-                local argument_string = vim.fn.input('Program arguments: ')
+                local argument_string = vim.fn.input("Program arguments: ")
                 return vim.fn.split(argument_string, " ", true)
               end,
             }

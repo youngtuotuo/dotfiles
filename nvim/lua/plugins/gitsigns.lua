@@ -56,7 +56,7 @@ return {
       next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
     end
 
-    local keyms = {
+    local keys = {
       { "n", "gj", next_hunk,    { desc = "Gitsigns next hunk"     } },
       { "n", "gk", prev_hunk,    { desc = "Gitsigns previous hunk" } },
       { "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } },
@@ -64,7 +64,7 @@ return {
       { "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } },
       { "n", "gv", blame_line,   { desc = "Gitsigns line blame"    } },
     }
-    for _, v in ipairs(keyms) do
+    for _, v in ipairs(keys) do
       vim.keymap.set(unpack(v))
     end
   end,
