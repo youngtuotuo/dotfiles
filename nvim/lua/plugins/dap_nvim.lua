@@ -23,7 +23,7 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
-    cmd = { "DB" },
+    ft = { "c", "python", "cpp" },
     keys = function()
       return {
         { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
@@ -36,42 +36,24 @@ return {
       layouts = {
         {
           elements = {
-            {
-              id = "repl",
-              size = 0.65,
-            },
-            {
-              id = "console",
-              size = 0.35,
-            },
+            { id = "repl", size = 0.65 },
+            { id = "console", size = 0.35 },
           },
           position = "bottom",
           size = 10,
         },
         {
           elements = {
-            {
-              id = "scopes",
-              size = 0.5,
-            },
-            {
-              id = "watches",
-              size = 0.5,
-            },
+            { id = "scopes", size = 0.5 },
+            { id = "watches", size = 0.5 },
           },
           position = "left",
           size = 40,
         },
         {
           elements = {
-            {
-              id = "breakpoints",
-              size = 0.2,
-            },
-            {
-              id = "stacks",
-              size = 0.8,
-            },
+            { id = "breakpoints", size = 0.2 },
+            { id = "stacks", size = 0.8 },
           },
           position = "right",
           size = 50,
@@ -99,8 +81,6 @@ return {
       end
     end,
     dependencies = {
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" },
       {
         "mfussenegger/nvim-dap",
         lazy = true,
