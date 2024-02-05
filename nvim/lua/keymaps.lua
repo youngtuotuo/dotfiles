@@ -26,7 +26,7 @@ local keyms = {
 
   { { "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
   { { "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
-  { { "i" }, "<C-c>", "<C-[>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
+  { { "n", "i" }, "<C-c>", "<esc>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
 
   -- More indents options
   { { "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" } },

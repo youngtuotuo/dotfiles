@@ -31,7 +31,7 @@ return {
     return {
       {"<C-j>", next_node,    silent = true, mode = { "i", "s" }},
       {"<C-k>", prev_node,    silent = true, mode = { "i", "s" }},
-      {"<C-e>", cycle_choice, silent = true, mode = { "i", "s" }},
+      {"<C-l>", cycle_choice, silent = true, mode = { "i", "s" }},
     }
   end,
   config = function(_, opts)
