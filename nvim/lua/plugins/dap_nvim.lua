@@ -37,54 +37,50 @@ return {
         {
           elements = {
             { id = "breakpoints", size = 0.3 },
-            { id = "stacks", size = 0.7 },
+            { id = "watches", size = 0.5 },
+            { id = "stacks", size = 0.5 },
           },
-          position = "right",
+          position = "left",
           size = 50,
         },
         {
           elements = {
-            { id = "repl", size = 1 },
-            -- { id = "console", size = 0.35 },
+            { id = "repl", size = 0.7 },
+            { id = "console", size = 0.3 },
           },
           position = "bottom",
-          size = 15,
+          size = 10,
         },
         {
           elements = {
             { id = "scopes", size = 1 },
           },
           position = "bottom",
-          size = 15,
+          size = 10,
         },
         {
           elements = {
-            { id = "watches", size = 1 },
           },
-          position = "left",
-          size = 30,
+          position = "right",
+          size = 50,
         },
       },
     },
     config = function(_, opts)
       require("dapui").setup(opts)
-      local toggle_breakpoints = function()
-        require("dapui").toggle({ layout = 1, reset = false })
-      end
-      local toggle_watches = function()
-        require("dapui").toggle({ layout = 4, reset = false })
-      end
       local toggle_scopes = function()
         require("dapui").toggle({ layout = 3, reset = false })
       end
       local toggle_repl = function()
         require("dapui").toggle({ layout = 2, reset = false })
       end
+      local toggle_stacks = function()
+        require("dapui").toggle({ layout = 1, reset = false })
+      end
       local keys = {
-        { "n", "<M-r>", toggle_repl,        { desc = "[dap-ui] toggle repl" } },
-        { "n", "<M-s>", toggle_scopes,      { desc = "[dap-ui] toggle scopes" } },
-        { "n", "<M-b>", toggle_breakpoints, { desc = "[dap-ui] toggle breakpoints" } },
-        { "n", "<M-w>", toggle_watches,     { desc = "[dap-ui] toggle watches" } },
+        { "n", "<M-f>", toggle_stacks,  { desc = "[dap-ui] toggle stacks" } },
+        { "n", "<M-r>", toggle_repl,    { desc = "[dap-ui] toggle repl" } },
+        { "n", "<M-s>", toggle_scopes,  { desc = "[dap-ui] toggle scopes" } },
       }
       for _, v in ipairs(keys) do
         vim.keymap.set(unpack(v))
@@ -100,16 +96,19 @@ return {
           local step_over    = function() require("dap").step_over() end
           local step_into    = function() require("dap").step_into() end
           local step_out     = function() require("dap").step_out() end
-          local breakpoint   = function() require("dap").toggle_breakpoint() end
-          local close        = function() require("dap").close() end
+          local terminate    = function() require("dap").terminate() end
+          local add_breakpoint    = function() require("dap").toggle_breakpoint() end
+          local clear_breakpoints = function() require("dap").clear_breakpoints() end
+
 
           return {
-            { "<M-q>", close,        mode = "n", desc = "[dap] close dap" },
+            { "<M-q>", terminate,    mode = "n", desc = "[dap] terminate dap" },
             { "<M-x>", continue,     mode = "n", desc = "[dap] continue execution till next breakpoint" },
             { "<M-n>", step_over,    mode = "n", desc = "[dap] forward one execution" },
             { "<M-i>", step_into,    mode = "n", desc = "[dap] step into a function or method" },
             { "<M-o>", step_out,     mode = "n", desc = "[dap] step out of a function or method" },
-            { "<M-a>", breakpoint,   mode = "n", desc = "[dap] toggle breakpoint" },
+            { "<M-a>", add_breakpoint,    mode = "n", desc = "[dap] toggle breakpoint" },
+            { "<M-c>", clear_breakpoints, mode = "n", desc = "[dap] clear breakpoints" },
           }
         end,
         config = function()
