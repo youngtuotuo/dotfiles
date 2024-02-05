@@ -75,32 +75,5 @@ _G.colorset = function()
   for k, v in pairs(hls) do
     vim.api.nvim_set_hl(0, k, v)
   end
-
-  -- stylua: ignore
-  -- update the last line
-  local path = os.getenv(_G.home) .. "/github/dotfiles/nvim/init.lua"
-
-  local file = io.open(path, "r")
-  local fileContent = {}
-  for line in file:lines() do
-    table.insert(fileContent, line)
-  end
-
-  io.close(file)
-  local name = vim.g.colors_name
-  if name == nil then
-    name = "default"
-  end
-  fileContent[#fileContent] = "vim.cmd[[colo " .. name .. "]]"
-
-  file = io.open(path, "w")
-  for _, value in ipairs(fileContent) do
-    file:write(value .. "\n")
-  end
-  io.close(file)
-
-  if vim.fn.expand("%:p") == path then
-    vim.cmd([[e ]])
-  end
 end
 _G.colorset()
