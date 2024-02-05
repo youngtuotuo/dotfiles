@@ -12,6 +12,31 @@ function ask() {
 	[ "$response_lc" = "y" ]
 }
 
+# .local
+if ask "============ Do you want to create ~/.local? ============"; then
+		mkdir -p $HOME/.local
+fi
+
+# Neovim
+if ask "============ Do you want to install neovim? ============"; then
+	if ! command -v nvim >/dev/null; then
+		git clone https://github.com/neovim/neovim.git $HOME/github/neovim
+		cd $HOME/github/neovim
+		make distclean
+		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
+		make install
+		rm $HOME/.local/lib/nvim/parser/*.so
+	else
+		echo -e "\033[93mINFO\033[0m nvim exists: $(which nvim)"
+	fi
+fi
+
+# neovim config
+if ask "============ Do you want to install nvim config? ============"; then
+	mkdir -p $HOME/.config
+	ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
+fi
+
 # python
 if ask "============ Do you want to install another python? ============"; then
 	echo "Python download page: https://www.python.org/downloads/"
@@ -134,27 +159,6 @@ if ask "============ Do you want to install .bashrc and .profile? ============";
 	ln -s $HOME/github/dotfiles/ubuntu/.profile ~/.profile
 fi
 
-# Neovim
-if ask "============ Do you want to install neovim? ============"; then
-	if ! command -v nvim >/dev/null; then
-		mkdir -p $HOME/.local
-		git clone https://github.com/neovim/neovim.git $HOME/github/neovim
-		cd $HOME/github/neovim
-		make distclean
-		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
-		make install
-		rm $HOME/.local/lib/nvim/parser/*.so
-	else
-		echo -e "\033[93mINFO\033[0m nvim exists: $(which nvim)"
-	fi
-fi
-
-# neovim config
-if ask "============ Do you want to install nvim config? ============"; then
-	mkdir -p $HOME/.config
-	ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
-fi
-
 # fd link
 if ask "============ Do you want to link fd to fdfind? ============"; then
 	ln -s $(which fdfind) ~/.local/bin/fd
@@ -229,4 +233,23 @@ fi
 # wezterm
 if ask "============ Do you want to install .wezterm.lua? ============"; then
 	ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
+fi
+
+# watchman
+if ask "============ Do you want to install watchman? ============"; then
+	if ! command -v watchman >/dev/null; then
+		echo "watchman download page: https://github.com/facebook/watchman/releases "
+		read -p "Please give current watchman zip file url: " resp
+		if [ -z "$resp" ]; then
+			echo "Empty url, skip."
+		else
+			wget $resp -O $HOME/watchman.zip
+			mkdir -p $HOME/watchman
+			cd $HOME
+			unzip -d $HOME/watchman -j watchman.zip
+            cp $HOME/watchman/lib* $HOME/.local/lib
+            cp $HOME/watchman/watchman* $HOME/.local/bin
+		fi
+	else
+		echo -e "\033[93mINFO\033[0m watchman exists: $(which watchman)"
 fi

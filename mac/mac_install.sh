@@ -11,6 +11,11 @@ function ask() {
 	[ "$response_lc" = "y" ]
 }
 
+# .local
+if ask "============ Do you want to create ~/.local? ============"; then
+		mkdir -p $HOME/.local
+fi
+
 # homebrew
 if ask "============ Do you want to install homebrew ============"; then
 	if ! command -v brew >/dev/null; then
@@ -51,7 +56,6 @@ fi
 # Neovim
 if ask "============ Do you want to install neovim? ============"; then
 	if ! command -v nvim >/dev/null; then
-		mkdir -p $HOME/.local
 		git clone https://github.com/neovim/neovim.git $HOME/github/neovim
 		cd $HOME/github/neovim
 		make distclean

@@ -179,14 +179,11 @@ return {
                 -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
                 -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
                 -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-                -- TODO: Handle mac python path
+                -- TODO: Maybe we can use $ which python3
                 local cwd = vim.fn.getcwd()
                 if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
                   return cwd .. "/venv/bin/python"
-                elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-                  return cwd .. "/.venv/bin/python"
                 else
-                  -- TODO: Maybe we can use $ which python3
                   if vim.fn.has("win32") == 1 then
                     return "C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.exe"
                   elseif vim.fn.has("mac") == 1 then
