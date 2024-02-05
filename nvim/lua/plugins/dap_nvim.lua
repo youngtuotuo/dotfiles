@@ -69,13 +69,13 @@ return {
     config = function(_, opts)
       require("dapui").setup(opts)
       local toggle_scopes = function()
-        require("dapui").toggle({ layout = 3, reset = false })
+        require("dapui").toggle({ layout = 3, reset = true })
       end
       local toggle_repl = function()
-        require("dapui").toggle({ layout = 2, reset = false })
+        require("dapui").toggle({ layout = 2, reset = true })
       end
       local toggle_stacks = function()
-        require("dapui").toggle({ layout = 1, reset = false })
+        require("dapui").toggle({ layout = 1, reset = true })
       end
       local keys = {
         { "n", "<M-f>", toggle_stacks,  { desc = "[dap-ui] toggle stacks" } },
