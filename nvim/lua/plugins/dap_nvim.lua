@@ -36,24 +36,30 @@ return {
       layouts = {
         {
           elements = {
-            { id = "repl", size = 0.65 },
-            { id = "console", size = 0.35 },
+            { id = "repl", size = 1 },
+            -- { id = "console", size = 0.35 },
           },
           position = "bottom",
           size = 10,
         },
         {
           elements = {
-            { id = "scopes", size = 0.5 },
-            { id = "watches", size = 0.5 },
+            { id = "scopes", size = 1 },
           },
-          position = "left",
-          size = 40,
+          position = "bottom",
+          size = 10,
         },
         {
           elements = {
-            { id = "breakpoints", size = 0.2 },
-            { id = "stacks", size = 0.8 },
+            { id = "watches", size = 1 },
+          },
+          position = "left",
+          size = 30,
+        },
+        {
+          elements = {
+            { id = "breakpoints", size = 0.3 },
+            { id = "stacks", size = 0.7 },
           },
           position = "right",
           size = 50,
@@ -62,11 +68,14 @@ return {
     },
     config = function(_, opts)
       require("dapui").setup(opts)
+      local toggle_breakpoints = function()
+        require("dapui").toggle({ layout = 4, reset = true })
+      end
+      local toggle_watches = function()
+        require("dapui").toggle({ layout = 3, reset = true })
+      end
       local toggle_scopes = function()
         require("dapui").toggle({ layout = 2, reset = true })
-      end
-      local toggle_breakpoints = function()
-        require("dapui").toggle({ layout = 3, reset = true })
       end
       local toggle_repl = function()
         require("dapui").toggle({ layout = 1, reset = true })
@@ -74,7 +83,8 @@ return {
       local keys = {
         { "n", "<M-r>", toggle_repl,        { desc = "[dap-ui] toggle repl" } },
         { "n", "<M-s>", toggle_scopes,      { desc = "[dap-ui] toggle scopes" } },
-        { "n", "<M-b>", toggle_breakpoints, { desc = "[dap-ui] toggle scopes" } },
+        { "n", "<M-b>", toggle_breakpoints, { desc = "[dap-ui] toggle breakpoints" } },
+        { "n", "<M-w>", toggle_watches,     { desc = "[dap-ui] toggle watches" } },
       }
       for _, v in ipairs(keys) do
         vim.keymap.set(unpack(v))
