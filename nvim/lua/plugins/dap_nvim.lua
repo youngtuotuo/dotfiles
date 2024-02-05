@@ -36,18 +36,26 @@ return {
       layouts = {
         {
           elements = {
+            { id = "breakpoints", size = 0.3 },
+            { id = "stacks", size = 0.7 },
+          },
+          position = "right",
+          size = 50,
+        },
+        {
+          elements = {
             { id = "repl", size = 1 },
             -- { id = "console", size = 0.35 },
           },
           position = "bottom",
-          size = 10,
+          size = 15,
         },
         {
           elements = {
             { id = "scopes", size = 1 },
           },
           position = "bottom",
-          size = 10,
+          size = 15,
         },
         {
           elements = {
@@ -56,29 +64,21 @@ return {
           position = "left",
           size = 30,
         },
-        {
-          elements = {
-            { id = "breakpoints", size = 0.3 },
-            { id = "stacks", size = 0.7 },
-          },
-          position = "right",
-          size = 50,
-        },
       },
     },
     config = function(_, opts)
       require("dapui").setup(opts)
       local toggle_breakpoints = function()
-        require("dapui").toggle({ layout = 4, reset = true })
+        require("dapui").toggle({ layout = 1, reset = false })
       end
       local toggle_watches = function()
-        require("dapui").toggle({ layout = 3, reset = true })
+        require("dapui").toggle({ layout = 4, reset = false })
       end
       local toggle_scopes = function()
-        require("dapui").toggle({ layout = 2, reset = true })
+        require("dapui").toggle({ layout = 3, reset = false })
       end
       local toggle_repl = function()
-        require("dapui").toggle({ layout = 1, reset = true })
+        require("dapui").toggle({ layout = 2, reset = false })
       end
       local keys = {
         { "n", "<M-r>", toggle_repl,        { desc = "[dap-ui] toggle repl" } },
