@@ -171,30 +171,20 @@ return {
               type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
               request = "launch",
               name = "Launch file",
-
-              -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-              program = "${file}", -- This configuration will launch the current file if used.
-              pythonPath = function()
-                -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-                -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-                -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-                -- TODO: Maybe we can use $ which python3
-                local cwd = vim.fn.getcwd()
-                if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-                  return cwd .. "/venv/bin/python"
-                else
-                  if vim.fn.has("win32") == 1 then
-                    return "C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.exe"
-                  elseif vim.fn.has("mac") == 1 then
-                    return "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
-                  end
-                  return os.getenv("HOME") .. "/.local/bin/python3"
-                end
-              end,
               args = function()
                 local argument_string = vim.fn.input("Program arguments: ")
                 return vim.fn.split(argument_string, " ", true)
+              end,
+              -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+              module = string.gsub(vim.fn.expand("%:r"), '/', '.'),
+              python = function()
+                if vim.fn.executable("python3") then
+                  return vim.fn.exepath("python3")
+                elseif vim.fn.executable("python") then
+                  return vim.fn.exepath("python")
+                else
+                  return dap.ABORT
+                end
               end,
             },
           }
