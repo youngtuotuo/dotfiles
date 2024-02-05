@@ -116,6 +116,10 @@ Neovim
     python -c "import sysconfig; print(sysconfig.get_paths()['include'])"
     # or
     python3 -c "import sysconfig; print(sysconfig.get_paths()['include'])"
+    # or
+    pkg-config --libs --cflags python
+    # or
+    pkg-config --libs --cflags python3
     ```
 
     , and, add
