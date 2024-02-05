@@ -13,16 +13,12 @@
 
 -- stylua: ignore
 local keyms = {
-  { { "i" }, "<C-n>", "<nop>", { noremap = true, desc = "Not show native menu" } },
-  { { "i" }, "<C-p>", "<nop>", { noremap = true, desc = "Not show native menu" } },
-  { { "i" }, "<C-c>", "<nop>", { noremap = true, desc = "Disable interrupt" } },
+  { { "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" } },
+  { { "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" } },
+  { { "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" } },
 
-  { { "n", "v" }, "q:", "<nop>", { noremap = true, desc = "Bad doggy" } },
-  { { "n", "v" }, "q/", "<nop>", { noremap = true, desc = "Bad doggy" } },
-  { { "n", "v" }, "q?", "<nop>", { noremap = true, desc = "Bad doggy" } },
-
-  { { "n" }, "Q",     "<nop>", { noremap = true, desc = "Q repeat the last recorded register [count] times, no need" } },
-  { { "n" }, "<C-q>", "<nop>", { noremap = true, desc = "Never use C-q to enter visual block mode" } },
+  { { "n" }, "Q",     "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need" } },
+  { { "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" } },
 
   { { "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
   { { "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },

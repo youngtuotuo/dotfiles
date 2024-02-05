@@ -192,6 +192,10 @@ return {
                   return os.getenv("HOME") .. "/.local/bin/python3"
                 end
               end,
+              args = function()
+                local argument_string = vim.fn.input("Program arguments: ")
+                return vim.fn.split(argument_string, " ", true)
+              end,
             },
           }
         end,
