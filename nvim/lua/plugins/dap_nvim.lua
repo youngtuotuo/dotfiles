@@ -25,8 +25,24 @@ return {
     "rcarriga/nvim-dap-ui",
     ft = { "c", "python", "cpp" },
     keys = function()
+      local toggle_console = function()
+        require("dapui").toggle({ layout = 4, reset = true })
+      end
+      local toggle_scopes = function()
+        require("dapui").toggle({ layout = 3, reset = true })
+      end
+      local toggle_repl = function()
+        require("dapui").toggle({ layout = 2, reset = true })
+      end
+      local toggle_stacks = function()
+        require("dapui").toggle({ layout = 1, reset = true })
+      end
       return {
-        { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
+        { "<M-h>", toggle_stacks,  mode = "n", desc = "[dap-ui] toggle stacks" },
+        { "<M-j>", toggle_repl,    mode = "n", desc = "[dap-ui] toggle repl" },
+        { "<M-k>", toggle_scopes,  mode = "n", desc = "[dap-ui] toggle scopes" },
+        { "<M-l>", toggle_console, mode = "n", desc = "[dap-ui] toggle scopes" },
+        -- { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
     end,
     opts = {
@@ -66,30 +82,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("dapui").setup(opts)
-      local toggle_console = function()
-        require("dapui").toggle({ layout = 4, reset = true })
-      end
-      local toggle_scopes = function()
-        require("dapui").toggle({ layout = 3, reset = true })
-      end
-      local toggle_repl = function()
-        require("dapui").toggle({ layout = 2, reset = true })
-      end
-      local toggle_stacks = function()
-        require("dapui").toggle({ layout = 1, reset = true })
-      end
-      local keys = {
-        { "n", "<M-h>", toggle_stacks,  { desc = "[dap-ui] toggle stacks" } },
-        { "n", "<M-j>", toggle_repl,    { desc = "[dap-ui] toggle repl" } },
-        { "n", "<M-k>", toggle_scopes,  { desc = "[dap-ui] toggle scopes" } },
-        { "n", "<M-l>", toggle_console, { desc = "[dap-ui] toggle scopes" } },
-      }
-      for _, v in ipairs(keys) do
-        vim.keymap.set(unpack(v))
-      end
-    end,
     dependencies = {
       {
         "mfussenegger/nvim-dap",
