@@ -4,6 +4,8 @@ local function split_lines(value)
     value = string.gsub(value, "&nbsp;", " ")
     value = string.gsub(value, "&gt;", ">")
     value = string.gsub(value, "&lt;", "<")
+    value = string.gsub(value, "\n\n```", "\n\n```python")
+    value = string.gsub(value, "`\\_", "`")
   elseif vim.o.filetype == "c" or vim.o.filetype == "cpp" then
     value = string.gsub(value, "### ", "")
   end
