@@ -45,29 +45,32 @@ return {
         },
         {
           elements = {
-            { id = "repl", size = 0.7 },
-            { id = "console", size = 0.3 },
+            { id = "repl", size = 1 },
           },
           position = "bottom",
-          size = 20,
+          size = 15,
         },
         {
           elements = {
             { id = "scopes", size = 1 },
           },
-          position = "right",
-          size = 50,
+          position = "top",
+          size = 20,
         },
         {
           elements = {
+            { id = "console", size = 1 },
           },
           position = "right",
-          size = 50,
+          size = 40,
         },
       },
     },
     config = function(_, opts)
       require("dapui").setup(opts)
+      local toggle_console = function()
+        require("dapui").toggle({ layout = 4, reset = true })
+      end
       local toggle_scopes = function()
         require("dapui").toggle({ layout = 3, reset = true })
       end
@@ -78,9 +81,10 @@ return {
         require("dapui").toggle({ layout = 1, reset = true })
       end
       local keys = {
-        { "n", "<M-f>", toggle_stacks,  { desc = "[dap-ui] toggle stacks" } },
-        { "n", "<M-r>", toggle_repl,    { desc = "[dap-ui] toggle repl" } },
-        { "n", "<M-s>", toggle_scopes,  { desc = "[dap-ui] toggle scopes" } },
+        { "n", "<M-h>", toggle_stacks,  { desc = "[dap-ui] toggle stacks" } },
+        { "n", "<M-j>", toggle_repl,    { desc = "[dap-ui] toggle repl" } },
+        { "n", "<M-k>", toggle_scopes,  { desc = "[dap-ui] toggle scopes" } },
+        { "n", "<M-l>", toggle_console, { desc = "[dap-ui] toggle scopes" } },
       }
       for _, v in ipairs(keys) do
         vim.keymap.set(unpack(v))
