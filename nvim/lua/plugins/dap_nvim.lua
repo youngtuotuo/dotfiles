@@ -49,14 +49,14 @@ return {
             { id = "console", size = 0.3 },
           },
           position = "bottom",
-          size = 10,
+          size = 20,
         },
         {
           elements = {
             { id = "scopes", size = 1 },
           },
-          position = "bottom",
-          size = 10,
+          position = "right",
+          size = 150,
         },
         {
           elements = {
