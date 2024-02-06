@@ -25,23 +25,23 @@ return {
     "rcarriga/nvim-dap-ui",
     ft = { "c", "python", "cpp" },
     keys = function()
-      local toggle_console = function()
-        require("dapui").toggle({ layout = 4, reset = true })
-      end
-      local toggle_scopes = function()
-        require("dapui").toggle({ layout = 3, reset = true })
-      end
+      -- local toggle_console = function()
+      --   require("dapui").toggle({ layout = 4, reset = true })
+      -- end
+      -- local toggle_scopes = function()
+      --   require("dapui").toggle({ layout = 3, reset = true })
+      -- end
       local toggle_repl = function()
-        require("dapui").toggle({ layout = 2, reset = true })
-      end
-      local toggle_stacks = function()
         require("dapui").toggle({ layout = 1, reset = true })
       end
+      local toggle_stacks = function()
+        require("dapui").toggle({ layout = 2, reset = true })
+      end
       return {
-        { "<M-h>", toggle_stacks,  mode = "n", desc = "[dap-ui] toggle stacks" },
         { "<M-j>", toggle_repl,    mode = "n", desc = "[dap-ui] toggle repl" },
-        { "<M-k>", toggle_scopes,  mode = "n", desc = "[dap-ui] toggle scopes" },
-        { "<M-l>", toggle_console, mode = "n", desc = "[dap-ui] toggle scopes" },
+        { "<M-h>", toggle_stacks,  mode = "n", desc = "[dap-ui] toggle stacks" },
+        -- { "<M-k>", toggle_scopes,  mode = "n", desc = "[dap-ui] toggle scopes" },
+        -- { "<M-l>", toggle_console, mode = "n", desc = "[dap-ui] toggle scopes" },
         -- { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
     end,
@@ -52,33 +52,21 @@ return {
       layouts = {
         {
           elements = {
-            { id = "breakpoints", size = 0.3 },
-            { id = "watches", size = 0.5 },
-            { id = "stacks", size = 0.5 },
-          },
-          position = "left",
-          size = 50,
-        },
-        {
-          elements = {
-            { id = "repl", size = 1 },
+            { id = "scopes", size = 0.375 },
+            { id = "repl", size = 0.375 },
+            { id = "console", size = 0.25 },
           },
           position = "bottom",
           size = 15,
         },
         {
           elements = {
-            { id = "scopes", size = 1 },
+            { id = "breakpoints", size = 0.25 },
+            { id = "watches", size = 0.25 },
+            { id = "stacks", size = 0.5 },
           },
-          position = "top",
-          size = 20,
-        },
-        {
-          elements = {
-            { id = "console", size = 1 },
-          },
-          position = "right",
-          size = 40,
+          position = "left",
+          size = 50,
         },
       },
     },
