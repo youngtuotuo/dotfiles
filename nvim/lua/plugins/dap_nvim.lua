@@ -174,6 +174,7 @@ return {
               source_filetype = "python",
             },
           }
+
           dap.configurations.python = {
             {
               -- The first three options are required by nvim-dap
@@ -197,6 +198,14 @@ return {
               end,
             },
           }
+          vim.api.nvim_create_autocmd("BufEnter", {
+            pattern = { "*.c", "*.py" },
+            group = _G.auG,
+            callback = function()
+              dap.configurations.python[1].module = string.gsub(vim.fn.expand("%:r"), '/', '.')
+            end,
+            desc = "[dap] Change module when switch buffer"
+          })
         end,
       },
     },

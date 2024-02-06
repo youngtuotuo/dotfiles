@@ -21,6 +21,8 @@ _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
+_G.auG = "TuoGroup"
+
 local trsp = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
 local gr = "NvimLightGrey4"

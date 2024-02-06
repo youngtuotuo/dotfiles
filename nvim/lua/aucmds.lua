@@ -1,12 +1,4 @@
-local check_math_h = function()
-  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  if vim.fn.match(content, "math.h") == -1 then
-    return false
-  end
-  return true
-end
-
-local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
+local group = vim.api.nvim_create_augroup(_G.auG, { clear = true })
 
 local cmds = {
   TextYankPost = { {
