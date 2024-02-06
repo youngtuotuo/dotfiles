@@ -27,3 +27,4 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 echo "σ\`∀´)σ"
 alias taunt='echo "σ\`∀´)σ"'
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openal-soft/lib/pkgconfig"
