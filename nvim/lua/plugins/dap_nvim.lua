@@ -56,7 +56,7 @@ return {
             { id = "scopes", size = 1 },
           },
           position = "right",
-          size = 150,
+          size = 50,
         },
         {
           elements = {
