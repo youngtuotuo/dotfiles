@@ -14,8 +14,6 @@ alias la="ls -AG"
 alias cl="clear"
 alias vi="nvim"
 
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 export VIRTUAL_ENV_DISABLE_PROMPT=1

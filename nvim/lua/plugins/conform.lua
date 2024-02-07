@@ -23,6 +23,7 @@ return {
       python = { "ruff_format" },
       go = { "gofumpt" },
       c = { "clang_format" },
+      cpp = { "clang_format" },
       zig = { "zigfmt" },
       rust = { "rustfmt" },
       sh = { "shfmt" },
