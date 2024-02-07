@@ -25,12 +25,6 @@ return {
     "rcarriga/nvim-dap-ui",
     ft = { "c", "python", "cpp" },
     keys = function()
-      -- local toggle_console = function()
-      --   require("dapui").toggle({ layout = 4, reset = true })
-      -- end
-      -- local toggle_scopes = function()
-      --   require("dapui").toggle({ layout = 3, reset = true })
-      -- end
       local toggle_repl = function()
         require("dapui").toggle({ layout = 1, reset = true })
       end
@@ -40,9 +34,6 @@ return {
       return {
         { "<M-j>", toggle_repl,    mode = "n", desc = "[dap-ui] toggle repl" },
         { "<M-h>", toggle_stacks,  mode = "n", desc = "[dap-ui] toggle stacks" },
-        -- { "<M-k>", toggle_scopes,  mode = "n", desc = "[dap-ui] toggle scopes" },
-        -- { "<M-l>", toggle_console, mode = "n", desc = "[dap-ui] toggle scopes" },
-        -- { "<M-d>", require("dapui").toggle, mode = "n", desc = "[dap-ui] toggle ui" },
       }
     end,
     opts = {
@@ -52,21 +43,21 @@ return {
       layouts = {
         {
           elements = {
-            { id = "scopes", size = 0.375 },
-            { id = "repl", size = 0.375 },
-            { id = "console", size = 0.25 },
+            { id = "scopes", size = 0.4 },
+            { id = "repl", size = 0.4 },
+            { id = "console", size = 0.2 },
           },
           position = "bottom",
-          size = 15,
+          size = 20,
         },
         {
           elements = {
-            { id = "breakpoints", size = 0.25 },
-            { id = "watches", size = 0.25 },
-            { id = "stacks", size = 0.5 },
+            { id = "breakpoints", size = 0.1 },
+            { id = "watches", size = 0.35 },
+            { id = "stacks", size = 0.55 },
           },
           position = "left",
-          size = 50,
+          size = 55,
         },
       },
     },
