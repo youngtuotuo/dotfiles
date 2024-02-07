@@ -62,7 +62,7 @@ return {
       { "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } },
       { "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } },
       { "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } },
-      { "n", "gv", blame_line,   { desc = "Gitsigns line blame"    } },
+      { "n", "gh", blame_line,   { desc = "Gitsigns line blame"    } },
     }
     for _, v in ipairs(keys) do
       vim.keymap.set(unpack(v))
