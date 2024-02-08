@@ -5,7 +5,10 @@ local i = ls.insert_node
 local c = ls.choice_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-return {
+local snippets, autosnippets = {}, {}
+
+table.insert(
+  snippets,
   s(
     "main",
     fmt(
@@ -20,5 +23,7 @@ int main({}) {{
         i(2),
       }
     )
-  ),
-}
+  )
+)
+
+return snippets, autosnippets

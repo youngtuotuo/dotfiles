@@ -3,6 +3,7 @@ return {
   cond = function()
     return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
   end,
+  ft = { "tex", "c", "lua", "python" },
   event = { "BufRead" },
   version = "v2.*",
   opts = {
@@ -10,6 +11,7 @@ return {
     delete_check_events = "TextChanged",
     updateevents = "TextChanged,TextChangedI",
     enable_autosnippets = true,
+    store_selection_keys = "<Tab>",
   },
   -- stylua: ignore
   keys = function()

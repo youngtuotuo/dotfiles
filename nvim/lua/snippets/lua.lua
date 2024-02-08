@@ -3,7 +3,10 @@ local s = ls.snippet
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-return {
+local snippets, autosnippets = {}, {}
+
+table.insert(
+  snippets,
   s(
     "lfuntcion",
     fmt(
@@ -18,5 +21,7 @@ end
         i(3),
       }
     )
-  ),
-}
+  )
+)
+
+return snippets, autosnippets
