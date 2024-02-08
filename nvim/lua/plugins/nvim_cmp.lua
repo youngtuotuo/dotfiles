@@ -7,7 +7,6 @@ return {
       "https://codeberg.org/FelipeLema/cmp-async-path", -- nvim-cmp source for path (async version)
       "saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
       { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
-      -- "micangl/cmp-vimtex"                   -- use this one day
     },
     opts = function()
       local cmp_status_ok, cmp = pcall(require, "cmp")
@@ -23,7 +22,7 @@ return {
 
       return {
         completion = {
-          autocomplete = false,
+          -- autocomplete = false,
           completeopt = "menu,menuone,noinsert",
         },
         view = { docs = { auto_open = true } },

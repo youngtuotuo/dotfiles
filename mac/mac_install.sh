@@ -132,6 +132,25 @@ if ask "============ Do you want to install watchman? ============"; then
 	fi
 fi
 
+# latexmk
+if ask "============ Do you want to install latexmk? ============"; then
+	if ! command -v latexmk >/dev/null; then
+		brew install --cask mactex-no-gui
+        sudo tlmgr update --self
+	else
+		echo -e "\033[93mINFO\033[0m latexmk exists: $(which latexmk)"
+	fi
+fi
+
+# sioyek
+if ask "============ Do you want to install sioyek? ============"; then
+	if ! command -v sioyek >/dev/null; then
+		brew install --cask sioyek
+	else
+		echo -e "\033[93mINFO\033[0m sioyek exists: $(which sioyek)"
+	fi
+fi
+
 # yarn
 if ask "============ Do you want to install yarn? ============"; then
 	if ! command -v yarn >/dev/null; then

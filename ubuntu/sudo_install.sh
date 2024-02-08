@@ -27,6 +27,14 @@ if ask "============ Do you want to install all dependencies? ============"; the
 	sudo snap install cmake
 fi
 
+# latex
+if ask "============ Do you want to install all latex? ============"; then
+	sudo apt install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
+    sudo tlmgr update -all
+    echo -e "\033[93mINFO\033[0m If you meet error, try: tlmgr init-usertree"
+    ehoc -e "\033[93mINFO\033[0m Or maybe try this: https://github.com/scottkosty/install-tl-ubuntu"
+fi
+
 # nodejs
 if ask "============ Do you want to install nodejs? ============"; then
 	if ! command -v node >/dev/null; then
