@@ -27,7 +27,7 @@ return {
       zig = { "zigfmt" },
       rust = { "rustfmt" },
       sh = { "shfmt" },
-      json = { "jq" }
+      json = { "jq" },
     },
     formatters = {
       stylua = {

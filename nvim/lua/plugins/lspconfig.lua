@@ -50,9 +50,10 @@ return {
         local ensure_installed = {
           "clang-format",
           "clangd",
+          "debugpy",
           "gofumpt",
-          "shfmt",
           "gopls",
+          "jq",
           "lua_ls",
           "markdownlint",
           "prettier",
@@ -60,11 +61,10 @@ return {
           "ruff",
           "ruff_lsp",
           "rust_analyzer",
+          "shfmt",
           "stylua",
           "texlab",
           "zls",
-          "debugpy",
-          "jq",
         }
         if vim.fn.has("win32") == 1 then
           vim.list_extend(ensure_installed, { "cpptools" })

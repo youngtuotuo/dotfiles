@@ -76,6 +76,8 @@ local cmds = {
       pattern = { "*.tex" },
       callback = function()
         vim.opt_local.conceallevel = 2
+          vim.keymap.set("n", "<leader>p", ":VimtexCompile")
+          vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for latex",
     },

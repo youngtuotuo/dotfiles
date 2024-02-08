@@ -16,13 +16,14 @@ local keyms = {
   { { "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" } },
   { { "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" } },
   { { "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" } },
-
   { { "n" }, "Q",     "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need" } },
   { { "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" } },
 
   { { "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
   { { "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
+
   { { "n", "i" }, "<C-c>", "<esc>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
+  { { "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" } },
 
   -- More indents options
   { { "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" } },
@@ -40,8 +41,6 @@ local keyms = {
 
   -- better external command ouput
   { { "n" }, "<space>x", [[:terminal <C-b>]], { noremap = true, desc = ":terminal , execute external command with output to pane" } },
-
-  { { "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" } },
 
   { { "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" } },
 
