@@ -1,12 +1,11 @@
 return function()
-  require("lspconfig").telab.setup({
+  require("lspconfig").texlab.setup({
     settings = {
       texlab = {
         rootDirectory = nil,
         build = {
           executable = "latexmk",
           args = { "-xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
-          -- executable = 'xelatex',
           onSave = false,
           forwardSearchAfter = false,
         },
@@ -20,7 +19,7 @@ return function()
           modifyLineBreaks = false,
         },
         bibtexFormatter = "texlab",
-        formatterLineLength = 80,
+        formatterLineLength = 120,
       },
     },
   })

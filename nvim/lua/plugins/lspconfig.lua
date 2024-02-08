@@ -40,8 +40,7 @@ return {
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
           ["ruff_lsp"] = require("language_servers.ruff_lsp"),
-          -- not setup yet
-          -- ["texlab"] = require("language_servers.texlab"),
+          ["texlab"] = require("language_servers.texlab"),
         },
       },
     },
@@ -62,6 +61,7 @@ return {
           "ruff_lsp",
           "rust_analyzer",
           "stylua",
+          "texlab",
           "zls",
           "debugpy",
           "jq",
