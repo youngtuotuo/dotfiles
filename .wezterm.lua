@@ -25,10 +25,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-if package.config:sub(1, 1) == "\\" then
-  config.default_prog = { "pwsh.exe" }
-end
-
 config.status_update_interval = 50
 
 local function tab_title(tab_info)
@@ -87,7 +83,6 @@ config.mouse_bindings = {
 config.audible_bell = "Disabled"
 
 config.window_decorations = "RESIZE"
-config.show_new_tab_button_in_tab_bar = false
 
 config.window_frame = {
   border_top_height = "0.1cell",
@@ -176,7 +171,33 @@ config.keys = {
       alphabet = "1234567890",
     }),
   },
+  {
+    key = "9",
+    mods = "ALT",
+    action = wezterm.action.ShowLauncherArgs { flags = 'LAUNCH_MENU_ITEMS' },
+  },
 }
+
+local launch_menu = {}
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.default_prog = { "pwsh.exe" }
+  local msys2 = {
+    "C:/msys64/usr/bin/env.exe",
+    "MSYS=enable_pcon", -- Enable pseudo console API for msys (maybe not needed under wezterm?) Actually, needed - without it, Ctrl-D does not close the terminal!
+    "MSYSTEM=MSYS",
+    "/bin/bash",
+    "--login",
+  }
+  table.insert(launch_menu, {
+    label = "msys2 bash",
+    args = msys2,
+  })
+  table.insert(launch_menu, {
+    label = "Powershell",
+    args = { "pwsh.exe" },
+  })
+end
+config.launch_menu = launch_menu
 
 -- and finally, return the configuration to wezterm
 return config
