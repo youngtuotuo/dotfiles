@@ -178,26 +178,9 @@ config.keys = {
   },
 }
 
-local launch_menu = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe" }
-  local msys2 = {
-    "C:/msys64/usr/bin/env.exe",
-    "MSYS=enable_pcon", -- Enable pseudo console API for msys (maybe not needed under wezterm?) Actually, needed - without it, Ctrl-D does not close the terminal!
-    "MSYSTEM=UCRT64",
-    "/bin/bash",
-    "--login",
-  }
-  table.insert(launch_menu, {
-    label = "msys2 bash",
-    args = msys2,
-  })
-  table.insert(launch_menu, {
-    label = "Powershell",
-    args = { "pwsh.exe" },
-  })
 end
-config.launch_menu = launch_menu
 
 -- and finally, return the configuration to wezterm
 return config
