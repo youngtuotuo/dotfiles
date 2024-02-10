@@ -161,6 +161,7 @@ PowerShell config
  1. [devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
  2. Download PowerShell from Microsoft Store
  3. Install the bloated and laggy Visual Studio bc the SDK took more time to download.
+ 4. F**K u MS
 
 ### Load path
 
@@ -169,6 +170,13 @@ mkdir ~/github
 git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
 cp ~/github/dotfiles/windows/Microsoft.PowerShell_profile.ps1 ~/Documents/PowerShell/
 ```
+
+### Some Unix like program
+
+```powershell
+scoop install grep lsd which touch ln less
+```
+
 
 ### Build Neovim
 

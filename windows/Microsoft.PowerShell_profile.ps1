@@ -1,62 +1,16 @@
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
-
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineOption -Colors @{ InlinePrediction = "$([char]0x1b)[38;5;238m" }
 
-Import-Module PSFzf
-# replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-
-Set-Alias vim nvim
 Set-Alias vi nvim
-Set-Alias ll ls
-Set-Alias tig 'C:\Program Files\Git\usr\bin\tig.exe'
-Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
-function dev {
-    $curDir = Get-Location;
-    C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64;
-    cd $curDir
-}
-
-function l { ls | Format-Wide -Column 3 }
-
-function which ($command) {
-        Get-Command -Name $command -ErrorAction SilentlyContinue |
-          Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
-}
-
-function export($name, $value) {
-	set-item -force -path "env:$name" -value $value;
-}
-
-function pkill($name) {
-	get-process $name -ErrorAction SilentlyContinue | stop-process
-}
-
-function touch($file) {
-	if ( Test-Path $file ) {
-		Set-FileTime $file
-	} else {
-		New-Item $file -type file
-	}
-}
-
-function ln($target, $link) {
-	New-Item -ItemType SymbolicLink -Path $link -Value $target
-}
-
-set-alias new-link ln
-
-function grep($regex, $dir) {
-	if ( $dir ) {
-		get-childitem $dir | select-string $regex
-		return
-	}
-	$input | select-string $regex
-}
+Set-Alias ls lsd
+function ll($name) { lsd -Alh }
+function la($name) { lsd -AF }
+function l($name) { lsd -lF }
+function pkill($name) { get-process $name -ErrorAction SilentlyContinue | stop-process }
 
 function find-file($name) {
 	get-childitem -recurse -filter "*${name}*" -ErrorAction SilentlyContinue | foreach-object {
@@ -69,4 +23,9 @@ set-alias find-name find-file
 
 function reboot {
 	shutdown /r /t 0
+}
+function dev($name) {
+    $curDir = Get-Location;
+    C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64;
+    cd $curDir
 }
