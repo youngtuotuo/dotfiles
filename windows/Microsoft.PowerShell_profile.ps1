@@ -7,9 +7,9 @@ Set-PSReadLineOption -Colors @{ InlinePrediction = "$([char]0x1b)[38;5;238m" }
 
 Set-Alias vi nvim
 Set-Alias ls lsd
-function ll($name) { lsd -Alh }
-function la($name) { lsd -AF }
-function l($name) { lsd -lF }
+function ll($name) { lsd -Alh $name}
+function la($name) { lsd -AF $name}
+function l($name) { lsd -lF $name}
 function pkill($name) { get-process $name -ErrorAction SilentlyContinue | stop-process }
 
 function find-file($name) {
