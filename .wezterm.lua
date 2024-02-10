@@ -174,12 +174,22 @@ config.keys = {
   {
     key = "9",
     mods = "ALT",
-    action = wezterm.action.ShowLauncherArgs { flags = 'LAUNCH_MENU_ITEMS' },
+    action = wezterm.action.ShowLauncher,
   },
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe" }
+  config.launch_menu = {
+    {
+      label = "PowerShell",
+      args = { "powershell.exe", "-NoLogo" },
+    },
+    {
+      label = "WSL",
+      args = { "wsl.exe", "--cd", "~"}
+    }
+  }
 end
 
 -- and finally, return the configuration to wezterm
