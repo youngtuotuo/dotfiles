@@ -175,7 +175,7 @@ cp ~/github/dotfiles/windows/Microsoft.PowerShell_profile.ps1 ~/Documents/PowerS
 ### Some Unix like program
 
 ```powershell
-scoop install grep lsd which touch ln less
+scoop install grep lsd which touch ln less findutils
 ```
 
 

@@ -11,21 +11,12 @@ function ll($name) { lsd -Alh $name}
 function la($name) { lsd -AF $name}
 function l($name) { lsd -lF $name}
 function pkill($name) { get-process $name -ErrorAction SilentlyContinue | stop-process }
-
-function find-file($name) {
-	get-childitem -recurse -filter "*${name}*" -ErrorAction SilentlyContinue | foreach-object {
-		write-output($PSItem.FullName)
-	}
-}
-
-set-alias find find-file
-set-alias find-name find-file
-
 function reboot {
 	shutdown /r /t 0
 }
+
 function dev($name) {
     $curDir = Get-Location;
-    C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64;
+    C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch $name;
     cd $curDir
 }
