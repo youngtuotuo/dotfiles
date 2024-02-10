@@ -184,7 +184,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   local msys2 = {
     "C:/msys64/usr/bin/env.exe",
     "MSYS=enable_pcon", -- Enable pseudo console API for msys (maybe not needed under wezterm?) Actually, needed - without it, Ctrl-D does not close the terminal!
-    "MSYSTEM=MSYS",
+    "MSYSTEM=UCRT64",
     "/bin/bash",
     "--login",
   }
