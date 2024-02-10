@@ -157,11 +157,12 @@ pip install numpy
 
 PowerShell config
 -----------------
+(Trying MYSY2, hope I can get rid of this shell in the end)
 
  1. [devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
  2. Download PowerShell from Microsoft Store
  3. Install the bloated and laggy Visual Studio bc the SDK took more time to download.
- 4. F**K u MS
+ 4. F**K u MS. Why every thing on you is so complicated?
 
 ### Load path
 
@@ -190,7 +191,7 @@ dev
 cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release
 cmake --build .deps --config Release
 cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release
-cmake --build build --config Release
+cmake --build build --config Release --target install
 
 ```
 
