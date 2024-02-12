@@ -173,12 +173,20 @@ PowerShell config
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
+```powershell
+./windows/setup.ps1
+```
+
 
 ### Build Neovim
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable('VIMRUNTIME','C:\Users\<>\.local\share\nvim\runtime', 'User')
-[Environment]::SetEnvironmentVariable( "Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\<>\.local\bin", 'User')
+[System.Environment]::SetEnvironmentVariable('VIMRUNTIME','C:\Users\User\.local\share\nvim\runtime', 'User')
+[Environment]::SetEnvironmentVariable( "Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
+```
+
+Convenient one liner
+```powershell
 dev && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=C:\Users\User\.local && cmake --build build --config Release --target install
 ```
 
@@ -197,6 +205,7 @@ dir env:
 cd $env:APPDATA
 cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
+vi $PROFILE
 ```
 
 ### Windows Terminal Disable ligature
