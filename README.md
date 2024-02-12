@@ -29,12 +29,17 @@ AltSnap, QuickLook, ZoomIt, AutoHotKey, WinDbg
 Hard Install Tools
 ------------------
 
-### Ubuntu/WSL
+### Ubuntu/WSL2
 
 ```
 ./ubuntu/sudo_install.sh
 ./ubuntu/local_install.sh
 ```
+
+### WSL2
+
+Put ./windows/wsl.conf to /etc in WSL2.
+
 
 ### Mac
 
@@ -131,7 +136,7 @@ Neovim
     into your `compile_commands.json`.
 
 tigerVNC & noVNC
---------
+----------------
 
 - Run tigerVNC part in `./ubuntu/sudo_install.sh`
 
@@ -158,17 +163,14 @@ pip install numpy
 PowerShell config
 -----------------
 
- 1. [devaslife setup](https://www.youtube.com/watch?v=5-aK2_WwrmM&t=540s)
- 2. Download PowerShell from Microsoft Store
- 3. Install the bloated and laggy Visual Studio bc the SDK took more time to download.
- 4. F**K u MS. Why everything on you is so complicated?
+ 1. Download PowerShell from Microsoft Store
+ 2. Install the bloated and laggy Visual Studio bc the SDK took more time to download.
+ 3. F**K u MS. Why everything on you is so complicated?
 
-### Load path
+### First and first
 
 ```powershell
-mkdir ~/github
-git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
-cp ~/github/dotfiles/windows/Microsoft.PowerShell_profile.ps1 ~/Documents/PowerShell/
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 
@@ -185,6 +187,13 @@ cmake --build build --config Release --target install
 
 ```
 
+### Execution Policy
+Without setting this, you just can't run ps1 file.
+
+```powershell
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
+```
 
 ### Frequently used envs
 
@@ -193,13 +202,6 @@ dir env:
 cd $env:APPDATA
 cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
-```
-
-### Execution Policy
-
-```powershell
-Get-ExecutionPolicy -List
-Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
 ```
 
 ### Windows Terminal Disable ligature

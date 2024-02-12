@@ -2,20 +2,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local fg = wezterm.color.parse("#cacaca")
-local bg = wezterm.color.parse("#000000")
-local active_bg = wezterm.color.parse("#333233")
-
-wezterm.on("update-right-status", function(window)
-  local time = wezterm.strftime("%H:%M")
-
-  window:set_right_status(wezterm.format({
-    { Foreground = { Color = fg } },
-    { Background = { Color = bg } },
-    { Text = time .. " " },
-  }))
-end)
-
 -- This table will hold the configuration.
 local config = {}
 
@@ -27,48 +13,8 @@ end
 
 config.status_update_interval = 50
 
-local function tab_title(tab_info)
-  local title = tab_info.tab_title
-  -- if the tab title is explicitly set, take that
-  if title and #title > 0 then
-    return title
-  end
-  -- Otherwise, use the title from the active pane
-  -- in that tab
-  return tab_info.active_pane.title
-end
-
-wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
-  local foreground = fg
-  if tab.is_active then
-    foreground = fg:lighten(0.7)
-  else
-    foreground = fg:darken(0.6)
-  end
-
-  local title = tab_title(tab)
-
-  return {
-    { Background = { Color = bg } },
-    { Text = " " },
-    { Background = { Color = bg } },
-    { Foreground = { Color = foreground } },
-    { Text = (tab.tab_index + 1) .. ": " .. title },
-    { Background = { Color = bg } },
-    { Text = " " },
-  }
-end)
-
-config.colors = {
-  cursor_fg = bg,
-  cursor_bg = fg,
-  tab_bar = {
-    inactive_tab_edge = bg,
-  },
-}
-
 config.color_scheme = "Builtin Tango Dark"
-config.font = wezterm.font("FiraCode Nerd Font Mono")
+config.font = wezterm.font("CaskaydiaCove Nerd Font")
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
@@ -89,12 +35,6 @@ config.window_frame = {
   border_left_width = "0.2cell",
   border_right_width = "0.2cell",
   border_bottom_height = "0.1cell",
-  border_top_color = active_bg,
-  border_left_color = active_bg,
-  border_right_color = active_bg,
-  border_bottom_color = active_bg,
-  active_titlebar_bg = bg,
-  inactive_titlebar_bg = bg,
 }
 
 config.window_padding = {
@@ -179,6 +119,7 @@ config.keys = {
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.font_size = 10.0
   config.default_prog = { "pwsh.exe" }
   config.launch_menu = {
     {

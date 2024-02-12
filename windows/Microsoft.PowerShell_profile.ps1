@@ -20,3 +20,4 @@ function dev($name) {
     C:\'Program Files\Microsoft Visual Studio'\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 -Arch $name;
     cd $curDir
 }
+oh-my-posh init pwsh --config 'C:/Users/User/AppData/Local/Programs/oh-my-posh/themes/robbyrussell.omp.json' | Invoke-Expression

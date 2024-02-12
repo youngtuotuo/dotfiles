@@ -76,8 +76,8 @@ local cmds = {
       pattern = { "*.tex" },
       callback = function()
         vim.opt_local.conceallevel = 2
-          vim.keymap.set("n", "<leader>p", ":VimtexCompile")
-          vim.keymap.set("v", "<leader>p", "<nop>")
+        vim.keymap.set("n", "<leader>p", ":VimtexCompile")
+        vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for latex",
     },
@@ -108,6 +108,13 @@ local cmds = {
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for zig",
+    },
+    {
+      pattern = { "*.md" },
+      callback = function()
+        vim.opt_local.conceallevel = 2
+      end,
+      desc = "local markdown conceallevel",
     },
   },
   BufWinEnter = {
