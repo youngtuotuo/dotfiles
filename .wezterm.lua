@@ -16,13 +16,6 @@ config.font = wezterm.font("CaskaydiaCove Nerd Font")
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
-config.mouse_bindings = {
-  {
-    event = { Down = { streak = 3, button = "Left" } },
-    action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
-    mods = "NONE",
-  },
-}
 config.audible_bell = "Disabled"
 
 config.ssh_domains = {
@@ -37,72 +30,51 @@ config.ssh_domains = {
   },
 }
 
-local act = wezterm.action
 config.keys = {
   {
     key = "U",
     mods = "CTRL|SHIFT",
-    action = act.AttachDomain("ubuntu"),
+    action = wezterm.action.AttachDomain("ubuntu"),
   },
   {
     key = "D",
     mods = "CTRL|SHIFT",
-    action = act.DetachDomain("CurrentPaneDomain"),
+    action = wezterm.action.DetachDomain("CurrentPaneDomain"),
   },
-  { key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
-  { key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
-  {
-    key = "E",
-    mods = "CTRL|SHIFT",
-    action = act.PromptInputLine({
-      description = "Enter new name for tab",
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:active_tab():set_title(line)
-        end
-      end),
-    }),
-  },
-  {
-    key = "|",
-    mods = "SHIFT|ALT",
-    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-  },
-  {
-    key = "_",
-    mods = "SHIFT|ALT",
-    action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-  },
-  {
-    key = "LeftArrow",
-    mods = "ALT",
-    action = act.ActivatePaneDirection("Left"),
-  },
-  {
-    key = "RightArrow",
-    mods = "ALT",
-    action = act.ActivatePaneDirection("Right"),
-  },
-  {
-    key = "UpArrow",
-    mods = "ALT",
-    action = act.ActivatePaneDirection("Up"),
-  },
-  {
-    key = "DownArrow",
-    mods = "ALT",
-    action = act.ActivatePaneDirection("Down"),
-  },
-  {
-    key = "9",
-    mods = "ALT",
-    action = wezterm.action.ShowLauncher,
-  },
+  { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
+  { key = "{", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(-1) },
+  { key = "}", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(1) },
+  -- {
+  --   key = "W",
+  --   mods = "CTRL|SHIFT|ALT",
+  --   action = function()
+  --     -- Set a workspace for coding on a current project
+  --     -- Top pane is for the editor, bottom pane is for the build tool
+  --     local project_dir = wezterm.home_dir .. "/wezterm"
+  --     local tab, build_pane, window = wezterm.mux.spawn_window({
+  --       workspace = "coding",
+  --       cwd = project_dir,
+  --     })
+  --     local editor_pane = build_pane:split({
+  --       direction = "Top",
+  --       size = 0.6,
+  --       cwd = project_dir,
+  --     })
+  --     -- may as well kick off a build in that pane
+  --     build_pane:send_text("cargo build\n")
+  --
+  --     -- A workspace for interacting with a local machine that
+  --     -- runs some docker containners for home automation
+  --     local tab, pane, window = wezterm.mux.spawn_window({
+  --       workspace = "automation",
+  --       args = { "ssh", "vault" },
+  --     })
+  --
+  --     -- We want to startup in the coding workspace
+  --     wezterm.mux.set_active_workspace("coding")
+  --   end,
+  -- },
 }
-
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font_size = 10.0
   config.default_prog = { "pwsh.exe", "-NoLogo" }
