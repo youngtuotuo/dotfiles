@@ -71,3 +71,7 @@ esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export MODULAR_HOME="$HOME/.modular"
+if command -v watchman >/dev/null; then
+    eval "$(oh-my-posh init bash --config $HOME/.local/omp/robbyrussell.omp.json)"
+fi
+

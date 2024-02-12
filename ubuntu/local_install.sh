@@ -252,4 +252,15 @@ if ask "============ Do you want to install watchman? ============"; then
 		fi
 	else
 		echo -e "\033[93mINFO\033[0m watchman exists: $(which watchman)"
+    fi
+fi
+
+if ask "============ Do you want to install oh-my-posh? ============"; then
+	if ! command -v oh-my-posh >/dev/null; then
+        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
+        mkdir -p $HOME/.local/omp
+        wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
+	else
+		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
+    fi
 fi
