@@ -106,16 +106,6 @@ config.keys = {
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font_size = 10.0
   config.default_prog = { "pwsh.exe", "-NoLogo" }
-  config.launch_menu = {
-    {
-      label = "PowerShell",
-      args = { "pwsh.exe", "-NoLogo" },
-    },
-    {
-      label = "WSL",
-      args = { "wsl.exe", "--cd", "~" },
-    },
-  }
 end
 
 -- and finally, return the configuration to wezterm
