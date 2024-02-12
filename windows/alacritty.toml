@@ -1,0 +1,7 @@
+[shell]
+program="pwsh.exe"
+args=["-NoLogo"]
+
+[font]
+normal={ family = "CaskaydiaCove Nerd Font", style = "Regular"}
+size=10.0
