@@ -1,6 +1,5 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
-local act = wezterm.action
 
 -- This table will hold the configuration.
 local config = {}
@@ -10,8 +9,6 @@ local config = {}
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
-
-config.status_update_interval = 50
 
 config.color_scheme = "Builtin Tango Dark"
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
@@ -28,24 +25,6 @@ config.mouse_bindings = {
 }
 config.audible_bell = "Disabled"
 
-config.window_decorations = "RESIZE"
-
-config.window_frame = {
-  border_top_height = "0.1cell",
-  border_left_width = "0.2cell",
-  border_right_width = "0.2cell",
-  border_bottom_height = "0.1cell",
-}
-
-config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0,
-}
-
--- config.hide_tab_bar_if_only_one_tab = true
-
 config.ssh_domains = {
   {
     -- This name identifies the domainV
@@ -58,6 +37,7 @@ config.ssh_domains = {
   },
 }
 
+local act = wezterm.action
 config.keys = {
   {
     key = "U",
@@ -120,11 +100,11 @@ config.keys = {
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font_size = 10.0
-  config.default_prog = { "pwsh.exe" }
+  config.default_prog = { "pwsh.exe", "-NoLogo" }
   config.launch_menu = {
     {
       label = "PowerShell",
-      args = { "powershell.exe", "-NoLogo" },
+      args = { "pwsh.exe", "-NoLogo" },
     },
     {
       label = "WSL",
