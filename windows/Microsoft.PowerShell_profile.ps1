@@ -3,13 +3,14 @@ Set-PSReadlineOption -BellStyle None
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Chord Ctrl+Alt+h -Function BackwardKillWord
 Set-PSReadLineOption -Colors @{ InlinePrediction = "$([char]0x1b)[38;5;238m" }
 
 Set-Alias vi nvim
 Set-Alias ls lsd
-function ll($name) { lsd -Alh $name}
-function la($name) { lsd -AF $name}
-function l($name) { lsd -lF $name}
+function ll($name) { lsd -lh $name}
+function la($name) { lsd -AlhF $name}
+function l($name) { lsd -F $name}
 function pkill($name) { get-process $name -ErrorAction SilentlyContinue | stop-process }
 function reboot {
 	shutdown /r /t 0
