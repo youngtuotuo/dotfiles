@@ -68,28 +68,33 @@ config.keys = {
   },
   {
     key = "|",
-    mods = "CTRL|SHIFT|ALT",
+    mods = "SHIFT|ALT",
     action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
     key = "_",
-    mods = "CTRL|SHIFT|ALT",
+    mods = "SHIFT|ALT",
     action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "9",
-    mods = "CTRL",
-    action = act.PaneSelect({
-      alphabet = "1234567890",
-    }),
+    key = "LeftArrow",
+    mods = "ALT",
+    action = act.ActivatePaneDirection("Left"),
   },
   {
-    key = "0",
-    mods = "CTRL",
-    action = act.PaneSelect({
-      mode = "SwapWithActive",
-      alphabet = "1234567890",
-    }),
+    key = "RightArrow",
+    mods = "ALT",
+    action = act.ActivatePaneDirection("Right"),
+  },
+  {
+    key = "UpArrow",
+    mods = "ALT",
+    action = act.ActivatePaneDirection("Up"),
+  },
+  {
+    key = "DownArrow",
+    mods = "ALT",
+    action = act.ActivatePaneDirection("Down"),
   },
   {
     key = "9",
@@ -108,8 +113,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     },
     {
       label = "WSL",
-      args = { "wsl.exe", "--cd", "~"}
-    }
+      args = { "wsl.exe", "--cd", "~" },
+    },
   }
 end
 
