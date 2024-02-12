@@ -45,7 +45,7 @@ Hard Install Tools
 ### Windows
 
 ```powershell
-WIP (Maybe I will never create this)
+NO
 ```
 
 Neovim
@@ -171,25 +171,16 @@ git clone https://github.com/youngtuotuo/dotfiles.git ~/github/dotfiles
 cp ~/github/dotfiles/windows/Microsoft.PowerShell_profile.ps1 ~/Documents/PowerShell/
 ```
 
-### Some Unix like program
-
-```powershell
-scoop install grep lsd which touch ln less findutils
-```
-
 
 ### Build Neovim
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable('VIMRUNTIME','C:\Users\<>\github\neovim\runtime', 'User')
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\<>\github\neovim\bin",
-    'User')
+[System.Environment]::SetEnvironmentVariable('VIMRUNTIME','C:\Users\<>\.local\share\nvim\runtime', 'User')
+[Environment]::SetEnvironmentVariable( "Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\<>\.local\bin", 'User')
 dev
 cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release
 cmake --build .deps --config Release
-cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release
+cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=C:\Users\<>\.local
 cmake --build build --config Release --target install
 
 ```
