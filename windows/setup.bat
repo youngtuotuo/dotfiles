@@ -16,6 +16,8 @@ goto alias
 :clink_install
 scoop install clink
 clink autorun install
+clink inject
+cp %USERPROFILE%\github\dotfiles\windows\oh-my-posh.lua %=clink.profile%
 goto end
 
 :end

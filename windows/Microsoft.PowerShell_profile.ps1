@@ -51,4 +51,14 @@ function wsl_usage($name) {
     }
 }
 
+function prompt {
+    $p = $executionContext.SessionState.Path.CurrentLocation
+    $osc7 = ""
+    if ($p.Provider.Name -eq "FileSystem") {
+        $ansi_escape = [char]27
+        $provider_path = $p.ProviderPath -Replace "\\", "/"
+        $osc7 = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}${ansi_escape}\"
+    }
+    "${osc7}PS $p$('>' * ($nestedPromptLevel + 1)) ";
+}
 oh-my-posh init pwsh --config 'C:/Users/User/AppData/Local/Programs/oh-my-posh/themes/robbyrussell.omp.json' | Invoke-Expression
