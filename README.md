@@ -9,6 +9,11 @@ Cross Platform Tools
 
 Wezterm, Wireguard, OpenVPN Client
 
+Platform Specific
+-----------------
+
+Please refers to corresponding directory.
+
 
 Neovim
 ------

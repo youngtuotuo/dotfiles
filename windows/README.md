@@ -7,15 +7,24 @@ Tools
 + [AltSnap](https://github.com/RamonUnch/AltSnap/releases), [QuickLook](https://github.com/QL-Win/QuickLook/releases), [ZoomIt](https://learn.microsoft.com/en-us/sysinternals/downloads/zoomit): Useful tools.
 + [AutoHotKey](https://www.autohotkey.com/): Let you be able to use Win+M to minimize window.
 
-Dev Environment Setup
------------------
+WSL Dev Environment Setup
+-------------------------
+
+With WSL specific options answering y.
+```bash
+./ubuntu/sudo_install.sh
+./ubuntu/local_install.sh
+```
+
+
+# F**K u MS. Why everything on you is so complicated?
+
+
+Cmd Dev Environment Setup
+-------------------------
 
 Cuz MS's strange UI oriented design and [no sudo](https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/) command, lots of installations require you to use mouse and wait for the slow installation progress.
 Writing auto-install script is just overwhelming.
-
-```
-F**K u MS. Why everything on you is so complicated?
-```
 
 ### First and first
 

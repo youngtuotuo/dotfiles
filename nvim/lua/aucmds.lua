@@ -119,15 +119,6 @@ local cmds = {
   },
   BufWinEnter = {
     {
-      pattern = { "*.txt", "*.md" },
-      callback = function()
-        if vim.o.filetype == "help" or vim.o.filetype == "markdown" then
-          vim.cmd([[wincmd L]])
-        end
-      end,
-      desc = "Let help file go to vertical split",
-    },
-    {
       callback = function()
         vim.opt.formatoptions = "jql"
       end,
