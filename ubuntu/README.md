@@ -1,0 +1,29 @@
+Ubuntu/WSL2
+-----------
+
+```bash
+./ubuntu/sudo_install.sh
+./ubuntu/local_install.sh
+```
+
+tigerVNC
+--------
+
+**NOTE**: Not work in WSL2. You need to use VcXsrv instead.
+
+```bash
+vncserver :2
+vncserver -kill :2
+vncserver -list
+vncserver -kill
+vncserver -localhost no -geometry 1920x1080
+```
+
+noVNC
+-----
+
+```bash
+git clone https://github.com/novnc/noVNC ~/github/noVNC
+pip install numpy
+./utils/novnc_proxy --vnc <host>:5901
+```
