@@ -39,10 +39,6 @@ local options = {
   termguicolors  = true,
 }
 
-if options.laststatus == 0 then
-  options.statusline = "%{repeat('─',winwidth('.'))}"
-end
-
 -- fk u MS
 if vim.fn.has("win32") == 1 then
   options.shada = "!,'100,<50,s10,h" -- for command history

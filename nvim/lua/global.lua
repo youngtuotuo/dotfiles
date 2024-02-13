@@ -44,6 +44,7 @@ _G.colorset = function()
     FloatTitle       = { bg = trsp },
     LspReferenceText = { bg = dgr1 },
     Todo             = { bg = trsp },
+    Statusline       = { fg = w    },
 
 
     ModeMsg            = { fg = w,     bold = true },
@@ -68,10 +69,6 @@ _G.colorset = function()
     FloatBorder          = { link = "LspInfoBorder" },
     TelescopeBorder      = { link = "LspInfoBorder" },
   }
-  if vim.o.laststatus == 0 then
-    hls.StatusLine   = { link = "WinSeparator" }
-    hls.StatusLineNC = { link = "WinSeparator" }
-  end
   for k, v in pairs(hls) do
     vim.api.nvim_set_hl(0, k, v)
   end
