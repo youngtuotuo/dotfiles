@@ -169,6 +169,7 @@ PowerShell config
 
 ### First and first
 
+Without setting this, you just can't run ps1 file.
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
@@ -176,6 +177,14 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```powershell
 ./windows/setup.ps1
 ```
+
+### Command Prompt
+
+```
+cp %USERPROFILE%/github/dotfiles/winddows/alias.bat %USERPROFILE%
+```
+
+Execute the %USERPROFILE%/github/dotfiles/windows/alias.reg
 
 
 ### Build Neovim
@@ -191,7 +200,6 @@ dev && cmake --build .deps --target clean && cmake --build build --target clean 
 ```
 
 ### Execution Policy
-Without setting this, you just can't run ps1 file.
 
 ```powershell
 Get-ExecutionPolicy -List
@@ -200,12 +208,22 @@ Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
 
 ### Frequently used envs
 
+Powershell
 ```powershell
 dir env:
 cd $env:APPDATA
 cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
 vi $PROFILE
+```
+
+Command Prompt
+```
+env
+cd %APPDATA%
+cd %LOCALAPPDATA%
+cd %USERPROFILE%
+vi %PROFILE%
 ```
 
 ### Windows Terminal Disable ligature
