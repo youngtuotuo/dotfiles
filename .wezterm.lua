@@ -44,36 +44,6 @@ config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
   { key = "{", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(-1) },
   { key = "}", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(1) },
-  -- {
-  --   key = "W",
-  --   mods = "CTRL|SHIFT|ALT",
-  --   action = function()
-  --     -- Set a workspace for coding on a current project
-  --     -- Top pane is for the editor, bottom pane is for the build tool
-  --     local project_dir = wezterm.home_dir .. "/wezterm"
-  --     local tab, build_pane, window = wezterm.mux.spawn_window({
-  --       workspace = "coding",
-  --       cwd = project_dir,
-  --     })
-  --     local editor_pane = build_pane:split({
-  --       direction = "Top",
-  --       size = 0.6,
-  --       cwd = project_dir,
-  --     })
-  --     -- may as well kick off a build in that pane
-  --     build_pane:send_text("cargo build\n")
-  --
-  --     -- A workspace for interacting with a local machine that
-  --     -- runs some docker containners for home automation
-  --     local tab, pane, window = wezterm.mux.spawn_window({
-  --       workspace = "automation",
-  --       args = { "ssh", "vault" },
-  --     })
-  --
-  --     -- We want to startup in the coding workspace
-  --     wezterm.mux.set_active_workspace("coding")
-  --   end,
-  -- },
 }
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font_size = 10.0
