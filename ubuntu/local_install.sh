@@ -14,7 +14,7 @@ function ask() {
 
 # .local
 if ask "============ Do you want to create ~/.local? ============"; then
-		mkdir -p $HOME/.local
+	mkdir -p $HOME/.local
 fi
 
 # Neovim
@@ -49,7 +49,7 @@ if ask "============ Do you want to install another python? ============"; then
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
 		cd python
-		./configure --prefix=$HOME/.local --enable-optimizations
+		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared
 		make
 		make install
 	fi
@@ -60,7 +60,6 @@ if ask "============ Do you want to install another pip? ============"; then
 	wget https://bootstrap.pypa.io/get-pip.py -O $HOME/get-pip.py
 	cd $HOME
 	python3 get-pip.py
-
 fi
 
 # lua
@@ -144,7 +143,7 @@ if ask "============ Do you want to install gdb? ============"; then
 			cd $HOME
 			tar zxf gdb.tar.gz -C gdb --strip-components 1
 			cd gdb
-            ./configure --prefix=$HOME/.local
+			./configure --prefix=$HOME/.local
 			make
 			make install
 		fi
@@ -247,20 +246,20 @@ if ask "============ Do you want to install watchman? ============"; then
 			mkdir -p $HOME/watchman
 			cd $HOME
 			unzip -d $HOME/watchman -j watchman.zip
-            cp $HOME/watchman/lib* $HOME/.local/lib
-            cp $HOME/watchman/watchman* $HOME/.local/bin
+			cp $HOME/watchman/lib* $HOME/.local/lib
+			cp $HOME/watchman/watchman* $HOME/.local/bin
 		fi
 	else
 		echo -e "\033[93mINFO\033[0m watchman exists: $(which watchman)"
-    fi
+	fi
 fi
 
 if ask "============ Do you want to install oh-my-posh? ============"; then
 	if ! command -v oh-my-posh >/dev/null; then
-        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
-        mkdir -p $HOME/.local/omp
-        wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
+		curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
+		mkdir -p $HOME/.local/omp
+		wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
 	else
 		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
-    fi
+	fi
 fi
