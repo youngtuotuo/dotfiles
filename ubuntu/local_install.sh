@@ -49,7 +49,7 @@ if ask "============ Do you want to install another python? ============"; then
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
 		cd python
-		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared
+		././configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 		make
 		make install
 	fi
