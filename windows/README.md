@@ -67,7 +67,6 @@ Finally, reopen the command prompt.
 
 Set environment variables in powershell.
 ```powershell
-[System.Environment]::SetEnvironmentVariable('VIMRUNTIME','C:\Users\User\.local\share\nvim\runtime', 'User')
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
 ```
 
