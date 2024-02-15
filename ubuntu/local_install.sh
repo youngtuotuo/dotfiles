@@ -255,6 +255,22 @@ if ask "============ Do you want to install cmake? ============"; then
 	fi
 fi
 
+# nvtop
+if ask "============ Do you want to install nvtop? ============"; then
+	if ! command -v nvtop >/dev/null; then
+		echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
+		read -p "Please give current nvtop app image url: " resp
+		if [ -z "$resp" ]; then
+			echo "Empty url, skip."
+		else
+			wget $resp -O $HOME/nvtop
+			cp $HOME/nvtop $HOME/.local/bin/
+		fi
+	else
+		echo -e "\033[93mINFO\033[0m nvtop exists: $(which nvtop)"
+	fi
+fi
+
 # watchman
 if ask "============ Do you want to install watchman? ============"; then
 	if ! command -v watchman >/dev/null; then
