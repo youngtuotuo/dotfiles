@@ -234,10 +234,31 @@ if ask "============ Do you want to install .wezterm.lua? ============"; then
 	ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
 fi
 
+# cmake
+if ask "============ Do you want to install cmake? ============"; then
+	if ! command -v cmake >/dev/null; then
+		echo "cmake download page: https://cmake.org/download/"
+		read -p "Please give current cmake zip file url: " resp
+		if [ -z "$resp" ]; then
+			echo "Empty url, skip."
+		else
+			wget $resp -O $HOME/cmake.tar.gz
+			mkdir -p $HOME/cmake
+			cd $HOME
+			tar zxf -j cmake.tar.gz -C cmake --strip-components 1
+			cp $HOME/cmake/bin/* $HOME/.local/bin/
+			cp -r $HOME/cmake/share/* $HOME/.local/share/
+			cp -r $HOME/cmake/man/* $HOME/.local/man/
+		fi
+	else
+		echo -e "\033[93mINFO\033[0m cmake exists: $(which cmake)"
+	fi
+fi
+
 # watchman
 if ask "============ Do you want to install watchman? ============"; then
 	if ! command -v watchman >/dev/null; then
-		echo "watchman download page: https://github.com/facebook/watchman/releases "
+		echo "watchman download page: https://github.com/facebook/watchman/releases"
 		read -p "Please give current watchman zip file url: " resp
 		if [ -z "$resp" ]; then
 			echo "Empty url, skip."
@@ -246,8 +267,8 @@ if ask "============ Do you want to install watchman? ============"; then
 			mkdir -p $HOME/watchman
 			cd $HOME
 			unzip -d $HOME/watchman -j watchman.zip
-			cp $HOME/watchman/lib* $HOME/.local/lib
-			cp $HOME/watchman/watchman* $HOME/.local/bin
+			cp $HOME/watchman/lib/* $HOME/.local/lib
+			cp $HOME/watchman/watchman/* $HOME/.local/bin
 		fi
 	else
 		echo -e "\033[93mINFO\033[0m watchman exists: $(which watchman)"

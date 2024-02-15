@@ -25,7 +25,6 @@ if ask "============ Do you want to install all dependencies? ============"; the
 		libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
 		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev \
 		libyaml-dev libreadline6-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
-	sudo snap install cmake
 fi
 
 # latex
