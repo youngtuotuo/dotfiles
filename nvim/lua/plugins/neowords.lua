@@ -14,7 +14,11 @@ return {
       [[\v\=+]],
       [[\v\(+]],
       [[\v\{+]],
-      [[\v\[+]]
+      [[\v\[+]],
+      [[\v"+]],
+      [[\v'+]],
+      [[\v`+]],
+      [[\v,+]]
     )
 
     local forward_start, forward_end = hops.forward_start, hops.forward_end
