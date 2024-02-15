@@ -23,16 +23,17 @@ if ask "============ Do you want to install all dependencies? ============"; the
 		libtool libtool-bin autoconf automake g++ pkg-config unzip curl doxygen build-essential \
 		clang libevent-dev libncurses-dev bison git fd-find ripgrep zlib1g-dev \
 		libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
-		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev -y
+		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev \
+		libyaml-dev libreadline6-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
 	sudo snap install cmake
 fi
 
 # latex
 if ask "============ Do you want to install all latex? ============"; then
 	sudo apt install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
-    sudo tlmgr update -all
-    echo -e "\033[93mINFO\033[0m If you meet error, try: tlmgr init-usertree"
-    ehoc -e "\033[93mINFO\033[0m Or maybe try this: https://github.com/scottkosty/install-tl-ubuntu"
+	sudo tlmgr update -all
+	echo -e "\033[93mINFO\033[0m If you meet error, try: tlmgr init-usertree"
+	ehoc -e "\033[93mINFO\033[0m Or maybe try this: https://github.com/scottkosty/install-tl-ubuntu"
 fi
 
 # nodejs

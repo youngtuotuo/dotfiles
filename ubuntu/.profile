@@ -10,15 +10,15 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -26,52 +26,64 @@ fi
 #     PATH="$HOME/.local/bin:$PATH"
 # fi
 case ":${PATH}:" in
-    *:"$HOME/.local/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
-        ;;
+*:"$HOME/.local/bin":*) ;;
+*)
+	export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+	;;
 esac
 case ":${PATH}:" in
-    *:"$HOME/.local/go/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.local/go/bin${PATH:+:${PATH}}"
-        ;;
+*:"$HOME/.local/go/bin":*) ;;
+*)
+	export PATH="$HOME/.local/go/bin${PATH:+:${PATH}}"
+	;;
 esac
 case ":${PATH}:" in
-    *:"$HOME/.local/zig":*)
-        ;;
-    *)
-        export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
-        ;;
+*:"$HOME/.local/zig":*) ;;
+*)
+	export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
+	;;
 esac
 case ":${PATH}:" in
-    *:"/usr/local/cuda/bin":*)
-        ;;
-    *)
-        export PATH="/usr/local/cuda/bin${PATH:+:${PATH}}"
-        ;;
+*:"/usr/local/cuda/bin":*) ;;
+*)
+	export PATH="/usr/local/cuda/bin${PATH:+:${PATH}}"
+	;;
 esac
 case ":${PATH}:" in
-    *:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
-        ;;
+*:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*) ;;
+*)
+	export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
+	;;
 esac
 
 case ":${PATH}:" in
-    *:"$HOME/.cargo/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
-        ;;
+*:"$HOME/.cargo/bin":*) ;;
+*)
+	export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
+	;;
+esac
+
+case ":${PATH}:" in
+*:"$HOME/gems/bin":*) ;;
+*)
+	export PATH="$HOME/gems/bin${PATH:+:${PATH}}"
+	;;
+esac
+
+case ":${PATH}:" in
+*:"$HOME/.rbenv/bin":*) ;;
+*)
+	export PATH="$HOME/.rbenv/bin${PATH:+:${PATH}}"
+	;;
 esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export MODULAR_HOME="$HOME/.modular"
+export GEM_HOME="$HOME/gems"
 if command -v oh-my-posh >/dev/null; then
-    eval "$(oh-my-posh init bash --config $HOME/.local/omp/robbyrussell.omp.json)"
+	eval "$(oh-my-posh init bash --config $HOME/.local/omp/robbyrussell.omp.json)"
 fi
 
+if command -v rbenv >/dev/null; then
+	eval "$(rbenv init -)"
+fi

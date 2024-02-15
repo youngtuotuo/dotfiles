@@ -13,7 +13,7 @@ function ask() {
 
 # .local
 if ask "============ Do you want to create ~/.local? ============"; then
-		mkdir -p $HOME/.local
+	mkdir -p $HOME/.local
 fi
 
 # homebrew
@@ -136,7 +136,7 @@ fi
 if ask "============ Do you want to install latexmk? ============"; then
 	if ! command -v latexmk >/dev/null; then
 		brew install --cask mactex-no-gui
-        sudo tlmgr update --self
+		sudo tlmgr update --self
 	else
 		echo -e "\033[93mINFO\033[0m latexmk exists: $(which latexmk)"
 	fi
@@ -157,6 +157,16 @@ if ask "============ Do you want to install yarn? ============"; then
 		brew install yarn
 	else
 		echo -e "\033[93mINFO\033[0m yarn exists: $(which yarn)"
+	fi
+fi
+
+# ruby
+if ask "============ Do you want to install ruby? ============"; then
+	if ! command -v ruby >/dev/null; then
+		brew install chruby ruby-install xz
+		ruby-install ruby 3.1.3
+	else
+		echo -e "\033[93mINFO\033[0m ruby exists: $(which ruby)"
 	fi
 fi
 

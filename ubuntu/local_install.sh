@@ -254,6 +254,7 @@ if ask "============ Do you want to install watchman? ============"; then
 	fi
 fi
 
+# oh-my-posh
 if ask "============ Do you want to install oh-my-posh? ============"; then
 	if ! command -v oh-my-posh >/dev/null; then
 		curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
@@ -261,5 +262,22 @@ if ask "============ Do you want to install oh-my-posh? ============"; then
 		wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
 	else
 		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
+	fi
+fi
+
+# ruby
+if ask "============ Do you want to install ruby? ============"; then
+	if ! command -v ruby >/dev/null; then
+		curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+		rbenv install -l
+		read -p "Please select desired version: " resp
+		if [ -z "$resp" ]; then
+			echo "Empty version, skip."
+		else
+			rbenv install $resp
+			rbenv global $resp
+			gem install jekyll bundler
+		fi
+	else
 	fi
 fi
