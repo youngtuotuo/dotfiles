@@ -26,3 +26,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 echo "σ\`∀´)σ"
 alias taunt='echo "σ\`∀´)σ"'
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openal-soft/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig"
+. "$HOME/.cargo/env"
+if command -v oh-my-posh >/dev/null; then
+	eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/robbyrussell.omp.json)"
+fi
