@@ -170,6 +170,15 @@ if ask "============ Do you want to install ruby? ============"; then
 	fi
 fi
 
+# oh-my-posh
+if ask "============ Do you want to install oh-my-posh? ============"; then
+	if ! command -v oh-my-posh >/dev/null; then
+		brew install jandedobbeleer/oh-my-posh/oh-my-posh
+	else
+		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
+	fi
+fi
+
 # git credential manager
 if ask "============ Do you want to install gcm? ============"; then
 	brew install --cask git-credential-manager
