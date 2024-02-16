@@ -23,8 +23,9 @@ With WSL specific options answering y.
 Cmd Dev Environment Setup
 -------------------------
 
-Cuz MS's strange UI oriented design and [no sudo](https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/) command, lots of installations require you to use mouse and wait for the slow installation progress.
+1. Cuz MS's strange UI oriented design and [no sudo](https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/) command, lots of installations require you to use mouse and wait for the slow installation progress.
 Writing auto-install script is just overwhelming.
+2. Don't use powershell for daily development, it's so laggy.
 
 ### First and first
 
@@ -43,7 +44,9 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
 ```powershell
-scoop install curl wget gcc grep lsd which touch less findutils llvm nodejs yarn pkg-config coreutils git
+scoop install curl wget gcc grep lsd which touch less findutils llvm nodejs yarn pkg-config coreutils git oh-my-posh
+mkdir $env:PROFILE\.local
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
 ```
 
 ```powershell
@@ -53,22 +56,16 @@ git clone https://github.com/youngtuotuo/dotfiles.git $HOME/github/dotfiles
 ```powershell
 ./windows/setup.ps1
 ```
+
 ### Second, use command prompt
 
 ```bat
 windows/setup.bat
 ```
 
-then, double click the `windows/alias.reg` file.
-
 Finally, reopen the command prompt.
 
 ### Build Neovim
-
-Set environment variables in powershell.
-```powershell
-[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
-```
 
 Convenient one liner
 
@@ -76,7 +73,7 @@ Convenient one liner
 dev && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=C:\Users\User\.local && cmake --build build --config Release --target install
 ```
 
-NOTE: `dev` is the function in `alias.bat` or `Microsoft.PowerShell_profile.ps1` that enables the visual studio environment for command prompt or powershell, respectively.
+NOTE: `dev` is the function in `clink_start.cmd` or `Microsoft.PowerShell_profile.ps1` that enables the visual studio environment for command prompt or powershell, respectively.
 
 ### AutoHotKey
 

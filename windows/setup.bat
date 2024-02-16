@@ -18,6 +18,7 @@ scoop install clink
 clink autorun install
 clink inject
 cp %USERPROFILE%\github\dotfiles\windows\oh-my-posh.lua %=clink.profile%
+cp %USERPROFILE%\github\dotfiles\windows\clink_start.cmd %=clink.profile%
 goto end
 
 :end
