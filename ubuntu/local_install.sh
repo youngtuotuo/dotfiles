@@ -316,5 +316,6 @@ if ask "============ Do you want to install ruby? ============"; then
 			gem install jekyll bundler
 		fi
 	else
+		echo -e "\033[93mINFO\033[0m ruby exists: $(which ruby)"
 	fi
 fi
