@@ -127,3 +127,4 @@ alias taunt='echo "σ\`∀´)σ"'
 if command -v oh-my-posh >/dev/null; then
 	eval "$(oh-my-posh init bash --config ${HOME}/.local/omp/robbyrussell.omp.json)"
 fi
+. "$HOME/.cargo/env"
