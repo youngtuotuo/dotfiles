@@ -50,7 +50,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.launch_menu = {
     {
       label = "Powershell",
-      args = { "pwsh.exe", "-NoLogo"}
+      args = { "pwsh.exe" }
     }
   }
 end
