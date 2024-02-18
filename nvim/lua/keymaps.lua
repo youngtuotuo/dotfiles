@@ -19,8 +19,8 @@ local keyms = {
   { { "n" }, "Q",     "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need" } },
   { { "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" } },
 
-  { { "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
-  { { "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
+  { { "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
+  { { "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
 
   { { "n", "i" }, "<C-c>", "<esc>",   { noremap = true, desc = "Esc, C-c will raise inetrrutped error" } },
   { { "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" } },
@@ -39,9 +39,6 @@ local keyms = {
   { { "n" }, "<S-Up>", "<cmd>resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" } },
   { { "n" }, "<S-Down>", "<cmd>resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" } },
 
-  -- better external command ouput
-  { { "n" }, "<space>x", [[:terminal <C-b>]], { noremap = true, desc = ":terminal , execute external command with output to pane" } },
-
   { { "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" } },
 
   { { "v" }, "p", [["_dP]], { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] } },
@@ -52,6 +49,7 @@ local keyms = {
   { { "v" }, "L", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" } },
   { { "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" } },
   { { "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" } },
+  { { "n" }, "<leader>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } },
 
   -- more intuitive command mode keys
   { { "c" }, "<up>", function()
@@ -88,10 +86,6 @@ local keyms = {
   },
   { { "c" }, "<c-a>", "<c-b>", { noremap = true } },
 }
-
-if vim.fn.has("win32") == 0 then
-  table.insert(keyms, { { "n" }, "<leader>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } })
-end
 
 for _, v in ipairs(keyms) do
   vim.keymap.set(unpack(v))
