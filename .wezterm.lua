@@ -30,6 +30,9 @@ config.ssh_domains = {
   },
 }
 
+config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
+
 config.keys = {
   {
     key = "U",
