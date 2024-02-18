@@ -75,7 +75,6 @@ return {
           local add_breakpoint    = function() require("dap").toggle_breakpoint() end
           local clear_breakpoints = function() require("dap").clear_breakpoints() end
 
-
           return {
             { "<M-q>", terminate,    mode = "n", desc = "[dap] terminate dap" },
             { "<M-x>", continue,     mode = "n", desc = "[dap] continue execution till next breakpoint" },
@@ -88,59 +87,36 @@ return {
         end,
         config = function()
           local dap = require("dap")
-          if vim.fn.has("win32") == 1 then -- cpptools
-            dap.adapters.cppdbg = {
-              id = "cppdbg",
-              type = "executable",
-              command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7.cmd",
-              options = {
-                detached = true,
-              },
-            }
-            dap.configurations.c = {
-              {
-                name = "Launch file",
-                type = "cppdbg",
-                request = "launch",
-                program = function()
-                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                end,
-                cwd = "${workspaceFolder}",
-                stopAtEntry = true,
-                args = function()
-                  local argument_string = vim.fn.input("Program arguments: ")
-                  return vim.fn.split(argument_string, " ", true)
-                end,
-              },
-            }
-          elseif vim.fn.has("mac") == 1 or vim.fn.has("linux") == 1 or vim.fn.has("wsl") == 1 then -- codelldb
-            dap.adapters.codelldb = {
-              type = "server",
-              port = "${port}",
-              executable = {
-                command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-                args = { "--port", "${port}" },
-              },
-            }
-            dap.configurations.c = {
-              {
-                name = "Launch file",
-                type = "codelldb",
-                request = "launch",
-                program = function()
-                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                end,
-                cwd = "${workspaceFolder}",
-                stopOnEntry = false,
-                args = function()
-                  local argument_string = vim.fn.input("Program arguments: ")
-                  return vim.fn.split(argument_string, " ", true)
-                end,
-              },
-            }
+          local codelldb = {
+            type = "server",
+            port = "${port}",
+            executable = {
+              command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+              args = { "--port", "${port}" },
+            },
+          }
+          if vim.fn.has("win32") == 1 then
+            codelldb.executable.detached = false
+            codelldb.executable.command = vim.fn.stdpath("data") .. "/mason/bin/codelldb.cmd"
           end
+          dap.adapters.codelldb = codelldb
+          dap.configurations.c = {
+            {
+              name = "Launch file",
+              type = "codelldb",
+              request = "launch",
+              program = function()
+                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. _G.sep, "file")
+              end,
+              cwd = "${workspaceFolder}",
+              stopOnEntry = false,
+              args = function()
+                local argument_string = vim.fn.input("Program arguments: ")
+                return vim.fn.split(argument_string, " ", true)
+              end,
+            },
+          }
           dap.configurations.cpp = dap.configurations.c
-
           dap.adapters.python = {
             type = "executable",
             command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/debugpy-adapter",

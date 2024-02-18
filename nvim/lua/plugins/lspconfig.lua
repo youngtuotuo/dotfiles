@@ -65,12 +65,8 @@ return {
           "stylua",
           "texlab",
           "zls",
+          "codelldb",
         }
-        if vim.fn.has("win32") == 1 then
-          vim.list_extend(ensure_installed, { "cpptools" })
-        elseif vim.fn.has("mac") == 1 or vim.fn.has("linux") == 1 or vim.fn.has("wsl") == 1 then
-          vim.list_extend(ensure_installed, { "codelldb" })
-        end
         return {
           ensure_installed = ensure_installed,
         }
