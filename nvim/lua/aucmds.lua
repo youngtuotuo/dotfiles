@@ -20,7 +20,11 @@ local cmds = {
     {
       pattern = { "*.c", "*.cpp" },
       callback = function()
-        vim.keymap.set("n", "<leader>p", ":terminal ./build.sh <C-b>")
+        if vim.fn.has("win32") then
+          vim.keymap.set("n", "<leader>p", ":terminal ./build.bat <C-b>")
+        else
+          vim.keymap.set("n", "<leader>p", ":terminal ./build.sh <C-b>")
+        end
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
       desc = "<leader>p for c/cpp",
