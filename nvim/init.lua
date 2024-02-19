@@ -1,9 +1,3 @@
-local ok, wf = pcall(require, "vim.lsp._watchfiles")
-if ok then
-  wf._watchfunc = function()
-    return function() end
-  end
-end
 vim.loader.enable()
 
 require("global")
