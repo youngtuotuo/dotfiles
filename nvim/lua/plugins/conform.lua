@@ -3,13 +3,12 @@ return {
   dependencies = { "mason.nvim" },
   lazy = true,
   cmd = "ConformInfo",
-  -- stylua: ignore
   keys = function()
     local format = function()
-      require("conform").format({ timeout_ms = 3000 })
+      require("conform").format()
     end
     return {
-      { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" }
+      { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" },
     }
   end,
   init = function()
@@ -31,19 +30,15 @@ return {
     },
     formatters = {
       stylua = {
-        cmd = "stylua",
         prepend_args = {
           "--indent-type=spaces",
           "--indent-width=2",
           "--column-width=150",
         },
       },
-      ruff_format = {
-        prepend_args = { "--line-length", "150" },
-      },
       clang_format = {
         prepend_args = {
-          '-style={BasedOnStyle: llvm, ColumnLimit: 150, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}',
+          "-style={BasedOnStyle: llvm, ColumnLimit: 150, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}",
         },
       },
     },
