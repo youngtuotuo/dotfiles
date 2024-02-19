@@ -37,7 +37,6 @@ local opts = {
         "gzip",
         "rplugin",
         "tarPlugin",
-        -- "tutor",
         "zipPlugin",
       },
     },
@@ -45,5 +44,3 @@ local opts = {
 }
 require("lazy").setup(opts)
 vim.api.nvim_create_user_command("L", "Lazy", {})
-
-vim.cmd([[colo rose-pine]])

@@ -1,7 +1,6 @@
 return {
   "rose-pine/neovim",
   name = "rose-pine",
-  lazy = true,
   opts = {
     variant = "auto", -- auto, main, moon, or dawn
     enable = {
@@ -16,4 +15,8 @@ return {
       TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
     },
   },
+  config = function(_, opts)
+    require("rose-pine").setup(opts)
+    vim.cmd [[colo rose-pine]]
+  end
 }
