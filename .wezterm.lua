@@ -34,16 +34,6 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 
 config.keys = {
-  {
-    key = "U",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.AttachDomain("ubuntu"),
-  },
-  {
-    key = "D",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.DetachDomain("CurrentPaneDomain"),
-  },
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
   { key = "{", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(-1) },
   { key = "}", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(1) },
