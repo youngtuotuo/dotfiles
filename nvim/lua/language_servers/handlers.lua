@@ -8,7 +8,7 @@ local function split_lines(value)
     value = string.gsub(value, "`\\_", "`")
     value = string.gsub(value, "\\%[", "[[")
     value = string.gsub(value, "\\%]", "]]")
-    value = string.gsub(value, "(.*)\\_(.*)", "%1_%2")
+    value = string.gsub(value, "(%a*)\\_(%a*)", "%1_%2")
   elseif vim.o.filetype == "c" or vim.o.filetype == "cpp" then
     value = string.gsub(value, "### ", "")
   end
