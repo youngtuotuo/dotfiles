@@ -7,3 +7,6 @@ set number
 set hlsearch
 set ruler
 highlight Comment ctermfg=green
+set background=dark
+color evening
+set guifont=CaskaydiaCove_NFM:h9:cANSI:qDRAFT
