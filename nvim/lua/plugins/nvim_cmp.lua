@@ -128,7 +128,7 @@ return {
     "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for neovim Lua API.
     ft = "lua",
     cond = function()
-      return vim.fn.getcwd() == os.getenv(_G.home) .. "/github/dotfiles"
+      return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
     end,
   },
   {
