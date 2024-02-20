@@ -11,7 +11,6 @@ return {
       p.upper_case,
       p.number,
       p.hex_color,
-      [[\v\=+]],
       [[\v\(+]],
       [[\v\{+]],
       [[\v\[+]],
