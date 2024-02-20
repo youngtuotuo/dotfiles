@@ -62,7 +62,6 @@ return {
           "jq",
           "lua_ls",
           "markdownlint",
-          "prettier",
           "pyright",
           "ruff",
           "ruff_lsp",

@@ -11,13 +11,8 @@ return {
       { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" },
     }
   end,
-  init = function()
-    -- use gq to format
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  end,
   opts = {
     formatters_by_ft = {
-      markdown = { "prettier" },
       lua = { "stylua" },
       python = { "ruff_format" },
       go = { "gofumpt" },
