@@ -45,6 +45,14 @@ case ":${PATH}:" in
         export PATH="/opt/homebrew/opt/llvm/bin${PATH:+:${PATH}}"
         ;;
 esac
+case ":${PATH}:" in
+    *:"/Users/mikehung/.rubies/ruby-3.1.3/bin":*)
+        ;;
+    *)
+        export PATH="/Users/mikehung/.rubies/ruby-3.1.3/bin${PATH:+:${PATH}}"
+        ;;
+esac
+
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -44,8 +44,7 @@ _G.colorset = function()
     FloatTitle       = { bg = trsp },
     LspReferenceText = { bg = dgr1 },
     Todo             = { bg = trsp },
-    Statusline       = { fg = w    },
-
+    Statusline       = { fg =  dgr1, bg = w },
 
     ModeMsg            = { fg = w,     bold = true },
     TelescopeSelection = { fg = selfg, bold = true },
@@ -59,9 +58,6 @@ _G.colorset = function()
 
     LspReferenceRead     = { link = "LspReferenceText" },
     LspReferenceWrite    = { link = "LspReferenceText" },
-    IlluminatedWordText  = { link = "LspReferenceText" },
-    IlluminatedWordWrite = { link = "LspReferenceText" },
-    IlluminatedWordRead  = { link = "LspReferenceText" },
     DiffAdd              = { link = "DiagnosticFloatingOk" },
     DiffChange           = { link = "DiagnosticFloatingWarn" },
     DiffDelete           = { link = "DiagnosticFloatingError" },
