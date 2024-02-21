@@ -30,7 +30,7 @@ Writing auto-install script is just overwhelming.
 ### First and first
 
 1. Download [PowerShell](https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare) from Microsoft Store. Yes, it's different from the builtin one. Surprised? First time?
-2. Install the bloated and laggy [Visual Studio](https://visualstudio.microsoft.com/downloads/).
+2. Install the bloated and laggy [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools#build-tools-for-visual-studio-2022).
 3. Change execution policy in powershell. Without setting this, you can't run ps1 file and install scoop.
 
 ```powershell
