@@ -14,7 +14,6 @@ return {
     require("nvim-treesitter.query_predicates")
   end,
   dependencies = {
-    { "nvim-treesitter/playground" },
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       config = function(_, _)
