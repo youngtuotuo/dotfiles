@@ -15,8 +15,17 @@ snippets = vim.tbl_extend("force", snippets, {
       ]],
       { i(1) }
     )
+  ),
+  s({ trig = "__main", snippetType = "autosnippet" },
+    fmta(
+      [[
+      if __name__ == "__main__":
+          <>
+      ]],
+      { i(1) }
+    )
   )
+
 })
 
 return snippets
-
