@@ -10,7 +10,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = "Builtin Tango Dark"
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
 
 config.adjust_window_size_when_changing_font_size = false
@@ -20,12 +19,8 @@ config.audible_bell = "Disabled"
 
 config.ssh_domains = {
   {
-    -- This name identifies the domainV
     name = "ubuntu",
-    -- The hostname or address to connect to. Will be used to match settings
-    -- from your ssh config file
     remote_address = "192.168.0.123",
-    -- The username to use on the remote host
     username = "support",
   },
 }
