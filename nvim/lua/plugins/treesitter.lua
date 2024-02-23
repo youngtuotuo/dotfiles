@@ -63,21 +63,12 @@ return {
         node_decremental = "<S-TAB>",
       },
     },
+    -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
     ensure_installed = {
       "gitcommit",
       "gitignore",
       "go",
-      "python",
-      "c",
-      -- will cause slow startup when opening .h files
-      -- "cpp",
-      "lua",
-      "markdown",
-      "markdown_inline",
-      "query",
       "rust",
-      "vim",
-      "vimdoc",
     },
     textobjects = {
       select = {
