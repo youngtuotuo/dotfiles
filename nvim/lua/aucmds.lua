@@ -20,6 +20,7 @@ local cmds = {
     {
       pattern = { "*.c", "*.cpp" },
       callback = function()
+        vim.opt_local.cinoptions = [[=0]]
         if vim.fn.has("win32") then
           vim.keymap.set("n", "<leader>p", ":terminal build.bat <C-b>")
         else
@@ -96,9 +97,6 @@ local cmds = {
     {
       pattern = { "*.go" },
       callback = function()
-        vim.opt_local.shiftwidth = 8
-        vim.opt_local.softtabstop = 0
-        vim.opt_local.expandtab = false
         vim.keymap.set("n", "<leader>p", ":terminal go run % <C-b>")
         vim.keymap.set("v", "<leader>p", "<nop>")
       end,
