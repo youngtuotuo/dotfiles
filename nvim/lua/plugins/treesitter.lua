@@ -45,14 +45,10 @@ return {
   },
   opts = {
     indent = {
-      enable = true
+      enable = false
     },
     highlight = {
-      enable = true,
-    },
-    matchup = {
-      enable = true,
-      disable_virtual_text = true,
+      enable = false,
     },
     incremental_selection = {
       enable = true,
