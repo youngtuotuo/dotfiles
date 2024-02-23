@@ -1,40 +1,40 @@
 -- stylua: ignore start
 local options = {
-  expandtab   = true, -- <Tab> to space char, CTRL-V-I to insert real tab 
-  softtabstop = 4, -- <BS> delete 4 spaces
+  expandtab   = true,  -- <Tab> to space char, CTRL-V-I to insert real tab 
+  softtabstop = 4,     -- <BS> delete 4 spaces
   tabstop     = 4,
-  shiftwidth  = 4, -- spaces for auto indent
-  smartindent = true, -- auto indent when typing { & }
-  cinoptions  = "l1", -- for switch, case alignment
+  shiftwidth  = 4,     -- spaces for auto indent
+  smartindent = true,  -- auto indent when typing { & }
+  cinoptions  = "l1",  -- for switch, case alignment
   termsync    = false,
   wrap        = false,
   writebackup = false, -- no need this with undo history plugin
-  completeopt = "menu,menuone,noinsert,noselect",
-  guicursor   = "", -- i hate blink and vertical line
+  guicursor   = "",    -- i hate blink and vertical line
   hlsearch    = false,
-  ignorecase  = true, -- Ignore case when searching...
-  smartcase   = true, -- ... unless there is a capital letter in the query
-  matchtime   = 1, -- display of current match paren faster
-  showmatch   = true, -- show matching brackets when text indicator is over them
+  ignorecase  = true,  -- Ignore case when searching...
+  smartcase   = true,  -- ... unless there is a capital letter in the query
+  matchtime   = 1,     -- display of current match paren faster
+  showmatch   = true,  -- show matching brackets when text indicator is over them
   nu          = true,
   rnu         = true,
   ru          = true,
   showcmd     = true,
-  laststatus  = 3,
+  laststatus  = 2,
   showmode    = true,
   signcolumn  = "yes:1",
   swapfile    = false,
   backup      = false,
   updatetime  = 50,
+  completeopt = [[menu,menuone,noinsert,noselect]],
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
   undofile    = true,
   wildcharm   = vim.fn.char2nr('^I'),
   virtualedit = "block",
   pumheight   = 10,
   equalalways = false,
-  mousemodel     = "extend",
-  formatoptions  = "jql", -- :h fo-table
-  termguicolors  = true,
+  mousemodel  = "extend",
+  formatoptions = "jql", -- :h fo-table
+  termguicolors = true,
 }
 
 -- fk u MS

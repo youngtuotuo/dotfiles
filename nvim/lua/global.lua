@@ -44,7 +44,6 @@ _G.colorset = function()
     FloatTitle       = { bg = trsp },
     LspReferenceText = { reverse = true },
     Todo             = { bg = trsp },
-    Statusline       = { fg =  dgr1, bg = w },
 
     ModeMsg            = { fg = w,     bold = true },
     TelescopeSelection = { fg = selfg, bold = true },
