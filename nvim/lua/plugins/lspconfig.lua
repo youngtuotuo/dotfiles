@@ -57,7 +57,6 @@ return {
           "clang-format",
           "clangd",
           "debugpy",
-          "gofumpt",
           "gopls",
           "jq",
           "lua_ls",
