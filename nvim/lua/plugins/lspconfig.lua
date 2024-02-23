@@ -61,7 +61,6 @@ return {
           "gopls",
           "jq",
           "lua_ls",
-          "markdownlint",
           "pyright",
           "ruff",
           "ruff_lsp",
