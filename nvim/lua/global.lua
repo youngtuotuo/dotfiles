@@ -42,7 +42,7 @@ _G.colorset = function()
     WinBarNC         = { bg = trsp },
     NormalFloat      = { bg = trsp },
     FloatTitle       = { bg = trsp },
-    LspReferenceText = { bg = dgr1 },
+    LspReferenceText = { reverse = true },
     Todo             = { bg = trsp },
     Statusline       = { fg =  dgr1, bg = w },
 
