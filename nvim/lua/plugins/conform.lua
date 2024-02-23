@@ -12,6 +12,7 @@ return {
     }
   end,
   opts = {
+    async = true,
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff_format" },
