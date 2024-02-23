@@ -69,6 +69,7 @@ return {
       "gitignore",
       "go",
       "rust",
+      "cpp", --sigh
     },
     textobjects = {
       select = {
