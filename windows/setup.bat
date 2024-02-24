@@ -18,7 +18,10 @@ scoop install clink
 clink autorun install
 cp %USERPROFILE%\github\dotfiles\windows\oh-my-posh.lua %=clink.profile%
 cp %USERPROFILE%\github\dotfiles\windows\clink_start.cmd %=clink.profile%
-clink installscripts %USERPROFILE%\github\dotfiles\windows\tilde_expand 
+cp %USERPROFILE%\github\dotfiles\windows\.inputrc %=clink.profile%
+clink installscripts %USERPROFILE%\github\dotfiles\windows\clink_scripts
+clink set tilde.autoexpand true
+clink set fzf.exe_location $USERPROFILE%\scoop\shims\fzf.exe
 goto end
 
 :end

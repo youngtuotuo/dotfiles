@@ -9,4 +9,3 @@ doskey vi=nvim $*
 doskey less=less -R $* 
 doskey alias=doskey /MACROS:ALL
 doskey env=set ""
-clink set tilde.autoexpand true

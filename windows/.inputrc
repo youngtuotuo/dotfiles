@@ -1,0 +1,1 @@
+"\C-r":        "luafunc:fzf_history"        # Ctrl+R lists history entries; choose one to insert it.

@@ -13,7 +13,7 @@ end
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
 
 config.adjust_window_size_when_changing_font_size = false
-config.harfbuzz_features = { "calt=1", "clig=0", "liga=0" }
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
