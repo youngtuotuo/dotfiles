@@ -20,6 +20,7 @@ local keyms = {
   { { "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" } },
 
   { { "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" } },
+  { { "n" }, "c_", "c^", { nowait = true, noremap = true, desc = "Delete back to the first character and insert" } },
 
   { { "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" } },
   { { "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" } },
