@@ -36,7 +36,8 @@ _G.colorset = function()
     Error              = { fg = trsp },
     netrwMarkFile      = { fg = y    },
     markdownBlockquote = { fg = gr   },
-    PmenuSel           = { fg = w    },
+    Pmenu              = { fg = "#908caa", bg = dgr1 },
+    PmenuSel           = { fg = w, bg = dgr3 },
 
     WinBar           = { bg = trsp },
     WinBarNC         = { bg = trsp },
