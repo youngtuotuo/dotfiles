@@ -41,16 +41,11 @@ return {
         },
         window = {
           completion = {
-            winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
-            -- scrollbar = false,
-            border = _G.border,
+            winhighlight = "Normal:Pmenu,CursorLine:PmenuSel",
             max_width = 40,
           },
           documentation = {
-            winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel",
-            -- scrollbar = false,
-            border = _G.border,
-            -- max_width = 50,
+            winhighlight = "Normal:Pmenu,CursorLine:PmenuSel",
             max_height = 30,
           },
         },
