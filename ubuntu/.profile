@@ -77,7 +77,8 @@ case ":${PATH}:" in
 	;;
 esac
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
+bind "\C-t":transpose-chars
 export MODULAR_HOME="$HOME/.modular"
 export GEM_HOME="$HOME/gems"
 if command -v oh-my-posh >/dev/null; then
