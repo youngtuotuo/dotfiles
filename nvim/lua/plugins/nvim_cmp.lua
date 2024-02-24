@@ -3,7 +3,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = "BufRead",
     dependencies = {
-      "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
       { "L3MON4D3/LuaSnip", version = "v2.*" }, -- Snippet Engine for Neovim written in Lua
     },
@@ -12,7 +11,6 @@ return {
       if not cmp_status_ok then
         return
       end
-
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -21,7 +19,7 @@ return {
 
       return {
         completion = {
-          -- autocomplete = false,
+          autocomplete = false,
           completeopt = "menu,menuone,noinsert",
         },
         view = { docs = { auto_open = true } },
@@ -94,7 +92,6 @@ return {
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
         }, {
-          { name = "buffer" },
           { name = "nvim_lua" },
         }),
         sorting = {
