@@ -12,7 +12,7 @@ return {
       changedelete = { text = "~" },
       untracked    = { text = "┆" },
     },
-    signcolumn = true,
+    signcolumn = false,
     numhl = false,
     linehl = false,
     word_diff = false,
@@ -50,6 +50,7 @@ return {
     local reset_hunk   = require("gitsigns").reset_hunk
     local preview_hunk = require("gitsigns").preview_hunk
     local blame_line   = require("gitsigns").blame_line
+    local toggle_signs = require("gitsigns").toggle_signs
 
     local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
     if ts_obj_status then
@@ -63,6 +64,7 @@ return {
       { "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } },
       { "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } },
       { "n", "gh", blame_line,   { desc = "Gitsigns line blame"    } },
+      { "n", "<leader>g", toggle_signs,  { desc = "Gitsigns toggle sign"   } },
     }
     for _, v in ipairs(keys) do
       vim.keymap.set(unpack(v))

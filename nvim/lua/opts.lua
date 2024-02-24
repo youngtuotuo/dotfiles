@@ -1,4 +1,4 @@
--- stylua: ignore start
+-- stylua: ignore startopts
 local options = {
   expandtab   = true,  -- <Tab> to space char, CTRL-V-I to insert real tab 
   softtabstop = 4,     -- <BS> delete 4 spaces
@@ -15,13 +15,13 @@ local options = {
   smartcase   = true,  -- ... unless there is a capital letter in the query
   matchtime   = 1,     -- display of current match paren faster
   showmatch   = true,  -- show matching brackets when text indicator is over them
-  nu          = true,
-  rnu         = true,
+  nu          = false,
+  rnu         = false,
   ru          = true,
   showcmd     = true,
   laststatus  = 2,
   showmode    = true,
-  signcolumn  = "yes:1",
+  signcolumn  = "auto",
   swapfile    = false,
   backup      = false,
   updatetime  = 50,
