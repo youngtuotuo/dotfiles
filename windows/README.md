@@ -70,7 +70,7 @@ Finally, reopen the command prompt.
 Convenient one liner
 
 ```powershell
-dev && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local && cmake --build build --config Release --target install && rm -rf %USERPROFILE%\.local\lib\nvim\parser\*.dll
+dev && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local && cmake --build build --config Release --target install
 ```
 
 NOTE: `dev` is the function in `clink_start.cmd` or `Microsoft.PowerShell_profile.ps1` that enables the visual studio environment for command prompt or powershell, respectively.
