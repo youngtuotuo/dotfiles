@@ -20,14 +20,12 @@ return {
       return {
         completion = {
           autocomplete = false,
-          completeopt = "menu,menuone,noinsert",
         },
         view = { docs = { auto_open = true } },
         formatting = {
           format = function(entry, vim_item)
             vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
             vim_item.menu = ({
-              buffer = "cmp_buffer",
               nvim_lsp = "nvim_lsp",
               luasnip = "luasnip",
               nvim_lua = "nvim_lua",
@@ -72,7 +70,6 @@ return {
           end, { "i", "s" }),
           ["<C-u>"] = cmp.mapping.scroll_docs(-10),
           ["<C-d>"] = cmp.mapping.scroll_docs(10),
-          ["<C-e>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
         }),
         enabled = function()
           -- disable completion in comments
