@@ -27,6 +27,7 @@ local options = {
   updatetime  = 50,
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
   undofile    = true,
+  wildoptions = [[tagfile]],
   wildcharm   = vim.fn.char2nr('^I'),
   virtualedit = "block",
   pumheight   = 10,
