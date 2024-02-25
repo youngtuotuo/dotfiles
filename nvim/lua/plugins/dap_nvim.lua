@@ -25,40 +25,20 @@ return {
     "rcarriga/nvim-dap-ui",
     ft = { "c", "python", "cpp" },
     keys = function()
-      local toggle_repl = function()
-        require("dapui").toggle({ layout = 1, reset = true })
-      end
-      local toggle_stacks = function()
+      local toggle_bottom = function()
         require("dapui").toggle({ layout = 2, reset = true })
       end
+      local toggle_left = function()
+        require("dapui").toggle({ layout = 1, reset = true })
+      end
       return {
-        { "<M-j>", toggle_repl,    mode = "n", desc = "[dap-ui] toggle repl" },
-        { "<M-h>", toggle_stacks,  mode = "n", desc = "[dap-ui] toggle stacks" },
+        { "<M-j>", toggle_bottom, mode = "n", desc = "[dap-ui] toggle repl" },
+        { "<M-h>", toggle_left,  mode = "n", desc = "[dap-ui] toggle stacks" },
       }
     end,
     opts = {
       controls = {
         enabled = false,
-      },
-      layouts = {
-        {
-          elements = {
-            { id = "scopes", size = 0.4 },
-            { id = "repl", size = 0.4 },
-            { id = "console", size = 0.2 },
-          },
-          position = "bottom",
-          size = 20,
-        },
-        {
-          elements = {
-            { id = "breakpoints", size = 0.1 },
-            { id = "watches", size = 0.35 },
-            { id = "stacks", size = 0.55 },
-          },
-          position = "left",
-          size = 55,
-        },
       },
     },
     dependencies = {
