@@ -25,6 +25,7 @@ local options = {
   swapfile    = false,
   backup      = false,
   updatetime  = 50,
+  completeopt = [[menu,menuone,noselect]],
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
   undofile    = true,
   wildoptions = [[tagfile]],
