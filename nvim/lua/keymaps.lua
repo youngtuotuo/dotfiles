@@ -48,46 +48,8 @@ local keyms = {
 
   { { "v" }, "J", ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" } },
   { { "v" }, "K", ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" } },
-  { { "v" }, "H", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" } },
-  { { "v" }, "L", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" } },
   { { "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" } },
   { { "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" } },
-  { { "n" }, "<leader>x", "<cmd>!chmod +x %<cr>", { noremap = true, desc = "add x to current file permission" } },
-
-  -- more intuitive command mode keys
-  { { "c" }, "<up>", function()
-      if vim.fn.wildmenumode() == 1 then
-        return "<left>"
-      else
-        return "<up>"
-      end
-    end, { noremap = true, expr = true },
-  },
-  { { "c" }, "<down>", function()
-      if vim.fn.wildmenumode() == 1 then
-        return "<right>"
-      else
-        return "<down>"
-      end
-    end, { noremap = true, expr = true },
-  },
-  { { "c" }, "<left>", function()
-      if vim.fn.wildmenumode() == 1 then
-        return "<up>"
-      else
-        return "<left>"
-      end
-    end, { noremap = true, expr = true },
-  },
-  { { "c" }, "<right>", function()
-      if vim.fn.wildmenumode() == 1 then
-        return "<bs><c-z><c-z>"
-      else
-        return "<right>"
-      end
-    end, { noremap = true, expr = true },
-  },
-  { { "c" }, "<c-a>", "<c-b>", { noremap = true } },
 }
 
 for _, v in ipairs(keyms) do
