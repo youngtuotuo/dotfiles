@@ -25,7 +25,6 @@ local options = {
   swapfile    = false,
   backup      = false,
   updatetime  = 50,
-  completeopt = [[menu,menuone,noinsert,noselect]],
   undodir     = vim.fn.stdpath("data") .. "/undodir/",
   undofile    = true,
   wildcharm   = vim.fn.char2nr('^I'),
