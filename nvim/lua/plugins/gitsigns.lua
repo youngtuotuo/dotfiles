@@ -57,17 +57,12 @@ return {
       next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
     end
 
-    local keys = {
-      { "n", "gj", next_hunk,    { desc = "Gitsigns next hunk"     } },
-      { "n", "gk", prev_hunk,    { desc = "Gitsigns previous hunk" } },
-      { "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } },
-      { "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } },
-      { "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } },
-      { "n", "gh", blame_line,   { desc = "Gitsigns line blame"    } },
-      { "n", "<leader>g", toggle_signs,  { desc = "Gitsigns toggle sign"   } },
-    }
-    for _, v in ipairs(keys) do
-      vim.keymap.set(unpack(v))
-    end
+    vim.keymap.set( "n", "gj", next_hunk,    { desc = "Gitsigns next hunk"     } )
+    vim.keymap.set( "n", "gk", prev_hunk,    { desc = "Gitsigns previous hunk" } )
+    vim.keymap.set( "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } )
+    vim.keymap.set( "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } )
+    vim.keymap.set( "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } )
+    vim.keymap.set( "n", "gh", blame_line,   { desc = "Gitsigns line blame"    } )
+    vim.keymap.set( "n", "<leader>g", toggle_signs,  { desc = "Gitsigns toggle sign"   } )
   end,
 }

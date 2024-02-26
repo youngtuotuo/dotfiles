@@ -43,22 +43,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-local goto_next = function() vim.diagnostic.goto_next({ float = true }) end
-local goto_prev = function() vim.diagnostic.goto_prev({ float = true }) end
+local goto_next = function()
+  vim.diagnostic.goto_next({ float = true })
+end
+local goto_prev = function()
+  vim.diagnostic.goto_prev({ float = true })
+end
 if ts_obj_status then
   goto_next, goto_prev = ts_rep.make_repeatable_move_pair(goto_next, goto_prev)
 end
 
-local keyms = {
-  {
-    "n", "gl",
-    function()
-      vim.diagnostic.open_float()
-    end, { desc = "Show line diagnostics" },
-  },
-  { "n", "]d", goto_next, { desc = "go to next diagnostic" }, },
-  { "n", "[d", goto_prev, { desc = "go to previous diagnostic" }, },
-}
-for _, v in ipairs(keyms) do
-  vim.keymap.set(unpack(v))
-end
+vim.keymap.set("n", "gl", function()
+  vim.diagnostic.open_float()
+end, { desc = "Show line diagnostics" })
+vim.keymap.set("n", "]d", goto_next, { desc = "go to next diagnostic" })
+vim.keypmap.set("n", "[d", goto_prev, { desc = "go to previous diagnostic" })

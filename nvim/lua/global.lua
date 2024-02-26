@@ -1,7 +1,8 @@
--- stylua: ignore start
-
 -- print(vim.inspect(v))
-P = function(v) print(vim.inspect(v)) return v end
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
 
 -- "none": No border (default).
 -- "single": A single line box.
@@ -32,43 +33,38 @@ local dgr1 = "#26233a"
 local selfg = "#e0def4"
 
 _G.colorset = function()
-  local hls = {
-    Error              = { fg = trsp },
-    netrwMarkFile      = { fg = y    },
-    markdownBlockquote = { fg = gr   },
-    Pmenu              = { fg = "#908caa", bg = dgr1 },
-    PmenuSel           = { fg = w, bg = dgr3 },
+  vim.api.nvim_set_hl(0, "Error", { fg = trsp })
+  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = y })
+  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = gr })
+  vim.api.nvim_set_hl(0, "Pmenu", { fg = "#908caa", bg = dgr1 })
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = w, bg = dgr3 })
 
-    WinBar           = { bg = trsp },
-    WinBarNC         = { bg = trsp },
-    NormalFloat      = { bg = trsp },
-    FloatTitle       = { bg = trsp },
-    LspReferenceText = { reverse = true },
-    Todo             = { bg = trsp },
-    StatusLine       = { reverse = true },
-    StatusLineNC     = { reverse = true },
+  vim.api.nvim_set_hl(0, "WinBar", { bg = trsp })
+  vim.api.nvim_set_hl(0, "WinBarNC", { bg = trsp })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
+  vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
+  vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
+  vim.api.nvim_set_hl(0, "Todo", { bg = trsp })
+  vim.api.nvim_set_hl(0, "StatusLine", { reverse = true })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
 
-    ModeMsg            = { fg = w,     bold = true },
-    TelescopeSelection = { fg = selfg, bold = true },
+  vim.api.nvim_set_hl(0, "ModeMsg", { fg = w, bold = true })
+  vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = selfg, bold = true })
 
-    DiagnosticFloatingOk    = { fg = g,    bg = trsp },
-    DiagnosticFloatingHint  = { fg = b,    bg = trsp },
-    DiagnosticFloatingInfo  = { fg = c,    bg = trsp },
-    DiagnosticFloatingWarn  = { fg = y,    bg = trsp },
-    DiagnosticFloatingError = { fg = r,    bg = trsp },
-    FoldColumn              = { fg = dgr3, bg = trsp },
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = g, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = b, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = c, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = y, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = r, bg = trsp })
+  vim.api.nvim_set_hl(0, "FoldColumn", { fg = dgr3, bg = trsp })
 
-    LspReferenceRead     = { link = "LspReferenceText" },
-    LspReferenceWrite    = { link = "LspReferenceText" },
-    DiffAdd              = { link = "DiagnosticFloatingOk" },
-    DiffChange           = { link = "DiagnosticFloatingWarn" },
-    DiffDelete           = { link = "DiagnosticFloatingError" },
-    LspInfoBorder        = { link = "Label" },
-    FloatBorder          = { link = "LspInfoBorder" },
-    TelescopeBorder      = { link = "LspInfoBorder" },
-  }
-  for k, v in pairs(hls) do
-    vim.api.nvim_set_hl(0, k, v)
-  end
+  vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
+  vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
+  vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
+  vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
+  vim.api.nvim_set_hl(0, "DiffDelete", { link = "DiagnosticFloatingError" })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Label" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
 end
 _G.colorset()

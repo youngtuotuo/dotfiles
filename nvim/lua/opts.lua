@@ -1,108 +1,87 @@
--- stylua: ignore startopts
-local options = {
-  expandtab   = true,  -- <Tab> to space char, CTRL-V-I to insert real tab 
-  softtabstop = 4,     -- <BS> delete 4 spaces
-  tabstop     = 4,
-  shiftwidth  = 4,     -- spaces for auto indent
-  smartindent = true,  -- auto indent when typing { & }
-  cinoptions  = "l1",  -- for switch, case alignment
-  termsync    = false,
-  wrap        = false,
-  writebackup = false, -- no need this with undo history plugin
-  guicursor   = "",    -- i hate blink and vertical line
-  hlsearch    = false,
-  ignorecase  = true,  -- Ignore case when searching...
-  smartcase   = true,  -- ... unless there is a capital letter in the query
-  matchtime   = 1,     -- display of current match paren faster
-  showmatch   = true,  -- show matching brackets when text indicator is over them
-  nu          = false,
-  rnu         = false,
-  ru          = true,
-  showcmd     = true,
-  laststatus  = 2,
-  showmode    = true,
-  signcolumn  = "auto",
-  swapfile    = false,
-  backup      = false,
-  updatetime  = 50,
-  completeopt = [[menu]],
-  undodir     = vim.fn.stdpath("data") .. "/undodir/",
-  undofile    = true,
-  wildoptions = [[tagfile]],
-  wildcharm   = vim.fn.char2nr('^I'),
-  virtualedit = "block",
-  pumheight   = 10,
-  equalalways = false,
-  mousemodel  = "extend",
-  formatoptions = "jql", -- :h fo-table
-  termguicolors = true,
-}
+vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
+vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4 -- spaces for auto indent
+vim.opt.smartindent = true -- auto indent when typing { & }
+vim.opt.cinoptions = "l1" -- for switch, case alignment
+vim.opt.termsync = false
+vim.opt.wrap = false
+vim.opt.writebackup = false -- no need this with undo history plugin
+vim.opt.guicursor = "" -- i hate blink and vertical line
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true -- Ignore case when searching...
+vim.opt.smartcase = true -- ... unless there is a capital letter in the query
+vim.opt.matchtime = 1 -- display of current match paren faster
+vim.opt.showmatch = true -- show matching brackets when text indicator is over them
+vim.opt.nu = false
+vim.opt.rnu = false
+vim.opt.ru = true
+vim.opt.showcmd = true
+vim.opt.laststatus = 2
+vim.opt.showmode = true
+vim.opt.signcolumn = "auto"
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.updatetime = 50
+vim.opt.completeopt = [[menu]]
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
+vim.opt.undofile = true
+vim.opt.wildoptions = [[tagfile]]
+vim.opt.wildcharm = vim.fn.char2nr("^I")
+vim.opt.virtualedit = "block"
+vim.opt.pumheight = 10
+vim.opt.equalalways = false
+vim.opt.mousemodel = "extend"
+vim.opt.formatoptions = "jql" -- :h fo-table
+vim.opt.termguicolors = true
 
 -- fk u MS
 if vim.fn.has("win32") == 1 then
-  options.shada = "!,'100,<50,s10,h" -- for command history
-end
-
-for k, v in pairs(options) do
-  vim.opt[k] = v
+  vim.opt.shada = [[!,'100,<50,s10,h]] -- for command history
 end
 
 -- append options
-local edits = {
-  wildignore = { "*.o", "*~", "*.pyc", "*pycache*" },
-  shortmess  = "c",
-}
+vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
+vim.opt.shortmess:append("c")
 
-for k, v in pairs(edits) do
-  vim.opt[k]:append(v)
-end
-
-vim.cmd [[
+vim.cmd([[
   filetype indent off
-]]
+]])
 
-local globals = {
-  netrw_altfile = 1,
-  netrw_cursor = 5,
-  netrw_preview = 1,
-  netrw_alto = 0,
-  netrw_hide = 0,
-  netrw_sizestyle= "h",
-  editorconfig = false,
-  loaded_matchit = 1,
-  loaded_matchparen = 1,
-  loaded_remote_plugins = 1,
-  loaded_shada_plugin = 1,
-  loaded_spellfile_plugin = 1,
-  loaded_gzip = 1,
-  loaded_tar = 1,
-  loaded_tarPlugin = 1,
-  loaded_zip = 1,
-  loaded_zipPlugin = 1,
-  loaded_ruby_provider = 0,
-  loaded_python_provider = 0,
-  loaded_python3_provider = 0,
-  loaded_perl_provider = 0,
-  loaded_node_provider = 0,
-}
+vim.g.netrw_altfile = 1
+vim.g.netrw_cursor = 5
+vim.g.netrw_preview = 1
+vim.g.netrw_alto = 0
+vim.g.netrw_hide = 0
+vim.g.netrw_sizestyle = "h"
+vim.g.editorconfig = false
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_remote_plugins = 1
+vim.g.loaded_shada_plugin = 1
+vim.g.loaded_spellfile_plugin = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
-for k, v in pairs(globals) do
-  vim.g[k] = v
-end
-
-local slow_fingers = {
-  w   = { "W" },
-  q   = { "Q" },
-  x   = { "X" },
-  wq  = { "WQ", "Wq" },
-  wa  = { "WA", "Wa" },
-  qa  = { "QA", "Qa" },
-  wqa = { "WQA", "WQa", "Wqa" },
-  xa  = { "XA", "Xa" },
-}
-
-for k, v in pairs(slow_fingers) do
-  for _, new in ipairs(v) do
-    vim.api.nvim_create_user_command(new, k, { bang = true, bar = true })
-  end
-end
+vim.api.nvim_create_user_command("W", "w", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Q", "q", { bang = true, bar = true })
+vim.api.nvim_create_user_command("X", "x", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQ", "wq", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wq", "wq", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WA", "wa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wa", "wa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("QA", "qa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Qa", "qa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQA", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQa", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("XA", "xa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Xa", "xa", { bang = true, bar = true })
