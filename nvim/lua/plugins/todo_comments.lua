@@ -5,7 +5,7 @@ return {
   -- stylua: ignore
   keys = {
     {
-      "<space>t", "<cmd>TroubleToggle todo cwd=", desc = "TodoTrouble"
+      "<space>t", ":TroubleToggle todo cwd=", desc = "TodoTrouble"
     },
   },
   opts = {
