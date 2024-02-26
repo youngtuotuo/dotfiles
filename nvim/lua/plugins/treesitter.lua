@@ -45,7 +45,7 @@ return {
   },
   opts = {
     indent = {
-      enable = false
+      enable = true
     },
     highlight = {
       enable = true,
