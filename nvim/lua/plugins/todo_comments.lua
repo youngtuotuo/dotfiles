@@ -5,7 +5,7 @@ return {
   -- stylua: ignore
   keys = {
     {
-      "<space>t", string.format("<cmd>TroubleToggle todo cmd=%s<cr>", vim.fn.expand("%:p:h")), desc = "TodoTrouble"
+      "<space>t", "<cmd>TroubleToggle todo cwd=", desc = "TodoTrouble"
     },
   },
   opts = {
