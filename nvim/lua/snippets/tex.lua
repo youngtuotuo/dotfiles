@@ -12,28 +12,28 @@ local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local snippets = {}
 
 local tex_utils = {}
-tex_utils.in_mathzone = function()  -- math context detection
-  return vim.fn['vimtex#syntax#in_mathzone']() == 1
+tex_utils.in_mathzone = function() -- math context detection
+  return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 tex_utils.in_text = function()
   return not tex_utils.in_mathzone()
 end
-tex_utils.in_comment = function()  -- comment detection
-  return vim.fn['vimtex#syntax#in_comment']() == 1
+tex_utils.in_comment = function() -- comment detection
+  return vim.fn["vimtex#syntax#in_comment"]() == 1
 end
-tex_utils.in_env = function(name)  -- generic environment detection
-    local is_inside = vim.fn['vimtex#env#is_inside'](name)
-    return (is_inside[1] > 0 and is_inside[2] > 0)
+tex_utils.in_env = function(name) -- generic environment detection
+  local is_inside = vim.fn["vimtex#env#is_inside"](name)
+  return (is_inside[1] > 0 and is_inside[2] > 0)
 end
 -- A few concrete environments---adapt as needed
-tex_utils.in_equation = function()  -- equation environment detection
-    return tex_utils.in_env('equation')
+tex_utils.in_equation = function() -- equation environment detection
+  return tex_utils.in_env("equation")
 end
-tex_utils.in_itemize = function()  -- itemize environment detection
-    return tex_utils.in_env('itemize')
+tex_utils.in_itemize = function() -- itemize environment detection
+  return tex_utils.in_env("itemize")
 end
-tex_utils.in_tikz = function()  -- TikZ picture environment detection
-    return tex_utils.in_env('tikzpicture')
+tex_utils.in_tikz = function() -- TikZ picture environment detection
+  return tex_utils.in_env("tikzpicture")
 end
 
 local get_visual = function(args, parent)
@@ -44,41 +44,51 @@ local get_visual = function(args, parent)
   end
 end
 
-local in_mathzone = function()
-  -- The `in_mathzone` function requires the VimTeX plugin
-  return vim.fn['vimtex#syntax#in_mathzone']() == 1
-end
-
--- stylua: ignore
 snippets = vim.tbl_extend("force", snippets, {
   -- ****************** math *******************
   -- Examples of Greek letter snippets, autotriggered for efficiency
   s({ trig = ";a", snippetType = "autosnippet" }, {
-    t("\\alpha"),
-    { condition = in_mathzone }
+    t([[\alpha]]),
   }),
   s({ trig = ";b", snippetType = "autosnippet" }, {
-    t("\\beta"),
-    { condition = in_mathzone }
+    t([[\beta]]),
   }),
   s({ trig = ";g", snippetType = "autosnippet" }, {
-    t("\\gamma"),
-    { condition = in_mathzone }
+    t([[\gamma]]),
+  }),
+  s({ trig = ";fa", snippetType = "autosnippet" }, {
+    t([[\forall]]),
   }),
   s(
-    { trig = "ff", dscr = "Expands `ff` into `\\frac{}{}`", trigEngine = "pattern" },
-    fmta(
-      [[<>\frac{<>}{<>}]],
-      {
-        f(function(_, snip) return snip.captures[1] end),
-        i(1),
-        i(2),
-      }
-    ),
-    { condition = in_mathzone }
+    { trig = "([%$]-);ha", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\hat{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, get_visual),
+    })
   ),
   s(
-    { trig = "nn", dscr = "A LaTeX equation environment" },
+    { trig = "([%$]-);mc", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\mathcal{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, get_visual),
+    })
+  ),
+  s(
+    { trig = [[;ff]], snippetType = "autosnippet" },
+    fmta([[<>\frac{<>}{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      i(1),
+      i(2),
+    })
+  ),
+  s(
+    { trig = ";nn", snippetType = "autosnippet" },
     fmta( -- The snippet code actually looks like the equation environment it produces.
       [[
       \begin{equation}
@@ -90,58 +100,55 @@ snippets = vim.tbl_extend("force", snippets, {
     )
   ),
   s(
-    { trig = "(%A)mm", trigEngine = "pattern" },
-    fmta([[<>$<>$]], {
-      f(function(_, snip)
-        return snip.captures[1]
-      end),
+    { trig = ";mm", snippetType = "autosnippet" },
+    fmta([[$<>$]], {
       d(1, get_visual),
     })
   ),
   s(
-    { trig = "(%A)ee", trigEngine = "pattern" },
-    fmta([[<>e^{<>}]], {
+    { trig = ";ee", snippetType = "autosnippet" },
+    fmta([[e^{<>}]], {
+      d(1, get_visual),
+    })
+  ),
+  s(
+    { trig = "([%a%)%]%}])00", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("<>_{<>}", {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, get_visual),
-    }),
-    { condition = in_mathzone }
-  ),
-  s({trig = '([%a%)%]%}])00', regTrig = true, wordTrig = false, snippetType="autosnippet"},
-    fmta(
-      "<>_{<>}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        t("0")
-      }
-    ),
-    { condition = in_mathzone }
+      i(1),
+    })
   ),
   -- ****************** fonts *******************
   s(
-    { trig = "tt", dscr = "Expands `tt` into `\\texttt{}`" },
-    fmta(
-      [[\texttt{<>}]],
-      { i(1, "teletype") }
-    )
+    { trig = ";tt", dscr = "Expands `tt` into `\\texttt{}`" },
+    fmta([[\texttt{<>}]], {
+      d(1, get_visual),
+    })
   ),
   s(
-    { trig = "tii", dscr = "Expands `tii` into `\\textit{}`" },
+    { trig = ";ti", dscr = "Expands `tii` into `\\textit{}`" },
     fmta("\\textit{<>}", {
       d(1, get_visual),
     })
   ),
   s(
-    { trig = "hr", dscr = "The hyperref package's href{}{} command (for url links)" },
+    { trig = ";hr" },
     fmta([[\href{<>}{<>}]], {
       i(1, "url"),
       i(2, "display name"),
     })
   ),
+  s(
+    { trig = ";rf" },
+    fmta([[\ref{<>}]], {
+      i(1),
+    })
+  ),
   -- ****************** environments  *******************
   s(
-    { trig = "env", snippetType = "autosnippet" },
+    { trig = ";env", snippetType = "autosnippet" },
     fmta(
       [[
       \begin{<>}
@@ -155,21 +162,17 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
-  s({trig = "h1", dscr="Top-level section"},
-    fmta(
-      [[\section{<>}]],
-      { i(1) }
-    ),
-    {condition = line_begin}  -- set condition in the `opts` table
+  s(
+    { trig = ";h1" },
+    fmta([[\section{<>}]], { i(1) }),
+    { condition = line_begin } -- set condition in the `opts` table
   ),
   -- Expand 'dd' into \draw, but only in TikZ environments
-  s({trig = "dd"},
-    fmta(
-      "\\draw [<>] ",
-      {
-        i(1, "params"),
-      }
-    ),
+  s(
+    { trig = ";dd" },
+    fmta("\\draw [<>] ", {
+      i(1, "params"),
+    }),
     { condition = tex_utils.in_tikz }
   ),
 })
