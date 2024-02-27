@@ -1,5 +1,7 @@
 local diag_config = {
-  virtual_text = true,
+  virtual_text = {
+    source = true
+  },
   signs = false,
   underline = false,
   update_in_insert = false,
@@ -10,7 +12,7 @@ local diag_config = {
     focusable = true,
     title = " σ`∀´)σ ",
     border = _G.border,
-    source = false,
+    source = true,
   },
 }
 
