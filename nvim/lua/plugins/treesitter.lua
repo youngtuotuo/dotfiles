@@ -46,13 +46,7 @@ return {
       enable = true,
     },
     incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<CR>", -- set to `false` to disable one of the mappings
-        scope_incremental = false,
-        node_incremental = "<TAB>",
-        node_decremental = "<S-TAB>",
-      },
+      enable = false,
     },
     -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
     ensure_installed = {
