@@ -34,6 +34,8 @@ vim.opt.equalalways = false
 vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = true
+vim.opt.spell = true
+vim.opt.spelllang = [[en_us]]
 
 -- fk u MS
 if vim.fn.has("win32") == 1 then
