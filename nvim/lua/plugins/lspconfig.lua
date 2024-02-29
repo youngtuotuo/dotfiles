@@ -20,7 +20,7 @@ if ok then
     end
   end
 
-  function watchman(path, opts, callback)
+  local function watchman(path, opts, callback)
     vim.system({ "watchman", "watch", path }):wait()
 
     local buf = {}
@@ -110,7 +110,6 @@ return {
           end,
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
-          ["ruff_lsp"] = require("language_servers.ruff_lsp"),
         },
       },
     },
@@ -126,7 +125,6 @@ return {
           "lua_ls",
           "pyright",
           "ruff",
-          "ruff_lsp",
           "rust_analyzer",
           "shfmt",
           "stylua",
@@ -142,16 +140,11 @@ return {
   config = function(_, _)
     -- LspInfo command
     require("lspconfig.ui.windows").default_options.border = _G.border
-    -- all server agnostic settings
-    for _, m in ipairs({
-      "format",
-      "capabilities",
-      "keymaps",
-      "diagnostics",
-      "handlers",
-      "floatwin",
-    }) do
-      require(string.format("language_servers.%s", m))
-    end
+    require("language_servers.format")
+    require("language_servers.capabilities")
+    require("language_servers.keymaps")
+    require("language_servers.diagnostics")
+    require("language_servers.handlers")
+    require("language_servers.floatwin")
   end,
 }
