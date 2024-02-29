@@ -2,21 +2,18 @@ return {
   "rose-pine/neovim",
   name = "rose-pine",
   opts = {
-    variant = "auto", -- auto, main, moon, or dawn
+    variant = "moon", -- auto, main, moon, or dawn
     enable = {
       terminal = false
     },
     styles = {
+      bold = true,
       italic = false,
       transparency = true,
-    },
-    highlight_groups = {
-      TelescopeSelection = { fg = "text", bg = "base" },
-      TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
     },
   },
   config = function(_, opts)
     require("rose-pine").setup(opts)
-    vim.cmd [[colo rose-pine-moon]]
+    vim.cmd.colo [[rose-pine-moon]]
   end
 }
