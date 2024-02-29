@@ -34,8 +34,8 @@ config.window_frame = {
   border_bottom_color = "grey",
 }
 
-config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
+config.window_decorations = "RESIZE"
 
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
