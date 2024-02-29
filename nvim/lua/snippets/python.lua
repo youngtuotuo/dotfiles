@@ -2,27 +2,28 @@ require("luasnip.session.snippet_collection").clear_snippets = "python"
 
 local ls = require("luasnip")
 local s = ls.snippet
-local i = ls.insert_node
+local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
+local utils = require("snippets.utils")
 
 local snippets = {}
 
 snippets = vim.tbl_extend("force", snippets, {
-  s({ trig = "pff", snippetType = "autosnippet" },
+  s({ trig = ";pf", snippetType = "autosnippet" },
     fmta(
       [[
       print(f"{<>=}")
       ]],
-      { i(1) }
+      { d(1, utils.get_visual) }
     )
   ),
-  s({ trig = "__main", snippetType = "autosnippet" },
+  s({ trig = ";ma", snippetType = "autosnippet" },
     fmta(
       [[
       if __name__ == "__main__":
           <>
       ]],
-      { i(1) }
+      { d(1, utils.get_visual) }
     )
   )
 

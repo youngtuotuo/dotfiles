@@ -10,39 +10,7 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local snippets = {}
-
-local tex_utils = {}
-tex_utils.in_mathzone = function() -- math context detection
-  return vim.fn["vimtex#syntax#in_mathzone"]() == 1
-end
-tex_utils.in_text = function()
-  return not tex_utils.in_mathzone()
-end
-tex_utils.in_comment = function() -- comment detection
-  return vim.fn["vimtex#syntax#in_comment"]() == 1
-end
-tex_utils.in_env = function(name) -- generic environment detection
-  local is_inside = vim.fn["vimtex#env#is_inside"](name)
-  return (is_inside[1] > 0 and is_inside[2] > 0)
-end
--- A few concrete environments---adapt as needed
-tex_utils.in_equation = function() -- equation environment detection
-  return tex_utils.in_env("equation")
-end
-tex_utils.in_itemize = function() -- itemize environment detection
-  return tex_utils.in_env("itemize")
-end
-tex_utils.in_tikz = function() -- TikZ picture environment detection
-  return tex_utils.in_env("tikzpicture")
-end
-
-local get_visual = function(args, parent)
-  if #parent.snippet.env.LS_SELECT_RAW > 0 then
-    return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
-  else -- If LS_SELECT_RAW is empty, return a blank insert node
-    return sn(nil, i(1))
-  end
-end
+local utils = require("snippets.utils")
 
 snippets = vim.tbl_extend("force", snippets, {
   -- ****************** math *******************
@@ -65,7 +33,7 @@ snippets = vim.tbl_extend("force", snippets, {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
@@ -74,7 +42,7 @@ snippets = vim.tbl_extend("force", snippets, {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
@@ -102,13 +70,13 @@ snippets = vim.tbl_extend("force", snippets, {
   s(
     { trig = ";mm", snippetType = "autosnippet" },
     fmta([[$<>$]], {
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
     { trig = ";ee", snippetType = "autosnippet" },
     fmta([[e^{<>}]], {
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
@@ -124,13 +92,13 @@ snippets = vim.tbl_extend("force", snippets, {
   s(
     { trig = ";tt", dscr = "Expands `tt` into `\\texttt{}`" },
     fmta([[\texttt{<>}]], {
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
     { trig = ";ti", dscr = "Expands `tii` into `\\textit{}`" },
     fmta("\\textit{<>}", {
-      d(1, get_visual),
+      d(1, utils.get_visual),
     })
   ),
   s(
@@ -173,7 +141,7 @@ snippets = vim.tbl_extend("force", snippets, {
     fmta("\\draw [<>] ", {
       i(1, "params"),
     }),
-    { condition = tex_utils.in_tikz }
+    { condition = utils.in_tikz }
   ),
 })
 
