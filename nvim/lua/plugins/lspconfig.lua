@@ -111,7 +111,6 @@ return {
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
           ["ruff_lsp"] = require("language_servers.ruff_lsp"),
-          ["texlab"] = require("language_servers.texlab"),
         },
       },
     },
@@ -131,7 +130,6 @@ return {
           "rust_analyzer",
           "shfmt",
           "stylua",
-          "texlab",
           "zls",
           "codelldb",
         }
