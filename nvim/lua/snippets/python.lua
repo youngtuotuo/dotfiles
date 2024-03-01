@@ -20,6 +20,24 @@ snippets = vim.tbl_extend("force", snippets, {
       { d(1, utils.get_visual) }
     )
   ),
+  s({ trig = ";de", snippetType = "autosnippet" },
+    fmta(
+      [[
+      def <>(<>):
+          <>
+      ]],
+      { i(1), i(2), i(3) }
+    )
+  ),
+  s({ trig = ";sm", snippetType = "autosnippet" },
+    fmta(
+      [[
+      def <>(self, <>):
+          <>
+      ]],
+      { i(1), i(2), i(3) }
+    )
+  ),
   s({ trig = ";in", snippetType = "autosnippet" },
     fmta(
       [[
