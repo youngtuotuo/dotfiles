@@ -55,6 +55,9 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";ma", snippetType = "autosnippet" }, {
     t([[\max]]),
   }),
+  s({ trig = ";fa", snippetType = "autosnippet" }, {
+    t([[\forall]]),
+  }),
   s(
     { trig = "([%$]-);sq", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\sqrt{<>}]], {
