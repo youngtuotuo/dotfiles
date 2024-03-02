@@ -16,13 +16,13 @@ local utils = require("snippets.utils")
 snippets = vim.tbl_extend("force", snippets, {
   -- ****************** math *******************
   -- Examples of Greek letter snippets, autotriggered for efficiency
-  s({ trig = ";a", snippetType = "autosnippet" }, {
+  s({ trig = ";ap", snippetType = "autosnippet" }, {
     t([[\alpha]]),
   }),
-  s({ trig = ";b", snippetType = "autosnippet" }, {
+  s({ trig = ";be", snippetType = "autosnippet" }, {
     t([[\beta]]),
   }),
-  s({ trig = ";g", snippetType = "autosnippet" }, {
+  s({ trig = ";ga", snippetType = "autosnippet" }, {
     t([[\gamma]]),
   }),
   s({ trig = ";si", snippetType = "autosnippet" }, {
@@ -43,6 +43,9 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";ln", snippetType = "autosnippet" }, {
     t([[\ln]]),
   }),
+  s({ trig = ";in", snippetType = "autosnippet" }, {
+    t([[\in]]),
+  }),
   s({ trig = ";th", snippetType = "autosnippet" }, {
     t([[\theta]]),
   }),
@@ -62,6 +65,15 @@ snippets = vim.tbl_extend("force", snippets, {
     })
   ),
   s(
+    { trig = "([%$]-);ba", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\bar{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
     { trig = "([%$]-);ha", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\hat{<>}]], {
       f(function(_, snip)
@@ -71,8 +83,35 @@ snippets = vim.tbl_extend("force", snippets, {
     })
   ),
   s(
+    { trig = "([%$]-);td", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\tilde{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
     { trig = "([%$]-);mc", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\mathcal{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = "([%$]-);mf", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\mathbf{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = "([%$]-);mb", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\mathbb{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
