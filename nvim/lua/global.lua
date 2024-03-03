@@ -30,19 +30,23 @@ local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimL
 local gr = "NvimLightGrey4"
 local w = "NvimLightGrey1"
 local dgr3 = "NvimDarkGrey3"
+local dgr2 = "#393552"
 local dgr1 = "#26233a"
 local selfg = "#e0def4"
+local fgr = "#908caa"
 
 _G.colorset = function()
   vim.api.nvim_set_hl(0, "Error", { fg = trsp })
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = y })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = gr })
-  vim.api.nvim_set_hl(0, "Pmenu", { fg = "#908caa", bg = dgr1 })
-  vim.api.nvim_set_hl(0, "PmenuSel", { fg = r })
+  vim.api.nvim_set_hl(0, "Pmenu", { fg = fgr, bg = dgr1 })
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = r, bg = dgr2 })
+  vim.api.nvim_set_hl(0, "PmenuKind", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "PmenuKindSel", { link = "PmenuSel" })
   vim.api.nvim_set_hl(0, "SpellBad", { fg = "Red", underline = true })
-  vim.api.nvim_set_hl(0, "SpellCap", { fg = "Red", underline = true })
-  vim.api.nvim_set_hl(0, "SpellRare", { fg = "Red", underline = true })
-  vim.api.nvim_set_hl(0, "SpellLocal", { fg = "Red", underline = true })
+  vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
+  vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
+  vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
 
   vim.api.nvim_set_hl(0, "WinBar", { bg = trsp })
   vim.api.nvim_set_hl(0, "WinBarNC", { bg = trsp })

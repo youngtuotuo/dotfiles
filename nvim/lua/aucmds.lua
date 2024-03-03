@@ -145,6 +145,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = group,
   callback = function()
     vim.opt.formatoptions = "jql"
   end,
@@ -152,6 +153,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 vim.api.nvim_create_autocmd("ColorScheme", {
+  group = group,
   callback = _G.colorset,
   desc = "Auto set some colors for colorsecheme change",
 })

@@ -21,7 +21,7 @@ return {
         completion = {
           autocomplete = false,
         },
-        view = { docs = { auto_open = true } },
+        view = { docs = { auto_open = false } },
         formatting = {
           format = function(entry, vim_item)
             vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
@@ -29,8 +29,6 @@ return {
               nvim_lsp = "nvim_lsp",
               luasnip = "luasnip",
               nvim_lua = "nvim_lua",
-              nvim_lsp_signature_help = "nvim_sig",
-              latex_symbols = "laTeX",
             })[entry.source.name]
             return vim_item
           end,
@@ -87,7 +85,6 @@ return {
         sources = cmp.config.sources({
           { name = "luasnip" },
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
         }, {
           { name = "nvim_lua" },
         }),
@@ -120,10 +117,6 @@ return {
   },
   {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
-    ft = _G.lspfts,
-  },
-  {
-    "hrsh7th/cmp-nvim-lsp-signature-help", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
     ft = _G.lspfts,
   },
 }
