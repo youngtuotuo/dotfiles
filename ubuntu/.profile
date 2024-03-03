@@ -77,6 +77,14 @@ case ":${PATH}:" in
 	;;
 esac
 
+case ":${PATH}:" in
+*:"$(modular config max.path)/bin":*) ;;
+*)
+	export PATH="$(modular config max.path)/bin${PATH:+:${PATH}}"
+	;;
+esac
+
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash 
 bind "\C-t":transpose-chars
 export MODULAR_HOME="$HOME/.modular"

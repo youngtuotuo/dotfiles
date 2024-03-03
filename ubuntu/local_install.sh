@@ -319,3 +319,16 @@ if ask "============ Do you want to install ruby? ============"; then
 		echo -e "\033[93mINFO\033[0m ruby exists: $(which ruby)"
 	fi
 fi
+
+# mojo
+if ask "============ Do you want to install mojo? ============"; then
+	if ! command -v mojo >/dev/null; then
+		curl https://get.modular.com | sh -
+		modular auth
+		modular install mojo
+		modular install max
+		MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
+	else
+		echo -e "\033[93mINFO\033[0m mojo exists: $(which mojo)"
+	fi
+fi
