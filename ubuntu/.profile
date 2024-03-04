@@ -85,7 +85,6 @@ case ":${PATH}:" in
 esac
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
 bind "\C-t":transpose-chars
 export MODULAR_HOME="$HOME/.modular"
 export GEM_HOME="$HOME/gems"
