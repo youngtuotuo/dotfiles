@@ -119,6 +119,7 @@ return {
         local ensure_installed = {
           "clang-format",
           "clangd",
+          "codelldb",
           "debugpy",
           "gopls",
           "jq",
@@ -129,7 +130,6 @@ return {
           "shfmt",
           "stylua",
           "zls",
-          "codelldb",
         }
         return {
           ensure_installed = ensure_installed,
