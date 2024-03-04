@@ -75,5 +75,10 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Label" })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
   vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
+
+  -- Hide all semantic highlights, :h lsp-semantic-highlight
+  for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+    vim.api.nvim_set_hl(0, group, {})
+  end
 end
 _G.colorset()

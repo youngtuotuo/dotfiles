@@ -128,6 +128,3 @@ if command -v oh-my-posh >/dev/null; then
 	eval "$(oh-my-posh init bash --config ${HOME}/.local/omp/robbyrussell.omp.json)"
 fi
 . "$HOME/.cargo/env"
-
-
-alias cvat='python -m data_tools.cvat --server-host cvat-data.standalone.powerarena.com --server-port 8080 --auth admin:ForceField123'
