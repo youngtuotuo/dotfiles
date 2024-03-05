@@ -14,91 +14,97 @@ function ask() {
 
 # .local
 if ask "============ Do you want to create ~/.local? ============"; then
-	mkdir -p $HOME/.local
+	if [ ! -d "$HOME/.local" ]; then
+		mkdir -p $HOME/.local
+	else
+		echo -e "\033[93mINFO\033[0m $HOME/.local exists"
+	fi
 fi
 
 # Neovim
 if ask "============ Do you want to install neovim? ============"; then
-	if ! command -v nvim >/dev/null; then
+	if [ ! -d "$HOME/github/neovim"]; then
 		git clone https://github.com/neovim/neovim.git $HOME/github/neovim
-		cd $HOME/github/neovim
-		make distclean
-		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
-		make install
-		rm $HOME/.local/lib/nvim/parser/*.so
-	else
-		echo -e "\033[93mINFO\033[0m nvim exists: $(which nvim)"
 	fi
-fi
-
-# neovim config
-if ask "============ Do you want to install nvim config? ============"; then
-	mkdir -p $HOME/.config
-	ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
+	cd $HOME/github/neovim
+	git pull
+	make distclean
+	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
+	make install
 fi
 
 # python
-if ask "============ Do you want to install another python? ============"; then
+if ask "============ Do you want to install python? ============"; then
 	echo "Python download page: https://www.python.org/downloads/"
 	read -p "Please give current python tar file url: " resp
 	if [ -z "$resp" ]; then
-		echo "Empty url, skip."
+		echo -e "\033[93mINFO\033[0m Empty url, skip."
 	else
+		if [ -f "$HOME/python.tgz" ]; then
+			rm $HOME/python.tgz
+		fi
+		if [ -d "$HOME/python" ]; then
+			rm -r $HOME/python
+		fi
 		wget $resp -O $HOME/python.tgz
 		mkdir -p $HOME/python
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
 		cd python
-		././configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
+		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 		make
 		make install
 	fi
 fi
 
 # pip
-if ask "============ Do you want to install another pip? ============"; then
+if ask "============ Do you want to install pip? ============"; then
 	wget https://bootstrap.pypa.io/get-pip.py -O $HOME/get-pip.py
 	cd $HOME
 	python3 get-pip.py
 fi
 
 # lua
-if ask "============ Do you want to install another lua? ============"; then
-	if ! command -v lua >/dev/null; then
-		echo "Lua download page: https://www.lua.org/download.html"
-		read -p "Please give current lua tar file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/lua.tar.gz
-			mkdir -p $HOME/lua
-			cd $HOME
-			tar zxf lua.tar.gz -C lua --strip-components 1
-			cd lua
-			sed -i "s/INSTALL_TOP= \/usr\/local/INSTALL_TOP= $\(HOME\)\/\.local/" Makefile
-			make all test
-			make install
-		fi
+if ask "============ Do you want to install lua? ============"; then
+	echo "Lua download page: https://www.lua.org/download.html"
+	read -p "Please give current lua tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
 	else
-		echo -e "\033[93mINFO\033[0m lua exists: $(which lua)"
+		if [ -f "$HOME/lua.tar.gz" ]; then
+			rm $HOME/lua.tar.gz
+		fi
+		if [ -d "$HOME/lua" ]; then
+			rm -r $HOME/lua
+		fi
+		wget $resp -O $HOME/lua.tar.gz
+		mkdir -p $HOME/lua
+		cd $HOME
+		tar zxf lua.tar.gz -C lua --strip-components 1
+		cd lua
+		sed -i "s/INSTALL_TOP= \/usr\/local/INSTALL_TOP= $\(HOME\)\/\.local/" Makefile
+		make all test
+		make install
 	fi
 fi
 
 # Go
 if ask "============ Do you want to install go? ============"; then
-	if ! command -v go >/dev/null; then
-		echo "Go install page: https://go.dev/dl/"
-		read -p "Please give current go tar file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/go.tar.xz
-			cd $HOME
-			tar xf go.tar.xz
-			mv go/ $HOME/.local/go
-		fi
+	echo "Go install page: https://go.dev/dl/"
+	read -p "Please give current go tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
 	else
-		echo -e "\033[93mINFO\033[0m go exists: $(which go)"
+		if [ -f "$HOME/go.tar.gz" ]; then
+			rm $HOME/go.tar.gz
+		fi
+		if [ -d "$HOME/go" ]; then
+			rm -r $HOME/go
+		fi
+		wget $resp -O $HOME/go.tar.xz
+		cd $HOME
+		tar xf go.tar.xz
+		mv go/ $HOME/.local/go
 	fi
 fi
 
@@ -113,222 +119,162 @@ fi
 
 # Zig
 if ask "============ Do you want to install zig? ============"; then
-	if ! command -v zig >/dev/null; then
-		echo "Zig download page: https://ziglang.org/download/"
-		read -p "Please give current zig tar file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/zig.tar.xz
-			mkdir -p $HOME/zig
-			cd $HOME
-			tar xf zig.tar.xz -C zig --strip-components 1
-			mv zig/ $HOME/.local/zig
-		fi
+	echo "Zig download page: https://ziglang.org/download/"
+	read -p "Please give current zig tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
 	else
-		echo -e "\033[93mINFO\033[0m zig exists: $(which zig)"
+		if [ -f "$HOME/zig.tar.gz" ]; then
+			rm $HOME/zig.tar.gz
+		fi
+		if [ -d "$HOME/zig" ]; then
+			rm -r $HOME/zig
+		fi
+		wget $resp -O $HOME/zig.tar.xz
+		mkdir -p $HOME/zig
+		cd $HOME
+		tar xf zig.tar.xz -C zig --strip-components 1
+		mv zig/ $HOME/.local/zig
 	fi
 fi
 
 # gdb
 if ask "============ Do you want to install gdb? ============"; then
-	if ! command -v gdb >/dev/null; then
-		echo "gdb download page: https://ftp.gnu.org/gnu/gdb/"
-		read -p "Please give current gdb tar file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/gdb.tar.gz
-			mkdir -p $HOME/gdb
-			cd $HOME
-			tar zxf gdb.tar.gz -C gdb --strip-components 1
-			cd gdb
-			./configure --prefix=$HOME/.local
-			make
-			make install
+	echo "gdb download page: https://ftp.gnu.org/gnu/gdb/"
+	read -p "Please give current gdb tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		if [ -f "$HOME/gdb.tar.gz" ]; then
+			rm $HOME/gdb.tar.gz
 		fi
-	else
-		echo -e "\033[93mINFO\033[0m gdb exists: $(which gdb)"
+		if [ -d "$HOME/gdb" ]; then
+			rm -r $HOME/gdb
+		fi
+		wget $resp -O $HOME/gdb.tar.gz
+		mkdir -p $HOME/gdb
+		cd $HOME
+		tar zxf gdb.tar.gz -C gdb --strip-components 1
+		cd gdb
+		./configure --prefix=$HOME/.local
+		make
+		make install
 	fi
-fi
-
-# Bash
-if ask "============ Do you want to install .bashrc and .profile? ============"; then
-	ln -s $HOME/github/dotfiles/ubuntu/.bashrc ~/.bashrc
-	ln -s $HOME/github/dotfiles/ubuntu/.profile ~/.profile
-fi
-
-# fd link
-if ask "============ Do you want to link fd to fdfind? ============"; then
-	ln -s $(which fdfind) ~/.local/bin/fd
-fi
-
-# fzf
-if ask "============ Do you want to install fzf? ============"; then
-	if ! command -v fzf >/dev/null; then
-		git clone https://github.com/junegunn/fzf.git $HOME/github/fzf
-		cd $HOME/github
-		./fzf/install
-	else
-		echo -e "\033[93mINFO\033[0m fzf exists: $(which fzf)"
-	fi
-fi
-
-# Case-insensitive bash
-# from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
-if ask "============ Do you want to set case case-insensitive in bash? ============"; then
-	if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' >~/.inputrc; fi
-	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
-	echo 'set completion-ignore-case On' >>~/.inputrc
-fi
-
-# wsl.conf file
-if ask "============ Do you want to install wsl.conf? ============"; then
-	cd $HOME/github
-	cp ./windows/wsl.conf /etc/wsl.conf
 fi
 
 # git credential manager
-if ask "============ Do you want to install gcm? ============"; then
-	if ! command -v git-credential-manager >/dev/null; then
-		read -p "Please give current gcm deb file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/gcm.deb
-			sudo dpkg -i $HOME/gcm.deb
-			git-credential-manager configure
-			git config --global credential.credentialStore cache
-		fi
+if ask "============ Do you want to install git-credential-manager? ============"; then
+	echo "gcm download url: https://github.com/git-ecosystem/git-credential-manager/releases"
+	read -p "Please give current gcm deb file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
 	else
-		echo -e "\033[93mINFO\033[0m git-credential-manager exists: $(which git-credential-manager)"
+		if [ -f "$HOME/gcm.deb" ]; then
+			rm $HOME/gcm.deb
+		fi
+		wget $resp -O $HOME/gcm.deb
+		sudo dpkg -i $HOME/gcm.deb
+		git-credential-manager configure
+		git config --global credential.credentialStore cache
 	fi
 fi
 
 # tmux
 if ask "============ Do you want to install tmux? ============"; then
-	if ! command -v tmux >/dev/null; then
-		git clone https://github.com/tmux/tmux.git $HOME/github/tmux
-		cd $HOME/github/tmux
-		sh autogen.sh
-		./configure --prefix=$HOME/.local
-		make
-		make install
-	else
-		echo -e "\033[93mINFO\033[0m tmux exists: $(which tmux)"
-	fi
-fi
-
-# tmux config
-if ask "============ Do you want to install .tmux.conf? ============"; then
-	ln -s $HOME/github/dotfiles/.tmux.conf ~/.tmux.conf
-fi
-
-# vimrc
-if ask "============ Do you want to install .vimrc? ============"; then
-	ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
-fi
-
-# wezterm
-if ask "============ Do you want to install .wezterm.lua? ============"; then
-	ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
+    if [ ! -d "$HOME/github/tmux" ]; then
+        git clone https://github.com/tmux/tmux.git $HOME/github/tmux
+    fi
+	cd $HOME/github/tmux
+    git pull
+	sh autogen.sh
+	./configure --prefix=$HOME/.local
+	make
+	make install
 fi
 
 # cmake
 if ask "============ Do you want to install cmake? ============"; then
-	if ! command -v cmake >/dev/null; then
-		echo "cmake download page: https://cmake.org/download/"
-		read -p "Please give current cmake zip file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/cmake.tar.gz
-			mkdir -p $HOME/cmake
-			cd $HOME
-			tar zxf -j cmake.tar.gz -C cmake --strip-components 1
-			cp $HOME/cmake/bin/* $HOME/.local/bin/
-			cp -r $HOME/cmake/share/* $HOME/.local/share/
-			cp -r $HOME/cmake/man/* $HOME/.local/man/
-		fi
+	echo "cmake download page: https://cmake.org/download/"
+	read -p "Please give current cmake zip file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
 	else
-		echo -e "\033[93mINFO\033[0m cmake exists: $(which cmake)"
+		if [ -f "$HOME/cmake.tar.gz" ]; then
+			rm $HOME/cmake.tar.gz
+		fi
+		if [ -d "$HOME/cmake" ]; then
+			rm -r $HOME/cmake
+		fi
+		wget $resp -O $HOME/cmake.tar.gz
+		mkdir -p $HOME/cmake
+		cd $HOME
+		tar zxf -j cmake.tar.gz -C cmake --strip-components 1
+		cp $HOME/cmake/bin/* $HOME/.local/bin/
+		cp -r $HOME/cmake/share/* $HOME/.local/share/
+		cp -r $HOME/cmake/man/* $HOME/.local/man/
 	fi
 fi
 
 # nvtop
 if ask "============ Do you want to install nvtop? ============"; then
-	if ! command -v nvtop >/dev/null; then
-		echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
-		read -p "Please give current nvtop app image url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/nvtop
-			cp $HOME/nvtop $HOME/.local/bin/
-		fi
-	else
-		echo -e "\033[93mINFO\033[0m nvtop exists: $(which nvtop)"
-	fi
+    echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
+    read -p "Please give current nvtop app image url: " resp
+    if [ -z "$resp" ]; then
+        echo "Empty url, skip."
+    else
+        wget $resp -O $HOME/nvtop
+        cp $HOME/nvtop $HOME/.local/bin/
+    fi
 fi
 
 # watchman
 if ask "============ Do you want to install watchman? ============"; then
-	if ! command -v watchman >/dev/null; then
-		echo "watchman download page: https://github.com/facebook/watchman/releases"
-		read -p "Please give current watchman zip file url: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
-		else
-			wget $resp -O $HOME/watchman.zip
-			mkdir -p $HOME/watchman
-			cd $HOME
-			unzip -d $HOME/watchman -j watchman.zip
-			cp $HOME/watchman/lib/* $HOME/.local/lib
-			cp $HOME/watchman/watchman/* $HOME/.local/bin
+    echo "watchman download page: https://github.com/facebook/watchman/releases"
+    read -p "Please give current watchman zip file url: " resp
+    if [ -z "$resp" ]; then
+        echo "Empty url, skip."
+    else
+		if [ -f "$HOME/watchman.zip" ]; then
+			rm $HOME/watchman.zip
 		fi
-	else
-		echo -e "\033[93mINFO\033[0m watchman exists: $(which watchman)"
-	fi
+		if [ -d "$HOME/watchman" ]; then
+			rm -r $HOME/watchman
+		fi
+        wget $resp -O $HOME/watchman.zip
+        mkdir -p $HOME/watchman
+        cd $HOME
+        unzip -d $HOME/watchman -j watchman.zip
+        cp $HOME/watchman/lib/* $HOME/.local/lib
+        cp $HOME/watchman/watchman/* $HOME/.local/bin
+    fi
 fi
 
 # oh-my-posh
 if ask "============ Do you want to install oh-my-posh? ============"; then
-	if ! command -v oh-my-posh >/dev/null; then
-		curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
-		mkdir -p $HOME/.local/omp
-		wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
-	else
-		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
-	fi
+    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
+    mkdir -p $HOME/.local/omp
+    wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
 fi
 
 # ruby
 if ask "============ Do you want to install ruby? ============"; then
-	if ! command -v ruby >/dev/null; then
-		curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-		rbenv install -l
-		read -p "Please select desired version: " resp
-		if [ -z "$resp" ]; then
-			echo "Empty version, skip."
-		else
-			rbenv install $resp
-			rbenv global $resp
-			gem install jekyll bundler
-		fi
-	else
-		echo -e "\033[93mINFO\033[0m ruby exists: $(which ruby)"
-	fi
+    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+    rbenv install -l
+    read -p "Please select desired version: " resp
+    if [ -z "$resp" ]; then
+        echo "Empty version, skip."
+    else
+        rbenv install $resp
+        rbenv global $resp
+        gem install jekyll bundler
+    fi
 fi
 
 # mojo
 if ask "============ Do you want to install mojo? ============"; then
-	if ! command -v mojo >/dev/null; then
-		curl https://get.modular.com | sh -
-		modular auth
-		modular install mojo
-		modular install max
-		MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
-	else
-		echo -e "\033[93mINFO\033[0m mojo exists: $(which mojo)"
-	fi
+    curl https://get.modular.com | sh -
+    modular auth
+    modular install mojo
+    modular install max
+    MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
 fi

@@ -58,7 +58,7 @@ fi
 
 # cuda
 if ask "============ Do you want to install cuda? ============"; then
-	if ! command -v cuda >/dev/null; then
+	if ! command -v nvcc >/dev/null; then
 		echo "Please go to this website and give corresponding url based on your system:"
 		echo "  https://developer.nvidia.com/cuda-downloads"
 		echo -e "  \033[91mNote\033[0m: It is important to not install the cuda-drivers packages within the WSL environment."
