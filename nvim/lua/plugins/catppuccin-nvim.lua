@@ -11,6 +11,7 @@ return {
       conditionals = {}
     },
     no_underline = true,
+    no_italic = true,
     integrations = {
       aerial = true,
       alpha = false,
