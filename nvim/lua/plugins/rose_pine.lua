@@ -14,6 +14,6 @@ return {
   },
   config = function(_, opts)
     require("rose-pine").setup(opts)
-    vim.cmd.colo "rose-pine-moon"
+    -- vim.cmd.colo "rose-pine-moon"
   end
 }
