@@ -54,8 +54,6 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
   vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
   vim.api.nvim_set_hl(0, "Todo", { bg = trsp })
-  vim.api.nvim_set_hl(0, "StatusLine", { reverse = true })
-  vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
 
   vim.api.nvim_set_hl(0, "ModeMsg", { fg = w, bold = true })
   vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = selfg, bold = true })
