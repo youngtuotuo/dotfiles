@@ -1,7 +1,6 @@
 return {
   "folke/trouble.nvim",
   lazy = true,
-  cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
   keys = {
     { "<space>d", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
     { "<space>r", "<cmd>TroubleToggle lsp_references<cr>",        desc = "TroubleToggle lsp_references" },

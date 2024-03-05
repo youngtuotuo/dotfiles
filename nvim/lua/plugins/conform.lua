@@ -2,7 +2,6 @@ return {
   "stevearc/conform.nvim",
   dependencies = { "mason.nvim" },
   lazy = true,
-  cmd = "ConformInfo",
   keys = function()
     local format = function()
       require("conform").format()
