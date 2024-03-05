@@ -1,6 +1,7 @@
 return {
   "gbprod/nord.nvim",
   priority = 1000,
+  lazy = true,
   opts = {
     transparent = true,
     erminal_colors = false,
