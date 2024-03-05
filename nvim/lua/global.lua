@@ -16,7 +16,7 @@ _G.floath = 30
 _G.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
-_G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go", "tex" }
+_G.lspfts = { "c", "lua", "cpp", "python", "rust", "zig", "go" }
 
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
@@ -30,10 +30,6 @@ local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimL
 local gr = "NvimLightGrey4"
 local w = "NvimLightGrey1"
 local selfg = "#e0def4"
--- local dgr3 = "NvimDarkGrey3"
--- local dgr2 = "#393552"
--- local dgr1 = "#26233a"
--- local fgr = "#908caa"
 
 _G.colorset = function()
   vim.api.nvim_set_hl(0, "Error", { fg = trsp })
