@@ -14,18 +14,5 @@ return {
       max_width = 30,
       min_width = 30,
     },
-    -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
-    -- filter_kind = {
-    --   "Class",
-    --   "Constructor",
-    --   "Enum",
-    --   "Function",
-    --   "Interface",
-    --   "Module",
-    --   "Method",
-    --   "Struct",
-    --   "TypeParameter",
-    -- }
-    -- filter_kind = false
   },
 }
