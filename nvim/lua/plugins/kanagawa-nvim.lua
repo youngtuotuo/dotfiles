@@ -12,6 +12,6 @@ return {
   },
   config = function(_, opts)
     require("kanagawa").setup(opts)
-    vim.cmd.colo "kanagawa"
+    vim.cmd.colo "kanagawa-dragon"
   end
 }
