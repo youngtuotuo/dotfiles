@@ -11,7 +11,7 @@ end
 -- "solid": Adds padding by a single whitespace cell.
 -- "shadow": A drop shadow effect by blending with the
 _G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-_G.floatw = 85
+_G.floatw = 120
 _G.floath = 30
 _G.floatwrap = true
 
