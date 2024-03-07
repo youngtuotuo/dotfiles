@@ -104,6 +104,9 @@ if ask "============ Do you want to install go? ============"; then
 		wget $resp -O $HOME/go.tar.xz
 		cd $HOME
 		tar xf go.tar.xz
+		if [ -d "$HOME/.local/go" ]; then
+			rm -r $HOME/.local/go
+		fi
 		mv go/ $HOME/.local/go
 	fi
 fi
@@ -134,6 +137,9 @@ if ask "============ Do you want to install zig? ============"; then
 		mkdir -p $HOME/zig
 		cd $HOME
 		tar xf zig.tar.xz -C zig --strip-components 1
+		if [ -d "$HOME/.local/zig" ]; then
+			rm -r $HOME/.local/zig
+		fi
 		mv zig/ $HOME/.local/zig
 	fi
 fi

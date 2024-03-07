@@ -8,7 +8,7 @@ return {
     commentStyle = { italic = false },
     keywordStyle = { italic = false },
     terminalColors = false,
-    theme = "dargon",
+    theme = "dragon",
   },
   config = function(_, opts)
     require("kanagawa").setup(opts)
