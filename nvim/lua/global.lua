@@ -30,7 +30,7 @@ local trsp = "none"
 local nly, nlr, nlb, nlg, nlc = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
 local nlg4 = "NvimLightGrey4"
 local nlg1 = "NvimLightGrey1"
-local ndg1 = "NvimDarkGrey4"
+local nlg2 = "NvimLightGrey2"
 
 _G.colorset = function()
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
@@ -45,7 +45,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "Normal", { bg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
-  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = ndg1 })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = nlg2 })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
   vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
 
