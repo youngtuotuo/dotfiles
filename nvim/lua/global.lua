@@ -27,15 +27,16 @@ _G.auG = "TuoGroup"
 
 -- :h highlight
 local trsp = "none"
-local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
-local gr = "NvimLightGrey4"
-local w = "NvimLightGrey1"
+local nly, nlr, nlb, nlg, nlc = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
+local nlg4 = "NvimLightGrey4"
+local nlg1 = "NvimLightGrey1"
+local ndg1 = "NvimDarkGrey4"
 
 _G.colorset = function()
-  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = y })
-  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = gr })
+  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
+  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = nlg4 })
 
-  vim.api.nvim_set_hl(0, "SpellBad", { fg = r, underline = true })
+  vim.api.nvim_set_hl(0, "SpellBad", { fg = nlr, underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
@@ -43,7 +44,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "Normal", { bg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
-  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = c })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = ndg1 })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
   vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
 
@@ -51,13 +52,13 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 
-  vim.api.nvim_set_hl(0, "ModeMsg", { fg = w, bold = true })
+  vim.api.nvim_set_hl(0, "ModeMsg", { fg = nlg1, bold = true })
 
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = g, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = b, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = c, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = y, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = r, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = nlg, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = nlb, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = nlc, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = nly, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = nlr, bg = trsp })
 
   vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
   vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
