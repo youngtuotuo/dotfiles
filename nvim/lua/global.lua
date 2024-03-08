@@ -35,6 +35,7 @@ local ndg1 = "NvimDarkGrey4"
 _G.colorset = function()
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = nlg4 })
+  vim.api.nvim_set_hl(0, "Todo", { fg = nlg })
 
   vim.api.nvim_set_hl(0, "SpellBad", { fg = nlr, underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
@@ -68,6 +69,5 @@ _G.colorset = function()
   for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
     vim.api.nvim_set_hl(0, group, {})
   end
-  vim.api.nvim_set_hl(0, "Todo", {})
 end
 _G.colorset()
