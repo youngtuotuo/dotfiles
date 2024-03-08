@@ -70,4 +70,5 @@ _G.colorset = function()
     vim.api.nvim_set_hl(0, group, {})
   end
 end
+vim.cmd.colo "koehler"
 _G.colorset()
