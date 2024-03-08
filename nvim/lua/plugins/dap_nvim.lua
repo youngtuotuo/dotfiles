@@ -1,4 +1,3 @@
--- INFO: Currently work in WSL2
 -- The REPL can be used to evaluate expressions. A `omnifunc` is set to
 -- support completion of expressions. It supports the following special
 -- commands:
