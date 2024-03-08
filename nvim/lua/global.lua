@@ -25,16 +25,16 @@ _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
 _G.auG = "TuoGroup"
 
+-- :h highlight
 local trsp = "none"
 local y, r, b, g, c = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
 local gr = "NvimLightGrey4"
 local w = "NvimLightGrey1"
-local selfg = "#e0def4"
 
 _G.colorset = function()
-  vim.api.nvim_set_hl(0, "Error", { fg = trsp })
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = y })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = gr })
+
   vim.api.nvim_set_hl(0, "SpellBad", { fg = r, underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
@@ -43,11 +43,15 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "Normal", { bg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = c })
+  vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
+
   vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
-  vim.api.nvim_set_hl(0, "Todo", { bg = trsp })
+  vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
+  vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 
   vim.api.nvim_set_hl(0, "ModeMsg", { fg = w, bold = true })
-  vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = selfg, bold = true })
 
   vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = g, bg = trsp })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = b, bg = trsp })
@@ -55,18 +59,14 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = y, bg = trsp })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = r, bg = trsp })
 
-  vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
-  vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
   vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
   vim.api.nvim_set_hl(0, "DiffDelete", { link = "DiagnosticFloatingError" })
-  vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Label" })
-  vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
-  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
 
   -- Hide all semantic highlights, :h lsp-semantic-highlight
   for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
     vim.api.nvim_set_hl(0, group, {})
   end
+  vim.api.nvim_set_hl(0, "Todo", {})
 end
 _G.colorset()
