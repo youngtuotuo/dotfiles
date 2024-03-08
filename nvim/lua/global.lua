@@ -28,9 +28,7 @@ _G.auG = "TuoGroup"
 -- :h highlight
 local trsp = "none"
 local nly, nlr, nlb, nlg, nlc = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
-local nlg4 = "NvimLightGrey4"
-local nlg1 = "NvimLightGrey1"
-local nlg2 = "NvimLightGrey2"
+local nlg1, nlg2, nlg4 = "NvimLightGrey1", "NvimLightGrey2", "NvimLightGrey4"
 
 _G.colorset = function()
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
@@ -70,4 +68,3 @@ _G.colorset = function()
     vim.api.nvim_set_hl(0, group, {})
   end
 end
-_G.colorset()
