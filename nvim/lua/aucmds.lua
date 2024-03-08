@@ -151,9 +151,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   end,
   desc = "All buffer need formatoptions = jql",
 })
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  group = group,
-  callback = _G.colorset,
-  desc = "Auto set some colors for colorsecheme change",
-})

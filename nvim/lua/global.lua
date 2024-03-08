@@ -40,6 +40,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
 
+  vim.api.nvim_set_hl(0, "Normal", { bg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
   vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
