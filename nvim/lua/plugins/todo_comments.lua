@@ -47,12 +47,12 @@ return {
     -- list of named colors where we try to extract the guifg from the
     -- list of highlight groups or use the hex color if hl not found as a fallback
     colors = {
-      error   = { "#DC2626" },
-      warning = { "#FBBF24" },
-      info    = { "#2563EB" },
-      hint    = { "#10B981" },
-      default = { "#7C3AED" },
-      test    = { "#4499FF" },
+      error   = { "NvimLightRed" },
+      warning = { "NvimLightYellow" },
+      info    = { "NvimLightBlue" },
+      hint    = { "NvimLightGreen" },
+      default = { "NvimLightMagenta" },
+      test    = { "NvimLightCyan" },
     },
     search = {
       command = "rg",
