@@ -24,12 +24,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
-    if vim.fn.has("win32") then
-      vim.keymap.set("n", "<leader>p", ":terminal build.bat <C-b>")
-    else
-      vim.keymap.set("n", "<leader>p", ":terminal ./build.sh <C-b>")
-    end
-    vim.keymap.set("v", "<leader>p", "<nop>")
+    vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
   end,
   desc = "<leader>p for c/cpp",
 })
@@ -40,7 +35,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
-    vim.keymap.set("n", "<leader>p", ":terminal lua % <C-b>")
+    vim.opt_local.makeprg = [[lua %]]
     vim.keymap.set("v", "<leader>p", ":w !lua")
   end,
   desc = "<leader>p for lua",
@@ -50,7 +45,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.py" },
   group = group,
   callback = function()
-    vim.keymap.set("n", "<leader>p", ":terminal python3 % <C-b>")
+    vim.opt_local.makeprg = [[python3 %]]
     vim.keymap.set("v", "<leader>p", ":w !python3")
   end,
   desc = "<leader>p for python",
@@ -74,7 +69,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     if vim.fn.has("win32") == 0 then
       vim.opt_local.shiftwidth = 4
       vim.opt_local.softtabstop = 4
-      vim.keymap.set("n", "<leader>p", ":terminal mojo % <C-b>")
+      vim.opt_local.makeprg = [[mojo %]]
       vim.keymap.set("v", "<leader>p", ":w !mojo")
     end
   end,
@@ -96,8 +91,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.conceallevel = 2
-    vim.keymap.set("n", "<leader>p", ":VimtexCompile")
-    vim.keymap.set("v", "<leader>p", "<nop>")
   end,
   desc = "<leader>p for latex",
 })
@@ -106,8 +99,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.rs" },
   group = group,
   callback = function()
-    vim.keymap.set("n", "<leader>p", ":terminal cargo run % <C-b>")
-    vim.keymap.set("v", "<leader>p", "<nop>")
+    vim.opt_local.makeprg = [[cargo run %]]
   end,
   desc = "<leader>p for rust",
 })
@@ -116,8 +108,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.go" },
   group = group,
   callback = function()
-    vim.keymap.set("n", "<leader>p", ":terminal go run % <C-b>")
-    vim.keymap.set("v", "<leader>p", "<nop>")
+    vim.opt_local.makeprg = [[go run %]]
   end,
   desc = "<leader>p for go",
 })
@@ -127,8 +118,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.g.zig_fmt_autosave = 0
-    vim.keymap.set("n", "<leader>p", ":terminal zig run % <C-b>")
-    vim.keymap.set("v", "<leader>p", "<nop>")
+    vim.opt_local.makeprg = [[zig run %]]
   end,
   desc = "<leader>p for zig",
 })
