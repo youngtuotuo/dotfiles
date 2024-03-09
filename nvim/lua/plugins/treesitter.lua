@@ -36,7 +36,7 @@ return {
       enable = true,
     },
     highlight = {
-      enable = true,
+      enable = false,
     },
     incremental_selection = {
       enable = false,
