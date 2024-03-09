@@ -10,6 +10,7 @@ return {
     history = true,
     updateevents = "TextChanged,TextChangedI",
     enable_autosnippets = true,
+    store_selection_keys = "<Tab>",
   },
   -- stylua: ignore
   keys = function()
@@ -36,8 +37,7 @@ return {
   end,
   config = function(_, opts)
     local ls = require("luasnip")
-    local snippet_path = ""
-    snippet_path = vim.fn.stdpath("config") .. "/lua/snippets/"
+    local snippet_path = vim.fn.stdpath("config") .. "/lua/snippets/"
     require("luasnip.loaders.from_lua").load({ paths = snippet_path })
     vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
     ls.config.set_config(opts)

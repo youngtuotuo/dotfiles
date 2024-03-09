@@ -43,6 +43,9 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";ln", snippetType = "autosnippet" }, {
     t([[\ln]]),
   }),
+  s({ trig = ";lg", snippetType = "autosnippet" }, {
+    t([[\log]]),
+  }),
   s({ trig = ";in", snippetType = "autosnippet" }, {
     t([[\in]]),
   }),
@@ -140,7 +143,7 @@ snippets = vim.tbl_extend("force", snippets, {
       \end{<>}
       ]],
       -- The insert node is placed in the <> angle brackets
-      { c(1, { t("equation"), t("equation*") }), i(2), rep(1) }
+      { c(1, { t("equation"), t("equation*") }), d(2, utils.get_visual), rep(1) }
     )
   ),
   s(
