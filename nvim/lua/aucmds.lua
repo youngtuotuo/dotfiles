@@ -46,6 +46,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.makeprg = [[python3 %]]
+    -- :h errorformat
+    vim.opt.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
     vim.keymap.set("v", "<leader>p", ":w !python3")
   end,
   desc = "<leader>p for python",

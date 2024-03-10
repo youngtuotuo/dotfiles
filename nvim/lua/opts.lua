@@ -35,6 +35,7 @@ vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
+vim.opt.path = [[.,,**]]
 
 -- fk u MS
 if vim.fn.has("win32") == 1 then
@@ -45,6 +46,7 @@ end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 vim.opt.shortmess:append("c")
 
+-- :h netrw-browse-maps
 vim.g.netrw_altfile = 1
 vim.g.netrw_cursor = 5
 vim.g.netrw_preview = 1

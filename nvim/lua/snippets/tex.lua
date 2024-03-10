@@ -25,6 +25,12 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";ga", snippetType = "autosnippet" }, {
     t([[\gamma]]),
   }),
+  s({ trig = ";dt", snippetType = "autosnippet" }, {
+    t([[\delta]]),
+  }),
+  s({ trig = ";Dt", snippetType = "autosnippet" }, {
+    t([[\Delta]]),
+  }),
   s({ trig = ";si", snippetType = "autosnippet" }, {
     t([[\sigma]]),
   }),
@@ -61,15 +67,20 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";fa", snippetType = "autosnippet" }, {
     t([[\forall]]),
   }),
-  s({ trig = ";rar", snippetType = "autosnippet" }, {
-    t([[\rightarrow]]),
-  }),
+  s(
+    { trig = ";rar", snippetType = "autosnippet" },
+    fmta( -- The snippet code actually looks like the equation environment it produces.
+      [[\<>]],
+      -- The insert node is placed in the <> angle brackets
+      { c(1, { t("rightarrow"), t("longrightarrow") }) }
+    )
+  ),
   s(
     { trig = ";lar", snippetType = "autosnippet" },
     fmta( -- The snippet code actually looks like the equation environment it produces.
       [[\<>]],
       -- The insert node is placed in the <> angle brackets
-      { c(1, { t("leftarrow"), t("Leftarrow"), t("xleftarrow"), t("xLeftarrow"), t("hookleftarrow") }) }
+      { c(1, { t("leftarrow"), t("longleftarrow") }) }
     )
   ),
   s(
