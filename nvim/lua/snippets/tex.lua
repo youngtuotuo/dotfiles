@@ -60,7 +60,7 @@ snippets = vim.tbl_extend("force", snippets, {
     fmta( -- The snippet code actually looks like the equation environment it produces.
       [[\<>]],
       -- The insert node is placed in the <> angle brackets
-      { c(1, { t("geq"), t("leq"), t("equiv") }) }
+      { c(1, { t("geq"), t("leq"), t("equiv"), t("approx") }) }
     )
   ),
   s(
@@ -186,11 +186,15 @@ snippets = vim.tbl_extend("force", snippets, {
   ),
   s(
     { trig = "([%$]-);bp", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta([[<>\left( <> \right)]], {
+    fmta([[<> <>]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, utils.get_visual),
+      c(1, {
+        sn(nil, { t("\\left( "), d(1, utils.get_visual), t(" \\right)")}),
+        sn(nil, { t("\\left[ "), d(1, utils.get_visual), t(" \\right]")}),
+        sn(nil, { t("\\left{ "), d(1, utils.get_visual), t(" \\right}")})
+      }),
     })
   ),
   s(
