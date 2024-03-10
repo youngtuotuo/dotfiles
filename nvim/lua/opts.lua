@@ -45,10 +45,6 @@ end
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 vim.opt.shortmess:append("c")
 
-vim.cmd([[
-  filetype indent off
-]])
-
 vim.g.netrw_altfile = 1
 vim.g.netrw_cursor = 5
 vim.g.netrw_preview = 1

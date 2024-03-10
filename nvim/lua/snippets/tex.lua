@@ -61,6 +61,28 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";fa", snippetType = "autosnippet" }, {
     t([[\forall]]),
   }),
+  s({ trig = ";rar", snippetType = "autosnippet" }, {
+    t([[\rightarrow]]),
+  }),
+  s(
+    { trig = ";lar", snippetType = "autosnippet" },
+    fmta( -- The snippet code actually looks like the equation environment it produces.
+      [[\<>]],
+      -- The insert node is placed in the <> angle brackets
+      { c(1, { t("leftarrow"), t("Leftarrow"), t("xleftarrow"), t("xLeftarrow"), t("hookleftarrow") }) }
+    )
+  ),
+  s(
+    { trig = ";ic", snippetType = "autosnippet" },
+    fmta( -- The snippet code actually looks like the equation environment it produces.
+      [[\<>]],
+      -- The insert node is placed in the <> angle brackets
+      { c(1, { t("subset"), t("subseteq"), t("nsubseteq"), t("not\\subset"), t("subsetneq"), t("subsetneqq") }) }
+    )
+  ),
+  s({ trig = ";ift", snippetType = "autosnippet" }, {
+    t([[\infty]]),
+  }),
   s(
     { trig = "([%$]-);sq", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\sqrt{<>}]], {
@@ -100,6 +122,24 @@ snippets = vim.tbl_extend("force", snippets, {
   s(
     { trig = "([%$]-);mc", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\mathcal{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = "([%$]-);mr", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\mathrm{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = "([%$]-);on", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\operatorname{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
@@ -147,6 +187,18 @@ snippets = vim.tbl_extend("force", snippets, {
     )
   ),
   s(
+    { trig = ";qu", snippetType = "autosnippet" },
+    fmta( -- The snippet code actually looks like the equation environment it produces.
+      [[
+      \begin{displayquote}
+           <>
+      \end{displayquote}
+      ]],
+      -- The insert node is placed in the <> angle brackets
+      { d(1, utils.get_visual) }
+    )
+  ),
+  s(
     { trig = ";al", snippetType = "autosnippet" },
     fmta( -- The snippet code actually looks like the equation environment it produces.
       [[
@@ -181,32 +233,38 @@ snippets = vim.tbl_extend("force", snippets, {
   ),
   -- ****************** fonts *******************
   s(
-    { trig = ";tt", snippetType = "autosnippet"  },
+    { trig = ";tt", snippetType = "autosnippet" },
     fmta([[\texttt{<>}]], {
       d(1, utils.get_visual),
     })
   ),
   s(
-    { trig = ";ti", snippetType = "autosnippet"  },
+    { trig = ";ti", snippetType = "autosnippet" },
     fmta("\\textit{<>}", {
       d(1, utils.get_visual),
     })
   ),
   s(
-    { trig = ";hr", snippetType = "autosnippet"  },
+    { trig = ";tb", snippetType = "autosnippet" },
+    fmta("\\textbf{<>}", {
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = ";hr", snippetType = "autosnippet" },
     fmta([[\href{<>}{<>}]], {
       i(1, "url"),
       i(2, "display name"),
     })
   ),
   s(
-    { trig = ";rf", snippetType = "autosnippet"  },
+    { trig = ";rf", snippetType = "autosnippet" },
     fmta([[\ref{<>}]], {
       i(1),
     })
   ),
   s(
-    { trig = ";lb", snippetType = "autosnippet"  },
+    { trig = ";lb", snippetType = "autosnippet" },
     fmta([[\label{<>}]], {
       i(1),
     })
@@ -227,25 +285,22 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
+  s({ trig = ";se", snippetType = "autosnippet" }, fmta([[\<>{<>}]], { c(1, { t("section"), t("section*") }), i(2) }), { condition = line_begin }),
   s(
-    { trig = ";se", snippetType = "autosnippet"  },
-    fmta([[\<>{<>}]], { c(1, { t("section"), t("section*") }), i(2) }),
-    { condition = line_begin }
-  ),
-  s(
-    { trig = ";sb", snippetType = "autosnippet"  },
+    { trig = ";sb", snippetType = "autosnippet" },
     fmta([[\<>{<>}]], { c(1, { t("subsection"), t("subsection*") }), i(2) }),
     { condition = line_begin }
   ),
   s(
-    { trig = ";ssb", snippetType = "autosnippet"  },
+    { trig = ";ssb", snippetType = "autosnippet" },
     fmta([[\<>{<>}]], { c(1, { t("subsubsection"), t("subsubsection*") }), i(2) }),
     { condition = line_begin }
   ),
   -- templates
   s(
-    { trig = ";newa", snippetType = "autosnippet"  },
-    fmta([[
+    { trig = ";newa", snippetType = "autosnippet" },
+    fmta(
+      [[
     \documentclass{article}
     \usepackage[a4paper]{geometry}
     \usepackage[utf8]{inputenc}
@@ -289,9 +344,11 @@ snippets = vim.tbl_extend("force", snippets, {
     \begin{document}
         <>
     \end{document}
-    ]], { i(1) }),
+    ]],
+      { i(1) }
+    ),
     { condition = line_begin }
-  )
+  ),
 })
 
 return snippets
