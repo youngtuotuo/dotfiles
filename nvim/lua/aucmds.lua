@@ -89,15 +89,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.tex" },
-  group = group,
-  callback = function()
-    vim.opt_local.conceallevel = 2
-  end,
-  desc = "<leader>p for latex",
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.rs" },
   group = group,
   callback = function()
