@@ -19,6 +19,9 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";ap", snippetType = "autosnippet" }, {
     t([[\alpha]]),
   }),
+  s({ trig = ";ld", snippetType = "autosnippet" }, {
+    t([[\lambda]]),
+  }),
   s({ trig = ";be", snippetType = "autosnippet" }, {
     t([[\beta]]),
   }),
@@ -34,26 +37,8 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";si", snippetType = "autosnippet" }, {
     t([[\sigma]]),
   }),
-  s({ trig = ";mu", snippetType = "autosnippet" }, {
-    t([[\mu]]),
-  }),
-  s({ trig = ";Pi", snippetType = "autosnippet" }, {
-    t([[\Pi]]),
-  }),
-  s({ trig = ";pi", snippetType = "autosnippet" }, {
-    t([[\pi]]),
-  }),
   s({ trig = ";pr", snippetType = "autosnippet" }, {
     t([[\prod]]),
-  }),
-  s({ trig = ";ln", snippetType = "autosnippet" }, {
-    t([[\ln]]),
-  }),
-  s({ trig = ";lg", snippetType = "autosnippet" }, {
-    t([[\log]]),
-  }),
-  s({ trig = ";in", snippetType = "autosnippet" }, {
-    t([[\in]]),
   }),
   s({ trig = ";th", snippetType = "autosnippet" }, {
     t([[\theta]]),
@@ -67,6 +52,17 @@ snippets = vim.tbl_extend("force", snippets, {
   s({ trig = ";fa", snippetType = "autosnippet" }, {
     t([[\forall]]),
   }),
+  s({ trig = ";pa", snippetType = "autosnippet" }, {
+    t([[\partial]]),
+  }),
+  s(
+    { trig = ";equ", snippetType = "autosnippet" },
+    fmta( -- The snippet code actually looks like the equation environment it produces.
+      [[\<>]],
+      -- The insert node is placed in the <> angle brackets
+      { c(1, { t("geq"), t("leq"), t("equiv") }) }
+    )
+  ),
   s(
     { trig = ";rar", snippetType = "autosnippet" },
     fmta( -- The snippet code actually looks like the equation environment it produces.
@@ -93,6 +89,9 @@ snippets = vim.tbl_extend("force", snippets, {
   ),
   s({ trig = ";ift", snippetType = "autosnippet" }, {
     t([[\infty]]),
+  }),
+  s({ trig = ";iff", snippetType = "autosnippet" }, {
+    t([[\iff]]),
   }),
   s(
     { trig = "([%$]-);sq", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
@@ -186,7 +185,16 @@ snippets = vim.tbl_extend("force", snippets, {
     })
   ),
   s(
-    { trig = ";eq", snippetType = "autosnippet" },
+    { trig = "([%$]-);bp", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\left( <> \right)]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, utils.get_visual),
+    })
+  ),
+  s(
+    { trig = ";eqq", snippetType = "autosnippet" },
     fmta( -- The snippet code actually looks like the equation environment it produces.
       [[
       \begin{<>}
@@ -236,6 +244,15 @@ snippets = vim.tbl_extend("force", snippets, {
   s(
     { trig = "([%a%)%]%}|])00", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("<>_{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      i(1),
+    })
+  ),
+  s(
+    { trig = "([%a%)%]%}|])11", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("<>^{<>}", {
       f(function(_, snip)
         return snip.captures[1]
       end),
@@ -296,15 +313,19 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
-  s({ trig = ";se", snippetType = "autosnippet" }, fmta([[\<>{<>}]], { c(1, { t("section"), t("section*") }), i(2) }), { condition = line_begin }),
+  s(
+    { trig = ";se", snippetType = "autosnippet" },
+    fmta([[\<>{<>}]], { c(1, { t("section"), t("section*") }), d(2, utils.get_visual) }),
+    { condition = line_begin }
+  ),
   s(
     { trig = ";sb", snippetType = "autosnippet" },
-    fmta([[\<>{<>}]], { c(1, { t("subsection"), t("subsection*") }), i(2) }),
+    fmta([[\<>{<>}]], { c(1, { t("subsection"), t("subsection*") }), d(2, utils.get_visual) }),
     { condition = line_begin }
   ),
   s(
     { trig = ";ssb", snippetType = "autosnippet" },
-    fmta([[\<>{<>}]], { c(1, { t("subsubsection"), t("subsubsection*") }), i(2) }),
+    fmta([[\<>{<>}]], { c(1, { t("subsubsection"), t("subsubsection*") }), d(2, utils.get_visual) }),
     { condition = line_begin }
   ),
   -- templates
