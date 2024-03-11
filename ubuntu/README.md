@@ -4,12 +4,13 @@ Ubuntu/WSL2
 ```bash
 ./ubuntu/sudo_install.sh
 ./ubuntu/local_install.sh
+./ubuntu/config_install.sh
 ```
 
 tigerVNC
 --------
 
-**NOTE**: Not work in WSL2. You need to use VcXsrv instead.
+**NOTE**: No need to use this in WSL2.
 
 ```bash
 vncserver :2
