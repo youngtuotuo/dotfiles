@@ -34,6 +34,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = nlg4 })
   vim.api.nvim_set_hl(0, "Todo", { fg = nlg })
+  vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
 
   vim.api.nvim_set_hl(0, "SpellBad", { fg = nlr, underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
