@@ -36,7 +36,7 @@ vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.path = [[.,,**]]
-vim.opt.shada = [[!,'100,<50,s10,h,%]]
+vim.opt.shada = [[!,'100,<50,s10,h]]
 
 -- append options
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
