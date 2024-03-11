@@ -36,11 +36,7 @@ vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.path = [[.,,**]]
-
--- fk u MS
-if vim.fn.has("win32") == 1 then
-  vim.opt.shada = [[!,'100,<50,s10,h]] -- for command history
-end
+vim.opt.shada = [[!,'100,<50,s10,h,%]]
 
 -- append options
 vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
