@@ -35,11 +35,10 @@ vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
-vim.opt.path = [[.,,**]]
+vim.opt.path = [[.,**]]
 vim.opt.shada = [[!,'100,<50,s10,h]]
 
 -- append options
-vim.opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 vim.opt.shortmess:append("c")
 
 -- :h netrw-browse-maps

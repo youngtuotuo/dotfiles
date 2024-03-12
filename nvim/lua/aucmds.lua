@@ -24,9 +24,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
+    vim.opt_local.wildignore:append({ "*.o", "*.obj" })
     vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
   end,
-  desc = "<leader>p for c/cpp",
+  desc = "aucmd for c/cpp",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -38,7 +39,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt_local.makeprg = [[lua %]]
     vim.keymap.set("v", "<leader>p", ":w !lua")
   end,
-  desc = "<leader>p for lua",
+  desc = "aucmd for lua",
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.tex" },
+  group = group,
+  callback = function()
+    vim.opt_local.wildignore:append({ "*.aux", "*.fdb_latexmk", "*.fls", "*.out", "*.synctex.gz" })
+  end,
+  desc = "aucmd for tex",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -47,10 +57,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.makeprg = [[python3 %]]
     -- :h errorformat
-    vim.opt.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
+    vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
+    vim.opt_local.wildignore:append({ "*.pyc", "*pycache*", "lib/python*", "lib64/python*" })
     vim.keymap.set("v", "<leader>p", ":w !python3")
   end,
-  desc = "<leader>p for python",
+  desc = "aucmd for python",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -75,7 +86,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
       vim.keymap.set("v", "<leader>p", ":w !mojo")
     end
   end,
-  desc = "<leader>p for mojo",
+  desc = "aucmd for mojo",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -94,7 +105,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.makeprg = [[cargo run %]]
   end,
-  desc = "<leader>p for rust",
+  desc = "aucmd for rust",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -103,7 +114,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.makeprg = [[go run %]]
   end,
-  desc = "<leader>p for go",
+  desc = "aucmd for go",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -113,7 +124,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.g.zig_fmt_autosave = 0
     vim.opt_local.makeprg = [[zig run %]]
   end,
-  desc = "<leader>p for zig",
+  desc = "aucmsd for zig",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
