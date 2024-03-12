@@ -1,4 +1,7 @@
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
+wf._watchfunc = function()
+  return function() end
+end
 if ok then
   local watch_type = require("vim._watch").FileChangeType
 
@@ -62,10 +65,6 @@ if ok then
 
   if vim.fn.executable("watchman") == 1 then
     wf._watchfunc = watchman
-  else
-    wf._watchfunc = function()
-      return function() end
-    end
   end
 end
 
