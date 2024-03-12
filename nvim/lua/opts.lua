@@ -29,6 +29,7 @@ vim.opt.undofile = true
 vim.opt.wildoptions = [[tagfile]]
 vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.virtualedit = "block"
+vim.opt.fillchars = [[vert:|]]
 vim.opt.pumheight = 10
 vim.opt.equalalways = false
 vim.opt.mousemodel = "extend"
