@@ -1,4 +1,5 @@
 autoload -Uz compinit && compinit
+bindkey -e
 bindkey \^U backward-kill-line
 export WORDCHARS="_"
 autoload -U select-word-style

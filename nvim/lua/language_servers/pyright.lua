@@ -2,7 +2,7 @@ return function()
   require("lspconfig").pyright.setup({
     settings = {
       pyright = {
-        disableOrganizeImports = true,
+        disableOrganizeImports = false,
       },
       python = {
         analysis = {
