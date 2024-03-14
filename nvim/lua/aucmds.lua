@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.wildignore:append({ "*.o", "*.obj" })
     vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
+    -- TODO: errorformat for c/cpp
   end,
   desc = "aucmd for c/cpp",
 })
@@ -104,6 +105,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.makeprg = [[cargo run %]]
+    -- TODO: errorformat for rust
   end,
   desc = "aucmd for rust",
 })
@@ -113,6 +115,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.makeprg = [[go run %]]
+    -- TODO: errorformat for go
   end,
   desc = "aucmd for go",
 })
@@ -123,6 +126,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.g.zig_fmt_autosave = 0
     vim.opt_local.makeprg = [[zig run %]]
+    -- TODO: errorformat for zig
   end,
   desc = "aucmsd for zig",
 })
@@ -131,11 +135,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.md" },
   group = group,
   callback = function()
-    vim.opt_local.conceallevel = 2
     vim.opt_local.spell = true
     vim.opt_local.spelllang = [[en_us]]
   end,
-  desc = "local markdown conceallevel",
+  desc = "aucmds for markdown",
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {

@@ -1,13 +1,17 @@
 return function()
   require("lspconfig").pyright.setup({
     settings = {
+      pyright = {
+        disableOrganizeImports = true,
+      },
       python = {
         analysis = {
+          ignore = { "*" },
           stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
           logLevel = "Information",
           autoImportCompletions = true,
           autoSearchPaths = false,
-          -- diagnosticMode = "off",
+          diagnosticMode = "off",
           typeCheckingMode = "off",
           useLibraryCodeForTypes = false,
         },
