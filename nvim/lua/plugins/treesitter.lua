@@ -43,6 +43,15 @@ return {
     },
     -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
     ensure_installed = {
+      "bash",
+      "c",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "query",
+      "vim",
+      "vimdoc",
       "gitcommit",
       "gitignore",
       "go",
