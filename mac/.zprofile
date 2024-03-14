@@ -55,6 +55,5 @@ esac
 
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export MODULAR_HOME="$HOME/.modular"
 
