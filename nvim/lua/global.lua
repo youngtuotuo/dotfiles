@@ -35,6 +35,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = nlg4 })
   vim.api.nvim_set_hl(0, "Todo", { fg = "#10B981" })
   vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
+  vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
 
   vim.api.nvim_set_hl(0, "SpellBad", { fg = nlr, underline = true })
