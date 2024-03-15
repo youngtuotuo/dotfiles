@@ -84,8 +84,6 @@ case ":${PATH}:" in
 	;;
 esac
 
-
-bind "\C-t":transpose-chars
 export MODULAR_HOME="$HOME/.modular"
 export GEM_HOME="$HOME/gems"
 if command -v oh-my-posh >/dev/null; then
