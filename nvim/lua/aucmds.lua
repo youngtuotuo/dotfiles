@@ -136,8 +136,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.conceallevel = 0
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = [[en_us]]
+    -- vim.opt_local.spell = true
+    -- vim.opt_local.spelllang = [[en_us]]
   end,
   desc = "aucmds for markdown",
 })
