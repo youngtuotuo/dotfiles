@@ -3,14 +3,13 @@ return {
   cond = vim.fn.finddir(".git", vim.fn.getcwd() .. ";") ~= "",
   event = { "BufRead" },
   opts = {
-    -- stylua: ignore
     signs = {
-      add          = { text = "│" },
-      change       = { text = "│" },
-      delete       = { text = "-" },
-      topdelete    = { text = "‾" },
+      add = { text = "│" },
+      change = { text = "│" },
+      delete = { text = "-" },
+      topdelete = { text = "‾" },
       changedelete = { text = "~" },
-      untracked    = { text = "┆" },
+      untracked = { text = "┆" },
     },
     signcolumn = false,
     numhl = false,
@@ -39,17 +38,20 @@ return {
     },
     yadm = { enable = false },
   },
-  -- stylua: ignore
   config = function(_, opts)
     local gs = require("gitsigns")
     gs.setup(opts)
 
-    local next_hunk    = function() gs.next_hunk() end
-    local prev_hunk    = function() gs.prev_hunk() end
-    local stage_hunk   = require("gitsigns").stage_hunk
-    local reset_hunk   = require("gitsigns").reset_hunk
+    local next_hunk = function()
+      gs.next_hunk()
+    end
+    local prev_hunk = function()
+      gs.prev_hunk()
+    end
+    local stage_hunk = require("gitsigns").stage_hunk
+    local reset_hunk = require("gitsigns").reset_hunk
     local preview_hunk = require("gitsigns").preview_hunk
-    local blame_line   = require("gitsigns").blame_line
+    local blame_line = require("gitsigns").blame_line
     local toggle_signs = require("gitsigns").toggle_signs
 
     local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
@@ -57,12 +59,12 @@ return {
       next_hunk, prev_hunk = ts_rep.make_repeatable_move_pair(next_hunk, prev_hunk)
     end
 
-    vim.keymap.set( "n", "gj", next_hunk,    { desc = "Gitsigns next hunk"     } )
-    vim.keymap.set( "n", "gk", prev_hunk,    { desc = "Gitsigns previous hunk" } )
-    vim.keymap.set( "n", "gs", stage_hunk,   { desc = "Gitsigns stage hunk"    } )
-    vim.keymap.set( "n", "gr", reset_hunk,   { desc = "Gitsigns reset hunk"    } )
-    vim.keymap.set( "n", "gp", preview_hunk, { desc = "Gitsigns preview hunk"  } )
-    vim.keymap.set( "n", "gh", blame_line,   { desc = "Gitsigns line blame"    } )
-    vim.keymap.set( "n", "<leader>g", toggle_signs,  { desc = "Gitsigns toggle sign"   } )
+    vim.keymap.set("n", "]h", next_hunk, { desc = "Gitsigns next hunk" })
+    vim.keymap.set("n", "[h", prev_hunk, { desc = "Gitsigns previous hunk" })
+    vim.keymap.set("n", "<space>hs", stage_hunk, { desc = "Gitsigns stage hunk" })
+    vim.keymap.set("n", "<space>hr", reset_hunk, { desc = "Gitsigns reset hunk" })
+    vim.keymap.set("n", "<space>hp", preview_hunk, { desc = "Gitsigns preview hunk" })
+    vim.keymap.set("n", "<space>hb", blame_line, { desc = "Gitsigns line blame" })
+    vim.keymap.set("n", "<leader>g", toggle_signs, { desc = "Gitsigns toggle sign" })
   end,
 }

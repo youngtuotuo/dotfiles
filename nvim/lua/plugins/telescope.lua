@@ -17,28 +17,28 @@ return {
     init = function()
       vim.api.nvim_create_user_command("T", "Telescope", {})
     end,
-    -- stylua: ignore
     keys = {
       { "<space>e", "<cmd>Telescope fd<cr>", desc = "Telescope fd" },
       { "<space>g", tele_git, desc = "Telescope git_files" },
       { "<space>c", tele_git_commit, desc = "Telescope git_bcommits" },
       { "<space>l", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
+      { "<space>d", "<cmd>Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
     },
     version = false,
     opts = function()
       local actions = require("telescope.actions")
       local maps = {
         n = {
-          ["q"]       = actions.close,
-          ["<C-c>"]   = actions.close,
-          ["<Tab>"]   = actions.move_selection_next,
+          ["q"] = actions.close,
+          ["<C-c>"] = actions.close,
+          ["<Tab>"] = actions.move_selection_next,
           ["<S-Tab>"] = actions.move_selection_previous,
-          ["<C-p>"]   = actions.move_selection_previous,
-          ["<C-n>"]   = actions.move_selection_next,
+          ["<C-p>"] = actions.move_selection_previous,
+          ["<C-n>"] = actions.move_selection_next,
         },
         i = {
-          ["<C-c>"]   = actions.close,
-          ["<Tab>"]   = actions.move_selection_next,
+          ["<C-c>"] = actions.close,
+          ["<Tab>"] = actions.move_selection_next,
           ["<S-Tab>"] = actions.move_selection_previous,
         },
       }
@@ -51,7 +51,7 @@ return {
               preview_cutoff = 120,
               prompt_position = "bottom",
               preview_width = 0.65,
-              width = 0.95
+              width = 0.95,
             },
           },
           results_title = "Results",

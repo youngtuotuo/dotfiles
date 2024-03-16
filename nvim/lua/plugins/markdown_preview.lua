@@ -1,7 +1,7 @@
 return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install",
-  ft = { "markdown" },
+  lazy = true,
   cmd = "MarkdownPreview",
   init = function()
     vim.api.nvim_create_user_command("MP", "MarkdownPreview", {})

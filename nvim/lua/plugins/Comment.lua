@@ -1,6 +1,6 @@
 return {
   "numToStr/Comment.nvim",
-  event = { "BufRead" },
+  event = { "BufRead", "IntertEnter" },
   opts = {
     -- Add a space b/w comment and the line
     padding = true,

@@ -1,9 +1,10 @@
 return {
   "stevearc/aerial.nvim",
   lazy = true,
-  -- stylua: ignore
   keys = function()
-    local toggle = function() require("aerial").toggle({ focus = true }) end
+    local toggle = function()
+      require("aerial").toggle({ focus = true })
+    end
     return {
       { "<space>o", toggle, noremap = true, desc = "Code outline" },
     }

@@ -2,10 +2,11 @@ return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "folke/trouble.nvim" },
   event = { "BufRead" },
-  -- stylua: ignore
   keys = {
     {
-      "<space>t", ":TroubleToggle todo cwd=", desc = "TodoTrouble"
+      "<space>t",
+      ":TodoLocList",
+      desc = "TodoLocList",
     },
   },
   opts = {
@@ -23,9 +24,9 @@ return {
       HACK = { icon = " ", color = "error" },
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
       PERF = { icon = "󰖷 ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "info",    alt = { "INFO" } },
-      TEST = { icon = " ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
-      IDEA = { icon = " ", color = "test",    alt = { "TRY", "HINT", "THINK", "FEAT" } },
+      NOTE = { icon = " ", color = "info", alt = { "INFO" } },
+      TEST = { icon = " ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+      IDEA = { icon = " ", color = "test", alt = { "TRY", "HINT", "THINK", "FEAT" } },
     },
     merge_keywords = true, -- when true, custom keywords will be merged with the defaults
     -- highlighting of the line containing the todo comment
@@ -47,12 +48,12 @@ return {
     -- list of named colors where we try to extract the guifg from the
     -- list of highlight groups or use the hex color if hl not found as a fallback
     colors = {
-      error   = { "#DC2626" },
+      error = { "#DC2626" },
       warning = { "#FBBF24" },
-      info    = { "#2563EB" },
-      hint    = { "#10B981" },
+      info = { "#2563EB" },
+      hint = { "#10B981" },
       default = { "#7C3AED" },
-      test    = { "#4499FF" },
+      test = { "#4499FF" },
     },
     search = {
       command = "rg",

@@ -3,7 +3,7 @@ return {
   cond = function()
     return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
   end,
-  ft = { "tex", "c", "lua", "python" },
+  ft = { "tex", "python" },
   event = { "BufRead" },
   version = "v2.*",
   opts = {
@@ -12,7 +12,6 @@ return {
     enable_autosnippets = true,
     store_selection_keys = "<Tab>",
   },
-  -- stylua: ignore
   keys = function()
     local next_node = function()
       if require("luasnip").jumpable(1) then

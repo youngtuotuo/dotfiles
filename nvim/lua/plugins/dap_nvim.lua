@@ -22,7 +22,7 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
-    ft = { "c", "python", "cpp" },
+    lazy = true,
     keys = function()
       local toggle_bottom = function()
         require("dapui").toggle({ layout = 2, reset = true })
@@ -32,7 +32,7 @@ return {
       end
       return {
         { "<M-j>", toggle_bottom, mode = "n", desc = "[dap-ui] toggle repl" },
-        { "<M-h>", toggle_left,  mode = "n", desc = "[dap-ui] toggle stacks" },
+        { "<M-h>", toggle_left, mode = "n", desc = "[dap-ui] toggle stacks" },
       }
     end,
     opts = {
@@ -45,22 +45,35 @@ return {
         "mfussenegger/nvim-dap",
         lazy = true,
         keys = function()
-          -- stylua: ignore start
-          local continue     = function() require("dap").continue() end
-          local step_over    = function() require("dap").step_over() end
-          local step_into    = function() require("dap").step_into() end
-          local step_out     = function() require("dap").step_out() end
-          local terminate    = function() require("dap").terminate() end
-          local add_breakpoint    = function() require("dap").toggle_breakpoint() end
-          local clear_breakpoints = function() require("dap").clear_breakpoints() end
+          local continue = function()
+            require("dap").continue()
+          end
+          local step_over = function()
+            require("dap").step_over()
+          end
+          local step_into = function()
+            require("dap").step_into()
+          end
+          local step_out = function()
+            require("dap").step_out()
+          end
+          local terminate = function()
+            require("dap").terminate()
+          end
+          local add_breakpoint = function()
+            require("dap").toggle_breakpoint()
+          end
+          local clear_breakpoints = function()
+            require("dap").clear_breakpoints()
+          end
 
           return {
-            { "<M-q>", terminate,    mode = "n", desc = "[dap] terminate dap" },
-            { "<M-x>", continue,     mode = "n", desc = "[dap] continue execution till next breakpoint" },
-            { "<M-n>", step_over,    mode = "n", desc = "[dap] forward one execution" },
-            { "<M-i>", step_into,    mode = "n", desc = "[dap] step into a function or method" },
-            { "<M-o>", step_out,     mode = "n", desc = "[dap] step out of a function or method" },
-            { "<M-a>", add_breakpoint,    mode = "n", desc = "[dap] toggle breakpoint" },
+            { "<M-q>", terminate, mode = "n", desc = "[dap] terminate dap" },
+            { "<M-x>", continue, mode = "n", desc = "[dap] continue execution till next breakpoint" },
+            { "<M-n>", step_over, mode = "n", desc = "[dap] forward one execution" },
+            { "<M-i>", step_into, mode = "n", desc = "[dap] step into a function or method" },
+            { "<M-o>", step_out, mode = "n", desc = "[dap] step out of a function or method" },
+            { "<M-a>", add_breakpoint, mode = "n", desc = "[dap] toggle breakpoint" },
             { "<M-c>", clear_breakpoints, mode = "n", desc = "[dap] clear breakpoints" },
           }
         end,
@@ -116,7 +129,7 @@ return {
                 return vim.fn.split(argument_string, " ", true)
               end,
               -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-              module = string.gsub(vim.fn.expand("%:r"), '/', '.'),
+              module = string.gsub(vim.fn.expand("%:r"), "/", "."),
               python = function()
                 if vim.fn.executable("python3") then
                   return vim.fn.exepath("python3")
@@ -132,9 +145,9 @@ return {
             pattern = { "*.c", "*.py" },
             group = _G.auG,
             callback = function()
-              dap.configurations.python[1].module = string.gsub(vim.fn.expand("%:r"), '/', '.')
+              dap.configurations.python[1].module = string.gsub(vim.fn.expand("%:r"), "/", ".")
             end,
-            desc = "[dap] Change module when switch buffer"
+            desc = "[dap] Change module when switch buffer",
           })
         end,
       },

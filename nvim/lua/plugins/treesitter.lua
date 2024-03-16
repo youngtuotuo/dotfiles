@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
   build = ":TSUpdate",
-  event = { "BufRead" },
+  ft = { "sh", "c", "lua", "markdown", "python", "txt", "go", "rust" },
   init = function(plugin)
     -- copy from folke
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
