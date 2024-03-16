@@ -28,12 +28,12 @@ return {
         prepend_args = {
           "--indent-type=spaces",
           "--indent-width=2",
-          "--column-width=150",
+          "--column-width=100",
         },
       },
       clang_format = {
         prepend_args = {
-          "-style={BasedOnStyle: llvm, ColumnLimit: 150, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}",
+          "-style={BasedOnStyle: llvm, ColumnLimit: 100, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}",
         },
       },
     },

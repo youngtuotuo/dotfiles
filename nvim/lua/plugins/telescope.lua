@@ -13,10 +13,6 @@ end
 return {
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    init = function()
-      vim.api.nvim_create_user_command("T", "Telescope", {})
-    end,
     keys = {
       { "<space>e", "<cmd>Telescope fd<cr>", desc = "Telescope fd" },
       { "<space>g", tele_git, desc = "Telescope git_files" },

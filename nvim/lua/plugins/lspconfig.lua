@@ -101,6 +101,7 @@ return {
       },
     },
     {
+      -- Auto config intalled for us
       "williamboman/mason-lspconfig.nvim",
       opts = {
         handlers = {
@@ -113,6 +114,7 @@ return {
       },
     },
     {
+      -- Better installer than default
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       opts = function()
         local ensure_installed = {

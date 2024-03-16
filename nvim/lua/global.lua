@@ -4,6 +4,16 @@ P = function(v)
   return v
 end
 
+-- Define HLNext function in Lua
+function HLFound(blinktime)
+  vim.cmd("set invcursorline")
+  vim.cmd("redraw")
+  vim.defer_fn(function()
+    vim.cmd("set invcursorline")
+    vim.cmd("redraw")
+  end, blinktime * 1000)
+end
+
 -- "none": No border (default).
 -- "single": A single line box.
 -- "double": A double line box.
@@ -25,20 +35,21 @@ _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
 _G.auG = "TuoGroup"
 
+-- each line's 101-th char get highlighted
+vim.fn.matchadd("ColorColumn", [[\%101v]], 100)
+
 -- :h highlight
 local trsp = "none"
-local nly, nlr, nlb, nlg, nlc = "NvimLightYellow", "NvimLightRed", "NvimLightBlue", "NvimLightGreen", "NvimLightCyan"
-local nlg1, nlg2, nlg4 = "NvimLightGrey1", "NvimLightGrey2", "NvimLightGrey4"
-
 _G.colorset = function()
-  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = nly })
-  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = nlg4 })
+  vim.api.nvim_set_hl(0, "netrwMarkFile", { fg = "NvimLightYellow" })
+  vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = "NvimLightGrey4" })
   vim.api.nvim_set_hl(0, "Todo", { fg = "#10B981" })
   vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
   vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
+  vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed" })
 
-  vim.api.nvim_set_hl(0, "SpellBad", { fg = nlr, underline = true })
+  vim.api.nvim_set_hl(0, "SpellBad", { fg = "NvimLightRed", underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
@@ -46,7 +57,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "Normal", { bg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = trsp })
-  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = nlg2 })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { fg = "NvimLightGrey2" })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
   vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
 
@@ -54,13 +65,13 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 
-  vim.api.nvim_set_hl(0, "ModeMsg", { fg = nlg1, bold = true })
+  vim.api.nvim_set_hl(0, "ModeMsg", { fg = "NvimLightGrey1", bold = true })
 
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = nlg, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = nlb, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = nlc, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = nly, bg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = nlr, bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = "NvimLightGreen", bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = "NvimLightBlue", bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = "NvimLightCyan", bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = "NvimLightYellow", bg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = "NvimLightRed", bg = trsp })
 
   vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
   vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })

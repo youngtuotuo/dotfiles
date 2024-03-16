@@ -102,12 +102,7 @@ Plugins
 
 ### ui
 
-+ [luukvbaal/statuscol.nvim](https://dotfyle.com/plugins/luukvbaal/statuscol.nvim)
-+ [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
-+ [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
-+ [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
 + [norcalli/nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)
-+ [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
 + [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
 
 ### lsp
@@ -126,33 +121,15 @@ Plugins
 
 ### editing-support
 
-+ [RRethy/vim-illuminate](https://dotfyle.com/plugins/RRethy/vim-illuminate)
-+ [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
 + [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
-+ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
 + [backdround/neowords.nvim](https://dotfyle.com/plugins/backdround/neowords.nvim)
 + [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 + [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
-    + [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
-    + [FelipeLema/cmp-async-path](https://codeberg.org/FelipeLema/cmp-async-path)
-    + [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
-    + [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
-    + [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-    + [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
-    + [micangl/cmp-vimtex](https://dotfyle.com/plugins/micangl/cmp-vimtex)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
-    + [andymass/vim-matchup](https://github.com/andymass/vim-matchup)
-    + [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
     + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-    + [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
-    + [nvim-treesitter/playground](https://github.com/nvim-treesitter/playground)
 + [tpope/vim-vinegar](https://github.com/tpope/vim-vinegar)
 + [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
-    + [debugloop/telescope-undo.nvim](https://dotfyle.com/plugins/debugloop/telescope-undo.nvim)
-    + [crispgm/telescope-heading.nvim](https://github.com/crispgm/telescope-heading.nvim)
     + [nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
-+ [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
 
 ### git
 

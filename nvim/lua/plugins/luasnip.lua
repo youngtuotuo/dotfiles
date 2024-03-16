@@ -4,7 +4,6 @@ return {
     return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
   end,
   ft = { "tex", "python" },
-  event = { "BufRead" },
   version = "v2.*",
   opts = {
     history = true,

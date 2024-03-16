@@ -1,4 +1,4 @@
---  CHAR	    MODE
+--  CHAR        MODE
 -- <Space>      Normal, Visual, Select and Operator-pending
 -- n            Normal
 -- v            Visual and Select
@@ -11,40 +11,159 @@
 -- c            Command-line
 -- t            Terminal-Job
 
-vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
-vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
-vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
-vim.keymap.set({ "n" }, "Q", "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need" })
-vim.keymap.set({ "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" })
+vim.keymap.set(
+  { "i" },
+  "<C-n>",
+  "<nop>",
+  { nowait = true, noremap = true, desc = "Not show native menu" }
+)
+vim.keymap.set(
+  { "i" },
+  "<C-p>",
+  "<nop>",
+  { nowait = true, noremap = true, desc = "Not show native menu" }
+)
+vim.keymap.set(
+  { "i" },
+  "<C-c>",
+  "<nop>",
+  { nowait = true, noremap = true, desc = "Disable interrupt" }
+)
+vim.keymap.set(
+  { "n" },
+  "Q",
+  "<nop>",
+  {
+    nowait = true,
+    noremap = true,
+    desc = "Q repeat the last recorded register [count] times, no need",
+  }
+)
+vim.keymap.set(
+  { "n" },
+  "<C-q>",
+  "<nop>",
+  { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" }
+)
 
-vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
-vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true, desc = "Delete back to the first character and insert" })
+vim.keymap.set(
+  { "n" },
+  "d_",
+  "d^",
+  { nowait = true, noremap = true, desc = "Delete back to the first character" }
+)
+vim.keymap.set(
+  { "n" },
+  "c_",
+  "c^",
+  { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
+)
 
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
-vim.keymap.set({ "n", "i" }, "<C-c>", "<esc>", { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" })
+vim.keymap.set(
+  { "n", "i" },
+  "<C-c>",
+  "<esc>",
+  { noremap = true, desc = "Esc, C-c will raise inetrrutped error" }
+)
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>y",
+  '"+y',
+  { noremap = true, desc = "y, but yank to system clipboard" }
+)
 
 -- More indents options
-vim.keymap.set({ "i" }, "<S-Tab>", "<C-d>", { noremap = true, desc = "let Shift-Tab go back one indent" })
+vim.keymap.set(
+  { "i" },
+  "<S-Tab>",
+  "<C-d>",
+  { noremap = true, desc = "let Shift-Tab go back one indent" }
+)
 
-vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true, desc = "Term mode to normal mode with Esc" })
+vim.keymap.set(
+  { "t" },
+  "<C-[>",
+  "<C-\\><C-n>",
+  { noremap = true, desc = "Term mode to normal mode with Esc" }
+)
 
-vim.keymap.set({ "n" }, "<leader>s", "<cmd>set invnu invrnu<cr>", { noremap = true, desc = "<cmd>set invnu invrnu<cr>, Toggle nu and rnu" })
+vim.keymap.set(
+  { "n" },
+  "<leader>s",
+  "<cmd>set invnu invrnu<cr>",
+  { noremap = true, desc = "<cmd>set invnu invrnu<cr>, Toggle nu and rnu" }
+)
 
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true, desc = "y$, Y like C, D" })
 
-vim.keymap.set({ "n" }, "<S-Right>", "<cmd>vertical resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Left>", "<cmd>vertical resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Up>", "<cmd>resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Down>", "<cmd>resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" })
+vim.keymap.set(
+  { "n" },
+  "<S-Right>",
+  "<cmd>vertical resize +1<CR>",
+  { noremap = true, desc = "vertical add pane 1 size" }
+)
+vim.keymap.set(
+  { "n" },
+  "<S-Left>",
+  "<cmd>vertical resize -1<CR>",
+  { noremap = true, desc = "vertical reduce pane 1 size" }
+)
+vim.keymap.set(
+  { "n" },
+  "<S-Up>",
+  "<cmd>resize +1<CR>",
+  { noremap = true, desc = "vertical add pane 1 size" }
+)
+vim.keymap.set(
+  { "n" },
+  "<S-Down>",
+  "<cmd>resize -1<CR>",
+  { noremap = true, desc = "vertical reduce pane 1 size" }
+)
 
-vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" })
+vim.keymap.set(
+  { "n" },
+  "J",
+  "mzJ`z",
+  { noremap = true, desc = "J, but will keep your cursor position" }
+)
 
-vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] })
+vim.keymap.set(
+  { "v" },
+  "p",
+  [["_dP]],
+  { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] }
+)
 
-vim.keymap.set({ "v" }, "J", ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
-vim.keymap.set({ "v" }, "K", ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
-vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
-vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
+vim.keymap.set(
+  { "v" },
+  "J",
+  ":move '>+1<CR>gv=gv",
+  { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
+)
+vim.keymap.set(
+  { "v" },
+  "K",
+  ":move '<-2<CR>gv=gv",
+  { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" }
+)
+vim.keymap.set(
+  { "v" },
+  "<",
+  "<gv",
+  { noremap = true, desc = "<gv, Move selected line / block of text left" }
+)
+vim.keymap.set(
+  { "v" },
+  ">",
+  ">gv",
+  { noremap = true, desc = ">gv, Move selected line / block of text right" }
+)
+
+-- Ref: Damian Conway, "More Instantly Better Vim"
+-- Map keys in normal mode to trigger HLNext function
+vim.api.nvim_set_keymap("n", "n", "n:lua HLFound(0.4)<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "N", "N:lua HLFound(0.4)<CR>", { silent = true })

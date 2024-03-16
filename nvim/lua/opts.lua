@@ -39,6 +39,8 @@ vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.path = [[.,**]]
 vim.opt.shada = [[!,'100,<50,s10,h]]
+vim.opt.listchars=[[trail:.]]
+vim.opt.list = true
 
 -- append options
 vim.opt.shortmess:append("c")

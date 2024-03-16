@@ -44,9 +44,11 @@ return {
 
     local next_hunk = function()
       gs.next_hunk()
+      HLFound(0.4)
     end
     local prev_hunk = function()
       gs.prev_hunk()
+      HLFound(0.4)
     end
     local stage_hunk = require("gitsigns").stage_hunk
     local reset_hunk = require("gitsigns").reset_hunk
