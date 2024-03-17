@@ -15,7 +15,7 @@ alias la="ls -AG"
 alias cl="clear"
 alias vi="nvim"
 
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
