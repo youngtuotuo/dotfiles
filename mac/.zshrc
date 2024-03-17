@@ -5,8 +5,6 @@ export WORDCHARS="_"
 autoload -U select-word-style
 select-word-style bash
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # You may need to manually set your language environment
 
 export EDITOR="nvim"
