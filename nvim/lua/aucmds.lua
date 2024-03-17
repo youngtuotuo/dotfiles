@@ -159,4 +159,5 @@ vim.api.nvim_create_autocmd("Syntax", {
     vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIXME|FIX)>]], 100)
     vim.fn.matchadd("Idea", [[\v\W\zs<(IDEA|PERF)>]], 100)
   end,
+  desc = "TODO series",
 })
