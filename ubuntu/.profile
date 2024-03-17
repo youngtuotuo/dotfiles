@@ -86,10 +86,6 @@ esac
 
 export MODULAR_HOME="$HOME/.modular"
 export GEM_HOME="$HOME/gems"
-if command -v oh-my-posh >/dev/null; then
-	eval "$(oh-my-posh init bash --config $HOME/.local/omp/robbyrussell.omp.json)"
-fi
-
 if command -v rbenv >/dev/null; then
 	eval "$(rbenv init -)"
 fi
