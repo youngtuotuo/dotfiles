@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.wildignore:append({ "*.o", "*.obj" })
     vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[cl %]] or [[gcc %]]
-    vim.cmd [[compiler gcc]]
+    vim.cmd([[compiler gcc]])
   end,
   desc = "aucmd for c/cpp",
 })
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.makeprg = [[cargo run %]]
-    vim.cmd.compiler  [[cargo]]
+    vim.cmd.compiler([[cargo]])
   end,
   desc = "aucmd for rust",
 })
@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.makeprg = [[go run %]]
-    vim.cmd.compiler  [[go]]
+    vim.cmd.compiler([[go]])
   end,
   desc = "aucmd for go",
 })
@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.g.zig_fmt_autosave = 0
     vim.opt_local.makeprg = [[zig run %]]
-    vim.cmd.compiler [[zig]]
+    vim.cmd.compiler([[zig]])
   end,
   desc = "aucmsd for zig",
 })
@@ -148,4 +148,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     vim.opt.formatoptions = "jql"
   end,
   desc = "All buffer need formatoptions = jql",
+})
+
+vim.api.nvim_create_autocmd("Syntax", {
+  pattern = { "*" },
+  group = group,
+  callback = function()
+    vim.fn.matchadd("Todo", [[\v\W\zs<(NOTE|INFO|TODO)>]], 100)
+    vim.fn.matchadd("Debug", [[\v\W\zs<(BUG|DEBUG)>]], 100)
+    vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIXME|FIX)>]], 100)
+    vim.fn.matchadd("Idea", [[\v\W\zs<(IDEA|PERF)>]], 100)
+  end,
 })
