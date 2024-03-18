@@ -37,6 +37,7 @@ vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
 vim.opt.termguicolors = false
 vim.opt.grepprg = [[grep -rn $*]]
+vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.path = [[.,**]]
 vim.opt.shada = [[!,'100,<50,s10,h]]
 vim.opt.listchars=[[trail:.]]
