@@ -16,12 +16,10 @@ goto alias
 :clink_install
 scoop install clink
 clink autorun install
-cp %USERPROFILE%\github\dotfiles\windows\oh-my-posh.lua %=clink.profile%
 cp %USERPROFILE%\github\dotfiles\windows\clink_start.cmd %=clink.profile%
-cp %USERPROFILE%\github\dotfiles\windows\.inputrc %=clink.profile%
 clink installscripts %USERPROFILE%\github\dotfiles\windows\clink_scripts
 clink set tilde.autoexpand true
-clink set fzf.exe_location $USERPROFILE%\scoop\shims\fzf.exe
+clink set autosuggest.enable false
 goto end
 
 :end
