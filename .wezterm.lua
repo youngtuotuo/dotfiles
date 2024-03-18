@@ -11,7 +11,7 @@ if wezterm.config_builder then
 end
 
 config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
-config.color_scheme = "Builtin Tango Dark"
+config.color_scheme = "Apple System Colors"
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
