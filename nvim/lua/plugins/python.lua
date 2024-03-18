@@ -1,6 +1,4 @@
 return {
-  {
-    "microsoft/python-type-stubs",
-    lazy = true
-  },
+  "microsoft/python-type-stubs",
+  lazy = true
 }
