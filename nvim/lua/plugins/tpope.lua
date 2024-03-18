@@ -2,7 +2,6 @@
 return {
   {
     "tpope/vim-vinegar",
-    keys = { "-" },
   },
   {
     "tpope/vim-rsi",
