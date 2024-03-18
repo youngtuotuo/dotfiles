@@ -10,7 +10,8 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("FiraCode Nerd Font")
+config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+config.color_scheme = "Builtin Tango Dark"
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
