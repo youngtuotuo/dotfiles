@@ -36,7 +36,7 @@ _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 _G.auG = "TuoGroup"
 
 -- each line's 101-th char get highlighted
-vim.fn.matchadd("ColorColumn", [[\%101v]], 100)
+vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
 -- :h highlight
 local trsp = "none"
