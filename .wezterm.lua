@@ -26,25 +26,8 @@ config.ssh_domains = {
   },
 }
 
-config.window_frame = {
-  border_left_width = "0.15cell",
-  border_right_width = "0.15cell",
-  border_top_height = "0.1cell",
-  border_bottom_height = "0.1cell",
-  border_left_color = "grey",
-  border_right_color = "grey",
-  border_top_color = "grey",
-  border_bottom_color = "grey",
-}
-
 config.hide_tab_bar_if_only_one_tab = true
-config.window_decorations = "RESIZE"
 
-config.keys = {
-  { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
-  { key = "{", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(-1) },
-  { key = "}", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(1) },
-}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font_size = 10.0
 end
