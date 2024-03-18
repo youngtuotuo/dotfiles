@@ -154,9 +154,9 @@ vim.api.nvim_create_autocmd("Syntax", {
   pattern = { "*" },
   group = group,
   callback = function()
-    vim.fn.matchadd("Todo", [[\v\W\zs<(NOTE|INFO|TODO)>]], 100)
-    vim.fn.matchadd("Debug", [[\v\W\zs<(BUG|DEBUG)>]], 100)
-    vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIXME|FIX)>]], 100)
+    vim.fn.matchadd("Todo", [[\v\W\zs<(NOTE|INFO|TODO|LOW)>]], 100)
+    vim.fn.matchadd("Debug", [[\v\W\zs<(BUG|DEBUG|MID)>]], 100)
+    vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIXME|FIX|HIGH)>]], 100)
     vim.fn.matchadd("Idea", [[\v\W\zs<(IDEA|PERF)>]], 100)
   end,
   desc = "TODO series",
