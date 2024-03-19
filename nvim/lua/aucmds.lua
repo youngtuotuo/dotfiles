@@ -14,7 +14,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     if opts.file:match("dap%-terminal") then
       return
     end
-    vim.api.nvim_input("i")
   end,
   desc = "Enter Terminal with Insert Mode",
 })
@@ -124,11 +123,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.zig" },
   group = group,
   callback = function()
-    vim.g.zig_fmt_autosave = 0
-    vim.opt_local.makeprg = [[zig run %]]
+    -- vim.g.zig_fmt_autosave = 0
     vim.cmd.compiler([[zig]])
+    vim.opt_local.makeprg = [[zig run %]]
   end,
-  desc = "aucmsd for zig",
+  desc = "aucmd for zig",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -136,10 +135,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.conceallevel = 0
-    -- vim.opt_local.spell = true
-    -- vim.opt_local.spelllang = [[en_us]]
   end,
-  desc = "aucmds for markdown",
+  desc = "aucmd for markdown",
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
