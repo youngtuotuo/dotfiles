@@ -41,9 +41,6 @@ config.use_fancy_tab_bar = false
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
 }
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  config.font_size = 10.0
-end
 
 -- and finally, return the configuration to wezterm
 return config
