@@ -10,7 +10,7 @@ return function()
           stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
           logLevel = "Information",
           autoImportCompletions = true,
-          autoSearchPaths = false,
+          autoSearchPaths = true,
           diagnosticMode = "off",
           typeCheckingMode = "off",
           useLibraryCodeForTypes = false,
