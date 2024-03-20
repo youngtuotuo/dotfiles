@@ -5,7 +5,6 @@ return {
   },
   {
     "tpope/vim-rsi",
-    event = { "InsertEnter", "CmdlineEnter" },
   },
   -- m<CR>                   :Make<CR>
   -- m<Space>                :Make<Space>

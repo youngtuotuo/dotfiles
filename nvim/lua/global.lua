@@ -12,6 +12,7 @@ function HLFound(blinktime)
     vim.cmd("set invcursorline")
     vim.cmd("redraw")
   end, blinktime * 1000)
+  vim.cmd("set nocursorline")
 end
 
 -- "none": No border (default).

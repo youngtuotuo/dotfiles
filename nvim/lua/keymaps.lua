@@ -59,6 +59,31 @@ vim.keymap.set(
   { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
 )
 
+vim.keymap.set(
+  { "n" },
+  "[q",
+  ":cprev<cr>:lua HLFound(0.4)<cr>",
+  { nowait = true, noremap = true, desc = "cprev" }
+)
+vim.keymap.set(
+  { "n" },
+  "]q",
+  ":cnext<cr>:lua HLFound(0.4)<cr>",
+  { nowait = true, noremap = true, desc = "cnext" }
+)
+vim.keymap.set(
+  { "n" },
+  "[l",
+  ":lprev<cr>:lua HLFound(0.4)<cr>",
+  { nowait = true, noremap = true, desc = "lprev" }
+)
+vim.keymap.set(
+  { "n" },
+  "]l",
+  ":lnext<cr>:lua HLFound(0.4)<cr>",
+  { nowait = true, noremap = true, desc = "lnext" }
+)
+
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 

@@ -118,19 +118,22 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       opts = function()
         local ensure_installed = {
-          "clang-format",
+          -- lsp
           "clangd",
+          "gopls",
+          "lua_ls",
+          "rust_analyzer",
+          "pyright",
+          "zls",
+          -- debugger
           "codelldb",
           "debugpy",
-          "gopls",
+          -- formatter
+          "clang-format",
           "jq",
-          "lua_ls",
-          "pyright",
           "ruff",
-          "rust_analyzer",
           "shfmt",
           "stylua",
-          "zls",
         }
         return {
           ensure_installed = ensure_installed,

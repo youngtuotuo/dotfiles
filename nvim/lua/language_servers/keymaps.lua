@@ -26,25 +26,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set(
       "n",
       "gD",
-      "<cmd>lua vim.lsp.buf.declaration(); HLFound(0.4)<cr>",
+      "<cmd>lua vim.lsp.buf.declaration()<cr>",
       { buffer = ev.buf, desc = "go to declaration" }
     )
     vim.keymap.set(
       "n",
       "gd",
-      "<cmd>lua vim.lsp.buf.definition(); HLFound(0.4)<cr>",
+      "<cmd>lua vim.lsp.buf.definition()<cr>",
       { buffer = ev.buf, desc = "go to definition" }
     )
     vim.keymap.set(
       "n",
       "gi",
-      "<cmd>lua vim.lsp.buf.implementation(); HLFound(0.4)<cr>",
+      "<cmd>lua vim.lsp.buf.implementation()<cr>",
       { buffer = ev.buf, desc = "go to implementation" }
     )
     vim.keymap.set(
       "n",
       "gt",
-      "<cmd>lua vim.lsp.buf.type_definition(); HLFound(0.4)<cr>",
+      "<cmd>lua vim.lsp.buf.type_definition()<cr>",
       { buffer = ev.buf, desc = "go to type type_definition" }
     )
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "lsp hover" })
