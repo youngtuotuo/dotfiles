@@ -1,7 +1,5 @@
 [shell]
-program="pwsh.exe"
-args=["-NoLogo"]
+program="cmd.exe"
 
 [font]
-normal={ family = "CaskaydiaCove Nerd Font", style = "Regular"}
-size=10.0
+normal={ family = "JetBrains Mono", style = "Bold"}
