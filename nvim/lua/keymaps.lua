@@ -62,25 +62,25 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "[q",
-  ":cprev | lua HLFound(0.4)<cr>",
+  ":cprev<cr>:lua HLFound(0.4)<cr>",
   { nowait = true, noremap = true, desc = "cprev" }
 )
 vim.keymap.set(
   { "n" },
   "]q",
-  ":cnext | lua HLFound(0.4)<cr>",
+  ":cnext<cr>:lua HLFound(0.4)<cr>",
   { nowait = true, noremap = true, desc = "cnext" }
 )
 vim.keymap.set(
   { "n" },
   "[l",
-  ":lprev | lua HLFound(0.4)<cr>",
+  ":lprev<cr>:lua HLFound(0.4)<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
   "]l",
-  ":lnext | lua HLFound(0.4)<cr>",
+  ":lnext<cr>:lua HLFound(0.4)<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
 
