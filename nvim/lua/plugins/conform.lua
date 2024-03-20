@@ -1,6 +1,5 @@
 return {
   "stevearc/conform.nvim",
-  dependencies = { "mason.nvim" },
   lazy = true,
   keys = function()
     local format = function()
@@ -15,11 +14,8 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff_format" },
-      go = { "gofumpt" },
       c = { "clang_format" },
       cpp = { "clang_format" },
-      zig = { "zigfmt" },
-      rust = { "rustfmt" },
       sh = { "shfmt" },
       json = { "jq" },
     },

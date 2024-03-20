@@ -147,7 +147,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "All buffer need formatoptions = jql",
 })
 
-vim.api.nvim_create_autocmd("Syntax", {
+vim.api.nvim_create_autocmd({ "Syntax", "BufRead" }, {
   pattern = { "*" },
   group = group,
   callback = function()
