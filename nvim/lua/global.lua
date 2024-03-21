@@ -5,14 +5,29 @@ P = function(v)
 end
 
 -- Define HLNext function in Lua
-function HLFound(blinktime)
-  vim.cmd("set invcursorline")
-  vim.cmd("redraw")
-  vim.defer_fn(function()
-    vim.cmd("set invcursorline")
-    vim.cmd("redraw")
-  end, blinktime * 1000)
-  vim.cmd("set nocursorline")
+_G.flash_cursorline = function(duration_ms, interval_ms)
+  vim.opt_local.cursorline = true
+  local blink_state = false
+  local timer_blink = vim.loop.new_timer()
+  local timer_duration = vim.loop.new_timer()
+
+  -- Function to toggle the cursorline
+  local function toggle_cursorline()
+    blink_state = not blink_state
+    vim.opt_local.cursorline = blink_state
+  end
+
+  -- Start the blinking timer
+  timer_blink:start(0, interval_ms, vim.schedule_wrap(toggle_cursorline))
+
+  -- Stop the blinking after the specified duration
+  timer_duration:start(duration_ms, 0, vim.schedule_wrap(function()
+    timer_blink:stop()
+    timer_blink:close()
+    timer_duration:stop() -- Not strictly necessary as it's a one-shot timer
+    timer_duration:close()
+    vim.opt_local.cursorline = false
+  end))
 end
 
 -- "none": No border (default).

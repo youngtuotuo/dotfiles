@@ -62,25 +62,25 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "[q",
-  ":cprev<cr>:lua HLFound(0.4)<cr>",
+  ":cprev<cr>:lua _G.flash_cursorline(600,200)<cr>",
   { nowait = true, noremap = true, desc = "cprev" }
 )
 vim.keymap.set(
   { "n" },
   "]q",
-  ":cnext<cr>:lua HLFound(0.4)<cr>",
+  ":cnext<cr>:lua _G.flash_cursorline(600,200)<cr>",
   { nowait = true, noremap = true, desc = "cnext" }
 )
 vim.keymap.set(
   { "n" },
   "[l",
-  ":lprev<cr>:lua HLFound(0.4)<cr>",
+  ":lprev<cr>:lua _G.flash_cursorline(600,200)<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
   "]l",
-  ":lnext<cr>:lua HLFound(0.4)<cr>",
+  ":lnext<cr>:lua _G.flash_cursorline(600,200)<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
 
@@ -190,5 +190,5 @@ vim.keymap.set(
 
 -- Ref: Damian Conway, "More Instantly Better Vim"
 -- Map keys in normal mode to trigger HLNext function
-vim.api.nvim_set_keymap("n", "n", "n:lua HLFound(0.4)<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "N", "N:lua HLFound(0.4)<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "n", "n:lua _G.flash_cursorline(600,200)<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "N", "N:lua _G.flash_cursorline(600,200)<CR>", { silent = true })

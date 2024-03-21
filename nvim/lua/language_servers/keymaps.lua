@@ -85,11 +85,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
 local goto_next = function()
   vim.diagnostic.goto_next({ float = false })
-  HLFound(0.4)
 end
 local goto_prev = function()
   vim.diagnostic.goto_prev({ float = false })
-  HLFound(0.4)
 end
 if ts_obj_status then
   goto_next, goto_prev = ts_rep.make_repeatable_move_pair(goto_next, goto_prev)
