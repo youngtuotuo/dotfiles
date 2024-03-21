@@ -30,9 +30,9 @@ config.window_frame = {
   border_left_width = "0.15cell",
   border_right_width = "0.15cell",
   border_bottom_height = "0.1cell",
-  border_left_color = "rgb(20,20,20)",
-  border_right_color = "rgb(20,20,20)",
-  border_bottom_color = "rgb(20,20,20)",
+  border_left_color = "rgb(100, 100, 100)",
+  border_right_color = "rgb(100, 100, 100)",
+  border_bottom_color = "rgb(100, 100, 100)",
 }
 
 config.hide_tab_bar_if_only_one_tab = true
