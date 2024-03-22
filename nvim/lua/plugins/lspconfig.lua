@@ -68,6 +68,53 @@ if ok then
   end
 end
 
+-- diagnostic
+local diag_config = {
+  virtual_text = {
+    source = true,
+  },
+  signs = false,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    header = "",
+    prefix = "",
+    focusable = true,
+    title = " σ`∀´)σ ",
+    border = _G.border,
+    source = true,
+  },
+}
+
+vim.diagnostic.config(diag_config)
+
+-- float win
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = _G.border
+  opts.max_width = _G.floatw
+  opts.max_height = _G.floath
+  opts.wrap = _G.floatwrap
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
+-- customize hover when pressing K
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = _G.border,
+  title = " |･ω･) ? ",
+  zindex = 500,
+  focusable = true,
+  max_width = 100,
+})
+-- customize signature help when pressing gs
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = _G.border,
+  title = " (・・ ) ? ",
+  max_width = _G.floatw,
+})
+
 return {
   "neovim/nvim-lspconfig",
   init = function()
@@ -142,13 +189,22 @@ return {
     },
   },
   config = function(_, _)
+    -- capabilities
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+    -- for clangd
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    require("lspconfig.util").default_config.capabilities = capabilities
+
+    -- disable all format, use conform with mason
+    local format = {
+      formatting_options = nil,
+      timeout_ms = nil,
+    }
+    require("lspconfig.util").default_config.format = format
+
     -- LspInfo command
     require("lspconfig.ui.windows").default_options.border = _G.border
-    require("language_servers.format")
-    require("language_servers.capabilities")
     require("language_servers.keymaps")
-    require("language_servers.diagnostics")
-    require("language_servers.handlers")
-    require("language_servers.floatwin")
   end,
 }

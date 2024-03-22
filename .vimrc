@@ -9,4 +9,3 @@ set ruler
 highlight Comment ctermfg=green
 set background=dark
 highlight Normal guifg=white guibg=black
-set guifont=CaskaydiaCove_NFM:h9:cANSI:qDRAFT
