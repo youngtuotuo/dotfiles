@@ -186,7 +186,7 @@ snippets = vim.tbl_extend("force", snippets, {
   ),
   s(
     { trig = "([%$]-);bp", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta([[<> <>]], {
+    fmta([[<><>]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
