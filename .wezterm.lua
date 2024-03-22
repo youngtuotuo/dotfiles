@@ -35,7 +35,6 @@ config.window_frame = {
 }
 
 config.hide_tab_bar_if_only_one_tab = true
-config.use_fancy_tab_bar = false
 
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
