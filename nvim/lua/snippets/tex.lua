@@ -139,8 +139,8 @@ snippets = vim.tbl_extend("force", snippets, {
     })
   ),
   s(
-    { trig = "([%$]-);mr", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta([[<>\mathrm{<>}]], {
+    { trig = "([%$]-);mt", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta([[<>\text{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
@@ -192,8 +192,11 @@ snippets = vim.tbl_extend("force", snippets, {
       end),
       c(1, {
         sn(nil, { t("\\left( "), d(1, utils.get_visual), t(" \\right)")}),
+        sn(nil, { t("( "), d(1, utils.get_visual), t(" )")}),
         sn(nil, { t("\\left[ "), d(1, utils.get_visual), t(" \\right]")}),
-        sn(nil, { t("\\left{ "), d(1, utils.get_visual), t(" \\right}")})
+        sn(nil, { t("[ "), d(1, utils.get_visual), t(" ]")}),
+        sn(nil, { t("\\left{ "), d(1, utils.get_visual), t(" \\right}")}),
+        sn(nil, { t("\\{ "), d(1, utils.get_visual), t(" \\}")})
       }),
     })
   ),
