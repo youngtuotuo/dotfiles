@@ -84,7 +84,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 
-  vim.api.nvim_set_hl(0, "ModeMsg", { ctermfg = 7, bold = true })
+  vim.api.nvim_set_hl(0, "ModeMsg", { ctermfg = "LightGrey", bold = true })
 
   vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { ctermfg = "LightGreen", ctermbg = trsp })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { ctermfg = "LightBlue", ctermbg = trsp })
