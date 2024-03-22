@@ -195,7 +195,7 @@ snippets = vim.tbl_extend("force", snippets, {
         sn(nil, { t("( "), d(1, utils.get_visual), t(" )")}),
         sn(nil, { t("\\left[ "), d(1, utils.get_visual), t(" \\right]")}),
         sn(nil, { t("[ "), d(1, utils.get_visual), t(" ]")}),
-        sn(nil, { t("\\left{ "), d(1, utils.get_visual), t(" \\right}")}),
+        sn(nil, { t("\\left\\{ "), d(1, utils.get_visual), t(" \\right\\}")}),
         sn(nil, { t("\\{ "), d(1, utils.get_visual), t(" \\}")})
       }),
     })
