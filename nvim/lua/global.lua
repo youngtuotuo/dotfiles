@@ -54,11 +54,6 @@ _G.auG = "TuoGroup"
 -- each line's 101-th char get highlighted
 vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
-vim.fn.matchadd("Todo", [[\v\W\zs<(NOTE|TODO|LOW)>]], 100)
-vim.fn.matchadd("Debug", [[\v\W\zs<(BUG|MID)>]], 100)
-vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIX|HIGH)>]], 100)
-vim.fn.matchadd("Idea", [[\v\W\zs<(IDEA|FEAT)>]], 100)
-
 -- :h highlight
 local trsp = "none"
 _G.colorset = function()
