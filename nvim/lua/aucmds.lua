@@ -80,8 +80,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     if vim.fn.has("win32") == 0 then
-      vim.opt_local.shiftwidth = 4
-      vim.opt_local.softtabstop = 4
       vim.opt_local.makeprg = [[mojo %]]
       vim.keymap.set("v", "<leader>p", ":w !mojo")
     end
