@@ -5,6 +5,9 @@ return {
   },
   {
     "tpope/vim-rsi",
+    config = function()
+      vim.cmd [[inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"]]
+    end
   },
   -- m<CR>                   :Make<CR>
   -- m<Space>                :Make<Space>
