@@ -120,8 +120,7 @@ return {
   init = function()
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
   end,
-  cmd = { "LspInfo" },
-  ft = _G.lspfts,
+  cmd = { "LspInfo", "LspStart" },
   dependencies = {
     {
       "folke/neodev.nvim",
