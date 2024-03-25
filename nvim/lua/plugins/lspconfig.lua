@@ -101,7 +101,7 @@ return {
       opts = function()
         local ensure_installed = {
           -- lsp
-          "clangd",
+          -- "clangd",
           "gopls",
           "lua_ls",
           "rust_analyzer",
