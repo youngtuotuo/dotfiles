@@ -144,13 +144,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   end,
   desc = "All buffer need formatoptions = jql",
 })
-
-vim.api.nvim_create_autocmd({ "Syntax", "BufRead" }, {
-  pattern = { "*" },
-  group = group,
-  callback = function()
-    vim.fn.matchadd("Todo", [[\v\W\zs<(TODO)>]], 100)
-    vim.fn.matchadd("Warn", [[\v\W\zs<(FIX)>]], 100)
-  end,
-  desc = "TODO series",
-})
