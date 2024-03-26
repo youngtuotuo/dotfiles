@@ -149,10 +149,9 @@ vim.api.nvim_create_autocmd({ "Syntax", "BufRead" }, {
   pattern = { "*" },
   group = group,
   callback = function()
-    vim.fn.matchadd("Todo", [[\v\W\zs<(NOTE|TODO|LOW)>]], 100)
+    vim.fn.matchadd("Todo", [[\v\W\zs<(TODO|LOW)>]], 100)
     vim.fn.matchadd("Debug", [[\v\W\zs<(BUG|MID)>]], 100)
-    vim.fn.matchadd("Warn", [[\v\W\zs<(WARN|FIX|HIGH)>]], 100)
-    vim.fn.matchadd("Idea", [[\v\W\zs<(IDEA|FEAT)>]], 100)
+    vim.fn.matchadd("Warn", [[\v\W\zs<(FIX|HIGH)>]], 100)
   end,
   desc = "TODO series",
 })
