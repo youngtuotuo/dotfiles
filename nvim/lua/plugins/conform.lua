@@ -27,11 +27,6 @@ return {
           "--column-width=120",
         },
       },
-      clang_format = {
-        prepend_args = {
-          "-style={BasedOnStyle: llvm, ColumnLimit: 120, IndentWidth: 4, AccessModifierOffset: -4, IndentCaseLabels: true, AlignOperands: AlignAfterOperator, PointerAlignment: Right}",
-        },
-      },
       ruff_fmt = {
         prepend_args = {
           "--line-length=120"

@@ -97,7 +97,6 @@ return {
           "codelldb",
           "debugpy",
           -- formatter --
-          "clang-format",
           "jq",
           "ruff",
           "shfmt",
