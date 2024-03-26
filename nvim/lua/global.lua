@@ -67,6 +67,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
   vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
+  vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
 
   vim.api.nvim_set_hl(0, "SpellBad", { ctermfg = "LightRed", underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })

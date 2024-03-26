@@ -55,23 +55,8 @@ return {
   init = function()
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
   end,
-  cmd = { "LspInfo" },
-  ft = _G.lspfts,
+  cmd = { "LspInfo", "LspStart" },
   dependencies = {
-    {
-      "folke/neodev.nvim",
-      cond = function()
-        -- fk u MS
-        return vim.fn.getcwd() == os.getenv(_G.home) .. string.format("%sgithub%sdotfiles", _G.sep, _G.sep)
-      end,
-      opts = {
-        library = {
-          runtime = true,
-          plugins = { "nvim-dap-ui" },
-          types = true,
-        },
-      },
-    },
     {
       "williamboman/mason.nvim",
       cmd = { "Mason" },
@@ -90,6 +75,7 @@ return {
           function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup({})
           end,
+          -- keep this in case we need
           ["lua_ls"] = require("language_servers.lua_ls"),
           ["pyright"] = require("language_servers.pyright"),
         },
@@ -100,17 +86,17 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       opts = function()
         local ensure_installed = {
-          -- lsp
+          -- lsp --
           -- "clangd",
           "gopls",
           "lua_ls",
           "rust_analyzer",
           -- "pyright",
           "zls",
-          -- debugger
+          -- debugger --
           "codelldb",
           "debugpy",
-          -- formatter
+          -- formatter --
           "clang-format",
           "jq",
           "ruff",
@@ -127,8 +113,6 @@ return {
     -- capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-    -- for clangd
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
     require("lspconfig.util").default_config.capabilities = capabilities
 
     -- disable all format, use conform with mason
@@ -138,7 +122,7 @@ return {
     }
     require("lspconfig.util").default_config.format = format
 
-    -- LspInfo command
+    -- LspInfo command border
     require("lspconfig.ui.windows").default_options.border = _G.border
     require("language_servers.keymaps")
   end,

@@ -1,6 +1,9 @@
 return {
   "mfussenegger/nvim-lint",
   ft = { "python" },
+  dependencies = {
+    "neovim/nvim-lspconfig"
+  },
   config = function()
     require("lint").linters_by_ft = {
       python = { "ruff" },
