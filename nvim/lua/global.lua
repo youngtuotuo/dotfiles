@@ -72,7 +72,7 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
 
-  vim.api.nvim_set_hl(0, "Normal", { ctermbg = trsp })
+  -- vim.api.nvim_set_hl(0, "Normal", { ctermbg = trsp })
   vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = trsp })
   vim.api.nvim_set_hl(0, "FloatTitle", { ctermbg = trsp })
   vim.api.nvim_set_hl(0, "LspInfoBorder", { ctermfg = "LightGrey" })
