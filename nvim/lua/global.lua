@@ -31,6 +31,7 @@ vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 -- :h highlight
 local trsp = "none"
 _G.colorset = function()
+  vim.cmd.colo "vim"
   vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg = "LightYellow" })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { ctermfg = "LightGrey" })
   vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
@@ -38,6 +39,8 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
   vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
   vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
+  -- vim.api.nvim_set_hl(0, "Constant", { ctermfg = 3 })
+  vim.api.nvim_set_hl(0, "Comment", { ctermfg = "Green" })
 
   vim.api.nvim_set_hl(0, "SpellBad", { ctermfg = "LightRed", underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
@@ -72,3 +75,4 @@ _G.colorset = function()
     vim.api.nvim_set_hl(0, group, {})
   end
 end
+_G.colorset()
