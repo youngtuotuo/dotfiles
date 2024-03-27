@@ -11,8 +11,8 @@
 -- c            Command-line
 -- t            Terminal-Job
 
-vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
+vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
 vim.keymap.set({ "n" }, "Q", "<nop>", {
   nowait = true,
@@ -37,37 +37,55 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "[q",
-  ":cprev<cr>",
+  "<cmd>cprev<cr>",
   { nowait = true, noremap = true, desc = "cprev" }
 )
 vim.keymap.set(
   { "n" },
   "]q",
-  ":cnext<cr>",
+  "<cmd>cnext<cr>",
   { nowait = true, noremap = true, desc = "cnext" }
 )
 vim.keymap.set(
   { "n" },
   "co",
-  ":copen<cr>",
-  { nowait = true, noremap = true, desc = "cnext" }
+  function()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+      if win["quickfix"] == 1 and win["loclist"] == 0 then
+        vim.cmd.cclose()
+        return
+      end
+    end
+    vim.cmd.copen()
+  end,
+  { nowait = true, noremap = true, desc = "toggle quickfix window" }
 )
 vim.keymap.set(
   { "n" },
   "[l",
-  ":lprev<cr>",
+  "<cmd>lprev<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
   "]l",
-  ":lnext<cr>",
+  "<cmd>lnext<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
 vim.keymap.set(
   { "n" },
   "<leader>c",
-  ":lopen<cr>",
+  function()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+      if win["quickfix"] == 1 and win["loclist"] == 1 then
+        vim.cmd.lclose()
+        return
+      end
+    end
+    vim.cmd.lopen()
+  end,
   { nowait = true, noremap = true, desc = "lnext" }
 )
 
@@ -114,12 +132,23 @@ vim.keymap.set(
   [["_dP]],
   { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] }
 )
-
+vim.keymap.set(
+  { "n" },
+  "<C-j>",
+  "<cmd>move+1<cr>",
+  { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
+)
 vim.keymap.set(
   { "v" },
   "J",
   ":move '>+1<CR>gv=gv",
   { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
+)
+vim.keymap.set(
+  { "n" },
+  "<C-k>",
+  "<cmd>move--1<cr>",
+  { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" }
 )
 vim.keymap.set(
   { "v" },
