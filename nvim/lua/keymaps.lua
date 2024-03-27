@@ -37,25 +37,37 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "[q",
-  ":cprev<cr>:lua _G.flash_cursorline(600,200)<cr>",
+  ":cprev<cr>",
   { nowait = true, noremap = true, desc = "cprev" }
 )
 vim.keymap.set(
   { "n" },
   "]q",
-  ":cnext<cr>:lua _G.flash_cursorline(600,200)<cr>",
+  ":cnext<cr>",
+  { nowait = true, noremap = true, desc = "cnext" }
+)
+vim.keymap.set(
+  { "n" },
+  "co",
+  ":copen<cr>",
   { nowait = true, noremap = true, desc = "cnext" }
 )
 vim.keymap.set(
   { "n" },
   "[l",
-  ":lprev<cr>:lua _G.flash_cursorline(600,200)<cr>",
+  ":lprev<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
   "]l",
-  ":lnext<cr>:lua _G.flash_cursorline(600,200)<cr>",
+  ":lnext<cr>",
+  { nowait = true, noremap = true, desc = "lnext" }
+)
+vim.keymap.set(
+  { "n" },
+  "<leader>c",
+  ":lopen<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
 
