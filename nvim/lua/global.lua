@@ -29,25 +29,21 @@ _G.auG = "TuoGroup"
 vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
 -- :h highlight
-local trsp = "none"
 _G.colorset = function()
-  vim.cmd.colo "vim"
   vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg = "LightYellow" })
   vim.api.nvim_set_hl(0, "markdownBlockquote", { ctermfg = "LightGrey" })
   vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
   vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
   vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
-  vim.api.nvim_set_hl(0, "Comment", { ctermfg = "Green" })
 
   vim.api.nvim_set_hl(0, "SpellBad", { ctermfg = "LightRed", underline = true })
   vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
   vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
 
-  -- vim.api.nvim_set_hl(0, "Normal", { ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "FloatTitle", { ctermbg = trsp })
+  vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none" })
+  vim.api.nvim_set_hl(0, "FloatTitle", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "LspInfoBorder", { ctermfg = "LightGrey" })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
   vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
@@ -58,11 +54,11 @@ _G.colorset = function()
 
   vim.api.nvim_set_hl(0, "ModeMsg", { ctermfg = "LightGrey", bold = true })
 
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { ctermfg = "LightGreen", ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { ctermfg = "LightBlue", ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { ctermfg = "LightCyan", ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { ctermfg = "LightYellow", ctermbg = trsp })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { ctermfg = "LightRed", ctermbg = trsp })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { ctermfg = "LightGreen", ctermbg = "none" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { ctermfg = "LightBlue", ctermbg = "none" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { ctermfg = "LightCyan", ctermbg = "none" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { ctermfg = "LightYellow", ctermbg = "none" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { ctermfg = "LightRed", ctermbg = "none" })
 
   vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
   vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
@@ -73,4 +69,3 @@ _G.colorset = function()
     vim.api.nvim_set_hl(0, group, {})
   end
 end
-_G.colorset()
