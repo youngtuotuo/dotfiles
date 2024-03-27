@@ -30,17 +30,10 @@ vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
 -- :h highlight
 _G.colorset = function()
-  vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg = "LightYellow" })
-  vim.api.nvim_set_hl(0, "markdownBlockquote", { ctermfg = "LightGrey" })
   vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
   vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
   vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
-
-  vim.api.nvim_set_hl(0, "SpellBad", { ctermfg = "LightRed", underline = true })
-  vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
-  vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
-  vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
 
   vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "FloatTitle", { ctermbg = "none" })
@@ -51,8 +44,6 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
-
-  vim.api.nvim_set_hl(0, "ModeMsg", { ctermfg = "LightGrey", bold = true })
 
   vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { ctermfg = "LightGreen", ctermbg = "none" })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { ctermfg = "LightBlue", ctermbg = "none" })
