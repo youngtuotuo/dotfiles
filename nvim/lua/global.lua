@@ -56,9 +56,4 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
   vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
   vim.api.nvim_set_hl(0, "DiffDelete", { link = "DiagnosticFloatingError" })
-
-  -- Hide all semantic highlights, :h lsp-semantic-highlight
-  for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-    vim.api.nvim_set_hl(0, group, {})
-  end
 end
