@@ -1,8 +1,8 @@
-local ok, wf = pcall(require, "vim.lsp._watchfiles")
-wf._watchfunc = function()
-  return function() end
-end
-
+-- local ok, wf = pcall(require, "vim.lsp._watchfiles")
+-- wf._watchfunc = function()
+--   return function() end
+-- end
+--
 -- diagnostic
 local diag_config = {
   virtual_text = {
@@ -87,15 +87,10 @@ return {
       opts = function()
         local ensure_installed = {
           -- lsp --
-          -- "clangd",
           "gopls",
           "lua_ls",
           "rust_analyzer",
-          -- "pyright",
           "zls",
-          -- debugger --
-          "codelldb",
-          "debugpy",
           -- formatter --
           "jq",
           "ruff",
