@@ -1,9 +1,7 @@
 Tools
 -----
 
-+ [VcXrv](https://sourceforge.net/projects/vcxsrv/): For WSL's X server.
 + [cuda](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/contents.html): Header files for c/c++ nvidia gpu programming.
-+ [WinDbg](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/): Lightweight debugger than fat and slow VS.
 + [AltSnap](https://github.com/RamonUnch/AltSnap/releases), [QuickLook](https://github.com/QL-Win/QuickLook/releases), [ZoomIt](https://learn.microsoft.com/en-us/sysinternals/downloads/zoomit): Useful tools.
 + [AutoHotKey](https://www.autohotkey.com/): Let you be able to use Win+M to minimize window.
 
