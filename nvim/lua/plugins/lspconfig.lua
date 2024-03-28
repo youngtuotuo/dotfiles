@@ -88,7 +88,6 @@ return {
         local ensure_installed = {
           -- lsp --
           "gopls",
-          "lua_ls",
           "rust_analyzer",
           "zls",
           -- formatter --
