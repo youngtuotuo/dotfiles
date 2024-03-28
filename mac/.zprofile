@@ -53,6 +53,13 @@ case ":${PATH}:" in
         ;;
 esac
 
+case ":${PATH}:" in
+    *:"/opt/homebrew/opt/curl/bin":*)
+        ;;
+    *)
+        export PATH="/opt/homebrew/opt/curl/bin${PATH:+:${PATH}}"
+        ;;
+esac
 
 
 export MODULAR_HOME="$HOME/.modular"

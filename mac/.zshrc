@@ -22,6 +22,6 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 alias taunt='echo "σ\`∀´)σ"'
-export PKG_CONFIG_PATH="/opt/homebrew/opt/openal-soft/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openal-soft/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig:/opt/homebrew/opt/curl/lib/pkgconfig"
 . "$HOME/.cargo/env"
 echo "σ\`∀´)σ"
