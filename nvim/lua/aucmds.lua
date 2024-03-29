@@ -24,7 +24,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.wildignore:append({ "*.o", "*.obj" })
-    vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
     vim.cmd([[compiler gcc]])
   end,
   desc = "aucmd for c/cpp",
@@ -36,7 +35,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
-    vim.opt_local.makeprg = [[lua %]]
     vim.keymap.set("v", "<leader>p", ":w !lua")
   end,
   desc = "aucmd for lua",
@@ -55,7 +53,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.py" },
   group = group,
   callback = function()
-    vim.opt_local.makeprg = [[python3 %]]
     -- :h errorformat
     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
     vim.opt_local.wildignore:append({ "*.pyc", "*pycache*", "lib/python*", "lib64/python*" })
@@ -80,7 +77,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     if vim.fn.has("win32") == 0 then
-      vim.opt_local.makeprg = [[mojo %]]
       vim.keymap.set("v", "<leader>p", ":w !mojo")
     end
   end,
@@ -101,7 +97,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.rs" },
   group = group,
   callback = function()
-    vim.opt_local.makeprg = [[cargo run %]]
     vim.cmd.compiler([[cargo]])
   end,
   desc = "aucmd for rust",
@@ -111,7 +106,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.go" },
   group = group,
   callback = function()
-    vim.opt_local.makeprg = [[go run %]]
     vim.cmd.compiler([[go]])
   end,
   desc = "aucmd for go",
@@ -123,7 +117,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- vim.g.zig_fmt_autosave = 0
     vim.cmd.compiler([[zig]])
-    vim.opt_local.makeprg = [[zig run %]]
   end,
   desc = "aucmd for zig",
 })
