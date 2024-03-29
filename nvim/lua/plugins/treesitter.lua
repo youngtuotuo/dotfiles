@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
   build = ":TSUpdate",
-  ft = { "sh", "c", "lua", "markdown", "python", "txt", "go", "rust" },
+  ft = { "sh", "c", "cpp", "lua", "markdown", "python", "txt", "go", "rust" },
   init = function(plugin)
     -- copy from folke
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
@@ -45,6 +45,7 @@ return {
     ensure_installed = {
       "bash",
       "c",
+      "cpp",
       "lua",
       "markdown",
       "markdown_inline",
