@@ -2,7 +2,7 @@ return {
   "mfussenegger/nvim-lint",
   ft = { "python" },
   dependencies = {
-    "neovim/nvim-lspconfig"
+    "williamboman/mason.nvim"
   },
   config = function()
     require("lint").linters_by_ft = {

@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins
 local opts = {
+  change_detection = {
+    notify = false
+  },
   spec = {
     { import = "plugins" }, -- auto import lua/plugins/*.lua
   },
