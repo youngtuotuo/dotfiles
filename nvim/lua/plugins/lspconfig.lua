@@ -28,23 +28,6 @@ return {
 
     vim.diagnostic.config(diag_config)
 
-    local ts_obj_status, ts_rep = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-    local goto_next = function()
-      vim.diagnostic.goto_next({ float = false })
-    end
-    local goto_prev = function()
-      vim.diagnostic.goto_prev({ float = false })
-    end
-    if ts_obj_status then
-      goto_next, goto_prev = ts_rep.make_repeatable_move_pair(goto_next, goto_prev)
-    end
-
-    vim.keymap.set("n", "gl", function()
-      vim.diagnostic.open_float()
-    end, { desc = "Show line diagnostics" })
-    vim.keymap.set("n", "]d", goto_next, { desc = "go to next diagnostic" })
-    vim.keymap.set("n", "[d", goto_prev, { desc = "go to previous diagnostic" })
-
     -- float win
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
