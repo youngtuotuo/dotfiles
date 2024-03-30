@@ -105,8 +105,8 @@ return {
       opts = function()
         local ensure_installed = {
           -- lsp --
-          "gopls",
-          "rust_analyzer",
+          -- "gopls",
+          -- "rust_analyzer",
           "zls",
           -- formatter --
           "jq",
