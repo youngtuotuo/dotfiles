@@ -7,10 +7,10 @@ Set-PSReadLineKeyHandler -Chord Ctrl+Alt+h -Function BackwardKillWord
 Set-PSReadLineOption -Colors @{ InlinePrediction = "$([char]0x1b)[38;5;238m" }
 
 Set-Alias vi nvim
-Set-Alias ls lsd
-function ll($name) { lsd -Alh $name}
-function la($name) { lsd -AhF $name}
-function l($name) { lsd -lF $name}
+function ls($name) { lsd --color=always --icon=never $name}
+function ll($name) { lsd --color=always --icon=never -Alh $name}
+function la($name) { lsd --color=always --icon=never -AhF $name}
+function l($name) { lsd --color=always --icon=never -lF $name}
 function pkill($name) { get-process $name -ErrorAction SilentlyContinue | stop-process }
 function reboot {
 	shutdown /r /t 0
@@ -61,4 +61,3 @@ function prompt {
     }
     "${osc7}PS $p$('>' * ($nestedPromptLevel + 1)) ";
 }
-oh-my-posh init pwsh --config 'C:/Users/User/AppData/Local/Programs/oh-my-posh/themes/robbyrussell.omp.json' | Invoke-Expression
