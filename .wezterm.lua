@@ -10,7 +10,13 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.font = wezterm.font("Cascadia Mono", { weight = "Bold" })
+elseif wezterm.target_triple == "aarch64-apple-darwin" then
+  config.font = wezterm.font("Menlo", { weight = "Bold" })
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+  config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+end
 config.color_scheme = 'Campbell (Gogh)'
 
 config.adjust_window_size_when_changing_font_size = false
