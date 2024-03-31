@@ -56,6 +56,7 @@ return {
 
     require("language_servers.keymaps")
   end,
+  lazy = true,
   cmd = { "LspInfo", "LspStart" },
   dependencies = {
     {
