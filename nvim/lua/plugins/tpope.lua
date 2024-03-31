@@ -1,6 +1,9 @@
 -- thank you tpope
 return {
   {
+    "tpope/vim-apathy"
+  },
+  {
     "tpope/vim-vinegar",
   },
   {
