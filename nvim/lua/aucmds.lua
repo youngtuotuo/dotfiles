@@ -23,7 +23,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
-    vim.opt_local.wildignore:append({ "*.o", "*.obj" })
     vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
     vim.cmd([[compiler gcc]])
   end,
@@ -45,7 +44,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.tex" },
   group = group,
   callback = function()
-    vim.opt_local.wildignore:append({ "*.aux", "*.fdb_latexmk", "*.fls", "*.out", "*.synctex.gz" })
   end,
   desc = "aucmd for tex",
 })
@@ -56,7 +54,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- :h errorformat
     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
-    vim.opt_local.wildignore:append({ "*.pyc", "*pycache*", "lib/python*", "lib64/python*" })
     vim.keymap.set("v", "<leader>p", ":w !python3")
   end,
   desc = "aucmd for python",

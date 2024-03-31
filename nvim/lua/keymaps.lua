@@ -37,6 +37,20 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n" },
+  "<space>g",
+  ":vim // **<left><left><left><left>",
+  { nowait = true, noremap = true }
+)
+
+vim.keymap.set(
+  { "n" },
+  "<space>l",
+  ":lvim // %<left><left><left>",
+  { nowait = true, noremap = true }
+)
+
+vim.keymap.set(
+  { "n" },
   "<space>mp",
   ":lua vim.opt_local.makeprg=[[",
   { nowait = true, noremap = true }
@@ -64,7 +78,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n" },
-  "co",
+  "<leader>c",
   function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
@@ -91,7 +105,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n" },
-  "<leader>c",
+  "<leader>o",
   function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
