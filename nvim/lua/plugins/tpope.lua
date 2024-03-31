@@ -1,7 +1,8 @@
 -- thank you tpope
 return {
   {
-    "tpope/vim-apathy"
+    -- :h include, :h includeexpr, :h suffixesadd, :h define
+    "tpope/vim-apathy",
   },
   {
     "tpope/vim-vinegar",

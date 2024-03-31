@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.makeprg = vim.fn.has("win32") == 1 and [[build.bat]] or [[./build.sh]]
+    vim.opt_local.define = [[^\s*#\s*define]]
     vim.cmd([[compiler gcc]])
   end,
   desc = "aucmd for c/cpp",
