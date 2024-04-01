@@ -13,7 +13,7 @@ end
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font = wezterm.font("Cascadia Mono", { weight = "Bold" })
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
-  config.font = wezterm.font("Menlo", { weight = "Bold" })
+  config.font = wezterm.font("SF Mono", { weight = "Bold" })
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
 end
