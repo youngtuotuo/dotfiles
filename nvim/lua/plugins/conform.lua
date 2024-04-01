@@ -9,6 +9,11 @@ return {
       { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" },
     }
   end,
+  dependencies = {
+    {
+      "williamboman/mason.nvim",
+    },
+  },
   opts = {
     async = true,
     formatters_by_ft = {

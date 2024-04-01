@@ -6,6 +6,11 @@ return {
       return function() end
     end
 
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+    vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
     -- diagnostic
     local diag_config = {
@@ -91,9 +96,8 @@ return {
           "ruff",
           "shfmt",
           "stylua",
-        }
-
-      }
+        },
+      },
     },
   },
   config = function(_, _)
@@ -141,8 +145,6 @@ return {
         vim.lsp.inlay_hint.enable(0, true)
       end
     end
-
-    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspconfig", {}),
