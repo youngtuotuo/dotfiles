@@ -7,6 +7,52 @@ return {
   "neovim/nvim-lspconfig",
   init = function()
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
+    -- diagnostic
+    local diag_config = {
+      virtual_text = {
+        source = true,
+      },
+      signs = false,
+      underline = false,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        header = "",
+        prefix = "",
+        focusable = true,
+        title = " σ`∀´)σ ",
+        border = _G.border,
+        source = true,
+      },
+    }
+
+    vim.diagnostic.config(diag_config)
+
+    -- float win
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = _G.border
+      opts.max_width = _G.floatw
+      opts.max_height = _G.floath
+      opts.wrap = _G.floatwrap
+      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
+
+    -- customize hover when pressing K
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      border = _G.border,
+      title = " |･ω･) ? ",
+      zindex = 500,
+      focusable = true,
+      max_width = 100,
+    })
+    -- customize signature help when pressing gs
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = _G.border,
+      title = " (・・ ) ? ",
+      max_width = _G.floatw,
+    })
   end,
   ft = _G.lspfts,
   cmd = { "LspInfo", "LspStart" },
@@ -70,52 +116,6 @@ return {
 
     -- LspInfo command border
     require("lspconfig.ui.windows").default_options.border = _G.border
-    -- diagnostic
-    local diag_config = {
-      virtual_text = {
-        source = true,
-      },
-      signs = false,
-      underline = false,
-      update_in_insert = false,
-      severity_sort = true,
-      float = {
-        header = "",
-        prefix = "",
-        focusable = true,
-        title = " σ`∀´)σ ",
-        border = _G.border,
-        source = true,
-      },
-    }
-
-    vim.diagnostic.config(diag_config)
-
-    -- float win
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = _G.border
-      opts.max_width = _G.floatw
-      opts.max_height = _G.floath
-      opts.wrap = _G.floatwrap
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
-    end
-
-    -- customize hover when pressing K
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = _G.border,
-      title = " |･ω･) ? ",
-      zindex = 500,
-      focusable = true,
-      max_width = 100,
-    })
-    -- customize signature help when pressing gs
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = _G.border,
-      title = " (・・ ) ? ",
-      max_width = _G.floatw,
-    })
     local lsp_highlight = false
     local toggle_lsp_highlight = function()
       if lsp_highlight then
