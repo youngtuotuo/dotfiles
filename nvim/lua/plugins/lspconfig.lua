@@ -1,11 +1,11 @@
-local ok, wf = pcall(require, "vim.lsp._watchfiles")
-wf._watchfunc = function()
-  return function() end
-end
-
 return {
   "neovim/nvim-lspconfig",
   init = function()
+    local ok, wf = pcall(require, "vim.lsp._watchfiles")
+    wf._watchfunc = function()
+      return function() end
+    end
+
     vim.api.nvim_create_user_command("LI", "LspInfo", {})
     -- diagnostic
     local diag_config = {
@@ -68,7 +68,6 @@ return {
       },
     },
     {
-      -- Auto config intalled for us
       "williamboman/mason-lspconfig.nvim",
       opts = {
         handlers = {
@@ -82,24 +81,19 @@ return {
       },
     },
     {
-      -- Better installer than default
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      opts = function()
-        local ensure_installed = {
+      opts = {
+        ensure_installed = {
           -- lsp --
-          -- "gopls",
-          -- "rust_analyzer",
           "zls",
-          -- formatter --
+          -- formatter/linter --
           "jq",
           "ruff",
           "shfmt",
           "stylua",
         }
-        return {
-          ensure_installed = ensure_installed,
-        }
-      end,
+
+      }
     },
   },
   config = function(_, _)
@@ -123,6 +117,7 @@ return {
     -- LspInfo command border
     require("lspconfig.ui.windows").default_options.border = _G.border
     local lsp_highlight = false
+
     local toggle_lsp_highlight = function()
       if lsp_highlight then
         vim.lsp.buf.clear_references()
