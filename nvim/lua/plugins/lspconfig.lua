@@ -100,6 +100,9 @@ return {
     -- capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+    capabilities.workspace.inlayHint.refreshSupport = false
+    capabilities.workspace.semanticTokens.refreshSupport = false
+    capabilities.textDocument.semanticTokens.augmentsSyntaxTokens = false
     require("lspconfig.util").default_config.capabilities = capabilities
 
     -- disable all format, use conform with mason
