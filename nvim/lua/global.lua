@@ -16,7 +16,7 @@ _G.floath = 30
 _G.floatwrap = true
 
 -- file types to trigger nvim-lspconfig
-_G.lspfts = { "python", "zig", "c", "cpp", "lua" }
+_G.lspfts = { "zig" }
 
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
