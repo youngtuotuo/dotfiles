@@ -76,7 +76,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n" },
-  "<leader>c",
+  "<leader>q",
   function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
@@ -91,13 +91,13 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n" },
-  "[l",
+  "[o",
   "<cmd>lprev<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
-  "]l",
+  "]o",
   "<cmd>lnext<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
