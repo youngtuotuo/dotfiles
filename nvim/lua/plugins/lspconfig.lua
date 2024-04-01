@@ -64,7 +64,7 @@ return {
         vim.api.nvim_create_user_command("M", "Mason", {})
       end,
       opts = {
-        ui = { border = _G.border },
+        ui = { border = _G.border, width = 0.5, height = 0.5 },
       },
     },
     {
@@ -113,6 +113,12 @@ return {
       formatting_options = nil,
       timeout_ms = nil,
     }
+
+    -- LspInfo width and height
+    local info = require("lspconfig.ui.windows").percentage_range_window
+    require("lspconfig.ui.windows").percentage_range_window = function(_, _)
+      return info(0.5, 0.5)
+    end
 
     -- LspInfo command border
     require("lspconfig.ui.windows").default_options.border = _G.border

@@ -29,6 +29,7 @@ local opts = {
   },
   ui = {
     border = _G.border,
+    size = { width = 0.5, height = 0.5 },
     pills = false,
     icons = {
       cmd = "", -- " ",
