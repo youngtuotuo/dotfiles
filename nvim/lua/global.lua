@@ -46,14 +46,4 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
-
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { ctermfg = "LightGreen", ctermbg = "none" })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { ctermfg = "LightBlue", ctermbg = "none" })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { ctermfg = "LightCyan", ctermbg = "none" })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { ctermfg = "LightYellow", ctermbg = "none" })
-  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { ctermfg = "LightRed", ctermbg = "none" })
-
-  vim.api.nvim_set_hl(0, "DiffAdd", { link = "DiagnosticFloatingOk" })
-  vim.api.nvim_set_hl(0, "DiffChange", { link = "DiagnosticFloatingWarn" })
-  vim.api.nvim_set_hl(0, "DiffDelete", { link = "DiagnosticFloatingError" })
 end

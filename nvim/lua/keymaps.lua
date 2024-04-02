@@ -120,7 +120,7 @@ vim.keymap.set(
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
-vim.keymap.set({ "n", "i" }, "<C-c>", "<esc>", { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
+vim.keymap.set({ "n", "i" }, "<C-c>", "<esc><cmd>noh<cr>", { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" })
 
 -- More indents options
