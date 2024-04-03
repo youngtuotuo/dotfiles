@@ -71,17 +71,35 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
-vim.api.nvim_create_user_command("W", "w", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Q", "q", { bang = true, bar = true })
-vim.api.nvim_create_user_command("X", "x", { bang = true, bar = true })
-vim.api.nvim_create_user_command("WQ", "wq", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Wq", "wq", { bang = true, bar = true })
-vim.api.nvim_create_user_command("WA", "wa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Wa", "wa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("QA", "qa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Qa", "qa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("WQA", "wqa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("WQa", "wqa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("XA", "xa", { bang = true, bar = true })
-vim.api.nvim_create_user_command("Xa", "xa", { bang = true, bar = true })
+-- diagnostic
+local diag_config = {
+  virtual_text = {
+    source = true,
+  },
+  signs = false,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    header = "",
+    prefix = "",
+    focusable = true,
+    title = " σ`∀´)σ ",
+    border = _G.border,
+    source = true,
+  },
+}
+
+vim.diagnostic.config(diag_config)
+
+-- float win
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = _G.border
+  opts.max_width = _G.floatw
+  opts.max_height = _G.floath
+  opts.wrap = _G.floatwrap
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+

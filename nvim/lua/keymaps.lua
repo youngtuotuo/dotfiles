@@ -64,19 +64,19 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n" },
-  "[q",
+  "cp",
   "<cmd>cprev<cr>",
   { nowait = true, noremap = true, desc = "cprev" }
 )
 vim.keymap.set(
   { "n" },
-  "]q",
+  "cn",
   "<cmd>cnext<cr>",
   { nowait = true, noremap = true, desc = "cnext" }
 )
 vim.keymap.set(
   { "n" },
-  "<leader>q",
+  "co",
   function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
@@ -91,19 +91,19 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n" },
-  "[o",
+  "[l",
   "<cmd>lprev<cr>",
   { nowait = true, noremap = true, desc = "lprev" }
 )
 vim.keymap.set(
   { "n" },
-  "]o",
+  "]l",
   "<cmd>lnext<cr>",
   { nowait = true, noremap = true, desc = "lnext" }
 )
 vim.keymap.set(
   { "n" },
-  "<leader>o",
+  "<leader>l",
   function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
@@ -186,3 +186,113 @@ vim.keymap.set(
 )
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
+
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+
+-- https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/
+
+local function make()
+  local lines = {}
+  local winnr = vim.fn.win_getid()
+  local bufnr = vim.api.nvim_win_get_buf(winnr)
+
+  local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
+  if not makeprg then return end
+
+  local cmd = vim.fn.expandcmd(makeprg)
+
+  local function on_event(job_id, data, event)
+    if event == "stdout" or event == "stderr" then
+      if data then
+        vim.list_extend(lines, data)
+      end
+    end
+
+    if event == "exit" then
+      vim.fn.setqflist({}, " ", {
+        title = cmd,
+        lines = lines,
+        efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
+      })
+      vim.api.nvim_command("doautocmd QuickFixCmdPost")
+      vim.cmd[[copen]]
+    end
+  end
+
+  local job_id =
+    vim.fn.jobstart(
+    cmd,
+    {
+      on_stderr = on_event,
+      on_stdout = on_event,
+      on_exit = on_event,
+      stdout_buffered = true,
+      stderr_buffered = true,
+    }
+  )
+end
+local function lmake()
+  local lines = {}
+  local winnr = vim.fn.win_getid()
+  local bufnr = vim.api.nvim_win_get_buf(winnr)
+
+  local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
+  if not makeprg then return end
+
+  local cmd = vim.fn.expandcmd(makeprg)
+
+  local function on_event(job_id, data, event)
+    if event == "stdout" or event == "stderr" then
+      if data then
+        vim.list_extend(lines, data)
+      end
+    end
+
+    if event == "exit" then
+      vim.fn.setloclist(bufnr, {}, " ", {
+        title = cmd,
+        lines = lines,
+        efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
+      })
+      vim.api.nvim_command("doautocmd QuickFixCmdPost")
+      vim.cmd[[lopen]]
+    end
+  end
+
+  local job_id =
+    vim.fn.jobstart(
+    cmd,
+    {
+      on_stderr = on_event,
+      on_stdout = on_event,
+      on_exit = on_event,
+      stdout_buffered = true,
+      stderr_buffered = true,
+    }
+  )
+end
+
+vim.api.nvim_create_user_command("Make", make, { bang = true })
+vim.api.nvim_create_user_command("Lmake", lmake, { bang = true })
+vim.keymap.set("n", "m<cr>", "<cmd>Make<cr>")
+vim.keymap.set("n", "<leader><cr>", "<cmd>Lmake<cr>")
+vim.keymap.set("n", "'<cr>", "<cmd>sp|term<cr>i")
+
+vim.api.nvim_create_user_command("W", "w", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Q", "q", { bang = true, bar = true })
+vim.api.nvim_create_user_command("X", "x", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQ", "wq", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wq", "wq", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WA", "wa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wa", "wa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("QA", "qa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Qa", "qa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQA", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("WQa", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("XA", "xa", { bang = true, bar = true })
+vim.api.nvim_create_user_command("Xa", "xa", { bang = true, bar = true })
+

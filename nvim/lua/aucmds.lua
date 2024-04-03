@@ -36,17 +36,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
-    vim.keymap.set("v", "<leader>p", ":w !lua")
+    vim.opt_local.makeprg = [[lua %]]
+    vim.opt_local.errorformat=[[%*[-]%*\sFile "%f"\, line %l\, %m,%-G%.%#]]
+    vim.opt_local.errorformat=[[lua:[string %.+]:%l+:%m,lua:%f:%l:%m,lua:%m,%s+ [string %.+]:%l+:%m,%f:%l:%m]]
   end,
   desc = "aucmd for lua",
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.tex" },
-  group = group,
-  callback = function()
-  end,
-  desc = "aucmd for tex",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -55,7 +49,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- :h errorformat
     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
-    vim.keymap.set("v", "<leader>p", ":w !python3")
+    vim.opt_local.makeprg = [[python3 %]]
   end,
   desc = "aucmd for python",
 })
