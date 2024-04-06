@@ -14,8 +14,8 @@ vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
 vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
-vim.opt.nu = false
-vim.opt.rnu = false
+vim.opt.nu = true
+vim.opt.rnu = true
 vim.opt.ru = true
 vim.opt.showcmd = false
 vim.opt.laststatus = 1
@@ -73,10 +73,8 @@ vim.g.loaded_node_provider = 0
 
 -- diagnostic
 local diag_config = {
-  virtual_text = {
-    source = true,
-  },
-  signs = false,
+  virtual_text = false,
+  signs = true,
   underline = false,
   update_in_insert = false,
   severity_sort = true,
