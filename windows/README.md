@@ -45,23 +45,13 @@ git clone https://github.com/youngtuotuo/dotfiles.git $HOME/github/dotfiles
 New-Item -ItemType SymbolicLink -Path $env:LOCALAPPDATA/nvim -Target $HOME/github/dotfiles/nvim
 ```
 
-### Second, use command prompt
-
-```console
-windows/setup.bat
-```
-
-Finally, reopen the command prompt.
-
 ### Build Neovim
 
 Convenient one liner
 
 ```console
-dev && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local && cmake --build build --config Release --target install
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat" -startdir=none -arch=x64 -host_arch=x64 && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local && cmake --build build --config Release --target install
 ```
-
-NOTE: `dev` is the function in `clink_start.cmd` that enables the visual studio environment for command prompt.
 
 ### AutoHotKey
 
