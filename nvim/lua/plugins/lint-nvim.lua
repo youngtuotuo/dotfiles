@@ -8,11 +8,17 @@ return {
     require("lint").linters_by_ft = {
       python = { "ruff" },
     }
-    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-      group = _G.auG,
-      callback = function()
+    local lint = false
+    local toggle_lint = function()
+      if lint == true then
+        lint = false
+        vim.diagnostic.reset(nil, 0)
+      else
+        lint = true
         require("lint").try_lint()
-      end,
-    })
+      end
+
+    end
+    vim.keymap.set({ "n" }, "<M-l>", toggle_lint, { noremap = true, desc = "Lint"})
   end,
 }
