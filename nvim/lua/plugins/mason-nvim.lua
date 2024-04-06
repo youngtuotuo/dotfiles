@@ -8,7 +8,7 @@ return {
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
     opts = {
-      ui = { border = _G.border, width = 0.5, height = 0.5 },
+      ui = { border = _G.border, width = 0.7, height = 0.5 },
     },
   },
 }
