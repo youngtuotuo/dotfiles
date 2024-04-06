@@ -1,5 +1,0 @@
-[shell]
-program="cmd.exe"
-
-[font]
-normal={ family = "JetBrains Mono", style = "Bold"}
