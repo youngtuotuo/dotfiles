@@ -12,5 +12,6 @@ return {
   config = function(_, opts)
     require("rose-pine").setup(opts)
     vim.cmd.colo [[rose-pine]]
+    _G.colorset()
   end
 }
