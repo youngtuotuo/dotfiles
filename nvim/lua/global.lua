@@ -36,16 +36,8 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
   vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
 
-  vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "FloatTitle", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "LspInfoBorder", { ctermfg = "LightGrey" })
   vim.api.nvim_set_hl(0, "FloatBorder", { link = "LspInfoBorder" })
-  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "LspInfoBorder" })
-
-  vim.api.nvim_set_hl(0, "LspReferenceText", { reverse = true })
-  vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
-  vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 end
-vim.cmd.colo [[vim]]
-_G.colorset()
