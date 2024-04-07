@@ -47,3 +47,5 @@ _G.colorset = function()
   vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "LspReferenceText" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "LspReferenceText" })
 end
+vim.cmd.colo [[vim]]
+_G.colorset()
