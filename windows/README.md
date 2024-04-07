@@ -7,7 +7,7 @@ Tools
 
 # Nu-shell
 
-I prefer using nu-shell now.
+I prefer using nu-shell now. But some building process still need to use VS stuffs.
 
 ```console
 winget install nu-shell
@@ -16,41 +16,54 @@ winget install nu-shell
 # F**K u MS. Why everything on you is so complicated?
 
 
-Cmd Dev Environment Setup
+Dev Environment Setup
 -------------------------
 
 ### First and first
 
 1. Install the bloated and laggy [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools#build-tools-for-visual-studio-2022).
-2. Change execution policy in powershell. Without setting this, you can't run ps1 file and install scoop.
+2. Install PowerShell from winget
+
+```console
+winget install --id Microsoft.Powershell --source winget
+```
+
+3. Change execution policy in powershell. Without setting this, you can't run ps1 file and install scoop.
 
 ```console
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-### Use Powershell First
+### Powershell
+
+Install scoop
 
 ```console
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
+Install needed packages
+
 ```console
-scoop install gcc llvm nodejs yarn git
-mkdir $env:PROFILE\.local
+scoop install gcc llvm nodejs yarn git coreutils cmake make
+mkdir $env:USERPROFILE\.local
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
 ```
+
+Link neovim config
 
 ```console
 git clone https://github.com/youngtuotuo/dotfiles.git $HOME/github/dotfiles
 New-Item -ItemType SymbolicLink -Path $env:LOCALAPPDATA/nvim -Target $HOME/github/dotfiles/nvim
+cp $HOME\github\dotfiles\windows\Microsoft.PowerShell_profile.ps1 $PROFILE
 ```
 
 ### Build Neovim
 
-Convenient one liner
+Convenient one liner in PowerShell.
 
 ```console
-"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat" -startdir=none -arch=x64 -host_arch=x64 && cmake --build .deps --target clean && cmake --build build --target clean && cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release && cmake --build .deps --config Release && cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local && cmake --build build --config Release --target install
+C:\'Program Files (x86)\Microsoft Visual Studio'\2022\BuildTools\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64; cmake --build .deps --target clean; cmake --build build --target clean; cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release; cmake --build .deps --config Release; cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local; cmake --build build --config Release --target install; rm C:\Users\User\.local\lib\nvim\parser\*.dll
 ```
 
 ### AutoHotKey
@@ -70,21 +83,11 @@ Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
 Powershell
 
 ```console
-dir env:
+ls env:
 cd $env:APPDATA
 cd $env:LOCALAPPDATA
 cd $env:USERPROFILE
-vi $PROFILE
-```
-
-Command Prompt
-
-```console
-env
-cd %APPDATA%
-cd %LOCALAPPDATA%
-cd %USERPROFILE%
-vi %PROFILE%
+nvim $PROFILE
 ```
 
 ### Windows Terminal Disable ligature
