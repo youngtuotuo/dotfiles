@@ -11,7 +11,7 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        layout_strategy = "center",
+        layout_strategy = "bottom_pane",
         mappings = {
           i = {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
@@ -25,12 +25,9 @@ return {
         results_title = false,
         prompt_title = false,
         layout_config = {
-          center = {
-            anchor = "S",
-            height = 0.25,
-            preview_cutoff = 120,
+          bottom_pane = {
+            height = 25,
             prompt_position = "bottom",
-            width = 0.999,
           },
         },
       },
@@ -38,6 +35,5 @@ return {
     local builtin = require("telescope.builtin")
     vim.keymap.set({ "n" }, "<space>e", builtin.find_files, { noremap = true })
     vim.keymap.set({ "n" }, "<space>h", builtin.help_tags, { noremap = true })
-    vim.keymap.set({ "n" }, "<space>b", builtin.buffers, { noremap = true })
   end,
 }
