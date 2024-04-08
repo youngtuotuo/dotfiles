@@ -18,6 +18,6 @@ return {
         require("lint").try_lint()
       end
     end
-    vim.keymap.set({ "n" }, "<M-l>", toggle_lint, { noremap = true, desc = "Lint"})
+    vim.keymap.set({ "n" }, "<M-p>", toggle_lint, { noremap = true, desc = "Lint"})
   end,
 }

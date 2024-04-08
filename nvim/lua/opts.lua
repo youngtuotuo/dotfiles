@@ -41,7 +41,7 @@ vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.path = [[.,,**]]
 vim.opt.shada = [[!,'100,<50,s10,h]]
-vim.opt.listchars=[[trail:.]]
+vim.opt.listchars=[[tab:>-,trail:.]]
 vim.opt.list = true
 
 -- append options

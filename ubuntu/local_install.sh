@@ -31,7 +31,7 @@ if ask "============ Do you want to install neovim? ============"; then
 	make distclean
 	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 	make install
-    rm $HOME/.local/lib/nvim/parser/*
+	rm $HOME/.local/lib/nvim/parser/*
 fi
 
 # python
@@ -188,11 +188,11 @@ fi
 
 # tmux
 if ask "============ Do you want to install tmux? ============"; then
-    if [ ! -d "$HOME/github/tmux" ]; then
-        git clone https://github.com/tmux/tmux.git $HOME/github/tmux
-    fi
+	if [ ! -d "$HOME/github/tmux" ]; then
+		git clone https://github.com/tmux/tmux.git $HOME/github/tmux
+	fi
 	cd $HOME/github/tmux
-    git pull
+	git pull
 	sh autogen.sh
 	./configure --prefix=$HOME/.local
 	make
@@ -224,64 +224,46 @@ fi
 
 # nvtop
 if ask "============ Do you want to install nvtop? ============"; then
-    echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
-    read -p "Please give current nvtop app image url: " resp
-    if [ -z "$resp" ]; then
-        echo "Empty url, skip."
-    else
-        wget $resp -O $HOME/nvtop
-        cp $HOME/nvtop $HOME/.local/bin/
-    fi
+	echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
+	read -p "Please give current nvtop app image url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		wget $resp -O $HOME/nvtop
+		cp $HOME/nvtop $HOME/.local/bin/
+	fi
 fi
 
-# watchman
-if ask "============ Do you want to install watchman? ============"; then
-    echo "watchman download page: https://github.com/facebook/watchman/releases"
-    read -p "Please give current watchman zip file url: " resp
-    if [ -z "$resp" ]; then
-        echo "Empty url, skip."
-    else
-		if [ -f "$HOME/watchman.zip" ]; then
-			rm $HOME/watchman.zip
-		fi
-		if [ -d "$HOME/watchman" ]; then
-			rm -r $HOME/watchman
-		fi
-        wget $resp -O $HOME/watchman.zip
-        mkdir -p $HOME/watchman
-        cd $HOME
-        unzip -d $HOME/watchman -j watchman.zip
-        cp $HOME/watchman/lib/* $HOME/.local/lib
-        cp $HOME/watchman/watchman/* $HOME/.local/bin
-    fi
+# fzf
+if ask "============ Do you want to install fzf? ============"; then
+	if [ -d "$HOME/.fzf" ]; then
+		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	else
+		git -C ~/.fzf pull
+	fi
+	~/.fzf/install
 fi
 
-# oh-my-posh
-if ask "============ Do you want to install oh-my-posh? ============"; then
-    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
-    mkdir -p $HOME/.local/omp
-    wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/robbyrussell.omp.json -P $HOME/.local/omp
-fi
-
+p
 # ruby
 if ask "============ Do you want to install ruby? ============"; then
-    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-    rbenv install -l
-    read -p "Please select desired version: " resp
-    if [ -z "$resp" ]; then
-        echo "Empty version, skip."
-    else
-        rbenv install $resp
-        rbenv global $resp
-        gem install jekyll bundler
-    fi
+	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+	rbenv install -l
+	read -p "Please select desired version: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty version, skip."
+	else
+		rbenv install $resp
+		rbenv global $resp
+		gem install jekyll bundler
+	fi
 fi
 
 # mojo
 if ask "============ Do you want to install mojo? ============"; then
-    curl https://get.modular.com | sh -
-    modular auth
-    modular install mojo
-    modular install max
-    MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
+	curl https://get.modular.com | sh -
+	modular auth
+	modular install mojo
+	modular install max
+	MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
 fi

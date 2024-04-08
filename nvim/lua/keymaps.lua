@@ -28,20 +28,6 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n" },
-  "<space>e",
-  ":find ",
-  { nowait = true, noremap = true }
-)
-
-vim.keymap.set(
-  { "n" },
-  "<space>g",
-  ":vim // **<left><left><left><left>",
-  { nowait = true, noremap = true }
-)
-
-vim.keymap.set(
-  { "n" },
   "<space>l",
   ":lvim // %<left><left><left>",
   { nowait = true, noremap = true }
