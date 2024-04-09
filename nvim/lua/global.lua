@@ -28,16 +28,14 @@ _G.auG = "TuoGroup"
 -- each line's 101-th char get highlighted
 vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
--- :h highlight
-_G.colorset = function()
-  vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
-  vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
-  vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
-  vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
-  vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
+vim.cmd.colo [[lunaperche]]
+vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
+vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
+vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
+vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
+vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
 
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
-  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-end
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })

@@ -14,6 +14,7 @@
 vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
+vim.keymap.set({ "c" }, "<C-i>", "<C-d>", { noremap = true, desc = "I hate menu" })
 vim.keymap.set({ "n" }, "Q", "<nop>", {
   nowait = true,
   noremap = true,
