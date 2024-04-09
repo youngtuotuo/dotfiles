@@ -28,7 +28,6 @@ _G.auG = "TuoGroup"
 -- each line's 101-th char get highlighted
 vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
 
-vim.cmd.colo [[lunaperche]]
 vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { underline = false })
 vim.api.nvim_set_hl(0, "@markup.link.vimdoc", { link = "Label" })
 vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
