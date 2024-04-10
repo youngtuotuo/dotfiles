@@ -10,7 +10,10 @@ return {
     no_italic = true,
     no_bold = true,
     no_underline = true,
-    default_integrations = false
+    default_integrations = false,
+    integrations = {
+      aerial = true
+    }
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
