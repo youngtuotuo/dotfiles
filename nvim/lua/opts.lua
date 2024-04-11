@@ -9,6 +9,7 @@ vim.opt.conceallevel = 0
 vim.opt.wrap = false
 vim.opt.writebackup = false -- no need this with undo history plugin
 vim.opt.guicursor = "" -- i hate blink and vertical line
+vim.opt.cursorline = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
