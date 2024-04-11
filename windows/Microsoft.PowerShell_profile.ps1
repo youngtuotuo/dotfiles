@@ -1,10 +1,21 @@
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
-Set-PSReadLineOption -PredictionSource None
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -PredictionSource None
 Set-PSReadLineKeyHandler -Chord Ctrl+Alt+h -Function BackwardKillWord
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -Colors @{
+  Command            = 'White'
+  Number             = 'White'
+  Member             = 'White'
+  Operator           = 'White'
+  Type               = 'White'
+  Variable           = 'White'
+  Parameter          = 'White'
+  ContinuationPrompt = 'White'
+  Default            = 'White'
+}
 
 function dev($name) {
     $curDir = Get-Location;
