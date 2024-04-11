@@ -110,6 +110,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- vim.g.zig_fmt_autosave = 0
     vim.cmd.compiler([[zig]])
+    vim.opt_local.makeprg = [[zig run %]]
   end,
   desc = "aucmd for zig",
 })

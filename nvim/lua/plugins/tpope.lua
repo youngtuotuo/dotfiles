@@ -1,6 +1,9 @@
 -- thank you tpope
 return {
   {
+    "tpope/vim-dispatch"
+  },
+  {
     "tpope/vim-rsi",
     config = function()
       vim.cmd [[inoremap <expr> <C-E> "\<Lt>End>"]]
