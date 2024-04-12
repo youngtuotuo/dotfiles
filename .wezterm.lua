@@ -11,14 +11,15 @@ if wezterm.config_builder then
 end
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  config.font = wezterm.font("Cascadia Mono", { weight = "Bold" })
+  config.font = wezterm.font("Cascadia Mono", { weight = "Regular" })
   config.default_prog = { "pwsh.exe", "-nologo" }
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
-  config.font = wezterm.font("Menlo", { weight = "Bold" })
+  config.font = wezterm.font("SF Mono", { weight = "Regular" })
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-  config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+  config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 end
 config.color_scheme = "Campbell (Gogh)"
+config.font_size = 14.0
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
