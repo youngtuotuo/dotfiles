@@ -3,16 +3,6 @@ return {
   version = false,
   build = ":TSUpdate",
   ft = { "sh", "c", "cpp", "lua", "markdown", "python", "txt", "go", "rust" },
-  init = function(plugin)
-    -- copy from folke
-    -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-    -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-    -- no longer trigger the **nvim-treeitter** module to be loaded in time.
-    -- Luckily, the only thins that those plugins need are the custom queries, which we make available
-    -- during startup.
-    require("lazy.core.loader").add_to_rtp(plugin)
-    require("nvim-treesitter.query_predicates")
-  end,
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -30,16 +20,16 @@ return {
     },
     -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
     ensure_installed = {
-      "bash",
-      "c",
+      -- "bash",
+      -- "c",
       "cpp",
-      "lua",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "query",
-      "vim",
-      "vimdoc",
+      -- "lua",
+      -- "markdown",
+      -- "markdown_inline",
+      -- "python",
+      -- "query",
+      -- "vim",
+      -- "vimdoc",
       "gitcommit",
       "gitignore",
       "go",
