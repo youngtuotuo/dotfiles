@@ -63,7 +63,7 @@ cp $HOME\github\dotfiles\windows\Microsoft.PowerShell_profile.ps1 $PROFILE
 Convenient one liner in PowerShell.
 
 ```console
-C:\'Program Files (x86)\Microsoft Visual Studio'\2022\BuildTools\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64; cmake --build .deps --target clean; cmake --build build --target clean; cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release; cmake --build .deps --config Release; cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%USERPROFILE%\.local; cmake --build build --config Release --target install; rm C:\Users\User\.local\lib\nvim\parser\*.dll
+C:\'Program Files (x86)\Microsoft Visual Studio'\2022\BuildTools\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64; cmake --build .deps --target clean; cmake --build build --target clean; cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release; cmake --build .deps --config Release; cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$env:USERPROFILE\.local; cmake --build build --config Release --target install
 ```
 
 ### AutoHotKey
