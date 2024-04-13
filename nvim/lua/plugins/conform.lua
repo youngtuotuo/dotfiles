@@ -34,9 +34,14 @@ return {
       },
       ruff_fmt = {
         prepend_args = {
-          "--line-length=120"
-        }
-      }
+          "--line-length=120",
+        },
+      },
+      clang_format = {
+        prepend_args = {
+          '-style={BasedOnStyle: llvm, IndentWidth: 4}',
+        },
+      },
     },
     format_on_save = nil,
     format_after_save = nil,
