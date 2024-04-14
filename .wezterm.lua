@@ -18,7 +18,6 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" then
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 end
-config.color_scheme = "Campbell (Gogh)"
 config.font_size = 14.0
 
 config.adjust_window_size_when_changing_font_size = false
