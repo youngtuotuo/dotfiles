@@ -4,6 +4,9 @@ return {
     "tpope/vim-vinegar",
   },
   {
+    "tpope/vim-dispatch",
+  },
+  {
     "tpope/vim-rsi",
     config = function()
       vim.cmd([[inoremap <expr> <C-E> "\<Lt>End>"]])

@@ -26,7 +26,7 @@ return {
         prompt_title = false,
         layout_config = {
           bottom_pane = {
-            height = 25,
+            height = 10,
             prompt_position = "bottom",
           },
         },
@@ -35,5 +35,6 @@ return {
     local builtin = require("telescope.builtin")
     vim.keymap.set({ "n" }, "<space>e", builtin.find_files, { noremap = true })
     vim.keymap.set({ "n" }, "<space>h", builtin.help_tags, { noremap = true })
+    vim.keymap.set({ "n" }, "<space>b", builtin.buffers, { noremap = true })
   end,
 }

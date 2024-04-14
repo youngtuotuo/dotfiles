@@ -32,16 +32,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "aucmd for lua",
 })
 
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.py" },
---   group = group,
---   callback = function()
---     -- :h errorformat
---     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
---     vim.opt_local.makeprg = [[python3 %]]
---   end,
---   desc = "aucmd for python",
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.py" },
+  group = group,
+  callback = function()
+    -- :h errorformat
+    vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
+    vim.opt_local.makeprg = [[python3 %]]
+  end,
+  desc = "aucmd for python",
+})
 
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "Makefile" },

@@ -49,61 +49,6 @@ vim.keymap.set(
   { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
 )
 
-vim.keymap.set(
-  { "n" },
-  "cp",
-  "<cmd>cprev<cr>",
-  { nowait = true, noremap = true, desc = "cprev" }
-)
-vim.keymap.set(
-  { "n" },
-  "cn",
-  "<cmd>cnext<cr>",
-  { nowait = true, noremap = true, desc = "cnext" }
-)
-vim.keymap.set(
-  { "n" },
-  "co",
-  function()
-    local windows = vim.fn.getwininfo()
-    for _, win in pairs(windows) do
-      if win["quickfix"] == 1 and win["loclist"] == 0 then
-        vim.cmd.cclose()
-        return
-      end
-    end
-    vim.cmd.copen()
-  end,
-  { nowait = true, noremap = true, desc = "toggle quickfix window" }
-)
-vim.keymap.set(
-  { "n" },
-  "[l",
-  "<cmd>lprev<cr>",
-  { nowait = true, noremap = true, desc = "lprev" }
-)
-vim.keymap.set(
-  { "n" },
-  "]l",
-  "<cmd>lnext<cr>",
-  { nowait = true, noremap = true, desc = "lnext" }
-)
-vim.keymap.set(
-  { "n" },
-  "<leader>l",
-  function()
-    local windows = vim.fn.getwininfo()
-    for _, win in pairs(windows) do
-      if win["quickfix"] == 1 and win["loclist"] == 1 then
-        vim.cmd.lclose()
-        return
-      end
-    end
-    vim.cmd.lopen()
-  end,
-  { nowait = true, noremap = true, desc = "lnext" }
-)
-
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
