@@ -5,6 +5,9 @@ return {
   },
   {
     "tpope/vim-dispatch",
+    config = function()
+      vim.g.dispatch_no_tmux_make = 1
+    end,
   },
   {
     "tpope/vim-rsi",
