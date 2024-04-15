@@ -15,9 +15,6 @@ _G.floatw = 95
 _G.floath = 30
 _G.floatwrap = true
 
--- file types to trigger nvim-lspconfig
-_G.lspfts = { "zig", "c", "cpp" }
-
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"

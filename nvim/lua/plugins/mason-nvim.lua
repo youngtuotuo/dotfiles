@@ -7,7 +7,7 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = { "Mason" },
-    ft = { "json", "python", "sh", "lua", "c", "cpp" },
+    ft = { "json", "python", "sh", "lua", "c", "cpp", "zig" },
     build = ":MasonInstall jq ruff shtfmt stylua",
     init = function()
       vim.api.nvim_create_user_command("M", "Mason", {})
@@ -68,7 +68,7 @@ return {
         max_width = _G.floatw,
       })
     end,
-    ft = _G.lspfts,
+    ft = { "zig", "c", "cpp", "python" },
     cmd = { "LspInfo" },
     dependencies = {
       {
