@@ -92,6 +92,7 @@ return {
           local ensure_installed = {
             -- lsp --
             "clangd",
+            "pyright",
             -- "gopls",
             -- "rust_analyzer",
             "zls",

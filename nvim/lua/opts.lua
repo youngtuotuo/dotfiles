@@ -34,6 +34,7 @@ vim.opt.wildignore = [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.
 vim.opt.virtualedit = "block"
 vim.opt.fillchars = [[vert:|]]
 vim.opt.pumheight = 10
+vim.opt.pumwidth = 40
 vim.opt.equalalways = false
 vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
