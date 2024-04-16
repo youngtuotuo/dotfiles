@@ -6,9 +6,7 @@ end
 return {
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason" },
     ft = { "json", "python", "sh", "lua", "c", "cpp", "zig" },
-    build = ":MasonInstall jq ruff shtfmt stylua",
     init = function()
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
@@ -16,11 +14,42 @@ return {
       ui = { border = _G.border, width = 0.7, height = 0.5 },
     },
   },
-
+  {
+    -- Better installer than default
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = "williamboman/mason.nvim",
+    opts = function()
+      local ensure_installed = {
+        -- lsp --
+        "clangd",
+        "pyright",
+        "lua-language-server",
+        -- "gopls",
+        -- "rust_analyzer",
+        "zls",
+        -- formatter --
+        "jq",
+        "ruff",
+        "shfmt",
+        "stylua",
+      }
+      return {
+        ensure_installed = ensure_installed,
+      }
+    end,
+  },
   {
     "neovim/nvim-lspconfig",
+    ft = { "zig", "c", "cpp", "python", "lua" },
+    cmd = { "LspInfo" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      -- Better installer than default
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
     init = function()
       vim.api.nvim_create_user_command("LI", "LspInfo", {})
+
       -- diagnostic
       local diag_config = {
         virtual_text = {
@@ -68,47 +97,39 @@ return {
         max_width = _G.floatw,
       })
     end,
-    ft = { "zig", "c", "cpp", "python" },
-    cmd = { "LspInfo" },
-    dependencies = {
-      {
-        "williamboman/mason.nvim",
-      },
-      {
-        -- Auto config intalled for us
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-          handlers = {
-            function(server_name) -- default handler (optional)
-              require("lspconfig")[server_name].setup({})
-            end,
+    config = function(_, opts)
+      require("lspconfig").zls.setup({})
+      require("lspconfig").clangd.setup({})
+      require("lspconfig").lua_ls.setup({
+        settings = {
+          Lua = {
+            runtime = { version = "Lua 5.1" },
+            diagnostics = { globals = { "vim", "use" } },
+            completion = { callSnippet = "Both" },
+            workspace = { checkThirdParty = false },
+            semantic = { enable = false },
+            hint = { enable = true },
           },
         },
-      },
-      {
-        -- Better installer than default
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        opts = function()
-          local ensure_installed = {
-            -- lsp --
-            "clangd",
-            "pyright",
-            -- "gopls",
-            -- "rust_analyzer",
-            "zls",
-            -- formatter --
-            "jq",
-            "ruff",
-            "shfmt",
-            "stylua",
-          }
-          return {
-            ensure_installed = ensure_installed,
-          }
-        end,
-      },
-    },
-    config = function(_, _)
+      })
+      require("lspconfig").pyright.setup({
+        settings = {
+          pyright = {
+            disableOrganizeImports = false,
+          },
+          python = {
+            analysis = {
+              ignore = { "*" },
+              logLevel = "Information",
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              diagnosticMode = "off",
+              typeCheckingMode = "off",
+              useLibraryCodeForTypes = false,
+            },
+          },
+        },
+      })
       -- capabilities
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
