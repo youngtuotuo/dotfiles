@@ -1,14 +1,5 @@
 return {
   "stevearc/conform.nvim",
-  lazy = true,
-  keys = function()
-    local format = function()
-      require("conform").format()
-    end
-    return {
-      { "<leader>f", format, mode = { "n", "v" }, desc = "Format buffer" },
-    }
-  end,
   dependencies = {
     {
       "williamboman/mason.nvim",
@@ -39,11 +30,15 @@ return {
       },
       clang_format = {
         prepend_args = {
-          '-style={BasedOnStyle: llvm, IndentWidth: 4}',
+          "-style={BasedOnStyle: llvm, IndentWidth: 4}",
         },
       },
     },
     format_on_save = nil,
     format_after_save = nil,
   },
+  config = function(_, opts)
+    require("conform").setup(opts)
+    vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, { noremap = true, desc = "Format buffer" })
+  end,
 }
