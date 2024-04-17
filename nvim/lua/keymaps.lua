@@ -30,14 +30,14 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "<space>l",
-  ":lvim // %<left><left><left>",
+  ":vim // %<left><left><left>",
   { nowait = true, noremap = true }
 )
 
 vim.keymap.set(
   { "n" },
   "<space>mp",
-  ":lua vim.opt_local.makeprg=[[",
+  ":lua vim.opt_local.makeprg=[[]]<left><left>",
   { nowait = true, noremap = true }
 )
 
