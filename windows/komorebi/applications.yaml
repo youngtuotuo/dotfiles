@@ -1,3 +1,12 @@
+- name: Discord
+  identifier:
+    kind: Exe
+    id: Discord.exe
+    matching_strategy: Equals
+  float_identifiers:
+  - kind: Exe
+    id: Discord.exe
+    matching_strategy: Equals
 - name: Line
   identifier:
     kind: Exe
@@ -6,6 +15,9 @@
   float_identifiers:
   - kind: Exe
     id: LINE.exe
+    matching_strategy: Equals
+  - kind: Exe
+    id: LineMediaPlayer.exe
     matching_strategy: Equals
 - name: 1Password
   identifier:
