@@ -1,3 +1,12 @@
+- name: Line
+  identifier:
+    kind: Exe
+    id: LINE.exe
+    matching_strategy: Equals
+  float_identifiers:
+  - kind: Exe
+    id: LINE.exe
+    matching_strategy: Equals
 - name: 1Password
   identifier:
     kind: Exe
@@ -1091,13 +1100,16 @@
   identifier:
     kind: Class
     id: SDL_app
-    matching_strategy: Legacy
+    matching_strategy: Equals
   options:
   - tray_and_multi_window
   float_identifiers:
   - kind: Title
     id: notificationtoasts_
     matching_strategy: Legacy
+  - kind: Class
+    id: SDL_app
+    matching_strategy: Equals
 - name: Stremio
   identifier:
     kind: Exe
