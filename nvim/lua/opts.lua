@@ -4,6 +4,8 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
 vim.opt.cinoptions = "l1" -- for switch, case alignment
+vim.opt.cinkeys:remove(":")
+vim.opt.indentkeys:remove(":")
 vim.opt.termsync = false
 vim.opt.conceallevel = 0
 vim.opt.wrap = false
