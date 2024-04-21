@@ -5,16 +5,24 @@ Tools
 + [AltSnap](https://github.com/RamonUnch/AltSnap/releases), [QuickLook](https://github.com/QL-Win/QuickLook/releases), [ZoomIt](https://learn.microsoft.com/en-us/sysinternals/downloads/zoomit): Useful tools.
 + [AutoHotKey](https://www.autohotkey.com/): Let you be able to use Win+M to minimize window.
 
-# Nu-shell
+cuda dev
+--------
+`.clangd` file at the project root.
 
-I prefer using nu-shell now. But some building process still need to use VS stuffs.
-
-```console
-winget install nu-shell
+```json
+CompileFlags:
+  Add:
+    - -std=c++14
+    - --cuda-path=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3
+    - --cuda-gpu-arch=sm_86
+    - -LC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\lib\x64
+    - -IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include
 ```
 
-# F**K u MS. Why everything on you is so complicated?
+For `--cuda-gpu-arch`, 
+[https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/](https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
 
+# F**K u MS. Why everything on you is so complicated?
 
 Dev Environment Setup
 -------------------------

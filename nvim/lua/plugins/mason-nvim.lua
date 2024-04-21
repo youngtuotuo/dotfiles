@@ -6,7 +6,7 @@ end
 return {
   {
     "williamboman/mason.nvim",
-    ft = { "json", "python", "sh", "lua", "c", "cpp", "zig" },
+    ft = { "json", "python", "sh", "lua", "c", "cpp", "cuda", "zig" },
     init = function()
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
@@ -40,7 +40,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "zig", "c", "cpp", "python", "lua" },
+    ft = { "zig", "c", "cpp", "cuda", "python", "lua" },
     cmd = { "LspInfo" },
     dependencies = {
       "williamboman/mason.nvim",

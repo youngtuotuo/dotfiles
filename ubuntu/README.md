@@ -7,6 +7,24 @@ Ubuntu/WSL2
 ./ubuntu/config_install.sh
 ```
 
+cuda dev
+--------
+`.clangd` file at the project root.
+
+```json
+CompileFlags:
+  Add:
+    - -std=c++11
+    - --cuda-path=/usr/local/cuda
+    - --cuda-gpu-arch=sm_86
+    - -L/usr/local/cuda/lib64
+    - -I/usr/local/cuda/include
+```
+
+For `--cuda-gpu-arch`, 
+[https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/](https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
+
+
 tigerVNC
 --------
 
