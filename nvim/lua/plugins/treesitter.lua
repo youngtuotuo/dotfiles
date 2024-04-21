@@ -23,6 +23,7 @@ return {
       -- "bash",
       -- "c",
       "cpp",
+      "cuda",
       -- "lua",
       -- "markdown",
       -- "markdown_inline",
