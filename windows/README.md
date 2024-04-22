@@ -9,7 +9,7 @@ cuda dev
 --------
 `.clangd` file at the project root.
 
-```json
+```
 CompileFlags:
   Add:
     - -std=c++14
