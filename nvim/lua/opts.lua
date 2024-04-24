@@ -10,7 +10,6 @@ vim.opt.termsync = false
 vim.opt.conceallevel = 0
 vim.opt.wrap = false
 vim.opt.writebackup = false -- no need this with undo history plugin
-vim.opt.guicursor = "" -- i hate blink and vertical line
 vim.opt.cursorline = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true -- Ignore case when searching...
@@ -77,7 +76,7 @@ vim.g.loaded_node_provider = 0
 
 if vim.fn.has("win32") == 1 then
   vim.cmd([[
-    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+    let &shell = 'pwsh'
     let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
     let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
