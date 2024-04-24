@@ -17,7 +17,7 @@ return {
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
-    -- vim.cmd.colo [[catppuccin]]
-    -- _G.colorset()
+    vim.cmd.colo [[catppuccin]]
+    _G.colorset()
   end
 }
