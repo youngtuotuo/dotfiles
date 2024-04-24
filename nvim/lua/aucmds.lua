@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- :h errorformat
     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
+    vim.opt_local.indentkeys:remove("<:>")
   end,
   desc = "aucmd for python",
 })
