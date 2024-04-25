@@ -11,7 +11,7 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        layout_strategy = "bottom_pane",
+        layout_strategy = "center",
         mappings = {
           i = {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
@@ -25,8 +25,9 @@ return {
         results_title = false,
         prompt_title = false,
         layout_config = {
-          bottom_pane = {
-            height = 10,
+          center = {
+            height = 15,
+            width = 120,
             prompt_position = "bottom",
           },
         },
