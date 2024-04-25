@@ -27,19 +27,9 @@ vim.keymap.set(
   { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" }
 )
 
-vim.keymap.set(
-  { "n" },
-  "<space>l",
-  ":vim // %<left><left><left>",
-  { nowait = true, noremap = true }
-)
+vim.keymap.set({ "n" }, "<space>l", ":vim // %<left><left><left>", { nowait = true, noremap = true })
 
-vim.keymap.set(
-  { "n" },
-  "<space>mp",
-  ":lua vim.opt_local.makeprg=[[]]<left><left>",
-  { nowait = true, noremap = true }
-)
+vim.keymap.set({ "n" }, "<space>mp", ":lua vim.opt_local.makeprg=[[]]<left><left>", { nowait = true, noremap = true })
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
 vim.keymap.set(
@@ -52,7 +42,12 @@ vim.keymap.set(
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
-vim.keymap.set({ "n", "i" }, "<C-c>", "<esc><cmd>noh<cr>", { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
+vim.keymap.set(
+  { "n", "i" },
+  "<C-c>",
+  "<esc><cmd>noh<cr>",
+  { noremap = true, desc = "Esc, C-c will raise inetrrutped error" }
+)
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" })
 
 -- More indents options
@@ -124,7 +119,38 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
--- https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/
+vim.keymap.set({ "n" }, "cn", function()
+  vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "cnext" })
+vim.keymap.set({ "n" }, "cp", function()
+  vim.cmd([[try | cprev | catch | clast | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "cprev" })
+vim.keymap.set({ "n" }, "co", function()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 and win["loclist"] == 0 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd.copen()
+end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
+vim.keymap.set({ "n" }, "]l", function()
+  vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "lnext" })
+vim.keymap.set({ "n" }, "[l", function()
+  vim.cmd([[try | lprev | catch | llast | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "lprev" })
+vim.keymap.set({ "n" }, "<leader>l", function()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 and win["loclist"] == 1 then
+      vim.cmd.lclose()
+      return
+    end
+  end
+  vim.cmd.lopen()
+end, { nowait = true, noremap = true, desc = "lopen" })
 
 vim.api.nvim_create_user_command("W", "w", { bang = true, bar = true })
 vim.api.nvim_create_user_command("Q", "q", { bang = true, bar = true })
@@ -140,4 +166,3 @@ vim.api.nvim_create_user_command("WQa", "wqa", { bang = true, bar = true })
 vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true, bar = true })
 vim.api.nvim_create_user_command("XA", "xa", { bang = true, bar = true })
 vim.api.nvim_create_user_command("Xa", "xa", { bang = true, bar = true })
-
