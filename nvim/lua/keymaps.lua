@@ -29,8 +29,6 @@ vim.keymap.set(
 
 vim.keymap.set({ "n" }, "<space>l", ":vim // %<left><left><left>", { nowait = true, noremap = true })
 
-vim.keymap.set({ "n" }, "<space>mp", ":lua vim.opt_local.makeprg=[[]]<left><left>", { nowait = true, noremap = true })
-
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
 vim.keymap.set(
   { "n" },
