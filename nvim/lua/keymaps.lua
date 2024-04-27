@@ -40,14 +40,14 @@ vim.keymap.set(
 vim.keymap.set(
   { "n" },
   "'<space>",
-  ":sp | term ",
+  ":term ",
   { noremap = true, desc = "Run with term command" }
 )
 
 vim.keymap.set(
   { "n" },
   "'<cr>",
-  ":sp | term<cr>i",
+  ":term<cr>i",
   { noremap = true, desc = "Run with term command" }
 )
 
