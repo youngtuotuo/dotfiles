@@ -37,6 +37,20 @@ vim.keymap.set(
   { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
 )
 
+vim.keymap.set(
+  { "n" },
+  "'<space>",
+  ":sp | term ",
+  { noremap = true, desc = "Run with term command" }
+)
+
+vim.keymap.set(
+  { "n" },
+  "'<cr>",
+  ":sp | term<cr>i",
+  { noremap = true, desc = "Run with term command" }
+)
+
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 

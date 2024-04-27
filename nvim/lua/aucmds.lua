@@ -12,7 +12,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.c", "*.cpp" },
   group = group,
   callback = function()
-    vim.cmd([[compiler gcc]])
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.define = [[^\s*#\s*define]]
   end,
@@ -25,7 +24,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
-    vim.opt_local.errorformat=[[lua:[string %.+]:%l+:%m,lua:%f:%l:%m,lua:%m,%s+ [string %.+]:%l+:%m,%f:%l:%m]]
   end,
   desc = "aucmd for lua",
 })
@@ -34,8 +32,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.py" },
   group = group,
   callback = function()
-    -- :h errorformat
-    vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
     vim.opt_local.indentkeys:remove("<:>")
   end,
   desc = "aucmd for python",
