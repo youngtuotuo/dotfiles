@@ -86,25 +86,10 @@ if ask "============ Do you want to install cuda? ============"; then
 	fi
 fi
 
-# latex
-if ask "============ Do you want to install latex? ============"; then
-	sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
-fi
-
 # tiger vnc
 if ask "============ Do you want to install tigerVNC? ============"; then
 	sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
 	mkdir $HOME/.vnc
 	cp $HOME/github/dotfiles/xstartup $HOME/.vnc/xstartup
 	sudo chmod +x ~/.vnc/xstartup
-fi
-
-# nvtop
-if ask "============ Do you want to install nvtop? ============"; then
-	if ! command -v nvtop >/dev/null; then
-		sudo add-apt-repository ppa:flexiondotorg/nvtop
-		sudo apt install nvtop
-	else
-		echo -e "\033[93mINFO\033[0m nvtop exists: $(which nvtop)"
-	fi
 fi

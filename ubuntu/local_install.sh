@@ -19,6 +19,38 @@ if ask "============ Do you want to create ~/.local? ============"; then
 	else
 		echo -e "\033[93mINFO\033[0m $HOME/.local exists"
 	fi
+	if [ ! -d "$HOME/.local/bin" ]; then
+		mkdir -p $HOME/.local/bin
+	fi
+	if [ ! -d "$HOME/.local/share" ]; then
+		mkdir -p $HOME/.local/share
+	fi
+	if [ ! -d "$HOME/.local/man" ]; then
+		mkdir -p $HOME/.local/man
+	fi
+fi
+
+# cmake
+if ask "============ Do you want to install cmake? ============"; then
+	echo "cmake download page: https://cmake.org/download/"
+	read -p "Please give current cmake binary distribution tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		if [ -f "$HOME/cmake.tar.gz" ]; then
+			rm $HOME/cmake.tar.gz
+		fi
+		if [ -d "$HOME/cmake" ]; then
+			rm -r $HOME/cmake
+		fi
+		wget $resp -O $HOME/cmake.tar.gz
+		mkdir -p $HOME/cmake
+		cd $HOME
+		tar -zxf cmake.tar.gz -C cmake --strip-components 1
+		cp $HOME/cmake/bin/* $HOME/.local/bin/
+		cp -r $HOME/cmake/share/* $HOME/.local/share/
+		cp -r $HOME/cmake/man/* $HOME/.local/man/
+	fi
 fi
 
 # Neovim
@@ -199,29 +231,6 @@ if ask "============ Do you want to install tmux? ============"; then
 	make install
 fi
 
-# cmake
-if ask "============ Do you want to install cmake? ============"; then
-	echo "cmake download page: https://cmake.org/download/"
-	read -p "Please give current cmake zip file url: " resp
-	if [ -z "$resp" ]; then
-		echo "Empty url, skip."
-	else
-		if [ -f "$HOME/cmake.tar.gz" ]; then
-			rm $HOME/cmake.tar.gz
-		fi
-		if [ -d "$HOME/cmake" ]; then
-			rm -r $HOME/cmake
-		fi
-		wget $resp -O $HOME/cmake.tar.gz
-		mkdir -p $HOME/cmake
-		cd $HOME
-		tar zxf -j cmake.tar.gz -C cmake --strip-components 1
-		cp $HOME/cmake/bin/* $HOME/.local/bin/
-		cp -r $HOME/cmake/share/* $HOME/.local/share/
-		cp -r $HOME/cmake/man/* $HOME/.local/man/
-	fi
-fi
-
 # nvtop
 if ask "============ Do you want to install nvtop? ============"; then
 	echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
@@ -236,6 +245,9 @@ fi
 
 # fzf
 if ask "============ Do you want to install fzf? ============"; then
+	if [ ! -d "$HOME/.fzf" ]; then
+		mkdir $HOME/.fzf
+	fi
 	if [ -d "$HOME/.fzf" ]; then
 		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	else
@@ -244,7 +256,6 @@ if ask "============ Do you want to install fzf? ============"; then
 	~/.fzf/install
 fi
 
-p
 # ruby
 if ask "============ Do you want to install ruby? ============"; then
 	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
