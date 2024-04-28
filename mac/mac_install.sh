@@ -170,15 +170,6 @@ if ask "============ Do you want to install ruby? ============"; then
 	fi
 fi
 
-# oh-my-posh
-if ask "============ Do you want to install oh-my-posh? ============"; then
-	if ! command -v oh-my-posh >/dev/null; then
-		brew install jandedobbeleer/oh-my-posh/oh-my-posh
-	else
-		echo -e "\033[93mINFO\033[0m oh-my-posh exists: $(which oh-my-posh)"
-	fi
-fi
-
 # git credential manager
 if ask "============ Do you want to install gcm? ============"; then
 	brew install --cask git-credential-manager
@@ -202,4 +193,28 @@ fi
 # zprofile
 if ask "============ Do you want to install .zprofile? ============"; then
 	ln -s $HOME/github/dotfiles/mac/.zprofile ~/.zprofile
+fi
+
+# python
+if ask "============ Do you want to install python? ============"; then
+	echo "Python download page: https://www.python.org/downloads/"
+	read -p "Please give current python tar file url: " resp
+	if [ -z "$resp" ]; then
+		echo -e "\033[93mINFO\033[0m Empty url, skip."
+	else
+		if [ -f "$HOME/python.tgz" ]; then
+			rm $HOME/python.tgz
+		fi
+		if [ -d "$HOME/python" ]; then
+			rm -r $HOME/python
+		fi
+		wget $resp -O $HOME/python.tgz
+		mkdir -p $HOME/python
+		cd $HOME
+		tar xf python.tgz -C python --strip-components 1
+		cd python
+		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
+		make
+		make install
+	fi
 fi

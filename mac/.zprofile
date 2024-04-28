@@ -25,13 +25,6 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/Library/Frameworks/Python.framework/Versions/3.11/bin":*)
-        ;;
-    *)
-        export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin${PATH:+:${PATH}}"
-        ;;
-esac
-case ":${PATH}:" in
     *:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*)
         ;;
     *)
