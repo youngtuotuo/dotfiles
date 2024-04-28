@@ -28,11 +28,6 @@ if ask "============ Do you want to install .bashrc and .profile? ============";
 	ln -s $HOME/github/dotfiles/ubuntu/.profile ~/.profile
 fi
 
-# fd link
-if ask "============ Do you want to link fd to fdfind? ============"; then
-	ln -s $(which fdfind) ~/.local/bin/fd
-fi
-
 # Case-insensitive bash
 # from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
 if ask "============ Do you want to set case case-insensitive in bash? ============"; then

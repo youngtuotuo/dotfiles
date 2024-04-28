@@ -278,3 +278,19 @@ if ask "============ Do you want to install mojo? ============"; then
 	modular install max
 	MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
 fi
+
+# fd link
+if ask "============ Do you want to install fd? ============"; then
+	echo "fd download url: https://github.com/sharkdp/fd/releases"
+	read -p "Please give current fd deb file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		if [ -f "$HOME/fd.deb" ]; then
+			rm $HOME/fd.deb
+		fi
+		wget $resp -O $HOME/fd.deb
+		sudo dpkg -i $HOME/fd.deb
+		ln -s $(which fdfind) ~/.local/bin/fd
+	fi
+fi
