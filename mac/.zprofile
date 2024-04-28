@@ -32,13 +32,6 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"/opt/homebrew/opt/llvm/bin":*)
-        ;;
-    *)
-        export PATH="/opt/homebrew/opt/llvm/bin${PATH:+:${PATH}}"
-        ;;
-esac
-case ":${PATH}:" in
     *:"/Users/mikehung/.rubies/ruby-3.1.3/bin":*)
         ;;
     *)

@@ -213,8 +213,10 @@ if ask "============ Do you want to install python? ============"; then
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
 		cd python
-		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
+		./configure --prefix=$HOME/.local --enable-optimizations --with-openssl=$(brew --prefix openssl) --with-ensurepip=install ARCHFLAGS="-arch arm64" LDFLAGS="-L$HOME/.local/lib" CPPFLAGS="-I$HOME/.local/include"
 		make
 		make install
+		ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
+		ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
 	fi
 fi

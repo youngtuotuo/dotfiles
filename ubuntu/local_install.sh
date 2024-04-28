@@ -84,17 +84,12 @@ if ask "============ Do you want to install python? ============"; then
 		cd $HOME
 		tar xf python.tgz -C python --strip-components 1
 		cd python
-		./configure --prefix=$HOME/.local --enable-optimizations --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
+		./configure --prefix=$HOME/.local --enable-optimizations --with-ensurepip=install --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 		make
 		make install
+		ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
+		ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
 	fi
-fi
-
-# pip
-if ask "============ Do you want to install pip? ============"; then
-	wget https://bootstrap.pypa.io/get-pip.py -O $HOME/get-pip.py
-	cd $HOME
-	python3 get-pip.py
 fi
 
 # lua
