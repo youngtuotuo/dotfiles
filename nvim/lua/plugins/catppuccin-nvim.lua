@@ -7,7 +7,7 @@ return {
     show_end_of_buffer = true,
     term_colors = false,
     dim_inactive = { enabled = false },
-    no_italic = true,
+    no_italic = false,
     no_bold = true,
     no_underline = true,
     default_integrations = false,

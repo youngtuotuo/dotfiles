@@ -21,11 +21,8 @@ _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 _G.auG = "TuoGroup"
 
--- each line's 101-th char get highlighted
-vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
-
 _G.colorset = function()
-  vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = "DarkRed" })
+  vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed" })
   vim.api.nvim_set_hl(0, "WinSeparator", { link = "StatusLine" })
   vim.api.nvim_set_hl(0, "Search", { link = "CurSearch" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

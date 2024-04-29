@@ -32,6 +32,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.py" },
   group = group,
   callback = function()
+    -- :h errorformat
+    vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
     vim.opt_local.indentkeys:remove("<:>")
   end,
   desc = "aucmd for python",
@@ -62,6 +64,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
     vim.opt.formatoptions = "jql"
+    -- each line's 121-th char get highlighted
+    vim.fn.matchadd("ColorColumn", [[\%121v]], 100)
   end,
   desc = "All buffer need formatoptions = jql",
 })
