@@ -18,6 +18,6 @@ return {
   config = function(_, opts)
     require("catppuccin").setup(opts)
     vim.cmd.colo [[catppuccin]]
-    _G.colorset()
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed" })
   end
 }
