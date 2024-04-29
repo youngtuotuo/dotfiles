@@ -16,6 +16,8 @@ return {
         end
         return ret
       end,
+      winblend = vim.o.winblend,
+      show_scroll_bar = false
     },
     auto_resize_height = true,
     filter = {
