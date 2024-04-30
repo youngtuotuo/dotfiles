@@ -3,6 +3,7 @@ return {
   ft = { "qf" },
   opts = {
     preview = {
+      auto_preview = true,
       should_preview_cb = function(bufnr, qwinid)
         local ret = true
         local bufname = vim.api.nvim_buf_get_name(bufnr)

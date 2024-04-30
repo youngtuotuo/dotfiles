@@ -126,17 +126,6 @@ vim.keymap.set(
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
 
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
-vim.keymap.set("n", "gl", vim.diagnostic.open_float)
-
-vim.keymap.set({ "n" }, "cn", function()
-  vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "cnext" })
-vim.keymap.set({ "n" }, "cp", function()
-  vim.cmd([[try | cprev | catch | clast | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "cprev" })
 vim.keymap.set({ "n" }, "co", function()
   local windows = vim.fn.getwininfo()
   for _, win in pairs(windows) do
@@ -147,12 +136,7 @@ vim.keymap.set({ "n" }, "co", function()
   end
   vim.cmd.copen()
 end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
-vim.keymap.set({ "n" }, "]l", function()
-  vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "lnext" })
-vim.keymap.set({ "n" }, "[l", function()
-  vim.cmd([[try | lprev | catch | llast | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "lprev" })
+
 vim.keymap.set({ "n" }, "<leader>l", function()
   local windows = vim.fn.getwininfo()
   for _, win in pairs(windows) do
