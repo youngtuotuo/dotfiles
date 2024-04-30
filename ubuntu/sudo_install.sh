@@ -23,7 +23,7 @@ if ask "============ Do you want to install all dependencies? ============"; the
 		libtool libtool-bin autoconf automake g++ pkg-config unzip curl doxygen build-essential \
 		clang libevent-dev libncurses-dev bison git ripgrep zlib1g-dev \
 		libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
-		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev \
+		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev fuse\
 		libyaml-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
 fi
 

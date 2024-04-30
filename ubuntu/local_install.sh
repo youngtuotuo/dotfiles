@@ -168,6 +168,7 @@ fi
 # Rust
 if ask "============ Do you want to install rust? ============"; then
 	if ! command -v rustup >/dev/null; then
+		cd $HOME/
 		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	else
 		echo -e "\033[93mINFO\033[0m rustup exists: $(which rustup)"
@@ -316,8 +317,26 @@ if ask "============ Do you want to install fd? ============"; then
 		fi
 		wget $resp -O $HOME/fd.deb
 		sudo dpkg -i $HOME/fd.deb
-		ln -s $(which fdfind) ~/.local/bin/fd
+		ln -s $(which fdfind) $HOME/.local/bin/fd
 		rm $HOME/fd.deb
+	fi
+fi
+
+# sioyek
+if ask "============ Do you want to install sioyek? ============"; then
+	echo "sioyek download url: https://github.com/ahrm/sioyek/releases"
+	read -p "Please give current sioyek zip file url: " resp
+	if [ -z "$resp" ]; then
+		echo "Empty url, skip."
+	else
+		if [ -f "$HOME/sioyek.zip" ]; then
+			rm $HOME/sioyek.zip
+		fi
+		wget $resp -O $HOME/sioyek.zip
+		unzip $HOME/sioyek.zip
+		mv $HOME/Sioyek-x86_64.AppImage $HOME/.local/bin/sioyek
+		mv $HOME/Sioyek-x86_64.AppImage.config $HOME/.local/bin/
+		rm $HOME/sioyek.zip
 	fi
 fi
 
