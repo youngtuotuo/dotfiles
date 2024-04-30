@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup(_G.auG, { clear = true })
+local group = vim.api.nvim_create_augroup(_G.group, { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = group,

@@ -19,4 +19,4 @@ _G.floatwrap = true
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
-_G.auG = "TuoGroup"
+_G.group = "TuoGroup"

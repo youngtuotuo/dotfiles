@@ -19,5 +19,8 @@ return {
     require("catppuccin").setup(opts)
     vim.cmd.colo [[catppuccin]]
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed" })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { link = "Search" })
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Search" })
   end
 }
