@@ -211,12 +211,14 @@ if ask "============ Do you want to install python? ============"; then
 		wget $resp -O $HOME/python.tgz
 		mkdir -p $HOME/python
 		cd $HOME
-		tar xf python.tgz -C python --strip-components 1
+		tar xf $HOME/python.tgz -C python --strip-components 1
 		cd python
 		./configure --prefix=$HOME/.local --enable-optimizations --with-openssl=$(brew --prefix openssl) --with-ensurepip=install ARCHFLAGS="-arch arm64" LDFLAGS="-L$HOME/.local/lib" CPPFLAGS="-I$HOME/.local/include"
 		make
 		make install
 		ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
 		ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
+		rm $HOME/python.tgz
+		rm -r $HOME/python
 	fi
 fi

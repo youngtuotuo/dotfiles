@@ -46,10 +46,12 @@ if ask "============ Do you want to install cmake? ============"; then
 		wget $resp -O $HOME/cmake.tar.gz
 		mkdir -p $HOME/cmake
 		cd $HOME
-		tar -zxf cmake.tar.gz -C cmake --strip-components 1
+		tar -zxf $HOME/cmake.tar.gz -C cmake --strip-components 1
 		cp $HOME/cmake/bin/* $HOME/.local/bin/
 		cp -r $HOME/cmake/share/* $HOME/.local/share/
 		cp -r $HOME/cmake/man/* $HOME/.local/man/
+		rm $HOME/cmake.tar.gz
+		rm -r $HOME/cmake
 	fi
 fi
 
@@ -63,7 +65,6 @@ if ask "============ Do you want to install neovim? ============"; then
 	make distclean
 	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 	make install
-	rm $HOME/.local/lib/nvim/parser/*
 fi
 
 # python
@@ -82,13 +83,15 @@ if ask "============ Do you want to install python? ============"; then
 		wget $resp -O $HOME/python.tgz
 		mkdir -p $HOME/python
 		cd $HOME
-		tar xf python.tgz -C python --strip-components 1
-		cd python
+		tar xf $HOME/python.tgz -C python --strip-components 1
+		cd $HOME/python
 		./configure --prefix=$HOME/.local --enable-optimizations --with-ensurepip=install --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 		make
 		make install
 		ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
 		ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
+		rm $HOME/python.tgz
+		rm -r $HOME/python
 	fi
 fi
 
@@ -108,11 +111,13 @@ if ask "============ Do you want to install lua? ============"; then
 		wget $resp -O $HOME/lua.tar.gz
 		mkdir -p $HOME/lua
 		cd $HOME
-		tar zxf lua.tar.gz -C lua --strip-components 1
-		cd lua
+		tar zxf $HOME/lua.tar.gz -C lua --strip-components 1
+		cd $HOME/lua
 		sed -i "s/INSTALL_TOP= \/usr\/local/INSTALL_TOP= $\(HOME\)\/\.local/" Makefile
 		make all test
 		make install
+		rm -r $HOME/lua
+		rm $HOME/lua.tar.gz
 	fi
 fi
 
@@ -131,11 +136,12 @@ if ask "============ Do you want to install go? ============"; then
 		fi
 		wget $resp -O $HOME/go.tar.xz
 		cd $HOME
-		tar xf go.tar.xz
+		tar xf $HOME/go.tar.xz
 		if [ -d "$HOME/.local/go" ]; then
 			rm -r $HOME/.local/go
 		fi
-		mv go/ $HOME/.local/go
+		mv $HOME/go/ $HOME/.local/go
+		rm $HOME/go.tar.xz
 	fi
 fi
 
@@ -168,7 +174,8 @@ if ask "============ Do you want to install zig? ============"; then
 		if [ -d "$HOME/.local/zig" ]; then
 			rm -r $HOME/.local/zig
 		fi
-		mv zig/ $HOME/.local/zig
+		mv $HOME/zig/ $HOME/.local/zig
+		rm $HOME/zig.tar.gz
 	fi
 fi
 
@@ -193,6 +200,8 @@ if ask "============ Do you want to install gdb? ============"; then
 		./configure --prefix=$HOME/.local
 		make
 		make install
+		rm $HOME/gdb.tar.gz
+		rm $HOME/gdb
 	fi
 fi
 
@@ -210,6 +219,7 @@ if ask "============ Do you want to install git-credential-manager? ============
 		sudo dpkg -i $HOME/gcm.deb
 		git-credential-manager configure
 		git config --global credential.credentialStore cache
+		rm $HOME/gcm.deb
 	fi
 fi
 
@@ -234,7 +244,7 @@ if ask "============ Do you want to install nvtop? ============"; then
 		echo "Empty url, skip."
 	else
 		wget $resp -O $HOME/nvtop
-		cp $HOME/nvtop $HOME/.local/bin/
+		mv $HOME/nvtop $HOME/.local/bin/
 	fi
 fi
 
@@ -274,7 +284,7 @@ if ask "============ Do you want to install mojo? ============"; then
 	MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
 fi
 
-# fd link
+# fd
 if ask "============ Do you want to install fd? ============"; then
 	echo "fd download url: https://github.com/sharkdp/fd/releases"
 	read -p "Please give current fd deb file url: " resp
@@ -287,5 +297,6 @@ if ask "============ Do you want to install fd? ============"; then
 		wget $resp -O $HOME/fd.deb
 		sudo dpkg -i $HOME/fd.deb
 		ln -s $(which fdfind) ~/.local/bin/fd
+		rm $HOEM/fd.deb
 	fi
 fi
