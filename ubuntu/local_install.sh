@@ -55,9 +55,17 @@ if ask "============ Do you want to install cmake? ============"; then
 	fi
 fi
 
+# Bash
+if ask "============ Do you want to install .bashrc and .profile? ============"; then
+	cp $HOME/github/dotfiles/ubuntu/.bashrc ~/.bashrc
+	cp $HOME/github/dotfiles/ubuntu/.profile ~/.profile
+	echo "Please reload the bash"
+	exit
+fi
+
 # Neovim
 if ask "============ Do you want to install neovim? ============"; then
-	if [ ! -d "$HOME/github/neovim"]; then
+	if [ ! -d "$HOME/github/neovim" ]; then
 		git clone https://github.com/neovim/neovim.git $HOME/github/neovim
 	fi
 	cd $HOME/github/neovim
@@ -65,6 +73,18 @@ if ask "============ Do you want to install neovim? ============"; then
 	make distclean
 	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 	make install
+fi
+
+# neovim config
+if ask "============ Do you want to install nvim config? ============"; then
+	if [ ! -d "%HOME/.config/nvim" ]; then
+		mkdir -p $HOME/.config
+		ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
+	else
+		echo -e "\033[93mINFO\033[0m $HOME/.config/nvim exists"
+	fi
+	nvim --headless "+Lazy! sync" +qa
+	echo ""
 fi
 
 # python
@@ -161,8 +181,8 @@ if ask "============ Do you want to install zig? ============"; then
 	if [ -z "$resp" ]; then
 		echo "Empty url, skip."
 	else
-		if [ -f "$HOME/zig.tar.gz" ]; then
-			rm $HOME/zig.tar.gz
+		if [ -f "$HOME/zig.tar.xz" ]; then
+			rm $HOME/zig.tar.xz
 		fi
 		if [ -d "$HOME/zig" ]; then
 			rm -r $HOME/zig
@@ -175,7 +195,7 @@ if ask "============ Do you want to install zig? ============"; then
 			rm -r $HOME/.local/zig
 		fi
 		mv $HOME/zig/ $HOME/.local/zig
-		rm $HOME/zig.tar.gz
+		rm $HOME/zig.tar.xz
 	fi
 fi
 
@@ -201,7 +221,7 @@ if ask "============ Do you want to install gdb? ============"; then
 		make
 		make install
 		rm $HOME/gdb.tar.gz
-		rm $HOME/gdb
+		rm -r $HOME/gdb
 	fi
 fi
 
@@ -280,8 +300,8 @@ if ask "============ Do you want to install mojo? ============"; then
 	curl https://get.modular.com | sh -
 	modular auth
 	modular install mojo
-	modular install max
-	MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
+	# modular install max
+	# MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
 fi
 
 # fd
@@ -297,6 +317,40 @@ if ask "============ Do you want to install fd? ============"; then
 		wget $resp -O $HOME/fd.deb
 		sudo dpkg -i $HOME/fd.deb
 		ln -s $(which fdfind) ~/.local/bin/fd
-		rm $HOEM/fd.deb
+		rm $HOME/fd.deb
 	fi
+fi
+
+# uv
+if ask "============ Do you want to install uv? ============"; then
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+# Case-insensitive bash
+# from https://github.com/bartekspitza/dotfiles/blob/master/shell/case_insensitive_completion.sh
+if ask "============ Do you want to set case case-insensitive in bash? ============"; then
+	if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' >~/.inputrc; fi
+	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
+	echo 'set completion-ignore-case On' >>~/.inputrc
+fi
+
+# wsl.conf file
+if ask "============ Do you want to install wsl.conf? ============"; then
+	cd $HOME/github
+	cp ./windows/wsl.conf /etc/wsl.conf
+fi
+
+# tmux config
+if ask "============ Do you want to install .tmux.conf? ============"; then
+	ln -s $HOME/github/dotfiles/.tmux.conf ~/.tmux.conf
+fi
+
+# vimrc
+if ask "============ Do you want to install .vimrc? ============"; then
+	ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
+fi
+
+# wezterm
+if ask "============ Do you want to install .wezterm.lua? ============"; then
+	ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
 fi

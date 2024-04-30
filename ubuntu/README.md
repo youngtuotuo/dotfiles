@@ -4,7 +4,6 @@ Ubuntu/WSL2
 ```bash
 ./ubuntu/sudo_install.sh
 ./ubuntu/local_install.sh
-./ubuntu/config_install.sh
 ```
 
 cuda dev

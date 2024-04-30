@@ -19,12 +19,12 @@ fi
 
 # dependencies
 if ask "============ Do you want to install all dependencies? ============"; then
-	sudo apt-get install python3.8-venv zstd ninja-build gettext \
+	sudo apt-get install zstd ninja-build gettext \
 		libtool libtool-bin autoconf automake g++ pkg-config unzip curl doxygen build-essential \
-		clang libevent-dev libncurses-dev bison git fd-find ripgrep zlib1g-dev \
+		clang libevent-dev libncurses-dev bison git ripgrep zlib1g-dev \
 		libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
 		libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev \
-		libyaml-dev libreadline6-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
+		libyaml-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
 fi
 
 # latex
