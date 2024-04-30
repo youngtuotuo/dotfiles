@@ -26,6 +26,7 @@ return {
       ruff_fmt = {
         prepend_args = {
           "--line-length=120",
+          "--target-version=py311",
         },
       },
       clang_format = {
