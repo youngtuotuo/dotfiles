@@ -37,19 +37,9 @@ vim.keymap.set(
   { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
 )
 
-vim.keymap.set(
-  { "n" },
-  "'<space>",
-  ":term ",
-  { noremap = true, desc = "Run with term command" }
-)
+vim.keymap.set({ "n" }, "'<space>", ":term ", { noremap = true, desc = "Run with term command" })
 
-vim.keymap.set(
-  { "n" },
-  "'<cr>",
-  ":term<cr>i",
-  { noremap = true, desc = "Run with term command" }
-)
+vim.keymap.set({ "n" }, "'<cr>", ":term<cr>i", { noremap = true, desc = "Run with term command" })
 
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
@@ -126,7 +116,15 @@ vim.keymap.set(
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
 
-vim.keymap.set({ "n" }, "<leader>q", function()
+vim.keymap.set({ "n" }, "]p", function()
+  vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "cnext" })
+
+vim.keymap.set({ "n" }, "[p", function()
+  vim.cmd([[try | cprev | catch | clast | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "cprev" })
+
+vim.keymap.set({ "n" }, "<leader>p", function()
   local windows = vim.fn.getwininfo()
   for _, win in pairs(windows) do
     if win["quickfix"] == 1 and win["loclist"] == 0 then
@@ -136,6 +134,14 @@ vim.keymap.set({ "n" }, "<leader>q", function()
   end
   vim.cmd.copen()
 end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
+
+vim.keymap.set({ "n" }, "]l", function()
+  vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "lnext" })
+
+vim.keymap.set({ "n" }, "[l", function()
+  vim.cmd([[try | lprev | catch | llast | catch | endtry]])
+end, { nowait = true, noremap = true, desc = "lprev" })
 
 vim.keymap.set({ "n" }, "<leader>l", function()
   local windows = vim.fn.getwininfo()
