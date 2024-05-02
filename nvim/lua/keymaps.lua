@@ -126,7 +126,7 @@ vim.keymap.set(
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
 
-vim.keymap.set({ "n" }, "co", function()
+vim.keymap.set({ "n" }, "<leader>q", function()
   local windows = vim.fn.getwininfo()
   for _, win in pairs(windows) do
     if win["quickfix"] == 1 and win["loclist"] == 0 then
@@ -146,7 +146,7 @@ vim.keymap.set({ "n" }, "<leader>l", function()
     end
   end
   vim.cmd.lopen()
-end, { nowait = true, noremap = true, desc = "lopen" })
+end, { nowait = true, noremap = true, desc = "toggle location list" })
 
 vim.api.nvim_create_user_command("W", "w", { bang = true, bar = true })
 vim.api.nvim_create_user_command("Q", "q", { bang = true, bar = true })
