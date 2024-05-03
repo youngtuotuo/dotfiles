@@ -12,15 +12,15 @@ return {
     no_underline = true,
     default_integrations = false,
     integrations = {
-      aerial = true
-    }
+      aerial = true,
+      illuminate = {
+        enabled = true,
+        lsp = false,
+      },
+    },
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
-    vim.cmd.colo [[catppuccin]]
-    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed" })
-    vim.api.nvim_set_hl(0, "LspReferenceText", { link = "Search" })
-    vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
-    vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Search" })
-  end
+    vim.cmd.colo([[catppuccin]])
+  end,
 }

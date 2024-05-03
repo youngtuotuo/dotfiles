@@ -1,4 +1,4 @@
-local ok, wf = pcall(require, "vim.lsp._watchfiles")
+local _, wf = pcall(require, "vim.lsp._watchfiles")
 wf._watchfunc = function()
   return function() end
 end
@@ -23,7 +23,7 @@ vim.diagnostic.config(diag_config)
 vim.diagnostic.disable()
 
 local diagnostics_active = false
-function toggle_diagnostics()
+local function toggle_diagnostics()
   if diagnostics_active then
     diagnostics_active = false
     vim.diagnostic.disable()
@@ -67,8 +67,6 @@ return {
         "clangd",
         "pyright",
         "lua-language-server",
-        -- "gopls",
-        -- "rust_analyzer",
         "zls",
         -- formatter --
         "jq",
@@ -142,10 +140,6 @@ return {
           },
         },
       })
-      -- capabilities
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-      require("lspconfig.util").default_config.capabilities = capabilities
 
       -- disable all format, use conform with mason
       require("lspconfig.util").default_config.format = {
