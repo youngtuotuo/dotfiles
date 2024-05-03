@@ -5,10 +5,17 @@ return {
     providers = {
       "lsp",
       "treesitter",
-      "regex"
-    }
+      "regex",
+    },
+    filetypes_denylist = {
+      "dirbuf",
+      "dirvish",
+      "fugitive",
+      "lazy",
+      "markdown"
+    },
   },
   config = function(_, opts)
     require("illuminate").configure(opts)
-  end
+  end,
 }
