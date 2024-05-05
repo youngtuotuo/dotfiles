@@ -7,12 +7,14 @@ return {
       "treesitter",
       "regex",
     },
-    filetypes_denylist = {
-      "dirbuf",
-      "dirvish",
-      "fugitive",
-      "lazy",
-      "markdown"
+    filetypes_denylist = {},
+    filetypes_allowlist = {
+      "lua",
+      "c",
+      "cpp",
+      "cuda",
+      "python",
+      "zig",
     },
   },
   config = function(_, opts)
