@@ -20,7 +20,6 @@ vim.opt.nu = false
 vim.opt.rnu = false
 vim.opt.ru = true
 vim.opt.showcmd = false
-vim.opt.laststatus = 1
 vim.opt.showmode = true
 vim.opt.signcolumn = "auto"
 vim.opt.swapfile = false
