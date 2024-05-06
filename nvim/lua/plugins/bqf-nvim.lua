@@ -20,7 +20,7 @@ return {
       winblend = vim.o.winblend,
       show_scroll_bar = false
     },
-    auto_resize_height = true,
+    auto_resize_height = false,
     filter = {
       fzf = {
         action_for = {
