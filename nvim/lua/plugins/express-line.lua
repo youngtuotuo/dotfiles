@@ -29,15 +29,7 @@ return {
       if icon then
         return set_hl("FileIcon", icon) .. " "
       end
-
       return ""
-    end)
-
-    local git_branch = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
-      local branch = extensions.git_branch(window, buffer)
-      if branch then
-        return set_hl("@constant", "  " .. branch)
-      end
     end)
 
     local git_changes_formatter = function(s)
@@ -69,23 +61,19 @@ return {
       return table.concat(result, " ")
     end
 
-    local git_changes = subscribe.buf_autocmd("el_git_changes", "BufWritePost", function(window, buffer)
-      return git_changes_formatter(extensions.git_changes(window, buffer))
+    local git = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
+      local branch = extensions.git_branch(window, buffer)
+      local changes = extensions.git_changes(window, buffer)
+      res = ""
+      if branch then
+        res = res .. set_hl("@constant", "  " .. branch)
+      end
+      if changes then
+        changes = git_changes_formatter(changes)
+        res = res .. " " .. changes
+      end
+      return res
     end)
-    local function lsp_srvname()
-      local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-      local clients = vim.lsp.get_active_clients()
-      if next(clients) == nil then
-        return nil
-      end
-      for _, client in ipairs(clients) do
-        local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-          return client.name
-        end
-      end
-      return nil
-    end
 
     local function diag_formatter(opts)
       return function(_, _, counts)
@@ -162,24 +150,22 @@ return {
       generator = function(window, buffer)
         local mode = extensions.gen_mode({ format_string = " %s " })
         local items = {
+          { git },
+          { " " },
+          { sections.split, required = true },
           { get_icon },
           { sections.maximum_width(builtin.file_relative, 0.60), required = true },
           { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
-          { git_branch },
-          { " " },
-          { git_changes },
-          { sections.split, required = true },
-          { sections.split, required = true },
-          { " " },
           {
             diagnostics({
-              fmt = "[%s]",
+              fmt = " %s",
               hl_err = "DiagnosticError",
               hl_warn = "DiagnosticWarn",
               hl_info = "DiagnosticInfo",
               hl_hint = "DiagnosticHint",
             }),
           },
+          { sections.split, required = true },
           { "[" },
           { builtin.line_with_width(3) },
           { ":" },
