@@ -1,12 +1,12 @@
-#!/usr/bin/env /usr/bin/bash
+#!/usr/bin/env bash
 
 function usage() {
-	echo "Usage: ./local_install.sh [options]"
+	echo "Usage: ./install.sh [options]"
 	echo "Options:"
 	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, lua, go,"
 	echo "  rust, zig, gdb, git-credential-manager, tmux, tmux-config, nvtop,"
 	echo "  fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash, wsl.conf,"
-	echo "  .vimrc, .wezterm.lua"
+	echo "  .vimrc, .wezterm.lua, dependencies, latex, nodejs, yarn, cuda, tigervnc"
 }
 
 if [ $# -eq 0 ]; then
@@ -15,6 +15,10 @@ fi
 
 function info() {
 	echo -e "\033[93mINFO\033[0m $1"
+}
+
+function note() {
+	echo -e "\033[91mNote\033[0m $1"
 }
 
 function title() {
@@ -358,13 +362,86 @@ function install_target() {
 		title ".wezterm.lua"
 		ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
 		;;
-	"-h" | "--help" | "help" | *)
+	"dependencies")
+		title "dependencies"
+		sudo apt-get install zstd ninja-build gettext \
+			libtool libtool-bin autoconf automake g++ pkg-config unzip curl doxygen build-essential \
+			clang libevent-dev libncurses-dev bison git ripgrep zlib1g-dev \
+			libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
+			libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev fuse libyaml-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
+		;;
+	"latex")
+		title "latex"
+		sudo apt install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
+		sudo tlmgr update -all
+		info "If you meet error, try: tlmgr init-usertree"
+		info "Or maybe try this: https://github.com/scottkosty/install-tl-ubuntu"
+		;;
+	"nodejs")
+		title "nodejs"
+		if ! command -v node >/dev/null; then
+			curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+			sudo apt-get install -y nodejs
+		else
+			info "node exists: $(which node)"
+		fi
+		;;
+	"yarn")
+		title "yarn"
+		if ! command -v yarn >/dev/null; then
+			curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+			echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+			sudo apt-get update && sudo apt-get install yarn
+		else
+			info "yarn exists: $(which yarn)"
+		fi
+		;;
+	"cuda")
+		title "cuda"
+		if ! command -v nvcc >/dev/null; then
+			echo "Please go to this website and give corresponding url based on your system:"
+			echo "  https://developer.nvidia.com/cuda-downloads"
+			if [ -z "$resp" ]; then
+				echo "Empty url, skip."
+			else
+				wget $resp -O $HOME/cuda.deb
+				sudo dpkg -i $HOME/cuda.deb
+				rm $HOME/cuda.deb
+				sudo apt-get update
+				echo "Please choose what you want to install"
+				note "It is important to not install the cuda-drivers packages within the WSL environment."
+				echo "  - cuda (cuda-toolkit + driver)"
+				echo "  - cuda-toolkit (no driver, for wsl)"
+				read -p "Type cuda/cuda-toolkit: " resp
+				if [ "$resp" = "cuda" ] || [ "$resp" = "cuda-toolkit" ]; then
+					sudo apt install $resp -y
+				fi
+			fi
+		else
+			info "nvcc exists: $(which nvcc)"
+		fi
+		;;
+	"tigervnc")
+		title "tigervnc"
+		sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
+		mkdir $HOME/.vnc
+		cp $HOME/github/dotfiles/xstartup $HOME/.vnc/xstartup
+		sudo chmod +x ~/.vnc/xstartup
+		;;
+	"-h" | "--help" | "help" | "")
 		usage
+		;;
+	*)
+		unknown+=($1)
 		;;
 	esac
 }
 
+unknown=()
 for arg in "$@"; do
 	install_target "$arg"
 done
+if [ ! ${#unknown[@]} -eq 0 ]; then
+	info "Unknown option: ${unknown[*]}"
+fi
 exit 0
