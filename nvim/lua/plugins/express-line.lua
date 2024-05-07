@@ -35,7 +35,10 @@ return {
       generator = function(window, buffer)
         local mode = extensions.gen_mode({ format_string = " %s " })
         local items = {
-          { mode, required = true },
+          -- { mode, required = true },
+          { get_icon },
+          { sections.maximum_width(builtin.file_relative, 0.60), required = true },
+          { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
           { git_branch },
           { " " },
           { git_changes },
@@ -43,9 +46,6 @@ return {
           { diagnostic_display },
           { " " },
           { sections.split, required = true },
-          { get_icon },
-          { sections.maximum_width(builtin.file_relative, 0.60), required = true },
-          { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
           { sections.split, required = true },
           { "[" },
           { builtin.line_with_width(3) },
