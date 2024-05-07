@@ -29,12 +29,10 @@ return {
       return extensions.git_changes(window, buffer)
     end)
 
-
     local diagnostic_display = diagnostic.make_buffer()
 
     require("el").setup({
       generator = function(window, buffer)
-
         local mode = extensions.gen_mode({ format_string = " %s " })
         local items = {
           { mode, required = true },
