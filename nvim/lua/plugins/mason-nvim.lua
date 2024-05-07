@@ -168,6 +168,10 @@ return {
       end
 
       vim.keymap.set("n", "<space>i", toggle_lsp_highlight, { desc = "toggle lsp highlight" })
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "lsp references" })
+      vim.keymap.set("n", "gn", vim.lsp.buf.rename, { desc = "lsp rename" })
+      vim.keymap.set("n", "<space>q", vim.diagnostic.setqflist, { desc = "diagnostic qflist" })
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "lsp go to definition" })
 
       local inlay_hints_visible = false
       local function toggle_inlay_hints()
