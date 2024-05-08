@@ -15,6 +15,5 @@ return {
       max_width = 30,
       min_width = 30,
     },
-    -- filter_kind = false,
   },
 }

@@ -147,7 +147,7 @@ return {
           },
           { sections.split, required = true },
           {
-            subscribe.buf_autocmd("el_git_branch", "BufEnter", git),
+            subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
           },
           { " " },
           {
