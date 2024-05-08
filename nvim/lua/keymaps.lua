@@ -66,21 +66,6 @@ vim.keymap.set(
 
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true, desc = "y$, Y like C, D" })
 
-vim.keymap.set(
-  { "n" },
-  "<S-Right>",
-  "<cmd>vertical resize +1<CR>",
-  { noremap = true, desc = "vertical add pane 1 size" }
-)
-vim.keymap.set(
-  { "n" },
-  "<S-Left>",
-  "<cmd>vertical resize -1<CR>",
-  { noremap = true, desc = "vertical reduce pane 1 size" }
-)
-vim.keymap.set({ "n" }, "<S-Up>", "<cmd>resize +1<CR>", { noremap = true, desc = "vertical add pane 1 size" })
-vim.keymap.set({ "n" }, "<S-Down>", "<cmd>resize -1<CR>", { noremap = true, desc = "vertical reduce pane 1 size" })
-
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" })
 
 vim.keymap.set(
