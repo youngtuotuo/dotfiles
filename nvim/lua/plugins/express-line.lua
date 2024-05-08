@@ -1,3 +1,4 @@
+-- https://github.com/ibhagwan/nvim-lua/blob/e30e10d900c7744e796bdfce47678244e70fe4f6/lua/plugins/statusline/init.lua
 return {
   "tjdevries/express_line.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
@@ -134,11 +135,51 @@ return {
       )
     end
 
+    local modes = {
+      n = { "Normal", "N", { "@function" } },
+      niI = { "Normal", "N", { "@function" } },
+      niR = { "Normal", "N", { "@function" } },
+      niV = { "Normal", "N", { "@functio" } },
+      no = { "N·OpPd", "?", { "@function" } },
+      v = { "Visual", "V", { "Directory" } },
+      V = { "V·Line", "Vl", { "Directory" } },
+      [""] = { "V·Blck", "Vb", { "Directory" } },
+      s = { "Select", "S", { "Search" } },
+      S = { "S·Line", "Sl", { "Search" } },
+      [""] = { "S·Block", "Sb", { "Search" } },
+      i = { "Insert", "I", { "@constant" } },
+      ic = { "ICompl", "Ic" },
+      R = { "Rplace", "R", { "WarningMsg", "IncSearch" } },
+      Rv = { "VRplce", "Rv", { "WarningMsg", "IncSearch" } },
+      c = { "Cmmand", "C", { "diffAdded", "DiffAdd" } },
+      cv = { "Vim Ex", "E" },
+      ce = { "Ex (r)", "E" },
+      r = { "Prompt", "P" },
+      rm = { "More  ", "M" },
+      ["r?"] = { "Cnfirm", "Cn" },
+      ["!"] = { "Shell ", "S", { "DiffAdd", "diffAdded" } },
+      nt = { "Term  ", "T", { "Visual" } },
+      t = { "Term  ", "T", { "DiffAdd", "diffAdded" } },
+    }
+
+    local mode = function(opts)
+      opts = opts or {}
+      return wrap_fnc(opts, function(_, _)
+        local fmt = opts.fmt or "%s%s"
+        local mode = vim.api.nvim_get_mode().mode
+        local mode_data = opts.modes and opts.modes[mode]
+        local hls = mode_data and mode_data[3]
+        local icon = opts.hl_icon_only and set_hl(hls, opts.icon) or opts.icon
+        mode = mode_data and mode_data[1]:upper() or mode
+        mode = (fmt):format(icon or "", mode)
+        return not opts.hl_icon_only and set_hl(hls, mode) or mode
+      end)
+    end
+
     require("el").setup({
       generator = function(window, buffer)
-        local mode = extensions.gen_mode({ format_string = " %s " })
         local items = {
-          { mode },
+          { mode({ modes = modes, fmt = "%s %s ", icon = "", hl_icon_only = false }) },
           { sections.maximum_width(builtin.file_relative, 0.60), required = true },
           { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
           {
