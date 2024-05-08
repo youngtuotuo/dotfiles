@@ -8,7 +8,6 @@ return {
     local extensions = require("el.extensions")
     local sections = require("el.sections")
     local subscribe = require("el.subscribe")
-    local diagnostic = require("el.diagnostic")
 
     local function set_hl(hls, s)
       if not hls or not s then
@@ -42,7 +41,7 @@ return {
         },
       }
       local result = {}
-      for k, v in pairs(specs) do
+      for _, v in pairs(specs) do
         local count = nil
         count = tonumber(string.match(s, v.regex))
         if count and count > 0 then
@@ -55,7 +54,7 @@ return {
     local git = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
       local branch = extensions.git_branch(window, buffer)
       local changes = extensions.git_changes(window, buffer)
-      res = ""
+      local res = ""
       if branch then
         res = res .. set_hl("@constant", "  " .. branch)
       end
@@ -85,9 +84,9 @@ return {
           return ""
         else
           if not vim.tbl_isempty(items) then
-            contents = ("%s"):format(table.concat(items, " "))
+            local contents = ("%s"):format(table.concat(items, " "))
+            return fmt:format(contents)
           end
-          return fmt:format(contents)
         end
       end
     end
@@ -177,7 +176,7 @@ return {
     end
 
     require("el").setup({
-      generator = function(window, buffer)
+      generator = function(_, _)
         local items = {
           { mode({ modes = modes, fmt = "%s %s ", icon = "", hl_icon_only = false }) },
           { sections.maximum_width(builtin.file_relative, 0.60), required = true },
