@@ -143,7 +143,7 @@ return {
         title = " |･ω･) ? ",
         zindex = 500,
         focusable = true,
-        max_width = 100,
+        max_width = 120,
       })
 
       -- customize signature help when pressing gs
@@ -173,14 +173,10 @@ return {
           ["textDocument/publishDiagnostics"] = function() end,
           ["textDocument/hover"] = vim.lsp.with(hover, {
             border = _G.border,
-            title = " Pyright ",
-            max_width = 100,
+            title = " |･ω･) ? ",
+            max_width = 120,
             zindex = 500,
           }),
-          ["textDocument/signatureHelp"] = vim.lsp.with(
-            vim.lsp.handlers.signature_help,
-            { border = _G.border, title = " Pyright ", max_width = 100 }
-          ),
         },
         settings = {
           pyright = {
