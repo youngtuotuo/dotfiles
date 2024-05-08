@@ -144,13 +144,11 @@ return {
       )
     end
 
-    local diagnostic_display = diagnostic.make_buffer()
-
     require("el").setup({
       generator = function(window, buffer)
         local mode = extensions.gen_mode({ format_string = " %s " })
         local items = {
-          { get_icon },
+          { mode },
           { sections.maximum_width(builtin.file_relative, 0.60), required = true },
           { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
           {
@@ -165,10 +163,6 @@ return {
           { sections.split, required = true },
           { git },
           { " " },
-          { builtin.line_with_width(3) },
-          { "," },
-          { builtin.column_with_width(2) },
-          { " " },
           {
             sections.collapse_builtin({
               "[",
@@ -177,6 +171,7 @@ return {
               "]",
             }),
           },
+          { get_icon },
           { builtin.filetype },
         }
 
