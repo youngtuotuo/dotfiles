@@ -22,16 +22,6 @@ return {
       return s
     end
 
-    local get_icon = subscribe.buf_autocmd("el_file_icon", "BufEnter", function(_, bufnr)
-      local icon = extensions.file_icon(_, bufnr)
-      local _, color = require("nvim-web-devicons").get_icon_color(bufnr.name, bufnr.extension)
-      vim.api.nvim_set_hl(0, "FileIcon", { fg = color })
-      if icon then
-        return set_hl("FileIcon", icon) .. " "
-      end
-      return ""
-    end)
-
     local git_changes_formatter = function(s)
       local specs = {
         insert = {
@@ -171,7 +161,6 @@ return {
               "]",
             }),
           },
-          { get_icon },
           { builtin.filetype },
         }
 
