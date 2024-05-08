@@ -159,7 +159,7 @@ return {
             }),
           },
           { builtin.filetype },
-        },
+        }
 
         local result = {}
         for _, item in ipairs(items) do
