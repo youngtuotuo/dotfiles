@@ -1,13 +1,18 @@
 Ubuntu/WSL2
 -----------
 
+Scripts that support installing the following softwares
+
+- cmake, neovim, python, lua, go rust, zig, gdb, git-credential-manager, tmux,
+- nvtop fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash latex, nodejs,
+- yarn, cuda, tigervnc
+
 ```bash
-./ubuntu/sudo_install.sh
-./ubuntu/local_install.sh
+./ubuntu/install.sh
 ```
 
-cuda dev
---------
+cuda dev for clangd
+-------------------
 `.clangd` file at the project root.
 
 ```

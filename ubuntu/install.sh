@@ -77,8 +77,17 @@ function install_target() {
 		title ".bashrc and .profile"
 		cp $HOME/github/dotfiles/ubuntu/.bashrc ~/.bashrc
 		cp $HOME/github/dotfiles/ubuntu/.profile ~/.profile
-		info "Please reload the bash"
-		exit 0
+		read -p "Do you want to reload the bash?(y/n)" resp
+		if [ -z "$resp" ]; then
+			response_lc="n" # empty is No
+		else
+			response_lc=$(echo "$resp" | tr '[:upper:]' '[:lower:]') # case insensitive
+		fi
+
+		if [ "$response_lc" = "y" ]; then
+			source ~/.bashrc
+		fi
+		info "Remember to reload to take effect."
 		;;
 	"neovim")
 		title "neovim"
@@ -180,7 +189,7 @@ function install_target() {
 			cd $HOME/
 			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 		else
-			echo -e "\033[93mINFO\033[0m rustup exists: $(which rustup)"
+			info "rustup exists: $(which rustup)"
 		fi
 		;;
 	"zig")
@@ -188,7 +197,7 @@ function install_target() {
 		echo "Zig download page: https://ziglang.org/download/"
 		read -p "Please give current zig tar file url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			if [ -f "$HOME/zig.tar.xz" ]; then
 				rm $HOME/zig.tar.xz
@@ -211,7 +220,7 @@ function install_target() {
 		echo "gdb download page: https://ftp.gnu.org/gnu/gdb/"
 		read -p "Please give current gdb tar file url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			if [ -f "$HOME/gdb.tar.gz" ]; then
 				rm $HOME/gdb.tar.gz
@@ -235,7 +244,7 @@ function install_target() {
 		echo "gcm download url: https://github.com/git-ecosystem/git-credential-manager/releases"
 		read -p "Please give current gcm deb file url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			if [ -f "$HOME/gcm.deb" ]; then
 				rm $HOME/gcm.deb
@@ -268,7 +277,7 @@ function install_target() {
 		echo "nvtop download page: https://github.com/Syllo/nvtop/releases"
 		read -p "Please give current nvtop app image url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			wget $resp -O $HOME/nvtop
 			mv $HOME/nvtop $HOME/.local/bin/
@@ -292,7 +301,7 @@ function install_target() {
 		rbenv install -l
 		read -p "Please select desired version: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty version, skip."
+			info "Empty version, skip."
 		else
 			rbenv install $resp
 			rbenv global $resp
@@ -312,7 +321,7 @@ function install_target() {
 		echo "fd download url: https://github.com/sharkdp/fd/releases"
 		read -p "Please give current fd deb file url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			if [ -f "$HOME/fd.deb" ]; then
 				rm $HOME/fd.deb
@@ -328,7 +337,7 @@ function install_target() {
 		echo "sioyek download url: https://github.com/ahrm/sioyek/releases"
 		read -p "Please give current sioyek zip file url: " resp
 		if [ -z "$resp" ]; then
-			echo "Empty url, skip."
+			info "Empty url, skip."
 		else
 			if [ -f "$HOME/sioyek.zip" ]; then
 				rm $HOME/sioyek.zip
@@ -402,16 +411,16 @@ function install_target() {
 			echo "Please go to this website and give corresponding url based on your system:"
 			echo "  https://developer.nvidia.com/cuda-downloads"
 			if [ -z "$resp" ]; then
-				echo "Empty url, skip."
+				info "Empty url, skip."
 			else
 				wget $resp -O $HOME/cuda.deb
 				sudo dpkg -i $HOME/cuda.deb
 				rm $HOME/cuda.deb
 				sudo apt-get update
-				echo "Please choose what you want to install"
+				info "Please choose what you want to install"
 				note "It is important to not install the cuda-drivers packages within the WSL environment."
-				echo "  - cuda (cuda-toolkit + driver)"
-				echo "  - cuda-toolkit (no driver, for wsl)"
+				note "  - cuda (cuda-toolkit + driver)"
+				note "  - cuda-toolkit (no driver, for wsl)"
 				read -p "Type cuda/cuda-toolkit: " resp
 				if [ "$resp" = "cuda" ] || [ "$resp" = "cuda-toolkit" ]; then
 					sudo apt install $resp -y

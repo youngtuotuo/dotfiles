@@ -9,7 +9,7 @@ Mac
 ---
 
 ```
-./mac/mac_install.sh
+./mac/install.sh
 ```
 
 

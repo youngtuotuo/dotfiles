@@ -63,7 +63,7 @@ return {
       local changes = extensions.git_changes(window, buffer)
       local res = ""
       if branch then
-        res = res .. set_hl("@constant", " " .. branch)
+        res = res .. " " .. branch
       end
       if changes then
         local specs = {
@@ -141,15 +141,6 @@ return {
           },
           { sections.maximum_width(builtin.file_relative, 0.60), required = true },
           { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
-          -- diagnostics
-          {
-            subscribe.buf_autocmd("el_buf_diagnostic", "DiagnosticChanged", diagnostics),
-          },
-          { sections.split, required = true },
-          {
-            subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
-          },
-          { " " },
           {
             sections.collapse_builtin({
               "[",
@@ -158,6 +149,18 @@ return {
               "]",
             }),
           },
+          -- diagnostics
+          {
+            subscribe.buf_autocmd("el_buf_diagnostic", "DiagnosticChanged", diagnostics),
+          },
+          {
+            " "
+          },
+          -- git
+          {
+            subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
+          },
+          { sections.split, required = true },
           { builtin.filetype },
         }
 
