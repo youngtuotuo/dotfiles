@@ -156,6 +156,7 @@ return {
           {
             " "
           },
+          { sections.split, required = true },
           -- git
           {
             subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
