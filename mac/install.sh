@@ -128,6 +128,7 @@ function install_target() {
 			git clone https://github.com/neovim/neovim.git $HOME/github/neovim
 		fi
 		cd $HOME/github/neovim
+		git pull
 		make distclean
 		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 		make install
