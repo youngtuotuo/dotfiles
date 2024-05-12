@@ -98,30 +98,30 @@ return {
 
     local function mode(_, _)
       local modes = {
-        n = { "N", { "@function" } },
-        niI = { "N", { "@function" } },
-        niR = { "N", { "@function" } },
-        niV = { "N", { "@functio" } },
-        no = { "N", { "@function" } },
-        v = { "V", { "Directory" } },
-        V = { "V", { "Directory" } },
-        [""] = { "V", { "Directory" } },
-        s = { "S", { "Search" } },
-        S = { "S", { "Search" } },
-        [""] = { "S", { "Search" } },
-        i = { "I", { "@constant" } },
-        ic = { "C" },
-        R = { "R", { "WarningMsg", "IncSearch" } },
-        Rv = { "R", { "WarningMsg", "IncSearch" } },
-        c = { "C", { "diffAdded", "DiffAdd" } },
-        cv = { "C" },
-        ce = { "C" },
-        r = { "A" },
-        rm = { "A" },
-        ["r?"] = { "A" },
-        ["!"] = { "S ", { "DiffAdd", "diffAdded" } },
-        nt = { "T", { "Visual" } },
-        t = { "T", { "DiffAdd", "diffAdded" } },
+        n = { "Normal", { "@function" } },
+        niI = { "Normal", { "@function" } },
+        niR = { "Normal", { "@function" } },
+        niV = { "Normal", { "@functio" } },
+        no = { "N·OpPd", { "@function" } },
+        v = { "Visual", { "Directory" } },
+        V = { "V·Line", { "Directory" } },
+        [""] = { "V·Blck", { "Directory" } },
+        s = { "Select", { "Search" } },
+        S = { "S·Line", { "Search" } },
+        [""] = { "S·Block", { "Search" } },
+        i = { "Insert", { "@constant" } },
+        ic = { "ICompl" },
+        R = { "Rplace", { "WarningMsg", "IncSearch" } },
+        Rv = { "VRplce", { "WarningMsg", "IncSearch" } },
+        c = { "Cmmand", { "diffAdded", "DiffAdd" } },
+        cv = { "Vim Ex" },
+        ce = { "Ex (r)" },
+        r = { "Prompt" },
+        rm = { "More  " },
+        ["r?"] = { "Cnfirm" },
+        ["!"] = { "Shell ", { "DiffAdd", "diffAdded" } },
+        nt = { "Term  ", { "Visual" } },
+        t = { "Term  ", { "DiffAdd", "diffAdded" } },
       }
       local fmt = "%s "
       local m = vim.api.nvim_get_mode().mode
@@ -153,15 +153,11 @@ return {
           {
             subscribe.buf_autocmd("el_buf_diagnostic", "DiagnosticChanged", diagnostics),
           },
-          {
-            " "
-          },
           { sections.split, required = true },
           -- git
           {
             subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
           },
-          { sections.split, required = true },
           { builtin.filetype },
         }
 
