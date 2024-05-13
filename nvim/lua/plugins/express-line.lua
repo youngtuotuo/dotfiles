@@ -158,7 +158,6 @@ return {
           {
             subscribe.buf_autocmd("el_git_branch", "BufWritePost", git),
           },
-          { builtin.filetype },
         }
 
         local result = {}
