@@ -56,6 +56,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
+    vim.opt_local.indentkeys:remove("<:>")
   end,
   desc = "Change indent level to 2 for json, html, yaml",
 })
