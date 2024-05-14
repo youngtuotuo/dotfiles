@@ -52,6 +52,8 @@ local function split_lines(value)
   value = string.gsub(value, "&gt;", ">")
   value = string.gsub(value, "&lt;", "<")
   value = string.gsub(value, "\\", "")
+  value = string.gsub(value, "```python", "")
+  value = string.gsub(value, "```", "")
   return vim.split(value, "\n", { plain = true, trimempty = true })
 end
 
@@ -89,7 +91,7 @@ local function hover(_, result, ctx, config)
     end
     return
   end
-  return util.open_floating_preview(contents, "markdown", config)
+  return util.open_floating_preview(contents, "plaintext", config)
 end
 
 return {
