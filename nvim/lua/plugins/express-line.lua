@@ -111,17 +111,17 @@ return {
         [""] = { "S·Block", { "Search" } },
         i = { "Insert", { "@constant" } },
         ic = { "ICompl" },
-        R = { "Rplace", { "WarningMsg", "IncSearch" } },
-        Rv = { "VRplce", { "WarningMsg", "IncSearch" } },
-        c = { "Cmmand", { "diffAdded", "DiffAdd" } },
+        R = { "Rplace", { "WarningMsg" } },
+        Rv = { "VRplce", { "WarningMsg" } },
+        c = { "Cmmand", { "diffAdded" } },
         cv = { "Vim Ex" },
         ce = { "Ex (r)" },
         r = { "Prompt" },
         rm = { "More  " },
         ["r?"] = { "Cnfirm" },
-        ["!"] = { "Shell ", { "DiffAdd", "diffAdded" } },
-        nt = { "Term  ", { "Visual" } },
-        t = { "Term  ", { "DiffAdd", "diffAdded" } },
+        ["!"] = { "Shell ", { "DiffAdd" } },
+        nt = { "Term  " },
+        t = { "Term  " },
       }
       local fmt = "%s "
       local m = vim.api.nvim_get_mode().mode
