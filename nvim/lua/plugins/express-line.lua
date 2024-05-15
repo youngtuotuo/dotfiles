@@ -96,49 +96,9 @@ return {
       return res
     end
 
-    local function mode(_, _)
-      local modes = {
-        n = { "Normal", { "@function" } },
-        niI = { "Normal", { "@function" } },
-        niR = { "Normal", { "@function" } },
-        niV = { "Normal", { "@functio" } },
-        no = { "N·OpPd", { "@function" } },
-        v = { "Visual", { "Directory" } },
-        V = { "V·Line", { "Directory" } },
-        [""] = { "V·Blck", { "Directory" } },
-        s = { "Select", { "Search" } },
-        S = { "S·Line", { "Search" } },
-        [""] = { "S·Block", { "Search" } },
-        i = { "Insert", { "@constant" } },
-        ic = { "ICompl" },
-        R = { "Rplace", { "WarningMsg" } },
-        Rv = { "VRplce", { "WarningMsg" } },
-        c = { "Cmmand", { "diffAdded" } },
-        cv = { "Vim Ex" },
-        ce = { "Ex (r)" },
-        r = { "Prompt" },
-        rm = { "More  " },
-        ["r?"] = { "Cnfirm" },
-        ["!"] = { "Shell ", { "DiffAdd" } },
-        nt = { "Term  " },
-        t = { "Term  " },
-      }
-      local fmt = "%s "
-      local m = vim.api.nvim_get_mode().mode
-      local mode_data = modes and modes[m]
-      local hls = mode_data and mode_data[2]
-      m = mode_data and mode_data[1]:upper() or m
-      m = (fmt):format(m)
-      return set_hl(hls, m) or m
-    end
-
     require("el").setup({
       generator = function(_, _)
         local items = {
-          -- mode
-          {
-            mode,
-          },
           { sections.maximum_width(builtin.tail_file, 0.60), required = true },
           { sections.collapse_builtin({ { " " }, { builtin.modified_flag } }) },
           {
