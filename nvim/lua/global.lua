@@ -13,7 +13,7 @@ end
 _G.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 _G.floatw = 95
 _G.floath = 30
-_G.floatwrap = true
+_G.floatwrap = false
 
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"

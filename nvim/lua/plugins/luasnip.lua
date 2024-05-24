@@ -3,7 +3,7 @@ return {
   cond = function()
     return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
   end,
-  ft = { "tex" },
+  ft = { "tex", "python" },
   version = "v2.*",
   opts = {
     history = true,

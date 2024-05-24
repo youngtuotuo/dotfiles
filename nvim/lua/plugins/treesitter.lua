@@ -4,6 +4,7 @@ return {
   build = ":TSUpdate",
   ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust" },
   dependencies = {
+    { "nvim-treesitter/nvim-treesitter-context" },
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
