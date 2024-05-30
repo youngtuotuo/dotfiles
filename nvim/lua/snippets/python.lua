@@ -26,6 +26,28 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
+  s(
+    { trig = ";pr", snippetType = "autosnippet" },
+    fmta(
+      [[
+      print(<>)
+    ]],
+      {
+        i(1),
+      }
+    )
+  ),
+  s(
+    { trig = ";pf", snippetType = "autosnippet" },
+    fmta(
+      [[
+      print(f"{<>}")
+    ]],
+      {
+        i(1),
+      }
+    )
+  ),
 })
 
 return snippets
