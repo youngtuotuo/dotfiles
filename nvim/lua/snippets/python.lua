@@ -22,7 +22,7 @@ snippets = vim.tbl_extend("force", snippets, {
           <>
     ]],
       {
-        i(1),
+        d(1, utils.get_visual),
       }
     )
   ),
@@ -33,7 +33,7 @@ snippets = vim.tbl_extend("force", snippets, {
       print(<>)
     ]],
       {
-        i(1),
+        d(1, utils.get_visual),
       }
     )
   ),
@@ -41,10 +41,27 @@ snippets = vim.tbl_extend("force", snippets, {
     { trig = ";pf", snippetType = "autosnippet" },
     fmta(
       [[
-      print(f"{<>}")
+      print(f"{<>=}")
     ]],
       {
-        i(1),
+        d(1, utils.get_visual),
+      }
+    )
+  ),
+  s(
+    { trig = ";fo", snippetType = "autosnippet" },
+    fmta(
+      [[
+      for <>:
+          <>
+    ]],
+      {
+        c(1, {
+          sn(nil, { i(1), t(" in "), i(2)}),
+          sn(nil, { i(1, "i"), t(" in "), t("range("), i(2), t(")")}),
+          sn(nil, { i(1, "idx"), t(", "), i(2, "e"), t(" in "), t("enumerate("), i(3), t(")")}),
+        }),
+        d(2, utils.get_visual),
       }
     )
   ),
