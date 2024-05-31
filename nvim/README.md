@@ -29,26 +29,49 @@ Plugins
 
 ### plugin-manager
 
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
++ [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
 
-### lsp
+### colorscheme
 
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
-    + [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
++ [catppuccin/nvim](https://github.com/catppuccin/nvim)
++ [blazkowolf/gruber-darker.nvim](https://github.com/blazkowolf/gruber-darker.nvim)
+
+### statusline
+
++ [tjdevries/express_line.nvim](https://github.com/tjdevries/express_line.nvim)
+
+### language server
+
++ [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
     + [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 
-### editing-support
+### project-navigation
 
-+ [stevearc/aerial.nvim](https://dotfyle.com/plugins/stevearc/aerial.nvim)
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
-    + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-
-### netrw
++ [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon)
 + [tpope/vim-vinegar](https://github.com/tpope/vim-vinegar)
++ [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
+### code-navigation
+
++ [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
++ [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
++ [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+    + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
++ [RRethy/vim-illuminate](https://github.com/RRethy/vim-illuminate)
++ [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
++ [chrisgrieser/nvim-spider](https://github.com/chrisgrieser/nvim-spider)
+
+### faster-editing
+
++ [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
++ [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
++ [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
++ [kevinhwang91/nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)
++ [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
++ [mg979/vim-visual-multi](https://github.com/mg979/vim-visual-multi)
++ [tpope/vim-rsi](https://github.com/tpope/vim-rsi)
++ [chrisgrieser/nvim-various-textobjs](https://github.com/chrisgrieser/nvim-various-textobjs)
++ [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align)
 
 ### git
 
@@ -57,4 +80,4 @@ Plugins
 ### markdown-and-latex
 
 + [lervag/vimtex](https://github.com/lervag/vimtex)
-+ [iamcco/markdown-preview.nvim](https://dotfyle.com/plugins/iamcco/markdown-preview.nvim)
++ [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
