@@ -207,7 +207,7 @@ function install_target() {
 			fi
 			wget $resp -O $HOME/zig.tar.xz
 			mkdir -p $HOME/zig
-			tar xf zig.tar.xz -C $HOME/zig --strip-components 1
+			tar xf $HOME/zig.tar.xz -C $HOME/zig --strip-components 1
 			if [ -d "$HOME/.local/zig" ]; then
 				rm -r $HOME/.local/zig
 			fi

@@ -65,6 +65,19 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
+  s(
+    { trig = ";if", snippetType = "autosnippet" },
+    fmta(
+      [[
+      if <>:
+          <>
+    ]],
+      {
+        i(1),
+        i(2)
+      }
+    )
+  ),
 })
 
 return snippets
