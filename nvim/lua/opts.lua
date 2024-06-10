@@ -34,7 +34,6 @@ vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.wildoptions = [[tagfile]]
 vim.opt.wildignore = [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.pyc,*pycache*,lib/python*,lib64/python*,*.git/*]]
 vim.opt.virtualedit = "block"
-vim.opt.fillchars = [[vert:|]]
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 40
 vim.opt.equalalways = false

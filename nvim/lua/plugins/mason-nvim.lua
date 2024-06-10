@@ -20,17 +20,9 @@ local diag_config = {
 }
 
 vim.diagnostic.config(diag_config)
-vim.diagnostic.disable()
 
-local diagnostics_active = false
 local function toggle_diagnostics()
-  if diagnostics_active then
-    diagnostics_active = false
-    vim.diagnostic.disable()
-  else
-    diagnostics_active = true
-    vim.diagnostic.enable()
-  end
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 
 vim.keymap.set("n", "<M-d>", toggle_diagnostics, { desc = "toggle diagnostic" })

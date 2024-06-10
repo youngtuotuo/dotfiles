@@ -78,6 +78,53 @@ snippets = vim.tbl_extend("force", snippets, {
       }
     )
   ),
+  s(
+    { trig = ";cf", snippetType = "autosnippet" },
+    fmta(
+      [[
+      <>()
+    ]],
+      {
+        d(1, utils.get_visual),
+      }
+    )
+  ),
+  s(
+    { trig = ";def", snippetType = "autosnippet" },
+    fmta(
+      [[
+      def <>(<>):
+          <>
+    ]],
+      {
+        i(1),
+        c(2, {
+          sn(nil, { i(1) }),
+          sn(nil, { i(1), t(" , *args") }),
+          sn(nil, { i(1), t(" , *args, **kwargs") }),
+        }),
+        i(3)
+      }
+    )
+  ),
+  s(
+    { trig = ";adef", snippetType = "autosnippet" },
+    fmta(
+      [[
+      async def <>(<>):
+          <>
+    ]],
+      {
+        i(1),
+        c(2, {
+          sn(nil, { i(1) }),
+          sn(nil, { i(1), t(" , *args") }),
+          sn(nil, { i(1), t(" , *args, **kwargs") }),
+        }),
+        i(3)
+      }
+    )
+  ),
 })
 
 return snippets
