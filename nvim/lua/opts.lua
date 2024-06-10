@@ -47,8 +47,8 @@ vim.opt.shada = [[!,'100,<50,s10,h]]
 vim.opt.listchars=[[tab:>-,trail:.]]
 vim.opt.list = true
 
--- append options
 vim.opt.shortmess:append("c")
+vim.opt.indentkeys:remove("<:>")
 
 -- :h netrw-browse-maps
 vim.g.netrw_altfile = 1
