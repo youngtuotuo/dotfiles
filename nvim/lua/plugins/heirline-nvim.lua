@@ -34,7 +34,7 @@ return {
       end,
       { -- git branch name
         provider = function(self)
-          return " " .. self.head
+          return "  " .. self.head
         end,
       },
       {
@@ -140,17 +140,11 @@ return {
       -- %L = number of lines in the buffer
       -- %c = column number
       -- %P = percentage through file of displayed window
-      provider = "%7(%l/%3L%), %2c %P ",
+      provider = "%7l, %2c ",
     }
 
     local Diagnostics = {
-      -- Since this is nested inside LSPActive the events aren't called
-      -- update = { "LspAttach", "DiagnosticChanged", "BufEnter" },
       static = {
-        -- error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-        -- warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-        -- info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-        -- hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
         error_icon = "E",
         warn_icon = "W",
         info_icon = "I",
