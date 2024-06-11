@@ -115,12 +115,6 @@ return {
       require("lspconfig").pyright.setup({
         handlers = {
           ["textDocument/publishDiagnostics"] = function() end,
-          -- ["textDocument/hover"] = vim.lsp.with(hover, {
-          --   border = _G.border,
-          --   title = " |･ω･) ? ",
-          --   max_width = 120,
-          --   zindex = 500,
-          -- }),
         },
         settings = {
           pyright = {
@@ -182,7 +176,6 @@ return {
         vim.lsp.inlay_hint.enable(inlay_hints_visible)
       end
 
-      vim.keymap.set("n", "<space>q", vim.diagnostic.setqflist)
       -- crr in Normal mode maps to vim.lsp.buf.code_action()
       -- <C-R>r and <C-R><C-R> in Visual mode map to vim.lsp.buf.code_action()
       -- crn in Normal mode maps to vim.lsp.buf.rename()

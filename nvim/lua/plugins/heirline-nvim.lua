@@ -38,6 +38,11 @@ return {
         end,
       },
       {
+        provider = function()
+          return " "
+        end,
+      },
+      {
         provider = function(self)
           local count = self.status_dict and self.status_dict.added or 0
           return count > 0 and ("+" .. count)
@@ -45,11 +50,21 @@ return {
         hl = { fg = "green_fg" },
       },
       {
+        provider = function()
+          return " "
+        end,
+      },
+      {
         provider = function(self)
           local count = self.status_dict and self.status_dict.removed or 0
           return count > 0 and ("-" .. count)
         end,
         hl = { fg = "red_fg" },
+      },
+      {
+        provider = function()
+          return " "
+        end,
       },
       {
         provider = function(self)
