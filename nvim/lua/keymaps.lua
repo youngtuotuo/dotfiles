@@ -21,7 +21,8 @@ vim.keymap.set({ "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true, desc = "Delete back to the first character and insert" })
 
-vim.keymap.set({ "c" }, "<C-i>",    "<C-l><C-d>",                  { noremap = true, desc = "I hate menu" })
+vim.keymap.set({ "i" }, "<C-s>",    "<C-A>",      { noremap = true, desc = "Try" })
+vim.keymap.set({ "c" }, "<C-i>",    "<C-l><C-d>", { noremap = true, desc = "I hate menu" })
 vim.keymap.set({ "n" }, "<space>l", ":vim // %<left><left><left>", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "'<space>", ":term ",                      { noremap = true, desc = "Run with term command" })
 vim.keymap.set({ "n" }, "'<cr>",    ":term<cr>i",                  { noremap = true, desc = "Run with term command" })
