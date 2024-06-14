@@ -171,11 +171,11 @@ return {
     }
 
     local DefaultStatusLine = {
-      Git,
-      Space,
-      Align, -- Left
       FileNameBlock,
       Diagnostics,
+      Align, -- Left
+      Git,
+      Space,
       Align, -- Middle
       Space,
       Ruler,
@@ -184,14 +184,12 @@ return {
 
     local InactiveStatusline = {
       condition = conditions.is_not_active,
-      Align,
       {
         init = function(self)
           self.filename = vim.api.nvim_buf_get_name(0)
         end,
         FileName,
       },
-      Align,
     }
 
     local HelpFileName = {
