@@ -64,6 +64,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
+    vim.opt.indentkeys:remove("<:>")
     vim.opt.formatoptions = "jql"
   end,
   desc = "All buffer need formatoptions = jql",
