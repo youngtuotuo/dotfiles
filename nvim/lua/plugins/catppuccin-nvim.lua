@@ -48,6 +48,6 @@ return {
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
-    vim.cmd.colo([[catppuccin]])
+    -- vim.cmd.colo([[catppuccin]])
   end,
 }
