@@ -132,7 +132,6 @@ function install_target() {
 			make
 			make install
 			ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
-			ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
 			rm $HOME/python.tgz
 			rm -r $HOME/python
 		fi
