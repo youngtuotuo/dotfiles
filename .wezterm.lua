@@ -19,21 +19,21 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe", "-nologo" }
   table.insert(
     config.keys,
-    { key = "t", mods = "CTRL|SHIFT",
+    {
+      key = "t",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({
-        cwd = wezterm.home_dir
-      })
+        cwd = wezterm.home_dir,
+      }),
     }
   )
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   config.font = wezterm.font("SF Mono", { weight = "Regular" })
   table.insert(
     config.keys,
-    { key = "t", mods = "CMD",
-      action = wezterm.action.SpawnCommandInNewTab({
-        cwd = wezterm.home_dir
-      })
-    }
+    { key = "t", mods = "CMD", action = wezterm.action.SpawnCommandInNewTab({
+      cwd = wezterm.home_dir,
+    }) }
   )
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
@@ -54,6 +54,17 @@ config.ssh_domains = {
 }
 
 config.hide_tab_bar_if_only_one_tab = true
+config.colors = {
+  -- Overrides the cell background color when the current cell is occupied by the
+  -- cursor and the cursor style is set to Block
+  cursor_bg = "rgb(198,198,207)",
+  -- Overrides the text color when the current cell is occupied by the cursor
+  cursor_fg = "black",
+  -- Specifies the border color of the cursor when the cursor style is set to Block,
+  -- or the color of the vertical or horizontal bar when the cursor style is set to
+  -- Bar or Underline.
+  cursor_border = "rgb(198,198,207)",
+}
 
 -- and finally, return the configuration to wezterm
 return config
