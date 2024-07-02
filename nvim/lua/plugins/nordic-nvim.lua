@@ -23,6 +23,6 @@ return {
         },
       },
     })
-    -- require("nordic").load()
+    require("nordic").load()
   end,
 }

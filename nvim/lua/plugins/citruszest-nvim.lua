@@ -9,6 +9,6 @@ return {
   },
   config = function(_, opts)
     require("citruszest").setup(opts)
-    vim.cmd.colo([[citruszest]])
+    -- vim.cmd.colo([[citruszest]])
   end,
 }

@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.cinoptions = [[=0]]
     vim.opt_local.define = [[^\s*#\s*define]]
-    vim.opt_local.commentstring=[[// %s]]
+    vim.opt_local.commentstring = [[// %s]]
   end,
   desc = "aucmd for c/cpp",
 })
@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- :h errorformat
     vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
+    vim.keymap.set({ "n" }, "'<space>", ":term python %", { noremap = true, desc = "Run with term command" })
   end,
   desc = "aucmd for python",
 })

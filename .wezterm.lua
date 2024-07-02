@@ -12,21 +12,18 @@ end
 
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
+  {
+    key = "t",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SpawnCommandInNewTab({
+      cwd = wezterm.home_dir,
+    }),
+  }
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.font = wezterm.font("Cascadia Mono", { weight = "Regular" })
   config.default_prog = { "pwsh.exe", "-nologo" }
-  table.insert(
-    config.keys,
-    {
-      key = "t",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action.SpawnCommandInNewTab({
-        cwd = wezterm.home_dir,
-      }),
-    }
-  )
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   config.font = wezterm.font("SF Mono", { weight = "Regular" })
   table.insert(
