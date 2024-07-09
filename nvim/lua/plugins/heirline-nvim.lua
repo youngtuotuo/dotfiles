@@ -32,11 +32,6 @@ return {
         end
         return type(self.head) == "string"
       end,
-      { -- git branch name
-        provider = function(self)
-          return self.head .. " "
-        end,
-      },
       {
         provider = function(self)
           local count = self.status_dict and self.status_dict.added or 0

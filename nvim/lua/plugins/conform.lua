@@ -14,6 +14,7 @@ return {
       cpp = { "clang_format" },
       sh = { "shfmt" },
       json = { "jq" },
+      yaml = { "prettier" },
     },
     formatters = {
       stylua = {
