@@ -1,7 +1,7 @@
 return {
   "rebelot/heirline.nvim",
   dependencies = {
-    "lewis6991/gitsigns.nvim"
+    "lewis6991/gitsigns.nvim",
   },
   config = function(_, _)
     local get_colors = function()
@@ -17,7 +17,6 @@ return {
 
     local Space = { provider = " " }
     local Align = { provider = "%=" }
-
 
     local Git = {
       init = function(self)
@@ -94,7 +93,7 @@ return {
         condition = function()
           return not vim.bo.modifiable or vim.bo.readonly
         end,
-        provider = " ",
+        provider = " [RO]",
         hl = { fg = "orange" },
       },
     }
@@ -170,9 +169,7 @@ return {
       Diagnostics,
       Align, -- Left
       Git,
-      Space,
       Align, -- Middle
-      Space,
       Ruler,
       FileType, -- Right
     }
@@ -229,7 +226,7 @@ return {
       Align,
     }
 
-     local res = {
+    local res = {
       hl = function()
         if conditions.is_active() then
           return "StatusLine"
@@ -245,7 +242,7 @@ return {
     }
     require("heirline").setup({
       opts = { colors = get_colors },
-      statusline = res
+      statusline = res,
     })
   end,
 }

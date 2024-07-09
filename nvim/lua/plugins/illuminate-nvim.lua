@@ -1,6 +1,5 @@
 return {
   "RRethy/vim-illuminate",
-  dependencies = { "catppuccin" },
   opts = {
     providers = {
       "lsp",
