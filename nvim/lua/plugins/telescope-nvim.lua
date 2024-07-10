@@ -37,5 +37,6 @@ return {
     vim.keymap.set({ "n" }, "<space>e", builtin.find_files, { noremap = true })
     vim.keymap.set({ "n" }, "<space>h", builtin.help_tags, { noremap = true })
     vim.keymap.set({ "n" }, "<space>b", builtin.buffers, { noremap = true })
+    vim.keymap.set({ "n" }, "<space>g", builtin.live_grep, { noremap = true })
   end,
 }
