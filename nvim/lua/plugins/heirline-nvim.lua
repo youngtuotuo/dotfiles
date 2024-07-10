@@ -168,10 +168,10 @@ return {
       FileNameBlock,
       Diagnostics,
       Align, -- Left
-      Git,
       Align, -- Middle
-      Ruler,
-      FileType, -- Right
+      Git,
+      -- Ruler,
+      -- FileType, -- Right
     }
 
     local InactiveStatusline = {
