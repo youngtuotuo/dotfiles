@@ -40,6 +40,7 @@ return {
       map("n", "<leader>gu", gitsigns.undo_stage_hunk)
       map("n", "<leader>gR", gitsigns.reset_buffer)
       map("n", "<leader>gp", gitsigns.preview_hunk)
+      map("n", "<leader>gb", gitsigns.blame)
     end,
   },
 }
