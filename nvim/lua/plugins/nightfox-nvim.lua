@@ -40,5 +40,6 @@ return {
   config = function(_, opts)
     require("nightfox").setup(opts)
     vim.cmd.colo("nightfox")
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
   end,
 }
