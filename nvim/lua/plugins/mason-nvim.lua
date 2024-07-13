@@ -130,25 +130,10 @@ return {
       vim.keymap.set("n", "<space>q", vim.diagnostic.setqflist, { desc = "diagnostic qflist" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "lsp go to definition" })
 
-      local inlay_hints_visible = false
       local function toggle_inlay_hints()
-        if vim.g.inlay_hints_visible then
-          inlay_hints_visible = false
-        else
-          inlay_hints_visible = true
-        end
-        vim.lsp.inlay_hint.enable(inlay_hints_visible)
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = _G.group,
-        callback = function(ev)
-          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-          if vim.lsp.get_client_by_id(ev.data.client_id).name ~= "pyright" then
-            vim.keymap.set("n", "gh", toggle_inlay_hints, { desc = "toggle inlay hints" })
-          end
-        end,
-      })
+      vim.keymap.set("n", "gh", toggle_inlay_hints, { desc = "toggle inlay hints" })
     end,
   },
   {
@@ -209,20 +194,16 @@ return {
       })
       require("lspconfig").basedpyright.setup({
         capabilities = capabilities,
-        handlers = {
-          ["textDocument/publishDiagnostics"] = function() end,
-        },
         settings = {
           basedpyright = {
             disableOrganizeImports = false,
             analysis = {
-              ignore = { "*" },
               logLevel = "Information",
               autoImportCompletions = true,
               autoSearchPaths = true,
-              diagnosticMode = "off",
-              typeCheckingMode = "off",
-              useLibraryCodeForTypes = false,
+              diagnosticMode = "workspace",
+              typeCheckingMode = "all",
+              useLibraryCodeForTypes = true,
             },
           },
         },
