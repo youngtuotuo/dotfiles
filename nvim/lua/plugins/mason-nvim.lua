@@ -55,7 +55,7 @@ return {
       local ensure_installed = {
         -- lsp --
         "clangd",
-        "pyright",
+        "basedpyright",
         "lua-language-server",
         "zls",
         -- formatter --
@@ -97,43 +97,7 @@ return {
         max_width = _G.floatw,
       })
     end,
-    config = function(_, opts)
-      require("lspconfig").zls.setup({})
-      require("lspconfig").clangd.setup({})
-      require("lspconfig").lua_ls.setup({
-        settings = {
-          Lua = {
-            runtime = { version = "Lua 5.1" },
-            diagnostics = { globals = { "vim", "use" } },
-            completion = { callSnippet = "Both" },
-            workspace = { checkThirdParty = false },
-            semantic = { enable = false },
-            hint = { enable = true },
-          },
-        },
-      })
-      require("lspconfig").pyright.setup({
-        handlers = {
-          ["textDocument/publishDiagnostics"] = function() end,
-        },
-        settings = {
-          pyright = {
-            disableOrganizeImports = false,
-          },
-          python = {
-            analysis = {
-              ignore = { "*" },
-              logLevel = "Information",
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              diagnosticMode = "off",
-              typeCheckingMode = "off",
-              useLibraryCodeForTypes = false,
-            },
-          },
-        },
-      })
-
+    config = function(_, _)
       -- disable all format, use conform with mason
       require("lspconfig.util").default_config.format = {
         formatting_options = nil,
@@ -176,13 +140,6 @@ return {
         vim.lsp.inlay_hint.enable(inlay_hints_visible)
       end
 
-      -- crr in Normal mode maps to vim.lsp.buf.code_action()
-      -- <C-R>r and <C-R><C-R> in Visual mode map to vim.lsp.buf.code_action()
-      -- crn in Normal mode maps to vim.lsp.buf.rename()
-      -- gr in Normal mode maps to vim.lsp.buf.references()
-      -- <C-S> in Insert mode maps to vim.lsp.buf.signature_help()
-      -- [d and ]d map to vim.diagnostic.goto_prev() and vim.diagnostic.goto_next() (respectively)
-      -- <C-W>d maps to vim.diagnostic.open_float()
       vim.api.nvim_create_autocmd("LspAttach", {
         group = _G.group,
         callback = function(ev)
@@ -191,6 +148,84 @@ return {
             vim.keymap.set("n", "gh", toggle_inlay_hints, { desc = "toggle inlay hints" })
           end
         end,
+      })
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function(_, _)
+      local cmp = require("cmp")
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          -- ["<C-y>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" }, -- For luasnip users.
+        }, {
+          { name = "buffer" },
+        }),
+      })
+      -- Set up lspconfig.
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require("lspconfig").zls.setup({
+        capabilities = capabilities,
+      })
+      require("lspconfig").clangd.setup({
+        capabilities = capabilities,
+      })
+      require("lspconfig").lua_ls.setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "Lua 5.1" },
+            diagnostics = { globals = { "vim", "use" } },
+            completion = { callSnippet = "Both" },
+            workspace = { checkThirdParty = false },
+            semantic = { enable = false },
+            hint = { enable = true },
+          },
+        },
+      })
+      require("lspconfig").basedpyright.setup({
+        capabilities = capabilities,
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function() end,
+        },
+        settings = {
+          basedpyright = {
+            disableOrganizeImports = false,
+            analysis = {
+              ignore = { "*" },
+              logLevel = "Information",
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              diagnosticMode = "off",
+              typeCheckingMode = "off",
+              useLibraryCodeForTypes = false,
+            },
+          },
+        },
       })
     end,
   },
