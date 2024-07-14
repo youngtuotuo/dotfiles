@@ -209,7 +209,7 @@ return {
               autoImportCompletions = true,
               autoSearchPaths = true,
               diagnosticMode = "workspace",
-              typeCheckingMode = "all",
+              typeCheckingMode = "standard",
               useLibraryCodeForTypes = true,
             },
           },
