@@ -167,11 +167,6 @@ return {
     local DefaultStatusLine = {
       FileNameBlock,
       Diagnostics,
-      Align, -- Left
-      Align, -- Middle
-      Git,
-      -- Ruler,
-      -- FileType, -- Right
     }
 
     local InactiveStatusline = {
@@ -182,9 +177,6 @@ return {
         end,
         FileNameBlock,
         Diagnostics,
-        Align, -- Left
-        Align, -- Middle
-        Git,
       },
     }
 
@@ -205,11 +197,9 @@ return {
           filetype = { "fzf", "^git.*", "fugitive", "fugitiveblame" },
         })
       end,
-      Align,
-      FileType,
-      Space,
       HelpFileName,
       Align,
+      FileType,
     }
 
     local TerminalName = {
@@ -225,9 +215,7 @@ return {
         return conditions.buffer_matches({ buftype = { "terminal" } })
       end,
       { condition = conditions.is_active, Space },
-      Align,
       TerminalName,
-      Align,
     }
 
     local res = {
