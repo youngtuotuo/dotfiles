@@ -25,7 +25,7 @@ end
 
 vim.keymap.set("n", "<M-d>", toggle_diagnostics, { desc = "toggle diagnostic" })
 
--- float win
+-- overload default float win
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
@@ -52,20 +52,19 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = "williamboman/mason.nvim",
     opts = function()
-      local ensure_installed = {
-        -- lsp --
-        "clangd",
-        "basedpyright",
-        "lua-language-server",
-        "zls",
-        -- formatter --
-        "jq",
-        "ruff",
-        "shfmt",
-        "stylua",
-      }
       return {
-        ensure_installed = ensure_installed,
+        ensure_installed = {
+          -- lsp --
+          "clangd",
+          "basedpyright",
+          "lua-language-server",
+          "zls",
+          -- formatter --
+          "jq",
+          "ruff",
+          "shfmt",
+          "stylua",
+        },
       }
     end,
   },
@@ -87,7 +86,7 @@ return {
         title = " |･ω･) ? ",
         zindex = 500,
         focusable = true,
-        max_width = 120,
+        max_width = _G.floatw,
       })
 
       -- customize signature help when pressing gs
@@ -109,7 +108,6 @@ return {
       require("lspconfig.ui.windows").percentage_range_window = function(_, _)
         return info(0.7, 0.5)
       end
-
       -- LspInfo command border
       require("lspconfig.ui.windows").default_options.border = _G.border
 
