@@ -198,7 +198,7 @@ return {
         })
       end,
       HelpFileName,
-      Align,
+      Space,
       FileType,
     }
 
