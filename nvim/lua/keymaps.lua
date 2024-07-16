@@ -40,9 +40,9 @@ vim.keymap.set({ "n" }, "Y",         "y$",                        { noremap = tr
 vim.keymap.set({ "n" }, "J",         "mzJ`z",                     { noremap = true, desc = "J, but will keep your cursor position" })
 
 vim.keymap.set({ "v" }, "p",     [["_dP]],              { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] })
-vim.keymap.set({ "n" }, "<C-j>", "<cmd>move+1<cr>",     { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
+vim.keymap.set({ "n" }, "<M-j>", "<cmd>move+1<cr>",     { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
 vim.keymap.set({ "v" }, "J",     ":move '>+1<CR>gv=gv", { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" })
-vim.keymap.set({ "n" }, "<C-k>", "<cmd>move--1<cr>",    { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
+vim.keymap.set({ "n" }, "<M-k>", "<cmd>move--1<cr>",    { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
 vim.keymap.set({ "v" }, "K",     ":move '<-2<CR>gv=gv", { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" })
 vim.keymap.set({ "v" }, "<",     "<gv",                 { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">",     ">gv",                 { noremap = true, desc = ">gv, Move selected line / block of text right" })
