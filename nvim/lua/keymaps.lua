@@ -73,8 +73,6 @@ vim.keymap.set({ "n" }, "<leader>l", function()
   vim.cmd.lopen()
 end, { nowait = true, noremap = true, desc = "toggle location list" })
 
-vim.keymap.set({ "n" }, "yp", [[0<C-v>$h"ay:redir @b | echo @%."/".@a | redir END<cr>:let @"=substitute(@b, "\n", "", "")<cr>]], { nowait = true, noremap = true, silent = true })
-
 vim.api.nvim_create_user_command("W",   "w",   { bang = true, bar = true })
 vim.api.nvim_create_user_command("Q",   "q",   { bang = true, bar = true })
 vim.api.nvim_create_user_command("X",   "x",   { bang = true, bar = true })

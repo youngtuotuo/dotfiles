@@ -78,3 +78,18 @@ vim.api.nvim_create_autocmd("VimLeave", {
   end,
   desc = "All buffer need formatoptions = jql",
 })
+
+local function netrw_yank_path()
+  local path = vim.b.netrw_curdir .. "/" .. vim.fn.expand("<cfile>")
+  local abs_path = vim.fn.fnamemodify(path, ":p")
+  vim.fn.setreg('"', abs_path)
+  print("Yanked: " .. abs_path)
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  pattern = "netrw",
+  callback = function()
+    vim.keymap.set("n", "yp", netrw_yank_path, { noremap = true, silent = true })
+  end,
+})
