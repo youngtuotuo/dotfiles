@@ -1,5 +1,6 @@
 return {
   "olivercederborg/poimandres.nvim",
+  lazy = true,
   opts = {
     disable_background = true,
     disable_float_background = true,
