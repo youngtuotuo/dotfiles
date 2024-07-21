@@ -23,8 +23,6 @@ vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true, desc = "Del
 
 vim.keymap.set({ "i" }, "<C-s>",    "<C-A>",      { noremap = true, desc = "Try" })
 vim.keymap.set({ "c" }, "<C-i>",    "<C-l><C-d>", { noremap = true, desc = "I hate menu" })
-vim.keymap.set({ "n" }, "<space>l", ":vim // %<left><left><left>", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "'<cr>",    ":term<cr>i",                  { noremap = true, desc = "Run with term command" })
 
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
