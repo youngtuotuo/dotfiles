@@ -1,8 +1,6 @@
 return {
   "chrisgrieser/nvim-spider",
-  opts = {
-    -- skipInsignificantPunctuation = false
-  },
+  opts = {},
   config = function(_, opts)
     require("spider").setup(opts)
     vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })

@@ -1,5 +1,6 @@
 return {
   "RRethy/vim-illuminate",
+  ft = { "json", "python", "sh", "lua", "c", "cpp", "cuda", "zig" },
   opts = {
     providers = {
       "lsp",

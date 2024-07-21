@@ -136,6 +136,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    ft = { "zig", "c", "cpp", "cuda", "python", "lua" },
     dependencies = {
       "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",

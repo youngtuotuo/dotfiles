@@ -11,6 +11,14 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    cond = function()
+      local path = vim.loop.cwd() .. "/.git"
+      local ok, _ = vim.loop.fs_stat(path)
+      if not ok then
+        return false
+      end
+      return true
+    end,
     cmd = { "G", "Git" },
   },
 }

@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  ft = { "json", "python", "sh", "lua", "c", "cpp", "cuda", "zig" },
   dependencies = {
     {
       "williamboman/mason.nvim",
