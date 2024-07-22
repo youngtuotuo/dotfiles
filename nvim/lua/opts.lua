@@ -76,11 +76,10 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 if vim.fn.has("win32") == 1 then
-  vim.cmd([[
-    let &shell = 'pwsh'
-    let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
-    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-    set shellquote= shellxquote=
-  ]])
+  vim.opt.shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
 end
