@@ -1,13 +1,5 @@
 return {
   "lewis6991/gitsigns.nvim",
-  cond = function()
-    local path = vim.loop.cwd() .. "/.git"
-    local ok, _ = vim.loop.fs_stat(path)
-    if not ok then
-      return false
-    end
-    return true
-  end,
   opts = {
     preview_config = {
       -- Options passed to nvim_open_win
