@@ -141,6 +141,7 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
+      "folke/lazydev.nvim",
     },
     config = function(_, _)
       local cmp = require("cmp")
@@ -148,7 +149,9 @@ return {
         formatting = {
           format = require("lspkind").cmp_format({
             mode = "symbol_text", -- show only symbol annotations
-            maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            maxwidth = function()
+              return math.floor(0.45 * vim.o.columns)
+            end,
             ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
           }),
@@ -168,6 +171,8 @@ return {
           ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
+          { name = "lazydev", group_index = 0 },
+        }, {
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
         }, {
@@ -212,5 +217,16 @@ return {
         },
       })
     end,
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
   },
 }
