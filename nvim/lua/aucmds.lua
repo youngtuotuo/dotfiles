@@ -30,17 +30,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.py" },
-  group = group,
-  callback = function()
-    -- :h errorformat
-    vim.opt_local.errorformat = [[%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m]]
-    vim.keymap.set({ "n" }, "'<space>", ":term python %", { noremap = true, desc = "Run with term command" })
-  end,
-  desc = "aucmd for python",
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "Makefile", "*.sh" },
   group = group,
   callback = function()
