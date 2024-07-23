@@ -16,43 +16,7 @@ return {
     local conditions = require("heirline.conditions")
 
     local Space = { provider = " " }
-    local Align = { provider = "%=" }
-
-    local Git = {
-      init = function(self)
-        -- gitsigns buffer changes
-        self.status_dict = vim.b.gitsigns_status_dict
-      end,
-      condition = function(self)
-        -- priotize gitsigns, otherwise try vim-fugitive
-        self.head = vim.b.gitsigns_head
-        if not self.head and vim.g.loaded_fugitive == 1 then
-          self.head = vim.fn.FugitiveHead()
-        end
-        return type(self.head) == "string"
-      end,
-      {
-        provider = function(self)
-          local count = self.status_dict and self.status_dict.added or 0
-          return count > 0 and ("+" .. count) .. " "
-        end,
-        hl = { fg = "green_fg" },
-      },
-      {
-        provider = function(self)
-          local count = self.status_dict and self.status_dict.removed or 0
-          return count > 0 and ("-" .. count) .. " "
-        end,
-        hl = { fg = "red_fg" },
-      },
-      {
-        provider = function(self)
-          local count = self.status_dict and self.status_dict.changed or 0
-          return count > 0 and ("~" .. count)
-        end,
-        hl = { fg = "yellow_fg" },
-      },
-    }
+    -- local Align = { provider = "%=" }
 
     local FileName = {
       -- flexible: shorten path if space doesn't allow for full path
@@ -112,14 +76,6 @@ return {
       provider = function()
         return "[" .. vim.bo.filetype .. "]"
       end,
-    }
-
-    local Ruler = {
-      -- %l = current line number
-      -- %L = number of lines in the buffer
-      -- %c = column number
-      -- %P = percentage through file of displayed window
-      provider = "%7l, %2c ",
     }
 
     local Diagnostics = {
