@@ -1,6 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
   opts = {
-    open_mapping = [['<cr>]]
+    open_mapping = [['<space>]]
   }
 }

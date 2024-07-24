@@ -124,6 +124,7 @@ return {
       vim.keymap.set("n", "<space>i", toggle_lsp_highlight, { desc = "toggle lsp highlight" })
       vim.keymap.set("n", "gn", vim.lsp.buf.rename, { desc = "lsp rename" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "lsp go to definition" })
+      vim.keymap.set("n", "gd", vim.lsp.buf.code_action, { desc = "code action" })
 
       local function toggle_inlay_hints()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
