@@ -11,26 +11,19 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        layout_strategy = "center",
+        layout_strategy = "horizontal",
         mappings = {
           i = {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
+            ["<C-x>"] = false,
           },
         },
         borderchars = {
-          prompt = { " ", "│", "─", "│", " ", " ", "╯", "╰" },
+          prompt = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
           results = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
+          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         },
-        preview = false,
-        results_title = false,
-        prompt_title = false,
-        layout_config = {
-          center = {
-            height = 15,
-            width = 120,
-            prompt_position = "bottom",
-          },
-        },
+        preview = true,
       },
     })
     local builtin = require("telescope.builtin")

@@ -19,6 +19,9 @@ return {
       types = { "bold" },
       operators = {},
     },
+    integrations = {
+      treesitter = false
+    }
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
