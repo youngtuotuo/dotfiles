@@ -21,8 +21,17 @@ config.keys = {
   }
 }
 
+config.font_size = 17.0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  config.default_prog = { "pwsh.exe", "-nologo" }
+  -- config.default_prog = { "pwsh.exe", "-nologo" }
+  config.default_prog = { "wsl.exe", "~" }
+  config.font_size = 14.0
+  config.launch_menu = {
+    {
+      label = "PowerShell",
+      args = { "pwsh.exe", "-nologo" }
+    }
+  }
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   table.insert(
     config.keys,
@@ -32,13 +41,13 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" then
   )
 end
 
-config.font_size = 17.0
+
 config.adjust_window_size_when_changing_font_size = false
-config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+-- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 config.colors = {
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
