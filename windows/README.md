@@ -50,22 +50,6 @@ Install scoop
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
-Install needed packages
-
-```console
-scoop install gcc llvm nodejs yarn git coreutils cmake make
-mkdir $env:USERPROFILE\.local
-[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
-```
-
-Link neovim config
-
-```console
-git clone https://github.com/youngtuotuo/dotfiles.git $HOME/github/dotfiles
-New-Item -ItemType SymbolicLink -Path $env:LOCALAPPDATA/nvim -Target $HOME/github/dotfiles/nvim
-cp $HOME\github\dotfiles\windows\Microsoft.PowerShell_profile.ps1 $PROFILE
-```
-
 ### Build Neovim
 
 Convenient one liner in PowerShell.
