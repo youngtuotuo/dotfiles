@@ -182,14 +182,9 @@ function install_target() {
 			info "node exists: $(which node)"
 		fi
 		;;
-	"latexmk")
-		title "latexmk"
-		if ! command -v latexmk >/dev/null; then
-			brew install --cask mactex-no-gui
-			sudo tlmgr update --self
-		else
-			info "latexmk exists: $(which latexmk)"
-		fi
+	"typst")
+		title "typst"
+		brew install typst
 		;;
 	"sioyek")
 		title "sioyek"

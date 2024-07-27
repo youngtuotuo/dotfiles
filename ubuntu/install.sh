@@ -6,7 +6,7 @@ function usage() {
 	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, lua, go,"
 	echo "  rust, zig, gdb, git-credential-manager, tmux, tmux-config, nvtop,"
 	echo "  fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash, wsl.conf,"
-	echo "  .vimrc, .wezterm.lua, dependencies, latex, nodejs, yarn, cuda, tigervnc"
+	echo "  .vimrc, .wezterm.lua, dependencies, nodejs, yarn, cuda, tigervnc"
 }
 
 if [ $# -eq 0 ]; then
@@ -378,12 +378,9 @@ function install_target() {
 			libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev \
 			libgmp-dev libmpfr-dev libsqlite3-dev wget libbz2-dev fuse libyaml-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev -y
 		;;
-	"latex")
-		title "latex"
-		sudo apt install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex latexmk -y
-		sudo tlmgr update -all
-		info "If you meet error, try: tlmgr init-usertree"
-		info "Or maybe try this: https://github.com/scottkosty/install-tl-ubuntu"
+	"typst")
+		title "typst"
+		cargo install typst-cli
 		;;
 	"nodejs")
 		title "nodejs"
