@@ -21,15 +21,17 @@ config.keys = {
   },
 }
 
-config.font_size = 17.0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  -- config.default_prog = { "pwsh.exe", "-nologo" }
-  config.default_prog = { "wsl.exe", "~" }
+  config.default_prog = { "pwsh.exe", "-nologo" }
   config.font_size = 14.0
   config.launch_menu = {
     {
       label = "PowerShell",
       args = { "pwsh.exe", "-nologo" },
+    },
+    {
+      label = "WSL",
+      args = { "wsl.exe", "~" },
     },
     {
       label = "CMD",
@@ -47,8 +49,7 @@ end
 
 config.initial_cols = 96
 config.initial_rows = 24
-config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
 config.enable_scroll_bar = true
@@ -57,7 +58,6 @@ config.adjust_window_size_when_changing_font_size = false
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
-config.use_fancy_tab_bar = true
 
 -- config.hide_tab_bar_if_only_one_tab = true
 local scheme_def = wezterm.color.get_builtin_schemes()["Wez"]
