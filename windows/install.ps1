@@ -24,7 +24,7 @@ function Show-Title($message) {
 }
 
 function Install-Target($target) {
-    switch ($target)
+    switch ($target) {
         ".local" {
             mkdir $env:USERPROFILE\.local
             [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
