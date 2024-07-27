@@ -18,7 +18,7 @@ config.keys = {
     action = wezterm.action.SpawnCommandInNewTab({
       cwd = wezterm.home_dir,
     }),
-  }
+  },
 }
 
 config.font_size = 17.0
@@ -29,8 +29,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.launch_menu = {
     {
       label = "PowerShell",
-      args = { "pwsh.exe", "-nologo" }
-    }
+      args = { "pwsh.exe", "-nologo" },
+    },
+    {
+      label = "CMD",
+      args = { "cmd.exe" },
+    },
   }
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   table.insert(
@@ -41,13 +45,22 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" then
   )
 end
 
+config.initial_cols = 96
+config.initial_rows = 24
+config.window_close_confirmation = "NeverPrompt"
+config.window_background_opacity = 0.9
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
+config.enable_scroll_bar = true
 
 config.adjust_window_size_when_changing_font_size = false
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
+config.use_fancy_tab_bar = true
 
 -- config.hide_tab_bar_if_only_one_tab = true
+local scheme_def = wezterm.color.get_builtin_schemes()["Wez"]
 config.colors = {
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
@@ -58,6 +71,12 @@ config.colors = {
   -- or the color of the vertical or horizontal bar when the cursor style is set to
   -- Bar or Underline.
   cursor_border = "rgb(198,198,207)",
+  tab_bar = {
+    active_tab = {
+      bg_color = scheme_def.background,
+      fg_color = scheme_def.foreground,
+    },
+  },
 }
 
 -- and finally, return the configuration to wezterm
