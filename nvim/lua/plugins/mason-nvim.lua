@@ -149,7 +149,7 @@ return {
       cmp.setup({
         formatting = {
           format = require("lspkind").cmp_format({
-            mode = "symbol_text", -- show only symbol annotations
+            mode = "symbol", -- show only symbol annotations
             maxwidth = function()
               return math.floor(0.45 * vim.o.columns)
             end,
