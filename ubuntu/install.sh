@@ -99,6 +99,7 @@ function install_target() {
 		make distclean
 		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
 		make install
+		nvim --headless "+Lazy! sync" +qa
 		;;
 	"nvim-config")
 		title "nvim-config"
