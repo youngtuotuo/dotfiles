@@ -15,7 +15,7 @@ vim.opt.hlsearch = true
 vim.opt.laststatus = 2
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
-vim.opt.guicursor=""
+vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver80,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175]]
 vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
 vim.opt.nu = true
@@ -34,7 +34,8 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.wildoptions = [[tagfile]]
-vim.opt.wildignore = [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.pyc,*pycache*,lib/python*,lib64/python*,*.git/*]]
+vim.opt.wildignore =
+  [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.pyc,*pycache*,lib/python*,lib64/python*,*.git/*]]
 vim.opt.virtualedit = "block"
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 40
@@ -46,7 +47,7 @@ vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.path = [[.,,**]]
 vim.opt.shada = [[!,'100,<50,s10,h]]
-vim.opt.listchars=[[tab:>-,trail:.]]
+vim.opt.listchars = [[tab:>-,trail:.]]
 vim.opt.list = true
 
 vim.opt.shortmess:append("c")
@@ -76,8 +77,9 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 if vim.fn.has("win32") == 1 then
-  vim.opt.shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell"
-  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag =
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
   vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
   vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
   vim.opt.shellquote = ""
