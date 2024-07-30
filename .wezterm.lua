@@ -21,6 +21,7 @@ config.keys = {
   },
 }
 
+config.font_size = 16.0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe", "-nologo" }
   config.font_size = 14.0
