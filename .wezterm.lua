@@ -38,6 +38,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
       label = "CMD",
       args = { "cmd.exe" },
     },
+    {
+      label = "NuShell",
+      args = { "nu.exe" },
+    },
   }
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   table.insert(
