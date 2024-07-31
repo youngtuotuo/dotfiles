@@ -10,7 +10,7 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        StatusLine = { fg = colors.overlay0, bg = colors.base },
+        StatusLine = { fg = colors.text, bg = colors.base },
         StatusLineNC = { fg = colors.overlay0, bg = colors.base }
       }
     end
