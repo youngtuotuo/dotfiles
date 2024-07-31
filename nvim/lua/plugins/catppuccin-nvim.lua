@@ -7,7 +7,13 @@ return {
     transparent_background = true,
     integrations = {
       treesitter = false
-    }
+    },
+    custom_highlights = function(colors)
+      return {
+        StatusLine = { fg = colors.overlay0, bg = colors.base },
+        StatusLineNC = { fg = colors.overlay0, bg = colors.base }
+      }
+    end
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
