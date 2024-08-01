@@ -27,7 +27,8 @@ return {
       return {
         StatusLine = { fg = colors.text, bg = colors.base },
         StatusLineNC = { fg = colors.overlay0, bg = colors.base },
-        Keyword = { link = "Function" }
+        Keyword = { link = "Function" },
+        Special = { fg = colors.sky }
       }
     end,
   },
