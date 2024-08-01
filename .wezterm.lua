@@ -83,6 +83,18 @@ config.colors = {
     },
   },
 }
+config.font_rules = {
+  {
+    intensity = "Bold",
+    italic = false,
+    font = wezterm.font("JetBrains Mono", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+  },
+  {
+    intensity = "Bold",
+    italic = true,
+    font = wezterm.font("JetBrains Mono", { weight = "Bold", stretch = "Normal", style = "Italic" }),
+  },
+}
 
 -- and finally, return the configuration to wezterm
 return config
