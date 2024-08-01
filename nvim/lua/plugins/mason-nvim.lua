@@ -183,12 +183,21 @@ return {
       -- Set up lspconfig.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       require("lspconfig").zls.setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
         capabilities = capabilities,
       })
       require("lspconfig").clangd.setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
         capabilities = capabilities,
       })
       require("lspconfig").lua_ls.setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -202,6 +211,9 @@ return {
         },
       })
       require("lspconfig").basedpyright.setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
         capabilities = capabilities,
         settings = {
           basedpyright = {
