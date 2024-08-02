@@ -3,12 +3,13 @@ Ubuntu/WSL2
 
 Scripts that support installing the following softwares
 
-- cmake, neovim, python, lua, go rust, zig, gdb, git-credential-manager, tmux,
-- nvtop fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash latex, nodejs,
-- yarn, cuda, tigervnc
+```bash
+./install.sh
+```
+
 
 ```bash
-./ubuntu/install.sh
+./ubuntu/install.sh dependencies cmake .local python rust lua neovim nvim-config tmux tmux-config nvtop zig sioyek case-insensitive-bash
 ```
 
 cuda dev for clangd

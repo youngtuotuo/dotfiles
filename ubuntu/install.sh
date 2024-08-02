@@ -6,7 +6,8 @@ function usage() {
 	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, lua, go,"
 	echo "  rust, zig, gdb, git-credential-manager, tmux, tmux-config, nvtop,"
 	echo "  fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash, wsl.conf,"
-	echo "  .vimrc, .wezterm.lua, dependencies, nodejs, yarn, cuda, tigervnc"
+	echo "  .vimrc, .wezterm.lua, dependencies, typst, nodejs, yarn, cuda, tigervnc,"
+	echo "  xfce4, kde"
 }
 
 if [ $# -eq 0 ]; then
@@ -429,10 +430,18 @@ function install_target() {
 		;;
 	"tigervnc")
 		title "tigervnc"
-		sudo apt install tigervnc-standalone-server xfce4 xfce4-goodies
+		sudo apt install tigervnc-standalone-server
 		mkdir $HOME/.vnc
 		cp $HOME/github/dotfiles/xstartup $HOME/.vnc/xstartup
 		sudo chmod +x ~/.vnc/xstartup
+		;;
+	"xfce4")
+		title "xfce4"
+		sudo apt install xfce4 xfce4-goodies
+		;;
+	"kde")
+		title "kde"
+		sudo apt install kde-standard
 		;;
 	"-h" | "--help" | "help" | "")
 		usage
