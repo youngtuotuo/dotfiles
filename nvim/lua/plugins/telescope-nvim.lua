@@ -11,9 +11,13 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        layout_strategy = "horizontal",
+        layout_strategy = "vertical",
         mappings = {
           i = {
+            ["<C-s>"] = require("telescope.actions").select_horizontal,
+            ["<C-x>"] = false,
+          },
+          n = {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
             ["<C-x>"] = false,
           },
