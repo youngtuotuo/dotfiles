@@ -52,8 +52,8 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" then
   )
 end
 
-config.initial_cols = 96
-config.initial_rows = 24
+config.initial_cols = 75
+config.initial_rows = 25
 -- config.window_background_opacity = 0.85
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
