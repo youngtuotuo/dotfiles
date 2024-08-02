@@ -32,8 +32,8 @@ return {
         require("luasnip").change_choice(1)
       end
     end
-    vim.keymap.set({ "i", "s" }, "<C-n>", next_node, { silent = true })
-    vim.keymap.set({ "i", "s" }, "<C-p>", prev_node, { silent = true })
+    vim.keymap.set({ "i", "s" }, "<C-n>", next_node,    { silent = true })
+    vim.keymap.set({ "i", "s" }, "<C-p>", prev_node,    { silent = true })
     vim.keymap.set({ "i", "s" }, "<C-j>", cycle_choice, { silent = true })
   end,
 }

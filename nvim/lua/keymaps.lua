@@ -12,20 +12,19 @@
 -- c            Command-line
 -- t            Terminal-Job
 
-vim.keymap.set({ "i" },  "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
-vim.keymap.set({ "i" },  "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
-vim.keymap.set({ "i" },  "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
-vim.keymap.set({ "n" },  "Q",     "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need", })
+vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
+vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
+vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
+vim.keymap.set({ "n" }, "Q",     "<nop>", { nowait = true, noremap = true, desc = "Q repeat the last recorded register [count] times, no need", })
 vim.keymap.set({ "n" }, "<C-q>", "<nop>", { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" })
+vim.keymap.set({ "n" }, "d_",    "d^",    { nowait = true, noremap = true, desc = "Delete back to the first character" })
+vim.keymap.set({ "n" }, "c_",    "c^",    { nowait = true, noremap = true, desc = "Delete back to the first character and insert" })
 
-vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
-vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true, desc = "Delete back to the first character and insert" })
+vim.keymap.set({ "i" }, ",",     ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
+vim.keymap.set({ "i" }, ".",     ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
 
-vim.keymap.set({ "i" }, "<C-s>",    "<C-A>",      { noremap = true, desc = "Try" })
-vim.keymap.set({ "c" }, "<C-i>",    "<C-l><C-d>", { noremap = true, desc = "I hate menu" })
-
-vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
-vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
+vim.keymap.set({ "i" }, "<C-s>", "<C-A>",      { noremap = true, desc = "Try" })
+vim.keymap.set({ "c" }, "<C-i>", "<C-l><C-d>", { noremap = true, desc = "I hate menu" })
 
 vim.keymap.set({ "n", "i" }, "<C-c>",     "<esc><cmd>noh<cr>", { noremap = true, desc = "Esc, C-c will raise inetrrutped error" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y',               { noremap = true, desc = "y, but yank to system clipboard" })

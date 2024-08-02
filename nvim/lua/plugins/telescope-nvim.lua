@@ -23,7 +23,7 @@ return {
           },
         },
         borderchars = {
-          prompt = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
+          prompt  = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
           results = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
           preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         },
@@ -31,11 +31,11 @@ return {
       },
     })
     local builtin = require("telescope.builtin")
-    vim.keymap.set({ "n" }, "<space>e", builtin.find_files, { noremap = true })
-    vim.keymap.set({ "n" }, "<space>h", builtin.help_tags, { noremap = true })
-    vim.keymap.set({ "n" }, "<space>b", builtin.buffers, { noremap = true })
-    vim.keymap.set({ "n" }, "<space>g", builtin.live_grep, { noremap = true })
-    vim.keymap.set({ "n" }, "<space>d", builtin.diagnostics, { noremap = true })
+    vim.keymap.set({ "n" }, "<space>e", builtin.find_files,     { noremap = true })
+    vim.keymap.set({ "n" }, "<space>h", builtin.help_tags,      { noremap = true })
+    vim.keymap.set({ "n" }, "<space>b", builtin.buffers,        { noremap = true })
+    vim.keymap.set({ "n" }, "<space>g", builtin.live_grep,      { noremap = true })
+    vim.keymap.set({ "n" }, "<space>d", builtin.diagnostics,    { noremap = true })
     vim.keymap.set({ "n" }, "<space>r", builtin.lsp_references, { noremap = true })
   end,
 }

@@ -10,27 +10,27 @@ return {
       treesitter = false,
     },
     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-      comments = {}, -- Change the style of comments
+      comments     = {}, -- Change the style of comments
       conditionals = { "bold" },
-      loops = { "bold" },
-      functions = { "bold" },
-      keywords = { "bold" },
-      strings = {},
-      variables = {},
-      numbers = {},
-      booleans = { "bold" },
-      properties = {},
-      types = { "bold" },
-      operators = {},
+      loops        = { "bold" },
+      functions    = { "bold" },
+      keywords     = { "bold" },
+      strings      = {},
+      variables    = {},
+      numbers      = {},
+      booleans     = { "bold" },
+      properties   = {},
+      types        = { "bold" },
+      operators    = {},
       -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     custom_highlights = function(colors)
       return {
-        StatusLine = { fg = colors.text, bg = colors.base },
+        StatusLine   = { fg = colors.text, bg = colors.base },
         StatusLineNC = { fg = colors.overlay0, bg = colors.base },
-        Keyword = { link = "Function" },
-        Special = { link = "Function" },
-        Type = { link = "Function" }
+        Keyword      = { link = "Function" },
+        Special      = { link = "Function" },
+        Type         = { link = "Function" }
       }
     end,
   },
