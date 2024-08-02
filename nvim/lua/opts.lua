@@ -42,7 +42,7 @@ vim.opt.pumwidth = 40
 vim.opt.equalalways = true
 vim.opt.mousemodel = "extend"
 vim.opt.formatoptions = "jql" -- :h fo-table
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 vim.opt.grepprg = [[grep -rn $*]]
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.path = [[.,,**]]
