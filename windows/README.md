@@ -27,35 +27,11 @@ For `--cuda-gpu-arch`,
 Dev Environment Setup
 -------------------------
 
-### First and first
-
-1. Install the bloated and laggy [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools#build-tools-for-visual-studio-2022).
-2. Install PowerShell from winget
+### Install
 
 ```console
-winget install --id Microsoft.Powershell --source winget
-```
-
-3. Change execution policy in powershell. Without setting this, you can't run ps1 file and install scoop.
-
-```console
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-### Powershell
-
-Install scoop
-
-```console
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
-
-### Build Neovim
-
-Convenient one liner in PowerShell.
-
-```console
-C:\'Program Files (x86)\Microsoft Visual Studio'\2022\BuildTools\Common7\Tools\Launch-VsDevShell.ps1 -Arch amd64; cmake --build .deps --target clean; cmake --build build --target clean; cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release; cmake --build .deps --config Release; cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$env:USERPROFILE\.local; cmake --build build --config Release --target install
+./install.ps1 policy vsbuild-tools powershell pwsh-config
+./install.ps1 scoop .local cmake neovim nvim-config python wezterm wezterm-cfg lua typst zig
 ```
 
 ### AutoHotKey

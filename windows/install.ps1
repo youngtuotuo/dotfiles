@@ -1,9 +1,10 @@
 function Show-Usage {
     Write-Host "Usage: ./install.ps1 [options]"
     Write-Host "Options:"
-    Write-Host "  .local, cmake, powershell, powershell-config"
-    Write-Host "  neovim, nvim-config, python, lua, go, rust"
-    Write-Host "  zig, fzf, sioyek, wezterm.lua, nodejs, yarn, typst"
+    Write-Host "  vsbuild-tools, policy, scoop, .local, cmake,"
+    Write-Host "  powershell, pwsh-config, neovim, nvim-config, python,"
+    Write-Host "  zig, fzf, sioyek, wezterm, wezterm-cfg, lua, go, rust,"
+    Write-Host "  nodejs, yarn, typst"
 }
 
 if ($args.Count -eq 0) {
@@ -25,7 +26,25 @@ function Show-Title($message) {
 
 function Install-Target($target) {
     switch ($target) {
+        "vsbuild-tools" {
+            Show-Title "Build Tools for Visual Studio"
+            Write-Host "Download page: https://visualstudio.microsoft.com/downloads/"
+            $url = Read-Host "Please give the url from Tools for Visual Studio -> Build Tools for Visual Studio xxxx"
+            $toolsdestination = "$HOME\vs_BuildTools.exe"
+            Invoke-WebRequest -Uri $url -OutFile $toolsdestination
+            Start-Process -FilePath $toolsdestination
+            Remove-Item -Path $toolsdestination -Force
+        }
+        "policy" {
+            Show-Title "policy"
+            Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        }
+        "scoop" {
+            Show-Title "scoop"
+            Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        }
         ".local" {
+            Show-Title ".local"
             mkdir $env:USERPROFILE\.local
             [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\Users\User\.local\bin", 'User')
         }
@@ -46,7 +65,7 @@ function Install-Target($target) {
             Show-Title "PowerShell"
             winget install --id Microsoft.Powershell --source winget
         }
-        "powershell-config" {
+        "pwsh-config" {
             Show-Title "PowerShell Config"
             New-Item -ItemType SymbolicLink -Path "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Target "$HOME\github\dotfiles\windows\Microsoft.PowerShell_profile.ps1"
         }
@@ -153,7 +172,16 @@ function Install-Target($target) {
                 [Environment]::SetEnvironmentVariable("Path", $env:Path, [EnvironmentVariableTarget]::Machine)
             }
         }
-        "wezterm.lua" {
+        "wezterm"{
+            Show-Title "wezterm"
+            Write-Host "Download page: https://wezfurlong.org/wezterm/install/windows.html"
+            $url = Read-Host "Please give the url for the wezterm setup.exe"
+            $weztermdestination = "$HOME\wezterm_setup.exe"
+            Invoke-WebRequest -Uri $url -OutFile $weztermdestination
+            Start-Process -FilePath $weztermdestination
+            Remove-Item -Path $weztermdestination -Force
+        }
+        "wezterm-cfg" {
             Show-Title ".wezterm.lua"
             if (-not (Test-Path -Path "$HOME\.wezterm.lua")) {
                 New-Item -ItemType SymbolicLink -Path "$HOME\.wezterm.lua" -Target "$HOME\github\dotfiles\.wezterm.lua"

@@ -60,11 +60,6 @@ vim.g.netrw_alto = 0
 vim.g.netrw_hide = 0
 vim.g.netrw_sizestyle = "h"
 vim.g.editorconfig = true
--- vim.g.loaded_matchit = 1
--- vim.g.loaded_matchparen = 1
--- vim.g.loaded_remote_plugins = 1
--- vim.g.loaded_shada_plugin = 1
--- vim.g.loaded_spellfile_plugin = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
@@ -77,12 +72,15 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 if vim.fn.has("win32") == 1 then
-  vim.opt.shell = "nu"
-  -- vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-  -- vim.opt.shellcmdflag =
-  --   "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-  -- vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-  -- vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  -- vim.opt.shellquote = ""
-  -- vim.opt.shellxquote = ""
+  if vim.fn.executable("nu") == 1 then
+    vim.opt.shell = "nu"
+  else
+    vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+    vim.opt.shellcmdflag =
+      "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+    vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.opt.shellquote = ""
+    vim.opt.shellxquote = ""
+  end
 end
