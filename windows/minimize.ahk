@@ -1,7 +1,7 @@
 ﻿#NoEnv
 SendMode Input
 
-#m::WinMinimize, A
+!m::WinMinimize, A
 #If WinActive("ahk_exe discord.exe")
 ^w::
   WinClose
