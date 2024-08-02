@@ -23,3 +23,4 @@ alias taunt='echo "σ\`∀´)σ"'
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/openal-soft/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig:/opt/homebrew/opt/curl/lib/pkgconfig"
 . "$HOME/.cargo/env"
 echo "σ\`∀´)σ"
+export COLORTERM=16
