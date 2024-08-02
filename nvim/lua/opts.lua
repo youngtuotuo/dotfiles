@@ -10,7 +10,7 @@ vim.opt.wrap          = false
 vim.opt.writebackup   = false -- no need this with undo history plugin
 vim.opt.cursorline    = false
 vim.opt.hlsearch      = true
-vim.opt.laststatus    = 2
+vim.opt.laststatus    = 0
 vim.opt.ignorecase    = true -- Ignore case when searching...
 vim.opt.smartcase     = true -- ... unless there is a capital letter in the query
 vim.opt.guicursor     = [[n-v-c:block,i-ci-ve:ver80,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175]]
@@ -32,15 +32,13 @@ vim.opt.undodir       = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile      = true
 vim.opt.wildcharm     = vim.fn.char2nr("^I")
 vim.opt.wildoptions   = [[tagfile]]
-vim.opt.wildignore    =
-  [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.pyc,*pycache*,lib/python*,lib64/python*,*.git/*]]
+vim.opt.wildignore    = [[*.o,*.obj,*.aux,*.fdb_latexmk,*.fls,*.out,*.synctex.gz,*.pyc,*pycache*,lib/python*,lib64/python*,*.git/*]]
 vim.opt.virtualedit   = "block"
 vim.opt.pumheight     = 10
 vim.opt.pumwidth      = 40
 vim.opt.equalalways   = true
 vim.opt.mousemodel    = "extend"
-vim.opt.formatoptions = "jql" -- :h fo-table
--- vim.opt.termguicolors = true
+vim.opt.formatoptions = "jql"
 vim.opt.grepprg       = [[grep -rn $*]]
 vim.opt.path          = [[.,,**]]
 vim.opt.shada         = [[!,'100,<50,s10,h]]
@@ -74,14 +72,30 @@ vim.g.loaded_node_provider    = 0
 
 if vim.fn.has("win32") == 1 then
   if vim.fn.executable("nu") == 1 then
-    vim.opt.shell        = "nu"
+    vim.opt.shell = "nu"
   else
     vim.opt.shell        = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-    vim.opt.shellcmdflag =
-      "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
     vim.opt.shellredir   = "-RedirectStandardOutput %s -NoNewWindow -Wait"
     vim.opt.shellpipe    = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     vim.opt.shellquote   = ""
     vim.opt.shellxquote  = ""
   end
 end
+
+vim.cmd.colorscheme "vim"
+vim.api.nvim_set_hl(0, "Statement",     { ctermfg = 81,  bold = true, nocombine = false })
+vim.api.nvim_set_hl(0, "Boolean",       { ctermfg = 215, bold = true, nocombine = false })
+vim.api.nvim_set_hl(0, "Function",      { ctermfg = 153, bold = true, nocombine = false })
+vim.api.nvim_set_hl(0, "ModeMsg",       { ctermfg = "NONE", bold = true })
+vim.api.nvim_set_hl(0, "Operator",      { ctermfg = "NONE" })
+vim.api.nvim_set_hl(0, "Normal",        { ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "SignColumn",    { ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "luaParenError", { link    = "Normal" })
+vim.api.nvim_set_hl(0, "MatchParen",    { ctermfg = 81 })
+vim.api.nvim_set_hl(0, "String",        { ctermfg = 42 })
+vim.api.nvim_set_hl(0, "StatusLine",    { ctermfg = 251, ctermbg = 235 })
+vim.api.nvim_set_hl(0, "StatusLineNC",  { ctermfg = 242, ctermbg = 235 })
+vim.api.nvim_set_hl(0, "Identifier",    { ctermfg = "white" })
+vim.api.nvim_set_hl(0, "Visual",        { ctermbg = 235 })
+vim.api.nvim_set_hl(0, "Comment",       { ctermfg = 239 })

@@ -8,4 +8,4 @@ set hlsearch
 set ruler
 highlight Comment ctermfg=green
 set background=dark
-highlight Normal guifg=white guibg=black
+highlight Normal ctermfg=white ctermbg=black
