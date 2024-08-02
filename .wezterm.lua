@@ -21,7 +21,7 @@ config.keys = {
   },
 }
 
-config.font_size = 16.0
+config.font_size = 18.0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe", "-nologo" }
   config.font_size = 14.0
@@ -54,7 +54,7 @@ end
 
 config.initial_cols = 96
 config.initial_rows = 24
-config.window_background_opacity = 0.85
+-- config.window_background_opacity = 0.85
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
 config.enable_scroll_bar = true
@@ -65,8 +65,11 @@ config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
 -- config.hide_tab_bar_if_only_one_tab = true
-local scheme_def = wezterm.color.get_builtin_schemes()["Wez"]
+local theme = "Apple System Colors"
+config.color_scheme = theme
+local scheme_def = wezterm.color.get_builtin_schemes()[theme]
 config.colors = {
+  background = "black",
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
   cursor_bg = "rgb(198,198,207)",
@@ -78,7 +81,7 @@ config.colors = {
   cursor_border = "rgb(198,198,207)",
   tab_bar = {
     active_tab = {
-      bg_color = scheme_def.background,
+      bg_color = "black",
       fg_color = scheme_def.foreground,
     },
   },

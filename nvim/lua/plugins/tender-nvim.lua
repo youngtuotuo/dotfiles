@@ -12,7 +12,7 @@ return {
     vim.api.nvim_set_hl(0, "luaParenError", { link    = "Normal" })
     vim.api.nvim_set_hl(0, "MatchParen",    { ctermfg = 81 })
     vim.api.nvim_set_hl(0, "String",        { ctermfg = 78 })
-    vim.api.nvim_set_hl(0, "StatusLine",    { ctermfg = 251 })
-    vim.api.nvim_set_hl(0, "StatusLineNC",  { ctermfg = 242 })
+    vim.api.nvim_set_hl(0, "StatusLine",    { ctermfg = 251, ctermbg = 235 })
+    vim.api.nvim_set_hl(0, "StatusLineNC",  { ctermfg = 242, ctermbg = 235 })
   end
 }
