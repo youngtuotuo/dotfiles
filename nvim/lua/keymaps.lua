@@ -11,9 +11,6 @@
 -- l            ":lmap" mappings for Insert, Command-line and Lang-Arg
 -- c            Command-line
 -- t            Terminal-Job
-if vim.fn.has("mac") == 1 then
-  vim.keymap.set({ "n" }, "<C-^>", ":b#<CR>", { nowait = true, noremap = true })
-end
 
 vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
