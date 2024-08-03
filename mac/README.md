@@ -10,6 +10,7 @@ Mac
 
 ```
 ./mac/install.sh
+./mac/install.sh homebrew
 ```
 
 

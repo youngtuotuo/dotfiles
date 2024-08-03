@@ -3,7 +3,7 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, .zshrc, neovim, nvim-config, python, lua, go,"
+	echo "  .local, homebrew, .zshrc, neovim, nvim-config, python, lua, go,"
 	echo "  rust, zig, git-credential-manager, tmux, tmux-config,"
 	echo "  fzf, ruby, mojo, fd, sioyek, uv, .vimrc, .wezterm.lua"
 }
