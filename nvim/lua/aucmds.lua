@@ -60,14 +60,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "All buffer need formatoptions = jql",
 })
 
-vim.api.nvim_create_autocmd("VimLeave", {
-  group = group,
-  callback = function()
-    vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#cccccc" })
-  end,
-  desc = "All buffer need formatoptions = jql",
-})
-
 local function netrw_yank_path()
   local path = vim.b.netrw_curdir .. "/" .. vim.fn.expand("<cfile>")
   local abs_path = vim.fn.fnamemodify(path, ":p")
