@@ -18,7 +18,7 @@ local diag_config = {
 }
 
 vim.diagnostic.config(diag_config)
-
+vim.diagnostic.enable(false)
 local function toggle_diagnostics()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
