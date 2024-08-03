@@ -13,7 +13,8 @@ vim.opt.hlsearch      = true
 vim.opt.laststatus    = 0
 vim.opt.ignorecase    = true -- Ignore case when searching...
 vim.opt.smartcase     = true -- ... unless there is a capital letter in the query
-vim.opt.guicursor     = [[n-v-c:block,i-ci-ve:ver80,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175]]
+-- vim.opt.guicursor     = [[n-v-c:block,i-ci-ve:ver80,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175]]
+vim.opt.guicursor     = [[]]
 vim.opt.matchtime     = 1 -- display of current match paren faster
 vim.opt.showmatch     = true -- show matching brackets when text indicator is over them
 vim.opt.nu            = false
@@ -83,9 +84,9 @@ if vim.fn.has("win32") == 1 then
   end
 end
 
-vim.cmd.colorscheme "vim"
+-- vim.cmd.colorscheme "vim"
 vim.api.nvim_set_hl(0, "Statement",     { ctermfg = 81,  bold = true, nocombine = false })
-vim.api.nvim_set_hl(0, "Boolean",       { ctermfg = 215, bold = true, nocombine = false })
+vim.api.nvim_set_hl(0, "Boolean",       { ctermfg = 111, bold = true, nocombine = false })
 vim.api.nvim_set_hl(0, "Function",      { ctermfg = 153, bold = true, nocombine = false })
 vim.api.nvim_set_hl(0, "Special",       { ctermfg = 153, bold = true, nocombine = false })
 vim.api.nvim_set_hl(0, "ModeMsg",       { ctermfg = "NONE", bold = true })
