@@ -54,8 +54,6 @@ end
 
 config.initial_cols = 75
 config.initial_rows = 25
--- config.window_background_opacity = 0.85
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
 config.enable_scroll_bar = true
 
@@ -64,7 +62,7 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
--- config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = true
 local theme = "Apple System Colors"
 config.color_scheme = theme
 local scheme_def = wezterm.color.get_builtin_schemes()[theme]
