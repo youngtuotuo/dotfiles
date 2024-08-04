@@ -62,7 +62,6 @@ if vim.fn.has("win32") == 1 then
   end
 end
 
-vim.cmd.colorscheme "vim"
 vim.api.nvim_set_hl(0, "Normal",        { ctermbg = "NONE", fg = "NONE" })
 vim.api.nvim_set_hl(0, "luaParenError", { link    = "Normal" })
 vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", { link = "Normal" })
