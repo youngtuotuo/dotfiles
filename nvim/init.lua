@@ -2,7 +2,6 @@ vim.loader.enable()
 
 require("global")
 require("aucmds")
-require("opts")
 
 -- lazy bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -49,3 +48,4 @@ local opts = {
 require("lazy").setup(opts)
 vim.api.nvim_create_user_command("L", "Lazy", {})
 require("keymaps")
+require("opts")
