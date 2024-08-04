@@ -1,8 +1,7 @@
 Tools
 -----
 
-CopyClip, Rectangle, zsh-autosuggestions, noVNC,\
-Karadiner-Elements, [Easy-Move-Resize(100hz v.)](https://drive.google.com/file/d/1bdyYV0fyfmAnF1Lla08BVVKNLJTMiQwU/view?usp=drive_link)
+CopyClip, Rectangle, noVNC, Karadiner-Elements
 
 
 Mac
