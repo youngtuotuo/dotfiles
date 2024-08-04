@@ -1,6 +1,9 @@
 return {
   "ej-shafran/compile-mode.nvim",
   branch = "latest",
+  keys = {
+    { "<M-c>", ":Compile ", noremap = true}
+  },
   -- or a specific version:
   -- tag = "v3.0.0"
   dependencies = {
