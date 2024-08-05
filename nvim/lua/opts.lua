@@ -62,7 +62,6 @@ if vim.fn.has("win32") == 1 then
   end
 end
 
-vim.cmd.colo "vim"
 vim.api.nvim_set_hl(0, "Normal",        { ctermbg = "NONE", bg = "NONE" })
 vim.api.nvim_set_hl(0, "luaParenError", { link    = "Normal" })
 vim.api.nvim_set_hl(0, "Statement",     { ctermfg = 81,  fg = "#65d1d8", bold = true, nocombine = false })
