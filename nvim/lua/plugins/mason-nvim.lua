@@ -141,21 +141,16 @@ return {
       "hrsh7th/cmp-buffer",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind.nvim",
       "folke/lazydev.nvim",
     },
     config = function(_, _)
       local cmp = require("cmp")
       cmp.setup({
         formatting = {
-          format = require("lspkind").cmp_format({
-            mode = "symbol", -- show only symbol annotations
-            maxwidth = function()
-              return math.floor(0.45 * vim.o.columns)
-            end,
-            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-            show_labelDetails = false, -- show labelDetails in menu. Disabled by default
-          }),
+          format = function(entry, vim_item)
+            vim_item.menu = ""
+            return vim_item
+          end,
         },
         snippet = {
           expand = function(args)
