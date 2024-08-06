@@ -74,3 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "yp", netrw_yank_path, { noremap = true, silent = true })
   end,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = _G.group,
+  callback = _G.set_highlights})
