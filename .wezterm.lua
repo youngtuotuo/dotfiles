@@ -63,7 +63,7 @@ config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
 config.hide_tab_bar_if_only_one_tab = true
-local theme = "Apple System Colors"
+local theme = "Wez"
 config.color_scheme = theme
 local scheme_def = wezterm.color.get_builtin_schemes()[theme]
 config.colors = {
