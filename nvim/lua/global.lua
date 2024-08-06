@@ -16,10 +16,10 @@ _G.floath    = 30
 _G.floatwrap = true
 
 -- fk u MS
-_G.sep       = vim.fn.has("win32") == 1 and [[\]] or "/"
-_G.home      = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
-_G.ext       = vim.fn.has("win32") == 1 and ".exe" or ""
-_G.group     = "TuoGroup"
+_G.sep   = vim.fn.has("win32") == 1 and [[\]] or "/"
+_G.home  = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
+_G.ext   = vim.fn.has("win32") == 1 and ".exe" or ""
+_G.group = "TuoGroup"
 
 vim.cmd.color [[vim]]
 _G.set_highlights = function()
@@ -30,6 +30,7 @@ _G.set_highlights = function()
   vim.api.nvim_set_hl(0, "Function",      { ctermfg = 153, fg = "#9abcdc", bold = true, nocombine = false })
   vim.api.nvim_set_hl(0, "Special",       { ctermfg = 153, fg = "#9abcdc", bold = true, nocombine = false })
   vim.api.nvim_set_hl(0, "Title",         { link = "Function" })
+  vim.api.nvim_set_hl(0, "NonText",       { link = "Comment" })
   vim.api.nvim_set_hl(0, "ModeMsg",       { ctermfg = "NONE", fg = "NONE", bold = true })
   vim.api.nvim_set_hl(0, "Operator",      { ctermfg = "NONE", fg = "NONE" })
   vim.api.nvim_set_hl(0, "NormalFloat",   { ctermbg = "NONE", bg = "NONE" })
