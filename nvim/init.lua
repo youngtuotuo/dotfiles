@@ -29,6 +29,7 @@ local opts = {
     border = _G.border,
     size = { width = 0.7, height = 0.5 },
     pills = false,
+    backdrop = 100,
   },
   default = { lazy = true },
   performance = {
