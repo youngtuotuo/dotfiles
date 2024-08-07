@@ -11,7 +11,7 @@ KeyWait, RButton
   WinClose
 return
 
-#If WinActive("ahk_exe Messenger.exe")
+#If WinActive("ahk_exe steamwebhelper.exe")
 ^w::
   WinClose
 return
