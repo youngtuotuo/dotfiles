@@ -23,8 +23,8 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        StatusLine = { fg = colors.text, bg = colors.base },
-        StatusLineNC = { fg = colors.overlay0, bg = colors.base },
+        StatusLine = { fg = colors.text, bg = colors.crust },
+        StatusLineNC = { fg = colors.overlay0, bg = colors.crust },
         NormalFloat = { fg = colors.text, bg = "NONE" },
         VertSplit = { fg = colors.text },
         WinSeparator = { fg = colors.text }
