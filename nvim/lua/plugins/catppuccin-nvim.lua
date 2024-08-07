@@ -5,7 +5,7 @@ return {
     no_italic = true,
     transparent_background = false,
     integrations = {
-      treesitter = false,
+      treesitter = true,
     },
     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
       comments = {}, -- Change the style of comments
@@ -25,7 +25,9 @@ return {
       return {
         StatusLine = { fg = colors.text, bg = colors.base },
         StatusLineNC = { fg = colors.overlay0, bg = colors.base },
-        NormalFloat = { fg = "#cdd6f4", bg = "NONE" }
+        NormalFloat = { fg = colors.text, bg = "NONE" },
+        VertSplit = { fg = colors.text },
+        WinSeparator = { fg = colors.text }
       }
     end,
   },
