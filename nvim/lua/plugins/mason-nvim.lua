@@ -149,6 +149,7 @@ return {
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ""
+            vim_item.kind = ""
             return vim_item
           end,
         },
