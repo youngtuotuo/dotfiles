@@ -4,7 +4,7 @@ return {
   opts = {
     flavour = "frappe",
     no_italic = true,
-    transparent_background = false,
+    transparent_background = true,
     integrations = {
       treesitter = true,
     },
