@@ -46,7 +46,7 @@ local opts = {
     },
   },
 }
+require("opts")
 require("lazy").setup(opts)
 vim.api.nvim_create_user_command("L", "Lazy", {})
 require("keymaps")
-require("opts")
