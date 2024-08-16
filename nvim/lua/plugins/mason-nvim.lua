@@ -144,8 +144,12 @@ return {
       "folke/lazydev.nvim",
     },
     config = function(_, _)
+      vim.api.nvim_set_keymap('i', '<C-x><C-o>', [[<Cmd>lua require('cmp').complete()<CR>]], { noremap = true, silent = true })
       local cmp = require("cmp")
       cmp.setup({
+        completion = {
+          autocomplete = false,
+        },
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ""
@@ -163,6 +167,7 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
+          ['<C-x><C-o>'] = cmp.mapping.complete(),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
