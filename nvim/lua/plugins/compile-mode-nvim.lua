@@ -9,5 +9,4 @@ return {
     -- compilation output, add:
     { "m00qek/baleia.nvim", tag = "v1.3.0" },
   },
-  opts = {},
 }
