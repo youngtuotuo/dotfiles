@@ -9,6 +9,7 @@ local config = {}
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
+local act = wezterm.action
 
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
@@ -18,6 +19,21 @@ config.keys = {
     action = wezterm.action.SpawnCommandInNewTab({
       cwd = wezterm.home_dir,
     }),
+  },
+  {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
   },
 }
 
@@ -56,6 +72,8 @@ config.initial_cols = 75
 config.initial_rows = 25
 config.window_padding = { left = 0, right = 15, top = 0, bottom = 0 }
 config.enable_scroll_bar = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 
 config.adjust_window_size_when_changing_font_size = false
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
