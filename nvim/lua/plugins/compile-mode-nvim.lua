@@ -9,4 +9,10 @@ return {
     -- compilation output, add:
     { "m00qek/baleia.nvim", tag = "v1.3.0" },
   },
+  config = function()
+    ---@type CompileModeOpts
+    vim.g.compile_mode = {
+      baleia_setup = true
+    }
+  end
 }
