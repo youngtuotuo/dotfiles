@@ -4,7 +4,7 @@ return {
   opts = {
     flavour = "frappe",
     no_italic = true,
-    transparent_background = true,
+    transparent_background = false,
     integrations = {
       treesitter = true,
     },
@@ -26,7 +26,9 @@ return {
       return {
         StatusLine = { fg = colors.text, bg = colors.crust },
         StatusLineNC = { fg = colors.overlay0, bg = colors.crust },
-        NormalFloat = { fg = colors.text, bg = "NONE" },
+        Normal = { bg = colors.crust },
+        NormalNC = { bg = colors.crust },
+        NormalFloat = { fg = colors.text, bg = colors.crust },
         VertSplit = { fg = colors.text },
         WinSeparator = { fg = colors.text }
       }
