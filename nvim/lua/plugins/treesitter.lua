@@ -32,6 +32,7 @@ return {
       -- "query",
       -- "vim",
       -- "vimdoc",
+      "html",
       "gitcommit",
       "gitignore",
       "go",
