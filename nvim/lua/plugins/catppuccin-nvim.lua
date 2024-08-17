@@ -26,9 +26,9 @@ return {
       return {
         StatusLine = { fg = colors.text, bg = colors.crust },
         StatusLineNC = { fg = colors.overlay0, bg = colors.crust },
-        Normal = { bg = colors.crust },
-        NormalNC = { bg = colors.crust },
-        NormalFloat = { fg = colors.text, bg = colors.crust },
+        Normal = { bg = "#1e2030" },
+        NormalNC = { bg = "#1e2030" },
+        NormalFloat = { fg = colors.text, bg = "#1e2030" },
         VertSplit = { fg = colors.text },
         WinSeparator = { fg = colors.text }
       }
