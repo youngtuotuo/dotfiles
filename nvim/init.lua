@@ -26,7 +26,6 @@ local opts = {
     { import = "plugins" }, -- auto import lua/plugins/*.lua
   },
   ui = {
-    border = _G.border,
     size = { width = 0.7, height = 0.5 },
     pills = false,
     backdrop = 100,

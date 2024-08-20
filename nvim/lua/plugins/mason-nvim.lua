@@ -11,8 +11,6 @@ local diag_config = {
   update_in_insert = false,
   float = {
     focusable = true,
-    title = " σ`∀´)σ ",
-    border = _G.border,
     source = true,
   },
 }
@@ -43,7 +41,7 @@ return {
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
     opts = {
-      ui = { border = _G.border, width = 0.7, height = 0.5 },
+      ui = { width = 0.7, height = 0.5 },
     },
   },
   {
@@ -81,8 +79,6 @@ return {
 
       -- customize hover when pressing K
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = _G.border,
-        title = " |･ω･) ? ",
         zindex = 500,
         focusable = true,
         max_width = _G.floatw,
@@ -90,8 +86,6 @@ return {
 
       -- customize signature help when pressing gs
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = _G.border,
-        title = " (・・ ) ? ",
         max_width = _G.floatw,
       })
     end,
@@ -107,8 +101,6 @@ return {
       require("lspconfig.ui.windows").percentage_range_window = function(_, _)
         return info(0.7, 0.5)
       end
-      -- LspInfo command border
-      require("lspconfig.ui.windows").default_options.border = _G.border
 
       local lsp_highlight = false
       local toggle_lsp_highlight = function()
@@ -174,10 +166,6 @@ return {
             require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
           end,
         },
-        -- window = {
-        --   completion = cmp.config.window.bordered(),
-        --   documentation = cmp.config.window.bordered(),
-        -- },
         mapping = cmp.mapping.preset.insert({
           ['<C-x><C-o>'] = cmp.mapping.complete(),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
