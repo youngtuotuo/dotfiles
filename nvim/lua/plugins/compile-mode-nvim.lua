@@ -14,5 +14,6 @@ return {
     vim.g.compile_mode = {
       baleia_setup = true
     }
+    vim.keymap.set({ "n" }, "<M-c>", ":Compile ", { nowait = true, noremap = true, desc = "Compile" })
   end
 }
