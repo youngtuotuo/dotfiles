@@ -1,8 +1,8 @@
-local _, wf = pcall(require, "vim.lsp._watchfiles")
-wf._watchfunc = function()
-  return function() end
-end
-
+-- local _, wf = pcall(require, "vim.lsp._watchfiles")
+-- wf._watchfunc = function()
+--   return function() end
+-- end
+--
 -- diagnostic
 local diag_config = {
   virtual_text = true,

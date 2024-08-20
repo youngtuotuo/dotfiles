@@ -1,3 +1,58 @@
+local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = group,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  desc = "Yank Short Indicator",
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = group,
+  callback = function()
+    vim.opt.indentkeys:remove("<:>")
+    vim.opt.formatoptions = "jql"
+  end,
+  desc = "All buffer need formatoptions = jql",
+})
+
+local function netrw_yank_path()
+  local path = vim.b.netrw_curdir .. "/" .. vim.fn.expand("<cfile>")
+  local abs_path = vim.fn.fnamemodify(path, ":p")
+  vim.fn.setreg('"', abs_path)
+  print("Yanked: " .. abs_path)
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  pattern = "netrw",
+  callback = function()
+    vim.keymap.set("n", "yp", netrw_yank_path, { noremap = true, silent = true })
+  end,
+})
+
+-- print(vim.inspect(v))
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+-- "none": No border (default).
+-- "single": A single line box.
+-- "double": A double line box.
+-- "rounded": Like "single", but with rounded corners ("╭" etc.).
+-- "solid": Adds padding by a single whitespace cell.
+-- "shadow": A drop shadow effect by blending with the
+_G.floatw = 70
+_G.floath = 30
+_G.floatwrap = true
+
+-- fk u MS
+_G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
+_G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
+_G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
+
 -- stylua: ignore start
 --  CHAR        MODE
 -- <Space>      Normal, Visual, Select and Operator-pending
@@ -84,3 +139,66 @@ vim.api.nvim_create_user_command("WQa", "wqa", { bang = true, bar = true })
 vim.api.nvim_create_user_command("Wqa", "wqa", { bang = true, bar = true })
 vim.api.nvim_create_user_command("XA",  "xa",  { bang = true, bar = true })
 vim.api.nvim_create_user_command("Xa",  "xa",  { bang = true, bar = true })
+
+vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
+vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4 -- spaces for auto indent
+vim.opt.smartindent = true -- auto indent when typing { & }
+vim.opt.cinoptions = "l1" -- for switch, case alignment, :h cino-l
+vim.opt.laststatus = 0
+vim.opt.ignorecase = true -- Ignore case when searching...
+vim.opt.smartcase = true -- ... unless there is a capital letter in the query
+vim.opt.guicursor = [[]]
+vim.opt.matchtime = 1 -- display of current match paren faster
+vim.opt.showmatch = true -- show matching brackets when text indicator is over them
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.swapfile = false
+vim.opt.updatetime = 50
+vim.opt.completeopt = [[menu,menuone,noselect,popup]]
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
+vim.opt.undofile = true
+vim.opt.wildcharm = vim.fn.char2nr("^I")
+vim.opt.virtualedit = "block"
+vim.opt.mousemodel = "extend"
+vim.opt.formatoptions:remove "o"
+vim.opt.shada = { "'10", "<0", "s10", "h" }
+vim.opt.listchars = [[tab:>-,trail:.]]
+vim.opt.list = true
+vim.opt.inccommand = "split"
+
+vim.opt.grepformat:append({ [[%l:%m]] })
+vim.opt.cinkeys:remove(":")
+vim.opt.indentkeys:remove("<:>")
+vim.opt.shortmess:append("c")
+
+-- :h netrw-browse-maps
+vim.g.netrw_altfile = 1
+vim.g.netrw_cursor = 5
+vim.g.netrw_preview = 1
+vim.g.netrw_alto = 0
+vim.g.netrw_hide = 0
+vim.g.netrw_sizestyle = "h"
+
+if vim.fn.has("win32") == 1 then
+  if vim.fn.executable("nu") == 1 then
+    vim.opt.shell = "nu"
+  else
+    vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+    vim.opt.shellcmdflag =
+      "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+    vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.opt.shellquote = ""
+    vim.opt.shellxquote = ""
+  end
+end
+
+vim.filetype.add({
+  extension = {
+    h = "c",
+  },
+})
+
+return {}

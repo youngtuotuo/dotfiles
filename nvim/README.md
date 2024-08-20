@@ -1,5 +1,3 @@
-![image](../pictures/startup.png)
-
 <a href="https://dotfyle.com/youngtuotuo/dotfiles-nvim"><img src="https://dotfyle.com/youngtuotuo/dotfiles-nvim/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/youngtuotuo/dotfiles-nvim"><img src="https://dotfyle.com/youngtuotuo/dotfiles-nvim/badges/plugin-manager?style=flat" /></a>
 
