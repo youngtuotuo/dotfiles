@@ -17,6 +17,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "All buffer need formatoptions = jql",
 })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = group,
+  callback = function()
+    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#292929" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#292929" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#292929" })
+  end
+})
+
 local function netrw_yank_path()
   local path = vim.b.netrw_curdir .. "/" .. vim.fn.expand("<cfile>")
   local abs_path = vim.fn.fnamemodify(path, ":p")
