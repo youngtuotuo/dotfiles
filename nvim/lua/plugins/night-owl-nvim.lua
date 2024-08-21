@@ -10,6 +10,6 @@ return {
     -- load the colorscheme here
     require("night-owl").setup()
     vim.cmd.colorscheme("night-owl")
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#021020", blend = 10 })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#021020" })
   end,
 }
