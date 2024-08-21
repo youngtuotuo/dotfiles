@@ -31,11 +31,11 @@ return {
       },
     })
     local builtin = require("telescope.builtin")
-    vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files disable_devicons=true<cr>",     { noremap = true })
+    vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files<cr>",     { noremap = true })
     vim.keymap.set({ "n" }, "<space>h", "<cmd>Telescope help_tags<cr>",      { noremap = true })
-    vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers disable_devicons=true<cr>",        { noremap = true })
-    vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep disable_devicons=true<cr>",      { noremap = true })
-    vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics disable_devicons=true<cr>",    { noremap = true })
-    vim.keymap.set({ "n" }, "<space>r", "<cmd>Telescope lsp_references disable_devicons=true<cr>", { noremap = true })
+    vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers<cr>",        { noremap = true })
+    vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep<cr>",      { noremap = true })
+    vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics<cr>",    { noremap = true })
+    vim.keymap.set({ "n" }, "<space>r", "<cmd>Telescope lsp_references<cr>", { noremap = true })
   end,
 }
