@@ -8,6 +8,39 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Yank Short Indicator",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp" },
+  group = group,
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.cinoptions = [[=]]
+    vim.bo.define = [[^\(#\s*define\|[a-z]*\s*const\s*[a-z]*\)]]
+    vim.bo.commentstring = [[// %s]]
+  end,
+  desc = "aucmd for c, cpp",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "html", "json", "yaml", "lua" },
+  group = group,
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.softtabstop = 2
+  end,
+  desc = "aucmd for html, json, yaml, lua",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "make", "sh" },
+  group = group,
+  callback = function()
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 4
+    vim.bo.expandtab = false
+  end,
+  desc = "aucmd for make and sh",
+})
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
@@ -15,30 +48,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     vim.opt.formatoptions = "jql"
   end,
   desc = "All buffer need formatoptions = jql",
-})
-
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   group = group,
---   callback = function()
---     vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#303535" })
---     vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#353535" })
---     vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#353535" })
---   end
--- })
-
-local function netrw_yank_path()
-  local path = vim.b.netrw_curdir .. "/" .. vim.fn.expand("<cfile>")
-  local abs_path = vim.fn.fnamemodify(path, ":p")
-  vim.fn.setreg('"', abs_path)
-  print("Yanked: " .. abs_path)
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = group,
-  pattern = "netrw",
-  callback = function()
-    vim.keymap.set("n", "yp", netrw_yank_path, { noremap = true, silent = true })
-  end,
 })
 
 -- print(vim.inspect(v))
