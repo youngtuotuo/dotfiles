@@ -12,6 +12,9 @@ return {
     },
     on_highlights = function(hl, c)
       local prompt = "#2d3149"
+      hl.WinSeparator = {
+        fg = c.fg_dark
+      }
       hl.TelescopeNormal = {
         bg = c.bg_dark,
         fg = c.fg_dark,
