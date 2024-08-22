@@ -126,6 +126,12 @@ function install_target() {
 			if [ -d "$HOME/python" ]; then
 				rm -r $HOME/python
 			fi
+			if [-f "$HOME/.local/bin/python" ]; then
+				rm $HOME/.local/bin/python
+			fi
+			if [-f "$HOME/.local/bin/pip" ]; then
+				rm $HOME/.local/bin/pip
+			fi
 			wget $resp -O $HOME/python.tgz
 			mkdir -p $HOME/python
 			tar xf $HOME/python.tgz -C $HOME/python --strip-components 1
