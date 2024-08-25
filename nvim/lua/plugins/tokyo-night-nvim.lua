@@ -1,7 +1,9 @@
 return {
   "folke/tokyonight.nvim",
   opts = {
+    style="night",
     terminal_colors = false,
+    transparent = true,
     styles = {
       comments = {},
       keywords = {},
