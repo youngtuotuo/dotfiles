@@ -13,7 +13,9 @@ return {
       harpoon:list():add()
     end)
     vim.keymap.set("n", "<leader>q", function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
+      harpoon.ui:toggle_quick_menu(harpoon:list(), {
+        border = "",
+      })
     end)
 
     vim.keymap.set("n", "<leader>1", function()
