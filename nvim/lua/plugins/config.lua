@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "cpp" },
   group = group,
   callback = function()
-    vim.bo.shiftwidth = 2
+    vim.bo.shiftwidth = 4
     vim.bo.cinoptions = [[=]]
     vim.bo.define = [[^\(#\s*define\|[a-z]*\s*const\s*[a-z]*\)]]
     vim.bo.commentstring = [[// %s]]
