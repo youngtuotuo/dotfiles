@@ -1,7 +1,7 @@
 return {
   "folke/tokyonight.nvim",
   opts = {
-    style="moon",
+    style = "storm",
     terminal_colors = false,
     transparent = false,
     styles = {
@@ -15,7 +15,7 @@ return {
     on_highlights = function(hl, c)
       local prompt = "#2d3149"
       hl.WinSeparator = {
-        fg = c.fg_dark
+        fg = c.fg_dark,
       }
       hl.TelescopeNormal = {
         bg = c.bg_dark,
