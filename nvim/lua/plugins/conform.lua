@@ -33,7 +33,7 @@ return {
       },
       clang_format = {
         prepend_args = {
-          "-style={BasedOnStyle: llvm, IndentWidth: 4}",
+          "-style={BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 120}",
         },
       },
     },
