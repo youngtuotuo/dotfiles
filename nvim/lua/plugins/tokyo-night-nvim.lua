@@ -1,5 +1,6 @@
 return {
   "folke/tokyonight.nvim",
+  lazy = true,
   opts = {
     style = "storm",
     terminal_colors = false,
