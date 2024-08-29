@@ -4,8 +4,8 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
-    modes = { "n", "c", "no" },
-    hybrid_modes = { "n", "i" },
+    modes = { "n", "c" },
+    hybrid_modes = { "n" },
     callbacks = {
       on_enable = function(_, win)
         vim.wo[win].conceallevel = 2
