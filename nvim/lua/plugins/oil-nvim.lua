@@ -1,4 +1,4 @@
-local detail = true
+local detail = false
 return {
   "stevearc/oil.nvim",
   opts = {
@@ -45,6 +45,6 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   config = function(_, opts)
     require("oil").setup(opts)
-    require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+    require("oil").set_columns({ "icon" })
   end,
 }
