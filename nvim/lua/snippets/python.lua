@@ -20,7 +20,7 @@ snippets = vim.tbl_extend("force", snippets, {
       [[
       if __name__ == "__main__":
           <>
-    ]],
+      ]],
       {
         d(1, utils.get_visual),
       }
@@ -31,7 +31,7 @@ snippets = vim.tbl_extend("force", snippets, {
     fmta(
       [[
       print(<>)
-    ]],
+      ]],
       {
         d(1, utils.get_visual),
       }
@@ -42,7 +42,7 @@ snippets = vim.tbl_extend("force", snippets, {
     fmta(
       [[
       print(f"{<>=}")
-    ]],
+      ]],
       {
         d(1, utils.get_visual),
       }
@@ -54,12 +54,12 @@ snippets = vim.tbl_extend("force", snippets, {
       [[
       for <>:
           <>
-    ]],
+      ]],
       {
         c(1, {
-          sn(nil, { i(1), t(" in "), i(2)}),
-          sn(nil, { i(1, "i"), t(" in "), t("range("), i(2), t(")")}),
-          sn(nil, { i(1, "idx"), t(", "), i(2, "e"), t(" in "), t("enumerate("), i(3), t(")")}),
+          sn(nil, { i(1), t(" in "), i(2) }),
+          sn(nil, { i(1, "i"), t(" in "), t("range("), i(2), t(")") }),
+          sn(nil, { i(1, "idx"), t(", "), i(2, "e"), t(" in "), t("enumerate("), i(3), t(")") }),
         }),
         d(2, utils.get_visual),
       }
@@ -71,10 +71,10 @@ snippets = vim.tbl_extend("force", snippets, {
       [[
       if <>:
           <>
-    ]],
+      ]],
       {
         i(1),
-        i(2)
+        i(2),
       }
     )
   ),
@@ -83,7 +83,7 @@ snippets = vim.tbl_extend("force", snippets, {
     fmta(
       [[
       <>()
-    ]],
+      ]],
       {
         d(1, utils.get_visual),
       }
@@ -95,7 +95,7 @@ snippets = vim.tbl_extend("force", snippets, {
       [[
       def <>(<>):
           <>
-    ]],
+      ]],
       {
         i(1),
         c(2, {
@@ -103,7 +103,7 @@ snippets = vim.tbl_extend("force", snippets, {
           sn(nil, { i(1), t(" , *args") }),
           sn(nil, { i(1), t(" , *args, **kwargs") }),
         }),
-        i(3)
+        i(3),
       }
     )
   ),
@@ -113,7 +113,7 @@ snippets = vim.tbl_extend("force", snippets, {
       [[
       async def <>(<>):
           <>
-    ]],
+      ]],
       {
         i(1),
         c(2, {
@@ -121,7 +121,7 @@ snippets = vim.tbl_extend("force", snippets, {
           sn(nil, { i(1), t(" , *args") }),
           sn(nil, { i(1), t(" , *args, **kwargs") }),
         }),
-        i(3)
+        i(3),
       }
     )
   ),
