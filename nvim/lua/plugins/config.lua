@@ -8,20 +8,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Yank Short Indicator",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp" },
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.c", "*.cpp" },
   group = group,
   callback = function()
     vim.bo.shiftwidth = 4
-    vim.bo.cinoptions = [[=]]
     vim.bo.define = [[^\(#\s*define\|[a-z]*\s*const\s*[a-z]*\)]]
     vim.bo.commentstring = [[// %s]]
   end,
   desc = "aucmd for c, cpp",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "json", "yaml", "lua" },
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.html", "*.json", "*.yaml", "*.lua" },
   group = group,
   callback = function()
     vim.bo.shiftwidth = 2
@@ -163,7 +162,6 @@ vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
-vim.opt.cinoptions = "l1" -- for switch, case alignment, :h cino-l
 vim.opt.laststatus = 2
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query

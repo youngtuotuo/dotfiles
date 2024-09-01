@@ -37,8 +37,10 @@ return {
         },
       },
     },
-    format_on_save = nil,
-    format_after_save = nil,
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_format = "fallback",
+    },
   },
   config = function(_, opts)
     require("conform").setup(opts)
