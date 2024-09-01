@@ -10,13 +10,6 @@ case ":${PATH}:" in
 esac
 
 # export PATH
-case ":${MANPATH}:" in
-    *:"/usr/local/man":*)
-        ;;
-    *)
-        export MANPATH="/usr/local/man${MANPATH:+:${MANPATH}}"
-        ;;
-esac
 case ":${PATH}:" in
     *:"/opt/homebrew/opt/binutils/bin":*)
         ;;
