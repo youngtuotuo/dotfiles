@@ -1,3 +1,4 @@
+vim.cmd.colo("habamax")
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
