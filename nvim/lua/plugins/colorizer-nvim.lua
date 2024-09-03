@@ -1,9 +1,7 @@
 return {
   "norcalli/nvim-colorizer.lua",
-  init = function()
-    vim.opt.termguicolors = true
-  end,
+  lazy = (vim.opt.termguicolors._value ~= true),
   config = function()
-    require 'colorizer'.setup()
-  end
+    require("colorizer").setup()
+  end,
 }

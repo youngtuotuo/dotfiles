@@ -167,6 +167,7 @@ vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
 vim.opt.guicursor = [[]]
 vim.opt.matchtime = 1 -- display of current match paren faster
+vim.opt.termguicolors = false
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
 vim.opt.splitright = true
 vim.opt.splitbelow = true
