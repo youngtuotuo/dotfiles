@@ -11,7 +11,7 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        layout_strategy = "vertical",
+        layout_strategy = "horizontal",
         mappings = {
           i = {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
@@ -23,7 +23,7 @@ return {
           },
         },
         borderchars = {
-          prompt  = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
+          prompt = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
           results = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
           preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         },
@@ -31,11 +31,11 @@ return {
       },
     })
     local builtin = require("telescope.builtin")
-    vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files<cr>",     { noremap = true })
-    vim.keymap.set({ "n" }, "<space>h", "<cmd>Telescope help_tags<cr>",      { noremap = true })
-    vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers<cr>",        { noremap = true })
-    vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep<cr>",      { noremap = true })
-    vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics<cr>",    { noremap = true })
+    vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files<cr>", { noremap = true })
+    vim.keymap.set({ "n" }, "<space>h", "<cmd>Telescope help_tags<cr>", { noremap = true })
+    vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers<cr>", { noremap = true })
+    vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep<cr>", { noremap = true })
+    vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics<cr>", { noremap = true })
     vim.keymap.set({ "n" }, "<space>r", "<cmd>Telescope lsp_references<cr>", { noremap = true })
   end,
 }
