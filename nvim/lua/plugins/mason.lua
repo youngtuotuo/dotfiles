@@ -61,6 +61,8 @@ return {
           "ruff",
           "shfmt",
           "stylua",
+          "codelldb",
+          "debugpy",
         },
       }
     end,
