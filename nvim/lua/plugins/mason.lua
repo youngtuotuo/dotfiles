@@ -137,9 +137,14 @@ return {
       "folke/lazydev.nvim",
     },
     config = function(_, _)
-      vim.api.nvim_set_keymap('i', '<C-x><C-o>', [[<Cmd>lua require('cmp').complete()<CR>]], { noremap = true, silent = true })
+      vim.api.nvim_set_keymap(
+        "i",
+        "<C-x><C-o>",
+        [[<Cmd>lua require('cmp').complete()<CR>]],
+        { noremap = true, silent = true }
+      )
       vim.opt.pumheight = 10
-      local ELLIPSIS_CHAR = '…'
+      local ELLIPSIS_CHAR = "…"
       local MAX_LABEL_WIDTH = 20
       local MIN_LABEL_WIDTH = 20
       local cmp = require("cmp")
@@ -156,7 +161,7 @@ return {
             if truncated_label ~= label then
               vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
             elseif string.len(label) < MIN_LABEL_WIDTH then
-              local padding = string.rep(' ', MIN_LABEL_WIDTH - string.len(label))
+              local padding = string.rep(" ", MIN_LABEL_WIDTH - string.len(label))
               vim_item.abbr = label .. padding
             end
             return vim_item
@@ -168,7 +173,7 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ['<C-x><C-o>'] = cmp.mapping.complete(),
+          ["<C-x><C-o>"] = cmp.mapping.complete(),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -238,10 +243,12 @@ return {
     ft = "lua", -- only load on lua files
     opts = {
       library = {
+        "nvim-dap-ui",
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = "luvit-meta/library", words = { "vim%.uv" } },
       },
     },
   },
+  { "Bilal2453/luvit-meta", lazy = true },
 }
