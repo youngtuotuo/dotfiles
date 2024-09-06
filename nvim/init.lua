@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins
 require("lazy").setup({ import = "plugins" }, {
+  ui = { border = "rounded" },
   change_detection = {
     notify = false,
   },

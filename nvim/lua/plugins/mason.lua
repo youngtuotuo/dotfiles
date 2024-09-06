@@ -30,6 +30,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.max_width = _G.floatw
   opts.max_height = _G.floath
   opts.wrap = _G.floatwrap
+  opts.border = "rounded"
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
@@ -41,7 +42,7 @@ return {
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
     opts = {
-      ui = { width = 0.7, height = 0.5 },
+      ui = { border = "rounded" },
     },
   },
   {
@@ -97,12 +98,7 @@ return {
         formatting_options = nil,
         timeout_ms = nil,
       }
-
-      -- LspInfo width and height
-      local info = require("lspconfig.ui.windows").percentage_range_window
-      require("lspconfig.ui.windows").percentage_range_window = function(_, _)
-        return info(0.7, 0.5)
-      end
+      require("lspconfig.ui.windows").default_options.border = "single"
 
       local lsp_highlight = false
       local toggle_lsp_highlight = function()
@@ -153,6 +149,7 @@ return {
       cmp.setup({
         completion = {
           autocomplete = false,
+          scrollbar = false,
         },
         formatting = {
           format = function(entry, vim_item)
@@ -173,6 +170,10 @@ return {
           expand = function(args)
             require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
           end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-x><C-o>"] = cmp.mapping.complete(),
