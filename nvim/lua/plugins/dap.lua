@@ -27,7 +27,8 @@ return {
     keys = function()
       local dapui = require("dapui")
       return {
-        { "<leader>d", dapui.toggle, mode = "n", desc = "[dap-ui] toggle" },
+        { "<M-s>", dapui.toggle, mode = "n", desc = "[dap-ui] toggle" },
+        { "<M-f>", dapui.float_element, mode = "n", desc = "[dap-ui] float" },
       }
     end,
     dependencies = {
@@ -143,14 +144,9 @@ return {
         end,
       },
     },
-    opts = {
-      controls = {
-        enabled = false,
-      },
-    },
     config = function(_, opts)
-      require("dapui").setup(opts)
       local dap, dapui = require("dap"), require("dapui")
+      dapui.setup(opts)
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
