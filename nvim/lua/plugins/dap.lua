@@ -26,15 +26,8 @@ return {
     ft = { "c", "python", "cpp" },
     keys = function()
       local dapui = require("dapui")
-      local toggle_bottom = function()
-        dapui.toggle({ layout = 2, reset = true })
-      end
-      local toggle_left = function()
-        dapui.toggle({ layout = 1, reset = true })
-      end
       return {
-        { "<leader>j", toggle_bottom, mode = "n", desc = "[dap-ui] toggle repl" },
-        { "<leader>h", toggle_left, mode = "n", desc = "[dap-ui] toggle stacks" },
+        { "<leader>d", dapui.toggle, mode = "n", desc = "[dap-ui] toggle" },
       }
     end,
     dependencies = {
@@ -163,12 +156,6 @@ return {
       end
       dap.listeners.before.launch.dapui_config = function()
         dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
       end
     end,
   },
