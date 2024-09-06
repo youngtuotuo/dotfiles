@@ -1,3 +1,4 @@
+vim.api.nvim_set_hl(0, "Comment", { ctermfg = "DarkGrey", fg = "DarkGrey" })
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
