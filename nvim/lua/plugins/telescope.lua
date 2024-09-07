@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.6",
+  tag = "0.1.8",
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
@@ -21,11 +21,6 @@ return {
             ["<C-s>"] = require("telescope.actions").select_horizontal,
             ["<C-x>"] = false,
           },
-        },
-        borderchars = {
-          prompt = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
-          results = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
-          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         },
         preview = true,
       },
