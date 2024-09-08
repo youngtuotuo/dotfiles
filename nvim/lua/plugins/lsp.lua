@@ -67,7 +67,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "zig", "c", "cpp", "cuda", "python", "lua" },
+    ft = { "zig", "c", "cpp", "cuda", "python", "lua", "mojo" },
     cmd = { "LspInfo" },
     dependencies = {
       "williamboman/mason.nvim",
@@ -122,7 +122,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    ft = { "zig", "c", "cpp", "cuda", "python", "lua" },
+    ft = { "zig", "c", "cpp", "cuda", "python", "lua", "mojo" },
     dependencies = {
       "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",
@@ -189,6 +189,13 @@ return {
       })
       -- Set up lspconfig.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require("lspconfig").mojo.setup({
+        manual_install = true,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+        capabilities = capabilities,
+      })
       require("lspconfig").zls.setup({
         on_attach = function(client, bufnr)
           client.server_capabilities.semanticTokensProvider = nil
