@@ -1,8 +1,3 @@
--- local _, wf = pcall(require, "vim.lsp._watchfiles")
--- wf._watchfunc = function()
---   return function() end
--- end
---
 -- diagnostic
 local diag_config = {
   virtual_text = true,
@@ -33,6 +28,8 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = "rounded"
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+
+local fts = { "yaml", "html", "markdown", "json", "python", "sh", "lua", "c", "cpp", "cuda", "zig" }
 
 return {
   {
@@ -254,4 +251,47 @@ return {
     },
   },
   { "Bilal2453/luvit-meta", lazy = true },
+  {
+    "stevearc/aerial.nvim",
+    lazy = true,
+    keys = function()
+      local toggle = function()
+        require("aerial").toggle({ focus = true })
+      end
+      return {
+        { "<space>o", toggle, noremap = true, desc = "Code outline" },
+      }
+    end,
+    opts = {
+      layout = {
+        default_direction = "left",
+        max_width = 30,
+        min_width = 30,
+      },
+    },
+  },
+  {
+    "RRethy/vim-illuminate",
+    ft = fts,
+    opts = {
+      providers = {
+        "treesitter",
+        "lsp",
+        "regex",
+      },
+      filetypes_denylist = {},
+      filetypes_allowlist = fts,
+    },
+    config = function(_, opts)
+      vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
+      vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
+      vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
+      require("illuminate").set_highlight_defaults = function()
+        vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
+        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
+        vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
+      end
+      require("illuminate").configure(opts)
+    end,
+  },
 }
