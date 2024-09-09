@@ -10,13 +10,13 @@ return {
     end,
   },
   {
-    "rebelot/kanagawa.nvim",
-    lazy = not has_256_colors,
+    "tiagovla/tokyodark.nvim",
     opts = {
-      terminalColors = false,
+      -- custom options here
     },
     config = function(_, opts)
-      vim.cmd.colo("kanagawa-wave")
+      require("tokyodark").setup(opts) -- calling setup is optional
+      vim.cmd([[colorscheme tokyodark]])
     end,
   },
   {
