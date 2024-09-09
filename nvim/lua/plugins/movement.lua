@@ -50,7 +50,7 @@ return {
         enable = false,
       },
       highlight = {
-        enable = true,
+        enable = false,
       },
       incremental_selection = {
         enable = false,
