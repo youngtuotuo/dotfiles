@@ -144,6 +144,11 @@ return {
         end,
       },
     },
+    opts = {
+      controls = {
+        enabled = false,
+      },
+    },
     config = function(_, opts)
       local dap, dapui = require("dap"), require("dapui")
       dapui.setup(opts)
