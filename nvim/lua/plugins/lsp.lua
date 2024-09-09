@@ -290,6 +290,18 @@ return {
       filetypes_allowlist = fts,
     },
     config = function(_, opts)
+      vim.keymap.set(
+        { "n" },
+        "<C-p>",
+        require("illuminate").goto_prev_reference,
+        { noremap = true, desc = "illuminate go to prev" }
+      )
+      vim.keymap.set(
+        { "n" },
+        "<C-n>",
+        require("illuminate").goto_next_reference,
+        { noremap = true, desc = "illuminate go to prev" }
+      )
       vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
       vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
       vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
