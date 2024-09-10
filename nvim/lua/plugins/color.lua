@@ -11,6 +11,7 @@ return {
   },
   {
     "tiagovla/tokyodark.nvim",
+    lazy = not has_256_colors,
     opts = {
       -- custom options here
     },
