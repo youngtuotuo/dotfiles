@@ -130,6 +130,7 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "folke/lazydev.nvim",
+      "rcarriga/cmp-dap",
     },
     config = function(_, _)
       vim.api.nvim_set_keymap(
@@ -186,6 +187,12 @@ return {
         }, {
           { name = "buffer" },
         }),
+      })
+
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches" }, {
+        sources = {
+          { name = "dap" },
+        },
       })
       -- Set up lspconfig.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
