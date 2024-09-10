@@ -10,15 +10,15 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-	# include .bashrc if it exists
-	if [ -f "$HOME/.bashrc" ]; then
-		. "$HOME/.bashrc"
-	fi
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
-	PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -28,73 +28,54 @@ fi
 case ":${PATH}:" in
 *:"$HOME/.local/bin":*) ;;
 *)
-	export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+    ;;
 esac
 case ":${PATH}:" in
 *:"$HOME/.local/go/bin":*) ;;
 *)
-	export PATH="$HOME/.local/go/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/.local/go/bin${PATH:+:${PATH}}"
+    ;;
 esac
 
 case ":${PATH}:" in
 *:"$HOME/.local/zig":*) ;;
 *)
-	export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
+    ;;
 esac
 
 case ":${PATH}:" in
 *:"/usr/local/cuda/bin":*) ;;
 *)
-	export PATH="/usr/local/cuda/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="/usr/local/cuda/bin${PATH:+:${PATH}}"
+    ;;
 esac
-
-
-
-export MODULAR_HOME="$HOME/.modular"
-case ":${PATH}:" in
-*:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*) ;;
-*)
-	export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
-	;;
-esac
-
-if command -v modular >/dev/null; then
-	case ":${PATH}:" in
-	*:"$(modular config max.path)/bin":*) ;;
-	*)
-		export PATH="$(modular config max.path)/bin${PATH:+:${PATH}}"
-		;;
-	esac
-fi
 
 case ":${PATH}:" in
 *:"$HOME/.rbenv/bin":*) ;;
 *)
-	export PATH="$HOME/.rbenv/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/.rbenv/bin${PATH:+:${PATH}}"
+    ;;
 esac
 if command -v rbenv >/dev/null; then
-	eval "$(rbenv init -)"
+    eval "$(rbenv init -)"
 fi
 
 export GEM_HOME="$HOME/gems"
 case ":${PATH}:" in
 *:"$HOME/gems/bin":*) ;;
 *)
-	export PATH="$HOME/gems/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/gems/bin${PATH:+:${PATH}}"
+    ;;
 esac
 
 case ":${PATH}:" in
 *:"$HOME/.cargo/bin":*) ;;
 *)
-	export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
-	;;
+    export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
+    ;;
 esac
 if command -v cargo >/dev/null; then
-	. "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
 fi

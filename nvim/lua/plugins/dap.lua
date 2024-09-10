@@ -24,10 +24,66 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     ft = { "c", "python", "cpp" },
+    opts = {
+      controls = {
+        enabled = false,
+      },
+      layouts = {
+        {
+          elements = {
+            {
+              id = "scopes",
+              size = 0.25,
+            },
+            {
+              id = "breakpoints",
+              size = 0.25,
+            },
+            {
+              id = "stacks",
+              size = 0.25,
+            },
+          },
+          position = "left",
+          size = 40,
+        },
+        {
+          elements = {
+            {
+              id = "repl",
+              size = 0.5,
+            },
+            {
+              id = "console",
+              size = 0.5,
+            },
+          },
+          position = "bottom",
+          size = 10,
+        },
+        {
+          elements = {
+            {
+              id = "watches",
+              size = 1,
+            },
+          },
+          position = "bottom",
+          size = 20,
+        },
+      },
+    },
     keys = function()
       local dapui = require("dapui")
+      local toggle_all = function()
+        dapui.toggle({ reset = true })
+      end
+      local toggle_watches = function()
+        dapui.toggle({ layout = 3, reset = true })
+      end
       return {
-        { "<M-s>", dapui.toggle, mode = "n", desc = "[dap-ui] toggle" },
+        { "<M-s>", toggle_all, mode = "n", desc = "[dap-ui] toggle all ui" },
+        { "<M-w>", toggle_watches, mode = "n", desc = "[dap-ui] toggle watches" },
         { "<M-f>", dapui.float_element, mode = "n", desc = "[dap-ui] float" },
       }
     end,
@@ -142,11 +198,6 @@ return {
             desc = "[dap] Change module when switch buffer",
           })
         end,
-      },
-    },
-    opts = {
-      controls = {
-        enabled = false,
       },
     },
     config = function(_, opts)
