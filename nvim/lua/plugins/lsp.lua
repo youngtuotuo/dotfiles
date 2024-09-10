@@ -130,7 +130,14 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "folke/lazydev.nvim",
-      "rcarriga/cmp-dap",
+      {
+        "rcarriga/cmp-dap",
+        dependencies = {
+          "nvim-neotest/nvim-nio",
+          "mfussenegger/nvim-dap",
+          "rcarriga/nvim-dap-ui",
+        },
+      },
     },
     config = function(_, _)
       vim.api.nvim_set_keymap(
@@ -145,6 +152,9 @@ return {
       local MIN_LABEL_WIDTH = 20
       local cmp = require("cmp")
       cmp.setup({
+        enabled = function()
+          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+        end,
         completion = {
           autocomplete = false,
           scrollbar = false,
