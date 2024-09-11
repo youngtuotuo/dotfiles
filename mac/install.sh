@@ -136,8 +136,7 @@ function install_target() {
 		cd $HOME/github/neovim
 		git pull
 		make distclean
-		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local"
-		make install
+		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local" install
 		nvim --headless "+Lazy! sync" +qa
 		;;
 	"nvim-config")
