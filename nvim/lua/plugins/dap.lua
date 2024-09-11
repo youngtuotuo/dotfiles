@@ -201,14 +201,8 @@ return {
       },
     },
     config = function(_, opts)
-      local dap, dapui = require("dap"), require("dapui")
+      local dapui = require("dapui")
       dapui.setup(opts)
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.toggle({ layout = 3, reset = true })
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.toggle({ layout = 3, reset = true })
-      end
     end,
   },
 }
