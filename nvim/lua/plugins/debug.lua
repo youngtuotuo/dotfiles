@@ -100,12 +100,6 @@ return {
         require("dap").clear_breakpoints()
       end
 
-      local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-      if ok then
-        continue, step_over, step_into, step_out =
-          ts_repeat_move.make_repeatable_move_pair(continue, step_over, step_into, step_out)
-      end
-
       return {
         { "<M-q>", terminate, mode = "n", desc = "[dap] terminate dap" },
         { "<M-x>", continue, mode = "n", desc = "[dap] continue execution till next breakpoint" },
