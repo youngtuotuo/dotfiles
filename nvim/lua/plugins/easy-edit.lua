@@ -387,12 +387,8 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      local next_usage = function()
-        require("nvim-treesitter-refactor.navigation").goto_next_usage(1)
-      end
-      local prev_usage = function()
-        require("nvim-treesitter-refactor.navigation").goto_previous_usage(1)
-      end
+      local next_usage = require("nvim-treesitter-refactor.navigation").goto_next_usage
+      local prev_usage = require("nvim-treesitter-refactor.navigation").goto_previous_usage
       local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
       if ok then
         next_usage, prev_usage = ts_repeat_move.make_repeatable_move_pair(next_usage, prev_usage)
