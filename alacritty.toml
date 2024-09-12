@@ -1,2 +1,5 @@
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+size = 14
+[window]
+option_as_alt = "Both"
