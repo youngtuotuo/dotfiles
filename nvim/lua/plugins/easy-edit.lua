@@ -215,6 +215,23 @@ return {
     },
   },
   {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      enable_autocmd = false,
+    },
+    config = function(_, opts)
+      require("ts_context_commentstring").setup(opts)
+      local get_option = vim.filetype.get_option
+      vim.filetype.get_option = function(filetype, option)
+        return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+          or get_option(filetype, option)
+      end
+    end,
+  },
+  {
     "andymass/vim-matchup",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -389,6 +406,8 @@ return {
       },
     },
     config = function(_, opts)
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       require("nvim-treesitter.configs").setup(opts)
       local next_usage = require("nvim-treesitter-refactor.navigation").goto_next_usage
       local prev_usage = require("nvim-treesitter-refactor.navigation").goto_previous_usage
