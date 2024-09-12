@@ -1,10 +1,98 @@
 return {
   {
+    "hrsh7th/nvim-cmp",
+    ft = { "zig", "c", "cpp", "cuda", "python", "lua", "mojo" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "folke/lazydev.nvim",
+      "rcarriga/cmp-dap",
+      "ray-x/cmp-treesitter",
+    },
+    opts = function()
+      local ELLIPSIS_CHAR = "…"
+      local MAX_LABEL_WIDTH = 20
+      local MIN_LABEL_WIDTH = 20
+      local cmp = require("cmp")
+      return {
+        enabled = function()
+          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+        end,
+        completion = {
+          autocomplete = false,
+          scrollbar = false,
+        },
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item.menu = ({
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaSnip]",
+              treesitter = "[TS]",
+              lazydev = "[Lazydev]",
+            })[entry.source.name]
+            vim_item.kind = ""
+            local label = vim_item.abbr
+            local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+            if truncated_label ~= label then
+              vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+            elseif string.len(label) < MIN_LABEL_WIDTH then
+              local padding = string.rep(" ", MIN_LABEL_WIDTH - string.len(label))
+              vim_item.abbr = label .. padding
+            end
+            return vim_item
+          end,
+        },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-x><C-o>"] = cmp.mapping.complete(),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
+        sources = cmp.config.sources({
+          { name = "lazydev", group_index = 0 },
+        }, {
+          { name = "treesitter" },
+        }, {
+          { name = "nvim_lsp" },
+          { name = "luasnip" }, -- For luasnip users.
+        }),
+      }
+    end,
+    config = function(_, opts)
+      vim.api.nvim_set_keymap(
+        "i",
+        "<C-x><C-o>",
+        [[<Cmd>lua require('cmp').complete()<CR>]],
+        { noremap = true, silent = true }
+      )
+      vim.opt.pumheight = 20
+
+      local cmp = require("cmp")
+      cmp.setup(opts)
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+    end,
+  },
+  {
     "L3MON4D3/LuaSnip",
     cond = function()
       return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
     end,
-    ft = { "typst", "python", "html" },
+    ft = { "typst", "python" },
     version = "v2.*",
     opts = {
       history = true,
@@ -112,6 +200,315 @@ return {
     config = function(_, opts)
       require("conform").setup(opts)
       vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, { noremap = true, desc = "Format buffer" })
+    end,
+  },
+  {
+    "tpope/vim-rsi",
+    config = function()
+      vim.cmd([[inoremap <expr> <C-E> "\<Lt>End>"]])
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-refactor",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  {
+    "andymass/vim-matchup",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      vim.g.matchup_matchparen_offscreen = {}
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      opts = {
+        -- Defaults
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = true, -- Auto close on trailing </
+      },
+      -- Also override individual filetype configs, these take priority.
+      -- Empty by default, useful if one of the "opts" global settings
+      -- doesn't work well in a specific filetype
+      -- per_filetype = {
+      --   ["html"] = {
+      --     enable_close = false,
+      --   },
+      -- },
+    },
+    config = function(_, opts)
+      require("nvim-ts-autotag").setup(opts)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+      -- Repeat movement with ; and ,
+      -- ensure ; goes forward and , goes backward regardless of the last direction
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+      vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+      vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+      vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+      vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false,
+    build = ":TSUpdate",
+    ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
+    opts = {
+      indent = {
+        enable = false,
+      },
+      highlight = {
+        enable = false,
+      },
+      incremental_selection = {
+        enable = false,
+      },
+      -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
+      ensure_installed = {
+        -- "bash",
+        -- "c",
+        "cpp",
+        "cuda",
+        -- "lua",
+        -- "markdown",
+        -- "markdown_inline",
+        -- "python",
+        -- "query",
+        -- "vim",
+        -- "vimdoc",
+        "html",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "zig",
+        "rust",
+      },
+      textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["ai"] = "@conditional.outer",
+            ["ii"] = "@conditional.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+          },
+          include_surrounding_whitespace = false,
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>A"] = "@parameter.inner",
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+            ["]i"] = "@conditional.outer",
+            ["]l"] = "@loop.outer",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+            ["]I"] = "@conditional.outer",
+            ["]L"] = "@loop.outer",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+            ["[i"] = "@conditional.outer",
+            ["[l"] = "@loop.outer",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+            ["[I"] = "@conditional.outer",
+            ["[L"] = "@loop.outer",
+          },
+        },
+      },
+      refactor = {
+        highlight_definitions = {
+          enable = true,
+          -- Set to false if you have an `updatetime` of ~100.
+          clear_on_cursor_move = false,
+        },
+        smart_rename = {
+          enable = false,
+        },
+        navigation = {
+          enable = true,
+          -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
+          keymaps = {
+            goto_definition = false,
+            list_definitions = false,
+            list_definitions_toc = false,
+            goto_next_usage = false,
+            goto_previous_usage = false,
+          },
+        },
+        highlight_current_scope = { enable = false },
+      },
+      matchup = {
+        enable = true, -- mandatory, false will disable the whole extension
+        disable_virtual_text = true,
+      },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+      local next_usage = function()
+        require("nvim-treesitter-refactor.navigation").goto_next_usage(1)
+      end
+      local prev_usage = function()
+        require("nvim-treesitter-refactor.navigation").goto_previous_usage(1)
+      end
+      local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+      if ok then
+        next_usage, prev_usage = ts_repeat_move.make_repeatable_move_pair(next_usage, prev_usage)
+      end
+      vim.keymap.set({ "n" }, "<M-n>", next_usage)
+      vim.keymap.set({ "n" }, "<M-p>", prev_usage)
+    end,
+  },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    opts = { useDefaultKeymaps = false },
+    config = function(_, opts)
+      require("various-textobjs").setup(opts)
+      vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
+      vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local harpoon = require("harpoon")
+
+      -- REQUIRED
+      harpoon:setup()
+      -- REQUIRED
+
+      vim.keymap.set("n", "<leader>h", function()
+        harpoon:list():add()
+      end)
+      vim.keymap.set("n", "<leader>q", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list(), {
+          border = "",
+        })
+      end)
+
+      vim.keymap.set("n", "<leader>1", function()
+        harpoon:list():select(1)
+      end)
+      vim.keymap.set("n", "<leader>2", function()
+        harpoon:list():select(2)
+      end)
+      vim.keymap.set("n", "<leader>3", function()
+        harpoon:list():select(3)
+      end)
+      vim.keymap.set("n", "<leader>4", function()
+        harpoon:list():select(4)
+      end)
+      harpoon:extend({
+        UI_CREATE = function(cx)
+          vim.keymap.set("n", "<C-v>", function()
+            harpoon.ui:select_menu_item({ vsplit = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-s>", function()
+            harpoon.ui:select_menu_item({ split = true })
+          end, { buffer = cx.bufnr })
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
+      {
+        "polirritmico/telescope-lazy-plugins.nvim",
+        keys = {
+          { "<space>p", "<Cmd>Telescope lazy_plugins<CR>", desc = "Telescope: Plugins configurations" },
+        },
+      },
+    },
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          layout_strategy = "horizontal",
+          mappings = {
+            i = {
+              ["<C-s>"] = require("telescope.actions").select_horizontal,
+              ["<C-x>"] = false,
+            },
+            n = {
+              ["<C-s>"] = require("telescope.actions").select_horizontal,
+              ["<C-x>"] = false,
+            },
+          },
+          preview = true,
+        },
+        extensions = {
+          fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+          },
+          lazy_plugins = {
+            lazy_config = vim.fn.stdpath("config") .. _G.sep .. "init.lua", -- Must be a valid path to the file containing the lazy spec and setup() call.
+          },
+        },
+      })
+      require("telescope").load_extension("fzf")
+      require("telescope").load_extension("lazy_plugins")
+      local builtin = require("telescope.builtin")
+      vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files<cr>", { noremap = true })
+      vim.keymap.set({ "n" }, "<space>h", "<cmd>Telescope help_tags<cr>", { noremap = true })
+      vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers<cr>", { noremap = true })
+      vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep<cr>", { noremap = true })
+      vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics<cr>", { noremap = true })
+      vim.keymap.set({ "n" }, "<space>r", "<cmd>Telescope lsp_references<cr>", { noremap = true })
     end,
   },
 }

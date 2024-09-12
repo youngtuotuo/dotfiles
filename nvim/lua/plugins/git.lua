@@ -19,22 +19,14 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Navigation
-        map("n", "]c", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "]c", bang = true })
-          else
-            gitsigns.nav_hunk("next")
-          end
-        end)
-
-        map("n", "[c", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "[c", bang = true })
-          else
-            gitsigns.nav_hunk("prev")
-          end
-        end)
+        local gs = require("gitsigns")
+        next_hunk, prev_hunk = gs.next_hunk, gs.prev_hunk
+        local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+        if ok then
+          next_hunk, prev_hunk = ts_repeat_move.make_repeatable_move_pair(next_hunk, prev_hunk)
+        end
+        vim.keymap.set({ "n", "x", "o" }, "]c", next_hunk)
+        vim.keymap.set({ "n", "x", "o" }, "[c", prev_hunk)
 
         -- Actions
         map("n", "<leader>gs", gitsigns.stage_hunk)

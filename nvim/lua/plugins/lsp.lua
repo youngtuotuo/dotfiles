@@ -34,7 +34,7 @@ local fts = { "yaml", "html", "markdown", "json", "python", "sh", "lua", "c", "c
 return {
   {
     "williamboman/mason.nvim",
-    ft = { "json", "python", "sh", "lua", "c", "cpp", "cuda", "zig" },
+    ft = fts,
     init = function()
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
@@ -73,6 +73,7 @@ return {
       "williamboman/mason.nvim",
       -- Better installer than default
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "hrsh7th/nvim-cmp",
     },
     init = function()
       vim.api.nvim_create_user_command("LI", "LspInfo", {})
@@ -109,102 +110,17 @@ return {
       end
 
       vim.keymap.set("n", "<space>i", toggle_lsp_highlight, { desc = "toggle lsp highlight" })
-      vim.keymap.set("n", "gn", vim.lsp.buf.rename, { desc = "lsp rename" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "lsp go to definition" })
-      vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { desc = "code action" })
+      -- vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "lsp rename" })
+      -- vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { desc = "code action" })
+      -- vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "references" })
       vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "type definition" })
 
       local function toggle_inlay_hints()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end
       vim.keymap.set("n", "gh", toggle_inlay_hints, { desc = "toggle inlay hints" })
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    ft = { "zig", "c", "cpp", "cuda", "python", "lua", "mojo" },
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "folke/lazydev.nvim",
-      {
-        "rcarriga/cmp-dap",
-        dependencies = {
-          "nvim-neotest/nvim-nio",
-          "mfussenegger/nvim-dap",
-          "rcarriga/nvim-dap-ui",
-        },
-      },
-    },
-    config = function(_, _)
-      vim.api.nvim_set_keymap(
-        "i",
-        "<C-x><C-o>",
-        [[<Cmd>lua require('cmp').complete()<CR>]],
-        { noremap = true, silent = true }
-      )
-      vim.opt.pumheight = 10
-      local ELLIPSIS_CHAR = "…"
-      local MAX_LABEL_WIDTH = 20
-      local MIN_LABEL_WIDTH = 20
-      local cmp = require("cmp")
-      cmp.setup({
-        enabled = function()
-          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-        end,
-        completion = {
-          autocomplete = false,
-          scrollbar = false,
-        },
-        formatting = {
-          format = function(entry, vim_item)
-            vim_item.menu = ""
-            vim_item.kind = ""
-            local label = vim_item.abbr
-            local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
-            if truncated_label ~= label then
-              vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
-            elseif string.len(label) < MIN_LABEL_WIDTH then
-              local padding = string.rep(" ", MIN_LABEL_WIDTH - string.len(label))
-              vim_item.abbr = label .. padding
-            end
-            return vim_item
-          end,
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-x><C-o>"] = cmp.mapping.complete(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        }),
-        sources = cmp.config.sources({
-          { name = "lazydev", group_index = 0 },
-        }, {
-          { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
-        }, {
-          { name = "buffer" },
-        }),
-      })
 
-      require("cmp").setup.filetype({ "dap-repl", "dapui_watches" }, {
-        sources = {
-          { name = "dap" },
-        },
-      })
-      -- Set up lspconfig.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       require("lspconfig").mojo.setup({
         manual_install = true,
@@ -293,41 +209,5 @@ return {
         min_width = 30,
       },
     },
-  },
-  {
-    "RRethy/vim-illuminate",
-    ft = fts,
-    opts = {
-      providers = {
-        "treesitter",
-        "lsp",
-        "regex",
-      },
-      filetypes_denylist = {},
-      filetypes_allowlist = fts,
-    },
-    config = function(_, opts)
-      vim.keymap.set(
-        { "n" },
-        "<C-p>",
-        require("illuminate").goto_prev_reference,
-        { noremap = true, desc = "illuminate go to prev" }
-      )
-      vim.keymap.set(
-        { "n" },
-        "<C-n>",
-        require("illuminate").goto_next_reference,
-        { noremap = true, desc = "illuminate go to prev" }
-      )
-      vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
-      vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
-      vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
-      require("illuminate").set_highlight_defaults = function()
-        vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = false })
-        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { underline = false })
-        vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = false })
-      end
-      require("illuminate").configure(opts)
-    end,
   },
 }
