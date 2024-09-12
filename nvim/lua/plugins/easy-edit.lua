@@ -406,8 +406,6 @@ return {
       },
     },
     config = function(_, opts)
-      vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       require("nvim-treesitter.configs").setup(opts)
       local next_usage = require("nvim-treesitter-refactor.navigation").goto_next_usage
       local prev_usage = require("nvim-treesitter-refactor.navigation").goto_previous_usage
