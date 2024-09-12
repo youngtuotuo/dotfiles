@@ -397,8 +397,8 @@ return {
       if ok then
         next_usage, prev_usage = ts_repeat_move.make_repeatable_move_pair(next_usage, prev_usage)
       end
-      vim.keymap.set({ "n" }, "<M-n>", next_usage)
-      vim.keymap.set({ "n" }, "<M-p>", prev_usage)
+      vim.keymap.set({ "n" }, "<M-]>", next_usage)
+      vim.keymap.set({ "n" }, "<M-[>", prev_usage)
     end,
   },
   {

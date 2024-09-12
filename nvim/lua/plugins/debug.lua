@@ -107,13 +107,13 @@ return {
       end
 
       return {
-        { "<C-S-q>", terminate, mode = "n", desc = "[dap] terminate dap" },
-        { "<C-S-x>", continue, mode = "n", desc = "[dap] continue execution till next breakpoint" },
-        { "<C-S-n>", step_over, mode = "n", desc = "[dap] forward one execution" },
-        { "<C-S-i>", step_into, mode = "n", desc = "[dap] step into a function or method" },
-        { "<C-S-o>", step_out, mode = "n", desc = "[dap] step out of a function or method" },
-        { "<C-S-a>", add_breakpoint, mode = "n", desc = "[dap] toggle breakpoint" },
-        { "<C-S-l>", clear_breakpoints, mode = "n", desc = "[dap] clear breakpoints" },
+        { "<M-q>", terminate, mode = "n", desc = "[dap] terminate dap" },
+        { "<M-x>", continue, mode = "n", desc = "[dap] continue execution till next breakpoint" },
+        { "<M-n>", step_over, mode = "n", desc = "[dap] forward one execution" },
+        { "<M-i>", step_into, mode = "n", desc = "[dap] step into a function or method" },
+        { "<M-o>", step_out, mode = "n", desc = "[dap] step out of a function or method" },
+        { "<M-a>", add_breakpoint, mode = "n", desc = "[dap] toggle breakpoint" },
+        { "<M-l>", clear_breakpoints, mode = "n", desc = "[dap] clear breakpoints" },
       }
     end,
     config = function()
