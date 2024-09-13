@@ -128,8 +128,14 @@ function install_target() {
 			if [-f "$HOME/.local/bin/python" ]; then
 				rm $HOME/.local/bin/python
 			fi
+			if [-f "$HOME/.local/bin/python3" ]; then
+				rm $HOME/.local/bin/python3
+			fi
 			if [-f "$HOME/.local/bin/pip" ]; then
 				rm $HOME/.local/bin/pip
+			fi
+			if [-f "$HOME/.local/bin/pip3" ]; then
+				rm $HOME/.local/bin/pip3
 			fi
 			wget $resp -O $HOME/python.tgz
 			mkdir -p $HOME/python
@@ -138,9 +144,6 @@ function install_target() {
 			./configure --prefix=$HOME/.local --enable-optimizations --with-ensurepip=install --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 			make
 			make install
-			ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
-			rm $HOME/python.tgz
-			rm -r $HOME/python
 		fi
 		;;
 	"lua")

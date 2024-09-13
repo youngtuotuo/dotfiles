@@ -121,9 +121,9 @@ return {
           require("luasnip").change_choice(1)
         end
       end
-      vim.keymap.set({ "i", "s" }, "<C-n>", next_node, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-p>", prev_node, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-j>", cycle_choice, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-j>", next_node, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-k>", prev_node, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<Tab>", cycle_choice, { silent = true })
     end,
   },
   {
@@ -413,8 +413,8 @@ return {
       if ok then
         next_usage, prev_usage = ts_repeat_move.make_repeatable_move_pair(next_usage, prev_usage)
       end
-      vim.keymap.set({ "n" }, "<M-]>", next_usage)
-      vim.keymap.set({ "n" }, "<M-[>", prev_usage)
+      vim.keymap.set({ "n" }, "<leader>]", next_usage)
+      vim.keymap.set({ "n" }, "<leader>[", prev_usage)
     end,
   },
   {
