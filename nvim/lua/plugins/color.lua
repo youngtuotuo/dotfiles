@@ -12,8 +12,19 @@ return {
     end,
   },
   {
-    "tiagovla/tokyodark.nvim",
+    "catppuccin/nvim",
     lazy = not has_256_colors,
+    opts = {
+      transparent_background = true,
+    },
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colo("catppuccin")
+    end,
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    lazy = true,
     opts = {
       -- custom options here
     },
