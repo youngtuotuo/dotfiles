@@ -122,10 +122,25 @@ function install_target() {
 		;;
 	"zig")
 		title "zig"
-		if ! command -v zig >/dev/null; then
-			brew install zig
+		echo "Zig download page: https://ziglang.org/download/"
+		read -p "Please give current zig tar file url: " resp
+		if [ -z "$resp" ]; then
+			info "Empty url, skip."
 		else
-			info "zig exists: $(which zig)"
+			if [ -f "$HOME/zig.tar.xz" ]; then
+				rm $HOME/zig.tar.xz
+			fi
+			if [ -d "$HOME/zig" ]; then
+				rm -r $HOME/zig
+			fi
+			wget $resp -O $HOME/zig.tar.xz
+			mkdir -p $HOME/zig
+			tar xf $HOME/zig.tar.xz -C $HOME/zig --strip-components 1
+			if [ -d "$HOME/.local/zig" ]; then
+				rm -r $HOME/.local/zig
+			fi
+			mv $HOME/zig/ $HOME/.local/zig
+			rm $HOME/zig.tar.xz
 		fi
 		;;
 	"neovim")

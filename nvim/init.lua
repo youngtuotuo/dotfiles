@@ -187,6 +187,7 @@ vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.splitkeep = [[topline]]
 vim.opt.swapfile = false
 vim.opt.updatetime = 50
 vim.opt.nu = true

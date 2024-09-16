@@ -9,6 +9,13 @@ case ":${PATH}:" in
         ;;
 esac
 
+case ":${PATH}:" in
+*:"$HOME/.local/zig":*) ;;
+*)
+    export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
+    ;;
+esac
+
 # export PATH
 case ":${PATH}:" in
     *:"/opt/homebrew/opt/binutils/bin":*)
