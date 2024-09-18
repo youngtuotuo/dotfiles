@@ -203,12 +203,6 @@ return {
     end,
   },
   {
-    "tpope/vim-rsi",
-    config = function()
-      vim.cmd([[inoremap <expr> <C-E> "\<Lt>End>"]])
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter-refactor",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
