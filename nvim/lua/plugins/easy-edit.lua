@@ -123,7 +123,7 @@ return {
       end
       vim.keymap.set({ "i", "s" }, "<C-j>", next_node, { silent = true })
       vim.keymap.set({ "i", "s" }, "<C-k>", prev_node, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<Tab>", cycle_choice, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-h>", cycle_choice, { silent = true })
     end,
   },
   {
