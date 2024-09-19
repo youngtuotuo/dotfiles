@@ -126,16 +126,16 @@ function install_target() {
 			if [ -d "$HOME/python" ]; then
 				rm -r $HOME/python
 			fi
-			if [-f "$HOME/.local/bin/python" ]; then
+			if [ -f "$HOME/.local/bin/python" ]; then
 				rm $HOME/.local/bin/python
 			fi
-			if [-f "$HOME/.local/bin/python3" ]; then
+			if [ -f "$HOME/.local/bin/python3" ]; then
 				rm $HOME/.local/bin/python3
 			fi
-			if [-f "$HOME/.local/bin/pip" ]; then
+			if [ -f "$HOME/.local/bin/pip" ]; then
 				rm $HOME/.local/bin/pip
 			fi
-			if [-f "$HOME/.local/bin/pip3" ]; then
+			if [ -f "$HOME/.local/bin/pip3" ]; then
 				rm $HOME/.local/bin/pip3
 			fi
 			wget $resp -O $HOME/python.tgz
