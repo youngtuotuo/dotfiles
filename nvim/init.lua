@@ -102,6 +102,7 @@ end
 -- c            Command-line
 -- t            Terminal-Job
 
+vim.keymap.set({ "i" }, "<C-i>", "<tab>", { nowait = true, noremap = true })
 vim.keymap.set({ "i" }, "<C-p>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-n>", "<nop>", { nowait = true, noremap = true, desc = "Not show native menu" })
 vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
