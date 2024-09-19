@@ -2,14 +2,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 case ":${PATH}:" in
-    *:"$HOME/.local/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
-        ;;
-esac
-
-case ":${PATH}:" in
 *:"$HOME/.local/zig":*) ;;
 *)
     export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
@@ -49,4 +41,12 @@ esac
 
 
 export MODULAR_HOME="$HOME/.modular"
+
+case ":${PATH}:" in
+    *:"$HOME/.local/bin":*)
+        ;;
+    *)
+        export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+        ;;
+esac
 

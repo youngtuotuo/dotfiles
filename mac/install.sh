@@ -75,12 +75,16 @@ function install_target() {
 			if [ -d "$HOME/python" ]; then
 				rm -r $HOME/python
 			fi
-			if [-f "$HOME/.local/bin/python" ]; then
-				rm $HOME/.local/bin/python
-			fi
-			if [-f "$HOME/.local/bin/pip" ]; then
-				rm $HOME/.local/bin/pip
-			fi
+			find "$HOME/.local/bin" -name "python*" -exec rm -f {} +
+			find "$HOME/.local/bin" -name "pip*" -exec rm -f {} +
+			find "$HOME/.local/bin" -name "2to3*" -exec rm -f {} +
+			find "$HOME/.local/bin" -name "pydoc*" -exec rm -f {} +
+			find "$HOME/.local/bin" -name "idle3*" -exec rm -f {} +
+			find "$HOME/.local/bin" -name "python3*-config" -exec rm -f {} +
+			find "$HOME/.local/include" -type d -name "python*" -exec rm -rf {} +
+			find "$HOME/.local/lib" -maxdepth 1 -name "*python*" -exec rm -rf {} +
+			find "$HOME/.local/lib/pkgconfig" -name "python*" -exec rm -rf {} +
+			find "$HOME/.local/share/man/man1" -name "python*" -exec rm -rf {} +
 			wget $resp -O $HOME/python.tgz
 			mkdir -p $HOME/python
 			cd $HOME
@@ -89,10 +93,10 @@ function install_target() {
 			./configure --prefix=$HOME/.local --enable-optimizations --with-openssl=$(brew --prefix openssl) --with-ensurepip=install ARCHFLAGS="-arch arm64" LDFLAGS="-L$HOME/.local/lib" CPPFLAGS="-I$HOME/.local/include"
 			make
 			make install
-			ln -s $HOME/.local/bin/python3 $HOME/.local/bin/python
-			ln -s $HOME/.local/bin/pip3 $HOME/.local/bin/pip
-			rm $HOME/python.tgz
-			rm -r $HOME/python
+			pip_bin=$(find "$HOME/.local/bin" -type f -name "pip3\.*")
+			ln -s $pip_bin $HOME/.local/bin/pip
+			python_bin=$(find "$HOME/.local/bin" -type f -name "python3\.*[0-9]")
+			ln -s $python_bin $HOME/.local/bin/python
 		fi
 		;;
 	"uv")
