@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = { "*.c", "*.cpp", "*.cu" },
   group = group,
   callback = function()
-    vim.bo.shiftwidth = 2
+    vim.bo.shiftwidth = 4
     vim.bo.define = [[^\(#\s*define\|[a-z]*\s*const\s*[a-z]*\)]]
     vim.bo.commentstring = [[// %s]]
   end,
