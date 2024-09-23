@@ -17,6 +17,7 @@ return {
     lazy = not has_256_colors,
     opts = {
       transparent_background = true,
+      show_end_of_buffer = true,
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
