@@ -18,6 +18,14 @@ return {
     opts = {
       transparent_background = true,
       show_end_of_buffer = true,
+      highlight_overrides = {
+        mocha = function(mocha)
+          return {
+            StatusLine = { bg = mocha.mantle },
+            StatusLineNC = { bg = mocha.mantle },
+          }
+        end,
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
