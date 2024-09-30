@@ -188,7 +188,7 @@ return {
         },
         clang_format = {
           prepend_args = {
-            "-style={BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 120}",
+            "-style={BasedOnStyle: llvm, IndentWidth: 4, AllowShortBlocksOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Custom, BraceWrapping: {AfterClass: true, AfterControlStatement: true, AfterEnum: true, AfterFunction: true, AfterNamespace: false, AfterStruct: true, AfterUnion: true, BeforeCatch: true, BeforeElse: true}}",
           },
         },
       },
