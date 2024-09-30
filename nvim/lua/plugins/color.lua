@@ -30,4 +30,8 @@ return {
       vim.cmd.color("tender")
     end,
   },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {},
+  },
 }
