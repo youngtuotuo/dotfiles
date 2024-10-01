@@ -21,8 +21,8 @@ return {
       highlight_overrides = {
         mocha = function(mocha)
           return {
-            StatusLine = { bg = mocha.mantle },
-            StatusLineNC = { bg = mocha.mantle },
+            StatusLine = { bg = "none" },
+            StatusLineNC = { bg = "none" },
           }
         end,
       },
@@ -44,16 +44,16 @@ return {
     opts = {
       sections = {
         lualine_a = {},
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_b = {},
+        lualine_c = { "branch", "diff", "diagnostics", "filename" },
         lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
         lualine_y = {},
         lualine_z = {},
       },
       inactive_sections = {
         lualine_a = {},
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_b = {},
+        lualine_c = { "branch", "diff", "diagnostics", "filename" },
         lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
         lualine_y = {},
         lualine_z = {},
