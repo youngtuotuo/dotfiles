@@ -201,6 +201,7 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars = [[tab:>-,trail:.]]
 vim.opt.list = true
 vim.opt.inccommand = "split"
+vim.opt.termguicolors = false
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
