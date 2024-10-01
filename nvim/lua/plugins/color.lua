@@ -39,25 +39,4 @@ return {
       vim.cmd.color("tender")
     end,
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "branch", "diff", "diagnostics", "filename" },
-        lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "branch", "diff", "diagnostics", "filename" },
-        lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
-    },
-  },
 }
