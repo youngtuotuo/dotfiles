@@ -10,6 +10,7 @@ return {
         row = 0,
         col = 1,
       },
+      signcolumn = false,
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
 
@@ -42,6 +43,7 @@ return {
         map("n", "<leader>gR", gitsigns.reset_buffer)
         map("n", "<leader>gp", gitsigns.preview_hunk)
         map("n", "<leader>gb", gitsigns.blame_line)
+        map("n", "<leader>gg", gitsigns.toggle_signs)
       end,
     },
   },
