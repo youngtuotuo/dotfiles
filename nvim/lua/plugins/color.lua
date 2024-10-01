@@ -41,6 +41,10 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = {},
+    opts = {
+      sections = {
+        lualine_a = {},
+      },
+    },
   },
 }
