@@ -12,10 +12,4 @@ return {
       require("colorizer").setup()
     end,
   },
-  {
-    "jacoborus/tender.vim",
-    config = function()
-      vim.cmd.color("tender")
-    end,
-  },
 }
