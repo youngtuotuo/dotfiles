@@ -44,6 +44,19 @@ return {
     opts = {
       sections = {
         lualine_a = {},
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+        lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+        lualine_x = { "encoding", "fileformat", "filetype", "progress", "location" },
+        lualine_y = {},
+        lualine_z = {},
       },
     },
   },
