@@ -288,13 +288,14 @@ return {
       indent = {
         enable = false,
       },
-      highlight = {
-        enable = (string.find(vim.api.nvim_list_uis()[1].term_name, "xterm%-256color") ~= nil)
-          or (string.find(vim.api.nvim_list_uis()[1].term_name, "tmux%-256color") ~= nil)
-          or (string.find(vim.api.nvim_list_uis()[1].term_name, "screen%-256color") ~= nil)
-          or (string.find(vim.api.nvim_list_uis()[1].term_name, "alacritty") ~= nil)
-          or (vim.fn.has("win32") == 1),
-      },
+      -- highlight = {
+      --   enable = (string.find(vim.api.nvim_list_uis()[1].term_name, "xterm%-256color") ~= nil)
+      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "tmux%-256color") ~= nil)
+      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "screen%-256color") ~= nil)
+      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "alacritty") ~= nil)
+      --     or (vim.fn.has("win32") == 1),
+      -- },
+      highlight = false,
       incremental_selection = {
         enable = false,
       },

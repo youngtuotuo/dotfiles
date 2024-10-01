@@ -13,28 +13,7 @@ return {
     end,
   },
   {
-    "catppuccin/nvim",
-    lazy = not has_256_colors,
-    opts = {
-      transparent_background = true,
-      show_end_of_buffer = true,
-      highlight_overrides = {
-        mocha = function(mocha)
-          return {
-            StatusLine = { bg = "none" },
-            StatusLineNC = { bg = "none" },
-          }
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colo("catppuccin")
-    end,
-  },
-  {
     "jacoborus/tender.vim",
-    lazy = has_256_colors,
     config = function()
       vim.cmd.color("tender")
     end,
