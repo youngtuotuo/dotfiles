@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     vim.opt.indentkeys:remove("<:>")
     vim.opt.formatoptions = "jql"
+    vim.treesitter.stop()
   end,
   desc = "All buffer need formatoptions = jql",
 })
@@ -177,7 +178,7 @@ vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
-vim.opt.laststatus = 2
+vim.opt.laststatus = 1
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
 vim.opt.guicursor = [[n-v-c-i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
@@ -194,6 +195,7 @@ vim.opt.completeopt = [[menu,menuone,noselect,popup]]
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
+vim.opt.wildmode = [[list:longest]]
 vim.opt.virtualedit = "block"
 vim.opt.mousemodel = "extend"
 vim.opt.formatoptions:remove "o"
