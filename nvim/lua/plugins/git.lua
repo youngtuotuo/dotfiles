@@ -11,6 +11,7 @@ return {
         col = 1,
       },
       signcolumn = false,
+      numhl = true,
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
 
