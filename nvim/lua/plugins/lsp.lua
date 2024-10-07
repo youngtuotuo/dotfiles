@@ -111,6 +111,7 @@ return {
 
       vim.keymap.set("n", "<space>i", toggle_lsp_highlight, { desc = "toggle lsp highlight" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "lsp go to definition" })
+      vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { desc = "lsp signature help" })
       -- vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "lsp rename" })
       -- vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { desc = "code action" })
       -- vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "references" })

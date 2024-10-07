@@ -234,6 +234,6 @@ vim.filetype.add({
   },
 })
 
-vim.cmd.colo [[vim]]
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", ctermbg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", ctermbg = "none" })
+-- vim.cmd.colo [[vim]]
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", ctermbg = "none" })
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", ctermbg = "none" })
