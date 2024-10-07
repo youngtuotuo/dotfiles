@@ -1,5 +1,8 @@
 return {
   {
+    "tpope/vim-vinegar",
+  },
+  {
     "L3MON4D3/LuaSnip",
     cond = function()
       return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
