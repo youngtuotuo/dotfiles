@@ -199,6 +199,7 @@ vim.opt.listchars = [[tab:>-,trail:.]]
 vim.opt.list = true
 vim.opt.inccommand = "split"
 vim.opt.termguicolors = false
+vim.opt.cursorline = true
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
