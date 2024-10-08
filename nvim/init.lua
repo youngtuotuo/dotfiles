@@ -206,18 +206,13 @@ vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
-vim.opt.guicursor =
-  [[n-v-c-i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
-vim.opt.splitright = true
-vim.opt.splitbelow = true
 vim.opt.splitkeep = [[topline]]
 vim.opt.swapfile = false
 vim.opt.updatetime = 50
 vim.opt.nu = true
 vim.opt.rnu = true
-vim.opt.completeopt = [[menu,menuone,noselect,popup]]
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
@@ -228,14 +223,6 @@ vim.opt.hlsearch = false
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
-
--- :h netrw-browse-maps
-vim.g.netrw_altfile = 1
-vim.g.netrw_cursor = 5
-vim.g.netrw_preview = 1
-vim.g.netrw_alto = 0
-vim.g.netrw_hide = 0
-vim.g.netrw_sizestyle = "h"
 
 if vim.fn.has("win32") == 1 then
   vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
