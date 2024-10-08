@@ -37,7 +37,7 @@ config.keys = {
   },
 }
 
-config.font_size = 12.0
+config.font_size = 14.0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe", "-nologo" }
   config.font_size = 10.0
@@ -102,6 +102,8 @@ config.colors = {
     },
   },
 }
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 config.font_rules = {
   {
     intensity = "Normal",
