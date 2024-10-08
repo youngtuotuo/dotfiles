@@ -230,6 +230,5 @@ vim.filetype.add({
   },
 })
 
-vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "darkgrey", ctermbg = "darkgrey" })
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "darkgrey", ctermbg = "darkgrey", fg = "Black", ctermfg = "Black" })
