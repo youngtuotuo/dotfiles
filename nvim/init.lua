@@ -223,7 +223,6 @@ vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
-vim.opt.termguicolors = false
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
 
@@ -254,7 +253,5 @@ vim.filetype.add({
   },
 })
 
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "darkgrey", ctermbg = "darkgrey" })
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "darkgrey", ctermbg = "darkgrey", fg = "Black", ctermfg = "Black" })
 vim.api.nvim_set_hl(0, "Comment", { fg = "darkgrey", ctermfg = "darkgrey" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
