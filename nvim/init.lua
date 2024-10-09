@@ -222,7 +222,7 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
-vim.opt.termguicolros = true
+vim.opt.termguicolors = true
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
