@@ -108,6 +108,8 @@ vim.keymap.set(
   "<nop>",
   { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" }
 )
+vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
+vim.keymap.set({ "i" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
 vim.keymap.set(
   { "n" },
