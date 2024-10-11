@@ -211,7 +211,7 @@ vim.opt.smartcase = true -- ... unless there is a capital letter in the query
 vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
 vim.opt.splitkeep = [[topline]]
-vim.opt.completeopt = [[menu,noselect,preview,fuzzy]]
+vim.opt.completeopt = [[menu,menuone,noselect,preview,fuzzy]]
 vim.opt.swapfile = false
 vim.opt.updatetime = 50
 vim.opt.nu = true
@@ -223,7 +223,6 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
-vim.opt.termguicolors = true
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
