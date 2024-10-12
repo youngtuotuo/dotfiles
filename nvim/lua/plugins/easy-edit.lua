@@ -1,56 +1,7 @@
 return {
   {
     "tpope/vim-vinegar",
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    cond = function()
-      return vim.o.filetype ~= "TelescopPrompt" and vim.o.filetype ~= "help"
-    end,
-    ft = { "typst", "python" },
-    version = "v2.*",
-    opts = {
-      history = true,
-      updateevents = "TextChanged,TextChangedI",
-      enable_autosnippets = true,
-      store_selection_keys = "<Tab>",
-    },
-    config = function(_, opts)
-      local ls = require("luasnip")
-      local snippet_path = vim.fn.stdpath("config") .. "/lua/snippets/"
-      require("luasnip.loaders.from_lua").load({ paths = snippet_path })
-      vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
-      ls.config.set_config(opts)
-      local next_node = function()
-        if require("luasnip").jumpable(1) then
-          require("luasnip").jump(1)
-        end
-      end
-      local prev_node = function()
-        if require("luasnip").jumpable(-1) then
-          require("luasnip").jump(-1)
-        end
-      end
-      local cycle_choice = function()
-        if require("luasnip").choice_active() then
-          require("luasnip").change_choice(1)
-        end
-      end
-      vim.keymap.set({ "i", "s" }, "<C-j>", next_node, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-k>", prev_node, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-h>", cycle_choice, { silent = true })
-    end,
-  },
-  {
-    "junegunn/vim-easy-align",
-    config = function()
-      vim.keymap.set({ "x" }, "ga", "<Plug>(EasyAlign)")
-      vim.keymap.set({ "n" }, "ga", "<Plug>(EasyAlign)")
-    end,
-  },
-  {
-    "stevearc/stickybuf.nvim",
-    opts = {},
+    keys = { "-" },
   },
   {
     "chrisgrieser/nvim-spider",
@@ -71,7 +22,18 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    ft = { "yaml", "json", "python", "sh", "lua", "c", "cpp", "cuda" },
+    lazy = true,
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format()
+        end,
+        mode = { "n", "v" },
+        noremap = true,
+        desc = "Format buffer",
+      },
+    },
     dependencies = {
       {
         "williamboman/mason.nvim",
@@ -112,30 +74,6 @@ return {
     },
     config = function(_, opts)
       require("conform").setup(opts)
-      vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, { noremap = true, desc = "Format buffer" })
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-refactor",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      enable_autocmd = false,
-    },
-    config = function(_, opts)
-      require("ts_context_commentstring").setup(opts)
-      local get_option = vim.filetype.get_option
-      vim.filetype.get_option = function(filetype, option)
-        return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
-          or get_option(filetype, option)
-      end
     end,
   },
   {
@@ -149,6 +87,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
+    ft = { "html" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -174,23 +113,17 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    keys = {
+      { ";", function() require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next() end, mode = { "n", "x", "o" }},
+      { ",", function() require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous() end, mode = { "n", "x", "o" }},
+      { "f", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_f_expr() end, mode = { "n", "x", "o" }, expr = true },
+      { "F", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_F_expr() end, mode = { "n", "x", "o" }, expr = true },
+      { "t", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_t_expr() end, mode = { "n", "x", "o" }, expr = true },
+      { "T", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_T_expr() end, mode = { "n", "x", "o" }, expr = true },
+    },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-
-      -- Repeat movement with ; and ,
-      -- ensure ; goes forward and , goes backward regardless of the last direction
-      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-
-      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-      vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
-      vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -287,28 +220,6 @@ return {
           },
         },
       },
-      refactor = {
-        highlight_definitions = {
-          enable = false,
-          -- Set to false if you have an `updatetime` of ~100.
-          clear_on_cursor_move = false,
-        },
-        smart_rename = {
-          enable = false,
-        },
-        navigation = {
-          enable = true,
-          -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
-          keymaps = {
-            goto_definition = false,
-            list_definitions = false,
-            list_definitions_toc = false,
-            goto_next_usage = false,
-            goto_previous_usage = false,
-          },
-        },
-        highlight_current_scope = { enable = false },
-      },
       matchup = {
         enable = true, -- mandatory, false will disable the whole extension
         disable_virtual_text = true,
@@ -316,14 +227,6 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      local next_usage = require("nvim-treesitter-refactor.navigation").goto_next_usage
-      local prev_usage = require("nvim-treesitter-refactor.navigation").goto_previous_usage
-      local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-      if ok then
-        next_usage, prev_usage = ts_repeat_move.make_repeatable_move_pair(next_usage, prev_usage)
-      end
-      vim.keymap.set({ "n" }, "<leader>]", next_usage)
-      vim.keymap.set({ "n" }, "<leader>[", prev_usage)
     end,
   },
   {

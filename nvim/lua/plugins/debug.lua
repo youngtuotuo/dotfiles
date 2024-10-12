@@ -7,17 +7,9 @@ return {
       "mfussenegger/nvim-dap",
     },
     keys = function()
-      local dapui = require("dapui")
-      local toggle_all = function()
-        dapui.toggle({ reset = true })
-      end
-      local toggle_watches = function()
-        dapui.toggle({ layout = 3, reset = true })
-      end
       return {
-        { "<M-s>", toggle_all, mode = "n", desc = "[dap-ui] toggle all ui" },
-        { "<M-w>", toggle_watches, mode = "n", desc = "[dap-ui] toggle watches" },
-        { "<M-f>", dapui.float_element, mode = "n", desc = "[dap-ui] float" },
+        { "<M-s>", function() require("dapui").toggle({ reset = true }) end, mode = "n", desc = "[dap-ui] toggle all ui" },
+        { "<M-w>", function() require("dapui").toggle({ layout = 3, reset = true }) end, mode = "n", desc = "[dap-ui] toggle watches" },
       }
     end,
     opts = {
