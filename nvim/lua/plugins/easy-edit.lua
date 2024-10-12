@@ -16,13 +16,21 @@ return {
     end,
   },
   {
+    "chrisgrieser/nvim-various-textobjs",
+    opts = { useDefaultKeymaps = false },
+    config = function(_, opts)
+      require("various-textobjs").setup(opts)
+      vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
+      vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
+    end,
+  },
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     opts = {},
   },
   {
     "stevearc/conform.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>f",
@@ -78,6 +86,7 @@ return {
   },
   {
     "andymass/vim-matchup",
+    ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -87,7 +96,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    ft = { "html" },
+    ft = { "html", "xml" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -98,14 +107,6 @@ return {
         enable_rename = true, -- Auto rename pairs of tags
         enable_close_on_slash = true, -- Auto close on trailing </
       },
-      -- Also override individual filetype configs, these take priority.
-      -- Empty by default, useful if one of the "opts" global settings
-      -- doesn't work well in a specific filetype
-      -- per_filetype = {
-      --   ["html"] = {
-      --     enable_close = false,
-      --   },
-      -- },
     },
     config = function(_, opts)
       require("nvim-ts-autotag").setup(opts)
@@ -113,14 +114,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    keys = {
-      { ";", function() require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next() end, mode = { "n", "x", "o" }},
-      { ",", function() require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous() end, mode = { "n", "x", "o" }},
-      { "f", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_f_expr() end, mode = { "n", "x", "o" }, expr = true },
-      { "F", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_F_expr() end, mode = { "n", "x", "o" }, expr = true },
-      { "t", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_t_expr() end, mode = { "n", "x", "o" }, expr = true },
-      { "T", function() require("nvim-treesitter.textobjects.repeatable_move").builtin_T_expr() end, mode = { "n", "x", "o" }, expr = true },
-    },
+    ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -134,13 +128,6 @@ return {
       indent = {
         enable = false,
       },
-      -- highlight = {
-      --   enable = (string.find(vim.api.nvim_list_uis()[1].term_name, "xterm%-256color") ~= nil)
-      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "tmux%-256color") ~= nil)
-      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "screen%-256color") ~= nil)
-      --     or (string.find(vim.api.nvim_list_uis()[1].term_name, "alacritty") ~= nil)
-      --     or (vim.fn.has("win32") == 1),
-      -- },
       highlight = false,
       incremental_selection = {
         enable = false,
@@ -230,28 +217,21 @@ return {
     end,
   },
   {
-    "chrisgrieser/nvim-various-textobjs",
-    opts = { useDefaultKeymaps = false },
-    config = function(_, opts)
-      require("various-textobjs").setup(opts)
-      vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
-      vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
-    end,
-  },
-  {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
+    keys = {
+      { "<space>e", function() require("telescope.builtin").find_files() end, mode = { "n" }, noremap = true },
+      { "<space>h", function() require("telescope.builtin").help_tags() end, mode = { "n" }, noremap = true },
+      { "<space>b", function() require("telescope.builtin").buffers() end, mode = { "n" }, noremap = true },
+      { "<space>g", function() require("telescope.builtin").live_grep() end, mode = { "n" }, noremap = true },
+      { "<space>d", function() require("telescope.builtin").diagnostics() end, mode = { "n" }, noremap = true },
+      { "<space>r", function() require("telescope.builtin").lsp_references() end, mode = { "n" }, noremap = true },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      },
-      {
-        "polirritmico/telescope-lazy-plugins.nvim",
-        keys = {
-          { "<space>p", "<Cmd>Telescope lazy_plugins<CR>", desc = "Telescope: Plugins configurations" },
-        },
       },
     },
     config = function()
@@ -278,20 +258,9 @@ return {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          lazy_plugins = {
-            lazy_config = vim.fn.stdpath("config") .. _G.sep .. "init.lua", -- Must be a valid path to the file containing the lazy spec and setup() call.
-          },
         },
       })
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("lazy_plugins")
-      local builtin = require("telescope.builtin")
-      vim.keymap.set({ "n" }, "<space>e", "<cmd>Telescope find_files<cr>", { noremap = true })
-      vim.keymap.set({ "n" }, "<space>h", "<cmd>Telescope help_tags<cr>", { noremap = true })
-      vim.keymap.set({ "n" }, "<space>b", "<cmd>Telescope buffers<cr>", { noremap = true })
-      vim.keymap.set({ "n" }, "<space>g", "<cmd>Telescope live_grep<cr>", { noremap = true })
-      vim.keymap.set({ "n" }, "<space>d", "<cmd>Telescope diagnostics<cr>", { noremap = true })
-      vim.keymap.set({ "n" }, "<space>r", "<cmd>Telescope lsp_references<cr>", { noremap = true })
     end,
   },
 }

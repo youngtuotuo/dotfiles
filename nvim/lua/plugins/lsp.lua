@@ -45,6 +45,7 @@ return {
   {
     -- Better installer than default
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    ft = fts,
     dependencies = "williamboman/mason.nvim",
     opts = function()
       return {

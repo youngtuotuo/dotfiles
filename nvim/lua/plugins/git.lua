@@ -1,10 +1,13 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    cond = function()
+      local output = vim.fn.systemlist("git rev-parse --is-inside-work-tree 2>/dev/null")
+      return #output ~= 0
+    end,
     opts = {
       preview_config = {
-        -- Options passed to nvim_open_win
-        border = "none",
+        border = "rounded",
         style = "minimal",
         relative = "cursor",
         row = 0,
@@ -13,38 +16,24 @@ return {
       signcolumn = false,
       numhl = true,
       on_attach = function(bufnr)
-        local gitsigns = require("gitsigns")
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
         local gs = require("gitsigns")
-        next_hunk, prev_hunk = gs.next_hunk, gs.prev_hunk
-        local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-        if ok then
-          next_hunk, prev_hunk = ts_repeat_move.make_repeatable_move_pair(next_hunk, prev_hunk)
-        end
-        vim.keymap.set({ "n", "x", "o" }, "]c", next_hunk)
-        vim.keymap.set({ "n", "x", "o" }, "[c", prev_hunk)
+        vim.keymap.set({ "n", "x", "o" }, "]c", gs.next_hunk)
+        vim.keymap.set({ "n", "x", "o" }, "[c", gs.prev_hunk)
 
-        -- Actions
-        map("n", "<leader>gs", gitsigns.stage_hunk)
-        map("n", "<leader>gr", gitsigns.reset_hunk)
-        map("v", "<leader>gs", function()
-          gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        vim.keymap.set({ "n" }, "<leader>gs", gs.stage_hunk)
+        vim.keymap.set({ "n" }, "<leader>gr", gs.reset_hunk)
+        vim.keymap.set({ "v" }, "<leader>gs", function()
+          gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end)
-        map("v", "<leader>gr", function()
-          gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        vim.keymap.set({ "v" }, "<leader>gr", function()
+          gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end)
-        map("n", "<leader>gS", gitsigns.stage_buffer)
-        map("n", "<leader>gu", gitsigns.undo_stage_hunk)
-        map("n", "<leader>gR", gitsigns.reset_buffer)
-        map("n", "<leader>gp", gitsigns.preview_hunk)
-        map("n", "<leader>gb", gitsigns.blame_line)
-        map("n", "<leader>gg", gitsigns.toggle_numhl)
+        vim.keymap.set({ "n" }, "<leader>gS", gs.stage_buffer)
+        vim.keymap.set({ "n" }, "<leader>gu", gs.undo_stage_hunk)
+        vim.keymap.set({ "n" }, "<leader>gR", gs.reset_buffer)
+        vim.keymap.set({ "n" }, "<leader>gp", gs.preview_hunk)
+        vim.keymap.set({ "n" }, "<leader>gb", gs.blame_line)
+        vim.keymap.set({ "n" }, "<leader>gg", gs.toggle_numhl)
       end,
     },
   },
