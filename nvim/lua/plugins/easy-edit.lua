@@ -26,7 +26,8 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     opts = {},
   },
   {
@@ -82,6 +83,7 @@ return {
     },
     config = function(_, opts)
       require("conform").setup(opts)
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
   {
