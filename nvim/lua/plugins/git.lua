@@ -1,10 +1,11 @@
+local check_git_repo = function()
+  local output = vim.fn.systemlist("git rev-parse --is-inside-work-tree 2>/dev/null")
+  return #output ~= 0
+end
 return {
   {
     "lewis6991/gitsigns.nvim",
-    cond = function()
-      local output = vim.fn.systemlist("git rev-parse --is-inside-work-tree 2>/dev/null")
-      return #output ~= 0
-    end,
+    cond = check_git_repo,
     opts = {
       preview_config = {
         border = "rounded",
@@ -39,6 +40,7 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    cond = check_git_repo,
     cmd = { "G", "Git" },
   },
 }

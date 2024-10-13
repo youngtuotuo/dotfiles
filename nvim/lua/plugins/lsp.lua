@@ -34,7 +34,7 @@ local fts = { "yaml", "html", "markdown", "json", "python", "sh", "lua", "c", "c
 return {
   {
     "williamboman/mason.nvim",
-    ft = fts,
+    cmd = { "Mason", "M", "MasonInstall" },
     init = function()
       vim.api.nvim_create_user_command("M", "Mason", {})
     end,
@@ -45,7 +45,7 @@ return {
   {
     -- Better installer than default
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    ft = fts,
+    cmd = { "Mason", "M", "MasonInstall" },
     dependencies = "williamboman/mason.nvim",
     opts = function()
       return {
@@ -72,8 +72,6 @@ return {
     cmd = { "LspInfo" },
     dependencies = {
       "williamboman/mason.nvim",
-      -- Better installer than default
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     init = function()
       vim.api.nvim_create_user_command("LI", "LspInfo", {})

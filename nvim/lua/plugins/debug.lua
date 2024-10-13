@@ -1,7 +1,6 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
-    ft = { "c", "python", "cpp" },
     dependencies = {
       "nvim-neotest/nvim-nio",
       "mfussenegger/nvim-dap",
