@@ -116,6 +116,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    cmd = { "TSUpdate" },
     ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
