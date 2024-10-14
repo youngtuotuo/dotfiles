@@ -249,5 +249,9 @@ vim.filetype.add({
   },
 })
 
+vim.cmd.colo([[vim]])
 vim.api.nvim_set_hl(0, "Comment", { fg = "darkgrey", ctermfg = "darkgrey" })
+vim.api.nvim_set_hl(0, "Pmenu", { cterm = { reverse = true }, bg = "NvimDarkGrey3" })
+vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 242, ctermbg = 0, fg = "Black", bg = "DarkGrey" })
+vim.api.nvim_set_hl(0, "FloatBorder", { cterm = { reverse = true }, bg = "NvimDarkGrey3" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
