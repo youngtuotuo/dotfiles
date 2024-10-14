@@ -223,6 +223,12 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
+if
+  (string.find(vim.api.nvim_list_uis()[1].term_name, "xterm%-256color") ~= nil)
+  or (string.find(vim.api.nvim_list_uis()[1].term_name, "tmux%-256color") ~= nil)
+then
+  vim.opt.termguicolors = true
+end
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
