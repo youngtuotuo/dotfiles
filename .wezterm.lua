@@ -74,45 +74,10 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.selection_word_boundary = " \t\n{}[]()\"'`@.,;:"
 config.audible_bell = "Disabled"
 
-local theme = "Wez"
-config.color_scheme = theme
-local scheme_def = wezterm.color.get_builtin_schemes()[theme]
-config.colors = {
-  background = "black",
-  -- Overrides the cell background color when the current cell is occupied by the
-  -- cursor and the cursor style is set to Block
-  cursor_bg = "rgb(198,198,207)",
-  -- Overrides the text color when the current cell is occupied by the cursor
-  cursor_fg = "black",
-  -- Specifies the border color of the cursor when the cursor style is set to Block,
-  -- or the color of the vertical or horizontal bar when the cursor style is set to
-  -- Bar or Underline.
-  cursor_border = "rgb(198,198,207)",
-  tab_bar = {
-    active_tab = {
-      bg_color = "black",
-      fg_color = scheme_def.foreground,
-    },
-  },
-}
+config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_ease_in = "Constant"
+config.hide_tab_bar_if_only_one_tab = true
 config.cursor_blink_ease_out = "Constant"
-config.font_rules = {
-  {
-    intensity = "Normal",
-    font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
-  },
-  {
-    intensity = "Bold",
-    italic = false,
-    font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
-  },
-  {
-    intensity = "Bold",
-    italic = true,
-    font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Italic" }),
-  },
-}
 
 -- and finally, return the configuration to wezterm
 return config
