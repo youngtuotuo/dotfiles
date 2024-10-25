@@ -247,6 +247,7 @@ vim.filetype.add({
   },
 })
 
+vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey10", cterm = { underline = true } })
 vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "NvimLightGrey4", cterm = { underline = true } })
 vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })

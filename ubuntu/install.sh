@@ -126,27 +126,13 @@ function install_target() {
 			if [ -d "$HOME/python" ]; then
 				rm -r $HOME/python
 			fi
-			# find "$HOME/.local/bin" -name "python*" -exec rm -f {} +
-			# find "$HOME/.local/bin" -name "pip*" -exec rm -f {} +
-			# find "$HOME/.local/bin" -name "2to3*" -exec rm -f {} +
-			# find "$HOME/.local/bin" -name "pydoc*" -exec rm -f {} +
-			# find "$HOME/.local/bin" -name "idle3*" -exec rm -f {} +
-			# find "$HOME/.local/bin" -name "python3*-config" -exec rm -f {} +
-			# find "$HOME/.local/include" -type d -name "python*" -exec rm -rf {} +
-			# find "$HOME/.local/lib" -maxdepth 1 -name "*python*" -exec rm -rf {} +
-			# find "$HOME/.local/lib/pkgconfig" -name "python*" -exec rm -rf {} +
-			# find "$HOME/.local/share/man/man1" -name "python*" -exec rm -rf {} +
 			wget $resp -O $HOME/python.tgz
 			mkdir -p $HOME/python
 			tar xf $HOME/python.tgz -C $HOME/python --strip-components 1
 			cd $HOME/python
-			./configure --prefix=$HOME/.local --enable-optimizations --with-ensurepip=install --enable-shared LDFLAGS="-Wl,--rpath=$HOME/.local/lib" --disable-gil --enable-experimental-jit
+			./configure --prefix=$HOME/.local --enable-optimizations --with-ensurepip=install --enable-shared LDFLAGS="-Wl,--rpath=${HOME}/.local/lib"
 			make
 			make install
-			# pip_bin=$(find "$HOME/.local/bin" -type f -name "pip3\.*")
-			# ln -s $pip_bin $HOME/.local/bin/pip
-			# python_bin=$(find "$HOME/.local/bin" -type f -name "python3\.*[0-9]")
-			# ln -s $python_bin $HOME/.local/bin/python
 		fi
 		;;
 	"lua")
