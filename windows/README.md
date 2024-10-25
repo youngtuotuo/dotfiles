@@ -1,9 +1,12 @@
 Tools
 -----
 
-+ [cuda](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/contents.html): Header files for c/c++ nvidia gpu programming.
-+ [AltSnap](https://github.com/RamonUnch/AltSnap/releases), [QuickLook](https://github.com/QL-Win/QuickLook/releases), [ZoomIt](https://learn.microsoft.com/en-us/sysinternals/downloads/zoomit): Useful tools.
-+ [AutoHotKey](https://www.autohotkey.com/): Let you be able to use Win+M to minimize window.
++ [cuda](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/contents.html)
++ [AltSnap](https://github.com/RamonUnch/AltSnap/releases)
++ [QuickLook](https://github.com/QL-Win/QuickLook/releases)
++ [ZoomIt](https://learn.microsoft.com/en-us/sysinternals/downloads/zoomit)
++ [Everything](https://www.voidtools.com/support/everything/)
++ [FlowLauncher](https://www.flowlauncher.com/)
 
 cuda dev
 --------
@@ -31,13 +34,8 @@ Dev Environment Setup
 
 ```console
 ./install.ps1 policy vsbuild-tools powershell pwsh-config
-./install.ps1 scoop .local cmake neovim nvim-config python wezterm wezterm-cfg lua typst zig
+./install.ps1 scoop .local cmake
 ```
-
-### AutoHotKey
-
-Remember to use `minimize.ahk` to enable `Win+m` to minized any window.
-
 
 ### Execution Policy
 
@@ -66,14 +64,11 @@ nvim $PROFILE
 {
     "font":
         {
-            "face": "...",
             "features":
             {
                 "liga": 0,
                 "calt": 0,
             },
-            "size": 12.0,
-            "weight": "normal"
         },
 }
 ```

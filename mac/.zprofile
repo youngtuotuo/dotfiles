@@ -17,13 +17,6 @@ case ":${PATH}:" in
         ;;
 esac
 case ":${PATH}:" in
-    *:"$HOME/.modular/pkg/packages.modular.com_mojo/bin":*)
-        ;;
-    *)
-        export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin${PATH:+:${PATH}}"
-        ;;
-esac
-case ":${PATH}:" in
     *:"/Users/mikehung/.rubies/ruby-3.1.3/bin":*)
         ;;
     *)

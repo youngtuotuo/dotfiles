@@ -9,7 +9,7 @@ Scripts that support installing the following softwares
 
 
 ```bash
-./ubuntu/install.sh dependencies cmake .local python rust lua neovim nvim-config tmux tmux-config nvtop zig sioyek case-insensitive-bash
+./ubuntu/install.sh dependencies cmake .local case-insensitive-bash
 ```
 
 cuda dev for clangd
