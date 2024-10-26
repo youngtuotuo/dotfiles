@@ -140,24 +140,14 @@ vim.keymap.set(
   [["_dP]],
   { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] }
 )
-vim.keymap.set(
-  { "n" },
-  "<M-j>",
-  "<cmd>move+1<cr>",
-  { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
-)
+vim.keymap.set({ "n" }, "<M-j>", "<cmd>move+1<cr>", { noremap = true })
 vim.keymap.set(
   { "v" },
   "J",
   ":move '>+1<CR>gv=gv",
   { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
 )
-vim.keymap.set(
-  { "n" },
-  "<M-k>",
-  "<cmd>move--1<cr>",
-  { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" }
-)
+vim.keymap.set({ "n" }, "<M-k>", "<cmd>move--1<cr>", { noremap = true })
 vim.keymap.set(
   { "v" },
   "K",
@@ -247,7 +237,7 @@ vim.filetype.add({
   },
 })
 
-vim.cmd.colo [[vim]]
+vim.cmd.colo([[vim]])
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
 vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
 vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
