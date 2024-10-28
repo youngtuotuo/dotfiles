@@ -83,6 +83,29 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "All buffer need formatoptions = jql",
 })
 
+-- Define the function to open quickfix items in a split
+local function open_quickfix(new_split_cmd)
+  -- 1. Get the current quickfix index (the line number in the quickfix window)
+  local qf_idx = vim.fn.line('.')
+  -- 2. Go back to the previous window
+  vim.cmd('wincmd p')
+  -- 3. Open a new split or vertical split as specified
+  vim.cmd(new_split_cmd)
+  -- 4. Open the specified quickfix item in the newly created buffer
+  vim.cmd(tostring(qf_idx) .. 'cc')
+end
+
+-- Set key mappings for quickfix window
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    -- Map <C-v> to open quickfix item in a vertical split
+    vim.keymap.set('n', '<C-v>', function() open_quickfix("vnew") end, { noremap = true, silent = true })
+    -- Map <C-x> to open quickfix item in a horizontal split
+    vim.keymap.set('n', '<C-x>', function() open_quickfix("split") end, { noremap = true, silent = true })
+  end
+})
+
 -- print(vim.inspect(v))
 P = function(v)
   print(vim.inspect(v))
