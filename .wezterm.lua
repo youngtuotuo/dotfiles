@@ -14,13 +14,6 @@ local act = wezterm.action
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
   {
-    key = "t",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.SpawnCommandInNewTab({
-      cwd = wezterm.home_dir,
-    }),
-  },
-  {
     key = "E",
     mods = "CTRL|SHIFT",
     action = act.PromptInputLine({
@@ -59,13 +52,21 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
       args = { "nu.exe" },
     },
   }
-elseif wezterm.target_triple == "aarch64-apple-darwin" then
-  table.insert(
-    config.keys,
-    { key = "t", mods = "CMD", action = wezterm.action.SpawnCommandInNewTab({
+  table.insert(config.keys, {
+    key = "t",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SpawnCommandInNewTab({
       cwd = wezterm.home_dir,
-    }) }
-  )
+    }),
+  })
+elseif wezterm.target_triple == "aarch64-apple-darwin" then
+  table.insert(config.keys, {
+    key = "t",
+    mods = "CMD",
+    action = wezterm.action.SpawnCommandInNewTab({
+      cwd = wezterm.home_dir,
+    }),
+  })
 end
 
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }

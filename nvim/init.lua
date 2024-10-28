@@ -112,19 +112,6 @@ P = function(v)
   return v
 end
 
---  CHAR        MODE
--- <Space>      Normal, Visual, Select and Operator-pending
--- n            Normal
--- v            Visual and Select
--- s            Select
--- x            Visual
--- o            Operator-pending
--- !            Insert and Command-line
--- i            Insert
--- l            ":lmap" mappings for Insert, Command-line and Lang-Arg
--- c            Command-line
--- t            Terminal-Job
-
 vim.keymap.set(
   { "n" },
   "<C-q>",
@@ -263,6 +250,7 @@ vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" }
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
 vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
 vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
 vim.api.nvim_set_hl(0, "VertSplit", { cterm = {reverse = true}, reverse = true })
