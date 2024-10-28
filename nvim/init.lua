@@ -234,6 +234,7 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
+vim.opt.fillchars:append("vert:|")
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
@@ -256,7 +257,7 @@ vim.filetype.add({
 
 vim.cmd.colo([[vim]])
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
-vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "Grey15", ctermbg = 235 })
+vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "Grey15", fg = "Yellow", ctermbg = 235, ctermfg = 11 })
 vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
 vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
@@ -264,3 +265,4 @@ vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black",
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
 vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
+vim.api.nvim_set_hl(0, "VertSplit", { cterm = {reverse = true}, reverse = true })
