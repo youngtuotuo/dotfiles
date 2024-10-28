@@ -211,12 +211,6 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
-if
-  (string.find(vim.api.nvim_list_uis()[1].term_name, "xterm%-256color") ~= nil)
-  or (string.find(vim.api.nvim_list_uis()[1].term_name, "tmux%-256color") ~= nil)
-then
-  vim.opt.termguicolors = true
-end
 
 vim.opt.grepformat:append({ [[%l:%m]] })
 vim.opt.cinkeys:remove(":")
@@ -243,4 +237,5 @@ vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20",
 vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
 vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
+vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
