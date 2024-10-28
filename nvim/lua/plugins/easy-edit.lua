@@ -49,62 +49,6 @@ return {
     opts = {},
   },
   {
-    "stevearc/conform.nvim",
-    keys = {
-      {
-        "<leader>f",
-        function()
-          require("conform").format()
-        end,
-        mode = { "n", "v" },
-        noremap = true,
-        desc = "Format buffer",
-      },
-    },
-    dependencies = {
-      {
-        "williamboman/mason.nvim",
-      },
-    },
-    opts = {
-      async = true,
-      formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "ruff_format" },
-        c = { "clang_format" },
-        cpp = { "clang_format" },
-        sh = { "shfmt" },
-        json = { "jq" },
-        yaml = { "prettier" },
-        html = { "prettier" },
-      },
-      formatters = {
-        stylua = {
-          prepend_args = {
-            "--indent-type=spaces",
-            "--indent-width=2",
-            "--column-width=120",
-          },
-        },
-        ruff_fmt = {
-          prepend_args = {
-            "--line-length=150",
-            "--target-version=py311",
-          },
-        },
-        clang_format = {
-          prepend_args = {
-            "-style={BasedOnStyle: llvm, IndentWidth: 4, AllowShortBlocksOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Custom, BraceWrapping: {AfterClass: true, AfterControlStatement: true, AfterEnum: true, AfterFunction: true, AfterNamespace: false, AfterStruct: true, AfterUnion: true, BeforeCatch: true, BeforeElse: true}}",
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      require("conform").setup(opts)
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
-  },
-  {
     "andymass/vim-matchup",
     ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
     dependencies = {
@@ -235,53 +179,6 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
-    keys = {
-      { "<space>e", function() require("telescope.builtin").find_files() end, mode = { "n" }, noremap = true },
-      { "<space>h", function() require("telescope.builtin").help_tags() end, mode = { "n" }, noremap = true },
-      { "<space>b", function() require("telescope.builtin").buffers() end, mode = { "n" }, noremap = true },
-      { "<space>g", function() require("telescope.builtin").live_grep() end, mode = { "n" }, noremap = true },
-      { "<space>d", function() require("telescope.builtin").diagnostics() end, mode = { "n" }, noremap = true },
-      { "<space>r", function() require("telescope.builtin").lsp_references() end, mode = { "n" }, noremap = true },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      },
-    },
-    config = function()
-      require("telescope").setup({
-        defaults = {
-          layout_strategy = "horizontal",
-          mappings = {
-            i = {
-              ["<C-s>"] = require("telescope.actions").select_horizontal,
-              ["<C-x>"] = false,
-            },
-            n = {
-              ["<C-s>"] = require("telescope.actions").select_horizontal,
-              ["<C-x>"] = false,
-            },
-          },
-          preview = true,
-        },
-        extensions = {
-          fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            -- the default case_mode is "smart_case"
-          },
-        },
-      })
-      require("telescope").load_extension("fzf")
     end,
   },
 }
