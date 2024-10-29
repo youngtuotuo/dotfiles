@@ -1,35 +1,32 @@
-local fts = { "python", "c", "cpp", "cuda" }
-
 return {
-  {
-    "williamboman/mason.nvim",
-    ft = fts,
-    init = function()
-      vim.api.nvim_create_user_command("M", "Mason", {})
-    end,
-    opts = {
-      ui = { border = "rounded" },
-    },
-  },
-  {
-    -- Better installer than default
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = true,
-    dependencies = "williamboman/mason.nvim",
-    opts = function()
-      return {
-        ensure_installed = {
-          "codelldb",
-          "debugpy",
-        },
-      }
-    end,
-  },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "nvim-neotest/nvim-nio",
       "mfussenegger/nvim-dap",
+    {
+      "williamboman/mason.nvim",
+      init = function()
+        vim.api.nvim_create_user_command("M", "Mason", {})
+      end,
+      opts = {
+        ui = { border = "rounded" },
+      },
+    },
+    {
+      -- Better installer than default
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      lazy = true,
+      dependencies = "williamboman/mason.nvim",
+      opts = function()
+        return {
+          ensure_installed = {
+            "codelldb",
+            "debugpy",
+          },
+        }
+      end,
+    },
     },
     keys = function()
       return {
