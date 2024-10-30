@@ -1,15 +1,8 @@
 Ubuntu/WSL2
 -----------
 
-Scripts that support installing the following softwares
-
 ```bash
 ./install.sh
-```
-
-
-```bash
-./ubuntu/install.sh dependencies cmake .local case-insensitive-bash
 ```
 
 cuda dev for clangd

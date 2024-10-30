@@ -28,12 +28,7 @@ function Install-Target($target) {
     switch ($target) {
         "vsbuild-tools" {
             Show-Title "Build Tools for Visual Studio"
-            Write-Host "Download page: https://visualstudio.microsoft.com/downloads/"
-            $url = Read-Host "Please give the url from Tools for Visual Studio -> Build Tools for Visual Studio xxxx"
-            $toolsdestination = "$HOME\vs_BuildTools.exe"
-            Invoke-WebRequest -Uri $url -OutFile $toolsdestination
-            Start-Process -FilePath $toolsdestination
-            Remove-Item -Path $toolsdestination -Force
+            winget install --id=Microsoft.VisualStudio.2022.BuildTools  -e
         }
         "policy" {
             Show-Title "policy"
@@ -50,20 +45,11 @@ function Install-Target($target) {
         }
         "cmake" {
             Show-Title "cmake"
-            Write-Host "cmake download page: https://cmake.org/download/"
-            $url = Read-Host "Please give current cmake binary distribution msi file url"
-            if ([string]::IsNullOrWhiteSpace($url)) {
-                Show-Info "Empty url, skip."
-            } else {
-                $cmakeMsi = "$HOME\cmake.msi"
-                Invoke-WebRequest -Uri $url -OutFile $cmakeMsi
-                Start-Process -FilePath $cmakeMsi
-                Remove-Item -Path $cmakeMsi -Force
-            }
+            winget install --id=Kitware.CMake  -e
         }
         "powershell" {
             Show-Title "PowerShell"
-            winget install --id Microsoft.Powershell --source winget
+            winget install --id=Microsoft.PowerShell  -e
         }
         "pwsh-config" {
             Show-Title "PowerShell Config"

@@ -1,15 +1,14 @@
 Tools
 -----
 
-CopyClip, Rectangle, noVNC, Karadiner-Elements
+CopyClip, noVNC
 
 
-Mac
----
+Install
+-------
 
 ```
-./mac/install.sh
-./mac/install.sh homebrew
+./install.sh
 ```
 
 

@@ -7,7 +7,7 @@ Dotfiles
 Cross Platform Tools
 --------------------
 
-Wezterm, Wireguard, OpenVPN Client
+Wezterm, Wireguard
 
 Platform Specific
 -----------------
