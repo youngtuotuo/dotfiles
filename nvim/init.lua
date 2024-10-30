@@ -1,7 +1,3 @@
-_G.floatw = 110
-_G.floath = 50
-_G.floatwrap = true
-
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
 _G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
@@ -28,8 +24,6 @@ require("lazy").setup({ import = "plugins" }, {
     notify = false,
   },
 })
-
-vim.api.nvim_create_user_command("L", "Lazy", {})
 
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
@@ -81,29 +75,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     vim.treesitter.stop()
   end,
   desc = "All buffer need formatoptions = jql",
-})
-
--- Define the function to open quickfix items in a split
-local function open_quickfix(new_split_cmd)
-  -- 1. Get the current quickfix index (the line number in the quickfix window)
-  local qf_idx = vim.fn.line('.')
-  -- 2. Go back to the previous window
-  vim.cmd('wincmd p')
-  -- 3. Open a new split or vertical split as specified
-  vim.cmd(new_split_cmd)
-  -- 4. Open the specified quickfix item in the newly created buffer
-  vim.cmd(tostring(qf_idx) .. 'cc')
-end
-
--- Set key mappings for quickfix window
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'qf',
-  callback = function()
-    -- Map <C-v> to open quickfix item in a vertical split
-    vim.keymap.set('n', '<C-v>', function() open_quickfix("vnew") end, { noremap = true, silent = true })
-    -- Map <C-x> to open quickfix item in a horizontal split
-    vim.keymap.set('n', '<C-x>', function() open_quickfix("split") end, { noremap = true, silent = true })
-  end
 })
 
 -- print(vim.inspect(v))
@@ -210,8 +181,7 @@ vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
 vim.opt.matchtime = 1 -- display of current match paren faster
 vim.opt.showmatch = true -- show matching brackets when text indicator is over them
-vim.opt.splitkeep = [[topline]]
-vim.opt.completeopt = [[menu,menuone,noselect,preview,fuzzy]]
+vim.opt.completeopt = [[menu,menuone,preview,fuzzy]]
 vim.opt.swapfile = false
 vim.opt.updatetime = 50
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"

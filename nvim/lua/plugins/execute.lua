@@ -1,7 +1,7 @@
 return {
   "ej-shafran/compile-mode.nvim",
   keys = {
-    { "<M-c>", ":Compile ", mode = { "n" }, nowait = true, noremap = true }
+    { "<C-x>c", ":Compile ", mode = { "n" }, nowait = true, noremap = true }
   },
   branch = "latest",
   dependencies = {
