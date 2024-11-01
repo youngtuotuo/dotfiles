@@ -36,38 +36,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = { "*.c", "*.cpp", "*.cu" },
-  group = group,
-  callback = function()
-    vim.bo.shiftwidth = 4
-    vim.bo.define = [[^\(#\s*define\|[a-z]*\s*const\s*[a-z]*\)]]
-    vim.bo.commentstring = [[// %s]]
-  end,
-  desc = "aucmd for c, cpp",
-})
-
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = { "*.html", "*.json", "*.yaml", "*.lua" },
-  group = group,
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.softtabstop = 2
-  end,
-  desc = "aucmd for html, json, yaml, lua",
-})
-
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = { "MakeFile", "*.sh", "Make", "Makefile" },
-  group = group,
-  callback = function()
-    vim.bo.shiftwidth = 4
-    vim.bo.softtabstop = 4
-    vim.bo.expandtab = false
-  end,
-  desc = "aucmd for make and sh",
-})
-
-vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
     vim.opt.indentkeys:remove("<:>")
@@ -106,12 +74,6 @@ vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, bu
 
 -- More indents options
 vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true, desc = "Term mode to normal mode with Esc" })
-vim.keymap.set(
-  { "n" },
-  "<leader>s",
-  "<cmd>set invnu invrnu<cr>",
-  { noremap = true, desc = "<cmd>set invnu invrnu<cr>, Toggle nu and rnu" }
-)
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true, desc = "y$, Y like C, D" })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" })
 
