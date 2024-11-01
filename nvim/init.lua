@@ -137,6 +137,7 @@ vim.keymap.set(
 )
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
+vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true, desc = "run cmd" })
 
 vim.keymap.set({ "n" }, "]p", function()
   vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
