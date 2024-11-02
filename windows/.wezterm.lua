@@ -37,9 +37,8 @@ config.keys = {
   }
 }
 
-config.font_size = 14.0
+config.font_size = 13.0
 config.default_prog = { "pwsh.exe", "-nologo" }
-config.font_size = 10.0
 config.launch_menu = {
   {
     label = "PowerShell",

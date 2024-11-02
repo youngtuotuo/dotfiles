@@ -15,10 +15,3 @@ Dev Environment Setup
 ```console
 sudo ./install.ps1
 ```
-
-### Execution Policy
-
-```console
-Get-ExecutionPolicy -List
-Set-ExecutionPolicy -Scope CurrentUser/LocalMachine/etc.
-```
