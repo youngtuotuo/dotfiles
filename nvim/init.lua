@@ -398,7 +398,6 @@ vim.filetype.add({
     },
 })
 
-vim.cmd.colo([[vim]])
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Yellow", ctermfg = 11 })
 vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
