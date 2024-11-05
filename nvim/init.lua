@@ -27,14 +27,6 @@ require("lazy").setup({ import = "plugins" }, {
 
 local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = group,
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  desc = "Yank Short Indicator",
-})
-
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
@@ -51,31 +43,20 @@ P = function(v)
   return v
 end
 
-vim.keymap.set(
-  { "n" },
-  "<C-q>",
-  "<nop>",
-  { nowait = true, noremap = true, desc = "Never use C-q to enter visual block mode" }
-)
-vim.keymap.set({ "i" }, "<C-c>", "<nop>", { nowait = true, noremap = true, desc = "Disable interrupt" })
-vim.keymap.set({ "i" }, "<C-c>", "<esc>", { noremap = true })
-vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true, desc = "Delete back to the first character" })
+vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set(
   { "n" },
   "c_",
   "c^",
-  { nowait = true, noremap = true, desc = "Delete back to the first character and insert" }
+  { nowait = true, noremap = true }
 )
 
-vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true, desc = "let , be undo break points" })
-vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true, desc = "let . be undo break points" })
+vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true })
+vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true })
 
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, desc = "y, but yank to system clipboard" })
-
--- More indents options
-vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true, desc = "Term mode to normal mode with Esc" })
-vim.keymap.set({ "n" }, "Y", "y$", { noremap = true, desc = "y$, Y like C, D" })
-vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true, desc = "J, but will keep your cursor position" })
+vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
+vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.keymap.set(
   { "v" },
@@ -88,52 +69,32 @@ vim.keymap.set(
   { "v" },
   "J",
   ":move '>+1<CR>gv=gv",
-  { noremap = true, desc = ":move '>+1<CR>gv=gv, Move selected line / block of text down" }
+  { noremap = true }
 )
 vim.keymap.set({ "n" }, "<M-k>", "<cmd>move--1<cr>", { noremap = true })
 vim.keymap.set(
   { "v" },
   "K",
   ":move '<-2<CR>gv=gv",
-  { noremap = true, desc = ":move '<-2<CR>gv=gv, Move selected line / block of text up" }
+  { noremap = true }
 )
-vim.keymap.set({ "v" }, "<", "<gv", { noremap = true, desc = "<gv, Move selected line / block of text left" })
-vim.keymap.set({ "v" }, ">", ">gv", { noremap = true, desc = ">gv, Move selected line / block of text right" })
-vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true, desc = "run cmd" })
+vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
+vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
+vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
 
 vim.keymap.set({ "n" }, "]p", function()
   vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "cnext" })
+end, { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "[p", function()
   vim.cmd([[try | cprev | catch | clast  | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "cprev" })
-vim.keymap.set({ "n" }, "<leader>p", function()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win["quickfix"] == 1 and win["loclist"] == 0 then
-      vim.cmd.cclose()
-      return
-    end
-  end
-  vim.cmd.copen()
-end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
+end, { nowait = true, noremap = true })
 
 vim.keymap.set({ "n" }, "]l", function()
   vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "lnext" })
+end, { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "[l", function()
   vim.cmd([[try | lprev | catch | llast  | catch | endtry]])
-end, { nowait = true, noremap = true, desc = "lprev" })
-vim.keymap.set({ "n" }, "<leader>l", function()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win["quickfix"] == 1 and win["loclist"] == 1 then
-      vim.cmd.lclose()
-      return
-    end
-  end
-  vim.cmd.lopen()
-end, { nowait = true, noremap = true, desc = "toggle location list" })
+end, { nowait = true, noremap = true })
 
 vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
 vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
@@ -151,9 +112,9 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.shada = { "'10", "<0", "s10", "h" }
+vim.opt.listchars = [[tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$]]
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
-vim.opt.hlsearch = false
 vim.opt.fillchars:append("vert:|")
 
 vim.opt.grepformat:append({ [[%l:%m]] })

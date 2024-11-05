@@ -1,8 +1,5 @@
 return {
   {
-    "tpope/vim-vinegar",
-  },
-  {
     "chrisgrieser/nvim-various-textobjs",
     opts = { useDefaultKeymaps = false },
     config = function(_, opts)
@@ -16,16 +13,6 @@ return {
     -- Use for stability; omit to use `main` branch for the latest features
     version = "*",
     opts = {},
-  },
-  {
-    "andymass/vim-matchup",
-    ft = { "sh", "c", "cpp", "cuda", "lua", "markdown", "python", "txt", "go", "rust", "mojo" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      vim.g.matchup_matchparen_offscreen = {}
-    end,
   },
   {
     "windwp/nvim-ts-autotag",
