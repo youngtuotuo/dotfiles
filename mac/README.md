@@ -1,15 +1,14 @@
-Tools
------
-
-CopyClip, noVNC
-
-
-Install
--------
+Installation
+------------
 
 ```
 ./install.sh
 ```
+
+Tools
+-----
+
+CopyClip, noVNC
 
 
 noVNC

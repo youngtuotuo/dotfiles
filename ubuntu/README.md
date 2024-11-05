@@ -1,4 +1,4 @@
-Ubuntu/WSL2
+Installation
 -----------
 
 ```bash
