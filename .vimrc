@@ -29,16 +29,30 @@ set rnu
 set nu
 set background=dark
 set nolangremap
-hi Comment guifg=DarkGrey ctermfg=DarkGrey
-hi NormalFloat guibg=NONE ctermbg=NONE
-hi FloatBorder guibg=NONE ctermbg=NONE
-hi StatusLineNC gui=reverse cterm=reverse
-hi! link MatchParen Visual
-hi VertSplit cterm=reverse gui=reverse
-hi Visual guifg=NONE ctermfg=NONE guibg=Grey ctermbg=Grey
-hi Pmenu guibg=Grey ctermbg=Grey
-hi PmenuSel guifg=Black guibg=DarkGrey ctermfg=Black ctermbg=DarkGrey
-hi netrwMarkFile ctermfg=Brown guifg=Brown
+set cursorline
+
+function! s:SetHL()
+    hi CursorLine ctermbg=235 guibg=Grey cterm=nocombine gui=nocombine
+    hi CursorLineNr ctermfg=11 guifg=Yellow cterm=nocombine gui=nocombine
+    hi Comment guifg=DarkGrey ctermfg=DarkGrey
+    hi NormalFloat guibg=NONE ctermbg=NONE
+    hi FloatBorder guibg=NONE ctermbg=NONE
+    hi StatusLineNC gui=reverse cterm=reverse
+    hi! link MatchParen Visual
+    hi VertSplit cterm=reverse gui=reverse
+    hi Visual guifg=NONE ctermfg=NONE guibg=Grey ctermbg=Grey gui=nocombine cterm=nocombine
+    hi Pmenu guibg=Grey ctermbg=Grey
+    hi PmenuSel guifg=Black guibg=DarkGrey ctermfg=Black ctermbg=DarkGrey
+    hi netrwMarkFile ctermfg=Brown guifg=Brown
+endfunction
+
+augroup Tuo
+    autocmd!
+    autocmd ColorScheme * call s:SetHL()
+augroup END
+
+colo ron
+
 runtime ftplugin/man.vim
 
 nnoremap d_ d^
@@ -58,3 +72,5 @@ vnoremap > >gv
 nnoremap <C-x>c :term 
 nnoremap <nowait><silent> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
 nnoremap <nowait><silent> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
+nnoremap <nowait><silent> ]l :try <bar> lnext <bar> catch <bar> lfirst <bar> endtry<cr>
+nnoremap <nowait><silent> [l :try <bar> lprev <bar> catch <bar> llast <bar> endtry<cr>

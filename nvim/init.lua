@@ -287,18 +287,6 @@ require("lazy").setup({
     }
 })
 
-local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = group,
-    callback = function()
-        vim.opt.indentkeys:remove("<:>")
-        vim.opt.formatoptions = "jql"
-        vim.treesitter.stop()
-    end,
-    desc = "All buffer need formatoptions = jql",
-})
-
 -- print(vim.inspect(v))
 P = function(v)
     print(vim.inspect(v))
@@ -398,16 +386,31 @@ vim.filetype.add({
     },
 })
 
-vim.cmd.colo([[vim]])
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Yellow", ctermfg = 11 })
-vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
-vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
-vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
-vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
-vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
-vim.api.nvim_set_hl(0, "VertSplit", { cterm = {reverse = true}, reverse = true })
-vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
+local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = group,
+    callback = function()
+        vim.opt.indentkeys:remove("<:>")
+        vim.opt.formatoptions = "jql"
+        vim.treesitter.stop()
+    end,
+})
+vim.api.nvim_create_autocmd({"ColorScheme"}, {
+    group = group,
+    callback = function() 
+        vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Yellow", ctermfg = 11 })
+        vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
+        vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
+        vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
+        vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
+        vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
+        vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
+        vim.api.nvim_set_hl(0, "VertSplit", { cterm = {reverse = true}, reverse = true })
+        vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
+    end,
+})
+vim.cmd.colo[[vim]]
