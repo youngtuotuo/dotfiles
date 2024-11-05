@@ -361,6 +361,7 @@ vim.opt.updatetime = 50
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.wildcharm = vim.fn.char2nr("^I")
+vim.opt.hlsearch = false
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars = [[tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$]]
 vim.opt.inccommand = "split"
