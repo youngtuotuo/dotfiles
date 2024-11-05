@@ -56,5 +56,5 @@ vnoremap K <cmd>move <-1<cr>gv=gv
 vnoremap < <gv
 vnoremap > >gv
 nnoremap <C-x>c :term 
-nnoremap <nowait> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
-nnoremap <nowait> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
+nnoremap <nowait><silent> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
+nnoremap <nowait><silent> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
