@@ -70,7 +70,6 @@ function Install-Target($target) {
             cmake --build .deps --config Release
             cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$env:USERPROFILE\.local
             cmake --build build --config Release --target install
-            nvim --headless "+Lazy! sync" +qa
             cd $originalDirectory
         }
         "nvim-config" {
@@ -80,7 +79,6 @@ function Install-Target($target) {
             } else {
                 Show-Info "$env:LOCALAPPDATA\nvim exists"
             }
-            nvim --headless "+Lazy! sync" +qa
         }
         "python" {
             Show-Title "python"
