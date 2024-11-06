@@ -234,11 +234,11 @@ function install_target() {
 		;;
 	".vimrc")
 		title ".vimrc"
-		ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
+		cp $HOME/github/dotfiles/mac/.vimrc ~/.vimrc
 		;;
 	".wezterm.lua")
 		title ".wezterm.lua"
-		ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
+		ln -s $HOME/github/dotfiles/mac/.wezterm.lua ~/.wezterm.lua
 		;;
 	".zshrc")
 		title ".zshrc"

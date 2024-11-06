@@ -78,7 +78,7 @@ function install_target() {
 		title ".bashrc and .profile"
 		cp $HOME/github/dotfiles/ubuntu/.bashrc ~/.bashrc
 		cp $HOME/github/dotfiles/ubuntu/.profile ~/.profile
-		read -p "Do you want to reload the bash?(y/n)" resp
+		read -p "Do you want to reload the bash?(y/n) " resp
 		if [ -z "$resp" ]; then
 			response_lc="n" # empty is No
 		else
@@ -87,8 +87,10 @@ function install_target() {
 
 		if [ "$response_lc" = "y" ]; then
 			source ~/.bashrc
+			info "Reload Done."
+		else
+			info "Remember to reload to take effect."
 		fi
-		info "Remember to reload to take effect."
 		;;
 	"neovim")
 		title "neovim"
@@ -361,7 +363,7 @@ function install_target() {
 		;;
 	".vimrc")
 		title ".vimrc"
-		ln -s $HOME/github/dotfiles/.vimrc ~/.vimrc
+		cp $HOME/github/dotfiles/ubuntu/.vimrc ~/.vimrc
 		;;
 	".wezterm.lua")
 		title ".wezterm.lua"
@@ -401,8 +403,8 @@ function install_target() {
 	"cuda")
 		title "cuda"
 		if ! command -v nvcc >/dev/null; then
-			echo "Please go to this website and give corresponding url based on your system:"
 			echo "  https://developer.nvidia.com/cuda-downloads"
+			read -p "Please go to this website and give corresponding url based on your system: " resp
 			if [ -z "$resp" ]; then
 				info "Empty url, skip."
 			else

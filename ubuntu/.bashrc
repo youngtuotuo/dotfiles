@@ -121,4 +121,3 @@ export EDITOR=nvim
 echo -ne "\e[2 q"
 echo "σ\`∀´)σ"
 alias taunt='echo "σ\`∀´)σ"'
-export COLORTERM=16
