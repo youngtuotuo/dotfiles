@@ -105,13 +105,6 @@ require("various-textobjs").setup({ useDefaultKeymaps = false })
 vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
 vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-treesitter/doc/]]
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-treesitter-textobjects/doc/]]
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-various-textobjs/doc/]]
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-surround/doc/]]
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/vim-fugitive/doc/]]
-vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/vim-vinegar/doc/]]
-
 -- print(vim.inspect(v))
 P = function(v)
     print(vim.inspect(v))
@@ -171,10 +164,10 @@ vim.keymap.set({ "n" }, "[l", function()
     vim.cmd([[try | lprev | catch | llast  | catch | endtry]])
 end, { nowait = true, noremap = true })
 
-vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
+-- vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
 vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4 -- spaces for auto indent
+-- vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
 vim.opt.ignorecase = true -- Ignore case when searching...
 vim.opt.smartcase = true -- ... unless there is a capital letter in the query
