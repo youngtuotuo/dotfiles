@@ -65,25 +65,25 @@ require("nvim-treesitter.configs").setup({
                 ["]m"] = "@function.outer",
                 ["]]"] = "@class.outer",
                 ["]i"] = "@conditional.outer",
-                ["]l"] = "@loop.outer",
+                ["]w"] = "@loop.outer",
             },
             goto_next_end = {
                 ["]M"] = "@function.outer",
                 ["]["] = "@class.outer",
                 ["]I"] = "@conditional.outer",
-                ["]L"] = "@loop.outer",
+                ["]W"] = "@loop.outer",
             },
             goto_previous_start = {
                 ["[m"] = "@function.outer",
                 ["[["] = "@class.outer",
                 ["[i"] = "@conditional.outer",
-                ["[l"] = "@loop.outer",
+                ["[w"] = "@loop.outer",
             },
             goto_previous_end = {
                 ["[M"] = "@function.outer",
                 ["[]"] = "@class.outer",
                 ["[I"] = "@conditional.outer",
-                ["[L"] = "@loop.outer",
+                ["[W"] = "@loop.outer",
             },
         },
     },
@@ -101,9 +101,6 @@ require("nvim-ts-autotag").setup({
         enable_close_on_slash = true, -- Auto close on trailing </
     },
 })
-require("various-textobjs").setup({ useDefaultKeymaps = false })
-vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
-vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 
 -- print(vim.inspect(v))
 P = function(v)
@@ -112,57 +109,17 @@ P = function(v)
 end
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
-vim.keymap.set(
-    { "n" },
-    "c_",
-    "c^",
-    { nowait = true, noremap = true }
-)
+vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
 
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true })
-
 vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
-
-vim.keymap.set(
-    { "v" },
-    "p",
-    [["_dP]],
-    { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] }
-)
-vim.keymap.set({ "n" }, "<M-j>", "<cmd>move+1<cr>", { noremap = true })
-vim.keymap.set(
-    { "v" },
-    "J",
-    ":move '>+1<CR>gv=gv",
-    { noremap = true }
-)
-vim.keymap.set({ "n" }, "<M-k>", "<cmd>move--1<cr>", { noremap = true })
-vim.keymap.set(
-    { "v" },
-    "K",
-    ":move '<-2<CR>gv=gv",
-    { noremap = true }
-)
+vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] })
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
-
-vim.keymap.set({ "n" }, "]p", function()
-    vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
-end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[p", function()
-    vim.cmd([[try | cprev | catch | clast  | catch | endtry]])
-end, { nowait = true, noremap = true })
-
-vim.keymap.set({ "n" }, "]l", function()
-    vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
-end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[l", function()
-    vim.cmd([[try | lprev | catch | llast  | catch | endtry]])
-end, { nowait = true, noremap = true })
 
 -- vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
 vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
