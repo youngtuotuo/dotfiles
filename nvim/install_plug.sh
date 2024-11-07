@@ -1,15 +1,28 @@
-mkdir -p $HOME/.config/nvim/pack/plug/start
-cd $HOME/.config/nvim/pack/plug/start
-git clone --depth 1 https://github.com/kylechui/nvim-surround &
-git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter &
-git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter-textobjects &
-git clone --depth 1 https://github.com/tpope/vim-fugitive &
-git clone --depth 1 https://github.com/tpope/vim-vinegar &
-git clone --depth 1 https://github.com/tpope/vim-sleuth &
-git clone --depth 1 https://github.com/tpope/vim-unimpaired &
-git clone --depth 1 https://github.com/tpope/vim-endwise &
-git clone --depth 1 https://github.com/tpope/vim-eunuch &
-nvim -u NONE \
-    -c "helptags nvim-surround/doc" -c "helptags nvim-treesitter/doc" -c "helptags nvim-treesitter-textobjects/doc" \
-     -c "helptags vim-fugitive/doc" -c "helptags vim-vinegar/doc" -c "helptags vim-eunuch/doc" \
-    -c "helptags vim-sleuth/doc" -c "helptags vim-unimpaired/doc" -c q
+#!/usr/bin/env bash
+
+packpath=$HOME/.config/nvim/pack/plug/start
+
+if [ ! -d $packpath ]; then
+    mkdir -p $packpath
+fi
+
+cd $packpath
+
+function set_plugin() {
+    repo_name=$(basename "$1")
+    plugin_dir=$packpath/$repo_name
+    if [ ! -d "$plugin_dir" ]; then
+        git clone --depth 1 $1
+        nvim --headless -u NONE "+helptags $repo_name/doc" +qa
+    fi
+}
+
+set_plugin https://github.com/kylechui/nvim-surround &
+set_plugin https://github.com/nvim-treesitter/nvim-treesitter &
+set_plugin https://github.com/nvim-treesitter/nvim-treesitter-textobjects &
+set_plugin https://github.com/tpope/vim-fugitive &
+set_plugin https://github.com/tpope/vim-vinegar &
+set_plugin https://github.com/tpope/vim-sleuth &
+set_plugin https://github.com/tpope/vim-unimpaired &
+set_plugin https://github.com/tpope/vim-endwise &
+set_plugin https://github.com/tpope/vim-eunuch &

@@ -93,7 +93,7 @@ function install_target() {
 		;;
 	"nvim-config")
 		title "nvim-config"
-		if [ ! -d "%HOME/.config/nvim" ]; then
+		if [ ! -d "$HOME/.config/nvim" ]; then
 			mkdir -p $HOME/.config
 			ln -s $HOME/github/dotfiles/nvim $HOME/.config/nvim
 		else

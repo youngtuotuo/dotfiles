@@ -1,104 +1,106 @@
 -- fk u MS
 _G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
-_G.home = vim.fn.has("win32") == 1 and "USERPROFILE" or "HOME"
 _G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
 
--- plugins
-require("nvim-treesitter.configs").setup({
-    indent = {
-        enable = false,
-    },
-    highlight = false,
-    incremental_selection = {
-        enable = false,
-    },
-    -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
-    ensure_installed = {
-        -- "bash",
-        -- "c",
-        "cpp",
-        "cuda",
-        -- "lua",
-        -- "markdown",
-        -- "markdown_inline",
-        -- "python",
-        -- "query",
-        -- "vim",
-        -- "vimdoc",
-        "html",
-        "gitcommit",
-        "gitignore",
-        "go",
-        "zig",
-        "rust",
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-                ["ai"] = "@conditional.outer",
-                ["ii"] = "@conditional.inner",
-                ["al"] = "@loop.outer",
-                ["il"] = "@loop.inner",
-            },
-            include_surrounding_whitespace = false,
-        },
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-                ["<leader>A"] = "@parameter.inner",
-            },
-        },
-        move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-                ["]i"] = "@conditional.outer",
-                ["]w"] = "@loop.outer",
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-                ["]I"] = "@conditional.outer",
-                ["]W"] = "@loop.outer",
-            },
-            goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-                ["[i"] = "@conditional.outer",
-                ["[w"] = "@loop.outer",
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-                ["[I"] = "@conditional.outer",
-                ["[W"] = "@loop.outer",
-            },
-        },
-    },
-    matchup = {
-        enable = true, -- mandatory, false will disable the whole extension
-        disable_virtual_text = true,
-    },
-})
-require("nvim-surround").setup({})
-
--- print(vim.inspect(v))
-P = function(v)
-    print(vim.inspect(v))
-    return v
+local function directory_exists(path)
+    local stat = vim.loop.fs_stat(path)
+    return stat and stat.type == "directory"
 end
+
+-- plugins
+local plugin_dir = vim.fn.stdpath("config") .. "/pack/plug/start"
+if directory_exists(plugin_dir .. "/nvim-treesitter") then
+    require("nvim-treesitter.configs").setup({
+        indent = {
+            enable = false,
+        },
+        highlight = false,
+        incremental_selection = {
+            enable = false,
+        },
+        -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
+        ensure_installed = {
+            -- "bash",
+            -- "c",
+            "cpp",
+            "cuda",
+            -- "lua",
+            -- "markdown",
+            -- "markdown_inline",
+            -- "python",
+            -- "query",
+            -- "vim",
+            -- "vimdoc",
+            "html",
+            "gitcommit",
+            "gitignore",
+            "go",
+            "zig",
+            "rust",
+        },
+        textobjects = {
+            select = {
+                enable = true,
+                -- Automatically jump forward to textobj, similar to targets.vim
+                lookahead = true,
+                keymaps = {
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                    ["ac"] = "@class.outer",
+                    ["ic"] = "@class.inner",
+                    ["ai"] = "@conditional.outer",
+                    ["ii"] = "@conditional.inner",
+                    ["al"] = "@loop.outer",
+                    ["il"] = "@loop.inner",
+                },
+                include_surrounding_whitespace = false,
+            },
+            swap = {
+                enable = true,
+                swap_next = {
+                    ["<leader>a"] = "@parameter.inner",
+                },
+                swap_previous = {
+                    ["<leader>A"] = "@parameter.inner",
+                },
+            },
+            move = {
+                enable = true,
+                set_jumps = true,
+                goto_next_start = {
+                    ["]m"] = "@function.outer",
+                    ["]]"] = "@class.outer",
+                    ["]i"] = "@conditional.outer",
+                    ["]w"] = "@loop.outer",
+                },
+                goto_next_end = {
+                    ["]M"] = "@function.outer",
+                    ["]["] = "@class.outer",
+                    ["]I"] = "@conditional.outer",
+                    ["]W"] = "@loop.outer",
+                },
+                goto_previous_start = {
+                    ["[m"] = "@function.outer",
+                    ["[["] = "@class.outer",
+                    ["[i"] = "@conditional.outer",
+                    ["[w"] = "@loop.outer",
+                },
+                goto_previous_end = {
+                    ["[M"] = "@function.outer",
+                    ["[]"] = "@class.outer",
+                    ["[I"] = "@conditional.outer",
+                    ["[W"] = "@loop.outer",
+                },
+            },
+        },
+    })
+end
+
+if directory_exists(plugin_dir .. "/nvim-surround") then
+    require("nvim-surround").setup({})
+end
+
+P = function(v) print(vim.inspect(v)) return v end
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })

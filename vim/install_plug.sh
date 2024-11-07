@@ -1,13 +1,27 @@
-mkdir -p $HOME/.vim/pack/plug/start
-cd $HOME/.vim/pack/plug/start
-git clone --depth 1 https://github.com/tpope/vim-fugitive &
-git clone --depth 1 https://github.com/tpope/vim-vinegar &
-git clone --depth 1 https://github.com/tpope/vim-commentary &
-git clone --depth 1 https://github.com/tpope/vim-sleuth &
-git clone --depth 1 https://github.com/tpope/vim-surround &
-git clone --depth 1 https://github.com/tpope/vim-unimpaired &
-git clone --depth 1 https://github.com/tpope/vim-endwise &
-git clone --depth 1 https://github.com/tpope/vim-eunuch &
-vim -u NONE -c "helptags vim-fugitive/doc" -c "helptags vim-vinegar/doc" -c "helptags vim-commentary/doc" \
-    -c "helptags vim-sleuth/doc" -c "helptags vim-surround/doc" -c "helptags vim-unimpaired/doc" \
-    -c "helptags vim-eunuch/doc" -c q
+#!/usr/bin/env bash
+
+packpath=$HOME/.vim/pack/plug/start
+
+if [ ! -d $packpath ]; then
+    mkdir -p $packpath
+fi
+
+cd $packpath
+
+function set_plugin() {
+    repo_name=$(basename "$1")
+    plugin_dir=$packpath/$repo_name
+    if [ ! -d "$plugin_dir" ]; then
+        git clone --depth 1 $1
+        vim -u NONE -c "helptags $repo_name/doc" -c q
+    fi
+}
+
+set_plugin https://github.com/tpope/vim-fugitive &
+set_plugin https://github.com/tpope/vim-vinegar &
+set_plugin https://github.com/tpope/vim-commentary &
+set_plugin https://github.com/tpope/vim-sleuth &
+set_plugin https://github.com/tpope/vim-surround &
+set_plugin https://github.com/tpope/vim-unimpaired &
+set_plugin https://github.com/tpope/vim-endwise &
+set_plugin https://github.com/tpope/vim-eunuch &
