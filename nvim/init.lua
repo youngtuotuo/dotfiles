@@ -113,13 +113,29 @@ vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
 
 vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true })
 vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true })
+
 vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+
 vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] })
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
+
+vim.keymap.set({ "n" }, "]q", function()
+    vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
+end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[q", function()
+    vim.cmd([[try | cprev | catch | clast  | catch | endtry]])
+end, { nowait = true, noremap = true })
+
+vim.keymap.set({ "n" }, "]l", function()
+    vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
+end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[l", function()
+    vim.cmd([[try | lprev | catch | llast  | catch | endtry]])
+end, { nowait = true, noremap = true })
 
 -- vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
 vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
