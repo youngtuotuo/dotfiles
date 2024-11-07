@@ -1,18 +1,34 @@
 $originalDirectory = Get-Location
-New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\nvim\pack\plug\start" -Force
-cd $env:LOCALAPPDATA\nvim\pack\plug\start
-# FK PowerScrpts that let async run so complicated, just sequentially clone.
-git clone --depth 1 https://github.com/kylechui/nvim-surround
-git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter
-git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-git clone --depth 1 https://github.com/tpope/vim-fugitive
-git clone --depth 1 https://github.com/tpope/vim-vinegar
-git clone --depth 1 https://github.com/tpope/vim-sleuth
-git clone --depth 1 https://github.com/tpope/vim-unimpaired
-git clone --depth 1 https://github.com/tpope/vim-endwise
-git clone --depth 1 https://github.com/tpope/vim-eunuch
+$packpath = "$env:LOCALAPPDATA\nvim\pack\plug\start"
+
+if (!(Test-Path -Path $packpath)) {
+    New-Item -ItemType Directory -Path $packpath -Force | Out-Null
+}
+
+cd $packpath
+
+function Set-Plugin {
+    param (
+        [string]$repoUrl
+    )
+    
+    $repoName = Split-Path -Leaf $repoUrl
+    $pluginDir = Join-Path -Path $packpath -ChildPath $repoName
+    
+    if (!(Test-Path -Path $pluginDir)) {
+        git clone --depth 1 $repoUrl
+        nvim --headless -u NONE "+helptags $repoName/doc" +qa
+    }
+}
+
+Set-Plugin "https://github.com/kylechui/nvim-surround"
+Set-Plugin "https://github.com/nvim-treesitter/nvim-treesitter"
+Set-Plugin "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+Set-Plugin "https://github.com/tpope/vim-fugitive"
+Set-Plugin "https://github.com/tpope/vim-vinegar"
+Set-Plugin "https://github.com/tpope/vim-sleuth"
+Set-Plugin "https://github.com/tpope/vim-unimpaired"
+Set-Plugin "https://github.com/tpope/vim-endwise"
+Set-Plugin "https://github.com/tpope/vim-eunuch"
+
 cd $originalDirectory
-nvim -u NONE `
-    -c "helptags nvim-surround/doc" -c "helptags nvim-treesitter/doc" -c "helptags nvim-treesitter-textobjects/doc" `
-    -c "helptags vim-fugitive/doc" -c "helptags vim-vinegar/doc" -c "helptags vim-eunuch/doc" `
-    -c "helptags vim-sleuth/doc" -c "helptags vim-unimpaired/doc" -c q
