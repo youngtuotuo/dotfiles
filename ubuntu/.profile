@@ -38,12 +38,12 @@ case ":${PATH}:" in
     ;;
 esac
 
-case ":${PATH}:" in
-*:"$HOME/.local/zig":*) ;;
-*)
-    export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
-    ;;
-esac
+# case ":${PATH}:" in
+# *:"$HOME/.local/zig":*) ;;
+# *)
+#     export PATH="$HOME/.local/zig${PATH:+:${PATH}}"
+#     ;;
+# esac
 
 case ":${PATH}:" in
 *:"/usr/local/cuda/bin":*) ;;
@@ -52,30 +52,30 @@ case ":${PATH}:" in
     ;;
 esac
 
-case ":${PATH}:" in
-*:"$HOME/.rbenv/bin":*) ;;
-*)
-    export PATH="$HOME/.rbenv/bin${PATH:+:${PATH}}"
-    ;;
-esac
-if command -v rbenv >/dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-export GEM_HOME="$HOME/gems"
-case ":${PATH}:" in
-*:"$HOME/gems/bin":*) ;;
-*)
-    export PATH="$HOME/gems/bin${PATH:+:${PATH}}"
-    ;;
-esac
-
-case ":${PATH}:" in
-*:"$HOME/.cargo/bin":*) ;;
-*)
-    export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
-    ;;
-esac
-if command -v cargo >/dev/null; then
-    . "$HOME/.cargo/env"
-fi
+# case ":${PATH}:" in
+# *:"$HOME/.rbenv/bin":*) ;;
+# *)
+#     export PATH="$HOME/.rbenv/bin${PATH:+:${PATH}}"
+#     ;;
+# esac
+# if command -v rbenv >/dev/null; then
+#     eval "$(rbenv init -)"
+# fi
+#
+# export GEM_HOME="$HOME/gems"
+# case ":${PATH}:" in
+# *:"$HOME/gems/bin":*) ;;
+# *)
+#     export PATH="$HOME/gems/bin${PATH:+:${PATH}}"
+#     ;;
+# esac
+#
+# case ":${PATH}:" in
+# *:"$HOME/.cargo/bin":*) ;;
+# *)
+#     export PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
+#     ;;
+# esac
+# if command -v cargo >/dev/null; then
+#     . "$HOME/.cargo/env"
+# fi

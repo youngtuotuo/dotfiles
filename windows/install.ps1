@@ -1,9 +1,9 @@
 function Show-Usage {
     Write-Host "Usage: ./install.ps1 [options]"
     Write-Host "Options:"
-    Write-Host "  vsbuild-tools, policy, scoop, .local, cmake,"
-    Write-Host "  powershell, pwsh-config, neovim, nvim-config, python,"
-    Write-Host "  zig, fzf, sioyek, wezterm, wezterm-cfg, lua, go, rust,"
+    Write-Host "  vsbuild-tools, policy, scoop, .local, cmake"
+    Write-Host "  powershell, pwsh-config, neovim, nvim-config, python"
+    Write-Host "  zig, fzf, wezterm, wezterm-cfg, lua, go, rust"
     Write-Host "  nodejs, yarn, typst"
 }
 
@@ -136,25 +136,6 @@ function Install-Target($target) {
         "fzf" {
             Show-Title "fzf"
             scoop install fzf
-        }
-        "sioyek" {
-            Show-Title "sioyek"
-            Write-Host "Sioyek download page: https://github.com/ahrm/sioyek/releases"
-            $url = Read-Host "Please give current sioyek zip file url"
-            if ([string]::IsNullOrWhiteSpace($url)) {
-                Show-Info "Empty url, skip."
-            } else {
-                $zip = "$HOME\sioyek.zip"
-                $extractPath = "$HOME\Downloads\sioyek-release-windows"
-                if (-not (Test-Path -Path $extractPath)) {
-                    New-Item -ItemType Directory -Path $extractPath
-                }
-                Invoke-WebRequest -Uri $url -OutFile $zip
-                Add-Type -AssemblyName System.IO.Compression.FileSystem
-                [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath, $extractPath)
-                $env:Path += ";$extractPath"
-                [Environment]::SetEnvironmentVariable("Path", $env:Path, [EnvironmentVariableTarget]::Machine)
-            }
         }
         "wezterm"{
             Show-Title "wezterm"

@@ -52,7 +52,7 @@ augroup Tuo
     autocmd ColorScheme * call s:SetHL()
 augroup END
 
-colo ron
+call s:SetHL()
 
 runtime ftplugin/man.vim
 

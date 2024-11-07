@@ -51,7 +51,7 @@ augroup Tuo
     autocmd ColorScheme * call s:SetHL()
 augroup END
 
-colo default
+call s:SetHL()
 
 nnoremap d_ d^
 nnoremap c_ c^

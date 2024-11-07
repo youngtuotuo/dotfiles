@@ -51,7 +51,7 @@ augroup Tuo
     autocmd ColorScheme * call s:SetHL()
 augroup END
 
-colo habamax
+call s:SetHL()
 set guifont=Cascadia\ Mono:h12
 
 nnoremap d_ d^

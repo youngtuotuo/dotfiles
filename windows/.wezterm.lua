@@ -13,31 +13,8 @@ local act = wezterm.action
 
 config.keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
-  {
-    key = "E",
-    mods = "CTRL|SHIFT",
-    action = act.PromptInputLine({
-      description = "Enter new name for tab",
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:active_tab():set_title(line)
-        end
-      end),
-    }),
-  },
-  {
-     key = "t",
-     mods = "CTRL|SHIFT",
-     action = wezterm.action.SpawnCommandInNewTab({
-       cwd = wezterm.home_dir,
-     }),
-  }
 }
 
-config.font_size = 13.0
 config.default_prog = { "pwsh.exe", "-nologo" }
 config.launch_menu = {
   {
@@ -52,11 +29,8 @@ config.launch_menu = {
     label = "CMD",
     args = { "cmd.exe" },
   },
-  {
-    label = "NuShell",
-    args = { "nu.exe" },
-  },
 }
+config.font_size = 13.0
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_ease_in = "Constant"
 config.hide_tab_bar_if_only_one_tab = true

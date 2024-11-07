@@ -1,6 +1,7 @@
 $originalDirectory = Get-Location
 New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\nvim\pack\plug\start" -Force
 cd $env:LOCALAPPDATA\nvim\pack\plug\start
+# FK PowerScrpts that let async run so complicated, just sequentially clone.
 git clone --depth 1 https://github.com/kylechui/nvim-surround
 git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter
 git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter-textobjects

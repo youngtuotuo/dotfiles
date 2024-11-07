@@ -3,10 +3,10 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, lua, go,"
-	echo "  rust, zig, gdb, git-credential-manager, tmux, tmux-config, nvtop,"
-	echo "  fzf, ruby, mojo, fd, sioyek, uv, case-insensitive-bash, wsl.conf,"
-	echo "  .vimrc, .wezterm.lua, dependencies, typst, nodejs, yarn, cuda, tigervnc,"
+	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, nodejs"
+	echo "  rust, zig, gdb, tmux, tmux-config, nvtop, lua, go"
+	echo "  fzf, ruby, fd, case-insensitive-bash, wsl.conf, yarn"
+	echo "  .vimrc, dependencies, typst, cuda, tigervnc"
 	echo "  xfce4, kde"
 }
 
@@ -78,19 +78,7 @@ function install_target() {
 		title ".bashrc and .profile"
 		cp $HOME/github/dotfiles/ubuntu/.bashrc ~/.bashrc
 		cp $HOME/github/dotfiles/ubuntu/.profile ~/.profile
-		read -p "Do you want to reload the bash?(y/n) " resp
-		if [ -z "$resp" ]; then
-			response_lc="n" # empty is No
-		else
-			response_lc=$(echo "$resp" | tr '[:upper:]' '[:lower:]') # case insensitive
-		fi
-
-		if [ "$response_lc" = "y" ]; then
-			source ~/.bashrc
-			info "Reload Done."
-		else
-			info "Remember to reload to take effect."
-		fi
+        info "source ~/.bashrc to take effect."
 		;;
 	"neovim")
 		title "neovim"
@@ -237,23 +225,6 @@ function install_target() {
 			rm -r $HOME/gdb
 		fi
 		;;
-	"git-credential-manager")
-		title "git-credential-manager"
-		echo "gcm download url: https://github.com/git-ecosystem/git-credential-manager/releases"
-		read -p "Please give current gcm deb file url: " resp
-		if [ -z "$resp" ]; then
-			info "Empty url, skip."
-		else
-			if [ -f "$HOME/gcm.deb" ]; then
-				rm $HOME/gcm.deb
-			fi
-			wget $resp -O $HOME/gcm.deb
-			sudo dpkg -i $HOME/gcm.deb
-			git-credential-manager configure
-			git config --global credential.credentialStore cache
-			rm $HOME/gcm.deb
-		fi
-		;;
 	"tmux")
 		title "tmux"
 		if [ ! -d "$HOME/github/tmux" ]; then
@@ -306,14 +277,6 @@ function install_target() {
 			gem install jekyll bundler
 		fi
 		;;
-	"mojo")
-		title "mojo"
-		curl https://get.modular.com | sh -
-		modular auth
-		modular install mojo
-		# modular install max
-		# MAX_PATH=$(modular config max.path) && python3 -m pip install --find-links $MAX_PATH/wheels max-engine
-		;;
 	"fd")
 		title "fd"
 		echo "fd download url: https://github.com/sharkdp/fd/releases"
@@ -330,27 +293,6 @@ function install_target() {
 			rm $HOME/fd.deb
 		fi
 		;;
-	"sioyek")
-		title "sioyek"
-		echo "sioyek download url: https://github.com/ahrm/sioyek/releases"
-		read -p "Please give current sioyek zip file url: " resp
-		if [ -z "$resp" ]; then
-			info "Empty url, skip."
-		else
-			if [ -f "$HOME/sioyek.zip" ]; then
-				rm $HOME/sioyek.zip
-			fi
-			wget $resp -O $HOME/sioyek.zip
-			unzip $HOME/sioyek.zip
-			mv $HOME/Sioyek-x86_64.AppImage $HOME/.local/bin/sioyek
-			mv $HOME/Sioyek-x86_64.AppImage.config $HOME/.local/bin/
-			rm $HOME/sioyek.zip
-		fi
-		;;
-	"uv")
-		title "uv"
-		curl -LsSf https://astral.sh/uv/install.sh | sh
-		;;
 	"case-insensitive-bash")
 		title "case-insensitive-bash"
 		if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' >~/.inputrc; fi
@@ -364,10 +306,6 @@ function install_target() {
 	".vimrc")
 		title ".vimrc"
 		cp $HOME/github/dotfiles/ubuntu/.vimrc ~/.vimrc
-		;;
-	".wezterm.lua")
-		title ".wezterm.lua"
-		ln -s $HOME/github/dotfiles/.wezterm.lua ~/.wezterm.lua
 		;;
 	"dependencies")
 		title "dependencies"
@@ -404,7 +342,7 @@ function install_target() {
 		title "cuda"
 		if ! command -v nvcc >/dev/null; then
 			echo "  https://developer.nvidia.com/cuda-downloads"
-			read -p "Please go to this website and give corresponding url based on your system: " resp
+			read -p "Please go to this website and give corresponding deb url based on your system: " resp
 			if [ -z "$resp" ]; then
 				info "Empty url, skip."
 			else

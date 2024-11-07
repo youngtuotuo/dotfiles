@@ -8,8 +8,6 @@ Installation
 tigerVNC
 --------
 
-**NOTE**: No need to use this in WSL2.
-
 ```bash
 vncserver :2
 vncserver -kill :2

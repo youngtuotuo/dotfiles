@@ -3,9 +3,9 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, homebrew, .zshrc, neovim, nvim-config, python, lua, go,"
-	echo "  rust, zig, git-credential-manager, tmux, tmux-config,"
-	echo "  fzf, ruby, mojo, fd, sioyek, uv, .vimrc, .wezterm.lua"
+	echo "  .local, homebrew, .zshrc, neovim, nvim-config"
+	echo "  rust, zig, tmux, tmux-config, lua, go, python"
+	echo "  fzf, ruby, fd, .vimrc, .wezterm.lua"
 }
 
 if [ $# -eq 0 ]; then
@@ -85,29 +85,12 @@ function install_target() {
 			make install
 		fi
 		;;
-	"uv")
-		title "uv"
-		if ! command -v uv >/dev/null; then
-			brew install uv
-		else
-			info "uv exists: $(which uv)"
-		fi
-		;;
 	"rust")
 		title "rust"
 		if ! command -v rustup >/dev/null; then
 			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 		else
 			info "rustup exists: $(which rustup)"
-		fi
-		;;
-	"mojo")
-		title "mojo"
-		if ! command -v mojo >/dev/null; then
-			curl -s https://get.modular.com | sh -
-			modular install mojo
-		else
-			info "mojo exists: $(which mojo)"
 		fi
 		;;
 	"zig")
@@ -203,14 +186,6 @@ function install_target() {
 		title "typst"
 		brew install typst
 		;;
-	"sioyek")
-		title "sioyek"
-		if ! command -v sioyek >/dev/null; then
-			brew install --cask sioyek
-		else
-			info "sioyek exists: $(which sioyek)"
-		fi
-		;;
 	"yarn")
 		title "yarn"
 		if ! command -v yarn >/dev/null; then
@@ -227,10 +202,6 @@ function install_target() {
 		else
 			info "ruby exists: $(which ruby)"
 		fi
-		;;
-	"git-credential-manager")
-		title "git-credential-manager"
-		brew install --cask git-credential-manager
 		;;
 	".vimrc")
 		title ".vimrc"
