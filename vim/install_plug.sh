@@ -6,5 +6,8 @@ git clone --depth 1 https://github.com/tpope/vim-commentary &
 git clone --depth 1 https://github.com/tpope/vim-sleuth &
 git clone --depth 1 https://github.com/tpope/vim-surround &
 git clone --depth 1 https://github.com/tpope/vim-unimpaired &
+git clone --depth 1 https://github.com/tpope/vim-endwise &
+git clone --depth 1 https://github.com/tpope/vim-eunuch &
 vim -u NONE -c "helptags vim-fugitive/doc" -c "helptags vim-vinegar/doc" -c "helptags vim-commentary/doc" \
-    -c "helptags vim-sleuth/doc" -c "helptags vim-surround/doc" -c "helptags vim-unimpaired/doc" -c q
+    -c "helptags vim-sleuth/doc" -c "helptags vim-surround/doc" -c "helptags vim-unimpaired/doc" \
+    -c "helptags vim-eunuch/doc" -c q
