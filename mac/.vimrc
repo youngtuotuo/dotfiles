@@ -12,10 +12,10 @@ set ttimeout
 set ttimeoutlen=100
 syntax on
 filetype plugin indent on
-set tabstop=4
+"set tabstop=4
 set mouse=nvi
 "set shiftwidth=4
-set softtabstop=4
+"set softtabstop=4
 "set expandtab
 set ai
 set number
@@ -71,11 +71,38 @@ vnoremap K <cmd>move <-1<cr>gv=gv
 vnoremap < <gv
 vnoremap > >gv
 nnoremap <C-x>c :term 
+
+function! ToggleQuickfix()
+    let windows = getwininfo()
+    for win in windows
+        if win.quickfix == 1 && win.loclist == 0
+            cclose
+            return
+        endif
+    endfor
+    copen
+endfunction
+nnoremap <nowait><silent> <leader>p :call ToggleQuickfix()<cr>
 nnoremap <nowait><silent> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
 nnoremap <nowait><silent> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
+nnoremap <nowait><silent> <leader>q :call ToggleQuickfix()<cr>
+nnoremap <nowait><silent> ]q :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
+nnoremap <nowait><silent> [q :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
+
+function! ToggleLocationList()
+    let windows = getwininfo()
+    for win in windows
+        if win.loclist == 1
+            lclose
+            return
+        endif
+    endfor
+    if len(getloclist(0)) > 0
+        lopen
+    else
+        echohl WarningMsg | echo "[WARN] No location list." | echohl None
+    endif
+endfunction
+nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 nnoremap <nowait><silent> ]l :try <bar> lnext <bar> catch <bar> lfirst <bar> endtry<cr>
 nnoremap <nowait><silent> [l :try <bar> lprev <bar> catch <bar> llast <bar> endtry<cr>
-
-helptags $HOME/.vim/pack/plug/start/vim-fugitive/doc/
-helptags $HOME/.vim/pack/plug/start/vim-vinegar/doc/
-helptags $HOME/.vim/pack/plug/start/vim-commentary/doc/

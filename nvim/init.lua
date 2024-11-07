@@ -123,33 +123,44 @@ vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
 
-vim.keymap.set({ "n" }, "<leader>q", ":cope<cr>", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "]q", function()
-    vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
-end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[q", function()
-    vim.cmd([[try | cprev | catch | clast  | catch | endtry]])
-end, { nowait = true, noremap = true })
+-- \q, [q, ]q for tpope's unimpaired
+vim.keymap.set({ "n" }, "<leader>q", function()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+        if win.quickfix == 1 and win.loclist == 0 then vim.cmd.cclose() return end
+    end
+    vim.cmd.copen()
+end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
+vim.keymap.set({ "n" }, "]q", function() vim.cmd([[try | cnext | catch | cfirst | catch | endtry]]) end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[q", function() vim.cmd([[try | cprev | catch | clast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
-vim.keymap.set({ "n" }, "<leader>p", ":cope<cr>", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "]p", function()
-    vim.cmd([[try | cnext | catch | cfirst | catch | endtry]])
-end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[p", function()
-    vim.cmd([[try | cprev | catch | clast  | catch | endtry]])
-end, { nowait = true, noremap = true })
+-- \p, [p, ]p for my muscle memory
+vim.keymap.set({ "n" }, "<leader>p", function()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+        if win.quickfix == 1 and win.loclist == 0 then vim.cmd.cclose() return end
+    end
+    vim.cmd.copen()
+end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
+vim.keymap.set({ "n" }, "]p", function() vim.cmd([[try | cnext | catch | cfirst | catch | endtry]]) end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[p", function() vim.cmd([[try | cprev | catch | clast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
-vim.keymap.set({ "n" }, "<leader>l", ":lope<cr>", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "]l", function()
-    vim.cmd([[try | lnext | catch | lfirst | catch | endtry]])
-end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[l", function()
-    vim.cmd([[try | lprev | catch | llast  | catch | endtry]])
-end, { nowait = true, noremap = true })
+-- \l, [l, ]l for tpope's unimpaired
+vim.keymap.set({ "n" }, "<leader>l", function()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+        if win.loclist == 1 then vim.cmd.lclose() return end
+    end
+    if #vim.fn.getloclist(0) > 0 then vim.cmd.lopen()
+    else vim.notify("[WARN] No location list.", vim.log.levels.WARN)
+    end
+end, { nowait = true, noremap = true, desc = "toggle location list" })
+vim.keymap.set({ "n" }, "]l", function() vim.cmd([[try | lnext | catch | lfirst | catch | endtry]]) end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[l", function() vim.cmd([[try | lprev | catch | llast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
 -- vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
-vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
-vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
+-- vim.opt.tabstop = 4
 -- vim.opt.shiftwidth = 4 -- spaces for auto indent
 vim.opt.smartindent = true -- auto indent when typing { & }
 vim.opt.ignorecase = true -- Ignore case when searching...
