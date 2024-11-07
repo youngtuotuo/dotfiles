@@ -105,6 +105,13 @@ require("various-textobjs").setup({ useDefaultKeymaps = false })
 vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
 vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-treesitter/doc/]]
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-treesitter-textobjects/doc/]]
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-various-textobjs/doc/]]
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/nvim-surround/doc/]]
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/vim-fugitive/doc/]]
+vim.cmd[[helptags $HOME/.config/nvim/pack/plug/start/vim-vinegar/doc/]]
+
 -- print(vim.inspect(v))
 P = function(v)
     print(vim.inspect(v))

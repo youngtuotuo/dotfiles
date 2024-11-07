@@ -75,3 +75,7 @@ nnoremap <nowait><silent> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> end
 nnoremap <nowait><silent> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
 nnoremap <nowait><silent> ]l :try <bar> lnext <bar> catch <bar> lfirst <bar> endtry<cr>
 nnoremap <nowait><silent> [l :try <bar> lprev <bar> catch <bar> llast <bar> endtry<cr>
+
+helptags $HOME/.vim/pack/plug/start/vim-fugitive/doc/
+helptags $HOME/.vim/pack/plug/start/vim-vinegar/doc/
+helptags $HOME/.vim/pack/plug/start/vim-commentary/doc/
