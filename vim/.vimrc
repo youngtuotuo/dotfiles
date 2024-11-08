@@ -1,32 +1,32 @@
 set nocompatible
 set ignorecase
 set smartcase
+set smartindent
 set showmatch
 set matchtime=1
 set backspace=indent,eol,start
+set completeopt=menu,menuone,preview
+set noswapfile
 set complete-=i
 set smarttab
-set hlsearch
-set nrformats-=octal
-set ttimeout
-set ttimeoutlen=100
 syntax on
 filetype plugin indent on
 set mouse=nvi
 set ai
-set number
 set sessionoptions-=options
 set viewoptions-=options
 set incsearch
-set laststatus=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set formatoptions+=j
+set autoread
+set history=1000
 set ruler
-set rnu
-set nu
 set background=dark
 set nolangremap
 set cursorline
+
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+        \ | diffthis | wincmd p | diffthis
 
 function! s:SetHL()
     hi CursorLine ctermbg=235 guibg=Grey cterm=nocombine gui=nocombine

@@ -1,7 +1,3 @@
--- fk u MS
-_G.sep = vim.fn.has("win32") == 1 and [[\]] or "/"
-_G.ext = vim.fn.has("win32") == 1 and ".exe" or ""
-
 local function directory_exists(path)
     local stat = vim.loop.fs_stat(path)
     return stat and stat.type == "directory"
@@ -9,35 +5,13 @@ end
 
 -- plugins
 local plugin_dir = vim.fn.stdpath("config") .. "/pack/plug/start"
+
 if directory_exists(plugin_dir .. "/nvim-treesitter") then
     require("nvim-treesitter.configs").setup({
-        indent = {
-            enable = false,
-        },
-        highlight = false,
-        incremental_selection = {
-            enable = false,
-        },
+        indent = { enable = false, },
+        highlight = { enable = false },
+        incremental_selection = { enable = false, },
         -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
-        ensure_installed = {
-            -- "bash",
-            -- "c",
-            "cpp",
-            "cuda",
-            -- "lua",
-            -- "markdown",
-            -- "markdown_inline",
-            -- "python",
-            -- "query",
-            -- "vim",
-            -- "vimdoc",
-            "html",
-            "gitcommit",
-            "gitignore",
-            "go",
-            "zig",
-            "rust",
-        },
         textobjects = {
             select = {
                 enable = true,
@@ -102,6 +76,11 @@ end
 
 P = function(v) print(vim.inspect(v)) return v end
 
+vim.cmd[[
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+            \ | diffthis | wincmd p | diffthis
+]]
+
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
 
@@ -152,21 +131,13 @@ end, { nowait = true, noremap = true, desc = "toggle location list" })
 vim.keymap.set({ "n" }, "]l", function() vim.cmd([[try | lnext | catch | lfirst | catch | endtry]]) end, { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "[l", function() vim.cmd([[try | lprev | catch | llast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
--- vim.opt.expandtab = true -- <Tab> to space char, CTRL-V-I to insert real tab
--- vim.opt.softtabstop = 4 -- <BS> delete 4 spaces
--- vim.opt.tabstop = 4
--- vim.opt.shiftwidth = 4 -- spaces for auto indent
-vim.opt.smartindent = true -- auto indent when typing { & }
-vim.opt.ignorecase = true -- Ignore case when searching...
-vim.opt.smartcase = true -- ... unless there is a capital letter in the query
-vim.opt.matchtime = 1 -- display of current match paren faster
-vim.opt.showmatch = true -- show matching brackets when text indicator is over them
+vim.opt.smartindent = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.matchtime = 1
+vim.opt.showmatch = true
 vim.opt.completeopt = [[menu,menuone,preview,fuzzy]]
 vim.opt.swapfile = false
-vim.opt.updatetime = 50
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
-vim.opt.undofile = true
-vim.opt.wildcharm = vim.fn.char2nr("^I")
 vim.opt.hlsearch = false
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars = [[tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$]]
@@ -174,9 +145,6 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.fillchars:append("vert:|")
 vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
-
-vim.opt.grepformat:append({ [[%l:%m]] })
-vim.opt.cinkeys:remove(":")
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
