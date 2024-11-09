@@ -182,7 +182,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
 })
 
-vim.api.nvim_create_autocmd({"ColorScheme"}, {
+vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
     group = "Tuo",
     callback = function() 
         vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
@@ -200,4 +200,3 @@ vim.api.nvim_create_autocmd({"ColorScheme"}, {
         vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
     end,
 })
-vim.cmd.colo [[wildcharm]]

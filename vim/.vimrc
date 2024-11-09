@@ -62,7 +62,7 @@ call s:SetHL()
 
 augroup Tuo
     autocmd!
-    autocmd ColorScheme * call s:SetHL()
+    autocmd VimEnter,ColorScheme * call s:SetHL()
 augroup END
 
 augroup vimStartup
