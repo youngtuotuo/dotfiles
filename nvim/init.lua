@@ -68,7 +68,9 @@ if directory_exists(plugin_dir .. "/nvim-treesitter") then
     })
 end
 
-if directory_exists(plugin_dir .. "/nvim-surround") then require("nvim-surround").setup() end
+if directory_exists(plugin_dir .. "/nvim-surround") then
+    require("nvim-surround").setup()
+end
 
 P = function(v) print(vim.inspect(v)) return v end
 
@@ -139,22 +141,27 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = false
 vim.opt.shada = { "'10", "<0", "s10", "h" }
-vim.opt.timeoutlen = 100
 vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
+vim.opt.wrapscan = false
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellcmdflag =
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
     vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
     vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     vim.opt.shellquote = ""
     vim.opt.shellxquote = ""
 end
 
-vim.filetype.add({ extension = { h = "c", } })
+vim.filetype.add({
+    extension = {
+        h = "c",
+    },
+})
 
 vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
