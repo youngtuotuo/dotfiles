@@ -11,11 +11,9 @@ if directory_exists(plugin_dir .. "/nvim-treesitter") then
         indent = { enable = false, },
         highlight = { enable = false },
         incremental_selection = { enable = false, },
-        -- bash, c, lua, markdown, markdown_inline, python, query, vim, vimdoc are all ported by default
         textobjects = {
             select = {
                 enable = true,
-                -- Automatically jump forward to textobj, similar to targets.vim
                 lookahead = true,
                 keymaps = {
                     ["af"] = "@function.outer",
@@ -70,28 +68,29 @@ if directory_exists(plugin_dir .. "/nvim-treesitter") then
     })
 end
 
-if directory_exists(plugin_dir .. "/nvim-surround") then
-    require("nvim-surround").setup({})
-end
+if directory_exists(plugin_dir .. "/nvim-surround") then require("nvim-surround").setup() end
 
 P = function(v) print(vim.inspect(v)) return v end
 
 vim.cmd[[
-    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
-            \ | diffthis | wincmd p | diffthis
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 ]]
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
 
-vim.keymap.set({ "i" }, ",", ",<C-g>u", { noremap = true })
-vim.keymap.set({ "i" }, ".", ".<C-g>u", { noremap = true })
+vim.keymap.set({ "n" }, "Q", "gq", { nowait = true, noremap = true })
+vim.keymap.set({ "s" }, "Q", "<Nop>", { nowait = true, noremap = true })
+
+vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
+vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
+vim.keymap.set({ "i" }, "<C-u>", "<C-g>u<C-u>", { noremap = true })
 
 vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
-vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [["_dP, Paste over currently selected text without yanking it]] })
+vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [[Paste over currently selected text without yanking it]] })
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
@@ -132,52 +131,56 @@ vim.keymap.set({ "n" }, "]l", function() vim.cmd([[try | lnext | catch | lfirst 
 vim.keymap.set({ "n" }, "[l", function() vim.cmd([[try | lprev | catch | llast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
 vim.opt.smartindent = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.matchtime = 1
+vim.opt.shiftwidth = 4
+vim.opt.laststatus = 1
 vim.opt.showmatch = true
-vim.opt.completeopt = [[menu,menuone,preview,fuzzy]]
+vim.opt.completeopt = [[menu,preview,fuzzy]]
+vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = false
 vim.opt.shada = { "'10", "<0", "s10", "h" }
-vim.opt.listchars = [[tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$]]
+vim.opt.timeoutlen = 100
+vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
-vim.opt.fillchars:append("vert:|")
-vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
+vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-    vim.opt.shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
     vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
     vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     vim.opt.shellquote = ""
     vim.opt.shellxquote = ""
 end
 
-vim.filetype.add({
-    extension = {
-        h = "c",
-    },
-})
+vim.filetype.add({ extension = { h = "c", } })
 
-local group = vim.api.nvim_create_augroup("TuoGroup", { clear = true })
-
+vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = group,
+    group = "Tuo",
     callback = function()
-        vim.opt.indentkeys:remove("<:>")
-        vim.opt.formatoptions = "jql"
         vim.treesitter.stop()
     end,
 })
+
+vim.api.nvim_create_augroup("vimStartup", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group="vimStartup",
+    callback = function()
+	local line = vim.fn.line("\"")
+	if line >= 1 and line <= vim.fn.line("$") and vim.bo.filetype ~= "commit" and not vim.tbl_contains({ "xxd", "gitrebase" }, vim.bo.filetype) then
+	  vim.cmd("normal! g`\"")
+	end
+    end
+})
+
 vim.api.nvim_create_autocmd({"ColorScheme"}, {
-    group = group,
+    group = "Tuo",
     callback = function() 
         vim.api.nvim_set_hl(0, "CursorLine", { bg = "Grey15", ctermbg = 235 })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Yellow", ctermfg = 11 })
-        vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
+        vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 235 })
         vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
         vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
         vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
@@ -185,8 +188,9 @@ vim.api.nvim_create_autocmd({"ColorScheme"}, {
         vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
         vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
         vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
-        vim.api.nvim_set_hl(0, "VertSplit", { cterm = {reverse = true}, reverse = true })
+        vim.api.nvim_set_hl(0, "WinSeparator", { cterm = {reverse = true}, reverse = true })
+        vim.api.nvim_set_hl(0, "VertSplit", { link = "WinSeparator" })
         vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
     end,
 })
-vim.cmd.colo[[vim]]
+vim.cmd.colo [[wildcharm]]

@@ -1,56 +1,81 @@
 set nocompatible
-set ignorecase
-set smartcase
 set smartindent
 set showmatch
-set matchtime=1
+set undofile
+set noswapfile
+set display=lastline
 set backspace=indent,eol,start
 set completeopt=menu,menuone,preview
-set noswapfile
 set complete-=i
 set smarttab
 syntax on
 filetype plugin indent on
 set mouse=nvi
-set ai
+set autoindent
 set sessionoptions-=options
 set viewoptions-=options
 set incsearch
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set formatoptions+=j
 set autoread
-set history=1000
+set history=10000
 set ruler
 set background=dark
-set nolangremap
 set cursorline
+set nrformats-=octal
+set showcmd
+set wildmenu
+set ttimeout
+map Q gq
+sunmap Q
 
-command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
-        \ | diffthis | wincmd p | diffthis
+if has('win32')
+    set guioptions-=t
+    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+    let &shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command
+    [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultPar
+    ameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering=''plaintext'';Remove-Alias -F
+    orce -ErrorAction SilentlyContinue tee;'
+    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+    set shellquote= shellxquote=
+endif
+
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 function! s:SetHL()
-    hi CursorLine ctermbg=235 guibg=Grey cterm=nocombine gui=nocombine
-    hi CursorLineNr ctermfg=11 guifg=Yellow cterm=nocombine gui=nocombine
-    hi Comment guifg=DarkGrey ctermfg=DarkGrey
-    hi NormalFloat guibg=NONE ctermbg=NONE
-    hi FloatBorder guibg=NONE ctermbg=NONE
-    hi StatusLineNC gui=reverse cterm=reverse
-    hi! link MatchParen Visual
+    hi CursorLine ctermbg=235 cterm=nocombine guibg=Grey gui=nocombine
+    hi CursorLineNr ctermfg=11 cterm=nocombine guifg=Yellow gui=nocombine
+    hi Comment ctermfg=242 guifg=DarkGrey 
+    hi NormalFloat ctermbg=NONE guibg=NONE
+    hi FloatBorder ctermbg=NONE guibg=NONE
+    hi StatusLineNC cterm=reverse gui=reverse
     hi VertSplit cterm=reverse gui=reverse
-    hi Visual guifg=NONE ctermfg=NONE guibg=Grey ctermbg=Grey gui=nocombine cterm=nocombine
-    hi Pmenu guibg=Grey ctermbg=Grey
-    hi PmenuSel guifg=Black guibg=DarkGrey ctermfg=Black ctermbg=DarkGrey
+    hi Visual ctermfg=NONE ctermbg=235 cterm=nocombine guifg=NONE guibg=Grey gui=nocombine
+    hi! link MatchParen Visual
+    hi Pmenu ctermbg=Grey guibg=Grey 
+    hi PmenuSel ctermfg=Black ctermbg=DarkGrey guifg=Black guibg=DarkGrey
     hi netrwMarkFile ctermfg=Brown guifg=Brown
 endfunction
+
+call s:SetHL()
 
 augroup Tuo
     autocmd!
     autocmd ColorScheme * call s:SetHL()
 augroup END
 
-call s:SetHL()
+augroup vimStartup
+    autocmd!
+    autocmd BufReadPost *
+      \ let line = line("'\"")
+      \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit' && index(['xxd', 'gitrebase'], &filetype) == -1
+      \ |   execute "normal! g`\""
+      \ | endif
+augroup END
 
 runtime ftplugin/man.vim
+packadd! matchit
 
 nnoremap d_ d^
 nnoremap c_ c^
@@ -71,10 +96,7 @@ nnoremap <C-x>c :term
 function! ToggleQuickfix()
     let windows = getwininfo()
     for win in windows
-        if win.quickfix == 1 && win.loclist == 0
-            cclose
-            return
-        endif
+        if win.quickfix == 1 && win.loclist == 0 cclose return endif
     endfor
     copen
 endfunction
@@ -88,15 +110,10 @@ nnoremap <nowait><silent> [q :try <bar> cprev <bar> catch <bar> clast <bar> endt
 function! ToggleLocationList()
     let windows = getwininfo()
     for win in windows
-        if win.loclist == 1
-            lclose
-            return
-        endif
+       if win.loclist == 1 lclose return endif
     endfor
-    if len(getloclist(0)) > 0
-        lopen
-    else
-        echohl WarningMsg | echo "[WARN] No location list." | echohl None
+    if len(getloclist(0)) > 0 lopen
+    else echohl WarningMsg | echo "[WARN] No location list." | echohl None
     endif
 endfunction
 nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
