@@ -6,18 +6,14 @@ command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
-
 vim.keymap.set({ "n" }, "Q", "gq", { nowait = true, noremap = true })
 vim.keymap.set({ "s" }, "Q", "<Nop>", { nowait = true, noremap = true })
-
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "i" }, "<C-u>", "<C-g>u<C-u>", { noremap = true })
-
 vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
-
 vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [[Paste over currently selected text without yanking it]] })
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
@@ -75,8 +71,7 @@ vim.opt.wrapscan = false
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-    vim.opt.shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering=''plaintext'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
     vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
     vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     vim.opt.shellquote = ""
