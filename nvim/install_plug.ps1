@@ -21,9 +21,7 @@ function Set-Plugin {
     }
 }
 
-Set-Plugin "https://github.com/kylechui/nvim-surround"
-Set-Plugin "https://github.com/nvim-treesitter/nvim-treesitter"
-Set-Plugin "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+Set-Plugin "https://github.com/tpope/vim-surround"
 Set-Plugin "https://github.com/tpope/vim-fugitive"
 Set-Plugin "https://github.com/tpope/vim-vinegar"
 Set-Plugin "https://github.com/tpope/vim-sleuth"

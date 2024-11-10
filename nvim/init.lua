@@ -1,77 +1,3 @@
-local function directory_exists(path)
-    local stat = vim.loop.fs_stat(path)
-    return stat and stat.type == "directory"
-end
-
--- plugins
-local plugin_dir = vim.fn.stdpath("config") .. "/pack/plug/start"
-
-if directory_exists(plugin_dir .. "/nvim-treesitter") then
-    require("nvim-treesitter.configs").setup({
-        indent = { enable = false, },
-        highlight = { enable = false },
-        incremental_selection = { enable = false, },
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                    ["ai"] = "@conditional.outer",
-                    ["ii"] = "@conditional.inner",
-                    ["al"] = "@loop.outer",
-                    ["il"] = "@loop.inner",
-                },
-                include_surrounding_whitespace = false,
-            },
-            swap = {
-                enable = true,
-                swap_next = {
-                    ["<leader>a"] = "@parameter.inner",
-                },
-                swap_previous = {
-                    ["<leader>A"] = "@parameter.inner",
-                },
-            },
-            move = {
-                enable = true,
-                set_jumps = true,
-                goto_next_start = {
-                    ["]m"] = "@function.outer",
-                    ["]]"] = "@class.outer",
-                    ["]i"] = "@conditional.outer",
-                    ["]w"] = "@loop.outer",
-                },
-                goto_next_end = {
-                    ["]M"] = "@function.outer",
-                    ["]["] = "@class.outer",
-                    ["]I"] = "@conditional.outer",
-                    ["]W"] = "@loop.outer",
-                },
-                goto_previous_start = {
-                    ["[m"] = "@function.outer",
-                    ["[["] = "@class.outer",
-                    ["[i"] = "@conditional.outer",
-                    ["[w"] = "@loop.outer",
-                },
-                goto_previous_end = {
-                    ["[M"] = "@function.outer",
-                    ["[]"] = "@class.outer",
-                    ["[I"] = "@conditional.outer",
-                    ["[W"] = "@loop.outer",
-                },
-            },
-        },
-    })
-end
-
-if directory_exists(plugin_dir .. "/nvim-surround") then
-    require("nvim-surround").setup()
-end
-
 P = function(v) print(vim.inspect(v)) return v end
 
 vim.cmd[[
@@ -156,12 +82,6 @@ if vim.fn.has("win32") == 1 then
     vim.opt.shellquote = ""
     vim.opt.shellxquote = ""
 end
-
-vim.filetype.add({
-    extension = {
-        h = "c",
-    },
-})
 
 vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {

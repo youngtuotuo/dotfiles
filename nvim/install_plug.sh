@@ -17,9 +17,7 @@ function set_plugin() {
     fi
 }
 
-set_plugin https://github.com/kylechui/nvim-surround &
-set_plugin https://github.com/nvim-treesitter/nvim-treesitter &
-set_plugin https://github.com/nvim-treesitter/nvim-treesitter-textobjects &
+set_plugin https://github.com/tpope/vim-surround &
 set_plugin https://github.com/tpope/vim-fugitive &
 set_plugin https://github.com/tpope/vim-vinegar &
 set_plugin https://github.com/tpope/vim-sleuth &
