@@ -9,15 +9,21 @@ cd $packpath
 
 function Set-Plugin {
     param (
-        [string]$repoUrl
+        [string]$RepoUrl
     )
-    
-    $repoName = Split-Path -Leaf $repoUrl
-    $pluginDir = Join-Path -Path $packpath -ChildPath $repoName
-    
-    if (!(Test-Path -Path $pluginDir)) {
-        git clone --depth 1 $repoUrl
-        nvim --headless -u NONE "+helptags $repoName/doc" +qa
+
+    $RepoName = [System.IO.Path]::GetFileNameWithoutExtension($RepoUrl)
+    $PluginDir = Join-Path -Path $packpath -ChildPath $RepoName
+
+    if (-not (Test-Path -Path $PluginDir)) {
+        Start-Job -ScriptBlock {
+            param ($RepoUrl, $RepoName)
+            git clone --depth 1 $RepoUrl
+            $DocPath = Join-Path -Path $RepoName -ChildPath "doc"
+            if (Test-Path -Path $DocPath) {
+                nvim --headless -u NONE "+helptags $DocPath" +qa
+            }
+        } -ArgumentList $RepoUrl, $RepoName
     }
 }
 
@@ -25,8 +31,9 @@ Set-Plugin "https://github.com/tpope/vim-surround"
 Set-Plugin "https://github.com/tpope/vim-fugitive"
 Set-Plugin "https://github.com/tpope/vim-vinegar"
 Set-Plugin "https://github.com/tpope/vim-sleuth"
-Set-Plugin "https://github.com/tpope/vim-unimpaired"
 Set-Plugin "https://github.com/tpope/vim-endwise"
 Set-Plugin "https://github.com/tpope/vim-eunuch"
+
+Get-Job | Wait-Job | Receive-Job
 
 cd $originalDirectory

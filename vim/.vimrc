@@ -21,7 +21,6 @@ set autoread
 set history=10000
 set ruler
 set background=dark
-set cursorline
 set nrformats-=octal
 set showcmd
 set wildmenu
@@ -44,14 +43,12 @@ endif
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 function! s:SetHL()
-    hi CursorLine ctermbg=235 cterm=nocombine guibg=Grey gui=nocombine
-    hi CursorLineNr ctermfg=11 cterm=nocombine guifg=Yellow gui=nocombine
     hi Comment ctermfg=242 guifg=DarkGrey 
     hi NormalFloat ctermbg=NONE guibg=NONE
     hi FloatBorder ctermbg=NONE guibg=NONE
     hi StatusLineNC cterm=reverse gui=reverse
     hi VertSplit cterm=reverse gui=reverse
-    hi Visual ctermfg=NONE ctermbg=235 cterm=nocombine guifg=NONE guibg=Grey gui=nocombine
+    hi Visual ctermfg=NONE ctermbg=238 cterm=nocombine guifg=NONE guibg=Grey gui=nocombine
     hi! link MatchParen Visual
     hi Pmenu ctermbg=Grey guibg=Grey 
     hi PmenuSel ctermfg=Black ctermbg=DarkGrey guifg=Black guibg=DarkGrey

@@ -25,3 +25,5 @@ set_plugin https://github.com/tpope/vim-surround &
 set_plugin https://github.com/tpope/vim-unimpaired &
 set_plugin https://github.com/tpope/vim-endwise &
 set_plugin https://github.com/tpope/vim-eunuch &
+
+wait

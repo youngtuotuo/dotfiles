@@ -13,7 +13,9 @@ function set_plugin() {
     plugin_dir=$packpath/$repo_name
     if [ ! -d "$plugin_dir" ]; then
         git clone --depth 1 $1
-        nvim --headless -u NONE "+helptags $repo_name/doc" +qa
+        if [ -d "$repo_name/doc" ]; then
+            nvim --headless -u NONE "+helptags $repo_name/doc" +qa
+        fi
     fi
 }
 
@@ -24,3 +26,5 @@ set_plugin https://github.com/tpope/vim-sleuth &
 set_plugin https://github.com/tpope/vim-unimpaired &
 set_plugin https://github.com/tpope/vim-endwise &
 set_plugin https://github.com/tpope/vim-eunuch &
+
+wait
