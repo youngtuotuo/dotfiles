@@ -1,41 +1,24 @@
-$originalDirectory = Get-Location
-$packpath = "$env:USERPROFILE\vimfiles\pack\plug\start"
+$repoUrls = @(
+    "https://github.com/tpope/vim-fugitive"
+    "https://github.com/tpope/vim-vinegar"
+    "https://github.com/tpope/vim-commentary"
+    "https://github.com/tpope/vim-surround"
+    "https://github.com/tpope/vim-unimpaired"
+    "https://github.com/tpope/vim-endwise"
+    "https://github.com/tpope/vim-eunuch"
+    "https://github.com/sheerun/vim-polyglot"
+)
 
-if (!(Test-Path -Path $packpath)) {
-    New-Item -ItemType Directory -Path $packpath -Force | Out-Null
+$destinationFolder = "$HOME\vimfiles\pack\plug\start"
+
+$jobs = foreach ($url in $repoUrls) {
+    Write-Host $url
+    Start-Job -ScriptBlock {
+        param($url, $destinationFolder)
+        git clone $url "$destinationFolder\$([System.IO.Path]::GetFileNameWithoutExtension($url))" 2>$null
+    } -ArgumentList $url, $destinationFolder
 }
 
-cd $packpath
-
-function Set-Plugin {
-    param (
-        [string]$RepoUrl
-    )
-
-    $RepoName = [System.IO.Path]::GetFileNameWithoutExtension($RepoUrl)
-    $PluginDir = Join-Path -Path $packpath -ChildPath $RepoName
-
-    if (-not (Test-Path -Path $PluginDir)) {
-        Start-Job -ScriptBlock {
-            param ($RepoUrl, $RepoName)
-            git clone --depth 1 $RepoUrl
-            $DocPath = Join-Path -Path $RepoName -ChildPath "doc"
-            if (Test-Path -Path $DocPath) {
-                nvim --headless -u NONE "+helptags $DocPath" +qa
-            }
-        } -ArgumentList $RepoUrl, $RepoName
-    }
-}
-
-Set-Plugin "https://github.com/tpope/vim-fugitive"
-Set-Plugin "https://github.com/tpope/vim-vinegar"
-Set-Plugin "https://github.com/tpope/vim-commentary"
-Set-Plugin "https://github.com/sheerun/vim-polyglot"
-Set-Plugin "https://github.com/tpope/vim-surround"
-Set-Plugin "https://github.com/tpope/vim-unimpaired"
-Set-Plugin "https://github.com/tpope/vim-endwise"
-Set-Plugin "https://github.com/tpope/vim-eunuch"
-
-Get-Job | Wait-Job | Receive-Job
-
-cd $originalDirectory
+ Wait-Job -Job $jobs
+ Receive-Job -Job $jobs
+ Remove-Job -Job $jobs

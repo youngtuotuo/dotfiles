@@ -25,16 +25,14 @@ set nrformats-=octal
 set showcmd
 set wildmenu
 set ttimeout
+set nowrapscan
 map Q gq
 sunmap Q
 
 if has('win32')
     set guioptions-=t
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-    let &shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command
-    [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultPar
-    ameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering=''plaintext'';Remove-Alias -F
-    orce -ErrorAction SilentlyContinue tee;'
+    let &shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultPar ameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering=''plaintext'';Remove-Alias -F orce -ErrorAction SilentlyContinue tee;'
     let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     set shellquote= shellxquote=
@@ -93,26 +91,29 @@ nnoremap <C-x>c :term
 function! ToggleQuickfix()
     let windows = getwininfo()
     for win in windows
-        if win.quickfix == 1 && win.loclist == 0 cclose return endif
+        if win.quickfix == 1 && win.loclist == 0
+            cclose
+            return
+        endif
     endfor
     copen
 endfunction
 nnoremap <nowait><silent> <leader>p :call ToggleQuickfix()<cr>
-nnoremap <nowait><silent> ]p :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
-nnoremap <nowait><silent> [p :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
-nnoremap <nowait><silent> <leader>q :call ToggleQuickfix()<cr>
-nnoremap <nowait><silent> ]q :try <bar> cnext <bar> catch <bar> cfirst <bar> endtry<cr>
-nnoremap <nowait><silent> [q :try <bar> cprev <bar> catch <bar> clast <bar> endtry<cr>
+nnoremap <nowait><silent> ]p :cnext<cr>
+nnoremap <nowait><silent> [p :cprev<cr>
 
 function! ToggleLocationList()
     let windows = getwininfo()
     for win in windows
-       if win.loclist == 1 lclose return endif
+       if win.loclist == 1
+           lclose
+           return
+       endif
     endfor
-    if len(getloclist(0)) > 0 lopen
-    else echohl WarningMsg | echo "[WARN] No location list." | echohl None
+    if len(getloclist(0)) > 0
+        lopen
+    else
+        echohl ErrorMsg | echo "E776: No location list" | echohl None
     endif
 endfunction
 nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
-nnoremap <nowait><silent> ]l :try <bar> lnext <bar> catch <bar> lfirst <bar> endtry<cr>
-nnoremap <nowait><silent> [l :try <bar> lprev <bar> catch <bar> llast <bar> endtry<cr>
