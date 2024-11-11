@@ -30,7 +30,7 @@ function Set-Plugin {
 Set-Plugin "https://github.com/tpope/vim-surround"
 Set-Plugin "https://github.com/tpope/vim-fugitive"
 Set-Plugin "https://github.com/tpope/vim-vinegar"
-Set-Plugin "https://github.com/tpope/vim-sleuth"
+Set-Plugin "https://github.com/sheerun/vim-polyglot"
 Set-Plugin "https://github.com/tpope/vim-endwise"
 Set-Plugin "https://github.com/tpope/vim-eunuch"
 

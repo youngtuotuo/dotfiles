@@ -19,17 +19,6 @@ vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
 
--- \q, [q, ]q for tpope's unimpaired
-vim.keymap.set({ "n" }, "<leader>q", function()
-    local windows = vim.fn.getwininfo()
-    for _, win in pairs(windows) do
-        if win.quickfix == 1 and win.loclist == 0 then vim.cmd.cclose() return end
-    end
-    vim.cmd.copen()
-end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
-vim.keymap.set({ "n" }, "]q", function() vim.cmd([[try | cnext | catch | cfirst | catch | endtry]]) end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[q", function() vim.cmd([[try | cprev | catch | clast  | catch | endtry]]) end, { nowait = true, noremap = true })
-
 -- \p, [p, ]p for my muscle memory
 vim.keymap.set({ "n" }, "<leader>p", function()
     local windows = vim.fn.getwininfo()
@@ -38,8 +27,8 @@ vim.keymap.set({ "n" }, "<leader>p", function()
     end
     vim.cmd.copen()
 end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
-vim.keymap.set({ "n" }, "]p", function() vim.cmd([[try | cnext | catch | cfirst | catch | endtry]]) end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[p", function() vim.cmd([[try | cprev | catch | clast  | catch | endtry]]) end, { nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "]p", ":cnext<cr>", { silent = true, nowait = true, noremap = true })
+vim.keymap.set({ "n" }, "[p", ":cprev<cr>", { silent = true, nowait = true, noremap = true })
 
 -- \l, [l, ]l for tpope's unimpaired
 vim.keymap.set({ "n" }, "<leader>l", function()
@@ -51,8 +40,6 @@ vim.keymap.set({ "n" }, "<leader>l", function()
     else vim.notify("[WARN] No location list.", vim.log.levels.WARN)
     end
 end, { nowait = true, noremap = true, desc = "toggle location list" })
-vim.keymap.set({ "n" }, "]l", function() vim.cmd([[try | lnext | catch | lfirst | catch | endtry]]) end, { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[l", function() vim.cmd([[try | lprev | catch | llast  | catch | endtry]]) end, { nowait = true, noremap = true })
 
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
@@ -100,13 +87,13 @@ vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
     group = "Tuo",
     callback = function() 
         vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
+        vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
         vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
         vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
         vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
         vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
         vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
         vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
-        vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
         vim.api.nvim_set_hl(0, "WinSeparator", { cterm = {reverse = true}, reverse = true })
         vim.api.nvim_set_hl(0, "VertSplit", { link = "WinSeparator" })
         vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
