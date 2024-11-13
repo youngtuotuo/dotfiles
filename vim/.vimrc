@@ -23,7 +23,6 @@ set ruler
 set background=dark
 set nrformats-=octal
 set showcmd
-set wildmenu
 set ttimeout
 set nowrapscan
 map Q gq

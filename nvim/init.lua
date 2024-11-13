@@ -54,6 +54,7 @@ vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
+vim.opt.wildmenu = false
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
