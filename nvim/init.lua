@@ -43,7 +43,6 @@ end, { nowait = true, noremap = true, desc = "toggle location list" })
 
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
-vim.opt.laststatus = 1
 vim.opt.showmatch = true
 vim.opt.completeopt = [[menu,preview,fuzzy]]
 vim.opt.undofile = true
@@ -54,6 +53,8 @@ vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
+vim.opt.undofile = true
+vim.opt.termguicolors = true
 vim.opt.wildmenu = false
 
 if vim.fn.has("win32") == 1 then
@@ -71,17 +72,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     callback = function()
         vim.treesitter.stop()
     end,
-})
-
-vim.api.nvim_create_augroup("vimStartup", { clear = true })
-vim.api.nvim_create_autocmd("BufReadPost", {
-    group="vimStartup",
-    callback = function()
-	local line = vim.fn.line("\"")
-	if line >= 1 and line <= vim.fn.line("$") and vim.bo.filetype ~= "commit" and not vim.tbl_contains({ "xxd", "gitrebase" }, vim.bo.filetype) then
-	  vim.cmd("normal! g`\"")
-	end
-    end
 })
 
 vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
@@ -103,3 +93,5 @@ vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
 
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
+vim.keymap.set({ "n" }, "<space>o", ":Tagbar<cr>", { silent=true, noremap = true })
+vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)

@@ -1,7 +1,6 @@
 set nocompatible
 set smartindent
 set showmatch
-set undofile
 set noswapfile
 set display=lastline
 set backspace=indent,eol,start
@@ -25,6 +24,7 @@ set nrformats-=octal
 set showcmd
 set ttimeout
 set nowrapscan
+set termguicolors
 map Q gq
 sunmap Q
 
@@ -45,7 +45,7 @@ function! s:SetHL()
     hi FloatBorder ctermbg=NONE guibg=NONE
     hi StatusLineNC cterm=reverse gui=reverse
     hi VertSplit cterm=reverse gui=reverse
-    hi Visual ctermfg=NONE ctermbg=238 cterm=nocombine guifg=NONE guibg=Grey gui=nocombine
+    hi Visual ctermfg=NONE ctermbg=238 cterm=nocombine guifg=NONE guibg=#444444 gui=nocombine
     hi! link MatchParen Visual
     hi Pmenu ctermbg=Grey guibg=Grey 
     hi PmenuSel ctermfg=Black ctermbg=DarkGrey guifg=Black guibg=DarkGrey
@@ -57,15 +57,6 @@ call s:SetHL()
 augroup Tuo
     autocmd!
     autocmd VimEnter,ColorScheme * call s:SetHL()
-augroup END
-
-augroup vimStartup
-    autocmd!
-    autocmd BufReadPost *
-      \ let line = line("'\"")
-      \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit' && index(['xxd', 'gitrebase'], &filetype) == -1
-      \ |   execute "normal! g`\""
-      \ | endif
 augroup END
 
 runtime ftplugin/man.vim
@@ -116,3 +107,6 @@ function! ToggleLocationList()
     endif
 endfunction
 nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
+let g:netrw_cursor=0
+nnoremap <silent> <space>o :Tagbar<CR>
+let g:tagbar_width = min([60, winwidth(0) / 3])
