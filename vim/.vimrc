@@ -108,5 +108,5 @@ function! ToggleLocationList()
 endfunction
 nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 let g:netrw_cursor=0
-nnoremap <silent> <space>o :Tagbar<CR>
+nnoremap <silent> <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])

@@ -93,5 +93,5 @@ vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
 
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
-vim.keymap.set({ "n" }, "<space>o", ":Tagbar<cr>", { silent=true, noremap = true })
+vim.keymap.set({ "n" }, "<space>o", ":Tagbar f<cr>", { silent=true, noremap = true })
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
