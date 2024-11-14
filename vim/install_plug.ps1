@@ -11,7 +11,6 @@ $repoUrls = @(
     "https://github.com/preservim/tagbar"
     "https://github.com/mbbill/undotree"
     "https://github.com/junegunn/fzf"
-    "https://github.com/itchyny/vim-qfedit"
 )
 
 $destinationFolder = "$HOME\vimfiles\pack\plug\start"
