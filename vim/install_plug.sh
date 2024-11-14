@@ -27,7 +27,7 @@ set_plugin https://github.com/tpope/vim-eunuch &
 set_plugin https://github.com/sheerun/vim-polyglot &
 set_plugin https://github.com/ludovicchabant/vim-gutentags &
 set_plugin https://github.com/preservim/tagbar &
-set_plugin https://github.com/mg979/vim-visual-multi &
 set_plugin https://github.com/mbbill/undotree &
+set_plugin https://github.com/junegunn/fzf &
 
 wait
