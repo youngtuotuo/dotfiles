@@ -102,6 +102,4 @@ vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
 })
 
 vim.g.netrw_cursor = 0
-if vim.g.loaded_fzf == 1 and vim.fn.finddir("fzf", vim.fn.stdpath("config") .. "/pack/plug/start") ~= "" then
-    vim.g.fzf_layout = { down = [[40%]] }
-end
+vim.g.fzf_layout = { down = [[40%]] }
