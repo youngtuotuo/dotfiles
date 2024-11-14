@@ -13,7 +13,7 @@ function set_plugin() {
     plugin_dir=$packpath/$repo_name
     if [ ! -d "$plugin_dir" ]; then
         git clone --depth 1 $1
-        vim -u NONE -c "helptags $repo_name/doc" -c q
+        vim -E -s -u NONE -c "helptags $repo_name/doc" -c q
     fi
 }
 
