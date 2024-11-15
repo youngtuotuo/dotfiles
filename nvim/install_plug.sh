@@ -29,5 +29,6 @@ set_plugin https://github.com/ludovicchabant/vim-gutentags &
 set_plugin https://github.com/preservim/tagbar &
 set_plugin https://github.com/mbbill/undotree &
 set_plugin https://github.com/junegunn/fzf &
+set_plugin https://github.com/romainl/vim-qf &
 
 wait

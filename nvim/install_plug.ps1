@@ -10,6 +10,7 @@ $repoUrls = @(
     "https://github.com/mg979/vim-visual-multi"
     "https://github.com/mbbill/undotree"
     "https://github.com/junegunn/fzf"
+    "https://github.com/romainl/vim-qf"
 )
 
 $destinationFolder = "$env:LOCALAPPDATA\nvim\pack\plug\start"
