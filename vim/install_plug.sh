@@ -32,5 +32,6 @@ set_plugin https://github.com/junegunn/fzf &
 set_plugin https://github.com/romainl/vim-qf &
 set_plugin https://github.com/junegunn/vim-easy-align &
 set_plugin https://github.com/junegunn/vim-peekaboo &
+set_plugin https://github.com/iamcco/markdown-preview.nvim &
 
 wait
