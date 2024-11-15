@@ -24,7 +24,7 @@ set nrformats-=octal
 set showcmd
 set ttimeout
 set nowrapscan
-set termguicolors
+" set termguicolors
 map Q gq
 sunmap Q
 
@@ -40,10 +40,9 @@ endif
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 function! s:SetHL()
-    hi Comment ctermfg=242 guifg=DarkGrey 
+    hi Comment ctermfg=240 guifg=#585858
     hi NormalFloat ctermbg=NONE guibg=NONE
     hi FloatBorder ctermbg=NONE guibg=NONE
-    hi StatusLineNC cterm=reverse gui=reverse
     hi VertSplit cterm=reverse gui=reverse
     hi Visual ctermfg=NONE ctermbg=238 cterm=nocombine guifg=NONE guibg=#444444 gui=nocombine
     hi! link MatchParen Visual
@@ -51,6 +50,8 @@ function! s:SetHL()
     hi PmenuSel ctermfg=Black ctermbg=DarkGrey guifg=Black guibg=DarkGrey
     hi netrwMarkFile ctermfg=Brown guifg=Brown
 endfunction
+
+colo default
 
 call s:SetHL()
 
@@ -88,9 +89,9 @@ function! ToggleQuickfix()
     endfor
     copen
 endfunction
-nnoremap <nowait><silent> <leader>p :call ToggleQuickfix()<cr>
-nnoremap <nowait><silent> ]p :cnext<cr>
-nnoremap <nowait><silent> [p :cprev<cr>
+nnoremap <nowait> <leader>p :call ToggleQuickfix()<cr>
+nnoremap <nowait> ]p :cnext<cr>
+nnoremap <nowait> [p :cprev<cr>
 
 function! ToggleLocationList()
     let windows = getwininfo()
@@ -108,5 +109,40 @@ function! ToggleLocationList()
 endfunction
 nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 let g:netrw_cursor=0
-nnoremap <silent> <space>o :Tagbar f<CR>
+nnoremap <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])
+let g:tagbar_position = "topleft vertical"
+
+function! s:GetLanIp()
+  if has('win32')
+    let l:output = system('ipconfig')
+    " Find IPv4 address starting with 192
+    let l:lan_ip = matchstr(l:output, 'IPv4 Address[^:]*:\s*192\zs\(\.[0-9]\+\)\{3}')
+    return '192' . l:lan_ip
+  elseif has('mac')
+    let l:cmd = 'ipconfig getifaddr en0'
+    let l:ip = substitute(system(l:cmd), '\n\+$', '', '')
+    return substitute(l:ip, '[[:cntrl:]]', '', 'g')
+  elseif has('linux') || has('wsl')
+    let l:cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
+    let l:ip = system(l:cmd)
+    " Remove whitespace
+    return substitute(l:ip, '[[:cntrl:][:space:]]', '', 'g')
+  endif
+endfunction
+
+let g:mkdp_filetypes = ['markdown']
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_open_ip = s:GetLanIp()
+let g:mkdp_browser = ""
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_browserfunc = ""
+let g:mkdp_markdown_css = ""
+let g:mkdp_highlight_css = ""
+let g:mkdp_port = "8085"
+let g:mkdp_page_title = "「${name}」"
+let g:mkdp_theme = "light"

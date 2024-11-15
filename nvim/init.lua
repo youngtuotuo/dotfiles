@@ -54,7 +54,6 @@ vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
 vim.opt.undofile = true
-vim.opt.termguicolors = true
 vim.opt.wildmenu = false
 
 if vim.fn.has("win32") == 1 then
@@ -68,30 +67,63 @@ end
 
 vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = "Tuo",
-    callback = function()
-        vim.treesitter.stop()
-    end,
-})
+        group = "Tuo",
+        callback = function()
+            vim.treesitter.stop()
+        end,
+    })
 
 vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
-    group = "Tuo",
-    callback = function() 
-        vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 238 })
-        vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
-        vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
-        vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
-        vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
-        vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
-        vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
-        vim.api.nvim_set_hl(0, "WinSeparator", { cterm = {reverse = true}, reverse = true })
-        vim.api.nvim_set_hl(0, "VertSplit", { link = "WinSeparator" })
-        vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
-    end,
-})
+        group = "Tuo",
+        callback = function() 
+            vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 235 })
+            vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
+            vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
+            vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
+            vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
+            vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
+            vim.api.nvim_set_hl(0, "VertSplit", { link = "WinSeparator" })
+            vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
+        end,
+    })
 
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
-vim.keymap.set({ "n" }, "<space>o", ":Tagbar f<cr>", { silent=true, noremap = true })
+vim.keymap.set({ "n" }, "<space>o", ":TagbarToggle f<cr>", { silent=true, noremap = true })
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
+vim.g.tagbar_position = "topleft vertical"
+
+
+local get_lan_ip = function()
+  if vim.fn.has("win32") == 1 then
+    local output = vim.fn.system("ipconfig")
+    local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
+    return "192" .. lan_ip
+  elseif vim.fn.has("mac") == 1 then
+    local cmd = "ipconfig getifaddr en0"
+    local ip = vim.fn.system(cmd):match("([%d%.]+)%\n")
+    return ip
+  elseif vim.fn.has("linux") == 1 or vim.fn.has("wsl") == 1 then
+    local cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
+    local ip = vim.fn.system(cmd)
+    return ip:gsub("%s+", "") -- Remove any leading/trailing whitespace
+  end
+end
+
+vim.g.mkdp_filetypes = { "markdown" }
+vim.g.mkdp_auto_start = 0
+vim.g.mkdp_auto_close = 0
+vim.g.mkdp_refresh_slow = 0
+vim.g.mkdp_command_for_global = 0
+vim.g.mkdp_open_to_the_world = 1
+vim.g.mkdp_open_ip = get_lan_ip()
+vim.g.mkdp_browser = ""
+vim.g.mkdp_echo_preview_url = 1
+vim.g.mkdp_browserfunc = ""
+vim.g.mkdp_markdown_css = ""
+vim.g.mkdp_highlight_css = ""
+vim.g.mkdp_port = "8085"
+vim.g.mkdp_page_title = "「${name}」"
+vim.g.mkdp_theme = "light"
