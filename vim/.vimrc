@@ -41,11 +41,6 @@ command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd
 
 colo simple-dark
 
-augroup Tuo
-    autocmd!
-    autocmd VimEnter,ColorScheme * call s:SetHL()
-augroup END
-
 runtime ftplugin/man.vim
 packadd! matchit
 
