@@ -67,34 +67,19 @@ end
 
 vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
-        group = "Tuo",
-        callback = function()
-            vim.treesitter.stop()
-        end,
-    })
+    group = "Tuo",
+    callback = function()
+      vim.treesitter.stop()
+    end,
+})
 
-vim.api.nvim_create_autocmd({"VimEnter", "ColorScheme"}, {
-        group = "Tuo",
-        callback = function() 
-            vim.api.nvim_set_hl(0, "Visual", { fg = "none", ctermfg = "none", bg = "Grey20", ctermbg = 235 })
-            vim.api.nvim_set_hl(0, "MatchParen", { link = "Visual" })
-            vim.api.nvim_set_hl(0, "Comment", { fg = "NvimDarkGrey4", ctermfg = "darkgrey" })
-            vim.api.nvim_set_hl(0, "Pmenu", { bg = "NvimDarkGrey3", ctermbg = 239 })
-            vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 232, ctermbg = 254, fg = "Black", bg = "DarkGrey" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "none", bg = "none" })
-            vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "none", bg = "none" })
-            vim.api.nvim_set_hl(0, "StatusLineNC", { reverse = true })
-            vim.api.nvim_set_hl(0, "VertSplit", { link = "WinSeparator" })
-            vim.api.nvim_set_hl(0, "netrwMarkFile", { ctermfg=209, fg=209 })
-        end,
-    })
+vim.cmd.colo [[simple-dark]]
 
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
 vim.keymap.set({ "n" }, "<space>o", ":TagbarToggle f<cr>", { silent=true, noremap = true })
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
 vim.g.tagbar_position = "topleft vertical"
-
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then

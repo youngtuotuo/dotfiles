@@ -39,21 +39,7 @@ endif
 
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
-function! s:SetHL()
-    hi Comment ctermfg=240 guifg=#585858
-    hi NormalFloat ctermbg=NONE guibg=NONE
-    hi FloatBorder ctermbg=NONE guibg=NONE
-    hi VertSplit cterm=reverse gui=reverse
-    hi Visual ctermfg=NONE ctermbg=238 cterm=nocombine guifg=NONE guibg=#444444 gui=nocombine
-    hi! link MatchParen Visual
-    hi Pmenu ctermbg=Grey guibg=Grey 
-    hi PmenuSel ctermfg=Black ctermbg=DarkGrey guifg=Black guibg=DarkGrey
-    hi netrwMarkFile ctermfg=Brown guifg=Brown
-endfunction
-
-colo default
-
-call s:SetHL()
+colo simple-dark
 
 augroup Tuo
     autocmd!
