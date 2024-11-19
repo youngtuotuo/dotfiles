@@ -18,7 +18,6 @@ function set_plugin() {
 }
 
 set_plugin https://github.com/tpope/vim-fugitive &
-set_plugin https://github.com/tpope/vim-vinegar &
 set_plugin https://github.com/tpope/vim-commentary &
 set_plugin https://github.com/tpope/vim-surround &
 set_plugin https://github.com/tpope/vim-unimpaired &
@@ -36,5 +35,6 @@ set_plugin https://github.com/iamcco/markdown-preview.nvim &
 set_plugin https://github.com/andymass/vim-matchup &
 set_plugin https://github.com/wellle/targets.vim &
 set_plugin https://github.com/tek256/simple-dark &
+set_plugin https://github.com/justinmk/vim-dirvish &
 
 wait

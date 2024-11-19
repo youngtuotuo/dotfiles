@@ -1,7 +1,6 @@
 $repoUrls = @(
     "https://github.com/tpope/vim-surround"
     "https://github.com/tpope/vim-fugitive"
-    "https://github.com/tpope/vim-vinegar"
     "https://github.com/tpope/vim-unimpaired"
     "https://github.com/sheerun/vim-polyglot"
     "https://github.com/tpope/vim-endwise"
@@ -18,6 +17,7 @@ $repoUrls = @(
     "https://github.com/andymass/vim-matchup"
     "https://github.com/wellle/targets.vim"
     "https://github.com/tek256/simple-dark"
+    "https://github.com/justinmk/vim-dirvish"
 )
 
 $destinationFolder = "$env:LOCALAPPDATA\nvim\pack\plug\start"
