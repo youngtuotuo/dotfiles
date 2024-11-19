@@ -35,7 +35,6 @@ set_plugin https://github.com/junegunn/vim-peekaboo &
 set_plugin https://github.com/iamcco/markdown-preview.nvim &
 set_plugin https://github.com/andymass/vim-matchup &
 set_plugin https://github.com/wellle/targets.vim &
-set_plugin https://github.com/tek256/simple-dark &
 set_plugin https://github.com/justinmk/vim-dirvish &
 set_plugin https://github.com/tpope/vim-dispatch &
 

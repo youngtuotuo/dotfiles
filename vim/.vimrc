@@ -39,8 +39,6 @@ endif
 
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
-colo simple-dark
-
 runtime ftplugin/man.vim
 packadd! matchit
 
