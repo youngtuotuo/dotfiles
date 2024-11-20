@@ -9,14 +9,11 @@ $repoUrls = @(
     "https://github.com/preservim/tagbar"
     "https://github.com/mbbill/undotree"
     "https://github.com/junegunn/fzf"
-    "https://github.com/romainl/vim-qf"
     "https://github.com/junegunn/vim-easy-align"
     "https://github.com/junegunn/vim-peekaboo"
     "https://github.com/iamcco/markdown-preview.nvim"
     "https://github.com/andymass/vim-matchup"
-    "https://github.com/wellle/targets.vim"
     "https://github.com/tpope/vim-vinegar"
-    "https://github.com/tpope/vim-dispatch"
 )
 
 $destinationFolder = "$HOME\vimfiles\pack\plug\start"
