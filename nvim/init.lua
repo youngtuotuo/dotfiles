@@ -57,7 +57,6 @@ vim.opt.undofile = true
 vim.opt.wildmenu = false
 
 -- to avoid osc52 error in wezterm
-vim.o.clipboard = "unnamedplus"
 local function paste()
   return {
     vim.fn.split(vim.fn.getreg(""), "\n"),
@@ -92,6 +91,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.treesitter.stop()
     end,
 })
+
+vim.cmd.colo [[simple-dark]]
 
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
