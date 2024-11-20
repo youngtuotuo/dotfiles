@@ -36,6 +36,9 @@ if has('win32')
     set shellquote= shellxquote=
 endif
 
+colo plain
+hi PmenuSel ctermfg=251 ctermbg=240 guifg=#cccccc guibg=#585858
+
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 runtime ftplugin/man.vim

@@ -54,7 +54,11 @@ vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
 vim.opt.undofile = true
+vim.opt.laststatus = 1
 vim.opt.wildmenu = false
+
+vim.cmd.colo [[plain]]
+vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 251, ctermbg=240, fg="#cccccc", bg="#585858" })
 
 -- to avoid osc52 error in wezterm
 local function paste()
