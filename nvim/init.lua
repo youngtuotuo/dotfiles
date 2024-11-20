@@ -92,8 +92,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
-vim.cmd.colo [[simple-dark]]
-
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
 vim.keymap.set({ "n" }, "<space>o", ":TagbarToggle f<cr>", { silent=true, noremap = true })

@@ -24,7 +24,6 @@ set nrformats-=octal
 set showcmd
 set ttimeout
 set nowrapscan
-" set termguicolors
 map Q gq
 sunmap Q
 
