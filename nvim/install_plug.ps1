@@ -4,7 +4,6 @@ $repoUrls = @(
     "https://github.com/tpope/vim-unimpaired"
     "https://github.com/sheerun/vim-polyglot"
     "https://github.com/tpope/vim-endwise"
-    "https://github.com/tpope/vim-eunuch"
     "https://github.com/ludovicchabant/vim-gutentags"
     "https://github.com/preservim/tagbar"
     "https://github.com/mg979/vim-visual-multi"

@@ -24,7 +24,6 @@ set_plugin https://github.com/tpope/vim-fugitive &
 set_plugin https://github.com/tpope/vim-unimpaired &
 set_plugin https://github.com/sheerun/vim-polyglot &
 set_plugin https://github.com/tpope/vim-endwise &
-set_plugin https://github.com/tpope/vim-eunuch &
 set_plugin https://github.com/ludovicchabant/vim-gutentags &
 set_plugin https://github.com/preservim/tagbar &
 set_plugin https://github.com/mbbill/undotree &
