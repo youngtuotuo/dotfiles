@@ -2,8 +2,10 @@ $repoUrls = @(
     "https://github.com/tpope/vim-surround"
     "https://github.com/tpope/vim-fugitive"
     "https://github.com/tpope/vim-unimpaired"
-    "https://github.com/sheerun/vim-polyglot"
+    "https://github.com/tpope/vim-commentary"
+    "https://github.com/tpope/vim-vinegar"
     "https://github.com/tpope/vim-endwise"
+    "https://github.com/sheerun/vim-polyglot"
     "https://github.com/ludovicchabant/vim-gutentags"
     "https://github.com/preservim/tagbar"
     "https://github.com/mg979/vim-visual-multi"
@@ -13,7 +15,6 @@ $repoUrls = @(
     "https://github.com/junegunn/vim-peekaboo"
     "https://github.com/iamcco/markdown-preview.nvim"
     "https://github.com/andymass/vim-matchup"
-    "https://github.com/tpope/vim-vinegar"
     "https://github.com/andreypopp/vim-colors-plain"
 )
 
