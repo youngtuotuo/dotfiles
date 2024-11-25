@@ -17,7 +17,6 @@ vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [[Paste over currently selected text without yanking it]] })
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
-vim.keymap.set({ "n" }, "<C-x>c", ":sp|term ", { noremap = true })
 
 -- \p, [p, ]p for my muscle memory
 vim.keymap.set({ "n" }, "<leader>p", function()
