@@ -56,8 +56,7 @@ vim.opt.undofile = true
 vim.opt.laststatus = 1
 vim.opt.wildmenu = false
 
-vim.cmd.colo [[plain]]
-vim.api.nvim_set_hl(0, "PmenuSel", { ctermfg = 251, ctermbg=240, fg="#cccccc", bg="#585858" })
+vim.cmd.colo [[yin]]
 
 -- to avoid osc52 error in wezterm
 local function paste()
