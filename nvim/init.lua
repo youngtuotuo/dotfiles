@@ -56,7 +56,7 @@ vim.opt.undofile = true
 vim.opt.laststatus = 1
 vim.opt.wildmenu = false
 
-vim.cmd.colo [[yin]]
+vim.cmd.colo [[warlock]]
 
 -- to avoid osc52 error in wezterm
 local function paste()
