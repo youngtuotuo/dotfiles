@@ -56,7 +56,6 @@ vim.opt.undofile = true
 vim.opt.laststatus = 1
 vim.opt.wildmenu = false
 
-vim.cmd.colo [[warlock]]
 vim.cmd.packadd [[cfilter]]
 
 if vim.fn.has("win32") == 1 then

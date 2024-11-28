@@ -26,7 +26,7 @@ set ttimeout
 set nowrapscan
 map Q gq
 sunmap Q
-
+colo default
 if has('win32')
     set guioptions-=t
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
@@ -35,9 +35,6 @@ if has('win32')
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     set shellquote= shellxquote=
 endif
-
-colo warlock
-hi PmenuSel ctermfg=251 ctermbg=240 guifg=#cccccc guibg=#585858
 
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
