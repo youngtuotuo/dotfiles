@@ -43,6 +43,7 @@ command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd
 
 runtime ftplugin/man.vim
 packadd! matchit
+packadd! cfilter
 
 nnoremap d_ d^
 nnoremap c_ c^
