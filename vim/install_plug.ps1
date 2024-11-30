@@ -16,6 +16,7 @@ $repoUrls = @(
     "https://github.com/tpope/vim-vinegar"
     "https://github.com/tommcdo/vim-exchang"
     "https://github.com/wellle/targets.vim"
+    "https://github.com/mzlogin/vim-markdown-toc"
 )
 
 $destinationFolder = "$HOME\vimfiles\pack\plug\start"
