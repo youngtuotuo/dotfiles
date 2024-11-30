@@ -1,5 +1,5 @@
 P = function(v) print(vim.inspect(v)) return v end
-
+vim.cmd.colo [[habamax]]
 vim.cmd[[
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 ]]
