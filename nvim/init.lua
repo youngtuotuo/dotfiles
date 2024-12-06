@@ -53,8 +53,9 @@ vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
 vim.opt.undofile = true
-vim.opt.laststatus = 1
+vim.opt.laststatus = 3
 vim.opt.wildmenu = false
+vim.opt.guicursor = [[n-v-c-i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
 vim.cmd.packadd [[cfilter]]
 
