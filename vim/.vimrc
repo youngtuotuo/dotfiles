@@ -23,6 +23,7 @@ set background=dark
 set nrformats-=octal
 set showcmd
 set ttimeout
+set foldopen-=block
 set nowrapscan
 map Q gq
 sunmap Q
