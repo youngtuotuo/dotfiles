@@ -27,7 +27,7 @@ set foldopen-=block
 set nowrapscan
 map Q gq
 sunmap Q
-colo habamax
+
 if has('win32')
     set guioptions-=t
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
