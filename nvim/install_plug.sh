@@ -37,5 +37,6 @@ set_plugin https://github.com/mzlogin/vim-markdown-toc &
 set_plugin https://github.com/andymass/vim-matchup &
 set_plugin https://github.com/tommcdo/vim-exchange &
 set_plugin https://github.com/wellle/targets.vim &
+set_plugin https://github.com/kaarmu/typst.vim &
 
 wait

@@ -3,7 +3,7 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, cmake, .bashrc, neovim, nvim-config, python, nodejs"
+	echo "  .local, cmake, .bashrc, vim, neovim, nvim-config, python, nodejs"
 	echo "  rust, zig, gdb, tmux, tmux-config, nvtop, lua, go"
 	echo "  fzf, ruby, fd, case-insensitive-bash, wsl.conf, yarn"
 	echo "  .vimrc, dependencies, typst, cuda, tigervnc"
@@ -80,10 +80,22 @@ function install_target() {
 		cp $HOME/github/dotfiles/ubuntu/.profile ~/.profile
         info "source ~/.bashrc to take effect."
 		;;
+	"vim")
+		title "vim"
+		if [ ! -d "$HOME/github/vim" ]; then
+			git clone --depth 1 https://github.com/vim/vim $HOME/github/vim
+		fi
+		cd $HOME/github/vim
+		git pull
+		make distclean
+		./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-cscope --prefix=$HOME/.local
+		make
+		make install
+		;;
 	"neovim")
 		title "neovim"
 		if [ ! -d "$HOME/github/neovim" ]; then
-			git clone https://github.com/neovim/neovim.git $HOME/github/neovim
+			git clone --depth 1 https://github.com/neovim/neovim.git $HOME/github/neovim
 		fi
 		cd $HOME/github/neovim
 		git pull
@@ -228,7 +240,7 @@ function install_target() {
 	"tmux")
 		title "tmux"
 		if [ ! -d "$HOME/github/tmux" ]; then
-			git clone https://github.com/tmux/tmux.git $HOME/github/tmux
+			git clone --depth 1 https://github.com/tmux/tmux.git $HOME/github/tmux
 		fi
 		cd $HOME/github/tmux
 		git pull
