@@ -22,7 +22,10 @@ vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 vim.keymap.set({ "n" }, "<leader>p", function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
-        if win.quickfix == 1 and win.loclist == 0 then vim.cmd.cclose() return end
+        if win.quickfix == 1 and win.loclist == 0 then
+          vim.cmd.cclose()
+          return
+        end
     end
     vim.cmd.copen()
 end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
@@ -33,10 +36,15 @@ vim.keymap.set({ "n" }, "[p", ":cprev<cr>", { silent = true, nowait = true, nore
 vim.keymap.set({ "n" }, "<leader>l", function()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
-        if win.loclist == 1 then vim.cmd.lclose() return end
+        if win.loclist == 1 then
+          vim.cmd.lclose()
+          return
+        end
     end
-    if #vim.fn.getloclist(0) > 0 then vim.cmd.lopen()
-    else vim.notify("[WARN] No location list.", vim.log.levels.WARN)
+    if #vim.fn.getloclist(0) > 0 then
+      vim.cmd.lopen()
+    else
+      vim.notify("[WARN] No location list.", vim.log.levels.WARN)
     end
 end, { nowait = true, noremap = true, desc = "toggle location list" })
 
@@ -53,7 +61,7 @@ vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.wrapscan = false
 vim.opt.undofile = true
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.foldopen:remove([[block]])
 
 vim.cmd.packadd [[cfilter]]
@@ -67,19 +75,10 @@ if vim.fn.has("win32") == 1 then
     vim.opt.shellxquote = ""
 end
 
-vim.api.nvim_create_augroup("Tuo", { clear = true })
-vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = "Tuo",
-    callback = function()
-      vim.treesitter.stop()
-    end,
-})
-
 vim.g.netrw_cursor = 0
 vim.g.fzf_layout = { down = [[40%]] }
 vim.keymap.set({ "n" }, "<space>o", ":TagbarToggle f<cr>", { silent=true, noremap = true })
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
-vim.g.tagbar_position = "topleft vertical"
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then

@@ -25,8 +25,6 @@ set showcmd
 set ttimeout
 set foldopen-=block
 set nowrapscan
-map Q gq
-sunmap Q
 
 if has('win32')
     set guioptions-=t
@@ -51,10 +49,6 @@ tnoremap <C-[> <C-\><C-n>
 nnoremap Y y$
 nnoremap J mzJ`z
 vnoremap p "_dP
-nnoremap <M-j> <cmd>move+1<cr>
-nnoremap <M-k> <cmd>move--1<cr>
-vnoremap J <cmd>move >+1<cr>gv=gv
-vnoremap K <cmd>move <-1<cr>gv=gv
 vnoremap < <gv
 vnoremap > >gv
 nnoremap <C-x>c :term 
@@ -91,7 +85,6 @@ nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 let g:netrw_cursor=0
 nnoremap <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])
-let g:tagbar_position = "topleft vertical"
 
 function! s:GetLanIp()
   if has('win32')
