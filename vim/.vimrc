@@ -85,6 +85,7 @@ nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 let g:netrw_cursor=0
 nnoremap <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])
+let g:tagbar_map_close = "<space>o"
 
 function! s:GetLanIp()
   if has('win32')
