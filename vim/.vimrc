@@ -25,11 +25,12 @@ set showcmd
 set ttimeout
 set foldopen-=block
 set nowrapscan
+colo habamax
 
 if has('win32')
     set guioptions-=t
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-    let &shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultPar ameterValues['Out-File:Encoding']='utf8';"
+    let &shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
     let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     set shellquote= shellxquote=
@@ -120,3 +121,4 @@ let g:mkdp_highlight_css = ""
 let g:mkdp_port = "8085"
 let g:mkdp_page_title = "「${name}」"
 let g:mkdp_theme = "light"
+autocmd! BufRead,BufNewFile *.typ set filetype=typst
