@@ -60,7 +60,6 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
-vim.opt.wrapscan = false
 vim.opt.undofile = true
 vim.opt.laststatus = 2
 vim.opt.foldopen:remove([[block]])
