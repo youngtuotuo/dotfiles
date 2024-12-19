@@ -52,7 +52,6 @@ vim.opt.showmatch = true
 vim.opt.completeopt = [[menu,preview,fuzzy]]
 vim.opt.undofile = true
 vim.opt.swapfile = false
-vim.opt.hlsearch = false
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"

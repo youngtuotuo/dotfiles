@@ -13,6 +13,7 @@ set mouse=nvi
 set autoindent
 set sessionoptions-=options
 set viewoptions-=options
+set hlsearch
 set incsearch
 set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set formatoptions+=j
