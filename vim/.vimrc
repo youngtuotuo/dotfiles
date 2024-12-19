@@ -42,13 +42,12 @@ nnoremap d_ d^
 nnoremap c_ c^
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
-tnoremap <C-[> <C-\><C-n>
+tnoremap <esc><esc> <C-\><C-n>
 nnoremap Y y$
 nnoremap J mzJ`z
 vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
-nnoremap <C-x>c :term 
 
 function! ToggleQuickfix()
     let windows = getwininfo()

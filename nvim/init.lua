@@ -7,12 +7,9 @@ command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "Q", "gq", { nowait = true, noremap = true })
-vim.keymap.set({ "s" }, "Q", "<Nop>", { nowait = true, noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
-vim.keymap.set({ "i" }, "<C-u>", "<C-g>u<C-u>", { noremap = true })
-vim.keymap.set({ "t" }, "<C-[>", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set({ "t" }, "<esc><esc>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [[Paste over currently selected text without yanking it]] })
