@@ -1,5 +1,14 @@
 P = function(v) print(vim.inspect(v)) return v end
-vim.cmd.colo [[habamax]]
+vim.cmd.colo [[vim]]
+vim.opt.background = [[light]]
+vim.api.nvim_create_autocmd("BufEnter",
+  {
+    pattern = "*",
+    callback = function(args)
+      vim.treesitter.stop(args.buf)
+    end
+  }
+)
 
 vim.cmd[[
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis

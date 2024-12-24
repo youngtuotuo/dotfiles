@@ -25,7 +25,7 @@ set nrformats-=octal
 set showcmd
 set ttimeout
 set foldopen-=block
-colo habamax
+colo default
 
 if has('win32')
     set guioptions-=t
