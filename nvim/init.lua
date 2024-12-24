@@ -1,6 +1,7 @@
 P = function(v) print(vim.inspect(v)) return v end
 vim.cmd.colo [[vim]]
 vim.opt.background = [[light]]
+vim.api.nvim_set_hl(0, "Comment", { ctermfg = "green", fg = "green" })
 vim.api.nvim_create_autocmd("BufEnter",
   {
     pattern = "*",

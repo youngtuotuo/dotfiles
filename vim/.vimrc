@@ -26,6 +26,7 @@ set showcmd
 set ttimeout
 set foldopen-=block
 colo default
+hi Comment ctermfg=green guifg=green
 
 if has('win32')
     set guioptions-=t
