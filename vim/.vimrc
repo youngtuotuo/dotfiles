@@ -27,8 +27,7 @@ set ttimeout
 set foldopen-=block
 set splitbelow
 set splitright
-colo default
-hi Comment ctermfg=green guifg=green
+colo habamax
 
 if has('win32')
     set guioptions-=t

@@ -1,5 +1,4 @@
 vim.cmd.colo [[habamax]]
-vim.api.nvim_set_hl(0, "Comment", { ctermfg = "green", fg = "green" })
 local group = vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter",
   {
