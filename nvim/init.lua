@@ -1,12 +1,28 @@
-P = function(v) print(vim.inspect(v)) return v end
-vim.cmd.colo [[vim]]
-vim.opt.background = [[light]]
+vim.cmd.colo [[habamax]]
 vim.api.nvim_set_hl(0, "Comment", { ctermfg = "green", fg = "green" })
+local group = vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter",
   {
-    pattern = "*",
+    group = group,
     callback = function(args)
       vim.treesitter.stop(args.buf)
+    end
+  }
+)
+vim.api.nvim_create_autocmd("TermOpen",
+  {
+    group = group,
+    callback = function(args)
+      vim.cmd[[split | e # | wincmd K | wincmd j | resize 10]]
+      vim.cmd.startinsert()
+    end
+  }
+)
+vim.api.nvim_create_autocmd("TextYankPost",
+  {
+    group = group,
+    callback = function()
+      vim.highlight.on_yank()
     end
   }
 )
