@@ -8,15 +8,6 @@ vim.api.nvim_create_autocmd("BufEnter",
     end
   }
 )
-vim.api.nvim_create_autocmd("TermOpen",
-  {
-    group = group,
-    callback = function(args)
-      vim.cmd[[split | e # | wincmd K | wincmd j | resize 10]]
-      vim.cmd.startinsert()
-    end
-  }
-)
 vim.api.nvim_create_autocmd("TextYankPost",
   {
     group = group,
