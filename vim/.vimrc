@@ -25,6 +25,8 @@ set nrformats-=octal
 set showcmd
 set ttimeout
 set foldopen-=block
+set splitbelow
+set splitright
 colo default
 hi Comment ctermfg=green guifg=green
 

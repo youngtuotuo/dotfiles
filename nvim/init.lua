@@ -69,6 +69,8 @@ vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.undofile = true
 vim.opt.laststatus = 2
 vim.opt.foldopen:remove([[block]])
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 vim.cmd.packadd [[cfilter]]
 
