@@ -13,7 +13,7 @@ $repoUrls = @(
     "https://github.com/junegunn/vim-peekaboo"
     "https://github.com/iamcco/markdown-preview.nvim"
     "https://github.com/andymass/vim-matchup"
-    "https://github.com/tpope/vim-vinegar"
+    # "https://github.com/tpope/vim-vinegar"
     "https://github.com/tommcdo/vim-exchang"
     "https://github.com/wellle/targets.vim"
     "https://github.com/mzlogin/vim-markdown-toc"
