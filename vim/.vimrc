@@ -89,6 +89,7 @@ let g:fzf_layout = { 'down': '40%' }
 nnoremap <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])
 let g:tagbar_map_close = "<space>o"
+let g:tagbar_sort = 0
 
 function! s:GetLanIp()
   if has('win32')

@@ -19,25 +19,23 @@ function set_plugin() {
     fi
 }
 
-set_plugin https://github.com/tpope/vim-surround &
-set_plugin https://github.com/tpope/vim-fugitive &
-set_plugin https://github.com/tpope/vim-unimpaired &
-set_plugin https://github.com/tpope/vim-commentary &
-set_plugin https://github.com/mzlogin/vim-markdown-toc &
-# set_plugin https://github.com/tpope/vim-vinegar &
-set_plugin https://github.com/tpope/vim-endwise &
-set_plugin https://github.com/sheerun/vim-polyglot &
-set_plugin https://github.com/ludovicchabant/vim-gutentags &
-set_plugin https://github.com/preservim/tagbar &
-set_plugin https://github.com/mbbill/undotree &
+
+set_plugin https://github.com/andymass/vim-matchup &
+set_plugin https://github.com/iamcco/markdown-preview.nvim &
 set_plugin https://github.com/junegunn/fzf &
 set_plugin https://github.com/junegunn/vim-easy-align &
 set_plugin https://github.com/junegunn/vim-peekaboo &
-set_plugin https://github.com/iamcco/markdown-preview.nvim &
-set_plugin https://github.com/mzlogin/vim-markdown-toc &
-set_plugin https://github.com/andymass/vim-matchup &
-set_plugin https://github.com/tommcdo/vim-exchange &
-set_plugin https://github.com/wellle/targets.vim &
 set_plugin https://github.com/kaarmu/typst.vim &
-
+set_plugin https://github.com/ludovicchabant/vim-gutentags &
+set_plugin https://github.com/mbbill/undotree &
+set_plugin https://github.com/mzlogin/vim-markdown-toc &
+set_plugin https://github.com/preservim/tagbar &
+set_plugin https://github.com/sheerun/vim-polyglot &
+set_plugin https://github.com/tommcdo/vim-exchange &
+set_plugin https://github.com/tpope/vim-commentary &
+set_plugin https://github.com/tpope/vim-endwise &
+set_plugin https://github.com/tpope/vim-fugitive &
+set_plugin https://github.com/tpope/vim-surround &
+set_plugin https://github.com/tpope/vim-unimpaired &
+set_plugin https://github.com/wellle/targets.vim &
 wait

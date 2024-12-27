@@ -72,7 +72,6 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.listchars:append([[eol:$]])
 vim.opt.inccommand = "split"
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
-vim.opt.undofile = true
 vim.opt.laststatus = 2
 vim.opt.foldopen:remove([[block]])
 vim.opt.splitbelow = true
@@ -94,6 +93,7 @@ vim.g.fzf_layout = { down = [[40%]] }
 vim.keymap.set({ "n" }, "<space>o", ":Tagbar f<cr>", { silent=true, noremap = true })
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
 vim.g.tagbar_map_close = "<space>o"
+vim.g.tagbar_sort = 0
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then
