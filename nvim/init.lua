@@ -1,4 +1,3 @@
-vim.cmd.colo [[habamax]]
 local group = vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter",
   {
@@ -16,10 +15,6 @@ vim.api.nvim_create_autocmd("TextYankPost",
     end
   }
 )
-
-vim.cmd[[
-command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-]]
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
@@ -94,6 +89,8 @@ vim.keymap.set({ "n" }, "<space>o", ":Tagbar f<cr>", { silent=true, noremap = tr
 vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
 vim.g.tagbar_map_close = "<space>o"
 vim.g.tagbar_sort = 0
+
+vim.opt.statusline = [[%<%f %h%w%m%r%=%-14.(%l,%c%V%) %P %{gutentags#statusline()}]]
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then

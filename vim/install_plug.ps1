@@ -1,5 +1,4 @@
 $repoUrls = @(
-    "https://github.com/andymass/vim-matchup"
     "https://github.com/iamcco/markdown-preview.nvim"
     "https://github.com/junegunn/fzf"
     "https://github.com/junegunn/vim-easy-align"
@@ -29,6 +28,6 @@ $jobs = foreach ($url in $repoUrls) {
     } -ArgumentList $url, $destinationFolder
 }
 
- Wait-Job -Job $jobs
- Receive-Job -Job $jobs
- Remove-Job -Job $jobs
+Wait-Job -Job $jobs
+Receive-Job -Job $jobs
+Remove-Job -Job $jobs

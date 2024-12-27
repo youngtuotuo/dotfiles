@@ -28,15 +28,12 @@ set foldopen-=block
 set splitbelow
 set splitright
 set laststatus=2
-colo habamax
 
 if has('win32')
     set guioptions-=t
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
     let &shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
 endif
-
-command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 runtime ftplugin/man.vim
 packadd! matchit
@@ -90,6 +87,9 @@ nnoremap <space>o :Tagbar f<CR>
 let g:tagbar_width = min([60, winwidth(0) / 3])
 let g:tagbar_map_close = "<space>o"
 let g:tagbar_sort = 0
+
+set statusline=%<%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline+=\ %{gutentags#statusline()}
 
 function! s:GetLanIp()
   if has('win32')
