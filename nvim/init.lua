@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("BufEnter",
       vim.treesitter.stop(args.buf)
     end
   }
-)
+  )
 vim.api.nvim_create_autocmd("TextYankPost",
   {
     group = group,
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("TextYankPost",
       vim.highlight.on_yank()
     end
   }
-)
+  )
 
 vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
 vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
@@ -28,33 +28,31 @@ vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 
 -- \p, [p, ]p for my muscle memory
-vim.keymap.set({ "n" }, "<leader>p", function()
-    local windows = vim.fn.getwininfo()
-    for _, win in pairs(windows) do
-        if win.quickfix == 1 and win.loclist == 0 then
-          vim.cmd.cclose()
-          return
-        end
+vim.keymap.set({ "n" }, "<leader>q", function()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win.quickfix == 1 and win.loclist == 0 then
+      vim.cmd.cclose()
+      return
     end
-    vim.cmd.copen()
+  end
+  vim.cmd.copen()
 end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
-vim.keymap.set({ "n" }, "]p", ":cnext<cr>", { silent = true, nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "[p", ":cprev<cr>", { silent = true, nowait = true, noremap = true })
 
 -- \l, [l, ]l for tpope's unimpaired
 vim.keymap.set({ "n" }, "<leader>l", function()
-    local windows = vim.fn.getwininfo()
-    for _, win in pairs(windows) do
-        if win.loclist == 1 then
-          vim.cmd.lclose()
-          return
-        end
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win.loclist == 1 then
+      vim.cmd.lclose()
+      return
     end
-    if #vim.fn.getloclist(0) > 0 then
-      vim.cmd.lopen()
-    else
-      vim.notify("[WARN] No location list.", vim.log.levels.WARN)
-    end
+  end
+  if #vim.fn.getloclist(0) > 0 then
+    vim.cmd.lopen()
+  else
+    vim.notify("[WARN] No location list.", vim.log.levels.WARN)
+  end
 end, { nowait = true, noremap = true, desc = "toggle location list" })
 
 vim.opt.smartindent = true
@@ -75,12 +73,12 @@ vim.opt.splitright = true
 vim.cmd.packadd [[cfilter]]
 
 if vim.fn.has("win32") == 1 then
-    vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-    vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-    vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-    vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-    vim.opt.shellquote = ""
-    vim.opt.shellxquote = ""
+  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
 end
 
 vim.keymap.set({ "n" }, "-", "<cmd>Ex<cr>", { silent=true, noremap = true })

@@ -1,6 +1,8 @@
 Install Plugin
 ==============
 
+I don't use any plugin manager. Just vim's default plugin runtime path.
+
 On Unix-like,
 
 ```bash
