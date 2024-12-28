@@ -61,9 +61,7 @@ function! ToggleQuickfix()
     endfor
     copen
 endfunction
-nnoremap <nowait> <leader>p :call ToggleQuickfix()<cr>
-nnoremap <nowait> ]p :cnext<cr>
-nnoremap <nowait> [p :cprev<cr>
+nnoremap <nowait> <leader>q :call ToggleQuickfix()<cr>
 
 function! ToggleLocationList()
     let windows = getwininfo()
