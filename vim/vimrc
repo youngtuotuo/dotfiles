@@ -86,7 +86,7 @@ let g:tagbar_width = min([60, winwidth(0) / 3])
 let g:tagbar_map_close = "<space>o"
 let g:tagbar_sort = 0
 
-set statusline=%<%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set statusline+=\ %{gutentags#statusline()}
 
 function! s:GetLanIp()
