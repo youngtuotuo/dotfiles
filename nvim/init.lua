@@ -1,4 +1,4 @@
-vim.cmd.colo [[lunaperche]]
+vim.cmd.colo [[desert]]
 local group = vim.api.nvim_create_augroup("Tuo", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter",
   {
