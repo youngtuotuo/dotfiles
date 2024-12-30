@@ -41,7 +41,7 @@ vnoremap > >gv
 nnoremap - <cmd>Ex<cr>
 let g:fzf_layout = { 'down': '40%' }
 
-set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%{g:colors_name}\ %-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %{g:colors_name}\ %P
 
 function! s:GetLanIp()
   if has('win32')
