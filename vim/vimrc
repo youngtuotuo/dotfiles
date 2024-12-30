@@ -1,34 +1,20 @@
-colo lunaperche
 set nocompatible
-set smartindent
-set showmatch
-set noswapfile
-set display=lastline
-set backspace=indent,eol,start
-set completeopt=menu,menuone,preview
-set complete-=i
-set smarttab
+colo lunaperche
 syntax on
 filetype plugin indent on
+
+set hlsearch incsearch autoindent smartindent smarttab
+set background=dark laststatus=2
+set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%{g:colors_name}\ %-14.(%l,%c%V%)\ %P
+set ruler showcmd showmatch noswapfile autoread
 set mouse=nvi
-set autoindent
-set sessionoptions-=options
-set viewoptions-=options
-set hlsearch
-set incsearch
 set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set formatoptions+=j
-set autoread
 set history=10000
-set ruler
-set background=dark
 set nrformats-=octal
-set showcmd
 set ttimeout
 set foldopen-=block
-set splitbelow
-set splitright
-set laststatus=2
+set splitbelow splitright
 
 if has('win32')
     set guioptions-=t
