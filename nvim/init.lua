@@ -89,7 +89,7 @@ vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
 vim.g.tagbar_map_close = "<space>o"
 vim.g.tagbar_sort = 0
 
-vim.opt.statusline = [[%<%f %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P %{gutentags#statusline()}]]
+vim.opt.statusline = [[%<%f %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P]]
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then
