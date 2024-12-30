@@ -84,10 +84,6 @@ end
 
 vim.keymap.set({ "n" }, "-", "<cmd>Ex<cr>", { silent=true, noremap = true })
 vim.g.fzf_layout = { down = [[40%]] }
-vim.keymap.set({ "n" }, "<space>o", ":Tagbar f<cr>", { silent=true, noremap = true })
-vim.g.tagbar_width = math.min(60, vim.fn.winwidth(0) / 3)
-vim.g.tagbar_map_close = "<space>o"
-vim.g.tagbar_sort = 0
 
 vim.opt.statusline = [[%<%f %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P]]
 

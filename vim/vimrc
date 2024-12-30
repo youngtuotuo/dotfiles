@@ -82,10 +82,6 @@ nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
 
 nnoremap - <cmd>Ex<cr>
 let g:fzf_layout = { 'down': '40%' }
-nnoremap <space>o :Tagbar f<CR>
-let g:tagbar_width = min([60, winwidth(0) / 3])
-let g:tagbar_map_close = "<space>o"
-let g:tagbar_sort = 0
 
 set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
