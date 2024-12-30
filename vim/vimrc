@@ -52,34 +52,6 @@ vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
 
-function! ToggleQuickfix()
-    let windows = getwininfo()
-    for win in windows
-        if win.quickfix == 1 && win.loclist == 0
-            cclose
-            return
-        endif
-    endfor
-    copen
-endfunction
-nnoremap <nowait> <leader>q :call ToggleQuickfix()<cr>
-
-function! ToggleLocationList()
-    let windows = getwininfo()
-    for win in windows
-       if win.loclist == 1
-           lclose
-           return
-       endif
-    endfor
-    if len(getloclist(0)) > 0
-        lopen
-    else
-        echohl ErrorMsg | echo "E776: No location list" | echohl None
-    endif
-endfunction
-nnoremap <nowait><leader>l :call ToggleLocationList()<CR>
-
 nnoremap - <cmd>Ex<cr>
 let g:fzf_layout = { 'down': '40%' }
 

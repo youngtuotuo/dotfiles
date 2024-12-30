@@ -28,34 +28,6 @@ vim.keymap.set({ "v" }, "p", [["_dP]], { noremap = true, desc = [[Paste over cur
 vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 
--- \p, [p, ]p for my muscle memory
-vim.keymap.set({ "n" }, "<leader>q", function()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win.quickfix == 1 and win.loclist == 0 then
-      vim.cmd.cclose()
-      return
-    end
-  end
-  vim.cmd.copen()
-end, { nowait = true, noremap = true, desc = "toggle quickfix window" })
-
--- \l, [l, ]l for tpope's unimpaired
-vim.keymap.set({ "n" }, "<leader>l", function()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win.loclist == 1 then
-      vim.cmd.lclose()
-      return
-    end
-  end
-  if #vim.fn.getloclist(0) > 0 then
-    vim.cmd.lopen()
-  else
-    vim.notify("[WARN] No location list.", vim.log.levels.WARN)
-  end
-end, { nowait = true, noremap = true, desc = "toggle location list" })
-
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.showmatch = true
