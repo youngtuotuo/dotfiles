@@ -57,7 +57,7 @@ end
 vim.keymap.set({ "n" }, "-", "<cmd>Ex<cr>", { silent=true, noremap = true })
 vim.g.fzf_layout = { down = [[40%]] }
 
-vim.opt.statusline = [[%<%f %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P]]
+vim.opt.statusline = [[%<%f %h%w%m%r%{FugitiveStatusline()}%=%{g:colors_name} %-14.(%l,%c%V%) %P]]
 
 local get_lan_ip = function()
   if vim.fn.has("win32") == 1 then
