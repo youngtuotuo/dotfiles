@@ -15,6 +15,7 @@ plugins=(
     "https://github.com/tpope/vim-surround"
     "https://github.com/tpope/vim-unimpaired"
     "https://github.com/wellle/targets.vim"
+    "https://github.com/youngtuotuo/pure.vim"
 )
 
 packpath=$HOME/.config/nvim/pack/plug/start
