@@ -4,7 +4,6 @@ plugins=(
 		"https://github.com/iamcco/markdown-preview.nvim"
 		"https://github.com/junegunn/fzf"
 		"https://github.com/junegunn/vim-easy-align"
-		"https://github.com/junegunn/vim-peekaboo"
 		"https://github.com/kaarmu/typst.vim"
 		"https://github.com/mbbill/undotree"
 		"https://github.com/mzlogin/vim-markdown-toc"
