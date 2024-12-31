@@ -29,6 +29,7 @@ vim.keymap.set({ "v" }, "<", "<gv", { noremap = true })
 vim.keymap.set({ "v" }, ">", ">gv", { noremap = true })
 
 vim.opt.smartindent = true
+vim.opt.undofile = true
 vim.opt.shiftwidth = 4
 vim.opt.showmatch = true
 vim.opt.completeopt = [[menu,preview,fuzzy]]

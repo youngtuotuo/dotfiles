@@ -6,7 +6,7 @@ colo pure
 set hlsearch incsearch autoindent smartindent smarttab
 set background=dark laststatus=2
 set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%{g:colors_name}\ %-14.(%l,%c%V%)\ %P
-set ruler showcmd showmatch noswapfile autoread
+set ruler showcmd showmatch noswapfile autoread undofile
 set mouse=nvi
 set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set formatoptions+=j
