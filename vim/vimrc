@@ -3,18 +3,16 @@ syntax on
 filetype plugin indent on
 colo pure
 
-set hlsearch incsearch autoindent smartindent smarttab
+set statusline=%<%f\ %h%w%m%r\ \ -\ %{g:colors_name}\ -\ %{FugitiveStatusline()}%=\ %-14.(%l,%c%V%)\ %P
+set hlsearch incsearch autoindent smartindent smarttab termguicolors
 set background=dark laststatus=2
-set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%{g:colors_name}\ %-14.(%l,%c%V%)\ %P
-set ruler showcmd showmatch noswapfile autoread undofile
-set mouse=nvi
+set nu rnu ruler showcmd showmatch noswapfile autoread
+set undofile
+let &undodir=$HOME . "/.local/state/vim/undo/"
+set mouse=nvi ttymouse=sgr nrformats-=octal formatoptions+=j foldopen-=block
 set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
-set formatoptions+=j
 set history=10000
-set nrformats-=octal
-set ttimeout
-set foldopen-=block
-set splitbelow splitright
+set ttimeout splitbelow splitright
 
 if has('win32')
     set guioptions-=t
@@ -23,9 +21,7 @@ if has('win32')
 endif
 
 runtime ftplugin/man.vim
-packadd! matchit
-packadd! cfilter
-packadd! termdebug
+packadd! matchit cfilter termdebug
 
 nnoremap d_ d^
 nnoremap c_ c^
@@ -37,11 +33,12 @@ nnoremap J mzJ`z
 vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
-
 nnoremap - <cmd>Ex<cr>
-let g:fzf_layout = { 'down': '40%' }
 
-set statusline=%<%f\ %h%w%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %{g:colors_name}\ %P
+autocmd! BufRead,BufNewFile *.typ set filetype=typst
+
+let g:highlightedyank_highlight_duration = 200
+let g:fzf_layout = { 'down': '40%' }
 
 function! s:GetLanIp()
   if has('win32')
@@ -61,42 +58,9 @@ function! s:GetLanIp()
   endif
 endfunction
 
-let g:mkdp_filetypes = ['markdown']
-let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_open_ip = s:GetLanIp()
-let g:mkdp_browser = ""
 let g:mkdp_echo_preview_url = 1
-let g:mkdp_browserfunc = ""
-let g:mkdp_markdown_css = ""
-let g:mkdp_highlight_css = ""
 let g:mkdp_port = "8085"
-let g:mkdp_page_title = "「${name}」"
 let g:mkdp_theme = "light"
-autocmd! BufRead,BufNewFile *.typ set filetype=typst
-
-if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
-  " Better mouse support, see  :help 'ttymouse'
-  set ttymouse=sgr
-
-  " Enable bracketed paste mode, see  :help xterm-bracketed-paste
-  let &t_BE = "\<Esc>[?2004h"
-  let &t_BD = "\<Esc>[?2004l"
-  let &t_PS = "\<Esc>[200~"
-  let &t_PE = "\<Esc>[201~"
-
-  " Enable focus event tracking, see  :help xterm-focus-event
-  let &t_fe = "\<Esc>[?1004h"
-  let &t_fd = "\<Esc>[?1004l"
-  execute "set <FocusGained>=\<Esc>[I"
-  execute "set <FocusLost>=\<Esc>[O"
-
-  " Enable modified arrow keys, see  :help arrow_modifiers
-  execute "silent! set <xUp>=\<Esc>[@;*A"
-  execute "silent! set <xDown>=\<Esc>[@;*B"
-  execute "silent! set <xRight>=\<Esc>[@;*C"
-  execute "silent! set <xLeft>=\<Esc>[@;*D"
-endif
