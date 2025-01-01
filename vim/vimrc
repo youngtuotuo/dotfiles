@@ -1,7 +1,7 @@
 set nocompatible
 syntax on
 filetype plugin indent on
-colo pure
+colo vividchalk
 
 set statusline=%<%f\ %h%w%m%r\ \ -\ %{g:colors_name}\ -\ %{FugitiveStatusline()}%=\ %-14.(%l,%c%V%)\ %P
 set hlsearch incsearch autoindent smartindent smarttab termguicolors
@@ -33,7 +33,6 @@ nnoremap J mzJ`z
 vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
-nnoremap - <cmd>Ex<cr>
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
 
@@ -64,3 +63,64 @@ let g:mkdp_open_ip = s:GetLanIp()
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = "8085"
 let g:mkdp_theme = "light"
+
+" from tpope/vim-ragtag
+inoremap <silent> <C-X><Space> <Esc>ciW<Lt><C-R>"<C-R>=<SID>tagextras()<CR>></<C-R>"><Esc>F<i
+inoremap <silent> <C-X><CR> <Esc>ciW<Lt><C-R>"<C-R>=<SID>tagextras()<CR>><CR></<C-R>"><Esc>O
+
+function! s:tagextras()
+  if s:subtype() == "xml"
+    return ""
+  elseif @" == 'html' && s:subtype() == 'xhtml'
+    let lang = "en"
+    if exists("$LANG") && $LANG =~ '^..'
+      let lang = strpart($LANG,0,2)
+    endif
+    return ' xmlns="http://www.w3.org/1999/xhtml" lang="'.lang.'" xml:lang="'.lang.'"'
+  elseif @" == 'style'
+    return s:stylesheetType()
+  elseif @" == 'script'
+    return s:javascriptType()
+  elseif @" == 'table'
+    return ' cellspacing="0"'
+  else
+    return ""
+  endif
+endfunction
+
+function! s:subtype()
+  let top = getline(1)."\n".getline(2)
+  if (top =~ '<?xml\>' && &ft !~? 'html') || &ft =~? '^\%(xml\|xsd\|xslt\|docbk\)$'
+    return "xml"
+  elseif top =~? '\<xhtml\>'
+    return 'xhtml'
+  elseif top =~? '<!DOCTYPE html>'
+    return 'html5'
+  elseif top =~? '[^<]\<html\>'
+    return "html"
+  elseif s:isFiletype('xhtml')
+    return "xhtml"
+  else
+    return ""
+  endif
+endfunction
+
+function! s:isFiletype(ft)
+  return index(split(&filetype, '\.'), a:ft) >= 0
+endfunction
+
+function! s:stylesheetType()
+  if s:subtype() == 'html5'
+    return ''
+  else
+    return ' type="text/css"'
+  endif
+endfunction
+
+function! s:javascriptType()
+  if s:subtype() == 'html5'
+    return ''
+  else
+    return ' type="text/javascript"'
+  endif
+endfunction
