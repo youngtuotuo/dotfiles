@@ -49,23 +49,10 @@ vim.api.nvim_create_autocmd("TextYankPost",
 
 vim.cmd.packadd [[cfilter]]
 
-if vim.fn.has("win32") == 1 then
-  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
-  vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  vim.opt.shellquote = ""
-  vim.opt.shellxquote = ""
-end
-
 vim.g.fzf_layout = { down = [[40%]] }
 
 local get_lan_ip = function()
-  if vim.fn.has("win32") == 1 then
-    local output = vim.fn.system("ipconfig")
-    local lan_ip = output:match("IPv4 Address.-:%s192([%d%.]+)")
-    return "192" .. lan_ip
-  elseif vim.fn.has("mac") == 1 then
+  if vim.fn.has("mac") == 1 then
     local cmd = "ipconfig getifaddr en0"
     local ip = vim.fn.system(cmd):match("([%d%.]+)%\n")
     return ip

@@ -11,6 +11,7 @@ plugins=(
 		"https://github.com/sheerun/vim-polyglot"
 		"https://github.com/tommcdo/vim-exchange"
 		"https://github.com/tpope/vim-abolish"
+		"https://github.com/tpope/vim-apathy"
 		"https://github.com/tpope/vim-commentary"
 		"https://github.com/tpope/vim-endwise"
 		"https://github.com/tpope/vim-fugitive"

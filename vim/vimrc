@@ -14,12 +14,6 @@ set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set history=10000
 set ttimeout splitbelow splitright
 
-if has('win32')
-    set guioptions-=t
-    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-    let &shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-endif
-
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
@@ -40,12 +34,7 @@ let g:highlightedyank_highlight_duration = 200
 let g:fzf_layout = { 'down': '40%' }
 
 function! s:GetLanIp()
-  if has('win32')
-    let l:output = system('ipconfig')
-    " Find IPv4 address starting with 192
-    let l:lan_ip = matchstr(l:output, 'IPv4 Address[^:]*:\s*192\zs\(\.[0-9]\+\)\{3}')
-    return '192' . l:lan_ip
-  elseif has('mac')
+  if has('mac')
     let l:cmd = 'ipconfig getifaddr en0'
     let l:ip = substitute(system(l:cmd), '\n\+$', '', '')
     return substitute(l:ip, '[[:cntrl:]]', '', 'g')
