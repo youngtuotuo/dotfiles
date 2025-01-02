@@ -17,6 +17,7 @@ plugins=(
 		"https://github.com/tpope/vim-fugitive"
 		"https://github.com/tpope/vim-repeat"
 		"https://github.com/tpope/vim-rsi"
+		"https://github.com/tpope/vim-scriptease"
 		"https://github.com/tpope/vim-surround"
 		"https://github.com/tpope/vim-unimpaired"
 		"https://github.com/tpope/vim-vinegar"
