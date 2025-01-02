@@ -1,5 +1,14 @@
 vim.cmd.colo [[vividchalk]]
-vim.opt.statusline = [[%<%f %h%w%m%r  *%{g:colors_name}*  (%{&filetype} sw: %{shiftwidth()} ts: %{&tabstop} et: %{&expandtab})  %{FugitiveStatusline()}%= %-14.(%l,%c%V%) %P]]
+local function indent_info()
+  local et = vim.opt.expandtab:get() and 'et' or 'noet'
+  return string.format("tw=%d:sw=%d:ts=%d:%s:ft=%s",
+    vim.opt.textwidth:get(),
+    vim.opt.shiftwidth:get(),
+    vim.opt.tabstop:get(),
+    et,
+    vim.bo.filetype)
+end
+vim.opt.statusline = [[%<%f %h%w%m%r  *%{g:colors_name}*   ]] .. indent_info() .. [[  %{FugitiveStatusline()}%= %-14.(%l,%c%V%) %P]]
 vim.opt.completeopt = [[menu,preview,fuzzy]]
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.foldopen:remove([[block]])

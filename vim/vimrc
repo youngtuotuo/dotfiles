@@ -3,7 +3,15 @@ syntax on
 filetype plugin indent on
 colo vividchalk
 
-set statusline=%<%f\ %h%w%m%r\ \ *%{g:colors_name}*\ \ (%{&filetype}\ sw\:\ %{shiftwidth()}\ ts\:\ %{&tabstop}\ et\:\ %{&expandtab})\ \ %{FugitiveStatusline()}%=\ %-14.(%l,%c%V%)\ %P
+function! IndentInfo()
+  let l:et = &expandtab ? 'et' : 'noet'
+  return 'tw=' . &textwidth . ':sw=' . shiftwidth() . ':ts=' . &tabstop . ':' . l:et . ':ft=' . &filetype
+endfunction
+set statusline=%<%f\ %h%w%m%r
+set statusline+=\ \ *%{g:colors_name}*
+set statusline+=\ \ \ %{IndentInfo()}
+set statusline+=\ \ %{FugitiveStatusline()}%=\ %-14.(%l,%c%V%)\ %P
+
 set hlsearch incsearch autoindent smartindent smarttab termguicolors
 set background=dark laststatus=2
 set nu rnu ruler showcmd showmatch noswapfile autoread
