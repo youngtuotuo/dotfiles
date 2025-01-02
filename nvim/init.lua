@@ -1,5 +1,5 @@
 vim.cmd.colo [[vividchalk]]
-vim.opt.statusline = [[%<%f %h%w%m%r  - %{g:colors_name} - %{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P]]
+vim.opt.statusline = [[%<%f %h%w%m%r  *%{g:colors_name}*  (%{&filetype} sw: %{shiftwidth()} ts: %{&tabstop} et: %{&expandtab})  %{FugitiveStatusline()}%= %-14.(%l,%c%V%) %P]]
 vim.opt.completeopt = [[menu,preview,fuzzy]]
 vim.opt.fillchars:append("vert:|,fold:-,eob:~")
 vim.opt.foldopen:remove([[block]])
