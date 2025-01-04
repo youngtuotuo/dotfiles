@@ -1,7 +1,7 @@
 vim.cmd.colo [[vividchalk]]
 local function indent_info()
   local et = vim.opt.expandtab:get() and 'et' or 'noet'
-  return string.format("tw=%d:sw=%d:ts=%d:%s:ft=%s",
+  return string.format("[tw=%d:sw=%d:ts=%d:%s:ft=%s]",
     vim.opt.textwidth:get(),
     vim.opt.shiftwidth:get(),
     vim.opt.tabstop:get(),
