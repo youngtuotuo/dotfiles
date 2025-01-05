@@ -16,7 +16,6 @@ plugins=(
 		"https://github.com/tpope/vim-commentary"
 		"https://github.com/tpope/vim-endwise"
 		"https://github.com/tpope/vim-eunuch"
-		"https://github.com/tpope/vim-flagship"
 		"https://github.com/tpope/vim-fugitive"
 		"https://github.com/tpope/vim-repeat"
 		"https://github.com/tpope/vim-rsi"
