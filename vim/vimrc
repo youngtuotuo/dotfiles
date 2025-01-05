@@ -5,7 +5,8 @@ colo vividchalk
 
 function! IndentInfo()
   let l:et = &expandtab ? 'et' : 'noet'
-  return '[tw=' . &textwidth . ':sw=' . shiftwidth() . ':ts=' . &tabstop . ':' . l:et . ':ft=' . &filetype . ']'
+  let l:ft = (&filetype == '') ? 'noft' : 'ft=' . &filetype
+  return '[tw=' . &textwidth . ':sw=' . shiftwidth() . ':ts=' . &tabstop . ':' . l:et . ':' . l:ft . ']'
 endfunction
 set statusline=%<%f\ %h%w%m%r
 set statusline+=\ \ *%{g:colors_name}*
