@@ -1,7 +1,7 @@
 set nocompatible
 syntax on
 filetype plugin indent on
-colo vividchalk
+colo retrobox
 
 function! IndentInfo()
   let l:et = &expandtab ? 'et' : 'noet'

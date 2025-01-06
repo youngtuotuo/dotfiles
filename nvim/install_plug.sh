@@ -23,7 +23,6 @@ plugins=(
 		"https://github.com/tpope/vim-surround"
 		"https://github.com/tpope/vim-unimpaired"
 		"https://github.com/tpope/vim-vinegar"
-		"https://github.com/tpope/vim-vividchalk"
 		"https://github.com/wellle/targets.vim"
 )
 
