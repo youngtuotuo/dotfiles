@@ -14,20 +14,3 @@ nnoremap Y y$
 nnoremap J mzJ`z
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
-
-let g:highlightedyank_highlight_duration = 200
-let g:fzf_layout = { 'down': '40%' }
-
-function! s:GetLanIp()
-  let l:cmd = "ip route get 1.1.1.1 | awk '{print $7}'"
-  let l:ip = system(l:cmd)
-  " Remove whitespace
-  return substitute(l:ip, '[[:cntrl:][:space:]]', '', 'g')
-endfunction
-
-let g:mkdp_auto_close = 0
-let g:mkdp_open_to_the_world = 1
-let g:mkdp_open_ip = s:GetLanIp()
-let g:mkdp_echo_preview_url = 1
-let g:mkdp_port = "8085"
-let g:mkdp_theme = "light"
