@@ -1,4 +1,4 @@
-set nu rnu ruler showcmd showmatch noswapfile autoread undofile noswapfile
+set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
 let &undodir=$HOME . "/.local/state/vim/undo/"
 set history=10000
 

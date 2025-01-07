@@ -1,3 +1,5 @@
+vim.opt.nu = true
+vim.opt.rnu = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
