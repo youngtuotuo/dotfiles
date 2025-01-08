@@ -1,3 +1,5 @@
+filetype plugin indent on
+syntax on
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile hlsearch incsearch
 let &undodir=$HOME . "/.local/state/vim/undo/"
 set history=10000
@@ -14,3 +16,44 @@ nnoremap Y y$
 nnoremap J mzJ`z
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
+
+let data_dir = '~/.config/vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    " Create required directories
+    if !isdirectory(expand(data_dir . '/autoload'))
+        call mkdir(expand(data_dir . '/autoload'), 'p')
+    endif
+
+    " Define the installation command based on OS
+    let install_cmd = 'curl -fLo ' . expand(data_dir . '/autoload/plug.vim') . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+    " Execute the installation command
+    echo "Installing vim-plug..."
+    silent execute '!' . install_cmd
+
+    " Check if installation was successful
+    if v:shell_error == 0
+        echo "vim-plug installed successfully!"
+        " Automatically run PlugInstall for first time setup
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    else
+        echoerr "Failed to install vim-plug. Please check your internet connection and try again."
+    endif
+endif
+
+" Initialize plugin section
+call plug#begin()
+Plug 'https://github.com/junegunn/vim-easy-align'
+Plug 'https://github.com/kaarmu/typst.vim'
+Plug 'https://github.com/mbbill/undotree'
+Plug 'https://github.com/sheerun/vim-polyglot'
+Plug 'https://github.com/tommcdo/vim-exchange'
+Plug 'https://github.com/tpope/vim-apathy'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-endwise'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-rsi'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-vinegar'
+Plug 'https://github.com/wellle/targets.vim'
+call plug#end()
