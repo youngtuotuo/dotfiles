@@ -1,8 +1,9 @@
 filetype plugin indent on
 syntax on
-set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile hlsearch incsearch
+set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
+set hlsearch incsearch
+set colorcolumn=80 history=10000
 let &undodir=$HOME . "/.local/state/vim/undo/"
-set history=10000
 
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
@@ -25,7 +26,9 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
     endif
 
     " Define the installation command based on OS
-    let install_cmd = 'curl -fLo ' . expand(data_dir . '/autoload/plug.vim') . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    let install_cmd = 'curl -fLo ' . expand(data_dir . '/autoload/plug.vim')
+    \ . ' --create-dirs '
+    \ . 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
     " Execute the installation command
     echo "Installing vim-plug..."
@@ -37,7 +40,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
         " Automatically run PlugInstall for first time setup
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     else
-        echoerr "Failed to install vim-plug. Please check your internet connection and try again."
+        echoerr "Failed to install vim-plug. Please check your internet
+                    \ connection and try again."
     endif
 endif
 

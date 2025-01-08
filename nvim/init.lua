@@ -36,7 +36,8 @@ local function ensure_plug()
 
         -- Define installation command
         local install_cmd = string.format(
-            'curl -fLo %s --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+            'curl -fLo %s --create-dirs ' .. 
+            'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
             install_path
         )
 
