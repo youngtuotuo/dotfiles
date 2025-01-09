@@ -1,5 +1,6 @@
 filetype plugin indent on
 syntax on
+hi Comment ctermfg=green guifg=green
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
 set hlsearch incsearch
 set colorcolumn=80 history=10000
