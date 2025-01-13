@@ -12,27 +12,17 @@ vim.keymap.set({ "t" }, "<esc><esc>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
-local group = vim.api.nvim_create_augroup("Tuo", { clear = true })
-vim.api.nvim_create_autocmd("BufEnter",
-  {
-    group = group,
-    callback = function(args)
-      vim.treesitter.stop(args.buf)
-    end
-  }
-)
-
 vim.cmd.packadd [[cfilter]]
 
 -- vim-plug bootstrap installation script for Neovim
 local fn = vim.fn
-local install_path = '~/.config/nvim/autoload/plug.vim'
+local install_path = os.getenv("HOME") .. '/.config/nvim/autoload/plug.vim'
 
 -- Check if vim-plug is installed
 local function ensure_plug()
     if fn.empty(fn.glob(install_path)) > 0 then
         -- Create required directories
-        fn.mkdir('~/.config/nvim/autoload', 'p')
+        fn.mkdir(os.getenv("HOME") .. '/.config/nvim/autoload', 'p')
 
         -- Define installation command
         local install_cmd = string.format(
