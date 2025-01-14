@@ -49,7 +49,8 @@ highlight EightiethChar ctermbg=red guibg=#592929
 augroup HighlightEightiethChar
     autocmd!
     " Run when entering a buffer, after reading a file, or after changes
-    autocmd BufEnter,BufRead,TextChanged,InsertLeave * call HighlightEightiethChar()
+    autocmd BufEnter,BufRead,TextChanged,InsertLeave *
+                \ call HighlightEightiethChar()
 augroup END
 
 let data_dir = '~/.config/vim'

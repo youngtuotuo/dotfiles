@@ -14,20 +14,57 @@ vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
+-- Highlight the 80th character if line is longer
+local function highlight_eightieth_char()
+    -- Clear any existing matches
+    vim.fn.clearmatches()
+    
+    -- Get the number of lines in the buffer
+    local line_count = vim.fn.line("$")
+    
+    -- Iterate through all lines
+    for line_num = 1, line_count do
+        -- Get the content of the current line
+        local content = vim.fn.getline(line_num)
+        
+        -- If line is longer than 80 characters
+        if #content >= 80 then
+            -- Match exactly the 80th character
+            local pattern = "\\%" .. line_num .. "l\\%80v."
+            -- Add a match with custom highlighting
+            vim.fn.matchadd("EightiethChar", pattern)
+        end
+    end
+end
+
+-- Define custom highlight group
+vim.api.nvim_set_hl(0, "EightiethChar", { ctermbg="red", bg="NvimLightRed" })
+
+-- Create autocommand group
+local augroup = vim.api.nvim_create_augroup(
+    "HighlightEightiethChar", { clear = true })
+
+-- Set up autocommands
+vim.api.nvim_create_autocmd(
+    { "BufEnter", "BufRead", "TextChanged", "InsertLeave" }, {
+    group = augroup,
+    callback = highlight_eightieth_char
+})
+
 -- vim-plug bootstrap installation script for Neovim
 local fn = vim.fn
-local install_path = os.getenv("HOME") .. '/.config/nvim/autoload/plug.vim'
+local install_path = os.getenv("HOME") .. "/.config/nvim/autoload/plug.vim"
 
 -- Check if vim-plug is installed
 local function ensure_plug()
     if fn.empty(fn.glob(install_path)) > 0 then
         -- Create required directories
-        fn.mkdir(os.getenv("HOME") .. '/.config/nvim/autoload', 'p')
+        fn.mkdir(os.getenv("HOME") .. "/.config/nvim/autoload", "p")
 
         -- Define installation command
         local install_cmd = string.format(
-            'curl -fLo %s --create-dirs ' .. 
-            'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+            "curl -fLo %s --create-dirs " .. 
+            "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
             install_path
         )
 
@@ -53,14 +90,14 @@ end
 local function init_plug()
     if ensure_plug() then
       local vim = vim
-      local Plug = vim.fn['plug#']
-      vim.call('plug#begin')
-      Plug('https://github.com/kaarmu/typst.vim')
-      Plug('https://github.com/sheerun/vim-polyglot')
-      Plug('https://github.com/tpope/vim-fugitive')
-      Plug('https://github.com/tpope/vim-surround')
-      Plug('https://github.com/tpope/vim-vinegar')
-      vim.call('plug#end')
+      local Plug = vim.fn["plug#"]
+      vim.call("plug#begin")
+      Plug("https://github.com/kaarmu/typst.vim")
+      Plug("https://github.com/sheerun/vim-polyglot")
+      Plug("https://github.com/tpope/vim-fugitive")
+      Plug("https://github.com/tpope/vim-surround")
+      Plug("https://github.com/tpope/vim-vinegar")
+      vim.call("plug#end")
     end
 end
 
