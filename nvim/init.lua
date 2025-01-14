@@ -55,19 +55,13 @@ local function init_plug()
       local vim = vim
       local Plug = vim.fn['plug#']
       vim.call('plug#begin')
-      Plug('https://github.com/junegunn/vim-easy-align')
       Plug('https://github.com/kaarmu/typst.vim')
-      Plug('https://github.com/mbbill/undotree')
       Plug('https://github.com/sheerun/vim-polyglot')
-      Plug('https://github.com/tommcdo/vim-exchange')
       Plug('https://github.com/tpope/vim-apathy')
       Plug('https://github.com/tpope/vim-commentary')
-      Plug('https://github.com/tpope/vim-endwise')
       Plug('https://github.com/tpope/vim-fugitive')
-      Plug('https://github.com/tpope/vim-rsi')
       Plug('https://github.com/tpope/vim-surround')
       Plug('https://github.com/tpope/vim-vinegar')
-      Plug('https://github.com/wellle/targets.vim')
       vim.call('plug#end')
     end
 end
