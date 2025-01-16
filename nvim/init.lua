@@ -95,8 +95,6 @@ local function init_plug()
       Plug("https://github.com/kaarmu/typst.vim")
       Plug("https://github.com/sheerun/vim-polyglot")
       Plug("https://github.com/tpope/vim-fugitive")
-      Plug("https://github.com/tpope/vim-surround")
-      Plug("https://github.com/tpope/vim-vinegar")
       vim.call("plug#end")
     end
 end
