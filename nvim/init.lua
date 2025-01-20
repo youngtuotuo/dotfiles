@@ -2,54 +2,14 @@ vim.opt.nu = true
 vim.opt.rnu = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
+vim.opt.colorcolumn = "120"
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
-vim.keymap.set({ "n" }, "d_", "d^", { nowait = true, noremap = true })
-vim.keymap.set({ "n" }, "c_", "c^", { nowait = true, noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
-vim.keymap.set({ "t" }, "<esc><esc>", "<C-\\><C-n>", { noremap = true })
-vim.keymap.set({ "n" }, "Y", "y$", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
-
--- Highlight the 80th character if line is longer
-local function highlight_eightieth_char()
-    -- Clear any existing matches
-    vim.fn.clearmatches()
-    
-    -- Get the number of lines in the buffer
-    local line_count = vim.fn.line("$")
-    
-    -- Iterate through all lines
-    for line_num = 1, line_count do
-        -- Get the content of the current line
-        local content = vim.fn.getline(line_num)
-        
-        -- If line is longer than 120 characters
-        if #content >= 120 then
-            -- Match exactly the 120th character
-            local pattern = "\\%" .. line_num .. "l\\%120v."
-            -- Add a match with custom highlighting
-            vim.fn.matchadd("EightiethChar", pattern)
-        end
-    end
-end
-
--- Define custom highlight group
-vim.api.nvim_set_hl(0, "EightiethChar", { ctermbg="red", bg="NvimLightRed" })
-
--- Create autocommand group
-local augroup = vim.api.nvim_create_augroup(
-    "HighlightEightiethChar", { clear = true })
-
--- Set up autocommands
-vim.api.nvim_create_autocmd(
-    { "BufEnter", "BufRead", "TextChanged", "InsertLeave" }, {
-    group = augroup,
-    callback = highlight_eightieth_char
-})
 
 -- vim-plug bootstrap installation script for Neovim
 local fn = vim.fn

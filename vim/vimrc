@@ -2,55 +2,18 @@ filetype plugin indent on
 syntax on
 hi Comment ctermfg=green guifg=green
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
-set hlsearch incsearch ttimeout ttimeoutlen=50
+set hlsearch incsearch ttimeout ttimeoutlen=50 colorcolumn=120
 set history=10000
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
-nnoremap d_ d^
-nnoremap c_ c^
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
-nnoremap Y y$
 nnoremap J mzJ`z
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
-
-" Highlight the 80th character if line is longer
-function! HighlightEightiethChar()
-    " Clear any existing matches
-    call clearmatches()
-
-    " Get all line numbers in the buffer
-    let l:lines = range(1, line('$'))
-
-    for l:line in l:lines
-        " Get the content of the current line
-        let l:content = getline(l:line)
-
-        " If line is longer than 120 characters
-        if len(l:content) >= 120
-            " Match exactly the 120th character
-            let l:pattern = '\%'.l:line.'l\%120v.'
-
-            " Add a match with custom highlighting
-            call matchadd('EightiethChar', l:pattern)
-        endif
-    endfor
-endfunction
-
-" Define custom highlight group
-highlight EightiethChar ctermbg=red guibg=#592929
-
-" Autocommand to run the highlighting function
-augroup HighlightEightiethChar
-    autocmd!
-    " Run when entering a buffer, after reading a file, or after changes
-    autocmd BufEnter,BufRead,TextChanged,InsertLeave *
-                \ call HighlightEightiethChar()
-augroup END
 
 let data_dir = '~/.config/vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
