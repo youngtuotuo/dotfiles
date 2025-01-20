@@ -27,10 +27,10 @@ local function highlight_eightieth_char()
         -- Get the content of the current line
         local content = vim.fn.getline(line_num)
         
-        -- If line is longer than 80 characters
-        if #content >= 80 then
-            -- Match exactly the 80th character
-            local pattern = "\\%" .. line_num .. "l\\%80v."
+        -- If line is longer than 120 characters
+        if #content >= 120 then
+            -- Match exactly the 120th character
+            local pattern = "\\%" .. line_num .. "l\\%120v."
             -- Add a match with custom highlighting
             vim.fn.matchadd("EightiethChar", pattern)
         end

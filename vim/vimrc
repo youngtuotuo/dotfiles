@@ -31,10 +31,10 @@ function! HighlightEightiethChar()
         " Get the content of the current line
         let l:content = getline(l:line)
 
-        " If line is longer than 80 characters
-        if len(l:content) >= 80
-            " Match exactly the 80th character
-            let l:pattern = '\%'.l:line.'l\%80v.'
+        " If line is longer than 120 characters
+        if len(l:content) >= 120
+            " Match exactly the 120th character
+            let l:pattern = '\%'.l:line.'l\%120v.'
 
             " Add a match with custom highlighting
             call matchadd('EightiethChar', l:pattern)
