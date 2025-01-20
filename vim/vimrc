@@ -2,7 +2,7 @@ filetype plugin indent on
 syntax on
 hi Comment ctermfg=green guifg=green
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
-set hlsearch incsearch
+set hlsearch incsearch ttimeout ttimeoutlen=50
 set history=10000
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
@@ -13,7 +13,6 @@ nnoremap d_ d^
 nnoremap c_ c^
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
-tnoremap <esc><esc> <C-\><C-n>
 nnoremap Y y$
 nnoremap J mzJ`z
 
