@@ -3,7 +3,7 @@ syntax on
 hi Comment ctermfg=green guifg=green
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
 set hlsearch incsearch ttimeout ttimeoutlen=50 colorcolumn=120
-set history=10000
+set history=10000 shortmess-=S
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
