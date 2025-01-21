@@ -12,5 +12,7 @@ packadd! matchit cfilter termdebug
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
+nnoremap n nzz
+nnoremap N Nzz
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
