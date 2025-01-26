@@ -116,8 +116,4 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-export EDITOR=nvim
-
-echo -ne "\e[2 q"
 echo "σ\`∀´)σ"
-alias taunt='echo "σ\`∀´)σ"'

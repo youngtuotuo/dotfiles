@@ -2,7 +2,7 @@ function Show-Usage {
 		Write-Host "Usage: ./install.ps1 [options]"
 		Write-Host "Options:"
 		Write-Host "  vsbuild-tools, policy, scoop, .local, cmake"
-		Write-Host "  powershell, neovim, python, zig"
+		Write-Host "  powershell, python"
 }
 
 if ($args.Count -eq 0) {
@@ -49,23 +49,6 @@ function Install-Target($target) {
 						Show-Title "PowerShell"
 						winget install --id=Microsoft.PowerShell -e
 				}
-				"neovim" {
-						Show-Title "neovim"
-						if (-not (Test-Path -Path "$HOME\github\neovim")) {
-								git clone https://github.com/neovim/neovim.git $HOME\github\neovim
-						}
-						$originalDirectory = Get-Location
-						cd $HOME\github\neovim
-						git pull
-						dev amd64
-						cmake --build .deps --target clean
-						cmake --build build --target clean
-						cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=Release
-						cmake --build .deps --config Release
-						cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$env:USERPROFILE\.local
-						cmake --build build --config Release --target install
-						cd $originalDirectory
-				}
 				"python" {
 						Show-Title "python"
 						Write-Host "Python download page: https://www.python.org/downloads/"
@@ -78,19 +61,6 @@ function Install-Target($target) {
 								Invoke-WebRequest -Uri $url -OutFile $pythonExe
 								Start-Process -FilePath $pythonExe
 								Remove-Item $pythonExe
-						}
-				}
-				"git-credential-manager" {
-						Show-Title "git-credential-manager"
-						Write-Host "GCM download page: https://github.com/git-ecosystem/git-credential-manager/releases"
-						$url = Read-Host "Please give current gcm exe installer file url"
-						if ([string]::IsNullOrWhiteSpace($url)) {
-								Show-Info "Empty url, skip."
-						} else {
-								$gcmExe = "$HOME\gcm.exe"
-								Invoke-WebRequest -Uri $url -OutFile $gcmExe
-								Start-Process -FilePath $gcmExe
-								Remove-Item $gcmExe
 						}
 				}
 				default {
