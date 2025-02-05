@@ -3,7 +3,7 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, cmake, vim, python, tigervnc"
+	echo "  .local, cmake, python, tigervnc"
 }
 
 if [ $# -eq 0 ]; then
@@ -69,18 +69,6 @@ function install_target() {
 				rm $HOME/cmake.tar.gz
 				rm -r $HOME/cmake
 			fi
-			;;
-		"vim")
-			title "vim"
-			if [ ! -d "$HOME/github/vim" ]; then
-				git clone --depth 1 https://github.com/vim/vim $HOME/github/vim
-			fi
-			cd $HOME/github/vim
-			git pull
-			make distclean
-			./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-cscope --prefix=$HOME/.local
-			make
-			make install
 			;;
 		"python")
 			title "python"

@@ -3,7 +3,7 @@
 function usage() {
 	echo "Usage: ./install.sh [options]"
 	echo "Options:"
-	echo "  .local, homebrew, vim"
+	echo "  .local, homebrew"
 }
 
 if [ $# -eq 0 ]; then
@@ -51,18 +51,6 @@ function install_target() {
 			else
 				info "brew exists: $(which brew)"
 			fi
-			;;
-		"vim")
-			title "vim"
-			if [ ! -d "$HOME/github/vim" ]; then
-				git clone --depth 1 https://github.com/vim/vim $HOME/github/vim
-			fi
-			cd $HOME/github/vim
-			git pull
-			make distclean
-			./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-cscope --prefix=$HOME/.local
-			make
-			make install
 			;;
 		"-h" | "--help" | "help")
 			usage
