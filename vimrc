@@ -1,9 +1,8 @@
 filetype plugin indent on
 syntax on
-colo desert
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
-set incsearch ttimeout ttimeoutlen=50 formatoptions+=j formatoptions+=o
-set history=10000
+set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro
+set history=10000 shortmess-=S
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
