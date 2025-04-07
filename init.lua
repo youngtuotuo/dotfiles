@@ -22,12 +22,24 @@ vim.lsp.config.basedpyright = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
 				diagnosticMode = 'openFilesOnly',
+				ignore = { "*" }
 			},
+			disableOrganizeImports = true,
 		},
 	}
 }
 
 vim.lsp.enable('basedpyright')
+
+
+vim.lsp.config.ruff = {
+	cmd = { 'ruff', 'server' },
+	root_markers = { '.git' },
+	filetypes = { "python" },
+	settings = {}
+}
+
+vim.lsp.enable('ruff')
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
