@@ -12,9 +12,12 @@ vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
+vim.lsp.config('*', {
+	root_markers = { '.git' },
+})
+
 vim.lsp.config.basedpyright = {
 	cmd = { 'basedpyright-langserver', '--stdio' },
-	root_markers = { '.git' },
 	filetypes = { "python" },
 	settings = {
 		basedpyright = {
@@ -24,7 +27,6 @@ vim.lsp.config.basedpyright = {
 				diagnosticMode = 'openFilesOnly',
 				ignore = { "*" }
 			},
-			disableOrganizeImports = true,
 		},
 	}
 }
@@ -34,9 +36,10 @@ vim.lsp.enable('basedpyright')
 
 vim.lsp.config.ruff = {
 	cmd = { 'ruff', 'server' },
-	root_markers = { '.git' },
 	filetypes = { "python" },
-	settings = {}
+	settings = {
+		organizeImports = true
+	}
 }
 
 vim.lsp.enable('ruff')
