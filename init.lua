@@ -5,6 +5,7 @@ vim.opt.hlsearch = false
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.o.winborder = "rounded"
 
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
@@ -14,6 +15,7 @@ vim.cmd.packadd [[cfilter]]
 
 vim.lsp.config('*', {
 	root_markers = { '.git' },
+	offset_encoding = "utf-8"
 })
 
 vim.lsp.config.basedpyright = {
