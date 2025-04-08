@@ -13,53 +13,35 @@ vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
-vim.lsp.config('*', {
-	root_markers = { '.git' },
-	offset_encoding = "utf-8"
-})
-
 vim.lsp.config.basedpyright = {
-	cmd = { 'basedpyright-langserver', '--stdio' },
+	cmd = { "basedpyright-langserver", "--stdio" },
+	root_markers = { "pyproject.toml", ".git" },
 	filetypes = { "python" },
 	settings = {
 		basedpyright = {
 			analysis = {
+				autoImportCompletions = true,
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
-				diagnosticMode = 'openFilesOnly',
 				ignore = { "*" }
 			},
+			disableOrganizeImports = true
 		},
 	}
 }
-
-vim.lsp.enable('basedpyright')
-
+vim.lsp.enable("basedpyright")
 
 vim.lsp.config.ruff = {
 	cmd = { 'ruff', 'server' },
+	root_markers = { 'ruff.toml', '.git' },
 	filetypes = { "python" },
 	settings = {
-		organizeImports = true
+		lineLength = 150,
+		lint = {
+			ignore = { "E701", "E402", "E712" }
+		}
 	}
 }
-
 vim.lsp.enable('ruff')
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-
-		-- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
-		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			-- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			-- client.server_capabilities.completionProvider.triggerCharacters = chars
-
-			vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
-		end
-	end,
-})
-
-vim.diagnostic.config({ virtual_lines = { current_line = true } })
+vim.diagnostic.config({ virtual_lines = { current_line = false } })
