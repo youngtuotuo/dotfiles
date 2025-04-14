@@ -5,6 +5,9 @@ vim.opt.hlsearch = false
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 vim.o.winborder = "rounded"
 
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
