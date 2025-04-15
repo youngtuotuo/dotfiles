@@ -10,8 +10,19 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.o.winborder = "rounded"
 
-vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed"})
+vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "*:n",
+    callback = function()
+        vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
+    end,
+})
+vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "n:*",
+    callback = function()
+        vim.fn.clearmatches()
+    end,
+})
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed" })
 
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
