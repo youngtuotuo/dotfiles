@@ -1,0 +1,7 @@
+theme = "Apple System Colors"
+macos-option-as-alt = true
+cursor-style = block
+shell-integration-features = no-cursor
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
