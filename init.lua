@@ -8,6 +8,7 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 vim.o.winborder = "rounded"
 
 vim.api.nvim_create_autocmd("ModeChanged", {
