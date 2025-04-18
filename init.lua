@@ -8,7 +8,6 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.o.winborder = "rounded"
 
 vim.api.nvim_create_autocmd("ModeChanged", {
     pattern = "*:n",
@@ -30,28 +29,8 @@ vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
-vim.lsp.config.basedpyright = {
-	cmd = { "basedpyright-langserver", "--stdio" },
-	root_markers = { "ruff.toml", ".git" },
-	filetypes = { "python" },
-	offset_encoding = "utf-8",
-	settings = {
-		basedpyright = {
-			analysis = {
-				autoImportCompletions = true,
-				autoSearchPaths = true,
-				useLibraryCodeForTypes = true,
-				diagnosticMode = "openFilesOnly",
-                                ignore = { "*" }
-			},
-			disableOrganizeImports = true
-		},
-	}
-}
-vim.lsp.enable("basedpyright")
-
 vim.lsp.config.ruff = {
-	cmd = { 'ruff', 'server' },
+	cmd = { os.getenv("HOME") .. '/venv/bin/ruff', 'server' },
 	root_markers = { 'ruff.toml', '.git' },
 	filetypes = { "python" },
 	init_options = {
@@ -59,7 +38,8 @@ vim.lsp.config.ruff = {
 			lineLength = 150,
 			lint = {
 				ignore = { "E701", "E402", "E712" }
-			}
+			},
+                        interpreter = { os.getenv("HOME") .. "/venv/bin/python3" }
 		}
 	}
 }
