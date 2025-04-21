@@ -25,6 +25,6 @@ highlight ExtraWhitespace ctermbg=9 guibg=LightRed
 augroup python_ruff
     autocmd!
     autocmd FileType python setlocal formatprg=ruff\ format\ --stdin-filename\ %\ --quiet\ -
-    autocmd FileType python setlocal makeprg=ruff\ check\ %
-    autocmd FileType python setlocal errorformat=%f:%l:%c:%m
+    autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
+    autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END

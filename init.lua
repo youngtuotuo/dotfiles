@@ -27,8 +27,8 @@ vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
     callback = function()
-        vim.opt_local.makeprg = "ruff check %"
-        vim.opt_local.errorformat = "%f:%l:%c:%m"
+        vim.opt_local.makeprg = "ruff check % --quiet"
+        vim.opt_local.errorformat = "%f:%l:%c: %m,%-G %.%#,%-G%.%#"
         vim.opt_local.formatprg = "ruff format --stdin-filename % --quiet -"
         vim.keymap.set(
             "n",
