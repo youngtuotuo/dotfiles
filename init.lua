@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.makeprg = "ruff check % --quiet"
         vim.opt_local.errorformat = "%f:%l:%c: %m,%-G %.%#,%-G%.%#"
-        vim.opt_local.formatprg = "ruff format --stdin-filename % --quiet -"
         vim.keymap.set(
             "n",
             "gO",
@@ -44,6 +43,13 @@ vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
+
+vim.lsp.config.ruff = {
+	cmd = { 'ruff', 'server' },
+	root_markers = { 'ruff.toml', '.git' },
+	filetypes = { "python" },
+}
+vim.lsp.enable('ruff')
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "vim", "vimdoc", "query", "markdown", "python" },
