@@ -36,11 +36,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_autocmd('DiagnosticChanged', {
-  callback = function()
-    vim.diagnostic.setqflist()
-  end,
-})
+vim.keymap.set({ "n" }, "grd", vim.diagnostic.setqflist, { noremap = true })
+vim.diagnostic.config({ underline = false, signs = false })
 
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
