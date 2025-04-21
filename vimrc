@@ -14,10 +14,13 @@ nnoremap J mzJ`z
 
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
 
-highlight ExtraWhitespace ctermbg=9 guibg=LightRed
-
 augroup WhitespaceHighlight
   autocmd!
   autocmd ModeChanged *:n call matchadd('ExtraWhitespace', '\s\+$')
   autocmd ModeChanged n:* call clearmatches()
 augroup END
+
+highlight ExtraWhitespace ctermbg=9 guibg=LightRed
+
+autocmd FileType python setlocal makeprg=ruff\ check\ %
+autocmd FileType python setlocal errorformat=%f:%l:%c:%m
