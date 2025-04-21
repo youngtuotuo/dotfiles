@@ -27,8 +27,6 @@ vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
     callback = function()
-        vim.opt_local.makeprg = "ruff check % --quiet"
-        vim.opt_local.errorformat = "%f:%l:%c: %m,%-G %.%#,%-G%.%#"
         vim.keymap.set(
             "n",
             "gO",
@@ -36,6 +34,12 @@ vim.api.nvim_create_autocmd("FileType", {
             { buffer = true, noremap = true, silent = true }
         )
     end,
+})
+
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  callback = function()
+    vim.diagnostic.setqflist()
+  end,
 })
 
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
