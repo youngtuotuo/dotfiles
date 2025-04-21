@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.makeprg = "ruff check %"
         vim.opt_local.errorformat = "%f:%l:%c:%m"
+        vim.opt_local.formatprg = "ruff format --stdin-filename % --quiet -"
         vim.keymap.set(
             "n",
             "gO",

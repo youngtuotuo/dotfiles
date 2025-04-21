@@ -1,7 +1,7 @@
 filetype plugin indent on
 syntax on
 set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
-set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro
+set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
@@ -15,12 +15,16 @@ nnoremap J mzJ`z
 autocmd! BufRead,BufNewFile *.typ set filetype=typst
 
 augroup WhitespaceHighlight
-  autocmd!
-  autocmd ModeChanged *:n call matchadd('ExtraWhitespace', '\s\+$')
-  autocmd ModeChanged n:* call clearmatches()
+    autocmd!
+    autocmd ModeChanged *:n call matchadd('ExtraWhitespace', '\s\+$')
+    autocmd ModeChanged n:* call clearmatches()
 augroup END
 
 highlight ExtraWhitespace ctermbg=9 guibg=LightRed
 
-autocmd FileType python setlocal makeprg=ruff\ check\ %
-autocmd FileType python setlocal errorformat=%f:%l:%c:%m
+augroup python_ruff
+    autocmd!
+    autocmd FileType python setlocal formatprg=ruff\ format\ --stdin-filename\ %\ --quiet\ -
+    autocmd FileType python setlocal makeprg=ruff\ check\ %
+    autocmd FileType python setlocal errorformat=%f:%l:%c:%m
+augroup END
