@@ -45,9 +45,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "vim", "vimdoc", "query", "markdown", "python" },
+  ensure_installed = { "python" },
   sync_install = false,
-  auto_install = true,
+  auto_install = false,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
