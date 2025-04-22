@@ -10,6 +10,11 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
+vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
+vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
+vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+
+vim.cmd.packadd [[cfilter]]
 vim.api.nvim_create_autocmd("ModeChanged", {
     pattern = "*:n",
     callback = function()
@@ -27,6 +32,8 @@ vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
     callback = function()
+        vim.opt_local.makeprg = [[ruff check % -q]]
+        vim.opt_local.errorformat = [[%f:%l:%c: %m,%-G %.%#,%-G%.%#]]
         vim.keymap.set(
             "n",
             "gO",
@@ -36,62 +43,25 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.keymap.set({ "n" }, "grd", vim.diagnostic.setqflist, { noremap = true })
-vim.diagnostic.config({ underline = false, signs = false })
-
-vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
-vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
-vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
-
-vim.cmd.packadd [[cfilter]]
-
-vim.lsp.config.ruff = {
-	cmd = { 'ruff', 'server' },
-	root_markers = { 'ruff.toml', '.git' },
-	filetypes = { "python" },
-}
-vim.lsp.enable('ruff')
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "vim", "vimdoc", "query", "markdown", "python" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
-
   highlight = {
     enable = true,
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = {},
     additional_vim_regex_highlighting = false,
   },
   textobjects = {
     select = {
       enable = true,
-
-      -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
-
       keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
       },
-      -- You can choose the select mode (default is charwise 'v')
-      --
-      -- Can also be a function which gets passed a table with the keys
-      -- * query_string: eg '@function.inner'
-      -- * method: eg 'v' or 'o'
-      -- and should return the mode ('v', 'V', or '<c-v>') or a table
-      -- mapping query_strings to modes.
       selection_modes = {
         ['@parameter.outer'] = 'v', -- charwise
         ['@function.outer'] = 'V', -- linewise
@@ -101,3 +71,57 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+
+local fn = vim.fn
+
+function _G.qftf(info)
+    local items
+    local ret = {}
+    -- The name of item in list is based on the directory of quickfix window.
+    -- Change the directory for quickfix window make the name of item shorter.
+    -- It's a good opportunity to change current directory in quickfixtextfunc :)
+    --
+    -- local alterBufnr = fn.bufname('#') -- alternative buffer is the buffer before enter qf window
+    -- local root = getRootByAlterBufnr(alterBufnr)
+    -- vim.cmd(('noa lcd %s'):format(fn.fnameescape(root)))
+    --
+    if info.quickfix == 1 then
+        items = fn.getqflist({id = info.id, items = 0}).items
+    else
+        items = fn.getloclist(info.winid, {id = info.id, items = 0}).items
+    end
+    local limit = 31
+    local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
+    local validFmt = '%s │%5d:%-3d│%s %s'
+    for i = info.start_idx, info.end_idx do
+        local e = items[i]
+        local fname = ''
+        local str
+        if e.valid == 1 then
+            if e.bufnr > 0 then
+                fname = fn.bufname(e.bufnr)
+                if fname == '' then
+                    fname = '[No Name]'
+                else
+                    fname = fname:gsub('^' .. vim.env.HOME, '~')
+                end
+                -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
+                if #fname <= limit then
+                    fname = fnameFmt1:format(fname)
+                else
+                    fname = fnameFmt2:format(fname:sub(1 - limit))
+                end
+            end
+            local lnum = e.lnum > 99999 and -1 or e.lnum
+            local col = e.col > 999 and -1 or e.col
+            local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            str = validFmt:format(fname, lnum, col, qtype, e.text)
+        else
+            str = e.text
+        end
+        table.insert(ret, str)
+    end
+    return ret
+end
+
+vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
