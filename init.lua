@@ -43,35 +43,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "python" },
-  sync_install = false,
-  auto_install = false,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-      selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
-      },
-      include_surrounding_whitespace = false,
-    },
-  },
-}
-
 local fn = vim.fn
 
 function _G.qftf(info)
