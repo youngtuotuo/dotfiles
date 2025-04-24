@@ -8,6 +8,7 @@ let &undodir=$HOME . "/.local/state/vim/undo/"
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
+inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
