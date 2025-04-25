@@ -1,6 +1,5 @@
 #!/bin/sh
 unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-dbus-launch startplasma-x11 &
+[ -r "$HOME/.Xresources" ] && xrdb "$HOME/.Xresources"
+[ -z "$XAUTHORITY" ] && export XAUTHORITY="$HOME/.Xauthority"
+exec startplasma-x11
