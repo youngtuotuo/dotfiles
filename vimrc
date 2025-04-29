@@ -1,8 +1,10 @@
+set background=dark
 filetype plugin indent on
 syntax on
-set mouse=nvi nu rnu ruler showmatch noswapfile autoread undofile
+set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
+set showcmd
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -12,6 +14,8 @@ inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
+
+nnoremap gt :lvim /TODO/ % \| lope<cr>
 
 augroup WhitespaceHighlight
     autocmd!
@@ -23,7 +27,7 @@ highlight ExtraWhitespace ctermbg=9 guibg=LightRed
 
 augroup python_ruff
     autocmd!
-    autocmd FileType python nnoremap <buffer> <silent> gO :lvim /^\(#.*\)\@!\(class\\|\s*def\)/ %<cr>
+    autocmd FileType python nnoremap <buffer> <silent> gO :lvim /^\(#.*\)\@!\(class\\|\s*def\)/ % \| lope<cr>
     autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
@@ -92,4 +96,11 @@ endif
 call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
+Plug 'markonm/traces.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
+
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_open_ip = '192.168.108.1'
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_port = '8088'
