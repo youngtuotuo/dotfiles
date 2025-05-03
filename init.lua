@@ -64,6 +64,12 @@ require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
         {
+            "iamcco/markdown-preview.nvim",
+            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+            ft = { "markdown" },
+            build = function() vim.fn["mkdp#util#install"]() end,
+        },
+        {
             "nvim-treesitter/nvim-treesitter-textobjects",
             dependencies = {"nvim-treesitter/nvim-treesitter"}
         },
@@ -156,3 +162,10 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+-- vim.cmd [[
+--     let g:mkdp_open_to_the_world = 1
+--     let g:mkdp_open_ip = '192.168.108.1'
+--     let g:mkdp_echo_preview_url = 1
+--     let g:mkdp_port = '8088'
+-- ]]
