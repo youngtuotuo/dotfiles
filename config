@@ -1,7 +1,8 @@
-theme = "Apple System Colors"
+theme = "NvimDark"
 macos-option-as-alt = true
 cursor-style = block
 shell-integration-features = no-cursor
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
+keybind = ctrl+m=text:\x0D
