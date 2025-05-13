@@ -61,8 +61,48 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    ui = {
+        icons = {
+            cmd = "",
+            config = "",
+            debug = "",
+            event = "",
+            favorite = "",
+            ft = "",
+            init = "",
+            import = "",
+            keys = "",
+            lazy = "",
+            loaded = "",
+            not_loaded = "",
+            plugin = "",
+            runtime = "",
+            require = "",
+            source = "",
+            start = "",
+            task = "",
+            list = {
+                "",
+                "",
+                "",
+                "",
+            },
+        }
+    },
     install = { colorscheme = { "default" } },
     spec = {
+        {
+            "iamcco/markdown-preview.nvim",
+            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+            ft = { "markdown" },
+            build = function() vim.fn["mkdp#util#install"]() end,
+            config = function()
+                vim.g.mkdp_open_to_the_world = 1
+                vim.g.mkdp_open_ip = '192.168.108.1'
+                vim.g.mkdp_echo_preview_url = 1
+                vim.g.mkdp_port = '8088'
+            end
+        },
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
             dependencies = {"nvim-treesitter/nvim-treesitter"}
@@ -100,6 +140,17 @@ require("lazy").setup({
             config = function(_, opts)
                 require'nvim-treesitter.configs'.setup(opts)
             end
+        },
+        {
+            "junegunn/fzf",
+            build = function() vim.fn["fzf#install"]() end,
+            config = function()
+                vim.g.fzf_layout = { down = "40%" }
+            end
+        },
+        {
+            'czheo/mojo.vim',
+            ft = { "mojo" }
         }
     },
 })
