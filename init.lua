@@ -207,3 +207,10 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+-- vim.cmd [[
+--     let g:mkdp_open_to_the_world = 1
+--     let g:mkdp_open_ip = '192.168.108.1'
+--     let g:mkdp_echo_preview_url = 1
+--     let g:mkdp_port = '8088'
+-- ]]
