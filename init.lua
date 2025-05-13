@@ -8,11 +8,12 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 
+vim.keymap.set({ "i" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+vim.keymap.set({ "n" }, "gt", ":lvim /TODO/ % | lope<cr>", { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -37,7 +38,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set(
             "n",
             "gO",
-            ":lvim /^\\(\\s*#\\)\\@!\\(\\s*def\\|\\s*class\\)/ %<CR>",
+            ":lvim /^\\(\\s*#\\)\\@!\\(\\s*def\\|\\s*class\\)/ % | lope<CR>",
             { buffer = true, noremap = true, silent = true }
         )
     end,
@@ -207,10 +208,3 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
-
--- vim.cmd [[
---     let g:mkdp_open_to_the_world = 1
---     let g:mkdp_open_ip = '192.168.108.1'
---     let g:mkdp_echo_preview_url = 1
---     let g:mkdp_port = '8088'
--- ]]
