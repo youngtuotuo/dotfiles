@@ -1,7 +1,6 @@
 vim.opt.nu = true
 vim.opt.rnu = true
 vim.opt.swapfile = false
-vim.opt.hlsearch = false
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
@@ -136,6 +135,27 @@ require("lazy").setup({
                         },
                         include_surrounding_whitespace = false,
                     },
+                    move = {
+                        enable = true,
+                        set_jumps = true, -- whether to set jumps in the jumplist
+                        goto_next_start = {
+                            ["]m"] = "@function.outer",
+                            ["]]"] = { query = "@class.outer", desc = "Next class start" },
+                            --
+                        },
+                        goto_next_end = {
+                            ["]M"] = "@function.outer",
+                            ["]["] = "@class.outer",
+                        },
+                        goto_previous_start = {
+                            ["[m"] = "@function.outer",
+                            ["[["] = "@class.outer",
+                        },
+                        goto_previous_end = {
+                            ["[M"] = "@function.outer",
+                            ["[]"] = "@class.outer",
+                        },
+                    },
                 },
             },
             config = function(_, opts)
@@ -208,3 +228,12 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+
+vim.lsp.config["ruff"] = {
+    cmd = { 'ruff', 'server' },
+    filetypes = { "python" },
+    root_markers = { "ruff.toml" },
+}
+vim.lsp.enable("ruff")
+vim.diagnostic.config({ virtual_text = true })
