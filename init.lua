@@ -78,10 +78,18 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
-        { 'czheo/mojo.vim', ft = { "mojo" } },
+        { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive" },
         { "numToStr/Comment.nvim", opts = {} },
         { "nvim-tree/nvim-web-devicons", opts = {} },
+        { "j-hui/fidget.nvim", opts = {} },
+        {
+            "stevearc/oil.nvim",
+            opts = {},
+            init = function()
+                vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+            end
+        },
         {
             "folke/tokyonight.nvim",
             lazy = false,
@@ -93,7 +101,7 @@ require("lazy").setup({
                 }
             },
             init = function()
-                vim.cmd.colo [[tokyonight]]
+                vim.cmd.colo [[tokyonight-night]]
             end
         },
         {
@@ -209,6 +217,43 @@ require("lazy").setup({
             version = "^3.0.0",
             event = "VeryLazy",
             opts = {}
+        },
+        {
+            "saghen/blink.cmp",
+            dependencies = { "rafamadriz/friendly-snippets" },
+            version = "1.*",
+            opts = {
+                cmdline = {
+                    keymap = { preset = 'inherit' },
+                    completion = { menu = { auto_show = false } },
+                },
+                completion = { menu = { auto_show = false }, },
+                keymap = {
+                    ["<C-n>"] = { "show", "select_next", "fallback" },
+                    ["<C-space>"] = {},
+                },
+                sources = {
+                    default = function(ctx)
+                        local success, node = pcall(vim.treesitter.get_node)
+                        if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+                            return { "path", "buffer" }
+                        else
+                            return { "path", "snippets", "buffer" }
+                        end
+                    end,
+                    providers = {
+                        cmdline = {
+                            -- ignores cmdline completions when executing shell commands
+                            enabled = function()
+                                return vim.fn.getcmdtype() ~= ':' or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+                            end
+                        },
+                        path = {
+                            opts = { get_cwd = function(_) return vim.fn.getcwd() end, },
+                        },
+                    }
+                },
+            },
         }
     },
 })
