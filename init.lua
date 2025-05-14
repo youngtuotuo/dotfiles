@@ -18,10 +18,6 @@ vim.keymap.set({ "n" }, "gt", function()
     vim.cmd([[:lvim /]] .. comment_prefix .. [[\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope]])
 end, { noremap = true })
 
--- TODO:
--- WARN:
--- NOTE:
-
 vim.cmd.packadd [[cfilter]]
 vim.api.nvim_create_autocmd("ModeChanged", {
     pattern = "*:n",
@@ -118,10 +114,6 @@ require("lazy").setup({
         },
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
-            dependencies = {"nvim-treesitter/nvim-treesitter"}
-        },
-        {
-            'nvim-treesitter/nvim-treesitter-context',
             dependencies = {"nvim-treesitter/nvim-treesitter"}
         },
         {
@@ -234,14 +226,7 @@ local fn = vim.fn
 function _G.qftf(info)
     local items
     local ret = {}
-    -- The name of item in list is based on the directory of quickfix window.
-    -- Change the directory for quickfix window make the name of item shorter.
-    -- It's a good opportunity to change current directory in quickfixtextfunc :)
-    --
-    -- local alterBufnr = fn.bufname('#') -- alternative buffer is the buffer before enter qf window
-    -- local root = getRootByAlterBufnr(alterBufnr)
-    -- vim.cmd(('noa lcd %s'):format(fn.fnameescape(root)))
-    --
+
     if info.quickfix == 1 then
         items = fn.getqflist({id = info.id, items = 0}).items
     else
