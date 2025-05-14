@@ -8,7 +8,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
-vim.keymap.set({ "i" }, "<C-c>", "<esc>", { noremap = true })
+vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
@@ -61,36 +61,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    ui = {
-        icons = {
-            cmd = "",
-            config = "",
-            debug = "",
-            event = "",
-            favorite = "",
-            ft = "",
-            init = "",
-            import = "",
-            keys = "",
-            lazy = "",
-            loaded = "",
-            not_loaded = "",
-            plugin = "",
-            runtime = "",
-            require = "",
-            source = "",
-            start = "",
-            task = "",
-            list = {
-                "",
-                "",
-                "",
-                "",
-            },
-        }
-    },
     install = { colorscheme = { "default" } },
     spec = {
+        { "nvim-tree/nvim-web-devicons", opts = {} },
+        {
+            'ThePrimeagen/refactoring.nvim',
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+            },
+            opts = {}
+        },
         {
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -105,6 +86,10 @@ require("lazy").setup({
         },
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
+            dependencies = {"nvim-treesitter/nvim-treesitter"}
+        },
+        {
+            'nvim-treesitter/nvim-treesitter-context',
             dependencies = {"nvim-treesitter/nvim-treesitter"}
         },
         {
@@ -170,8 +155,54 @@ require("lazy").setup({
             end
         },
         {
+            "numToStr/Comment.nvim", opts = {}
+        },
+        {
+            "stevearc/conform.nvim",
+            event = { "BufWritePre" },
+            cmd = { "ConformInfo" },
+            keys = {
+                {
+                    "<leader>f",
+                    function()
+                        require("conform").format()
+                    end,
+                    mode = { "n", "v"},
+                },
+            },
+            opts = {
+                formatters_by_ft = {
+                    python = { "ruff_format", "ruff_organize_imports" },
+                },
+            },
+            init = function()
+                vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            end
+        },
+        {
             'czheo/mojo.vim',
             ft = { "mojo" }
+        },
+        {
+            "folke/trouble.nvim",
+            opts = {},
+            cmd = "Trouble",
+        },
+        { "tpope/vim-fugitive" },
+        {
+            "folke/todo-comments.nvim",
+            dependencies = { "nvim-lua/plenary.nvim" },
+            opts = {}
+        },
+        {
+            "lewis6991/gitsigns.nvim",
+            opts = {}
+        },
+        {
+            "kylechui/nvim-surround",
+            version = "^3.0.0",
+            event = "VeryLazy",
+            opts = {}
         }
     },
 })
