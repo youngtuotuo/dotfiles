@@ -12,7 +12,15 @@ vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
-vim.keymap.set({ "n" }, "gt", ":lvim /TODO/ % | lope<cr>", { noremap = true })
+vim.keymap.set({ "n" }, "gt", function()
+    local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
+    local comment_prefix = commentstring:gsub(" %%s", "")
+    vim.cmd([[:lvim /]] .. comment_prefix .. [[\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope]])
+end, { noremap = true })
+
+-- TODO:
+-- WARN:
+-- NOTE:
 
 vim.cmd.packadd [[cfilter]]
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -37,11 +45,21 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set(
             "n",
             "gO",
-            ":lvim /^\\(\\s*#\\)\\@!\\(\\s*def\\|\\s*class\\)/ % | lope<CR>",
+            function()
+                vim.cmd([[:lvim /^\(\s*#\)\@!\(\s*def\|\s*class\)/ % | lope]])
+            end,
             { buffer = true, noremap = true, silent = true }
         )
     end,
 })
+
+vim.lsp.config["ruff"] = {
+    cmd = { 'ruff', 'server' },
+    filetypes = { "python" },
+    root_markers = { "ruff.toml" },
+}
+vim.lsp.enable("ruff")
+vim.diagnostic.config({ virtual_text = true })
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -63,6 +81,20 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
+        {
+            "folke/tokyonight.nvim",
+            lazy = false,
+            priority = 1000,
+            opts = {
+                styles = {
+                    comments = { italic = false },
+                    keywords = { italic = false },
+                }
+            },
+            init = function()
+                vim.cmd.colo [[tokyonight]]
+            end
+        },
         { "nvim-tree/nvim-web-devicons", opts = {} },
         {
             'ThePrimeagen/refactoring.nvim',
@@ -183,17 +215,7 @@ require("lazy").setup({
             'czheo/mojo.vim',
             ft = { "mojo" }
         },
-        {
-            "folke/trouble.nvim",
-            opts = {},
-            cmd = "Trouble",
-        },
         { "tpope/vim-fugitive" },
-        {
-            "folke/todo-comments.nvim",
-            dependencies = { "nvim-lua/plenary.nvim" },
-            opts = {}
-        },
         {
             "lewis6991/gitsigns.nvim",
             opts = {}
@@ -206,6 +228,7 @@ require("lazy").setup({
         }
     },
 })
+
 local fn = vim.fn
 
 function _G.qftf(info)
@@ -255,16 +278,27 @@ function _G.qftf(info)
         end
         table.insert(ret, str)
     end
+
+    -- Apply syntax highlighting for quickfix window
+    vim.schedule(function()
+        vim.cmd [[
+            " Clear existing quickfix syntax to avoid conflicts
+            syntax clear
+            " Match filename (up to the separator │)
+            syntax match qfFileName /^[^│]*/ contained containedin=qfLine
+            " Match line and column numbers (e.g., 123:45)
+            syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
+            " Match error/warning type (e.g., ' E' or ' W')
+            syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
+            " Match the entire valid line
+            syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
+            " Link highlight groups to default quickfix highlights
+            highlight default link qfFileName Directory
+            highlight default link qfLineNr LineNr
+            highlight default link qfType Type
+        ]]
+    end)
     return ret
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
-
-
-vim.lsp.config["ruff"] = {
-    cmd = { 'ruff', 'server' },
-    filetypes = { "python" },
-    root_markers = { "ruff.toml" },
-}
-vim.lsp.enable("ruff")
-vim.diagnostic.config({ virtual_text = true })
