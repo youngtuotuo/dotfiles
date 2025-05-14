@@ -7,6 +7,7 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.signcolumn = "yes:1"
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
@@ -77,6 +78,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
+        { 'czheo/mojo.vim', ft = { "mojo" } },
+        { "tpope/vim-fugitive" },
+        { "numToStr/Comment.nvim", opts = {} },
+        { "nvim-tree/nvim-web-devicons", opts = {} },
         {
             "folke/tokyonight.nvim",
             lazy = false,
@@ -91,7 +96,6 @@ require("lazy").setup({
                 vim.cmd.colo [[tokyonight]]
             end
         },
-        { "nvim-tree/nvim-web-devicons", opts = {} },
         {
             'ThePrimeagen/refactoring.nvim',
             dependencies = {
@@ -179,9 +183,6 @@ require("lazy").setup({
             end
         },
         {
-            "numToStr/Comment.nvim", opts = {}
-        },
-        {
             "stevearc/conform.nvim",
             event = { "BufWritePre" },
             cmd = { "ConformInfo" },
@@ -202,15 +203,6 @@ require("lazy").setup({
             init = function()
                 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
             end
-        },
-        {
-            'czheo/mojo.vim',
-            ft = { "mojo" }
-        },
-        { "tpope/vim-fugitive" },
-        {
-            "lewis6991/gitsigns.nvim",
-            opts = {}
         },
         {
             "kylechui/nvim-surround",
