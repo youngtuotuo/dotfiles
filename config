@@ -1,4 +1,4 @@
-theme = "NvimDark"
+theme = "tokyonight_night"
 macos-option-as-alt = true
 cursor-style = block
 shell-integration-features = no-cursor

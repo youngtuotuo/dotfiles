@@ -116,10 +116,10 @@ require("lazy").setup({
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
             ft = { "markdown" },
-            build = function() vim.fn["mkdp#util#install"]() end,
+            build = ":call mkdp#util#install()",
             config = function()
                 vim.g.mkdp_open_to_the_world = 1
-                vim.g.mkdp_open_ip = '192.168.108.1'
+                -- vim.g.mkdp_open_ip = '192.168.108.1'
                 vim.g.mkdp_echo_preview_url = 1
                 vim.g.mkdp_port = '8088'
             end
@@ -185,7 +185,7 @@ require("lazy").setup({
         },
         {
             "junegunn/fzf",
-            build = function() vim.fn["fzf#install"]() end,
+            build = ":call fzf#install()",
             config = function()
                 vim.g.fzf_layout = { down = "40%" }
             end
@@ -227,7 +227,14 @@ require("lazy").setup({
                     keymap = { preset = 'inherit' },
                     completion = { menu = { auto_show = false } },
                 },
-                completion = { menu = { auto_show = false }, },
+                completion = {
+                    menu = {
+                        auto_show = false,
+                        draw = {
+                            columns = { { "kind_icon" }, { "label" }, { "source_name" }}
+                        }
+                    }
+                },
                 keymap = {
                     ["<C-n>"] = { "show", "select_next", "fallback" },
                     ["<C-space>"] = {},

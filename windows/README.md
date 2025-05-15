@@ -1,10 +1,3 @@
-Installation
-------------
-
-```console
-sudo ./install.ps1
-```
-
 Tools
 -----
 

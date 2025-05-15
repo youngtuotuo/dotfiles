@@ -10,6 +10,7 @@ let &undodir=$HOME . "/.local/state/vim/undo/"
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
+nnoremap <C-c> <ESC>
 inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -31,6 +32,23 @@ augroup python_ruff
     autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
+
+function! SetupQuickfixSyntax()
+    " Clear existing quickfix syntax to avoid conflicts
+    syntax clear
+    " Match filename (up to the separator │)
+    syntax match qfFileName /^[^│]*/ contained containedin=qfLine
+    " Match line and column numbers (e.g., 123:45)
+    syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
+    " Match error/warning type (e.g., ' E' or ' W')
+    syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
+    " Match the entire valid line
+    syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
+    " Link highlight groups to default quickfix highlights
+    highlight default link qfFileName Directory
+    highlight default link qfLineNr LineNr
+    highlight default link qfType Type
+endfunction
 
 " Define the quickfix text function
 function! Qftf(info) abort
@@ -81,6 +99,9 @@ function! Qftf(info) abort
         call add(ret, str)
     endfor
 
+    " Schedule the syntax setup
+    call timer_start(0, {-> SetupQuickfixSyntax()})
+
     return ret
 endfunction
 
@@ -98,9 +119,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'markonm/traces.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'tpope/vim-vinegar'
 call plug#end()
 
 let g:mkdp_open_to_the_world = 1
-let g:mkdp_open_ip = '192.168.108.1'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
