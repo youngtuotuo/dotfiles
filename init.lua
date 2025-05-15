@@ -13,6 +13,7 @@ vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
     local comment_prefix = commentstring:gsub(" %%s", "")
@@ -55,6 +56,13 @@ require("lazy").setup({
         { "numToStr/Comment.nvim", opts = {} },
         { "nvim-tree/nvim-web-devicons", opts = {} },
         { "j-hui/fidget.nvim", opts = {} },
+        {
+            "ggandor/leap.nvim",
+            init = function()
+                vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap)')
+                vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
+            end
+        },
         {
             "stevearc/aerial.nvim",
             opts = {},
