@@ -1,18 +1,23 @@
 vim.opt.nu = true
 vim.opt.rnu = true
 vim.opt.swapfile = false
-vim.opt.hlsearch = false
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
+vim.opt.signcolumn = "yes:1"
 
+vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+vim.keymap.set({ "n" }, "gt", function()
+    local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
+    local comment_prefix = commentstring:gsub(" %%s", "")
+    vim.cmd([[:lvim /]] .. comment_prefix .. [[\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope]])
+end, { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -37,11 +42,21 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set(
             "n",
             "gO",
-            ":lvim /^\\(\\s*#\\)\\@!\\(\\s*def\\|\\s*class\\)/ %<CR>",
+            function()
+                vim.cmd([[:lvim /^\(\s*#\)\@!\(\s*def\|\s*class\)/ % | lope]])
+            end,
             { buffer = true, noremap = true, silent = true }
         )
     end,
 })
+
+vim.lsp.config["ruff"] = {
+    cmd = { 'ruff', 'server' },
+    filetypes = { "python" },
+    root_markers = { "ruff.toml" },
+}
+vim.lsp.enable("ruff")
+vim.diagnostic.config({ virtual_text = true })
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -63,11 +78,51 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
+        { "czheo/mojo.vim", ft = { "mojo" } },
+        { "tpope/vim-fugitive" },
+        { "numToStr/Comment.nvim", opts = {} },
+        { "nvim-tree/nvim-web-devicons", opts = {} },
+        { "j-hui/fidget.nvim", opts = {} },
+        {
+            "stevearc/oil.nvim",
+            opts = {},
+            init = function()
+                vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+            end
+        },
+        {
+            "folke/tokyonight.nvim",
+            lazy = false,
+            priority = 1000,
+            opts = {
+                styles = {
+                    comments = { italic = false },
+                    keywords = { italic = false },
+                }
+            },
+            init = function()
+                vim.cmd.colo [[tokyonight-night]]
+            end
+        },
+        {
+            'ThePrimeagen/refactoring.nvim',
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+            },
+            opts = {}
+        },
         {
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
             ft = { "markdown" },
             build = function() vim.fn["mkdp#util#install"]() end,
+            config = function()
+                vim.g.mkdp_open_to_the_world = 1
+                vim.g.mkdp_open_ip = '192.168.108.1'
+                vim.g.mkdp_echo_preview_url = 1
+                vim.g.mkdp_port = '8088'
+            end
         },
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
@@ -101,27 +156,114 @@ require("lazy").setup({
                         },
                         include_surrounding_whitespace = false,
                     },
+                    move = {
+                        enable = true,
+                        set_jumps = true, -- whether to set jumps in the jumplist
+                        goto_next_start = {
+                            ["]m"] = "@function.outer",
+                            ["]]"] = { query = "@class.outer", desc = "Next class start" },
+                            --
+                        },
+                        goto_next_end = {
+                            ["]M"] = "@function.outer",
+                            ["]["] = "@class.outer",
+                        },
+                        goto_previous_start = {
+                            ["[m"] = "@function.outer",
+                            ["[["] = "@class.outer",
+                        },
+                        goto_previous_end = {
+                            ["[M"] = "@function.outer",
+                            ["[]"] = "@class.outer",
+                        },
+                    },
                 },
             },
             config = function(_, opts)
                 require'nvim-treesitter.configs'.setup(opts)
             end
+        },
+        {
+            "junegunn/fzf",
+            build = function() vim.fn["fzf#install"]() end,
+            config = function()
+                vim.g.fzf_layout = { down = "40%" }
+            end
+        },
+        {
+            "stevearc/conform.nvim",
+            event = { "BufWritePre" },
+            cmd = { "ConformInfo" },
+            keys = {
+                {
+                    "<leader>f",
+                    function()
+                        require("conform").format()
+                    end,
+                    mode = { "n", "v"},
+                },
+            },
+            opts = {
+                formatters_by_ft = {
+                    python = { "ruff_format", "ruff_organize_imports" },
+                },
+            },
+            init = function()
+                vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            end
+        },
+        {
+            "kylechui/nvim-surround",
+            version = "^3.0.0",
+            event = "VeryLazy",
+            opts = {}
+        },
+        {
+            "saghen/blink.cmp",
+            dependencies = { "rafamadriz/friendly-snippets" },
+            version = "1.*",
+            opts = {
+                cmdline = {
+                    keymap = { preset = 'inherit' },
+                    completion = { menu = { auto_show = false } },
+                },
+                completion = { menu = { auto_show = false }, },
+                keymap = {
+                    ["<C-n>"] = { "show", "select_next", "fallback" },
+                    ["<C-space>"] = {},
+                },
+                sources = {
+                    default = function(ctx)
+                        local success, node = pcall(vim.treesitter.get_node)
+                        if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+                            return { "path", "buffer" }
+                        else
+                            return { "path", "snippets", "buffer" }
+                        end
+                    end,
+                    providers = {
+                        cmdline = {
+                            -- ignores cmdline completions when executing shell commands
+                            enabled = function()
+                                return vim.fn.getcmdtype() ~= ':' or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+                            end
+                        },
+                        path = {
+                            opts = { get_cwd = function(_) return vim.fn.getcwd() end, },
+                        },
+                    }
+                },
+            },
         }
     },
 })
+
 local fn = vim.fn
 
 function _G.qftf(info)
     local items
     local ret = {}
-    -- The name of item in list is based on the directory of quickfix window.
-    -- Change the directory for quickfix window make the name of item shorter.
-    -- It's a good opportunity to change current directory in quickfixtextfunc :)
-    --
-    -- local alterBufnr = fn.bufname('#') -- alternative buffer is the buffer before enter qf window
-    -- local root = getRootByAlterBufnr(alterBufnr)
-    -- vim.cmd(('noa lcd %s'):format(fn.fnameescape(root)))
-    --
+
     if info.quickfix == 1 then
         items = fn.getqflist({id = info.id, items = 0}).items
     else
@@ -158,14 +300,27 @@ function _G.qftf(info)
         end
         table.insert(ret, str)
     end
+
+    -- Apply syntax highlighting for quickfix window
+    vim.schedule(function()
+        vim.cmd [[
+            " Clear existing quickfix syntax to avoid conflicts
+            syntax clear
+            " Match filename (up to the separator │)
+            syntax match qfFileName /^[^│]*/ contained containedin=qfLine
+            " Match line and column numbers (e.g., 123:45)
+            syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
+            " Match error/warning type (e.g., ' E' or ' W')
+            syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
+            " Match the entire valid line
+            syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
+            " Link highlight groups to default quickfix highlights
+            highlight default link qfFileName Directory
+            highlight default link qfLineNr LineNr
+            highlight default link qfType Type
+        ]]
+    end)
     return ret
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
-
--- vim.cmd [[
---     let g:mkdp_open_to_the_world = 1
---     let g:mkdp_open_ip = '192.168.108.1'
---     let g:mkdp_echo_preview_url = 1
---     let g:mkdp_port = '8088'
--- ]]
