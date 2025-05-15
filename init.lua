@@ -20,35 +20,6 @@ vim.keymap.set({ "n" }, "gt", function()
 end, { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
-vim.api.nvim_create_autocmd("ModeChanged", {
-    pattern = "*:n",
-    callback = function()
-        vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
-    end,
-})
-vim.api.nvim_create_autocmd("ModeChanged", {
-    pattern = "n:*",
-    callback = function()
-        vim.fn.clearmatches()
-    end,
-})
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = 9, bg = "NvimLightRed" })
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "python",
-    callback = function()
-        vim.opt_local.makeprg = [[ruff check % -q]]
-        vim.opt_local.errorformat = [[%f:%l:%c: %m,%-G %.%#,%-G%.%#]]
-        vim.keymap.set(
-            "n",
-            "gO",
-            function()
-                vim.cmd([[:lvim /^\(\s*#\)\@!\(\s*def\|\s*class\)/ % | lope]])
-            end,
-            { buffer = true, noremap = true, silent = true }
-        )
-    end,
-})
 
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
@@ -84,6 +55,17 @@ require("lazy").setup({
         { "numToStr/Comment.nvim", opts = {} },
         { "nvim-tree/nvim-web-devicons", opts = {} },
         { "j-hui/fidget.nvim", opts = {} },
+        {
+            "stevearc/aerial.nvim",
+            opts = {},
+            init = function()
+                vim.keymap.set("n", "go", "<cmd>AerialToggle!<CR>")
+            end,
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter",
+                "nvim-tree/nvim-web-devicons"
+            },
+        },
         {
             "stevearc/oil.nvim",
             opts = { view_options = { show_hidden = true } },
