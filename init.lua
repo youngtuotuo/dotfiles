@@ -78,6 +78,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
+        { "junegunn/vim-easy-align" },
         { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive" },
         { "numToStr/Comment.nvim", opts = {} },
@@ -85,7 +86,7 @@ require("lazy").setup({
         { "j-hui/fidget.nvim", opts = {} },
         {
             "stevearc/oil.nvim",
-            opts = {},
+            opts = { view_options = { show_hidden = true } },
             init = function()
                 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
             end
@@ -116,10 +117,9 @@ require("lazy").setup({
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
             ft = { "markdown" },
-            build = ":call mkdp#util#install()",
+            build = ":call mkdp#util#install",
             config = function()
                 vim.g.mkdp_open_to_the_world = 1
-                -- vim.g.mkdp_open_ip = '192.168.108.1'
                 vim.g.mkdp_echo_preview_url = 1
                 vim.g.mkdp_port = '8088'
             end
@@ -185,7 +185,7 @@ require("lazy").setup({
         },
         {
             "junegunn/fzf",
-            build = ":call fzf#install()",
+            build = ":call fzf#install",
             config = function()
                 vim.g.fzf_layout = { down = "40%" }
             end
@@ -236,7 +236,7 @@ require("lazy").setup({
                     }
                 },
                 keymap = {
-                    ["<C-n>"] = { "show", "select_next", "fallback" },
+                    ["<C-n>"] = { "show_and_insert", "select_next", "fallback" },
                     ["<C-space>"] = {},
                 },
                 sources = {
