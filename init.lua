@@ -57,13 +57,6 @@ require("lazy").setup({
         { "nvim-tree/nvim-web-devicons", opts = {} },
         { "j-hui/fidget.nvim", opts = {} },
         {
-            "ggandor/leap.nvim",
-            init = function()
-                vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap)')
-                vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
-            end
-        },
-        {
             "stevearc/aerial.nvim",
             opts = {},
             init = function()
