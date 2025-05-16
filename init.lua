@@ -121,11 +121,6 @@ require("lazy").setup({
             end
         },
         {
-            'ThePrimeagen/refactoring.nvim',
-            dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", },
-            opts = {}
-        },
-        {
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
             ft = { "markdown" },
@@ -147,10 +142,7 @@ require("lazy").setup({
                 ensure_installed = { "python" },
                 sync_install = false,
                 auto_install = false,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
+                highlight = { enable = true, additional_vim_regex_highlighting = false },
                 textobjects = {
                     select = {
                         enable = true,
@@ -208,18 +200,12 @@ require("lazy").setup({
             event = { "BufWritePre" },
             cmd = { "ConformInfo" },
             keys = {
-                {
-                    "<leader>f",
-                    function()
-                        require("conform").format()
-                    end,
-                    mode = { "n", "v"},
-                },
+                { "<leader>f", function() require("conform").format() end, mode = { "n", "v"} }
             },
             opts = {
                 formatters_by_ft = {
-                    -- python = { "ruff_format", "ruff_organize_imports" },
-                    python = { "ruff_organize_imports" },
+                    python = { "ruff_format", "ruff_organize_imports" },
+                    -- python = { "ruff_organize_imports" },
                 },
             },
             init = function()
