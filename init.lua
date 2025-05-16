@@ -36,7 +36,7 @@ vim.lsp.enable("ruff")
 --     root_markers = { "ruff.toml" },
 -- }
 -- vim.lsp.enable("tylsp")
-
+--
 vim.diagnostic.config({ virtual_text = true })
 
 -- Bootstrap lazy.nvim
@@ -70,17 +70,6 @@ require("lazy").setup({
             cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
             dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
             opts = {}
-        },
-        {
-            "mhanberg/output-panel.nvim",
-            version = "*",
-            cmd = { "OutputPanel" },
-            event = "VeryLazy",
-            config = function()
-                require("output_panel").setup({
-                    max_buffer_size = 5000 -- default
-                })
-            end,
         },
         {
             "numToStr/Comment.nvim", 
