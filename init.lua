@@ -112,13 +112,20 @@ require("lazy").setup({
             end
         },
         {
+            "catppuccin/nvim",
+            name = "catppuccin",
+            priority = 1000,
+            opts = { no_italic = true },
+            init = function() vim.cmd.colo [[catppuccin]] end
+        },
+        {
             "folke/tokyonight.nvim",
-            lazy = false,
+            lazy = true,
             priority = 1000,
             opts = { styles = { comments = { italic = false }, keywords = { italic = false }, } },
-            init = function()
-                vim.cmd.colo [[tokyonight-night]]
-            end
+            -- init = function()
+            --     vim.cmd.colo [[tokyonight-night]]
+            -- end
         },
         {
             "iamcco/markdown-preview.nvim",
