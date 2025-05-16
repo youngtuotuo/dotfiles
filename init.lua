@@ -8,6 +8,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
+vim.opt.colorcolumn = "111"
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
@@ -28,22 +29,30 @@ vim.lsp.config["ruff"] = {
     root_markers = { "ruff.toml" },
 }
 vim.lsp.enable("ruff")
+
+-- vim.lsp.config["tylsp"] = {
+--     cmd = { "ty", "server" },
+--     filetypes = { "python" },
+--     root_markers = { "ruff.toml" },
+-- }
+-- vim.lsp.enable("tylsp")
+
 vim.diagnostic.config({ virtual_text = true })
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -52,20 +61,59 @@ require("lazy").setup({
     spec = {
         { "junegunn/vim-easy-align" },
         { "czheo/mojo.vim", ft = { "mojo" } },
-        { "tpope/vim-fugitive" },
-        { "numToStr/Comment.nvim", opts = {} },
+        { "tpope/vim-fugitive", cmd = { "G" } },
         { "nvim-tree/nvim-web-devicons", opts = {} },
-        { "j-hui/fidget.nvim", opts = {} },
+        { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
+        { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
+        {
+            'Wansmer/treesj',
+            cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+            dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+            opts = {}
+        },
+        {
+            "mhanberg/output-panel.nvim",
+            version = "*",
+            cmd = { "OutputPanel" },
+            event = "VeryLazy",
+            config = function()
+                require("output_panel").setup({
+                    max_buffer_size = 5000 -- default
+                })
+            end,
+        },
+        {
+            "numToStr/Comment.nvim", 
+            opts = {
+                pre_hook = function(ctx)
+                    local U = require 'Comment.utils'
+
+                    -- Determine whether to use linewise or blockwise commentstring
+                    local type = ctx.ctype == U.ctype.linewise and '__default' or '__multiline'
+
+                    -- Determine the location where to calculate commentstring from
+                    local location = nil
+                    if ctx.ctype == U.ctype.blockwise then
+                        location = {
+                            ctx.range.srow - 1,
+                            ctx.range.scol,
+                        }
+                    elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+                        location = require('ts_context_commentstring.utils').get_visual_start_location()
+                    end
+
+                    return require('ts_context_commentstring').calculate_commentstring {
+                        key = type,
+                        location = location,
+                    }
+                end
+            }
+        },
         {
             "stevearc/aerial.nvim",
+            keys = { {"go", "<cmd>AerialToggle!<CR>", mode = {"n", "v"}} },
             opts = {},
-            init = function()
-                vim.keymap.set("n", "go", "<cmd>AerialToggle!<CR>")
-            end,
-            dependencies = {
-                "nvim-treesitter/nvim-treesitter",
-                "nvim-tree/nvim-web-devicons"
-            },
+            dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         },
         {
             "stevearc/oil.nvim",
@@ -78,22 +126,14 @@ require("lazy").setup({
             "folke/tokyonight.nvim",
             lazy = false,
             priority = 1000,
-            opts = {
-                styles = {
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                }
-            },
+            opts = { styles = { comments = { italic = false }, keywords = { italic = false }, } },
             init = function()
                 vim.cmd.colo [[tokyonight-night]]
             end
         },
         {
             'ThePrimeagen/refactoring.nvim',
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                "nvim-treesitter/nvim-treesitter",
-            },
+            dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", },
             opts = {}
         },
         {
@@ -168,8 +208,9 @@ require("lazy").setup({
         },
         {
             "junegunn/fzf",
+            cmd = { "FZF" },
             build = ":call fzf#install",
-            config = function()
+            init = function()
                 vim.g.fzf_layout = { down = "40%" }
             end
         },
@@ -188,7 +229,8 @@ require("lazy").setup({
             },
             opts = {
                 formatters_by_ft = {
-                    python = { "ruff_format", "ruff_organize_imports" },
+                    -- python = { "ruff_format", "ruff_organize_imports" },
+                    python = { "ruff_organize_imports" },
                 },
             },
             init = function()
@@ -228,7 +270,7 @@ require("lazy").setup({
                         if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
                             return { "path", "buffer" }
                         else
-                            return { "path", "snippets", "buffer" }
+                            return { "lsp", "path", "snippets", "buffer" }
                         end
                     end,
                     providers = {
