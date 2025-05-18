@@ -1,5 +1,6 @@
 vim.opt.swapfile = false
 vim.opt.undofile = true
+vim.opt.hlsearch = false
 vim.opt.wrap = false
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
@@ -58,7 +59,7 @@ require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
         { "tpope/vim-vinegar" },
-        { "junegunn/vim-easy-align" },
+        { "junegunn/vim-easy-align", cmd = { "EasyAlign" } },
         { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive", cmd = { "G" } },
         { "nvim-tree/nvim-web-devicons", opts = {} },
