@@ -1,5 +1,3 @@
-vim.opt.nu = true
-vim.opt.rnu = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.wrap = false
@@ -36,7 +34,7 @@ vim.lsp.enable("ruff")
 --     root_markers = { "ruff.toml" },
 -- }
 -- vim.lsp.enable("tylsp")
---
+
 vim.diagnostic.config({ virtual_text = true })
 
 -- Bootstrap lazy.nvim
@@ -59,6 +57,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
+        { "tpope/vim-vinegar" },
         { "junegunn/vim-easy-align" },
         { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive", cmd = { "G" } },
@@ -103,13 +102,6 @@ require("lazy").setup({
             keys = { {"go", "<cmd>AerialToggle!<CR>", mode = {"n", "v"}} },
             opts = {},
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-        },
-        {
-            "stevearc/oil.nvim",
-            opts = { view_options = { show_hidden = true } },
-            init = function()
-                vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
-            end
         },
         {
             "catppuccin/nvim",
@@ -211,8 +203,8 @@ require("lazy").setup({
             },
             opts = {
                 formatters_by_ft = {
-                    python = { "ruff_format", "ruff_organize_imports" },
-                    -- python = { "ruff_organize_imports" },
+                    -- python = { "ruff_format", "ruff_organize_imports" },
+                    python = { "ruff_organize_imports" },
                 },
             },
             init = function()
