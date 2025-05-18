@@ -13,6 +13,7 @@ vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
+vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
 
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
@@ -58,7 +59,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     install = { colorscheme = { "default" } },
     spec = {
-        { "tpope/vim-vinegar" },
         { "junegunn/vim-easy-align", cmd = { "EasyAlign" } },
         { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive", cmd = { "G" } },
