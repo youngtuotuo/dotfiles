@@ -27,16 +27,19 @@ vim.cmd.packadd [[cfilter]]
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
     filetypes = { "python" },
-    root_markers = { "ruff.toml" },
+    root_markers = { "pyproject.toml" },
 }
 vim.lsp.enable("ruff")
 
--- vim.lsp.config["tylsp"] = {
---     cmd = { "ty", "server" },
---     filetypes = { "python" },
---     root_markers = { "ruff.toml" },
--- }
--- vim.lsp.enable("tylsp")
+vim.lsp.config["pyrefly"] = {
+    cmd = { 'pyrefly', 'lsp' },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml" },
+    handlers = {
+        ["textDocument/publishDiagnostics"] = function() end,
+    },
+}
+vim.lsp.enable("pyrefly")
 
 vim.diagnostic.config({ virtual_text = true })
 
