@@ -14,6 +14,7 @@ vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
+vim.keymap.set({ "n" }, "<leader>d", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
 
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
@@ -101,7 +102,7 @@ require("lazy").setup({
         {
             "stevearc/aerial.nvim",
             keys = { {"go", "<cmd>AerialToggle!<CR>", mode = {"n", "v"}} },
-            opts = {},
+            opts = { post_jump_cmd = "normal! zt" },
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         },
         {
