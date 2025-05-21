@@ -66,6 +66,21 @@ require("lazy").setup({
         { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
         { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
         {
+            "nvimdev/dashboard-nvim",
+            event = "VimEnter",
+            opts = {
+                shortcut_type = "number",
+                config = {
+                    week_header = { enable = true, },
+                    shortcut = {},
+                    packages = { enable = true },
+                    project = { enable = false },
+                    footer = {}, -- footer
+                }
+            },
+            dependencies = { {'nvim-tree/nvim-web-devicons'}}
+        },
+        {
             'Wansmer/treesj',
             cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
             dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
@@ -124,7 +139,7 @@ require("lazy").setup({
             "iamcco/markdown-preview.nvim",
             cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
             ft = { "markdown" },
-            build = ":call mkdp#util#install",
+            build = ":call mkdp#util#install()",
             config = function()
                 vim.g.mkdp_open_to_the_world = 1
                 vim.g.mkdp_echo_preview_url = 1
@@ -190,7 +205,7 @@ require("lazy").setup({
         {
             "junegunn/fzf",
             cmd = { "FZF" },
-            build = ":call fzf#install",
+            build = ":call fzf#install()",
             init = function()
                 vim.g.fzf_layout = { down = "40%" }
             end
