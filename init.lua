@@ -14,6 +14,7 @@ vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
+vim.keymap.set({ "n" }, "<leader>d", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
 
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
@@ -26,16 +27,19 @@ vim.cmd.packadd [[cfilter]]
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
     filetypes = { "python" },
-    root_markers = { "ruff.toml" },
+    root_markers = { "pyproject.toml" },
 }
 vim.lsp.enable("ruff")
 
--- vim.lsp.config["tylsp"] = {
---     cmd = { "ty", "server" },
---     filetypes = { "python" },
---     root_markers = { "ruff.toml" },
--- }
--- vim.lsp.enable("tylsp")
+vim.lsp.config["pyrefly"] = {
+    cmd = { 'pyrefly', 'lsp' },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml" },
+    handlers = {
+        ["textDocument/publishDiagnostics"] = function() end,
+    },
+}
+vim.lsp.enable("pyrefly")
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -116,7 +120,7 @@ require("lazy").setup({
         {
             "stevearc/aerial.nvim",
             keys = { {"go", "<cmd>AerialToggle!<CR>", mode = {"n", "v"}} },
-            opts = {},
+            opts = { post_jump_cmd = "normal! zt" },
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         },
         {
