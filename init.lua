@@ -119,7 +119,7 @@ require("lazy").setup({
         },
         {
             "stevearc/aerial.nvim",
-            keys = { {"go", "<cmd>AerialToggle!<CR>", mode = {"n", "v"}} },
+            keys = { {"go", "<cmd>AerialToggle! left<CR>", mode = {"n", "v"}} },
             opts = { post_jump_cmd = "normal! zt" },
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         },
@@ -264,7 +264,7 @@ require("lazy").setup({
                         if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
                             return { "path", "buffer" }
                         else
-                            return { "lsp", "path", "snippets", "buffer" }
+                            return { "buffer", "lsp", "path", "snippets" }
                         end
                     end,
                     providers = {
