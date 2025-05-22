@@ -31,15 +31,15 @@ vim.lsp.config["ruff"] = {
 }
 vim.lsp.enable("ruff")
 
-vim.lsp.config["pyrefly"] = {
-    cmd = { 'pyrefly', 'lsp' },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml" },
-    handlers = {
-        ["textDocument/publishDiagnostics"] = function() end,
-    },
-}
-vim.lsp.enable("pyrefly")
+-- vim.lsp.config["pyrefly"] = {
+--     cmd = { 'pyrefly', 'lsp' },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml" },
+--     handlers = {
+--         ["textDocument/publishDiagnostics"] = function() end,
+--     },
+-- }
+-- vim.lsp.enable("pyrefly")
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -73,7 +73,6 @@ require("lazy").setup({
             "nvimdev/dashboard-nvim",
             event = "VimEnter",
             opts = {
-                shortcut_type = "number",
                 config = {
                     week_header = { enable = true, },
                     shortcut = {},
@@ -119,13 +118,17 @@ require("lazy").setup({
         },
         {
             "stevearc/aerial.nvim",
-            keys = { {"go", "<cmd>AerialToggle! left<CR>", mode = {"n", "v"}} },
-            opts = { post_jump_cmd = "normal! zt" },
+            opts = { backends = { "treesitter" }, post_jump_cmd = "normal! zt" },
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+            config = function(_, opts)
+                require("aerial").setup(opts)
+                vim.keymap.set({ "n" }, "go", "<cmd>AerialToggle!<cr>", { noremap = true })
+            end
         },
         {
             "catppuccin/nvim",
             name = "catppuccin",
+            lazy = true,
             priority = 1000,
             opts = { no_italic = true },
             init = function() vim.cmd.colo [[catppuccin]] end
@@ -135,9 +138,7 @@ require("lazy").setup({
             lazy = true,
             priority = 1000,
             opts = { styles = { comments = { italic = false }, keywords = { italic = false }, } },
-            -- init = function()
-            --     vim.cmd.colo [[tokyonight-night]]
-            -- end
+            -- init = function() vim.cmd.colo [[tokyonight-night]] end
         },
         {
             "iamcco/markdown-preview.nvim",
@@ -208,7 +209,6 @@ require("lazy").setup({
         },
         {
             "junegunn/fzf",
-            cmd = { "FZF" },
             build = ":call fzf#install()",
             init = function()
                 vim.g.fzf_layout = { down = "40%" }
@@ -223,8 +223,8 @@ require("lazy").setup({
             },
             opts = {
                 formatters_by_ft = {
-                    -- python = { "ruff_format", "ruff_organize_imports" },
-                    python = { "ruff_organize_imports" },
+                    python = { "ruff_format", "ruff_organize_imports" },
+                    -- python = { "ruff_organize_imports" },
                 },
             },
             init = function()
@@ -236,52 +236,8 @@ require("lazy").setup({
             version = "^3.0.0",
             event = "VeryLazy",
             opts = {}
-        },
-        {
-            "saghen/blink.cmp",
-            dependencies = { "rafamadriz/friendly-snippets" },
-            version = "1.*",
-            opts = {
-                cmdline = {
-                    keymap = { preset = 'inherit' },
-                    completion = { menu = { auto_show = false } },
-                },
-                completion = {
-                    menu = {
-                        auto_show = false,
-                        draw = {
-                            columns = { { "kind_icon" }, { "label" }, { "source_name" }}
-                        }
-                    }
-                },
-                keymap = {
-                    ["<C-n>"] = { "show_and_insert", "select_next", "fallback" },
-                    ["<C-space>"] = {},
-                },
-                sources = {
-                    default = function(ctx)
-                        local success, node = pcall(vim.treesitter.get_node)
-                        if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
-                            return { "path", "buffer" }
-                        else
-                            return { "buffer", "lsp", "path", "snippets" }
-                        end
-                    end,
-                    providers = {
-                        cmdline = {
-                            -- ignores cmdline completions when executing shell commands
-                            enabled = function()
-                                return vim.fn.getcmdtype() ~= ':' or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
-                            end
-                        },
-                        path = {
-                            opts = { get_cwd = function(_) return vim.fn.getcwd() end, },
-                        },
-                    }
-                },
-            },
         }
-    },
+    }
 })
 
 local fn = vim.fn
