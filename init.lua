@@ -157,14 +157,14 @@ require("lazy").setup({
             name = "catppuccin",
             lazy = true,
             priority = 1000,
-            opts = { no_italic = true },
+            opts = { transparent_background = true, no_italic = true },
             init = function() vim.cmd.colo [[catppuccin]] end
         },
         {
             "folke/tokyonight.nvim",
             lazy = true,
             priority = 1000,
-            opts = { styles = { comments = { italic = false }, keywords = { italic = false }, } },
+            opts = { transparent = true, styles = { comments = { italic = false }, keywords = { italic = false }, } },
             -- init = function() vim.cmd.colo [[tokyonight-night]] end
         },
         {
