@@ -15,6 +15,7 @@ vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
 vim.keymap.set({ "n" }, "grd", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
+vim.keymap.set({ "n" }, "<leader>d", ":lua vim.diagnostic.open_float()<cr>", { noremap = true })
 
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
@@ -38,7 +39,7 @@ vim.lsp.enable("ruff")
 --     handlers = {
 --         ["textDocument/publishDiagnostics"] = function() end,
 --     },
---     offset_encoding = { "utf-8" }
+--     offset_encoding = "utf-8"
 -- }
 -- vim.lsp.enable("ty")
 
@@ -49,7 +50,7 @@ vim.lsp.enable("ruff")
 --     handlers = {
 --         ["textDocument/publishDiagnostics"] = function() end,
 --     },
---     -- offset_encoding = { "utf-8" }
+--     offset_encoding = "utf-8" 
 -- }
 -- vim.lsp.enable("pyrefly")
 
@@ -113,6 +114,7 @@ require("lazy").setup({
                     week_header = { enable = true, },
                     shortcut = {},
                     packages = { enable = true },
+                    mru = { enable = false },
                     project = { enable = false },
                     footer = {}, -- footer
                 }
@@ -186,10 +188,9 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter",
             build = ":TSUpdate",
             opts = {
-                ensure_installed = { "python" },
                 sync_install = false,
                 auto_install = false,
-                highlight = { enable = true, additional_vim_regex_highlighting = false },
+                highlight = { enable = false },
                 textobjects = {
                     select = {
                         enable = true,
