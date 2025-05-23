@@ -14,7 +14,7 @@ vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
 vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
-vim.keymap.set({ "n" }, "<leader>d", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
+vim.keymap.set({ "n" }, "grd", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
 
 vim.keymap.set({ "n" }, "gt", function()
     local commentstring = vim.api.nvim_get_option_value("commentstring", { scope = "local" })
@@ -31,6 +31,17 @@ vim.lsp.config["ruff"] = {
 }
 vim.lsp.enable("ruff")
 
+-- vim.lsp.config["ty"] = {
+--     cmd = { 'ty', 'server' },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml" },
+--     handlers = {
+--         ["textDocument/publishDiagnostics"] = function() end,
+--     },
+--     offset_encoding = { "utf-8" }
+-- }
+-- vim.lsp.enable("ty")
+
 -- vim.lsp.config["pyrefly"] = {
 --     cmd = { 'pyrefly', 'lsp' },
 --     filetypes = { "python" },
@@ -38,10 +49,35 @@ vim.lsp.enable("ruff")
 --     handlers = {
 --         ["textDocument/publishDiagnostics"] = function() end,
 --     },
+--     -- offset_encoding = { "utf-8" }
 -- }
 -- vim.lsp.enable("pyrefly")
 
-vim.diagnostic.config({ virtual_text = true })
+vim.lsp.config["basedpyright"] = {
+    cmd = { 'basedpyright-langserver', '--stdio' },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml" },
+    handlers = {
+        ["textDocument/publishDiagnostics"] = function() end,
+    },
+    on_attach = function(client, bufnr)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
+    settings = {
+        basedpyright = {
+            disableOrganizeImports = false,
+            analysis = {
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+                typeCheckingMode = "off",
+            }
+        }
+    },
+    offset_encoding = "utf-8" 
+}
+vim.lsp.enable("basedpyright")
+
+vim.diagnostic.config({ underline = false, virtual_text = false })
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -115,15 +151,6 @@ require("lazy").setup({
                     }
                 end
             }
-        },
-        {
-            "stevearc/aerial.nvim",
-            opts = { backends = { "treesitter" }, post_jump_cmd = "normal! zt" },
-            dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-            config = function(_, opts)
-                require("aerial").setup(opts)
-                vim.keymap.set({ "n" }, "go", "<cmd>AerialToggle!<cr>", { noremap = true })
-            end
         },
         {
             "catppuccin/nvim",
