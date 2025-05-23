@@ -25,6 +25,26 @@ end, { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
+vim.api.nvim_create_augroup('python_ruff', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = 'python_ruff',
+    pattern = 'python',
+    callback = function()
+        vim.keymap.set('n', 'gO', ':lvim /^\\(#.*\\)\\@!\\(class\\|\\s*def\\)/ % | lope<CR>', {
+            buffer = true,
+            silent = true,
+        })
+        -- Check if gO mapping exists in normal mode for the current buffer
+        -- if vim.fn.mapcheck('gO', 'n') == '' then
+        --     vim.keymap.set('n', 'gO', ':lvim /^\\(#.*\\)\\@!\\(class\\|\\s*def\\)/ % | lope<CR>', {
+        --         buffer = true,
+        --         silent = true,
+        --     })
+        -- end
+    end,
+})
+
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
     filetypes = { "python" },
@@ -106,14 +126,6 @@ require("lazy").setup({
         { "nvim-tree/nvim-web-devicons", opts = {} },
         { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
         { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
-        {
-            'stevearc/aerial.nvim',
-            opts = { backends = { "treesitter" }, max_width = { 45, 0.3} },
-            dependencies = {
-                "nvim-treesitter/nvim-treesitter",
-                "nvim-tree/nvim-web-devicons"
-            },
-        },
         {
             "nvimdev/dashboard-nvim",
             event = "VimEnter",
