@@ -7,7 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
-vim.opt.colorcolumn = "111"
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
@@ -107,6 +107,15 @@ require("lazy").setup({
         { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
         { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
         {
+            'stevearc/aerial.nvim',
+            init = function() vim.keymap.set("n", "gO", "<cmd>AerialToggle!<CR>") end,
+            opts = { backends = { "treesitter" }, max_width = { 45, 0.3} },
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter",
+                "nvim-tree/nvim-web-devicons"
+            },
+        },
+        {
             "nvimdev/dashboard-nvim",
             event = "VimEnter",
             opts = {
@@ -153,21 +162,6 @@ require("lazy").setup({
                     }
                 end
             }
-        },
-        {
-            "catppuccin/nvim",
-            name = "catppuccin",
-            lazy = true,
-            priority = 1000,
-            opts = { transparent_background = true, no_italic = true },
-            init = function() vim.cmd.colo [[catppuccin]] end
-        },
-        {
-            "folke/tokyonight.nvim",
-            lazy = true,
-            priority = 1000,
-            opts = { transparent = true, styles = { comments = { italic = false }, keywords = { italic = false }, } },
-            -- init = function() vim.cmd.colo [[tokyonight-night]] end
         },
         {
             "iamcco/markdown-preview.nvim",
