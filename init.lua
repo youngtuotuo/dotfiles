@@ -108,7 +108,6 @@ require("lazy").setup({
         { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
         {
             'stevearc/aerial.nvim',
-            init = function() vim.keymap.set("n", "gO", "<cmd>AerialToggle!<CR>") end,
             opts = { backends = { "treesitter" }, max_width = { 45, 0.3} },
             dependencies = {
                 "nvim-treesitter/nvim-treesitter",
