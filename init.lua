@@ -26,7 +26,6 @@ end, { noremap = true })
 vim.cmd.packadd [[cfilter]]
 
 vim.api.nvim_create_augroup('python_ruff', { clear = true })
-
 vim.api.nvim_create_autocmd('FileType', {
     group = 'python_ruff',
     pattern = 'python',
@@ -44,6 +43,39 @@ vim.api.nvim_create_autocmd('FileType', {
         -- end
     end,
 })
+
+-- Create autocommand group
+local whitespace_group = vim.api.nvim_create_augroup('WhitespaceHighlight', { clear = true })
+
+-- Highlight trailing whitespace in normal mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = '*:n',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+    end,
+})
+
+-- Clear matches when leaving normal mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = 'n:*',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.clearmatches()
+    end,
+})
+
+-- Highlight trailing whitespace on buffer enter
+vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = '*',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+    end,
+})
+
+-- Set highlight colors
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { ctermbg = 9, bg = 'LightRed' })
 
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
@@ -70,7 +102,7 @@ vim.lsp.enable("ruff")
 --     handlers = {
 --         ["textDocument/publishDiagnostics"] = function() end,
 --     },
---     offset_encoding = "utf-8" 
+--     offset_encoding = "utf-8"
 -- }
 -- vim.lsp.enable("pyrefly")
 
@@ -94,7 +126,7 @@ vim.lsp.config["basedpyright"] = {
             }
         }
     },
-    offset_encoding = "utf-8" 
+    offset_encoding = "utf-8"
 }
 vim.lsp.enable("basedpyright")
 
@@ -148,7 +180,7 @@ require("lazy").setup({
             opts = {}
         },
         {
-            "numToStr/Comment.nvim", 
+            "numToStr/Comment.nvim",
             opts = {
                 pre_hook = function(ctx)
                     local U = require 'Comment.utils'
