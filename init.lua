@@ -34,48 +34,8 @@ vim.api.nvim_create_autocmd('FileType', {
             buffer = true,
             silent = true,
         })
-        -- Check if gO mapping exists in normal mode for the current buffer
-        -- if vim.fn.mapcheck('gO', 'n') == '' then
-        --     vim.keymap.set('n', 'gO', ':lvim /^\\(#.*\\)\\@!\\(class\\|\\s*def\\)/ % | lope<CR>', {
-        --         buffer = true,
-        --         silent = true,
-        --     })
-        -- end
     end,
 })
-
--- Create autocommand group
-local whitespace_group = vim.api.nvim_create_augroup('WhitespaceHighlight', { clear = true })
-
--- Highlight trailing whitespace in normal mode
-vim.api.nvim_create_autocmd('ModeChanged', {
-    pattern = '*:n',
-    group = whitespace_group,
-    callback = function()
-        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
-    end,
-})
-
--- Clear matches when leaving normal mode
-vim.api.nvim_create_autocmd('ModeChanged', {
-    pattern = 'n:*',
-    group = whitespace_group,
-    callback = function()
-        vim.fn.clearmatches()
-    end,
-})
-
--- Highlight trailing whitespace on buffer enter
-vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = '*',
-    group = whitespace_group,
-    callback = function()
-        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
-    end,
-})
-
--- Set highlight colors
-vim.api.nvim_set_hl(0, 'ExtraWhitespace', { ctermbg = 9, bg = 'LightRed' })
 
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
@@ -155,24 +115,8 @@ require("lazy").setup({
         { "junegunn/vim-easy-align", cmd = { "EasyAlign" } },
         { "czheo/mojo.vim", ft = { "mojo" } },
         { "tpope/vim-fugitive", cmd = { "G" } },
-        { "nvim-tree/nvim-web-devicons", opts = {} },
         { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
         { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
-        {
-            "nvimdev/dashboard-nvim",
-            event = "VimEnter",
-            opts = {
-                config = {
-                    week_header = { enable = true, },
-                    shortcut = {},
-                    packages = { enable = true },
-                    mru = { enable = false },
-                    project = { enable = false },
-                    footer = {}, -- footer
-                }
-            },
-            dependencies = { {'nvim-tree/nvim-web-devicons'}}
-        },
         {
             'Wansmer/treesj',
             cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
