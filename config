@@ -1,8 +1,8 @@
-theme = "tokyonight_night"
 macos-option-as-alt = true
+font-size=12
+adjust-cursor-height=-5
 cursor-style = block
 shell-integration-features = no-cursor
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
-keybind = ctrl+m=text:\x0D
