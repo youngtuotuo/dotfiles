@@ -37,6 +37,39 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+-- Create autocommand group
+local whitespace_group = vim.api.nvim_create_augroup('WhitespaceHighlight', { clear = true })
+
+-- Highlight trailing whitespace in normal mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = '*:n',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+    end,
+})
+
+-- Clear matches when leaving normal mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = 'n:*',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.clearmatches()
+    end,
+})
+
+-- Highlight trailing whitespace on buffer enter
+vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = '*',
+    group = whitespace_group,
+    callback = function()
+        vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+    end,
+})
+
+-- Set highlight colors
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { ctermbg = 9, bg = 'LightRed' })
+
 vim.lsp.config["ruff"] = {
     cmd = { 'ruff', 'server' },
     filetypes = { "python" },
