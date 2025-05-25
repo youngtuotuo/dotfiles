@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
+vim.opt.guicursor = ""
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
