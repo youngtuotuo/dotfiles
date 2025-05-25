@@ -4,36 +4,87 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd
+set showcmd laststatus=2 hlsearch
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
-nnoremap <C-c> <ESC>
 inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
+nnoremap - :Ex<cr>
 
-nnoremap gt :lvim /TODO/ % \| lope<cr>
+function! s:SearchComments() abort
+    let commentstring = &l:commentstring
+    let comment_prefix = substitute(commentstring, '\s*%s\s*', '', '')
+    execute 'lvim /' . comment_prefix . '\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope'
+endfunction
+nnoremap gt :call <SID>SearchComments()<CR>
 
 augroup WhitespaceHighlight
     autocmd!
     autocmd ModeChanged *:n call matchadd('ExtraWhitespace', '\s\+$')
     autocmd ModeChanged n:* call clearmatches()
+    autocmd BufEnter * call matchadd('ExtraWhitespace', '\s\+$')
 augroup END
 
 highlight ExtraWhitespace ctermbg=9 guibg=LightRed
 
-augroup python_ruff
+augroup python
     autocmd!
     autocmd FileType python nnoremap <buffer> <silent> gO :lvim /^\(#.*\)\@!\(class\\|\s*def\)/ % \| lope<cr>
     autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
 
-function! SetupQuickfixSyntax()
+function! ManShowTOC()
+  let bufnr = bufnr('%')
+  let bufname = bufname(bufnr)
+  let info = getloclist(0, {'winid': 1})
+
+  " Check if location list exists and is associated with current buffer
+  if !empty(info) && getwinvar(info.winid, 'qf_toc') ==# bufname
+    execute 'lopen'
+    return
+  endif
+
+  " Initialize table of contents list
+  let toc = []
+
+  let lnum = 2
+  let last_line = line('$') - 1
+  while lnum && lnum < last_line
+    let text = getline(lnum)
+    " Match lines starting with optional whitespace followed by -/+ and non-whitespace,
+    " or lines with exactly 3 spaces then non-whitespace,
+    " or lines starting with non-whitespace
+    if text =~ '^\s\+[-+]\S' || text =~ '^   \S' || text =~ '^\S'
+      call add(toc, {
+            \ 'bufnr': bufnr,
+            \ 'lnum': lnum,
+            \ 'text': substitute(substitute(text, '^\s\+', '', ''), '\s\+$', '', '')
+            \ })
+    endif
+    let lnum = nextnonblank(lnum + 1)
+  endwhile
+
+  " Set location list with TOC entries
+  call setloclist(0, toc, ' ')
+  call setloclist(0, [], 'a', {'title': 'Table of contents'})
+  execute 'lopen'
+  let w:qf_toc = bufname
+  " Reload syntax file after setting qf_toc variable
+  setlocal filetype=qf
+endfunction
+
+augroup man
+    autocmd!
+    autocmd FileType man nnoremap <buffer> <silent> gO :call ManShowTOC() \| lope<cr>
+augroup END
+
+function! s:SetQuickfixSyntax() abort
     " Clear existing quickfix syntax to avoid conflicts
     syntax clear
     " Match filename (up to the separator │)
@@ -64,9 +115,6 @@ function! Qftf(info) abort
 
     " Formatting constants
     let limit = 31
-    let fnameFmt1 = '%-' . limit . 's'
-    let fnameFmt2 = '…%.' . (limit - 1) . 's'
-    let validFmt = '%s │%5d:%-3d│%s %s'
 
     " Process each item in the range
     for i in range(a:info.start_idx - 1, a:info.end_idx - 1)
@@ -74,41 +122,31 @@ function! Qftf(info) abort
         let fname = ''
         let str = ''
 
-        if e.valid
+        if e.valid && a:info.quickfix
+            let qtype = empty(e.type) ? '' : ' ' . toupper(e.type[0])
             if e.bufnr > 0
                 let fname = bufname(e.bufnr)
                 if empty(fname)
                     let fname = '[No Name]'
-                else
-                    let fname = substitute(fname, '^' . $HOME, '~', '')
-                endif
-                " Truncate fname if too long
-                if len(fname) <= limit
-                    let fname = printf(fnameFmt1, fname)
-                else
-                    let fname = printf(fnameFmt2, fname[-limit:])
                 endif
             endif
-            let lnum = e.lnum > 99999 ? -1 : e.lnum
-            let col = e.col > 999 ? -1 : e.col
-            let qtype = empty(e.type) ? '' : ' ' . toupper(e.type[0])
-            let str = printf(validFmt, fname, lnum, col, qtype, e.text)
+            let validFmt = '%s | %s'
+            let str = printf(validFmt, fname, e.text)
         else
             let str = e.text
         endif
         call add(ret, str)
     endfor
 
-    " Schedule the syntax setup
-    call timer_start(0, {-> SetupQuickfixSyntax()})
-
+    " Schedule the syntax setup to run asynchronously
+    call timer_start(0, {-> s:SetQuickfixSyntax()})
     return ret
 endfunction
 
 " Set the quickfixtextfunc option
 set qftf=function('Qftf')
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -116,13 +154,16 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
 Plug 'markonm/traces.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'tpope/vim-vinegar'
+Plug 'czheo/mojo.vim'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 let g:mkdp_open_to_the_world = 1
+let g:mkdp_open_ip = '192.168.108.1'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
+
+let g:fzf_layout = { 'down': '40%' }

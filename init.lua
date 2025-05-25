@@ -38,13 +38,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_augroup("lua", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    group = "lua",
-    pattern = "lua",
-    callback = function() vim.treesitter.stop() end,
-})
-
 vim.lsp.config["ruff"] = {
     cmd = { "ruff", "server" },
     filetypes = { "python" },
@@ -138,7 +131,7 @@ require("lazy").setup({
         { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
         {
             "numToStr/Comment.nvim",
-            ft = { "python", "lua", "markdown", "c", "cpp", "cuda", "sh" },
+            ft = { "lua", "markdown", "python", "c", "cpp", "cuda" },
             dependencies = { { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } } },
             opts = {
                 pre_hook = function(ctx)
@@ -182,7 +175,7 @@ require("lazy").setup({
         },
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
-            ft = { "python", "lua", "markdown", "c", "cpp", "cuda", "sh" },
+            ft = { "lua", "markdown", "python", "c", "cpp", "cuda" },
             dependencies = {
                 {
                     "nvim-treesitter/nvim-treesitter",
@@ -190,7 +183,7 @@ require("lazy").setup({
                     opts = {
                         sync_install = false,
                         auto_install = false,
-                        highlight = { enable = false },
+                        highlight = { enable = true },
                         textobjects = {
                             select = {
                                 enable = true,
