@@ -100,31 +100,90 @@ vim.lsp.enable("ruff")
 -- }
 -- vim.lsp.enable("pyrefly")
 
-vim.lsp.config["basedpyright"] = {
-    cmd = { 'basedpyright-langserver', '--stdio' },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml" },
-    handlers = {
-        ["textDocument/publishDiagnostics"] = function() end,
-    },
-    on_attach = function(client, bufnr)
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
-    settings = {
-        basedpyright = {
-            disableOrganizeImports = false,
-            analysis = {
-                autoImportCompletions = true,
-                autoSearchPaths = true,
-                typeCheckingMode = "off",
-            }
-        }
-    },
-    offset_encoding = "utf-8"
-}
-vim.lsp.enable("basedpyright")
+-- vim.lsp.config["basedpyright"] = {
+--     cmd = { 'basedpyright-langserver', '--stdio' },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml" },
+--     handlers = {
+--         ["textDocument/publishDiagnostics"] = function() end,
+--     },
+--     on_attach = function(client, bufnr)
+--       client.server_capabilities.semanticTokensProvider = nil
+--     end,
+--     settings = {
+--         basedpyright = {
+--             disableOrganizeImports = false,
+--             analysis = {
+--                 autoImportCompletions = true,
+--                 autoSearchPaths = true,
+--                 typeCheckingMode = "off",
+--             }
+--         }
+--     },
+--     offset_encoding = "utf-8"
+-- }
+-- vim.lsp.enable("basedpyright")
 
 vim.diagnostic.config({ underline = false, virtual_text = false })
+
+
+local fn = vim.fn
+
+function _G.qftf(info)
+    local items
+    local ret = {}
+    local validFmt
+
+    if info.quickfix == 1 then
+        items = fn.getqflist({id = info.id, items = 0}).items
+    else
+        items = fn.getloclist(info.winid, {id = info.id, items = 0}).items
+    end
+
+    local limit = 31
+    for i = info.start_idx, info.end_idx do
+        local e = items[i]
+        local fname = ''
+        local str
+        if e.valid == 1 and info.quickfix == 1 then
+            local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            if e.bufnr > 0 then
+                fname = fn.bufname(e.bufnr)
+                if fname == '' then
+                    fname = '[No Name]'
+                end
+            end
+            validFmt = '%s | %s'
+            str = validFmt:format(fname, e.text)
+        else
+            str = e.text
+        end
+        table.insert(ret, str)
+    end
+
+    -- Apply syntax highlighting for quickfix window
+    vim.schedule(function()
+        vim.cmd [[
+            " Clear existing quickfix syntax to avoid conflicts
+            syntax clear
+            " Match filename (up to the separator │)
+            syntax match qfFileName /^[^│]*/ contained containedin=qfLine
+            " Match line and column numbers (e.g., 123:45)
+            syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
+            " Match error/warning type (e.g., ' E' or ' W')
+            syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
+            " Match the entire valid line
+            syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
+            " Link highlight groups to default quickfix highlights
+            highlight default link qfFileName Directory
+            highlight default link qfLineNr LineNr
+            highlight default link qfType Type
+        ]]
+    end)
+    return ret
+end
+
+vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -282,70 +341,3 @@ require("lazy").setup({
         }
     }
 })
-
-local fn = vim.fn
-
-function _G.qftf(info)
-    local items
-    local ret = {}
-
-    if info.quickfix == 1 then
-        items = fn.getqflist({id = info.id, items = 0}).items
-    else
-        items = fn.getloclist(info.winid, {id = info.id, items = 0}).items
-    end
-    local limit = 31
-    local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
-    local validFmt = '%s │%5d:%-3d│%s %s'
-    for i = info.start_idx, info.end_idx do
-        local e = items[i]
-        local fname = ''
-        local str
-        if e.valid == 1 then
-            if e.bufnr > 0 then
-                fname = fn.bufname(e.bufnr)
-                if fname == '' then
-                    fname = '[No Name]'
-                else
-                    fname = fname:gsub('^' .. vim.env.HOME, '~')
-                end
-                -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
-                if #fname <= limit then
-                    fname = fnameFmt1:format(fname)
-                else
-                    fname = fnameFmt2:format(fname:sub(1 - limit))
-                end
-            end
-            local lnum = e.lnum > 99999 and -1 or e.lnum
-            local col = e.col > 999 and -1 or e.col
-            local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
-            str = validFmt:format(fname, lnum, col, qtype, e.text)
-        else
-            str = e.text
-        end
-        table.insert(ret, str)
-    end
-
-    -- Apply syntax highlighting for quickfix window
-    vim.schedule(function()
-        vim.cmd [[
-            " Clear existing quickfix syntax to avoid conflicts
-            syntax clear
-            " Match filename (up to the separator │)
-            syntax match qfFileName /^[^│]*/ contained containedin=qfLine
-            " Match line and column numbers (e.g., 123:45)
-            syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
-            " Match error/warning type (e.g., ' E' or ' W')
-            syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
-            " Match the entire valid line
-            syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
-            " Link highlight groups to default quickfix highlights
-            highlight default link qfFileName Directory
-            highlight default link qfLineNr LineNr
-            highlight default link qfType Type
-        ]]
-    end)
-    return ret
-end
-
-vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
