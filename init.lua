@@ -8,9 +8,10 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
-vim.cmd.colo [[lunaperche]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
+vim.keymap.set({ "t" }, "<C-[>", [[<C-\><C-N>]], { noremap = true })
+vim.keymap.set({ "t" }, "<esc>", [[<C-\><C-N>]], { noremap = true })
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
@@ -163,52 +164,51 @@ require("conform").setup( {
 })
 vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format() end, { noremap = true })
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-require'nvim-treesitter.configs'.setup(
-    {
-        sync_install = false,
-        auto_install = false,
-        highlight = { enable = true },
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                },
-                selection_modes = {
-                    ['@parameter.outer'] = 'v', -- charwise
-                    ['@function.outer'] = 'V', -- linewise
-                    ['@class.outer'] = '<c-v>', -- blockwise
-                },
-                include_surrounding_whitespace = false,
+require'nvim-treesitter.configs'.setup( {
+    indent = { enable = true },
+    sync_install = false,
+    auto_install = false,
+    highlight = { enable = true },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
             },
-            move = {
-                enable = true,
-                set_jumps = true, -- whether to set jumps in the jumplist
-                goto_next_start = {
-                    ["]m"] = "@function.outer",
-                    ["]]"] = { query = "@class.outer", desc = "Next class start" },
-                    --
-                },
-                goto_next_end = {
-                    ["]M"] = "@function.outer",
-                    ["]["] = "@class.outer",
-                },
-                goto_previous_start = {
-                    ["[m"] = "@function.outer",
-                    ["[["] = "@class.outer",
-                },
-                goto_previous_end = {
-                    ["[M"] = "@function.outer",
-                    ["[]"] = "@class.outer",
-                },
+            selection_modes = {
+                ['@parameter.outer'] = 'v', -- charwise
+                ['@function.outer'] = 'V', -- linewise
+                ['@class.outer'] = '<c-v>', -- blockwise
+            },
+            include_surrounding_whitespace = false,
+        },
+        move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+                ["]m"] = "@function.outer",
+                ["]]"] = { query = "@class.outer", desc = "Next class start" },
+                --
+            },
+            goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer",
             },
         },
-    }
-)
+    },
+})
 require("treesj").setup()
 
 -- vim.lsp.config["ty"] = {
@@ -256,4 +256,3 @@ require("treesj").setup()
 --     offset_encoding = "utf-8"
 -- }
 -- vim.lsp.enable("basedpyright")
-
