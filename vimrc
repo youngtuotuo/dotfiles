@@ -158,15 +158,15 @@ Plug 'tpope/vim-fugitive', { 'on': 'G' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', { 'on': ['Neomake']}
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)']}
 Plug 'justinmk/vim-sneak'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'czheo/mojo.vim', { 'for': 'mojo'}
-Plug 'junegunn/vim-easy-align'
-Plug 'sbdchd/neoformat'
+Plug 'iamcco/markdown-preview.nvim', { 'on': 'MarkdownPreview', 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
+Plug 'czheo/mojo.vim', { 'for': 'mojo' }
+Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 call plug#end()
 
 let g:mkdp_open_to_the_world = 1
