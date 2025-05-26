@@ -8,6 +8,8 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
+vim.opt.termguicolors = false
+vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.keymap.set({ "t" }, "<C-[>", [[<C-\><C-N>]], { noremap = true })
@@ -168,7 +170,7 @@ require'nvim-treesitter.configs'.setup( {
     indent = { enable = true },
     sync_install = false,
     auto_install = false,
-    highlight = { enable = true },
+    highlight = { enable = false },
     textobjects = {
         select = {
             enable = true,
