@@ -13,7 +13,6 @@ vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 
-vim.keymap.set({ "t" }, "<C-[>", [[<C-\><C-N>]], { noremap = true })
 vim.keymap.set({ "t" }, "<esc>", [[<C-\><C-N>]], { noremap = true })
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
