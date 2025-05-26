@@ -105,158 +105,111 @@ end
 
 vim.o.qftf = [[{info -> v:lua._G.qftf(info)}]]
 
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+-- Set data directory based on Neovim or Vim
+local data_dir = vim.fn.has('nvim') and vim.fn.stdpath('data') .. '/site' or vim.fn.expand('~/.vim')
+
+-- Check if plug.vim exists and install if it doesn't
+if vim.fn.empty(vim.fn.glob(data_dir .. '/autoload/plug.vim')) == 1 then
+  -- Download plug.vim
+  vim.fn.system({
+    'curl',
+    '-fLo',
+    data_dir .. '/autoload/plug.vim',
+    '--create-dirs',
+    'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  })
+
+  -- Set up autocommand to install plugins and source config
+  vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+      vim.cmd('PlugInstall --sync')
+      vim.cmd('source ' .. vim.env.MYVIMRC)
+    end,
+    once = true
+  })
 end
-vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    install = { colorscheme = { "default" } },
-    spec = {
-        { "junegunn/vim-easy-align", cmd = { "EasyAlign" } },
-        { "czheo/mojo.vim", ft = { "mojo" } },
-        { "tpope/vim-fugitive", cmd = { "G" } },
-        { "danymat/neogen", cmd = { "Neogen" }, config = true, version = "*" },
-        {
-            "numToStr/Comment.nvim",
-            ft = { "lua", "markdown", "python", "c", "cpp", "cuda" },
-            dependencies = { { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } } },
-            opts = {
-                pre_hook = function(ctx)
-                    local U = require("Comment.utils")
+local vim = vim
+local Plug = vim.fn['plug#']
 
-                    local type = ctx.ctype == U.ctype.linewise and "__default" or "__multiline"
+vim.call('plug#begin')
+Plug("junegunn/vim-easy-align", { ['on'] = 'EasyAlign' })
+Plug("czheo/mojo.vim", { ['for'] = 'mojo' })
+Plug("tpope/vim-fugitive", { ['on'] = 'G' })
+Plug("tpope/vim-eunuch")
+Plug("tpope/vim-rsi")
+Plug("tpope/vim-surround")
+Plug("neomake/neomake")
+Plug("mhinz/vim-grepper", { ['on'] = { "Grepper", "<plug>(GrepperOperator)"}})
+Plug("justinmk/vim-sneak")
+Plug("danymat/neogen", { ['tag'] = '*', ['on'] = 'Neogen' })
+Plug("numToStr/Comment.nvim")
+Plug("iamcco/markdown-preview.nvim", { ['on'] = 'MarkdownPreview', ['do'] = function() vim.fn['mkdp#util#install']() end})
+Plug("nvim-treesitter/nvim-treesitter-textobjects")
+Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
+Plug("Wansmer/treesj")
+Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
+Plug("stevearc/conform.nvim")
+vim.call('plug#end')
 
-                    local location = nil
-                    if ctx.ctype == U.ctype.blockwise then
-                        location = {
-                            ctx.range.srow - 1,
-                            ctx.range.scol,
-                        }
-                    elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-                        location = require("ts_context_commentstring.utils").get_visual_start_location()
-                    end
-
-                    return require("ts_context_commentstring").calculate_commentstring {
-                        key = type,
-                        location = location,
-                    }
-                end
-            }
-        },
-        {
-            "iamcco/markdown-preview.nvim",
-            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-            ft = { "markdown" },
-            build = ":call mkdp#util#install()",
-            config = function()
-                vim.g.mkdp_open_to_the_world = 1
-                vim.g.mkdp_echo_preview_url = 1
-                vim.g.mkdp_port = '8088'
-            end
-        },
-        {
-            "Wansmer/treesj",
-            cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
-            dependencies = { "nvim-treesitter/nvim-treesitter" },
-            opts = {}
-        },
-        {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-            ft = { "lua", "markdown", "python", "c", "cpp", "cuda" },
-            dependencies = {
-                {
-                    "nvim-treesitter/nvim-treesitter",
-                    build = ":TSUpdate",
-                    opts = {
-                        sync_install = false,
-                        auto_install = false,
-                        highlight = { enable = true },
-                        textobjects = {
-                            select = {
-                                enable = true,
-                                lookahead = true,
-                                keymaps = {
-                                    ["af"] = "@function.outer",
-                                    ["if"] = "@function.inner",
-                                    ["ac"] = "@class.outer",
-                                    ["ic"] = "@class.inner",
-                                },
-                                selection_modes = {
-                                    ['@parameter.outer'] = 'v', -- charwise
-                                    ['@function.outer'] = 'V', -- linewise
-                                    ['@class.outer'] = '<c-v>', -- blockwise
-                                },
-                                include_surrounding_whitespace = false,
-                            },
-                            move = {
-                                enable = true,
-                                set_jumps = true, -- whether to set jumps in the jumplist
-                                goto_next_start = {
-                                    ["]m"] = "@function.outer",
-                                    ["]]"] = { query = "@class.outer", desc = "Next class start" },
-                                    --
-                                },
-                                goto_next_end = {
-                                    ["]M"] = "@function.outer",
-                                    ["]["] = "@class.outer",
-                                },
-                                goto_previous_start = {
-                                    ["[m"] = "@function.outer",
-                                    ["[["] = "@class.outer",
-                                },
-                                goto_previous_end = {
-                                    ["[M"] = "@function.outer",
-                                    ["[]"] = "@class.outer",
-                                },
-                            },
-                        },
-                    },
-                    config = function(_, opts)
-                        require'nvim-treesitter.configs'.setup(opts)
-                    end
-                },
-
-            }
-        },
-        {
-            "junegunn/fzf",
-            cmd = { "FZF" },
-            build = ":call fzf#install()",
-            init = function()
-                vim.g.fzf_layout = { down = "40%" }
-            end
-        },
-        {
-            "stevearc/conform.nvim",
-            event = { "BufWritePre" },
-            cmd = { "ConformInfo" },
-            keys = { { "<leader>f", function() require("conform").format() end, mode = { "n", "v"} } },
-            opts = {
-                formatters_by_ft = { python = { "ruff_format", "ruff_organize_imports" }, }
-            },
-            init = function() vim.o.formatexpr = "v:lua.require'conform'.formatexpr()" end
-        },
-        {
-            "kylechui/nvim-surround",
-            version = "^3.0.0",
-            event = "VeryLazy",
-            opts = {}
-        }
-    }
+require("Comment").setup()
+require('neogen').setup()
+vim.g.mkdp_open_to_the_world = 1
+vim.g.mkdp_echo_preview_url = 1
+vim.g.mkdp_port = '8088'
+vim.g.fzf_layout = { down = "40%" }
+require("conform").setup( {
+    formatters_by_ft = { python = { "ruff_format", "ruff_organize_imports" }, }
 })
+vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format() end, { noremap = true })
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+require'nvim-treesitter.configs'.setup(
+    {
+        sync_install = false,
+        auto_install = false,
+        highlight = { enable = true },
+        textobjects = {
+            select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                    ["ac"] = "@class.outer",
+                    ["ic"] = "@class.inner",
+                },
+                selection_modes = {
+                    ['@parameter.outer'] = 'v', -- charwise
+                    ['@function.outer'] = 'V', -- linewise
+                    ['@class.outer'] = '<c-v>', -- blockwise
+                },
+                include_surrounding_whitespace = false,
+            },
+            move = {
+                enable = true,
+                set_jumps = true, -- whether to set jumps in the jumplist
+                goto_next_start = {
+                    ["]m"] = "@function.outer",
+                    ["]]"] = { query = "@class.outer", desc = "Next class start" },
+                    --
+                },
+                goto_next_end = {
+                    ["]M"] = "@function.outer",
+                    ["]["] = "@class.outer",
+                },
+                goto_previous_start = {
+                    ["[m"] = "@function.outer",
+                    ["[["] = "@class.outer",
+                },
+                goto_previous_end = {
+                    ["[M"] = "@function.outer",
+                    ["[]"] = "@class.outer",
+                },
+            },
+        },
+    }
+)
+require("treesj").setup()
 
 -- vim.lsp.config["ty"] = {
 --     cmd = { 'ty', 'server' },

@@ -154,11 +154,19 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive', { 'on': 'G' }
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-surround'
+Plug 'neomake/neomake'
 Plug 'markonm/traces.vim'
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)']}
+Plug 'justinmk/vim-sneak'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'czheo/mojo.vim'
+Plug 'czheo/mojo.vim', { 'for': 'mojo'}
 Plug 'junegunn/vim-easy-align'
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 let g:mkdp_open_to_the_world = 1
@@ -167,3 +175,5 @@ let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
 
 let g:fzf_layout = { 'down': '40%' }
+
+let g:neoformat_enabled_python = ['ruff']
