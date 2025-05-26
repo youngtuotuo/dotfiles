@@ -10,7 +10,8 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
 vim.cmd.colo [[vim]]
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 
 vim.keymap.set({ "t" }, "<C-[>", [[<C-\><C-N>]], { noremap = true })
 vim.keymap.set({ "t" }, "<esc>", [[<C-\><C-N>]], { noremap = true })
