@@ -4,7 +4,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2 hlsearch
+set showcmd laststatus=2
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -169,7 +169,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'on': 'MarkdownPreview', 'do': { -> mkdp#
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
-Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 
@@ -180,6 +179,4 @@ let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
 
 let g:fzf_layout = { 'down': '40%' }
-
-let g:neoformat_enabled_python = ['ruff']
 colo vividchalk
