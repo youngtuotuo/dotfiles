@@ -14,7 +14,6 @@ inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
-nnoremap - :Ex<cr>
 
 function! s:SearchComments() abort
     let commentstring = &l:commentstring
@@ -173,6 +172,8 @@ Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 Plug 'easymotion/vim-easymotion'
 call plug#end()
+
+let g:plug_window = 'vertical new'
 
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_echo_preview_url = 1

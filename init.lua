@@ -156,6 +156,8 @@ Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']
 Plug("stevearc/conform.nvim")
 vim.call('plug#end')
 
+vim.g.plug_window = "vertical new"
+
 vim.cmd.colo [[vividchalk]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
