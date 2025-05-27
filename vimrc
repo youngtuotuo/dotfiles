@@ -164,7 +164,7 @@ Plug 'ku1ik/vim-pasta'
 Plug 'neomake/neomake', { 'on': ['Neomake']}
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)']}
-Plug 'iamcco/markdown-preview.nvim', { 'on': 'MarkdownPreview', 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
