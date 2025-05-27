@@ -193,3 +193,4 @@ let g:neoformat_python_ruff = {
      \ }
 let g:neoformat_enabled_python = ['ruff']
 colo vividchalk
+hi SignColumn ctermbg=NONE guibg=NONE
