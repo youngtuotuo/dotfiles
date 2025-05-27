@@ -9,6 +9,7 @@ vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
+vim.opt.formatoptions:append("ro")
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
@@ -188,6 +189,8 @@ vim.g.plug_window = "vertical new"
 vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "DarkGrey", ctermbg = "DarkGrey" })
+vim.api.nvim_set_hl(0, "PmenuSel", { fg = "Black", bg = "LightGrey", ctermfg = "Black", ctermbg = "LightGrey" })
 
 require("Comment").setup()
 vim.g.mkdp_open_to_the_world = 1
