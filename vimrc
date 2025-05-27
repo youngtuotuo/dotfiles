@@ -169,8 +169,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'on': 'MarkdownPreview', 'do': { -> mkdp#
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 Plug 'easymotion/vim-easymotion'
+Plug 'dense-analysis/ale'
 call plug#end()
+
+let g:ale_linters = { "python": ["ruff"] }
 
 let g:plug_window = 'vertical new'
 
@@ -179,4 +183,11 @@ let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
 
 let g:fzf_layout = { 'down': '40%' }
+
+let g:neoformat_python_ruff = {
+     \ 'exe': 'ruff',
+     \ 'stdin': 1,
+     \ 'args': ['format', '-q', '-'],
+     \ }
+let g:neoformat_enabled_python = ['ruff']
 colo vividchalk
