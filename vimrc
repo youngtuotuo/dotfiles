@@ -158,22 +158,27 @@ Plug 'tpope/vim-fugitive', { 'on': 'G' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-vividchalk'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-vinegar'
+Plug 'ku1ik/vim-pasta'
 Plug 'neomake/neomake', { 'on': ['Neomake']}
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)']}
-Plug 'justinmk/vim-sneak'
 Plug 'iamcco/markdown-preview.nvim', { 'on': 'MarkdownPreview', 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 let g:mkdp_open_to_the_world = 1
-let g:mkdp_open_ip = '192.168.108.1'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '8088'
 
 let g:fzf_layout = { 'down': '40%' }
 
 let g:neoformat_enabled_python = ['ruff']
+colo vividchalk

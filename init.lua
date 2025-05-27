@@ -9,15 +9,11 @@ vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
-vim.cmd.colo [[vim]]
-vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
 vim.keymap.set({ "i" }, ".", "<C-g>u.", { noremap = true })
 vim.keymap.set({ "n" }, "J", "mzJ`z", { noremap = true })
-vim.keymap.set({ "n" }, "-", ":Ex<cr>", { noremap = true })
 vim.keymap.set({ "n" }, "grd", ":execute 'lua vim.diagnostic.setloclist()' | lope<cr>", { noremap = true })
 vim.keymap.set({ "n" }, "<leader>d", ":lua vim.diagnostic.open_float()<cr>", { noremap = true })
 vim.keymap.set({ "n" }, "gt", function()
@@ -141,6 +137,13 @@ Plug("tpope/vim-fugitive", { ['on'] = 'G' })
 Plug("tpope/vim-eunuch")
 Plug("tpope/vim-rsi")
 Plug("tpope/vim-surround")
+Plug("tpope/vim-vividchalk")
+Plug("tpope/vim-jdaddy")
+Plug("tpope/vim-ragtag")
+Plug("tpope/vim-vinegar")
+Plug("easymotion/vim-easymotion")
+Plug("tpope/vim-characterize")
+Plug("ku1ik/vim-pasta")
 Plug("neomake/neomake")
 Plug("mhinz/vim-grepper", { ['on'] = { "Grepper", "<plug>(GrepperOperator)"}})
 Plug("danymat/neogen", { ['tag'] = '*', ['on'] = 'Neogen' })
@@ -152,6 +155,10 @@ Plug("Wansmer/treesj")
 Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
 Plug("stevearc/conform.nvim")
 vim.call('plug#end')
+
+vim.cmd.colo [[vividchalk]]
+vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 
 require("Comment").setup()
 require('neogen').setup()
