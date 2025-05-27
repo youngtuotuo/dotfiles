@@ -4,7 +4,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2 signcolumn=yes
+set showcmd laststatus=2 signcolumn=yes hlsearch
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -158,7 +158,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
@@ -192,5 +191,4 @@ let g:neoformat_python_ruff = {
      \ 'args': ['format', '-q', '-'],
      \ }
 let g:neoformat_enabled_python = ['ruff']
-colo vividchalk
 hi SignColumn ctermbg=NONE guibg=NONE
