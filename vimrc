@@ -4,7 +4,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2
+set showcmd laststatus=2 signcolumn=yes
 let &undodir=$HOME . "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -161,6 +161,7 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
 Plug 'ku1ik/vim-pasta'
 Plug 'neomake/neomake', { 'on': ['Neomake']}
 Plug 'markonm/traces.vim'
@@ -175,6 +176,7 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 let g:ale_linters = { "python": ["ruff"] }
+let g:ale_lint_on_insert_leave = 0
 
 let g:plug_window = 'vertical new'
 
