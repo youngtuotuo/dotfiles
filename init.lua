@@ -36,6 +36,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_augroup("fktreesitter", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = "fktreesitter",
+    pattern = "*",
+    callback = function()
+        vim.treesitter.stop()
+    end,
+})
+
 vim.lsp.config["ruff"] = {
     cmd = { "ruff", "server" },
     filetypes = { "python" },
@@ -168,12 +177,8 @@ Plug("tpope/vim-characterize")
 Plug("ku1ik/vim-pasta")
 Plug("neomake/neomake")
 Plug("mhinz/vim-grepper", { ['on'] = { "Grepper", "<plug>(GrepperOperator)"}})
-Plug("danymat/neogen", { ['tag'] = '*', ['on'] = 'Neogen' })
 Plug("numToStr/Comment.nvim")
 Plug("iamcco/markdown-preview.nvim", { ['on'] = 'MarkdownPreview', ['do'] = function() vim.fn['mkdp#util#install']() end})
-Plug("nvim-treesitter/nvim-treesitter-textobjects")
-Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
-Plug("Wansmer/treesj")
 Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
 Plug("stevearc/conform.nvim")
 vim.call('plug#end')
@@ -185,7 +190,6 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 
 require("Comment").setup()
-require('neogen').setup()
 vim.g.mkdp_open_to_the_world = 1
 vim.g.mkdp_echo_preview_url = 1
 vim.g.mkdp_port = '8088'
@@ -195,52 +199,6 @@ require("conform").setup( {
 })
 vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format() end, { noremap = true })
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-require'nvim-treesitter.configs'.setup( {
-    indent = { enable = true },
-    sync_install = false,
-    auto_install = false,
-    highlight = { enable = true },
-    textobjects = {
-        select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-            },
-            selection_modes = {
-                ['@parameter.outer'] = 'v', -- charwise
-                ['@function.outer'] = 'V', -- linewise
-                ['@class.outer'] = '<c-v>', -- blockwise
-            },
-            include_surrounding_whitespace = false,
-        },
-        move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = { query = "@class.outer", desc = "Next class start" },
-                --
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-            },
-        },
-    },
-})
-require("treesj").setup()
 
 -- vim.lsp.config["ty"] = {
 --     cmd = { 'ty', 'server' },
