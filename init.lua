@@ -169,9 +169,9 @@ Plug("czheo/mojo.vim", { ['for'] = 'mojo' })
 Plug("tpope/vim-fugitive", { ['on'] = 'G' })
 Plug("tpope/vim-eunuch")
 Plug("tpope/vim-rsi")
-Plug("tpope/vim-surround")
 Plug("tpope/vim-ragtag")
 Plug("tpope/vim-vinegar")
+Plug("kylechui/nvim-surround")
 Plug("easymotion/vim-easymotion")
 Plug("tpope/vim-characterize")
 Plug("ku1ik/vim-pasta")
@@ -181,16 +181,18 @@ Plug("numToStr/Comment.nvim")
 Plug("iamcco/markdown-preview.nvim", { ['do'] = function() vim.fn['mkdp#util#install']() end, ['for'] = { 'markdown', 'vim-plug' } })
 Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
 Plug("stevearc/conform.nvim")
+Plug("jacoborus/tender.vim")
 vim.call('plug#end')
 
 vim.g.plug_window = "vertical new"
 
-vim.cmd.colo [[vim]]
+vim.cmd.colo [[tender]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "DarkGrey", ctermbg = "DarkGrey" })
-vim.api.nvim_set_hl(0, "PmenuSel", { fg = "Black", bg = "LightGrey", ctermfg = "Black", ctermbg = "LightGrey" })
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "DarkGrey", ctermbg = "DarkGrey" })
+-- vim.api.nvim_set_hl(0, "PmenuSel", { fg = "Black", bg = "LightGrey", ctermfg = "Black", ctermbg = "LightGrey" })
 
+require("nvim-surround").setup()
 require("Comment").setup()
 vim.g.mkdp_open_to_the_world = 1
 vim.g.mkdp_echo_preview_url = 1
