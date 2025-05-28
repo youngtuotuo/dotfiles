@@ -25,6 +25,15 @@ end, { noremap = true })
 
 vim.cmd.packadd [[cfilter]]
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Highlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150 }
+  end,
+})
+
 vim.api.nvim_create_augroup("python", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     group = "python",
@@ -181,12 +190,10 @@ Plug("numToStr/Comment.nvim")
 Plug("iamcco/markdown-preview.nvim", { ['do'] = function() vim.fn['mkdp#util#install']() end, ['for'] = { 'markdown', 'vim-plug' } })
 Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
 Plug("stevearc/conform.nvim")
-Plug("jacoborus/tender.vim")
 vim.call('plug#end')
 
 vim.g.plug_window = "vertical new"
 
-vim.cmd.colo [[tender]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
 -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "DarkGrey", ctermbg = "DarkGrey" })
