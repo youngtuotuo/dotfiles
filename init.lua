@@ -34,9 +34,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_augroup("python", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    group = "python",
+    group = vim.api.nvim_create_augroup("python", { clear = true }),
     pattern = "python",
     callback = function()
         vim.keymap.set("n", "gO", [[:lvim /^\(#.*\)\@!\(class\|\s*def\)/ % | lope<CR>]], {
@@ -145,59 +144,50 @@ end
 
 vim.o.qftf = [[{info -> v:lua._G.qftf(info)}]]
 
--- Set data directory based on Neovim or Vim
-local data_dir = vim.fn.has('nvim') and vim.fn.stdpath('data') .. '/site' or vim.fn.expand('~/.vim')
 
--- Check if plug.vim exists and install if it doesn't
-if vim.fn.empty(vim.fn.glob(data_dir .. '/autoload/plug.vim')) == 1 then
-  -- Download plug.vim
-  vim.fn.system({
-    'curl',
-    '-fLo',
-    data_dir .. '/autoload/plug.vim',
-    '--create-dirs',
-    'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  })
 
-  -- Set up autocommand to install plugins and source config
-  vim.api.nvim_create_autocmd('VimEnter', {
-    callback = function()
-      vim.cmd('PlugInstall --sync')
-      vim.cmd('source ' .. vim.env.MYVIMRC)
-    end,
-    once = true
-  })
+local function clone_paq()
+    local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
+    local is_installed = vim.fn.empty(vim.fn.glob(path)) == 0
+    if not is_installed then
+      vim.fn.system { "git", "clone", "--depth=1", "https://github.com/savq/paq-nvim.git", path }
+      return true
+    end
 end
 
-local vim = vim
-local Plug = vim.fn['plug#']
+local function bootstrap_paq(packages)
+    local first_install = clone_paq()
+    vim.cmd.packadd("paq-nvim")
+    local paq = require("paq")
+    if first_install then
+      vim.notify("Installing plugins... If prompted, hit Enter to continue.")
+    end
 
-vim.call('plug#begin')
-Plug("junegunn/vim-easy-align", { ['on'] = 'EasyAlign' })
-Plug("czheo/mojo.vim", { ['for'] = 'mojo' })
-Plug("tpope/vim-fugitive", { ['on'] = 'G' })
-Plug("tpope/vim-eunuch")
-Plug("tpope/vim-rsi")
-Plug("tpope/vim-ragtag")
-Plug("tpope/vim-vinegar")
-Plug("kylechui/nvim-surround")
-Plug("easymotion/vim-easymotion")
-Plug("tpope/vim-characterize")
-Plug("ku1ik/vim-pasta")
-Plug("neomake/neomake")
-Plug("mhinz/vim-grepper", { ['on'] = { "Grepper", "<plug>(GrepperOperator)"}})
-Plug("numToStr/Comment.nvim")
-Plug("iamcco/markdown-preview.nvim", { ['do'] = function() vim.fn['mkdp#util#install']() end, ['for'] = { 'markdown', 'vim-plug' } })
-Plug("junegunn/fzf", { ['on'] = "FZF", ['do'] = function() vim.fn['fzf#install']() end})
-Plug("stevearc/conform.nvim")
-vim.call('plug#end')
+    -- Read and install packages
+    paq(packages)
+    paq.install()
+end
 
-vim.g.plug_window = "vertical new"
-
-vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
--- vim.api.nvim_set_hl(0, "Pmenu", { bg = "DarkGrey", ctermbg = "DarkGrey" })
--- vim.api.nvim_set_hl(0, "PmenuSel", { fg = "Black", bg = "LightGrey", ctermfg = "Black", ctermbg = "LightGrey" })
+-- Call helper function
+bootstrap_paq {
+    "savq/paq-nvim",
+    "junegunn/vim-easy-align",
+    { "czheo/mojo.vim", opt = true },
+    "tpope/vim-fugitive",
+    "tpope/vim-eunuch",
+    "tpope/vim-rsi",
+    "tpope/vim-ragtag",
+    "tpope/vim-vinegar",
+    "tpope/vim-characterize",
+    "kylechui/nvim-surround",
+    "easymotion/vim-easymotion",
+    "ku1ik/vim-pasta",
+    "numToStr/Comment.nvim",
+    { "iamcco/markdown-preview.nvim", build  = vim.fn['mkdp#util#install'] },
+    { "junegunn/fzf",  build = vim.fn['fzf#install'] },
+    "stevearc/conform.nvim",
+    "bennypowers/splitjoin.nvim"
+}
 
 require("nvim-surround").setup()
 require("Comment").setup()
@@ -210,6 +200,15 @@ require("conform").setup( {
 })
 vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format() end, { noremap = true })
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("mojo", { clear = true }),
+    pattern = "mojo",
+    command = "packadd! mojo.vim"
+})
+
+vim.keymap.set({ "n" }, "gj", function() require("splitjoin").join() end, { noremap = true })
+vim.keymap.set({ "n" }, "g,", function() require("splitjoin").split() end, { noremap = true })
 
 -- vim.lsp.config["ty"] = {
 --     cmd = { 'ty', 'server' },
