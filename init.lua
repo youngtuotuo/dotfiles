@@ -144,8 +144,6 @@ end
 
 vim.o.qftf = [[{info -> v:lua._G.qftf(info)}]]
 
-
-
 local function clone_paq()
     local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
     local is_installed = vim.fn.empty(vim.fn.glob(path)) == 0
@@ -172,7 +170,6 @@ end
 bootstrap_paq {
     "savq/paq-nvim",
     "junegunn/vim-easy-align",
-    { "czheo/mojo.vim", opt = true },
     "tpope/vim-fugitive",
     "tpope/vim-eunuch",
     "tpope/vim-rsi",
@@ -183,10 +180,12 @@ bootstrap_paq {
     "easymotion/vim-easymotion",
     "ku1ik/vim-pasta",
     "numToStr/Comment.nvim",
+    "stevearc/conform.nvim",
+    "Wansmer/treesj",
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "czheo/mojo.vim", opt = true },
     { "iamcco/markdown-preview.nvim", build  = vim.fn['mkdp#util#install'] },
     { "junegunn/fzf",  build = vim.fn['fzf#install'] },
-    "stevearc/conform.nvim",
-    "bennypowers/splitjoin.nvim"
 }
 
 require("nvim-surround").setup()
@@ -207,8 +206,7 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "packadd! mojo.vim"
 })
 
-vim.keymap.set({ "n" }, "gj", function() require("splitjoin").join() end, { noremap = true })
-vim.keymap.set({ "n" }, "g,", function() require("splitjoin").split() end, { noremap = true })
+vim.keymap.set({ "n" }, "gj", function() require("treesj").toggle() end, { noremap = true })
 
 -- vim.lsp.config["ty"] = {
 --     cmd = { 'ty', 'server' },
