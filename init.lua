@@ -205,9 +205,7 @@ vim.g.mkdp_open_to_the_world = 1
 vim.g.mkdp_echo_preview_url = 1
 vim.g.mkdp_port = '8088'
 vim.g.fzf_layout = { down = "40%" }
-require("conform").setup( {
-    formatters_by_ft = { python = { "ruff_format", "ruff_organize_imports" }, }
-})
+require("conform").setup( { formatters_by_ft = { python = { "ruff_format" } } })
 vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format() end, { noremap = true })
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
