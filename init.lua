@@ -62,16 +62,16 @@ vim.lsp.config["ruff"] = {
 }
 vim.lsp.enable("ruff")
 
-vim.lsp.config["pyrefly"] = {
-    cmd = { 'pyrefly', 'lsp' },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml" },
-    handlers = {
-        ["textDocument/publishDiagnostics"] = function() end,
-    },
-    offset_encoding = "utf-8"
-}
-vim.lsp.enable("pyrefly")
+-- vim.lsp.config["pyrefly"] = {
+--     cmd = { 'pyrefly', 'lsp' },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml" },
+--     handlers = {
+--         ["textDocument/publishDiagnostics"] = function() end,
+--     },
+--     offset_encoding = "utf-8"
+-- }
+-- vim.lsp.enable("pyrefly")
 
 -- vim.lsp.config["basedpyright"] = {
 --     cmd = { 'basedpyright-langserver', '--stdio' },
@@ -97,7 +97,7 @@ vim.lsp.enable("pyrefly")
 -- }
 -- vim.lsp.enable("basedpyright")
 
-vim.diagnostic.config({ underline = false, virtual_text = false })
+vim.diagnostic.config({ underline = false, virtual_lines = true, jump = { float = true } })
 
 local fn = vim.fn
 
@@ -188,6 +188,7 @@ bootstrap_paq {
     "tpope/vim-ragtag",
     "tpope/vim-vinegar",
     "tpope/vim-characterize",
+    "tpope/vim-abolish",
     "kylechui/nvim-surround",
     "easymotion/vim-easymotion",
     "ku1ik/vim-pasta",
