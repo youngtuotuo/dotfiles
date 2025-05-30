@@ -97,7 +97,18 @@ vim.lsp.enable("ruff")
 -- }
 -- vim.lsp.enable("basedpyright")
 
-vim.diagnostic.config({ underline = false, virtual_lines = true, jump = { float = true } })
+-- vim.lsp.config["ty"] = {
+--     cmd = { 'ty', 'server' },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml" },
+--     handlers = {
+--         ["textDocument/publishDiagnostics"] = function() end,
+--     },
+--     offset_encoding = "utf-8"
+-- }
+-- vim.lsp.enable("ty")
+
+vim.diagnostic.config({ underline = false, virtual_lines = true })
 
 local fn = vim.fn
 
@@ -218,14 +229,3 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.keymap.set({ "n" }, "gj", function() require("treesj").toggle() end, { noremap = true })
-
--- vim.lsp.config["ty"] = {
---     cmd = { 'ty', 'server' },
---     filetypes = { "python" },
---     root_markers = { "pyproject.toml" },
---     handlers = {
---         ["textDocument/publishDiagnostics"] = function() end,
---     },
---     offset_encoding = "utf-8"
--- }
--- vim.lsp.enable("ty")
