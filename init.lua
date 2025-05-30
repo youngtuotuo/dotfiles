@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes:1"
+vim.opt.inccommand = "split"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
 vim.opt.formatoptions:append("ro")
