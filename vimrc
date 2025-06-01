@@ -150,14 +150,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
-Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 Plug 'easymotion/vim-easymotion'
-Plug 'dense-analysis/ale'
 plug#end()
-
-g:ale_linters = { "python": ["ruff"] }
-g:ale_lint_on_insert_leave = 0
-g:ale_virtualtext_cursor = 0
 
 g:plug_window = 'vertical new'
 
@@ -167,10 +161,4 @@ g:mkdp_port = '8088'
 
 g:fzf_layout = { 'down': '40%' }
 
-g:neoformat_python_ruff = {
-    'exe': 'ruff',
-    'stdin': 1,
-    'args': ['format', '-q', '-'],
-}
-g:neoformat_enabled_python = ['ruff']
 hi SignColumn ctermbg=NONE guibg=NONE
