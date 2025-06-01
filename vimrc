@@ -35,7 +35,7 @@ highlight ExtraWhitespace ctermbg=9 guibg=LightRed
 
 augroup python
     autocmd!
-    autocmd FileType python nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\)/ % \| lope'<cr>
+    autocmd FileType python nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\\|\s*async\sdef\)/ % \| lope'<cr>
 augroup END
 
 def ManShowTOC(): void

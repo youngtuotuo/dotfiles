@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("python", { clear = true }),
     pattern = "python",
     callback = function()
-        vim.keymap.set("n", "gO", [[:lvim /^\(#.*\)\@!\(class\|\s*def\)/ % | lope<CR>]], {
+        vim.keymap.set("n", "gO", [[:lvim /^\(#.*\)\@!\(class\|\s*def\|\s*async\sdef\)/ % | lope<CR>]], {
             buffer = true,
             silent = true,
         })
