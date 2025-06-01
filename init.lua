@@ -200,7 +200,6 @@ bootstrap_paq {
     "tpope/vim-characterize",
     "kylechui/nvim-surround",
     "easymotion/vim-easymotion",
-    "ku1ik/vim-pasta",
     "numToStr/Comment.nvim",
     "stevearc/conform.nvim",
     "Wansmer/treesj",

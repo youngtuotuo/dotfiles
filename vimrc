@@ -144,7 +144,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
-Plug 'ku1ik/vim-pasta'
 Plug 'markonm/traces.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
