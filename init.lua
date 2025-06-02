@@ -11,6 +11,9 @@ vim.opt.inccommand = "split"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
 vim.opt.formatoptions:append("ro")
+vim.opt.fillchars = "vert:|"
+vim.cmd.colo [[vim]]
+vim.api.nvim_set_hl(0, "VertSplit", { ctermfg = "Black", ctermbg = "Grey"})
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
@@ -62,53 +65,18 @@ vim.lsp.config["ruff"] = {
 }
 vim.lsp.enable("ruff")
 
--- vim.lsp.config["pyrefly"] = {
---     cmd = { 'pyrefly', 'lsp' },
---     filetypes = { "python" },
---     root_markers = { "pyproject.toml" },
---     handlers = {
---         ["textDocument/publishDiagnostics"] = function() end,
---     },
---     offset_encoding = "utf-8"
--- }
--- vim.lsp.enable("pyrefly")
+vim.lsp.config["pyrefly"] = {
+    cmd = { 'pyrefly', 'lsp' },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml" },
+    handlers = {
+        ["textDocument/publishDiagnostics"] = function() end,
+    },
+    offset_encoding = "utf-8"
+}
+vim.lsp.enable("pyrefly")
 
--- vim.lsp.config["basedpyright"] = {
---     cmd = { 'basedpyright-langserver', '--stdio' },
---     filetypes = { "python" },
---     root_markers = { "pyproject.toml" },
---     handlers = {
---         ["textDocument/publishDiagnostics"] = function() end,
---     },
---     on_attach = function(client, bufnr)
---       client.server_capabilities.semanticTokensProvider = nil
---     end,
---     settings = {
---         basedpyright = {
---             disableOrganizeImports = false,
---             analysis = {
---                 autoImportCompletions = true,
---                 autoSearchPaths = true,
---                 typeCheckingMode = "off",
---             }
---         }
---     },
---     offset_encoding = "utf-8"
--- }
--- vim.lsp.enable("basedpyright")
-
--- vim.lsp.config["ty"] = {
---     cmd = { 'ty', 'server' },
---     filetypes = { "python" },
---     root_markers = { "pyproject.toml" },
---     handlers = {
---         ["textDocument/publishDiagnostics"] = function() end,
---     },
---     offset_encoding = "utf-8"
--- }
--- vim.lsp.enable("ty")
-
-vim.diagnostic.config({ underline = false, virtual_lines = true })
+vim.diagnostic.config({ underline = false, virtual_text = false })
 
 local fn = vim.fn
 
