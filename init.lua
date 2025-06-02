@@ -13,7 +13,7 @@ vim.opt.termguicolors = false
 vim.opt.formatoptions:append("ro")
 vim.opt.fillchars = "vert:|"
 vim.cmd.colo [[vim]]
-vim.api.nvim_set_hl(0, "VertSplit", { ctermfg = "Black", ctermbg = "Grey"})
+vim.api.nvim_set_hl(0, "VertSplit", { ctermfg = "Black", ctermbg = "White"})
 
 vim.keymap.set({ "i", "n" }, "<C-c>", "<esc>", { noremap = true })
 vim.keymap.set({ "i" }, ",", "<C-g>u,", { noremap = true })
