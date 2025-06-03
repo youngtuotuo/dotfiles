@@ -5,7 +5,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2 signcolumn=yes hlsearch
+set showcmd laststatus=2 hlsearch
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -16,26 +16,19 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 
-def SearchComments(): void
+def GetTODO(): void
     var commentstring: string = &l:commentstring
     var comment_prefix: string = substitute(commentstring, '\s*%s\s*', '', '')
     execute 'lvim /' .. comment_prefix .. '\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope'
 enddef
 
-nnoremap gt <scriptcmd>SearchComments()<cr>
-
-augroup WhitespaceHighlight
-    autocmd!
-    autocmd ModeChanged *:n matchadd('ExtraWhitespace', '\s\+$')
-    autocmd ModeChanged n:* clearmatches()
-    autocmd BufEnter * matchadd('ExtraWhitespace', '\s\+$')
-augroup END
-
-highlight ExtraWhitespace ctermbg=9 guibg=LightRed
+nnoremap gt <scriptcmd>GetTODO()<cr>
 
 augroup python
     autocmd!
     autocmd FileType python nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\\|\s*async\sdef\)/ % \| lope'<cr>
+    autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
+    autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
 
 def ManShowTOC(): void
@@ -160,4 +153,8 @@ g:mkdp_port = '8088'
 
 g:fzf_layout = { 'down': '40%' }
 
-hi SignColumn ctermbg=NONE guibg=NONE
+g:splitjoin_split_mapping = ''
+g:splitjoin_join_mapping = ''
+
+nnoremap gj :SplitjoinJoin<cr>
+nnoremap gs :SplitjoinSplit<cr>
