@@ -8,6 +8,25 @@ set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
 set showcmd laststatus=2
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+    set ttymouse=sgr
+
+    &t_BE = "\<Esc>[?2004h"
+    &t_BD = "\<Esc>[?2004l"
+    &t_PS = "\<Esc>[200~"
+    &t_PE = "\<Esc>[201~"
+
+    &t_fe = "\<Esc>[?1004h"
+    &t_fd = "\<Esc>[?1004l"
+    execute "set <FocusGained>=\<Esc>[I"
+    execute "set <FocusLost>=\<Esc>[O"
+
+    execute "silent! set <xUp>=\<Esc>[@;*A"
+    execute "silent! set <xDown>=\<Esc>[@;*B"
+    execute "silent! set <xRight>=\<Esc>[@;*C"
+    execute "silent! set <xLeft>=\<Esc>[@;*D"
+endif
+
 runtime ftplugin/man.vim
 packadd! matchit cfilter termdebug
 
