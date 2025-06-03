@@ -160,4 +160,4 @@ g:splitjoin_join_mapping = ''
 
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
-let g:highlightedyank_highlight_duration = 150
+g:highlightedyank_highlight_duration = 150
