@@ -5,7 +5,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2 hlsearch
+set showcmd laststatus=2
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 runtime ftplugin/man.vim
@@ -20,7 +20,7 @@ nnoremap Y y$
 def GetTODO(): void
     var commentstring: string = &l:commentstring
     var comment_prefix: string = substitute(commentstring, '\s*%s\s*', '', '')
-    execute 'lvim /' .. comment_prefix .. '\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope'
+    feedkeys(':lvim /' .. comment_prefix .. '\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope', 'n')
 enddef
 
 nnoremap gt <scriptcmd>GetTODO()<cr>
@@ -160,4 +160,4 @@ g:splitjoin_join_mapping = ''
 
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
-let g:highlightedyank_highlight_duration = 150
+g:highlightedyank_highlight_duration = 150
