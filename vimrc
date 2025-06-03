@@ -5,7 +5,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=50 formatoptions+=jro nowrap
 set history=10000 shortmess-=S shiftwidth=4 expandtab smartindent
-set showcmd laststatus=2
+set showcmd laststatus=2 nu rnu
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
