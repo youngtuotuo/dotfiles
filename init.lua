@@ -6,12 +6,12 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.signcolumn = "yes:1"
 vim.opt.inccommand = "split"
 vim.opt.guicursor = ""
 vim.opt.termguicolors = false
 vim.opt.formatoptions:append("ro")
 vim.opt.fillchars = "vert:|"
+vim.opt.background = "light"
 vim.cmd.colo [[vim]]
 vim.api.nvim_set_hl(0, "VertSplit", { ctermfg = "Black", ctermbg = "White"})
 
@@ -46,6 +46,8 @@ vim.api.nvim_create_autocmd("FileType", {
             buffer = true,
             silent = true,
         })
+        vim.opt_local.makeprg = [[ruff check % --quiet]]
+        vim.opt_local.errorformat = [[%f:%l:%c: %m,%-G %.%#,%-G%.%#]]
     end,
 })
 
@@ -57,26 +59,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
         vim.treesitter.stop()
     end,
 })
-
-vim.lsp.config["ruff"] = {
-    cmd = { "ruff", "server" },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml" },
-}
-vim.lsp.enable("ruff")
-
-vim.lsp.config["pyrefly"] = {
-    cmd = { 'pyrefly', 'lsp' },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml" },
-    handlers = {
-        ["textDocument/publishDiagnostics"] = function() end,
-    },
-    offset_encoding = "utf-8"
-}
-vim.lsp.enable("pyrefly")
-
-vim.diagnostic.config({ underline = false, virtual_text = false })
 
 local fn = vim.fn
 

@@ -1,5 +1,5 @@
 vim9script
-set background=dark
+set background=light
 filetype plugin indent on
 syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
@@ -15,6 +15,7 @@ inoremap <C-c> <ESC>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
+nnoremap Y y$
 
 def GetTODO(): void
     var commentstring: string = &l:commentstring
@@ -143,6 +144,7 @@ Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'czheo/mojo.vim', { 'for': 'mojo' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 Plug 'easymotion/vim-easymotion'
+Plug 'machakann/vim-highlightedyank'
 plug#end()
 
 g:plug_window = 'vertical new'
@@ -158,3 +160,4 @@ g:splitjoin_join_mapping = ''
 
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
+let g:highlightedyank_highlight_duration = 150
