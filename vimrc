@@ -7,11 +7,10 @@ set incsearch ttimeout ttimeoutlen=100 formatoptions+=jro nowrap
 set history=1000 shortmess-=S shiftwidth=4 expandtab smartindent autoindent
 set showcmd laststatus=2 nu rnu wildmenu scrolloff=5
 set sidescroll=3 sidescrolloff=2 display=lastline,truncate
+set ttymouse=sgr
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 if !has("gui_running") && &term =~ "^\%(screen\|tmux\)"
-    set ttymouse=sgr
-
     &t_BE = "\<Esc>[?2004h"
     &t_BD = "\<Esc>[?2004l"
     &t_PS = "\<Esc>[200~"
@@ -166,27 +165,30 @@ Plug "tpope/vim-vinegar"
 Plug "tpope/vim-unimpaired"
 Plug "tpope/vim-repeat"
 Plug "tpope/vim-speeddating"
-Plug "tpope/vim-abolish"
-Plug "tpope/vim-dispatch"
-Plug "jeetsukumaran/vim-buffergator"
-Plug "AndrewRadev/splitjoin.vim"
+Plug "tpope/vim-abolish", { "on": "Abolish"}
+Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
+Plug "jeetsukumaran/vim-buffergator", { "on": "BuffergatorToggle" }
+Plug "AndrewRadev/splitjoin.vim", { "on": [ "SplitjoinJoin", "SplitjoinSplit" ]}
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
-Plug "junegunn/gv.vim"
+Plug "junegunn/gv.vim", { "on": "GV" }
 Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
 Plug "machakann/vim-highlightedyank"
-Plug "mbbill/undotree"
+Plug "mbbill/undotree", { "on": "UndotreeToggle" }
 Plug "mhinz/vim-startify"
 Plug "mhinz/vim-janah"
 Plug "mhinz/vim-signify"
 Plug "wellle/targets.vim"
 Plug "terryma/vim-expand-region"
+Plug "jeetsukumaran/vim-pythonsense"
 plug#end()
 
 colo janah
+
+nnoremap <nowait> gru :UndotreeToggle<cr>
 
 g:plug_window = "vertical new"
 
@@ -199,7 +201,7 @@ g:fzf_layout = { "down": "40%" }
 g:splitjoin_split_mapping = ""
 g:splitjoin_join_mapping = ""
 
-g:buffergator_suppress_keymaps = 1
+g:buffergator_suppress_keymap = 1
 g:buffergator_viewport_split_policy = "B"
 g:buffergator_hsplit_size = 10
 nnoremap gb :BuffergatorToggle<cr>
@@ -208,14 +210,22 @@ nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
 g:highlightedyank_highlight_duration = 150
 
-def SetAbolish(): void
-    iab === ====================
-    Abolish teh the
-    Abolish -cmdline W{,q,Q} w{,,q}
-    Abolish -cmdline W{,a,A} w{,,a}
-enddef
+nnoremap <leader><Enter> <Plug>(expand_region_expand)
+nnoremap <leader><Backspace> <Plug>(expand_region_shrink)
+vnoremap <leader><Enter> <Plug>(expand_region_expand)
+vnoremap <leader><Backspace> <Plug>(expand_region_shrink)
 
+def SetAbolish(): void
+    iab """ """<cr>"""<up>
+    Abolish teh the
+    Abolish -cmdline Q{,A} q{,a}
+    cab Qa qa
+    Abolish -cmdline W{,Q,A} w{,q,a}
+    cab Wq wq
+    cab Wa wa
+enddef
+ 
 augroup abolish
     autocmd!
-    autocmd BufEnter vimrc SetAbolish()
+    autocmd VimEnter * SetAbolish()
 augroup END
