@@ -199,6 +199,11 @@ g:fzf_layout = { "down": "40%" }
 g:splitjoin_split_mapping = ""
 g:splitjoin_join_mapping = ""
 
+g:buffergator_suppress_keymaps = 1
+g:buffergator_viewport_split_policy = "B"
+g:buffergator_hsplit_size = 10
+nnoremap gb :BuffergatorToggle<cr>
+
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
 g:highlightedyank_highlight_duration = 150
