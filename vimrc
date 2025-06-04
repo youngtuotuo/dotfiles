@@ -5,7 +5,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=100 formatoptions+=jro nowrap
 set history=1000 shortmess-=S shiftwidth=4 expandtab smartindent autoindent
-set showcmd laststatus=2 nu rnu wildmenu scrolloff=5
+set showcmd laststatus=2 wildmenu scrolloff=5
 set sidescroll=3 sidescrolloff=2 display=lastline,truncate
 set ttymouse=sgr
 &undodir = $HOME .. "/.local/state/vim/undo/"
