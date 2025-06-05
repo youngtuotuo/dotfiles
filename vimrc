@@ -5,7 +5,7 @@ syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=100 formatoptions+=jro nowrap
 set history=1000 shortmess-=S shiftwidth=4 expandtab smartindent autoindent
-set showcmd laststatus=2 wildmenu scrolloff=5
+set showcmd laststatus=2 wildmenu scrolloff=5 hlsearch
 set sidescroll=3 sidescrolloff=2 display=lastline,truncate
 set ttymouse=sgr
 &undodir = $HOME .. "/.local/state/vim/undo/"
@@ -167,13 +167,13 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-speeddating"
 Plug "tpope/vim-abolish", { "on": "Abolish"}
 Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
-Plug "jeetsukumaran/vim-buffergator", { "on": "BuffergatorToggle" }
 Plug "AndrewRadev/splitjoin.vim", { "on": [ "SplitjoinJoin", "SplitjoinSplit" ]}
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "junegunn/gv.vim", { "on": "GV" }
 Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
+Plug "junegunn/vim-slash"
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
 Plug "machakann/vim-highlightedyank"
@@ -184,9 +184,11 @@ Plug "mhinz/vim-signify"
 Plug "wellle/targets.vim"
 Plug "terryma/vim-expand-region"
 Plug "jeetsukumaran/vim-pythonsense"
+Plug "tommcdo/vim-exchange"
+Plug "jnurmine/Zenburn"
 plug#end()
 
-colo janah
+colo zenburn
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
@@ -200,11 +202,6 @@ g:fzf_layout = { "down": "40%" }
 
 g:splitjoin_split_mapping = ""
 g:splitjoin_join_mapping = ""
-
-g:buffergator_suppress_keymap = 1
-g:buffergator_viewport_split_policy = "B"
-g:buffergator_hsplit_size = 10
-nnoremap gb :BuffergatorToggle<cr>
 
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
@@ -223,9 +220,12 @@ def SetAbolish(): void
     Abolish -cmdline W{,Q,A} w{,q,a}
     cab Wq wq
     cab Wa wa
+    Abolish -cmdline F{zf,Zf} F{ZF}
 enddef
  
 augroup abolish
     autocmd!
     autocmd VimEnter * SetAbolish()
 augroup END
+
+noremap <plug>(slash-after) zz<cmd>call slash#blink(2, 50)<cr>
