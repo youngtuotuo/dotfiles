@@ -209,6 +209,14 @@ g:fzf_layout = { "down": "40%" }
 g:splitjoin_split_mapping = ""
 g:splitjoin_join_mapping = ""
 
+g:startify_change_to_dir = 0
+g:startify_change_to_vcs_root = 1
+g:startify_change_cmd = "cd"
+g:startify_enable_special = 0
+g:startify_lists = [
+  { "type": "files",     "header": ["   MRU"]            },
+]
+
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
 g:highlightedyank_highlight_duration = 150
