@@ -58,6 +58,12 @@ augroup python
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
 
+augroup cuda
+    autocmd!
+    autocmd FileType cuda setlocal makeprg=nvcc\ %
+    autocmd FileType cuda setlocal errorformat=%f(%l):%m
+augroup END
+
 def ManShowTOC(): void
   var bufnr: number = bufnr("%")
   var bufname: string = bufname(bufnr)
@@ -188,7 +194,7 @@ Plug "tommcdo/vim-exchange"
 Plug "jnurmine/Zenburn"
 plug#end()
 
-colo zenburn
+colo janah
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
