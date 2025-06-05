@@ -263,7 +263,6 @@ hi Todo           guifg=#504038                ctermfg=238
 hi Error          guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
 hi Warning        guifg=#504038                ctermfg=238
 
-hi Visual         guibg=#000080                ctermbg=4
 hi Search         guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
 hi IncSearch      guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
 hi MatchParen     guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
