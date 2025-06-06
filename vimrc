@@ -27,9 +27,6 @@ if !has("gui_running") && &term =~ "^\%(screen\|tmux\)"
     execute "silent! set <xLeft>=\<Esc>[@;*D"
 endif
 
-runtime ftplugin/man.vim
-packadd! matchit cfilter termdebug
-
 if !exists("g:is_posix") && !exists("g:is_bash") && !exists("g:is_kornshell") && !exists("g:is_dash")
     g:is_posix = 1
 endif
@@ -42,6 +39,14 @@ inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap n nzz
+nnoremap N Nzz
+
+packadd! matchit
+packadd! cfilter
+packadd! comment
+packadd! nohlsearch
+packadd! hlyank
 
 def GetTODO(): void
     var commentstring: string = &l:commentstring
@@ -98,6 +103,7 @@ def ManShowTOC(): void
   setlocal filetype=qf
 enddef
 
+runtime ftplugin/man.vim
 augroup man
     autocmd!
     autocmd FileType man nnoremap <buffer> <silent> gO <scriptcmd>ManShowTOC()<bar>lope<cr>
@@ -162,7 +168,6 @@ if empty(glob(data_dir .. "/autoload/plug.vim"))
 endif
 
 plug#begin()
-Plug "tpope/vim-commentary"
 Plug "tpope/vim-fugitive"
 Plug "tpope/vim-rsi"
 Plug "tpope/vim-surround"
@@ -179,10 +184,8 @@ Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": 
 Plug "junegunn/gv.vim", { "on": "GV" }
 Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
-Plug "junegunn/vim-slash"
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
-Plug "machakann/vim-highlightedyank"
 Plug "mbbill/undotree", { "on": "UndotreeToggle" }
 Plug "mhinz/vim-startify"
 Plug "mhinz/vim-signify"
@@ -232,8 +235,8 @@ def SetAbolish(): void
     cab Wa wa
     Abolish -cmdline F{zf,Zf} F{ZF}
 enddef
- 
-augroup abolish
+
+augroup Enter
     autocmd!
     autocmd VimEnter * SetAbolish()
 augroup END
@@ -267,7 +270,7 @@ hi Search         guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
 hi IncSearch      guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
 hi MatchParen     guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
 
-hi StatusLine     guifg=#072626 guibg=#d3b58d  ctermfg=22 ctermbg=180 gui=reverse cterm=reverse
+hi StatusLine     guifg=#d3b58d guibg=#072626  ctermfg=22 ctermbg=180
 hi StatusLineNC   guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
 
 hi LineNr         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
