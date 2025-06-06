@@ -1,10 +1,17 @@
 vim9script
 filetype plugin indent on
-set mouse=nvi ruler showmatch noswapfile autoread undofile
-set incsearch ttimeout ttimeoutlen=100 formatoptions+=jro nowrap
-set history=1000 shortmess-=S shiftwidth=4 expandtab smartindent autoindent
-set showcmd laststatus=2 wildmenu scrolloff=5 hlsearch termguicolors
-set sidescroll=3 sidescrolloff=2 display=lastline,truncate
+set mouse=nvi
+set ruler
+set showmatch noswapfile autoread undofile
+set incsearch
+set ttimeout ttimeoutlen=100 formatoptions+=jro
+set nowrap
+set history=1000 shortmess-=S
+set shiftwidth=4 expandtab smartindent autoindent
+set showcmd laststatus=2
+set wildmenu scrolloff=5 hlsearch
+set sidescroll=3 sidescrolloff=2
+set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
@@ -12,23 +19,6 @@ set nolangremap
 
 if has('win32')
     set guioptions-=t
-endif
-
-if !has("gui_running") && &term =~ "^\%(screen\|tmux\)"
-    &t_BE = "\<Esc>[?2004h"
-    &t_BD = "\<Esc>[?2004l"
-    &t_PS = "\<Esc>[200~"
-    &t_PE = "\<Esc>[201~"
-
-    &t_fe = "\<Esc>[?1004h"
-    &t_fd = "\<Esc>[?1004l"
-    execute "set <FocusGained>=\<Esc>[I"
-    execute "set <FocusLost>=\<Esc>[O"
-
-    execute "silent! set <xUp>=\<Esc>[@;*A"
-    execute "silent! set <xDown>=\<Esc>[@;*B"
-    execute "silent! set <xRight>=\<Esc>[@;*C"
-    execute "silent! set <xLeft>=\<Esc>[@;*D"
 endif
 
 inoremap <C-c> <ESC>
@@ -68,6 +58,11 @@ augroup cuda
     autocmd!
     autocmd FileType cuda setlocal makeprg=nvcc\ %
     autocmd FileType cuda setlocal errorformat=%f(%l):%m
+augroup END
+
+augroup md
+    autocmd!
+    autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
 augroup END
 
 runtime ftplugin/man.vim
@@ -125,61 +120,6 @@ enddef
 set qftf=Qftf
 
 set background=dark
-syntax reset
-hi clear
-
-hi Normal         guifg=#d3b58d guibg=#072626 ctermfg=180 ctermbg=22
-hi Comment        guifg=#3fdfaf                ctermfg=80
-hi String         guifg=#0fdfaf                ctermfg=79
-hi Keyword        guifg=#ffffff                ctermfg=255
-hi Function       guifg=#ffffff                ctermfg=255
-hi Identifier     guifg=#c8d4ec                ctermfg=189
-hi Type           guifg=#ffffff                ctermfg=255
-hi Statement      guifg=#ffffff                ctermfg=255
-hi PreProc        guifg=LightGreen            ctermfg=10
-hi Constant       guifg=#0fdfaf                ctermfg=79
-hi Special        guifg=LightGreen            ctermfg=10
-hi SpecialKey     guifg=#3fdfaf                ctermfg=80
-hi Number         guifg=#0fdfaf                ctermfg=79
-hi Boolean        guifg=#0fdfaf                ctermfg=79
-hi Float          guifg=#0fdfaf                ctermfg=79
-hi Todo           guifg=#504038                ctermfg=238
-hi Error          guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
-hi Warning        guifg=#504038                ctermfg=238
-hi Search         guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-hi IncSearch      guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-hi MatchParen     guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-hi StatusLine     guifg=#d3b58d guibg=#072626  ctermfg=22 ctermbg=180
-hi StatusLineNC   guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-hi LineNr         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-hi CursorLineNr   guifg=#d3b58d guibg=#041818  ctermfg=180 ctermbg=234
-hi Cursor         guifg=#072626 guibg=#90ee90  ctermfg=22 ctermbg=120
-hi CursorLine     guibg=#0a2d2d                ctermbg=235
-hi CursorColumn   guibg=#0a2d2d                ctermbg=235
-hi Folded         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-hi FoldColumn     guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-hi DiffAdd        guifg=#ffffff guibg=#005500  ctermfg=255 ctermbg=22
-hi DiffChange     guifg=#ffffff guibg=#555500  ctermfg=255 ctermbg=58
-hi DiffDelete     guifg=#ffffff guibg=#550000  ctermfg=255 ctermbg=52
-hi DiffText       guifg=#ffffff guibg=#777700  ctermfg=255 ctermbg=94
-hi Pmenu          guifg=#d3b58d guibg=#2f2f2f  ctermfg=180 ctermbg=236
-hi PmenuSel       guifg=#072626 guibg=#d3b58d  ctermfg=22 ctermbg=180
-hi PmenuSbar      guibg=#555555                ctermbg=240
-hi PmenuThumb     guibg=#888888                ctermbg=244
-hi TabLine        guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-hi TabLineFill    guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-hi TabLineSel     guifg=#d3b58d guibg=#072626  ctermfg=180 ctermbg=22
-hi SpellBad       guisp=#ff0000 gui=undercurl  cterm=underline
-hi SpellCap       guisp=#0000ff gui=undercurl  cterm=underline
-hi SpellLocal     guisp=#008b8b gui=undercurl  cterm=underline
-hi SpellRare      guisp=#ff00ff gui=undercurl  cterm=underline
-hi Directory      guifg=#0fdfaf                ctermfg=79
-hi Title          guifg=#ffffff gui=bold       ctermfg=255 cterm=bold
-hi MoreMsg        guifg=#90ee90                ctermfg=120
-hi Question       guifg=#90ee90                ctermfg=120
-hi WarningMsg     guifg=#504038                ctermfg=238
-hi ErrorMsg       guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
-
 const data_dir: string = "~/.vim"
 if empty(glob(data_dir .. "/autoload/plug.vim"))
   silent execute "!curl -fLo "..data_dir.."/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -213,7 +153,10 @@ Plug "wellle/targets.vim"
 Plug "terryma/vim-expand-region"
 Plug "jeetsukumaran/vim-pythonsense"
 Plug "tommcdo/vim-exchange"
+Plug "mhinz/vim-janah"
 plug#end()
+
+colo janah
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
@@ -232,9 +175,7 @@ g:startify_change_to_dir = 0
 g:startify_change_to_vcs_root = 1
 g:startify_change_cmd = "cd"
 g:startify_enable_special = 0
-g:startify_lists = [
-  { "type": "files",     "header": ["   MRU"]            },
-]
+g:startify_lists = [ { "type": "files", "header": ["   MRU"] } ]
 
 nnoremap gj :SplitjoinJoin<cr>
 nnoremap gs :SplitjoinSplit<cr>
