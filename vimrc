@@ -1,14 +1,18 @@
 vim9script
-set background=light
 filetype plugin indent on
-syntax on
 set mouse=nvi ruler showmatch noswapfile autoread undofile
 set incsearch ttimeout ttimeoutlen=100 formatoptions+=jro nowrap
 set history=1000 shortmess-=S shiftwidth=4 expandtab smartindent autoindent
 set showcmd laststatus=2 wildmenu scrolloff=5 hlsearch termguicolors
 set sidescroll=3 sidescrolloff=2 display=lastline,truncate
 set ttymouse=sgr
+set nrformats-=octal
+set nolangremap
 &undodir = $HOME .. "/.local/state/vim/undo/"
+
+if has('win32')
+    set guioptions-=t
+endif
 
 if !has("gui_running") && &term =~ "^\%(screen\|tmux\)"
     &t_BE = "\<Esc>[?2004h"
@@ -27,10 +31,6 @@ if !has("gui_running") && &term =~ "^\%(screen\|tmux\)"
     execute "silent! set <xLeft>=\<Esc>[@;*D"
 endif
 
-if !exists("g:is_posix") && !exists("g:is_bash") && !exists("g:is_kornshell") && !exists("g:is_dash")
-    g:is_posix = 1
-endif
-
 inoremap <C-c> <ESC>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
@@ -41,11 +41,12 @@ nnoremap Y y$
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap n nzz
 nnoremap N Nzz
+map Q gq
+sunmap Q
 
 packadd! matchit
 packadd! cfilter
 packadd! comment
-packadd! nohlsearch
 packadd! hlyank
 
 def GetTODO(): void
@@ -69,45 +70,7 @@ augroup cuda
     autocmd FileType cuda setlocal errorformat=%f(%l):%m
 augroup END
 
-def ManShowTOC(): void
-  var bufnr: number = bufnr("%")
-  var bufname: string = bufname(bufnr)
-  var info: dict<any> = getloclist(0, {"winid": 1})
-
-  # Check if location list exists and is associated with current buffer
-  if !empty(info) && getwinvar(info.winid, "qf_toc") ==# bufname
-    execute "lopen"
-    return
-  endif
-
-  # Initialize table of contents list
-  var toc: list<dict<any>> = []
-  var lnum: number = 2
-  var last_line: number = line("$") - 1
-  while lnum > 0 && lnum < last_line
-    var text: string = getline(lnum)
-    if text =~ "^\s\+[-+]\S" || text =~ "^   \S" || text =~ "^\S"
-      add(toc, {
-            "bufnr": bufnr,
-            "lnum": lnum,
-            "text": substitute(substitute(text, "^\s\+", "", ""), "\s\+$", "", "")
-            })
-    endif
-    lnum = nextnonblank(lnum + 1)
-  endwhile
-
-  setloclist(0, toc, " ")
-  setloclist(0, [], "a", {"title": "Table of contents"})
-  execute "lopen"
-  w:qf_toc = bufname
-  setlocal filetype=qf
-enddef
-
 runtime ftplugin/man.vim
-augroup man
-    autocmd!
-    autocmd FileType man nnoremap <buffer> <silent> gO <scriptcmd>ManShowTOC()<bar>lope<cr>
-augroup END
 
 def SetQuickfixSyntax(): void
     syntax clear
@@ -161,6 +124,62 @@ enddef
 # Set the quickfixtextfunc option
 set qftf=Qftf
 
+set background=dark
+syntax reset
+hi clear
+
+hi Normal         guifg=#d3b58d guibg=#072626 ctermfg=180 ctermbg=22
+hi Comment        guifg=#3fdfaf                ctermfg=80
+hi String         guifg=#0fdfaf                ctermfg=79
+hi Keyword        guifg=#ffffff                ctermfg=255
+hi Function       guifg=#ffffff                ctermfg=255
+hi Identifier     guifg=#c8d4ec                ctermfg=189
+hi Type           guifg=#ffffff                ctermfg=255
+hi Statement      guifg=#ffffff                ctermfg=255
+hi PreProc        guifg=LightGreen            ctermfg=10
+hi Constant       guifg=#0fdfaf                ctermfg=79
+hi Special        guifg=LightGreen            ctermfg=10
+hi SpecialKey     guifg=#3fdfaf                ctermfg=80
+hi Number         guifg=#0fdfaf                ctermfg=79
+hi Boolean        guifg=#0fdfaf                ctermfg=79
+hi Float          guifg=#0fdfaf                ctermfg=79
+hi Todo           guifg=#504038                ctermfg=238
+hi Error          guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
+hi Warning        guifg=#504038                ctermfg=238
+hi Search         guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
+hi IncSearch      guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
+hi MatchParen     guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
+hi StatusLine     guifg=#d3b58d guibg=#072626  ctermfg=22 ctermbg=180
+hi StatusLineNC   guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
+hi LineNr         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
+hi CursorLineNr   guifg=#d3b58d guibg=#041818  ctermfg=180 ctermbg=234
+hi Cursor         guifg=#072626 guibg=#90ee90  ctermfg=22 ctermbg=120
+hi CursorLine     guibg=#0a2d2d                ctermbg=235
+hi CursorColumn   guibg=#0a2d2d                ctermbg=235
+hi Folded         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
+hi FoldColumn     guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
+hi DiffAdd        guifg=#ffffff guibg=#005500  ctermfg=255 ctermbg=22
+hi DiffChange     guifg=#ffffff guibg=#555500  ctermfg=255 ctermbg=58
+hi DiffDelete     guifg=#ffffff guibg=#550000  ctermfg=255 ctermbg=52
+hi DiffText       guifg=#ffffff guibg=#777700  ctermfg=255 ctermbg=94
+hi Pmenu          guifg=#d3b58d guibg=#2f2f2f  ctermfg=180 ctermbg=236
+hi PmenuSel       guifg=#072626 guibg=#d3b58d  ctermfg=22 ctermbg=180
+hi PmenuSbar      guibg=#555555                ctermbg=240
+hi PmenuThumb     guibg=#888888                ctermbg=244
+hi TabLine        guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
+hi TabLineFill    guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
+hi TabLineSel     guifg=#d3b58d guibg=#072626  ctermfg=180 ctermbg=22
+hi SpellBad       guisp=#ff0000 gui=undercurl  cterm=underline
+hi SpellCap       guisp=#0000ff gui=undercurl  cterm=underline
+hi SpellLocal     guisp=#008b8b gui=undercurl  cterm=underline
+hi SpellRare      guisp=#ff00ff gui=undercurl  cterm=underline
+hi Directory      guifg=#0fdfaf                ctermfg=79
+hi Title          guifg=#ffffff gui=bold       ctermfg=255 cterm=bold
+hi MoreMsg        guifg=#90ee90                ctermfg=120
+hi Question       guifg=#90ee90                ctermfg=120
+hi WarningMsg     guifg=#504038                ctermfg=238
+hi ErrorMsg       guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
+
 const data_dir: string = "~/.vim"
 if empty(glob(data_dir .. "/autoload/plug.vim"))
   silent execute "!curl -fLo "..data_dir.."/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -184,6 +203,7 @@ Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": 
 Plug "junegunn/gv.vim", { "on": "GV" }
 Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
+Plug "junegunn/vim-slash"
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
 Plug "mbbill/undotree", { "on": "UndotreeToggle" }
@@ -225,15 +245,20 @@ nnoremap <leader><Backspace> <Plug>(expand_region_shrink)
 vnoremap <leader><Enter> <Plug>(expand_region_expand)
 vnoremap <leader><Backspace> <Plug>(expand_region_shrink)
 
+
 def SetAbolish(): void
     iab """ """<cr>"""<up>
     Abolish teh the
-    Abolish -cmdline Q{,A} q{,a}
+    cab Q q
     cab Qa qa
-    Abolish -cmdline W{,Q,A} w{,q,a}
+    cab QA qa
+    cab W w
+    cab WQ wq
+    cab WA wa
     cab Wq wq
     cab Wa wa
-    Abolish -cmdline F{zf,Zf} F{ZF}
+    cab Fzf FZF
+    cab FZf FZF
 enddef
 
 augroup Enter
@@ -241,70 +266,4 @@ augroup Enter
     autocmd VimEnter * SetAbolish()
 augroup END
 
-noremap <plug>(slash-after) zz<cmd>call slash#blink(2, 50)<cr>
-
-hi clear
-
-hi Normal         guifg=#d3b58d guibg=#072626 ctermfg=180 ctermbg=22
-
-hi Comment        guifg=#3fdfaf                ctermfg=80
-hi String         guifg=#0fdfaf                ctermfg=79
-hi Keyword        guifg=#ffffff                ctermfg=255
-hi Function       guifg=#ffffff                ctermfg=255
-hi Identifier     guifg=#c8d4ec                ctermfg=189
-hi Type           guifg=#ffffff                ctermfg=255
-hi Statement      guifg=#ffffff                ctermfg=255
-hi PreProc        guifg=LightGreen            ctermfg=10
-hi Constant       guifg=#0fdfaf                ctermfg=79
-hi Special        guifg=LightGreen            ctermfg=10
-hi SpecialKey     guifg=#3fdfaf                ctermfg=80
-hi Number         guifg=#0fdfaf                ctermfg=79
-hi Boolean        guifg=#0fdfaf                ctermfg=79
-hi Float          guifg=#0fdfaf                ctermfg=79
-
-hi Todo           guifg=#504038                ctermfg=238
-hi Error          guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
-hi Warning        guifg=#504038                ctermfg=238
-
-hi Search         guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-hi IncSearch      guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-hi MatchParen     guifg=#000080 guibg=#2f8b57  ctermfg=4 ctermbg=29
-
-hi StatusLine     guifg=#d3b58d guibg=#072626  ctermfg=22 ctermbg=180
-hi StatusLineNC   guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-
-hi LineNr         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-hi CursorLineNr   guifg=#d3b58d guibg=#041818  ctermfg=180 ctermbg=234
-
-hi Cursor         guifg=#072626 guibg=#90ee90  ctermfg=22 ctermbg=120
-hi CursorLine     guibg=#0a2d2d                ctermbg=235
-hi CursorColumn   guibg=#0a2d2d                ctermbg=235
-
-hi Folded         guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-hi FoldColumn     guifg=#696969 guibg=#041818  ctermfg=242 ctermbg=234
-
-hi DiffAdd        guifg=#ffffff guibg=#005500  ctermfg=255 ctermbg=22
-hi DiffChange     guifg=#ffffff guibg=#555500  ctermfg=255 ctermbg=58
-hi DiffDelete     guifg=#ffffff guibg=#550000  ctermfg=255 ctermbg=52
-hi DiffText       guifg=#ffffff guibg=#777700  ctermfg=255 ctermbg=94
-
-hi Pmenu          guifg=#d3b58d guibg=#2f2f2f  ctermfg=180 ctermbg=236
-hi PmenuSel       guifg=#072626 guibg=#d3b58d  ctermfg=22 ctermbg=180
-hi PmenuSbar      guibg=#555555                ctermbg=240
-hi PmenuThumb     guibg=#888888                ctermbg=244
-
-hi TabLine        guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-hi TabLineFill    guifg=#696969 guibg=#2f2f2f  ctermfg=242 ctermbg=236
-hi TabLineSel     guifg=#d3b58d guibg=#072626  ctermfg=180 ctermbg=22
-
-hi SpellBad       guisp=#ff0000 gui=undercurl  cterm=underline
-hi SpellCap       guisp=#0000ff gui=undercurl  cterm=underline
-hi SpellLocal     guisp=#008b8b gui=undercurl  cterm=underline
-hi SpellRare      guisp=#ff00ff gui=undercurl  cterm=underline
-
-hi Directory      guifg=#0fdfaf                ctermfg=79
-hi Title          guifg=#ffffff gui=bold       ctermfg=255 cterm=bold
-hi MoreMsg        guifg=#90ee90                ctermfg=120
-hi Question       guifg=#90ee90                ctermfg=120
-hi WarningMsg     guifg=#504038                ctermfg=238
-hi ErrorMsg       guifg=#ff0000 guibg=#072626  ctermfg=196 ctermbg=22
+nnoremap <plug>(slash-after) zz<cmd>call slash#blink(2, 50)<cr>
