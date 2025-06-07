@@ -15,7 +15,6 @@ set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
-set termguicolors
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 if has('win32')
