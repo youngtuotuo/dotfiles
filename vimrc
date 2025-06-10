@@ -8,17 +8,23 @@ set ttimeout ttimeoutlen=100 formatoptions+=jro
 set nowrap
 set history=1000 shortmess-=S
 set shiftwidth=4 expandtab smartindent autoindent
-set showcmd laststatus=2
+set showcmd
 set wildmenu scrolloff=5 hlsearch
 set sidescroll=3 sidescrolloff=2
 set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
+set background=light
 &undodir = $HOME .. "/.local/state/vim/undo/"
 
 if has('win32')
     set guioptions-=t
+    &undodir = $HOME .. "/vimfiles/undo/"
+endif
+
+if empty(glob(&undodir))
+    silent execute "mkdir "..&undodir
 endif
 
 inoremap <C-c> <ESC>
@@ -37,6 +43,7 @@ sunmap Q
 packadd! matchit
 packadd! cfilter
 packadd! comment
+packadd! nohlsearch
 packadd! hlyank
 
 def GetTODO(): void
@@ -146,13 +153,11 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-speeddating"
 Plug "tpope/vim-abolish", { "on": "Abolish"}
 Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
-Plug "AndrewRadev/splitjoin.vim", { "on": [ "SplitjoinJoin", "SplitjoinSplit" ]}
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "junegunn/gv.vim", { "on": "GV" }
 Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
-Plug "junegunn/vim-slash"
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
 Plug "mbbill/undotree", { "on": "UndotreeToggle" }
@@ -162,10 +167,9 @@ Plug "wellle/targets.vim"
 Plug "terryma/vim-expand-region"
 Plug "jeetsukumaran/vim-pythonsense"
 Plug "tommcdo/vim-exchange"
-Plug "mhinz/vim-janah"
+Plug "kaarmu/typst.vim"
 plug#end()
 
-colo janah
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
@@ -185,10 +189,6 @@ g:startify_change_to_vcs_root = 1
 g:startify_change_cmd = "cd"
 g:startify_enable_special = 0
 g:startify_lists = [ { "type": "files", "header": ["   MRU"] } ]
-
-nnoremap gj :SplitjoinJoin<cr>
-nnoremap gs :SplitjoinSplit<cr>
-g:highlightedyank_highlight_duration = 150
 
 nnoremap <leader><Enter> <Plug>(expand_region_expand)
 nnoremap <leader><Backspace> <Plug>(expand_region_shrink)
@@ -215,5 +215,3 @@ augroup Enter
     autocmd!
     autocmd VimEnter * SetAbolish()
 augroup END
-
-nnoremap <plug>(slash-after) zz<cmd>call slash#blink(2, 50)<cr>
