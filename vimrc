@@ -24,6 +24,7 @@ if has('win32')
     set guioptions-=t
     &undodir = $HOME .. "\\vimfiles\\undo\\"
 else
+    runtime ftplugin/man.vim
     &undodir = $HOME .. "/.local/state/vim/undo/"
 endif
 
@@ -46,9 +47,6 @@ packadd! comment
 packadd! nohlsearch
 packadd! hlyank
 packadd! helptoc
-if !has('win32')
-    runtime ftplugin/man.vim
-endif
 
 def GetTODO(): void
     var commentstring: string = &l:commentstring
@@ -75,22 +73,6 @@ augroup md
     autocmd!
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
 augroup END
-
-var data_dir: string = ""
-if has('win32')
-    data_dir = "~/vimfiles"
-else
-    data_dir = "~/.vim"
-endif
-
-if empty(glob(data_dir .. "/autoload/plug.vim"))
-    if has('win32')
-        silent execute "iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni $HOME/vimfiles/autoload/plug.vim -Force"  
-    else
-        silent execute "!curl -fLo " .. data_dir .. "/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    endif
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
 plug#begin()
 Plug "tpope/vim-fugitive"
