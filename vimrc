@@ -76,33 +76,49 @@ augroup md
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
 augroup END
 
-plugpac#Begin()
-Pack "tpope/vim-fugitive"
-Pack "tpope/vim-rsi"
-Pack "tpope/vim-surround"
-Pack "tpope/vim-characterize"
-Pack "tpope/vim-unimpaired"
-Pack "tpope/vim-repeat"
-Pack "tpope/vim-speeddating"
-Pack "tpope/vim-abolish", { "on": "Abolish"}
-Pack "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
-Pack "markonm/traces.vim"
-Pack "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
-Pack "junegunn/gv.vim", { "on": "GV" }
-Pack "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
-Pack "junegunn/vim-easy-align", { "on": "EasyAlign" }
-Pack "czheo/mojo.vim", { "for": "mojo" }
-Pack "easymotion/vim-easymotion"
-Pack "mbbill/undotree", { "on": "UndotreeToggle" }
-Pack "mhinz/vim-startify"
-Pack "mhinz/vim-signify"
-Pack "wellle/targets.vim"
-Pack "terryma/vim-expand-region"
-Pack "jeetsukumaran/vim-pythonsense"
-Pack "tommcdo/vim-exchange"
-Pack "kaarmu/typst.vim"
-Pack "habamax/vim-dir"
-plugpac#End()
+var data_dir: string = ""
+if has('win32')
+    data_dir = "~/vimfiles"
+else
+    data_dir = "~/.vim"
+endif
+
+if empty(glob(data_dir .. "/autoload/plug.vim"))
+    if has('win32')
+        silent execute "iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni $HOME/vimfiles/autoload/plug.vim -Force"  
+    else
+        silent execute "!curl -fLo " .. data_dir .. "/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    endif
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+plug#begin()
+Plug "tpope/vim-fugitive"
+Plug "tpope/vim-rsi"
+Plug "tpope/vim-surround"
+Plug "tpope/vim-characterize"
+Plug "tpope/vim-unimpaired"
+Plug "tpope/vim-repeat"
+Plug "tpope/vim-speeddating"
+Plug "tpope/vim-abolish", { "on": "Abolish"}
+Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
+Plug "markonm/traces.vim"
+Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
+Plug "junegunn/gv.vim", { "on": "GV" }
+Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
+Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
+Plug "czheo/mojo.vim", { "for": "mojo" }
+Plug "easymotion/vim-easymotion"
+Plug "mbbill/undotree", { "on": "UndotreeToggle" }
+Plug "mhinz/vim-startify"
+Plug "mhinz/vim-signify"
+Plug "wellle/targets.vim"
+Plug "terryma/vim-expand-region"
+Plug "jeetsukumaran/vim-pythonsense"
+Plug "tommcdo/vim-exchange"
+Plug "kaarmu/typst.vim"
+Plug "habamax/vim-dir"
+plug#end()
 
 nnoremap - <cmd>Dir<cr>
 
