@@ -1,4 +1,5 @@
 vim9script
+syntax on
 filetype plugin indent on
 set mouse=nvi
 set ruler
@@ -16,15 +17,14 @@ set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
 set background=light
-&undodir = $HOME .. "/.local/state/vim/undo/"
+
+colo unokai
 
 if has('win32')
     set guioptions-=t
-    &undodir = $HOME .. "/vimfiles/undo/"
-endif
-
-if empty(glob(&undodir))
-    silent execute "mkdir "..&undodir
+    &undodir = $HOME .. "\\vimfiles\\undo\\"
+else
+    &undodir = $HOME .. "/.local/state/vim/undo/"
 endif
 
 inoremap <C-c> <ESC>
@@ -45,6 +45,10 @@ packadd! cfilter
 packadd! comment
 packadd! nohlsearch
 packadd! hlyank
+packadd! helptoc
+if !has('win32')
+    runtime ftplugin/man.vim
+endif
 
 def GetTODO(): void
     var commentstring: string = &l:commentstring
@@ -72,104 +76,35 @@ augroup md
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
 augroup END
 
-runtime ftplugin/man.vim
+plugpac#Begin()
+Pack "tpope/vim-fugitive"
+Pack "tpope/vim-rsi"
+Pack "tpope/vim-surround"
+Pack "tpope/vim-characterize"
+Pack "tpope/vim-unimpaired"
+Pack "tpope/vim-repeat"
+Pack "tpope/vim-speeddating"
+Pack "tpope/vim-abolish", { "on": "Abolish"}
+Pack "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
+Pack "markonm/traces.vim"
+Pack "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
+Pack "junegunn/gv.vim", { "on": "GV" }
+Pack "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
+Pack "junegunn/vim-easy-align", { "on": "EasyAlign" }
+Pack "czheo/mojo.vim", { "for": "mojo" }
+Pack "easymotion/vim-easymotion"
+Pack "mbbill/undotree", { "on": "UndotreeToggle" }
+Pack "mhinz/vim-startify"
+Pack "mhinz/vim-signify"
+Pack "wellle/targets.vim"
+Pack "terryma/vim-expand-region"
+Pack "jeetsukumaran/vim-pythonsense"
+Pack "tommcdo/vim-exchange"
+Pack "kaarmu/typst.vim"
+Pack "habamax/vim-dir"
+plugpac#End()
 
-def SetQuickfixSyntax(): void
-    syntax clear
-    syntax match qfFileName /^[^│]*/ contained containedin=qfLine
-    syntax match qfLineNr /│\s*\d\+:\d\+│/ contained containedin=qfLine
-    syntax match qfType /│[^│]*│\s*[EW]\?\s/ contained containedin=qfLine
-    syntax match qfLine /^[^│]*│.*$/ contains=qfFileName,qfLineNr,qfType
-    highlight default link qfFileName Directory
-    highlight default link qfLineNr LineNr
-    highlight default link qfType Type
-enddef
-
-# Define the quickfix text function
-def Qftf(info: dict<any>): list<string>
-    var items: list<dict<any>> = []
-    var ret: list<string> = []
-
-    if info.quickfix
-        items = getqflist({"id": info.id, "items": 0}).items
-    else
-        items = getloclist(info.winid, {"id": info.id, "items": 0}).items
-    endif
-
-    const limit: number = 31
-    for i: number in range(info.start_idx - 1, info.end_idx - 1)
-        var e: dict<any> = items[i]
-        var fname: string = ""
-        var str: string = ""
-
-        if e.valid && info.quickfix
-            var qtype: string = empty(e.type) ? "" : " " .. toupper(e.type[0])
-            if e.bufnr > 0
-                fname = bufname(e.bufnr)
-                if empty(fname)
-                    fname = "[No Name]"
-                endif
-            endif
-            var validFmt: string = "%s | %s"
-            str = printf(validFmt, fname, e.text)
-        else
-            str = e.text
-        endif
-        add(ret, str)
-    endfor
-
-    # Schedule the syntax setup to run asynchronously
-    timer_start(0, (_) => SetQuickfixSyntax())
-    return ret
-enddef
-
-# Set the quickfixtextfunc option
-set qftf=Qftf
-
-var data_dir: string = ""
-if has('win32')
-    data_dir = "~/vimfiles"
-else
-    data_dir = "~/.vim"
-endif
-
-if empty(glob(data_dir .. "/autoload/plug.vim"))
-    if has('win32')
-        silent execute "iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni $HOME/vimfiles/autoload/plug.vim -Force"  
-    else
-        silent execute "!curl -fLo "..data_dir.."/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    endif
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-plug#begin()
-Plug "tpope/vim-fugitive"
-Plug "tpope/vim-rsi"
-Plug "tpope/vim-surround"
-Plug "tpope/vim-characterize"
-Plug "tpope/vim-vinegar"
-Plug "tpope/vim-unimpaired"
-Plug "tpope/vim-repeat"
-Plug "tpope/vim-speeddating"
-Plug "tpope/vim-abolish", { "on": "Abolish"}
-Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
-Plug "markonm/traces.vim"
-Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
-Plug "junegunn/gv.vim", { "on": "GV" }
-Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
-Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
-Plug "czheo/mojo.vim", { "for": "mojo" }
-Plug "easymotion/vim-easymotion"
-Plug "mbbill/undotree", { "on": "UndotreeToggle" }
-Plug "mhinz/vim-startify"
-Plug "mhinz/vim-signify"
-Plug "wellle/targets.vim"
-Plug "terryma/vim-expand-region"
-Plug "jeetsukumaran/vim-pythonsense"
-Plug "tommcdo/vim-exchange"
-Plug "kaarmu/typst.vim"
-plug#end()
-
+nnoremap - <cmd>Dir<cr>
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
