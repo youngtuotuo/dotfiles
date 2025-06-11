@@ -16,7 +16,6 @@ set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
-set background=light
 
 if has('win32')
     set guioptions-=t
@@ -96,10 +95,10 @@ Plug "jeetsukumaran/vim-pythonsense"
 Plug "tommcdo/vim-exchange"
 Plug "kaarmu/typst.vim"
 Plug "habamax/vim-dir"
-Plug "tlhr/anderson.vim"
+Plug "AlessandroYorba/Alduin"
 plug#end()
 
-colo anderson
+colo alduin
 
 nnoremap - <cmd>Dir<cr>
 
