@@ -18,8 +18,6 @@ set nrformats-=octal
 set nolangremap
 set background=light
 
-colo unokai
-
 if has('win32')
     set guioptions-=t
     &undodir = $HOME .. "\\vimfiles\\undo\\"
@@ -36,8 +34,6 @@ inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap n nzz
-nnoremap N Nzz
 map Q gq
 sunmap Q
 
@@ -100,7 +96,10 @@ Plug "jeetsukumaran/vim-pythonsense"
 Plug "tommcdo/vim-exchange"
 Plug "kaarmu/typst.vim"
 Plug "habamax/vim-dir"
+Plug "tlhr/anderson.vim"
 plug#end()
+
+colo anderson
 
 nnoremap - <cmd>Dir<cr>
 
