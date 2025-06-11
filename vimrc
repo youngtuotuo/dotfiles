@@ -18,8 +18,6 @@ set nrformats-=octal
 set nolangremap
 set background=light
 
-colo unokai
-
 if has('win32')
     set guioptions-=t
     &undodir = $HOME .. "\\vimfiles\\undo\\"
