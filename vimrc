@@ -36,6 +36,25 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 map Q gq
 sunmap Q
 
+def Setabbr(): void
+    iab """ """<cr>"""<up>
+    ab teh the
+    ab Teh The
+    cab Q q
+    cab Qa qa
+    cab QA qa
+    cab W w
+    cab WQ wq
+    cab WA wa
+    cab Wq wq
+    cab Wa wa
+enddef
+
+augroup Enter
+    autocmd!
+    autocmd VimEnter * Setabbr()
+augroup END
+
 packadd! matchit
 packadd! cfilter
 packadd! comment
@@ -75,14 +94,12 @@ Plug "tpope/vim-rsi"
 Plug "tpope/vim-surround"
 Plug "tpope/vim-characterize"
 Plug "tpope/vim-unimpaired"
-Plug "tpope/vim-repeat"
 Plug "tpope/vim-speeddating"
-Plug "tpope/vim-abolish", { "on": "Abolish"}
-Plug "tpope/vim-dispatch", { "on": [ "Dispatch", "Make" ] }
+Plug "tpope/vim-dispatch"
+Plug "tpope/vim-repeat"
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "junegunn/gv.vim", { "on": "GV" }
-Plug "junegunn/fzf", { "on": "FZF", "do": { -> fzf#install() } }
 Plug "junegunn/vim-easy-align", { "on": "EasyAlign" }
 Plug "czheo/mojo.vim", { "for": "mojo" }
 Plug "easymotion/vim-easymotion"
@@ -95,10 +112,11 @@ Plug "jeetsukumaran/vim-pythonsense"
 Plug "tommcdo/vim-exchange"
 Plug "kaarmu/typst.vim"
 Plug "habamax/vim-dir"
-Plug "AlessandroYorba/Alduin"
+Plug "ziglang/zig.vim"
 plug#end()
 
-colo alduin
+g:zig_fmt_autosave = 0
+g:zig_fmt_parse_errors = 0
 
 nnoremap - <cmd>Dir<cr>
 
@@ -110,11 +128,6 @@ g:mkdp_open_to_the_world = 1
 g:mkdp_echo_preview_url = 1
 g:mkdp_port = "8088"
 
-g:fzf_layout = { "down": "40%" }
-
-g:splitjoin_split_mapping = ""
-g:splitjoin_join_mapping = ""
-
 g:startify_change_to_dir = 0
 g:startify_change_to_vcs_root = 1
 g:startify_change_cmd = "cd"
@@ -123,26 +136,5 @@ g:startify_lists = [ { "type": "files", "header": ["   MRU"] } ]
 
 nnoremap <leader><Enter> <Plug>(expand_region_expand)
 nnoremap <leader><Backspace> <Plug>(expand_region_shrink)
-vnoremap <leader><Enter> <Plug>(expand_region_expand)
-vnoremap <leader><Backspace> <Plug>(expand_region_shrink)
-
-
-def SetAbolish(): void
-    iab """ """<cr>"""<up>
-    Abolish teh the
-    cab Q q
-    cab Qa qa
-    cab QA qa
-    cab W w
-    cab WQ wq
-    cab WA wa
-    cab Wq wq
-    cab Wa wa
-    cab Fzf FZF
-    cab FZf FZF
-enddef
-
-augroup Enter
-    autocmd!
-    autocmd VimEnter * SetAbolish()
-augroup END
+vnoremap <Enter> <Plug>(expand_region_expand)
+vnoremap <Backspace> <Plug>(expand_region_shrink)
