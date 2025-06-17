@@ -38,24 +38,17 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 map Q gq
 sunmap Q
 
-def Setabbr(): void
-    iab """ """<cr>"""<up>
-    ab teh the
-    ab Teh The
-    cab Q q
-    cab Qa qa
-    cab QA qa
-    cab W w
-    cab WQ wq
-    cab WA wa
-    cab Wq wq
-    cab Wa wa
-enddef
-
-augroup Enter
-    autocmd!
-    autocmd VimEnter * Setabbr()
-augroup END
+iab """ """<cr>"""<up>
+ab teh the
+ab Teh The
+cab Q q
+cab Qa qa
+cab QA qa
+cab W w
+cab WQ wq
+cab WA wa
+cab Wq wq
+cab Wa wa
 
 packadd! matchit
 packadd! cfilter
@@ -79,9 +72,14 @@ augroup python
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
 
+augroup c
+    autocmd!
+    autocmd FileType c setlocal makeprg=gcc\ -Wall\ -Wextra\ -c\ %\ -o\ /dev/null
+augroup END
+
 augroup cuda
     autocmd!
-    autocmd FileType cuda setlocal makeprg=nvcc\ %
+    autocmd FileType cuda setlocal makeprg=nvcc\ %\ -o\ /dev/null
     autocmd FileType cuda setlocal errorformat=%f(%l):%m
 augroup END
 
@@ -95,14 +93,15 @@ Plug "habamax/vim-dir"
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "mbbill/undotree", { "on": "UndotreeToggle" }
-Plug "jeetsukumaran/vim-pythonsense"
-Plug "kaarmu/typst.vim"
-Plug "czheo/mojo.vim", { "for": "mojo" }
-Plug "ziglang/zig.vim"
+# Plug "tpope/vim-dispatch"
+# Plug "jeetsukumaran/vim-pythonsense"
+# Plug "kaarmu/typst.vim"
+# Plug "czheo/mojo.vim", { "for": "mojo" }
+# Plug "ziglang/zig.vim"
 plug#end()
 
-g:zig_fmt_autosave = 0
-g:zig_fmt_parse_errors = 0
+# g:zig_fmt_autosave = 0
+# g:zig_fmt_parse_errors = 0
 
 nnoremap - <cmd>Dir<cr>
 
