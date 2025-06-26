@@ -16,8 +16,8 @@ set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
-
-colo sorbet
+set background=dark
+set laststatus=2
 
 if has('win32')
     set guioptions-=t
@@ -34,6 +34,7 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
+nnoremap - <cmd>Ex<cr>
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 map Q gq
 sunmap Q
@@ -60,21 +61,21 @@ packadd! helptoc
 def GetTODO(): void
     var commentstring: string = &l:commentstring
     var comment_prefix: string = substitute(commentstring, "\s*%s\s*", "", "")
-    feedkeys(":lvim /" .. comment_prefix .. "\s*\(TODO\|WARN\|WARNING\|NOTE\)/ % | lope", "n")
+    feedkeys(":lvim /" .. comment_prefix .. "\\s*\\(TODO\\|WARN\\|WARNING\\|NOTE\\)/ % | lwindow", "n")
 enddef
 
 nnoremap gt <scriptcmd>GetTODO()<cr>
 
 augroup python
     autocmd!
-    autocmd FileType python nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\\|\s*async\sdef\)/ % \| lope'<cr>
+    autocmd FileType python nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\\|\s*async\sdef\)/ % \| lwindow'<cr>
     autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
 augroup END
 
 augroup c
     autocmd!
-    autocmd FileType c setlocal makeprg=gcc\ -Wall\ -Wextra\ -c\ %\ -o\ /dev/null
+    autocmd FileType c setlocal makeprg=cc\ %\ -o\ /dev/null
 augroup END
 
 augroup cuda
@@ -89,21 +90,19 @@ augroup md
 augroup END
 
 plug#begin()
-Plug "habamax/vim-dir"
+Plug "tpope/vim-dispatch"
+Plug "mhinz/vim-signify"
+Plug "tpope/vim-eunuch"
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "mbbill/undotree", { "on": "UndotreeToggle" }
-# Plug "tpope/vim-dispatch"
-# Plug "jeetsukumaran/vim-pythonsense"
-# Plug "kaarmu/typst.vim"
-# Plug "czheo/mojo.vim", { "for": "mojo" }
-# Plug "ziglang/zig.vim"
+Plug "jeetsukumaran/vim-pythonsense"
+Plug "vds2212/vim-remotions"
+Plug "piyush-ppradhan/naysayer.vim"
+Plug "hardselius/warlock"
 plug#end()
 
-# g:zig_fmt_autosave = 0
-# g:zig_fmt_parse_errors = 0
-
-nnoremap - <cmd>Dir<cr>
+colo warlock
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
@@ -112,3 +111,70 @@ g:plug_window = "vertical new"
 g:mkdp_open_to_the_world = 1
 g:mkdp_echo_preview_url = 1
 g:mkdp_port = "8088"
+
+g:remotions_motions = {
+    'TtFf': {},
+    'para': { 'backward': '{', 'forward': '}' },
+    'sentence': { 'backward': '(', 'forward': ')' },
+    'change': { 'backward': 'g,', 'forward': 'g;' },
+    'class': { 'backward': '[[', 'forward': ']]' },
+    'classend': { 'backward': '[]', 'forward': '][' },
+    'method': { 'backward': '[m', 'forward': ']m' },
+    'methodend': { 'backward': '[M', 'forward': ']M' },
+    
+    'line': {
+       'backward': 'k',
+       'forward': 'j',
+       'repeat_if_count': 1,
+       'repeat_count': 1
+    },
+    'displayline': {
+       'backward': 'gk',
+       'forward': 'gj',
+    },
+    
+    'char': { 'backward': 'h',
+       'forward': 'l',
+       'repeat_if_count': 1,
+       'repeat_count': 1
+    },
+    
+    'word': {
+       'backward': 'b',
+       'forward': 'w',
+       'repeat_if_count': 1,
+       'repeat_count': 1
+    },
+    'fullword': { 'backward': 'B',
+       'forward': 'W',
+       'repeat_if_count': 1,
+       'repeat_count': 1
+    },
+    'wordend': { 'backward': 'ge',
+       'forward': 'e',
+       'repeat_if_count': 1,
+       'repeat_count': 1
+    },
+    
+    'pos': { 'backward': '<C-i>', 'forward': '<C-o>' },
+    
+    'page': { 'backward': '<C-u>', 'forward': '<C-d>' },
+    'pagefull': { 'backward': '<C-b>', 'forward': '<C-f>' },
+    
+    'undo': { 'backward': 'u', 'forward': '<C-r>', 'direction': 1 },
+    
+    'linescroll': { 'backward': '<C-e>', 'forward': '<C-y>' },
+    'columnscroll': { 'backward': 'zh', 'forward': 'zl' },
+    'columnsscroll': { 'backward': 'zH', 'forward': 'zL' },
+    
+    'vsplit': { 'backward': '<C-w><', 'forward': '<C-w>>' },
+    'hsplit': { 'backward': '<C-w>-', 'forward': '<C-w>+' },
+    
+    'arg': { 'backward': '[a', 'forward': ']a'},
+    'buffer': { 'backward': '[b', 'forward': ']b'},
+    'location': { 'backward': '[l', 'forward': ']l'},
+    'quickfix': { 'backward': '[q', 'forward': ']q'},
+    'tag': { 'backward': '[t', 'forward': ']t'},
+    
+    'diagnostic': { 'backward': '[g', 'forward': ']g'},
+}
