@@ -1,9 +1,9 @@
+theme=SpaceGray Eighties Dull
 macos-option-as-alt = true
 font-family="Menlo"
 font-size=11
-adjust-cursor-height=-5
-adjust-cursor-thickness=-2
 cursor-style = block
+cursor-style-blink = true
 shell-integration-features = no-cursor
 font-feature = -calt
 font-feature = -dlig
