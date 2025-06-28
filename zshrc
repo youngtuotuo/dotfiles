@@ -11,4 +11,5 @@ alias ll='ls -hAlFG'
 alias l="ls -lCFG"
 alias la="ls -AG"
 alias cl="clear"
+export EDITOR="vim"
 echo "σ\`∀´)σ"

@@ -8,7 +8,7 @@ set incsearch
 set ttimeout ttimeoutlen=100 formatoptions+=jro
 set nowrap
 set history=1000 shortmess-=S
-set shiftwidth=4 expandtab smartindent autoindent
+set shiftwidth=4 expandtab smartindent autoindent tabstop=4
 set showcmd
 set wildmenu scrolloff=5 hlsearch
 set sidescroll=3 sidescrolloff=2
@@ -87,22 +87,21 @@ augroup END
 augroup md
     autocmd!
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
+    autocmd FileType markdown setlocal expandtab tabstop=4
 augroup END
 
 plug#begin()
 Plug "tpope/vim-dispatch"
 Plug "mhinz/vim-signify"
-Plug "tpope/vim-eunuch"
 Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
-Plug "mbbill/undotree", { "on": "UndotreeToggle" }
+Plug "mbbill/undotree"
 Plug "jeetsukumaran/vim-pythonsense"
 Plug "vds2212/vim-remotions"
 Plug "piyush-ppradhan/naysayer.vim"
-Plug "hardselius/warlock"
 plug#end()
 
-colo warlock
+colo naysayer
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 

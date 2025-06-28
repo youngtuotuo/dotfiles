@@ -1,6 +1,4 @@
-theme=SpaceGray Eighties Dull
 macos-option-as-alt = true
-font-family="Menlo"
 font-size=11
 cursor-style = block
 cursor-style-blink = true
