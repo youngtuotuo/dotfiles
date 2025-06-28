@@ -1,5 +1,5 @@
 macos-option-as-alt = true
-font-size=11
+font-size=10
 cursor-style = block
 cursor-style-blink = true
 shell-integration-features = no-cursor
@@ -7,3 +7,6 @@ font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
 font-thicken = true
+keybind = ctrl+m=text:\x0D
+keybind = ctrl+[=text:\x1B
+keybind = ctrl+i=text:\x09
