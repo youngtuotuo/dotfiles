@@ -98,10 +98,10 @@ Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": 
 Plug "mbbill/undotree"
 Plug "jeetsukumaran/vim-pythonsense"
 Plug "vds2212/vim-remotions"
-Plug "piyush-ppradhan/naysayer.vim"
+Plug "fxn/vim-monochrome"
 plug#end()
 
-colo naysayer
+colo monochrome
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
