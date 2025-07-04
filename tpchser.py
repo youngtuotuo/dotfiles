@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 
 topics = [
     "Leetcode",
@@ -13,4 +14,5 @@ topics = [
     "X bookmark"
 ]
 
-print(random.choice(topics))
+pprint(topics)
+print("=>", random.choice(topics))
