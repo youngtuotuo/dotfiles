@@ -8,7 +8,7 @@ set incsearch
 set ttimeout ttimeoutlen=100 formatoptions+=jro
 set nowrap
 set history=1000 shortmess-=S
-set shiftwidth=4 expandtab smartindent autoindent tabstop=4
+set shiftwidth=4 expandtab smartindent autoindent
 set showcmd
 set wildmenu scrolloff=5 hlsearch
 set sidescroll=3 sidescrolloff=2
@@ -16,7 +16,7 @@ set display=lastline,truncate
 set ttymouse=sgr
 set nrformats-=octal
 set nolangremap
-set background=dark
+set background=light
 set laststatus=2
 
 if has('win32')
@@ -34,6 +34,8 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
+nnoremap d_ v_d
+nnoremap c_ v_c
 nnoremap - <cmd>Ex<cr>
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 map Q gq
@@ -87,21 +89,14 @@ augroup END
 augroup md
     autocmd!
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
-    autocmd FileType markdown setlocal expandtab tabstop=4
+    autocmd FileType markdown setlocal expandtab
 augroup END
 
 plug#begin()
 Plug "tpope/vim-dispatch"
-Plug "mhinz/vim-signify"
-Plug "markonm/traces.vim"
 Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
 Plug "mbbill/undotree"
-Plug "jeetsukumaran/vim-pythonsense"
-Plug "vds2212/vim-remotions"
-Plug "fxn/vim-monochrome"
 plug#end()
-
-colo monochrome
 
 nnoremap <nowait> gru :UndotreeToggle<cr>
 
@@ -110,70 +105,4 @@ g:plug_window = "vertical new"
 g:mkdp_open_to_the_world = 1
 g:mkdp_echo_preview_url = 1
 g:mkdp_port = "8088"
-
-g:remotions_motions = {
-    'TtFf': {},
-    'para': { 'backward': '{', 'forward': '}' },
-    'sentence': { 'backward': '(', 'forward': ')' },
-    'change': { 'backward': 'g,', 'forward': 'g;' },
-    'class': { 'backward': '[[', 'forward': ']]' },
-    'classend': { 'backward': '[]', 'forward': '][' },
-    'method': { 'backward': '[m', 'forward': ']m' },
-    'methodend': { 'backward': '[M', 'forward': ']M' },
-    
-    'line': {
-       'backward': 'k',
-       'forward': 'j',
-       'repeat_if_count': 1,
-       'repeat_count': 1
-    },
-    'displayline': {
-       'backward': 'gk',
-       'forward': 'gj',
-    },
-    
-    'char': { 'backward': 'h',
-       'forward': 'l',
-       'repeat_if_count': 1,
-       'repeat_count': 1
-    },
-    
-    'word': {
-       'backward': 'b',
-       'forward': 'w',
-       'repeat_if_count': 1,
-       'repeat_count': 1
-    },
-    'fullword': { 'backward': 'B',
-       'forward': 'W',
-       'repeat_if_count': 1,
-       'repeat_count': 1
-    },
-    'wordend': { 'backward': 'ge',
-       'forward': 'e',
-       'repeat_if_count': 1,
-       'repeat_count': 1
-    },
-    
-    'pos': { 'backward': '<C-i>', 'forward': '<C-o>' },
-    
-    'page': { 'backward': '<C-u>', 'forward': '<C-d>' },
-    'pagefull': { 'backward': '<C-b>', 'forward': '<C-f>' },
-    
-    'undo': { 'backward': 'u', 'forward': '<C-r>', 'direction': 1 },
-    
-    'linescroll': { 'backward': '<C-e>', 'forward': '<C-y>' },
-    'columnscroll': { 'backward': 'zh', 'forward': 'zl' },
-    'columnsscroll': { 'backward': 'zH', 'forward': 'zL' },
-    
-    'vsplit': { 'backward': '<C-w><', 'forward': '<C-w>>' },
-    'hsplit': { 'backward': '<C-w>-', 'forward': '<C-w>+' },
-    
-    'arg': { 'backward': '[a', 'forward': ']a'},
-    'buffer': { 'backward': '[b', 'forward': ']b'},
-    'location': { 'backward': '[l', 'forward': ']l'},
-    'quickfix': { 'backward': '[q', 'forward': ']q'},
-    'tag': { 'backward': '[t', 'forward': ']t'},
-    
-    'diagnostic': { 'backward': '[g', 'forward': ']g'},
-}
+g:mkdp_theme = 'light'

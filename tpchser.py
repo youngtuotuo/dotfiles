@@ -110,6 +110,7 @@ topics = [
     "https://openreview.net/forum?id=Q70C1HQ0VO",
     "https://openreview.net/forum?id=stFPf3gzq1",
     "https://papers.nips.cc/paper_files/paper/2002/file/6150ccc6069bea6b5716254057a194ef-Paper.pdf",
+    "https://people.csail.mit.edu/jrk/halide12/",
     "https://people.csail.mit.edu/jrk/jrkthesis.pdf",
     "https://physics.allen-zhu.com/",
     "https://puffer.ai/",
