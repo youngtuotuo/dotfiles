@@ -7,6 +7,7 @@ topics = [
     "Bishop Deep Learning",
     "Linux From Scratch",
     "Any Paper",
+    "GPU Mode Sharing",
     "Any ML Implementation",
     "Computer Enhance",
     "A Math A day",
