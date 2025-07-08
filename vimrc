@@ -8,7 +8,7 @@ set incsearch
 set ttimeout ttimeoutlen=100 formatoptions+=jro
 set nowrap
 set history=1000 shortmess-=S
-set shiftwidth=4 expandtab smartindent autoindent
+set shiftwidth=4 expandtab smartindent autoindent tabstop=4
 set showcmd
 set wildmenu scrolloff=5 hlsearch
 set sidescroll=3 sidescrolloff=2
@@ -18,6 +18,18 @@ set nrformats-=octal
 set nolangremap
 set background=light
 set laststatus=2
+
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+    &t_BE = "\<Esc>[?2004h"
+    &t_BD = "\<Esc>[?2004l"
+    &t_PS = "\<Esc>[200~"
+    &t_PE = "\<Esc>[201~"
+
+    &t_fe = "\<Esc>[?1004h"
+    &t_fd = "\<Esc>[?1004l"
+    execute "set <FocusGained>=\<Esc>[I"
+    execute "set <FocusLost>=\<Esc>[O"
+endif
 
 if has('win32')
     set guioptions-=t
@@ -34,8 +46,6 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
-nnoremap d_ v_d
-nnoremap c_ v_c
 nnoremap - <cmd>Ex<cr>
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 map Q gq
@@ -89,5 +99,5 @@ augroup END
 augroup md
     autocmd!
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
-    autocmd FileType markdown setlocal expandtab
+    autocmd FileType markdown setlocal expandtab tabstop=4
 augroup END
