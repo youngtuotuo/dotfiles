@@ -91,18 +91,3 @@ augroup md
     autocmd FileType markdown nnoremap <buffer> <silent> gO <scriptcmd>execute 'lvim /^#\+\(.*\)/ % \| lope'<cr>
     autocmd FileType markdown setlocal expandtab
 augroup END
-
-plug#begin()
-Plug "tpope/vim-dispatch"
-Plug "iamcco/markdown-preview.nvim", { "do": { -> mkdp#util#install() }, "for": ["markdown", "vim-plug"]}
-Plug "mbbill/undotree"
-plug#end()
-
-nnoremap <nowait> gru :UndotreeToggle<cr>
-
-g:plug_window = "vertical new"
-
-g:mkdp_open_to_the_world = 1
-g:mkdp_echo_preview_url = 1
-g:mkdp_port = "8088"
-g:mkdp_theme = 'light'
