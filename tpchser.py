@@ -7,6 +7,7 @@ topics = [
     "Bishop Deep Learning",
     "Computer Enhance",
     "A Math A day",
+    "Reverse Engineering for Beginners",
     "MIT - Performance Engineering of Software Systems",
 ]
 
