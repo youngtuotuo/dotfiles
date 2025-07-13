@@ -9,7 +9,8 @@ topics = [
     "A Math A day",
     "Reverse Engineering for Beginners",
     "MIT - Performance Engineering of Software Systems",
-    "Flow Matching Guide and Code"
+    "Flow Matching Guide and Code",
+    "Programming Massively Parallel Processors- A Hands-on Approach",
 ]
 
 pprint(topics)
