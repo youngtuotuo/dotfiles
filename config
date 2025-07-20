@@ -1,0 +1,14 @@
+mouse-shift-capture = true
+macos-option-as-alt = true
+cursor-style = block
+shell-integration-features = no-cursor
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
+keybind = ctrl+m=text:\x0D
+keybind = ctrl+[=text:\x1B
+keybind = ctrl+i=text:\x09
+keybind = alt+b=esc:b
+keybind = alt+f=esc:f
+keybind = ctrl+alt+h=text:\x1B\x08
+keybind = alt+backspace=text:\x1B\x08
