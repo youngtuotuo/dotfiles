@@ -1,74 +1,33 @@
 vim9script
+source $VIMRUNTIME/defaults.vim
 syntax on
 filetype plugin indent on
-set mouse=nvi
-set ruler
-set showmatch noswapfile autoread undofile
-set incsearch
-set ttimeout ttimeoutlen=100 formatoptions+=jro
-set nowrap
-set history=1000 shortmess-=S
-set shiftwidth=4 expandtab smartindent autoindent tabstop=4
-set showcmd
-set wildmenu scrolloff=5 hlsearch
-set sidescroll=3 sidescrolloff=2
-set display=lastline,truncate
-set ttymouse=sgr
-set nrformats-=octal
-set nolangremap
-set background=light
-set laststatus=2
+set mouse=nvi showmatch noswapfile autoread undofile incsearch formatoptions+=jro
+set nowrap history=1000 shortmess-=S background=dark termguicolors shiftwidth=4
+set expandtab smartindent autoindent scrolloff=5 hlsearch sidescroll=3 sidescrolloff=2
+set ttymouse=sgr laststatus=2 cursorline
 
-if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
-    &t_BE = "\<Esc>[?2004h"
-    &t_BD = "\<Esc>[?2004l"
-    &t_PS = "\<Esc>[200~"
-    &t_PE = "\<Esc>[201~"
+&t_BE = "\<Esc>[?2004h"
+&t_BD = "\<Esc>[?2004l"
+&t_PS = "\<Esc>[200~"
+&t_PE = "\<Esc>[201~"
 
-    &t_fe = "\<Esc>[?1004h"
-    &t_fd = "\<Esc>[?1004l"
-    execute "set <FocusGained>=\<Esc>[I"
-    execute "set <FocusLost>=\<Esc>[O"
-endif
+&undodir = $HOME .. "/.local/state/vim/undo/"
 
-if has('win32')
-    set guioptions-=t
-    &undodir = $HOME .. "\\vimfiles\\undo\\"
-else
-    runtime ftplugin/man.vim
-    &undodir = $HOME .. "/.local/state/vim/undo/"
-endif
-
-inoremap <C-c> <ESC>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
-nnoremap - <cmd>Ex<cr>
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-map Q gq
-sunmap Q
+inoremap #T # TODO (mike): 
 
-iab """ """<cr>"""<up>
-ab teh the
-ab Teh The
-cab Q q
-cab Qa qa
-cab QA qa
-cab W w
-cab WQ wq
-cab WA wa
-cab Wq wq
-cab Wa wa
-
-packadd! matchit
 packadd! cfilter
 packadd! comment
 packadd! nohlsearch
 packadd! hlyank
 packadd! helptoc
+
 
 def GetTODO(): void
     var commentstring: string = &l:commentstring
@@ -77,6 +36,8 @@ def GetTODO(): void
 enddef
 
 nnoremap gt <scriptcmd>GetTODO()<cr>
+
+autocmd BufReadPre *.asm g:asmsyntax = "fasm"
 
 augroup python
     autocmd!

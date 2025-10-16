@@ -1,7 +1,13 @@
-mouse-shift-capture = true
+background-opacity = 0.9
+background-blur = true
 macos-option-as-alt = true
 cursor-style = block
+cursor-color = #ffffff
+cursor-opacity = 0.5
 shell-integration-features = no-cursor
+bold-is-bright = true
+font-size = 12
+font-thicken = true
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
