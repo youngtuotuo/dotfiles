@@ -1,61 +1,30 @@
 source $VIMRUNTIME/defaults.vim
 syntax on
 filetype plugin indent on
-set mouse=nvi showmatch noswapfile autoread undofile incsearch formatoptions+=jro
-set nowrap history=1000 shortmess-=S background=dark termguicolors shiftwidth=4
+set showmatch noswapfile autoread undofile formatoptions+=jro
+set nowrap shortmess-=S background=dark termguicolors shiftwidth=4
 set expandtab smartindent autoindent scrolloff=5 hlsearch sidescroll=3 sidescrolloff=2
-set ttymouse=sgr laststatus=2 cursorline
-
+set ttymouse=sgr laststatus=2
 let &t_BE = "\<Esc>[?2004h"
 let &t_BD = "\<Esc>[?2004l"
 let &t_PS = "\<Esc>[200~"
 let &t_PE = "\<Esc>[201~"
-
 let &undodir = $HOME . "/.local/state/vim/undo/"
-
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
-
 packadd cfilter
-" packadd comment
-" packadd nohlsearch
-" packadd hlyank
-" packadd helptoc
-
-function! GetTODO()
-    let commentstring = &l:commentstring
-    let comment_prefix = substitute(commentstring, "\s*%s\s*", "", "")
-    execute "lvim /" . comment_prefix . "\\s*\\(TODO\\|WARN\\|WARNING\\|NOTE\\)/ % | lwindow"
-endfunction
-
-nnoremap gt :call GetTODO()<CR>
-
-autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
-
-augroup python
+nnoremap gt :execute "lvim /" . substitute(&l:commentstring, "\s*%s\s*", "", "") . "\\s*\\(TODO\\\|WARN\\\|NOTE\\)/ % \\| lwindow"<cr>
+augroup group
     autocmd!
-    autocmd FileType python nnoremap <buffer> <silent> gO :execute 'lvim /^\(#.*\)\@!\(class\\|\s*def\\|\s*async\sdef\)/ % \| lwindow'<CR>
+    autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
     autocmd FileType python setlocal makeprg=ruff\ check\ %\ --quiet
     autocmd FileType python setlocal errorformat=%f:%l:%c:\ %m,%-G\ %.%#,%-G%.%#
-augroup END
-
-augroup c
-    autocmd!
     autocmd FileType c setlocal makeprg=cc\ %\ -o\ /dev/null
-augroup END
-
-augroup cuda
-    autocmd!
     autocmd FileType cuda setlocal makeprg=nvcc\ %\ -o\ /dev/null
     autocmd FileType cuda setlocal errorformat=%f(%l):%m
-augroup END
-
-augroup md
-    autocmd!
-    autocmd FileType markdown nnoremap <buffer> <silent> gO :execute 'lvim /^#\+\(.*\)/ % \| lope'<CR>
     autocmd FileType markdown setlocal expandtab tabstop=4
 augroup END
