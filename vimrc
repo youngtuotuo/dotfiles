@@ -6,10 +6,10 @@ set nowrap history=1000 shortmess-=S background=dark termguicolors shiftwidth=4
 set expandtab smartindent autoindent scrolloff=5 hlsearch sidescroll=3 sidescrolloff=2
 set ttymouse=sgr laststatus=2 cursorline
 
-set t_BE=[?2004h
-set t_BD=[?2004l
-set t_PS=[200~
-set t_PE=
+let &t_BE = "\<Esc>[?2004h"
+let &t_BD = "\<Esc>[?2004l"
+let &t_PS = "\<Esc>[200~"
+let &t_PE = "\<Esc>[201~"
 
 let &undodir = $HOME . "/.local/state/vim/undo/"
 
@@ -21,10 +21,10 @@ nnoremap J mzJ`z
 nnoremap Y y$
 
 packadd cfilter
-packadd comment
-packadd nohlsearch
-packadd hlyank
-packadd helptoc
+" packadd comment
+" packadd nohlsearch
+" packadd hlyank
+" packadd helptoc
 
 function! GetTODO()
     let commentstring = &l:commentstring
