@@ -1,6 +1,4 @@
 source $VIMRUNTIME/defaults.vim
-syntax on
-filetype plugin indent on
 set noswapfile autoread undofile formatoptions+=j laststatus=2
 set nowrap shortmess-=S background=dark termguicolors shiftwidth=4
 set expandtab smartindent autoindent scrolloff=5 hlsearch sidescroll=3 sidescrolloff=2
@@ -14,8 +12,6 @@ inoremap <C-w> <C-g>u<C-w>
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
 nnoremap J mzJ`z
-nnoremap Y y$
-packadd cfilter
 augroup group
     autocmd!
     autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
