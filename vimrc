@@ -1,10 +1,9 @@
 source $VIMRUNTIME/defaults.vim
 syntax on
 filetype plugin indent on
-set showmatch noswapfile autoread undofile formatoptions+=jro
+set noswapfile autoread undofile formatoptions+=j laststatus=2
 set nowrap shortmess-=S background=dark termguicolors shiftwidth=4
 set expandtab smartindent autoindent scrolloff=5 hlsearch sidescroll=3 sidescrolloff=2
-set ttymouse=sgr laststatus=2
 let &t_BE = "\<Esc>[?2004h"
 let &t_BD = "\<Esc>[?2004l"
 let &t_PS = "\<Esc>[200~"
@@ -17,7 +16,6 @@ inoremap . .<C-g>u
 nnoremap J mzJ`z
 nnoremap Y y$
 packadd cfilter
-nnoremap gt :execute "lvim /" . substitute(&l:commentstring, "\s*%s\s*", "", "") . "\\s*\\(TODO\\\|WARN\\\|NOTE\\)/ % \\| lwindow"<cr>
 augroup group
     autocmd!
     autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
